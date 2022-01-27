@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-// import data from './index-data';
+import data from '../data/index-data';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -12,7 +12,7 @@ function HomepageHeader() {
       <div className="container">
 		<div className="custom-hero">
 			<div className="container">
-				<h1>Open Metal Documentation</h1>
+				<h1>Documentation</h1>
 				<h3>Browse the latest guides and tutorials.</h3>
 			</div>
 		</div>
@@ -22,12 +22,41 @@ function HomepageHeader() {
 }
 
 function getCatagory( cat ) {
-	return this.documentationObject.filter( item => item.catagories.includes( cat ) );
+	const documentationObject = data.documentationIndex;
+	console.log( data );
+	return documentationObject.filter( item => item.catagories.includes( cat ) );
 }
 
-function CategoryArticles() {
+function CategoryArticles( { category } ) {
 	return (
-		<div/>
+		<div>
+			{getCatagory(category).map((documentation) => (
+				<div class="documentation-item">
+					<span class="material-icons">chevron_right</span>
+					<div>
+						{ ( documentation.htmlPath || documentation.pdfPath ) &&
+							<a class="title link" href={documentation.htmlPath || documentation.pdfPath}>{documentation.title}</a>
+						 }
+						{ ! ( documentation.htmlPath || documentation.pdfPath ) &&
+						<div class="title">
+							{documentation.title}
+						</div> }
+						{ documentation.pdfPath && documentation.htmlPath  === '' &&
+							<span> (PDF)</span>
+						}
+						{ documentation.pdfPath && documentation.htmlPath &&
+							<a target="_blank" href={ documentation.pdfPath }> (PDF)</a>
+						}
+						<div>
+							{documentation.description}
+							{ documentation.comingSoon &&
+								<span className="soon"> Coming Soon</span>
+							}
+						</div>
+					</div>
+				</div>
+			))}
+		</div>
 	);
 }
 
@@ -42,7 +71,7 @@ function Categories() {
 					Learn how to integrate Flex Metal into an existing infrastructure or create a new one.
 				</div>
 				<div>
-				<CategoryArticles />
+				<CategoryArticles category="admin" />
 				</div>
 			</div>
 			<div>
@@ -53,7 +82,7 @@ function Categories() {
 					Guides and tutorials to help users on getting started with Flex Metal and Openstack management.
 				</div>
 				<div>
-				<CategoryArticles />
+				<CategoryArticles category="users" />
 				</div>
 			</div>
 			<div>
@@ -64,7 +93,7 @@ function Categories() {
 					Resources that can show how Flex Metal can improve your scalability at reduced costs of public clouds.
 				</div>
 				<div>
-					<CategoryArticles />
+					<CategoryArticles category="management" />
 				</div>
 			</div>
 		</section>

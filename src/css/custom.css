@@ -5,6 +5,7 @@
  */
 
  @import '../css/index.css';
+ @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Montserrat:400:700:900');
 
 /* You can override the default Infima variables here. */
 :root {
@@ -16,6 +17,7 @@
   --ifm-color-primary-lighter: #3e97d6;
   --ifm-color-primary-lightest: #86bee5;
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Montserrat';
 }
 
 .docusaurus-highlight-code-line {
@@ -28,3 +30,28 @@
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;  /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+  }

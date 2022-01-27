@@ -1,11 +1,10 @@
 .custom-index-page.catagories {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 7rem;
+	grid-gap: 4rem;
 	margin: 2rem auto;
 	justify-content: center;
 	max-width: 1300px;
-	margin: 0 auto;
 }
 
 .custom-index-page.catagories h2 {
@@ -13,7 +12,6 @@
 }
 
 .custom-index-page.catagories .desc {
-	font-size: 1.1rem;
 	margin-top: .5rem;
 	margin-bottom: 2rem;
 }
@@ -23,16 +21,14 @@
 	margin-bottom: 2rem;
 }
 
-.custom-index-page .documentation-item .mat-icon {
+.custom-index-page .documentation-item .material-icons {
 	margin-right: .5rem;
 }
 
-.custom-index-page .documentation-item .title{
-	font-size: 1.2rem;
-}
 .custom-index-page .documentation-item .title.link,
 .custom-index-page .documentation-item .title.a {
-	color: mat-color($primary-color-palette, 600);
+
+	color: #2272ae;
 	font-weight: bold;
 }
 
@@ -43,28 +39,29 @@
 .custom-index-page .cat-hero {
 	position: relative;
 	background-size: cover;
-	height: 12rem;
+	height: 10rem;
 	margin-bottom: 1rem;
 }
 
 .custom-index-page .cat-hero h3 {
 	margin: 0;
-	background: rgba( mat-color($theme-accent, 600), 0.85 );
+	background: #555;
 	color: #fff;
 	padding: .75rem 2rem;
 	position: absolute;
 	bottom: 0;
 	right: 0;
 	left: 0;
-	font-size: 1.5rem;
+	font-size: 1.2rem;
+	font-weight: normal;
 }
 
 .custom-index-page .cat-hero.users h3 {
-	background: rgba( mat-color($primary-color-palette, 600), 0.85 );
+	background: rgba(34,114,174,.85);
 }
 
 .custom-index-page .cat-hero.management h3 {
-	background: rgba( mat-color($secondary-accent-color-palette, 600), 0.85 );
+	background: rgba(16,26,37,.85);
 }
 
 .custom-index-page .cat-hero::after {
@@ -74,7 +71,7 @@
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 65%, #fff 100%);
+	background: linear-gradient(90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,0) 65%,#fff);
 }
 
 .custom-index-page .pdf-link{
