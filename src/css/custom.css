@@ -4,15 +4,17 @@
  * work well for content-centric websites.
  */
 
+ @import '../css/index.css';
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-color-primary: #267ab5;
+  --ifm-color-primary-dark: #226da2;
+  --ifm-color-primary-darker: #1e6190;
+  --ifm-color-primary-darkest: #133d5a;
+  --ifm-color-primary-light: #2b8acd;
+  --ifm-color-primary-lighter: #3e97d6;
+  --ifm-color-primary-lightest: #86bee5;
   --ifm-code-font-size: 95%;
 }
 

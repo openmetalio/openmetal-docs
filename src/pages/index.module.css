@@ -3,21 +3,9 @@
  * and scoped locally.
  */
 
-.heroBanner {
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.heroBanner  {
+	background: linear-gradient(135deg,#121e2a,rgba(38,122,181,.25) 50%,rgba(48,169,255,.612)),url(https://central.inmotionhosting.com/assets/hero/desktop/cloud-storage-01.jpg) no-repeat 50%;
+	background-size: cover;
+	color: #fff;
+	padding: 3rem 0;
 }

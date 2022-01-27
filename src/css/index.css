@@ -1,0 +1,140 @@
+.custom-index-page.catagories {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 7rem;
+	margin: 2rem auto;
+	justify-content: center;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.custom-index-page.catagories h2 {
+	font-weight: 800;
+}
+
+.custom-index-page.catagories .desc {
+	font-size: 1.1rem;
+	margin-top: .5rem;
+	margin-bottom: 2rem;
+}
+
+.custom-index-page .documentation-item {
+	display: flex;
+	margin-bottom: 2rem;
+}
+
+.custom-index-page .documentation-item .mat-icon {
+	margin-right: .5rem;
+}
+
+.custom-index-page .documentation-item .title{
+	font-size: 1.2rem;
+}
+.custom-index-page .documentation-item .title.link,
+.custom-index-page .documentation-item .title.a {
+	color: mat-color($primary-color-palette, 600);
+	font-weight: bold;
+}
+
+.custom-index-page .documentation-item .soon{
+	font-style: italic;
+}
+
+.custom-index-page .cat-hero {
+	position: relative;
+	background-size: cover;
+	height: 12rem;
+	margin-bottom: 1rem;
+}
+
+.custom-index-page .cat-hero h3 {
+	margin: 0;
+	background: rgba( mat-color($theme-accent, 600), 0.85 );
+	color: #fff;
+	padding: .75rem 2rem;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	font-size: 1.5rem;
+}
+
+.custom-index-page .cat-hero.users h3 {
+	background: rgba( mat-color($primary-color-palette, 600), 0.85 );
+}
+
+.custom-index-page .cat-hero.management h3 {
+	background: rgba( mat-color($secondary-accent-color-palette, 600), 0.85 );
+}
+
+.custom-index-page .cat-hero::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0) 65%, #fff 100%);
+}
+
+.custom-index-page .pdf-link{
+	margin-left: .5rem;
+}
+.custom-index-page .cat-hero.users {
+	background-image: url(https://central.inmotionhosting.com/assets/hero/desktop/reseller-hosting-solutions-hero.jpg);
+
+}
+.custom-index-page .cat-hero.admin {
+	background-image: url(https://central.inmotionhosting.com/assets/hero/desktop/custom-server-solutions-hero.jpg);
+
+}
+.custom-index-page .cat-hero.management{
+	background-image: url(https://central.inmotionhosting.com/assets/hero/desktop/prestashop.jpg);
+
+}
+
+.custom-index-page .contact-wrap {
+	color: #fff;
+	background: $dark-gray;
+	padding: 3rem;
+}
+
+.custom-index-page .sales-contact {
+	max-width: 750px;
+	margin: 0 auto;
+	display: flex;
+}
+
+
+.custom-index-page .sales-contact .headshot {
+	flex: 0 0 auto;
+}
+
+.custom-index-page .sales-contact .headshot img{
+	width: 9rem;
+	height: 9rem;
+	border-radius: 50%;
+	border: 4px solid #fff;
+}
+
+.custom-index-page .sales-contact .contact-details {
+	display:flex;
+	flex-direction:column;
+	margin-left: 3rem;
+}
+
+.custom-index-page .sales-contact .contact-details span{
+	margin-bottom: 1rem;
+}
+
+@media( max-width: 1300px ) {
+	.custom-index-page.catagories {
+		grid-gap: 2rem;
+	}
+}
+
+@media( max-width: 768px ) {
+	.custom-index-page.catagories{
+		grid-template-columns: auto;
+	}
+}
