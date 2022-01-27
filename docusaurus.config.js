@@ -8,12 +8,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Open Metal Docs',
   tagline: 'Dinosaurs are cool',
-  url: 'https://docs.openmetal.io',
+//   url: 'https://docs.openmetal.io',
+  url: 'https://inmotionhosting.github.io/openmetal-docs/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+//   onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'Open Metal', // Usually your GitHub org/user name.
+  organizationName: 'inmotionhosting', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
 
   presets: [
