@@ -1,4 +1,4 @@
-How to Make Backups in OpenStack
+How to Make Backups in OpenStacks
 ================================
 
 Having a solid backup strategy is important in the event where data is
