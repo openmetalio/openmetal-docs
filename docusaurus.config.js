@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Open Metal Docs',
-  tagline: 'Dinosaurs are cool',
+  title: 'Openmetal Docs',
+  tagline: 'Openmetal On-Demand Private Cloud Documentation',
 //   url: 'https://docs.openmetal.io',
   url: 'https://inmotionhosting.github.io',
   baseUrl: '/openmetal-docs/',

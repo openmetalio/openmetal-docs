@@ -1,0 +1,272 @@
+# How to Install and Use OpenStack's CLI
+
+## Introduction
+
+Your OpenMetal Private Cloud can not only be managed through a web
+browser, but also through the command line using OpenStack's CLI called
+OpenStackClient. Using the command line to manage your cloud introduces
+more flexibility in automation tasks and can generally make an
+administrator's life simpler. In this guide, we introduce you to the
+command line method of managing your cloud by explaining how to install
+and use OpenStackClient.
+
+## Table of Contents
+
+1.    - [How to Install
+        OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#how-to-install-openstackclient)
+        
+        1.  [Prerequisites](operators_manual/day-1/command-line/openstackclient.rst#prerequisites)
+        
+        2.    - [Install
+                OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#install-openstackclient)
+                
+                1.  [Initial
+                    Preparation](operators_manual/day-1/command-line/openstackclient.rst#initial-preparation)
+                2.  [Prepare and Install
+                    OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#prepare-and-install-openstackclient)
+
+2.    - [Command
+        Structure](operators_manual/day-1/command-line/openstackclient.rst#command-structure)
+        
+        1.  [List all Available
+            Subcommands](operators_manual/day-1/command-line/openstackclient.rst#list-all-available-subcommands)
+        2.  [Learn more about a
+            Subcommand](operators_manual/day-1/command-line/openstackclient.rst#learn-more-about-a-subcommand)
+        3.  [List Items and Show
+            Details](operators_manual/day-1/command-line/openstackclient.rst#list-items-and-show-details)
+
+3.  [Enable Bash
+    Autocompletion](operators_manual/day-1/command-line/openstackclient.rst#enable-bash-autocompletion)
+
+4.  [Reference](operators_manual/day-1/command-line/openstackclient.rst#reference)
+
+## How to Install OpenStackClient
+
+### Prerequisites
+
+  - A Linux machine in which you can install OpenStackClient. This can
+    be your own machine, the cloud's hardware nodes, or an instance
+    running in the cloud.
+  - Python 3.6 or greater
+  - OpenStack RC file
+  - `clouds.yaml` file
+
+### Install OpenStackClient
+
+In this section, we demonstrate the initial preparation and installation
+of OpenStackClient to the previously created **Jumpstation** CentOS 8
+Stream instance.
+
+#### Initial Preparation
+
+Before installing OpenStackClient, you must obtain two files from
+Horizon, which are required to prepare your shell environment. Those two
+files are `clouds.yaml` and the OpenStack RC file.
+
+  - `clouds.yaml`: Used as a source of configuration for how to connect
+    to a cloud
+  - OpenStack RC file: Used as a source of authentication for your user
+    and project
+
+To collect these files, log in to Horizon as your user. Navigate to
+**Project -\> API Access** to download the OpenStack `clouds.yaml` and
+the `OpenStack RC` files to your machine. When you navigate to **Project
+-\> API Access** and collect these files, they are associated with the
+current user and project that user is in.
+
+![image](images/api-access.png)
+
+**Figure 1:** API Access
+
+This example acquires the `clouds.yaml` and OpenStack RC file for the
+user **nick** and that user's primary project, **Development**.
+
+#### Prepare and Install OpenStackClient
+
+Next, use SSH to log in to the instance created previously. If you
+created your instance by following the guide, [How to Create an Instance
+in OpenStack
+Horizon](operators_manual/day-1/horizon/create-first-instance.rst), then
+this instance can only be accessed from one of your control plane nodes.
+
+-----
+
+**Step 1**: Prepare `clouds.yaml` and OpenStack RC files
+
+The `clouds.yaml` file obtained previously must be prepared in this
+instance. For this demonstration, `clouds.yaml` is located as
+`~/.config/openstack/clouds.yaml` in this instance. Copy the contents of
+`clouds.yaml` obtained from Horizon and store it as
+`~/.config/openstack/clouds.yaml`.
+
+For example:
+
+    # Create the following directory
+    $ mkdir -p ~/.config/openstack
+    
+    # Copy clouds.yaml into this file
+    $ vi ~/.config/openstack/clouds.yaml
+
+**Note** -- The `clouds.yaml` file can be placed in several locations.
+For more see the [Configuration
+Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
+heading of OpenStack Victoria's documentation.
+
+Next, copy the contents of your OpenStack RC file, in our case called
+`~/Development-openrc.sh`, into the instance. This file can be placed
+anywhere and in this example, the file is stored in the `centos` user's
+home directory.
+
+For example:
+
+    $ vi ~/Development-openrc.sh
+
+**Step 2**: Create a Python virtual environment
+
+This environment is created so as to not interfere with the system's
+Python version.
+
+In a default CentOS 8 Stream installation, the system's Python
+executable is `/usr/libexec/platform-python` and is what will be used to
+create the virtual environment.
+
+Use `/usr/libexec/platform-python -m venv ~/venv` to create a virtual
+environment in path `~/venv`.
+
+For example:
+
+    $ /usr/libexec/platform-python -m venv ~/venv
+
+**Step 3**: Activate the Python virtual environment
+
+Use `source ~/venv/bin/activate` to activate the virtual environment.
+
+For example:
+
+    $ source ~/venv/bin/activate
+
+**Step 4**: Upgrade `pip`
+
+Before installing OpenStackClient and to aid in a smooth installation,
+upgrade `pip`. Upgrade `pip` by using `pip install --upgrade pip`.
+
+For example:
+
+    $ pip install --upgrade pip
+
+**Step 5**: Install OpenStackClient
+
+With everything prepared, OpenStackClient can be installed.
+
+**Note\!** - There exist two OpenStackClient packages:
+`python-openstackclient` and `openstackclient`. We recommend using
+`python-openstackclient` because it is maintained much more frequently
+than the prior package.
+
+Install OpenStackClient using:
+
+    $ pip install python-openstackclient
+
+**Step 6**: List servers associated with your project
+
+For an initial command, list the servers associated with your project by
+running `openstack server list`.
+
+For example:
+
+    $ openstack server list
+    +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
+    | ID                                   | Name        | Status | Networks                               | Image                    | Flavor   |
+    +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
+    | 3bb6f079-90d3-4233-9400-94ef49c34a34 | Jumpstation | ACTIVE | Private=173.231.217.202, 192.168.0.200 | N/A (booted from volume) | m1.small |
+    +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
+
+Here, we can see the server created in the previous guide.
+
+## Command Structure
+
+When using OpenStackClient, there is typically a common command pattern
+for what you want to accomplish. All `openstack` commands begin with
+`openstack`. You can execute `openstack` by itself to enter into a
+shell, where commands no longer need to be prefixed by `openstack`:
+
+    (venv) [root@lovely-ladybug ~]# openstack
+    (openstack)
+
+### List all Available Subcommands
+
+Use `openstack --help` to list all available subcommands. You initially
+see all the flags you can pass, but after scrolling a bit, the
+subcommand list starts:
+
+    Commands:
+      access rule delete  Delete access rule(s)
+      access rule list  List access rules
+      access rule show  Display access rule details
+      access token create  Create an access token
+      acl delete  Delete ACLs for a secret or container as identified by its href. (py
+    thon-barbicanclient)
+    [...output truncated...]
+
+### Learn more about a Subcommand
+
+After seeing available commands, learn more about a command by using
+`openstack help <command>`.
+
+For example, to learn more about the `openstack server` command, use
+`openstack help server`:
+
+    $ openstack help server
+    Command "server" matches:
+      server add fixed ip
+      server add floating ip
+      server add network
+      server add port
+      server add security group
+    [...output truncated...]
+
+### List Items and Show Details
+
+It is very common when using OpenStackClient to list items and the
+command form is typically `openstack <subcommand> list`. For example,
+`openstack server list`, lists all servers for the currently configured
+project.
+
+Furthermore, more information about an item can be found by typically
+running `openstack <subcommand> show <item>`. For example, `openstack
+server show Jumpstation` shows the details about the instance named
+**Jumpstation**.
+
+## Enable Bash Autocompletion
+
+**Note** The required bash-completion package is not included in the
+CentOS 8 Stream image resulting in an errors like the following:
+
+    -bash: _get_comp_words_by_ref: command not found
+
+We can install the missing package from the default repositories.:
+
+    sudo dnf install bash-completion
+
+By default, shell autocompletion is not enabled for the
+`python-openstackclient` package. To view the autocompletion Bash
+script, use `openstack complete`. To make the autocompletion persist,
+store the output of `openstack complete` into
+`/etc/bash_completion.d/osc.bash_completion` and reload your shell.
+
+For example, we print the autocomplete configuration and redirect its
+output to `/etc/bash_completion.d/osc.bash_completion` using `tee`:
+
+    $ openstack complete | sudo tee /etc/bash_completion.d/osc.bash_completion > /dev/null
+
+Next, either log out and back in to your shell or use `source` to load
+the autocompletion script for your current shell.
+
+For example:
+
+    $ source /etc/bash_completion.d/osc.bash_completion
+
+## Reference
+
+[OpenStack Victoria OpenStackClient
+Documentation](https://docs.openstack.org/python-openstackclient/victoria/)
