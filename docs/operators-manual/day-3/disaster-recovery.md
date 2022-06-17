@@ -13,31 +13,31 @@ disaster recovery plan.
 ## Table of Contents
 
 1.    - [Disaster Recovery
-        Strategies](operators_manual/day-3/disaster-recovery.md#disaster-recovery-strategies)
+        Strategies](operators_manual/day-3/disaster-recovery#disaster-recovery-strategies)
         
         1.  [Recovery
-            Objectives](operators_manual/day-3/disaster-recovery.md#recovery-objectives)
+            Objectives](operators_manual/day-3/disaster-recovery#recovery-objectives)
         2.  [Off-site
-            Backups](operators_manual/day-3/disaster-recovery.md#off-site-backups)
+            Backups](operators_manual/day-3/disaster-recovery#off-site-backups)
         3.  [RBD Mirroring with
-            Ceph](operators_manual/day-3/disaster-recovery.md#rbd-mirroring-with-ceph)
+            Ceph](operators_manual/day-3/disaster-recovery#rbd-mirroring-with-ceph)
 
 2.    - [Handling a Hardware
-        Failure](operators_manual/day-3/disaster-recovery.md#handling-a-hardware-failure)
+        Failure](operators_manual/day-3/disaster-recovery#handling-a-hardware-failure)
         
         1.  [Determine Hardware Node
-            Failure](operators_manual/day-3/disaster-recovery.md#determine-hardware-node-failure)
+            Failure](operators_manual/day-3/disaster-recovery#determine-hardware-node-failure)
         2.  [Cluster
-            Failure](operators_manual/day-3/disaster-recovery.md#cluster-failure)
+            Failure](operators_manual/day-3/disaster-recovery#cluster-failure)
 
 3.  [Cloud Monitoring with
-    Datadog](operators_manual/day-3/disaster-recovery.md#cloud-monitoring-with-datadog)
+    Datadog](operators_manual/day-3/disaster-recovery#cloud-monitoring-with-datadog)
 
 4.  [Contact
-    Support](operators_manual/day-3/disaster-recovery.md#contact-support)
+    Support](operators_manual/day-3/disaster-recovery#contact-support)
 
 5.  [Additional
-    Reading](operators_manual/day-3/disaster-recovery.md#additional-reading)
+    Reading](operators_manual/day-3/disaster-recovery#additional-reading)
 
 ## Disaster Recovery Strategies
 

@@ -28,15 +28,15 @@ of this repository is used.
 The following items have been integrated:
 
   - [OpenStack Cloud Controller
-    Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-openstack-cloud-controller-manager.md)
+    Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-openstack-cloud-controller-manager)
   - [Octavia Ingress
-    Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
+    Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
   - [Cinder CSI
-    Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin.md)
+    Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin)
 
 For an example of how to set up load balancing, see [Setting up HTTP
 Load Balancing with
-Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress).
+Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#setting-up-http-load-balancing-with-ingress).
 
 ## Prerequisites
 

@@ -11,40 +11,40 @@ public, or external, network of your Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisites](operators_manual/day-4/kolla-ansible/enable-tls.md#prerequisites)
+1.  [Prerequisites](operators_manual/day-4/kolla-ansible/enable-tls#prerequisites)
 
 2.    - [Specify an External Fully Qualified Domain Name for
-        Horizon](operators_manual/day-4/kolla-ansible/enable-tls.md#specify-an-external-fully-qualified-domain-name-for-horizon)
+        Horizon](operators_manual/day-4/kolla-ansible/enable-tls#specify-an-external-fully-qualified-domain-name-for-horizon)
         
         1.  [Determine Public
-            IP](operators_manual/day-4/kolla-ansible/enable-tls.md#determine-public-ip)
+            IP](operators_manual/day-4/kolla-ansible/enable-tls#determine-public-ip)
         2.  [Configure an
-            FQDN](operators_manual/day-4/kolla-ansible/enable-tls.md#configure-an-fqdn)
+            FQDN](operators_manual/day-4/kolla-ansible/enable-tls#configure-an-fqdn)
         3.  [Apply Configuration Change Using Kolla
-            Ansible](operators_manual/day-4/kolla-ansible/enable-tls.md#apply-configuration-change-using-kolla-ansible)
+            Ansible](operators_manual/day-4/kolla-ansible/enable-tls#apply-configuration-change-using-kolla-ansible)
 
 3.    - [Enable SSL Externally, Encrypting Horizon
-        Traffic](operators_manual/day-4/kolla-ansible/enable-tls.md#enable-ssl-externally-encrypting-horizon-traffic)
+        Traffic](operators_manual/day-4/kolla-ansible/enable-tls#enable-ssl-externally-encrypting-horizon-traffic)
         
         1.  [Modify Kolla Ansible
-            Configuration](operators_manual/day-4/kolla-ansible/enable-tls.md#modify-kolla-ansible-configuration)
+            Configuration](operators_manual/day-4/kolla-ansible/enable-tls#modify-kolla-ansible-configuration)
         2.  [Configure Root CA
-            Bundle](operators_manual/day-4/kolla-ansible/enable-tls.md#configure-root-ca-bundle)
+            Bundle](operators_manual/day-4/kolla-ansible/enable-tls#configure-root-ca-bundle)
         3.  [Prepare SSL
-            File](operators_manual/day-4/kolla-ansible/enable-tls.md#prepare-ssl-file)
+            File](operators_manual/day-4/kolla-ansible/enable-tls#prepare-ssl-file)
         4.  [Specify SSL
-            Certificate](operators_manual/day-4/kolla-ansible/enable-tls.md#specify-ssl-certificate)
+            Certificate](operators_manual/day-4/kolla-ansible/enable-tls#specify-ssl-certificate)
         5.  [Enable External
-            TLS](operators_manual/day-4/kolla-ansible/enable-tls.md#enable-external-tls)
+            TLS](operators_manual/day-4/kolla-ansible/enable-tls#enable-external-tls)
         6.  [Reconfigure Cloud using Kolla
-            Ansible](operators_manual/day-4/kolla-ansible/enable-tls.md#reconfigure-cloud-using-kolla-ansible)
+            Ansible](operators_manual/day-4/kolla-ansible/enable-tls#reconfigure-cloud-using-kolla-ansible)
 
 4.    - [Reconfigure Ceph Cluster using Ceph
-        Ansible](operators_manual/day-4/kolla-ansible/enable-tls.md#reconfigure-ceph-cluster-using-ceph-ansible)
+        Ansible](operators_manual/day-4/kolla-ansible/enable-tls#reconfigure-ceph-cluster-using-ceph-ansible)
         
-        1.  [Procedure](operators_manual/day-4/kolla-ansible/enable-tls.md#procedure)
+        1.  [Procedure](operators_manual/day-4/kolla-ansible/enable-tls#procedure)
 
-5.  [Reference](operators_manual/day-4/kolla-ansible/enable-tls.md#reference)
+5.  [Reference](operators_manual/day-4/kolla-ansible/enable-tls#reference)
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ public, or external, network of your Private Cloud.
     cloud with an SSL using Kolla Ansible. Any time you work with Kolla
     Ansible, you must prepare a shell environment. For more, see [How to
     Prepare and Use Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
+    Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible).
     The remaining instruction assume this environment has been prepared.
     All commands are to be executed from the control plane node where
     this environment has been prepared.
@@ -60,7 +60,7 @@ public, or external, network of your Private Cloud.
     reconfigure your cloud's Ceph cluster. When working with Ceph
     Ansible, you must first prepare a shell environment. For more, see
     [How to Prepare and Use Ceph
-    Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.md). The
+    Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible). The
     portion of this guide that has to do with using Ceph Ansible assumes
     this environment has been prepared.
   - **Root Access**: Root access to your cloud's control plane nodes is
@@ -109,7 +109,7 @@ use:
 With the FQDN configured, Kolla Ansible must be used to apply that
 configuration before proceeding with this guide. Before proceeding with
 this section, ensure you have [prepared a Kolla Ansible
-environment](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
+environment](operators_manual/day-4/kolla-ansible/kolla-ansible).
 Also ensure the node from which Kolla Ansible has been prepared contains
 the file `/etc/fm-deploy/kolla-ansible-inventory`, which is the Ansible
 inventory file for your cloud.
@@ -192,7 +192,7 @@ set to `'yes'`:
 The previous steps conclude the preparation of the SSL file and the
 Kolla Ansible configuration. Before proceeding with this step, ensure
 you have [prepared a Kolla Ansible
-environment](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
+environment](operators_manual/day-4/kolla-ansible/kolla-ansible).
 
 Next, to configure the cloud to use this SSL, use the inventory file
 `/etc/fm-deploy/kolla-ansible-inventory` and Kolla Ansible's
@@ -212,7 +212,7 @@ Ceph Ansible.
 ### Procedure
 
 First, ensure you have [prepared a Ceph Ansible
-environment](operators_manual/day-4/ceph-ansible/ceph-ansible.md).
+environment](operators_manual/day-4/ceph-ansible/ceph-ansible).
 
 Next, load `./group_vars/all.yml` in an editor and find the line
 containing the string `rgw keystone url:`. For this example, this line

@@ -13,11 +13,11 @@ usage using the command line.
 
 ## Table of Contents
 
-1.  [Prerequisites](operators_manual/day-2/check-ceph-status-disk-usage.md#prerequisites)
+1.  [Prerequisites](operators_manual/day-2/check-ceph-status-disk-usage#prerequisites)
 2.  [Check Ceph
-    Status](operators_manual/day-2/check-ceph-status-disk-usage.md#check-ceph-status)
+    Status](operators_manual/day-2/check-ceph-status-disk-usage#check-ceph-status)
 3.  [Check Ceph Disk
-    Usage](operators_manual/day-2/check-ceph-status-disk-usage.md#check-ceph-disk-usage)
+    Usage](operators_manual/day-2/check-ceph-status-disk-usage#check-ceph-disk-usage)
 
 ## Prerequisites
 

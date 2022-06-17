@@ -23,8 +23,8 @@ be created.
 ## **Table of Contents**
 
 1.  [Create a Network and
-    Router](users_manual/network_ip_traffic.md#create-a-network-and-router)
-2.  [Floating IPs](users_manual/network_ip_traffic.md#floating-ips)
+    Router](users_manual/network_ip_traffic#create-a-network-and-router)
+2.  [Floating IPs](users_manual/network_ip_traffic#floating-ips)
 
 -----
 
@@ -218,5 +218,5 @@ SSH.
 
 ## **Next Steps**
 
-The [next guide](users_manual/using_creating_images.md) goes over
+The [next guide](users_manual/using_creating_images) goes over
 images in OpenStack, which are bootable operating systems.

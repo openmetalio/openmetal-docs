@@ -13,39 +13,39 @@ Horizon.
 
 ## Table of Contents
 
-1.    - [Networking](operators_manual/day-1/horizon/create-first-instance.md#networking)
+1.    - [Networking](operators_manual/day-1/horizon/create-first-instance#networking)
         
         1.  [Create a Private
-            Network](operators_manual/day-1/horizon/create-first-instance.md#create-a-private-network)
+            Network](operators_manual/day-1/horizon/create-first-instance#create-a-private-network)
         
         2.    - [Create a
-                Router](operators_manual/day-1/horizon/create-first-instance.md#create-a-router)
+                Router](operators_manual/day-1/horizon/create-first-instance#create-a-router)
                 
                 1.  [Connect Router to Private
-                    Network](operators_manual/day-1/horizon/create-first-instance.md#connect-router-to-private-network)
+                    Network](operators_manual/day-1/horizon/create-first-instance#connect-router-to-private-network)
                 2.  [View Network
-                    Topology](operators_manual/day-1/horizon/create-first-instance.md#view-network-topology)
+                    Topology](operators_manual/day-1/horizon/create-first-instance#view-network-topology)
         
         3.    - [Security
-                Groups](operators_manual/day-1/horizon/create-first-instance.md#security-groups)
+                Groups](operators_manual/day-1/horizon/create-first-instance#security-groups)
                 
                 1.  [Create an SSH Security
-                    Group](operators_manual/day-1/horizon/create-first-instance.md#create-an-ssh-security-group)
+                    Group](operators_manual/day-1/horizon/create-first-instance#create-an-ssh-security-group)
                 2.  [Add Rule to SSH Security
-                    Group](operators_manual/day-1/horizon/create-first-instance.md#add-rule-to-ssh-security-group)
+                    Group](operators_manual/day-1/horizon/create-first-instance#add-rule-to-ssh-security-group)
 
 2.    - [How to Create your First
-        Instance](operators_manual/day-1/horizon/create-first-instance.md#how-to-create-your-first-instance)
+        Instance](operators_manual/day-1/horizon/create-first-instance#how-to-create-your-first-instance)
         
-        1.  [Prerequisites](operators_manual/day-1/horizon/create-first-instance.md#prerequisites)
+        1.  [Prerequisites](operators_manual/day-1/horizon/create-first-instance#prerequisites)
         
         2.    - [Create your First
-                Instance](operators_manual/day-1/horizon/create-first-instance.md#create-your-first-instance)
+                Instance](operators_manual/day-1/horizon/create-first-instance#create-your-first-instance)
                 
                 1.  [SSH Public
-                    Key](operators_manual/day-1/horizon/create-first-instance.md#ssh-public-key)
+                    Key](operators_manual/day-1/horizon/create-first-instance#ssh-public-key)
                 2.  [Operating System
-                    Image](operators_manual/day-1/horizon/create-first-instance.md#operating-system-image)
+                    Image](operators_manual/day-1/horizon/create-first-instance#operating-system-image)
 
 ## Networking
 
@@ -244,7 +244,7 @@ right.
 To follow this example, obtain the IP address of the first hardware node
 of your cloud. You can find this using [OpenMetal
 Central](https://central.openmetal.io/) under your cloud's [Assets
-Page](operators_manual/day-1/intro-to-openmetal-private-cloud.md#how-to-view-your-hardware-assets).
+Page](operators_manual/day-1/intro-to-openmetal-private-cloud#how-to-view-your-hardware-assets).
 To be consistent, this guide assumes you are working with the first
 hardware node's IP address and the remaining instruction is created with
 that understanding.
@@ -282,14 +282,14 @@ create an SSH key pair in one of the hardware nodes. The public portion
 of that key pair is associated with the instance created later in this
 guide. To learn how to create this key pair, see the supplementary
 guide: [Create SSH Key Pair for an OpenStack Control Plane
-Node](operators_manual/day-1/command-line/create-ssh-key.md).
+Node](operators_manual/day-1/command-line/create-ssh-key).
 
 #### Operating System Image
 
 Several operating system images are available with which to create
 instances. To view available options, navigate to **Project -\> Compute
 -\> Images**. To upload your own images, see [How to Upload Operating
-System Images using Horizon](operators_manual/day-1/horizon/images.md).
+System Images using Horizon](operators_manual/day-1/horizon/images).
 
 ### Create your First Instance
 
@@ -385,7 +385,7 @@ In this section, you specify an SSH public key to inject into the
 instance. You can upload your key at this stage using this form using
 the **Import Key Pair** button. For this demonstration, we use **Import
 Key Pair** to import the existing SSH public key [created
-previously](operators_manual/day-1/command-line/create-ssh-key.md) for
+previously](operators_manual/day-1/command-line/create-ssh-key) for
 one of the control plane nodes.
 
 ![image](images/instance-import-key-pair.png)

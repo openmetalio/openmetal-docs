@@ -26,25 +26,25 @@ should this apply to you.
 
 ## Table of Contents
 
-1.  [Prerequisites](operators_manual/day-4/kolla-ansible/kolla-ansible.md#prerequisites)
+1.  [Prerequisites](operators_manual/day-4/kolla-ansible/kolla-ansible#prerequisites)
 
 2.  [Using Kolla Ansible Quick
-    Start](operators_manual/day-4/kolla-ansible/kolla-ansible.md#using-kolla-ansible-quick-start)
+    Start](operators_manual/day-4/kolla-ansible/kolla-ansible#using-kolla-ansible-quick-start)
 
 3.    - [Prepare Kolla Ansible for
-        Use](operators_manual/day-4/kolla-ansible/kolla-ansible.md#prepare-kolla-ansible-for-use)
+        Use](operators_manual/day-4/kolla-ansible/kolla-ansible#prepare-kolla-ansible-for-use)
         
         1.  [Kolla Ansible Configuration
-            Files](operators_manual/day-4/kolla-ansible/kolla-ansible.md#kolla-ansible-configuration-files)
+            Files](operators_manual/day-4/kolla-ansible/kolla-ansible#kolla-ansible-configuration-files)
         2.  [Before Making
-            Changes](operators_manual/day-4/kolla-ansible/kolla-ansible.md#before-making-changes)
+            Changes](operators_manual/day-4/kolla-ansible/kolla-ansible#before-making-changes)
         3.  [Prepare Kolla Ansible
-            Environment](operators_manual/day-4/kolla-ansible/kolla-ansible.md#prepare-kolla-ansible-environment)
+            Environment](operators_manual/day-4/kolla-ansible/kolla-ansible#prepare-kolla-ansible-environment)
 
-4.  [References](operators_manual/day-4/kolla-ansible/kolla-ansible.md#references)
+4.  [References](operators_manual/day-4/kolla-ansible/kolla-ansible#references)
 
 5.  [Next
-    Steps](operators_manual/day-4/kolla-ansible/kolla-ansible.md#next-steps)
+    Steps](operators_manual/day-4/kolla-ansible/kolla-ansible#next-steps)
 
 ## Prerequisites
 
@@ -199,13 +199,13 @@ changes to your Private Cloud.
 **Caution\!** -- Kolla Ansible's configuration is set through the file
 `/etc/kolla/globals.yml` where some variables should not be changed. See
 the section titled [Before Making
-Changes](operators_manual/day-4/kolla-ansible/kolla-ansible.md#before-making-changes)
+Changes](operators_manual/day-4/kolla-ansible/kolla-ansible#before-making-changes)
 at the top of this guide for more information.
 
 An example configuration change made at this step is to enable TLS for
 Horizon. Enabling TLS falls outside the scope of this guide. For
 instruction on how to do so, see [How to Enable TLS for
-OpenStack](operators_manual/day-4/kolla-ansible/enable-tls.md).
+OpenStack](operators_manual/day-4/kolla-ansible/enable-tls).
 
 For complete documentation regarding available Kolla Ansible commands,
 see [Operating
@@ -225,6 +225,6 @@ configure using Kolla Ansible, such enabling TLS for Horizon or enabling
 Central Logging with an ELK stack:
 
   - [Enable TLS for
-    Horizon](operators_manual/day-4/kolla-ansible/enable-tls.md)
+    Horizon](operators_manual/day-4/kolla-ansible/enable-tls)
   - [Enable Central Logging using
-    ELK](operators_manual/day-4/kolla-ansible/enable-elk.md)
+    ELK](operators_manual/day-4/kolla-ansible/enable-elk)

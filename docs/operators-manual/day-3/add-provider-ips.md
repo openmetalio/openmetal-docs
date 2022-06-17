@@ -21,11 +21,11 @@ allows for custom configuration changes.
 ## Table of Contents
 
 1.  [Getting
-    Started](operators_manual/day-3/add-provider-ips.md#getting-started)
+    Started](operators_manual/day-3/add-provider-ips#getting-started)
 2.  [Confirm new Provider Block
-    Addition](operators_manual/day-3/add-provider-ips.md#confirm-new-provider-block-addition)
+    Addition](operators_manual/day-3/add-provider-ips#confirm-new-provider-block-addition)
 3.  [How are the new Provider Block IPs
-    Used?](operators_manual/day-3/add-provider-ips.md#how-are-the-new-provider-block-ips-used)
+    Used?](operators_manual/day-3/add-provider-ips#how-are-the-new-provider-block-ips-used)
 
 ## Getting Started
 

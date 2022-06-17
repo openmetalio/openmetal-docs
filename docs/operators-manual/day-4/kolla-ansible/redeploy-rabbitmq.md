@@ -9,15 +9,15 @@ using Kolla Ansible.
 
 ## Table of Contents
 
-1.    - [Prerequisites](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq.md#prerequisites)
+1.    - [Prerequisites](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq#prerequisites)
         
         1.  [Prepare Kolla
-            Ansible](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq.md#prepare-kolla-ansible)
+            Ansible](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq#prepare-kolla-ansible)
         2.  [Root Access to OpenStack Control
-            Plane](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq.md#root-access-to-openstack-control-plane)
+            Plane](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq#root-access-to-openstack-control-plane)
 
 2.  [How to Redeploy
-    RabbitMQ](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq.md#how-to-redeploy-rabbitmq)
+    RabbitMQ](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq#how-to-redeploy-rabbitmq)
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ using Kolla Ansible.
 This guide explains how to configure your cloud using Kolla Ansible. Any
 time you work with Kolla Ansible, you must prepare a shell environment.
 For more, see [How to Prepare and Use Kolla
-Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
+Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible).
 
 All commands are to be executed from the control plane node in which
 Kolla Ansible has been prepared.

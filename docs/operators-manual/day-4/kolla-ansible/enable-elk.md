@@ -11,20 +11,20 @@ cloud's log files from a single location in your browser. This feature
 set is not enabled by default. In this guide we walk you through how to
 enable the ELK stack for your Private Cloud using Kolla Ansible.
 
-1.    - [Prerequisites](operators_manual/day-4/kolla-ansible/enable-elk.md#prerequisites)
+1.    - [Prerequisites](operators_manual/day-4/kolla-ansible/enable-elk#prerequisites)
         
         1.  [Prepare Kolla
-            Ansible](operators_manual/day-4/kolla-ansible/enable-elk.md#prepare-kolla-ansible)
+            Ansible](operators_manual/day-4/kolla-ansible/enable-elk#prepare-kolla-ansible)
         2.  [Root Access to OpenStack Control
-            Plane](operators_manual/day-4/kolla-ansible/enable-elk.md#root-access-to-openstack-control-plane)
+            Plane](operators_manual/day-4/kolla-ansible/enable-elk#root-access-to-openstack-control-plane)
 
 2.    - [How to Enable Central
-        Logging](operators_manual/day-4/kolla-ansible/enable-elk.md#how-to-enable-central-logging)
+        Logging](operators_manual/day-4/kolla-ansible/enable-elk#how-to-enable-central-logging)
         
         1.  [Prevent Root Disk from
-            Filling](operators_manual/day-4/kolla-ansible/enable-elk.md#prevent-root-disk-from-filling)
+            Filling](operators_manual/day-4/kolla-ansible/enable-elk#prevent-root-disk-from-filling)
 
-3.  [Reference](operators_manual/day-4/kolla-ansible/enable-elk.md#reference)
+3.  [Reference](operators_manual/day-4/kolla-ansible/enable-elk#reference)
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ enable the ELK stack for your Private Cloud using Kolla Ansible.
 This guide explains how to configure your cloud using Kolla Ansible. Any
 time you work with Kolla Ansible, you must prepare a shell environment.
 For more, see [How to Prepare and Use Kolla
-Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
+Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible).
 
 All commands are to be executed from the control plane node in which
 Kolla Ansible has been prepared.

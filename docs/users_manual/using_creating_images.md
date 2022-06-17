@@ -72,4 +72,4 @@ Click the **?** icon for assistance with specifics.
 ## Next Steps
 
 With this guide complete, move on to the next guide, which explains [how
-to create an Instance](users_manual/create_an_instance.md) in Horizon.
+to create an Instance](users_manual/create_an_instance) in Horizon.

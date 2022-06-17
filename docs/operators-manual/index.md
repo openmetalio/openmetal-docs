@@ -55,19 +55,19 @@ introduce you to OpenMetal Central, how to view the assets that comprise
 your cloud, and how to get support from our staff.
 
 1.  [Introduction to OpenMetal and your Private Cloud
-    Core](operators_manual/day-1/intro-to-openmetal-private-cloud.md)
+    Core](day-1/intro-to-openmetal-private-cloud)
 2.  [Getting Started with OpenStack
-    Horizon](operators_manual/day-1/horizon/getting-started-with-horizon.md)
+    Horizon](day-1/horizon/getting-started-with-horizon)
 3.  [Create an OpenStack User and Project in
-    Horizon](operators_manual/day-1/horizon/create-user-project.md)
+    Horizon](day-1/horizon/create-user-project)
 4.  [Manage and Upload Images in OpenStack
-    Horizon](operators_manual/day-1/horizon/images.md)
+    Horizon](day-1/horizon/images)
 5.  [How to Create an Instance in OpenStack
-    Horizon](operators_manual/day-1/horizon/create-first-instance.md)
+    Horizon](day-1/horizon/create-first-instance)
 6.  [How to Install and Use
-    OpenStackClient](operators_manual/day-1/command-line/openstackclient.md)
+    OpenStackClient](day-1/command-line/openstackclient)
 7.  [Create SSH Key Pair for an OpenStack Control Plane
-    Node](operators_manual/day-1/command-line/create-ssh-key.md)
+    Node](day-1/command-line/create-ssh-key)
 
 ### Day 2
 
@@ -76,17 +76,17 @@ Next we cover OpenStack administration by explaining how to perform
 maintenance tasks for your cluster's hardware nodes.
 
 1.  [How Private Clouds are
-    Deployed](operators_manual/day-2/private-cloud-deployment-overview.md)
+    Deployed](day-2/private-cloud-deployment-overview)
 2.  [Introduction to
-    Ceph](operators_manual/day-2/introduction-to-ceph.md)
+    Ceph](day-2/introduction-to-ceph)
 3.  [How to Check Ceph's Status and Disk
-    Usage](operators_manual/day-2/check-ceph-status-disk-usage.md)
+    Usage](day-2/check-ceph-status-disk-usage)
 4.  [Maintaining OpenStack Software
-    Updates](operators_manual/day-2/maintenance.md)
+    Updates](day-2/maintenance)
 5.  [View OpenStack Resource
-    Usage](operators_manual/day-2/resource-usage/cloud-resource-usage.md)
+    Usage](day-2/resource-usage/cloud-resource-usage)
 6.  [How to Live Migrate
-    Instances](operators_manual/day-2/live-migrate-instances.md)
+    Instances](day-2/live-migrate-instances)
 
 ### Day 3
 
@@ -96,15 +96,15 @@ by explaining best practices relating to keeping your data safe. We
 provide a general outline for how you can recover from a disaster.
 
 1.  [How to Add or Remove Hardware
-    Nodes](operators_manual/day-3/add-remove-hardware-nodes.md)
+    Nodes](day-3/add-remove-hardware-nodes)
 2.  [How to Add Additional Provider IP
-    Blocks](operators_manual/day-3/add-provider-ips.md)
+    Blocks](day-3/add-provider-ips)
 3.  [Create and Restore Volume
-    Backups](operators_manual/day-3/create-volume-backups.md)
+    Backups](day-3/create-volume-backups)
 4.  [How to Create OpenStack Service Configuration
-    Backups](operators_manual/day-3/create-openstack-service-backups.md)
+    Backups](day-3/create-openstack-service-backups)
 5.  [OpenStack Disaster Planning, Testing, and
-    Recovery](operators_manual/day-3/disaster-recovery.md)
+    Recovery](day-3/disaster-recovery)
 
 ### Day 4
 
@@ -117,26 +117,26 @@ your cloud through the use of OpenStack's Heat service and through
 HashiCorp's Terraform application.
 
 1.  [How to Prepare and Use Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md)
+    Ansible](day-4/kolla-ansible/kolla-ansible)
 2.  [Enable TLS Using Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/enable-tls.md)
+    Ansible](day-4/kolla-ansible/enable-tls)
 3.  [Enable ElasticSearch and Kibana Logging using Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/enable-elk.md)
+    Ansible](day-4/kolla-ansible/enable-elk)
 4.  [Security and Your OpenMetal Private
-    Cloud](operators_manual/day-4/security/security-best-practices.md)
+    Cloud](day-4/security/security-best-practices)
 5.  [How to Prepare and Use Ceph
-    Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.md)
+    Ansible](day-4/ceph-ansible/ceph-ansible)
 6.  [OpenStack Watcher
-    Demonstration](operators_manual/day-4/watcher/watcher-demo.md)
+    Demonstration](day-4/watcher/watcher-demo)
 7.  [Troubleshooting
-    RabbitMQ](operators_manual/day-4/troubleshooting/rabbitmq.md)
+    RabbitMQ](day-4/troubleshooting/rabbitmq)
 8.  [How to Redeploy RabbitMQ using Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq.md)
+    Ansible](day-4/kolla-ansible/redeploy-rabbitmq)
 9.  [Troubleshooting
-    Ceph](operators_manual/day-4/troubleshooting/ceph.md)
+    Ceph](day-4/troubleshooting/ceph)
 10. [Guidelines for Searching through
-    Logs](operators_manual/day-4/troubleshooting/log-filtering.md)
+    Logs](day-4/troubleshooting/log-filtering)
 11. [OpenStack Automation through
-    Heat](operators_manual/day-4/automation/heat.md)
+    Heat](day-4/automation/heat)
 12. [Automate Infrastructure using
-    Terraform](operators_manual/day-4/automation/terraform.md)
+    Terraform](day-4/automation/terraform)

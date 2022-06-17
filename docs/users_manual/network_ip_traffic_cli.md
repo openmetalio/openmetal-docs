@@ -18,8 +18,8 @@ Networking API.
 ## **Table of Contents**
 
 1.  [Create a Network and
-    Router](users_manual/users_manual/network_ip_traffic_cli.md#create-a-network-and-router)
-2.  [Floating IPs](users_manual/network_ip_traffic_cli.md#floating-ips)
+    Router](users_manual/users_manual/network_ip_traffic_cli#create-a-network-and-router)
+2.  [Floating IPs](users_manual/network_ip_traffic_cli#floating-ips)
 
 -----
 
@@ -300,5 +300,5 @@ This floating IP will be used later to access an instance over SSH.
 ## **Next Steps**
 
 The [next
-guide](users_manual/users_manual/using_creating_images_cli.md) goes
+guide](users_manual/users_manual/using_creating_images_cli) goes
 over images in OpenStack, which are bootable operating systems.

@@ -85,7 +85,7 @@ OpenStack cloud that has at least one instance using resources within
 the cloud.
 
 To install this package, ensure you have a [prepared OpenStackClient
-environment](operators_manual/day_1/openstackclient.md), then install
+environment](operators_manual/day_1/openstackclient), then install
 the package using pip.
 
 For example:
