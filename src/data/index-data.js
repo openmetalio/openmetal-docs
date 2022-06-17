@@ -42,11 +42,11 @@ export default {
 		{
 			title: "OpenStack Horizon Quick Start for Project Users",
 			description: "Helps new Project Users to self serve their Infrastructure.",
-			htmlPath: "/openmetal-docs/docs/users-manual/",
+			htmlPath: "/openmetal-docs/docs/users_manual/",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'User\'s Manual',
-			manualSlug: 'users-manual',
+			manualSlug: 'users_manual',
 			manualCategoryId: '7',
 			catagories: ['users'],
 		},

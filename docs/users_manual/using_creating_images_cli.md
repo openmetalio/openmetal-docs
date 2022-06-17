@@ -1,5 +1,4 @@
-Manage OpenStack Images
-===========================
+# Manage OpenStack Images
 
 Images in OpenStack are what powers instances. In this guide, you will
 learn how to view images, upload your own, and make snapshots of images.
@@ -13,19 +12,17 @@ or create them from volumes or running instances. Snapshots of instances
 can be created which can serve both as a backup and also a template for
 other instances.
 
-------------------------------------------------------------------------
+-----
 
-
-List and Upload Images
-----------------------
+## List and Upload Images
 
 ### **List images**
 
 To begin, you will learn how to list images using OpenStackClient.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- List images
+**Step 1** -- List images
 
 To list available images, use:
 
@@ -44,14 +41,13 @@ To list available images, use:
     | c005b6f3-9d34-4f91-94b6-1ff50c174750 | Ubuntu 20.04 (focal-amd64)                           | active |
     +--------------------------------------+------------------------------------------------------+--------+
 
-
 To get more information about an image, use `openstack image show ID`:
 
     $ openstack image show ID
 
 **ID** is the **Name** or the **ID** column in the above output.
 
-------------------------------------------------------------------------
+-----
 
 **Show image details**
 
@@ -72,7 +68,6 @@ Example showing the details of an image:
     | name             | cirros                                                                                           |
     | owner            | 5ad1f9e795604f4390d274d7388c4b9f                                                                 |
 
-
 ### **Upload an image**
 
 To upload an image into OpenStack, the image needs to first exist on
@@ -81,9 +76,9 @@ your machine, and then you can use OpenStackClient to upload it.
 This section will walk you through uploading the
 [CirrOS](https://github.com/cirros-dev/cirros) image.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Download the CirrOS image
+**Step 1** -- Download the CirrOS image
 
 To start, first download the CirrOS image to your machine.
 
@@ -94,15 +89,14 @@ CirrOS image is downloaded. You can use `wget` to download the image:
 
     $ wget https://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img
 
-
-**Step 2** \-- Upload the image into OpenStack
+**Step 2** -- Upload the image into OpenStack
 
 Use this command to upload the image, replacing variables appropriately:
 
     openstack image create IMAGE_NAME --container-format bare --disk-format \
     qcow2 --file PATH_TO_CIRROS_IMAGE
 
-------------------------------------------------------------------------
+-----
 
 Upload the CirrOS image:
 
@@ -112,13 +106,12 @@ Upload the CirrOS image:
 Note that **PATH\_TO\_CIRROS\_IMAGE** should be the path to the image
 file.
 
+**Step 3** -- Confirm successful upload
 
-**Step 3** \-- Confirm successful upload
+To confirm the image uploaded into the cloud, use `openstack image
+list`.
 
-To confirm the image uploaded into the cloud, use
-`openstack image list`.
-
-------------------------------------------------------------------------
+-----
 
 List the newly uploaded image:
 
@@ -129,11 +122,9 @@ List the newly uploaded image:
     | fa8eb9bd-9ccc-4d3f-b87b-6edb5450a57a | cirros                         | active |
     +--------------------------------------+--------------------------------+--------+
 
-------------------------------------------------------------------------
+-----
 
-
-Next Steps
-----------
+## Next Steps
 
 With this guide complete, move on to the next guide, which explains [how
 to create an Instance](users_manual/create_an_instance_cli.rst) using

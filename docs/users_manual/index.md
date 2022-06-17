@@ -1,10 +1,8 @@
-OpenStack User's Manual
-============================
+# **OpenStack User's Manual**
 
-Private Cloud Core - OpenStack User Manual
-------------------------------------------
+## Private Cloud Core - OpenStack User Manual
 
-Welcome to the OpenStack User's Manual! This documentation is intended
+Welcome to the OpenStack User's Manual\! This documentation is intended
 for users of an OpenStack cloud who do not have administrative access to
 their cloud. In this series of guides, you will learn the steps needed
 to create the building blocks needed for your cloud workload. Topics
@@ -14,10 +12,9 @@ There are two primary ways to work in an OpenStack cloud: Through
 Horizon or the command line. Because of this, the guides are grouped
 into two categories.
 
-
 ### **Table of Contents**
 
-------------------------------------------------------------------------
+-----
 
 ### Horizon Guides
 

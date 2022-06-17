@@ -1,25 +1,22 @@
-OpenStack CLI for Common Operational Tasks
-==============================================
+# OpenStack CLI for Common Operational Tasks
 
-**Background**
---------------
+## **Background**
 
 OpenStackClient (OSC) is the name of a command line interface for
 OpenStack which can be used to administer an OpenStack cloud. The same
 functionality found in the Horizon interface can also be found using
 OpenStackClient.
 
-------------------------------------------------------------------------
+-----
 
-**Get started**
----------------
+## **Get started**
 
 OpenStackClient will need to be installed before it can be used. See
 this [guide](create_an_instance.rst#create-an-instance) for installation
 instructions.
 
-For a full list and explanation of the available options use
-`openstack help` or refer to the [OpenStack
+For a full list and explanation of the available options use `openstack
+help` or refer to the [OpenStack
 documentation](https://docs.openstack.org/python-openstackclient/latest/).
 
 Additional command line applications exist for some services such as
@@ -29,10 +26,9 @@ be administered using soley the OSC. The goal of OpenStack client is to
 provide all the needed commands to administer an OpenStack cloud under
 one application.
 
-------------------------------------------------------------------------
+-----
 
-**Output formatting**
----------------------
+## **Output formatting**
 
 Typically when OpenStackClient commands are issued, a table of formatted
 data is returned. When doing batch operations you may want to extract
@@ -44,7 +40,7 @@ For example:
 
     output formatters:
       output formatter options
-
+    
       -f {csv,json,table,value,yaml}, --format {csv,json,table,value,yaml}
                             the output format, defaults to table
       -c COLUMN, --column COLUMN
@@ -61,32 +57,29 @@ host you are working with):
 
     $ openstack server list --host example_host -f value -c ID
 
-------------------------------------------------------------------------
+-----
 
-
-**Common Tasks**
-----------------
+## **Common Tasks**
 
 Below is a list of common operational tasks that can be done with the
 OpenStack Client. This guide will include examples of how to perform the
 following tasks:
 
--   Manage OpenStack users, including listing, creating, updating and
+  - Manage OpenStack users, including listing, creating, updating and
     removing users
--   Manage instances by creating them, stopping and starting them,
+  - Manage instances by creating them, stopping and starting them,
     creating a snapshot, plus much more.
--   Live migration of instances
--   Troubleshoot instance issues
--   Upload images
--   Create a network
--   Create security groups
--   Manage SSH key pairs
--   Collect details about OpenStack environment
+  - Live migration of instances
+  - Troubleshoot instance issues
+  - Upload images
+  - Create a network
+  - Create security groups
+  - Manage SSH key pairs
+  - Collect details about OpenStack environment
 
-------------------------------------------------------------------------
+-----
 
-**Manage OpenStack users**
---------------------------
+## **Manage OpenStack users**
 
 In OpenStack there exists the admin user account which has the ability
 to create additional users. Typically the admin account is used only
@@ -125,8 +118,7 @@ to set:
 
     $ openstack user set USERNAME --email EMAIL_ADDRESS
 
-**Instance Management**
------------------------
+## **Instance Management**
 
 ### **Create an instance**
 
@@ -149,15 +141,13 @@ Here's an example:
 
     $ openstack server image create --name SNAPSHOT_NAME INSTANCE_NAME
 
-You can verify the snapshot has been created by using both
-`openstack image list` to find the newly created snapshot, then
-`openstack image show SNAP_SHOT_UUID` to get details on that snapshot.
+You can verify the snapshot has been created by using both `openstack
+image list` to find the newly created snapshot, then `openstack image
+show SNAP_SHOT_UUID` to get details on that snapshot.
 
-------------------------------------------------------------------------
+-----
 
-
-**Perform live migration of instances**
----------------------------------------
+## **Perform live migration of instances**
 
 Sometimes it is necessary to migrate instances from one compute node to
 another if for example a compute node needs maintenance. It is possible
@@ -283,22 +273,23 @@ Confirm the instance has been migrated to the destination host:
     | volumes_attached                    |                                                              |
     +-------------------------------------+--------------------------------------------------------------+
 
-------------------------------------------------------------------------
+-----
 
+## **Troubleshoot instance issues**
 
-**Troubleshoot instance issues**
---------------------------------
+<div class="note">
 
-::: {.note}
-::: {.admonition-title}
+<div class="title">
+
 Note
-:::
+
+</div>
 
 This section will be filled out as common scenarios occur.
-:::
 
-**Upload images**
------------------
+</div>
+
+## **Upload images**
 
 To create an image, use:
 
@@ -323,7 +314,7 @@ Download CirrOS and upload into glance:
 
     # grab the latest CirrOS image
     $ wget http://download.cirros-cloud.net/0.5.1/cirros-0.5.1-x86_64-disk.img
-
+    
     # upload the image into glance
     $ openstack image create cirros --container-format bare --disk-format
     qcow2 --file PATH_TO_CIRROS_IMAGE
@@ -337,11 +328,9 @@ List the newly uploaded image:
     | fa8eb9bd-9ccc-4d3f-b87b-6edb5450a57a | cirros                         | active |
     +--------------------------------------+--------------------------------+--------+
 
-------------------------------------------------------------------------
+-----
 
-
-**Create a private network**
-----------------------------
+## **Create a private network**
 
 Listed are the steps needed to create a private network and connect it
 to the provider network. Variables are presented in all capital and
@@ -369,14 +358,12 @@ Add the external network gateway:
     $ openstack router set --external-gateway EXTERNAL_NETWORK_UUID \
     ROUTER_NAME
 
-------------------------------------------------------------------------
+-----
 
+## **Create security groups**
 
-**Create security groups**
---------------------------
-
-Here's an example that opens inbound traffic for all IPs on ports 80
-and 443.
+Here's an example that opens inbound traffic for all IPs on ports 80 and
+443.
 
 Create a security group where **SECURITY\_GROUP** is the name of the
 security group:
@@ -402,15 +389,13 @@ Open ports 80 and 443 on all IP ranges for ingress TCP traffic:
 
     $ openstack security group rule create --remote-ip 0.0.0.0/0 \
     --dst-port 80:80 --ingress --protocol tcp SECURITY_GROUP
-
+    
     $ openstack security group rule create --remote-ip 0.0.0.0/0 \
     --dst-port 443:443 --ingress --protocol tcp SECURITY_GROUP
 
-------------------------------------------------------------------------
+-----
 
-
-**Add SSH public key**
-----------------------
+## **Add SSH public key**
 
 It is recommended an SSH public key be uploaded and this is possible
 through the OSC.
@@ -420,15 +405,13 @@ of the SSH key pair, is sufficient for generating an SSH private and
 public key. The output will return the private key, which should be kept
 somewhere private and inaccessible to others.
 
-You can also upload a public key from a key pair using
-`openstack keypair create --public-key PATH_TO_PUBLIC_KEY KEY_NAME`,
-where PATH\_TO\_PUBLIC\_KEY is the file path to the public key.
+You can also upload a public key from a key pair using `openstack
+keypair create --public-key PATH_TO_PUBLIC_KEY KEY_NAME`, where
+PATH\_TO\_PUBLIC\_KEY is the file path to the public key.
 
-------------------------------------------------------------------------
+-----
 
-
-**Collect details about OpenStack environment**
------------------------------------------------
+## **Collect details about OpenStack environment**
 
 Show the role of each hardware node in an OpenStack cloud:
 

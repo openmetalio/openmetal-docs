@@ -41,7 +41,7 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'Open Metal',
+          alt: 'Openmetal',
           src: 'img/openmetal.svg',
         },
         items: [
@@ -98,7 +98,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Open Metal.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Openmetal.`,
       },
       prism: {
         theme: lightCodeTheme,

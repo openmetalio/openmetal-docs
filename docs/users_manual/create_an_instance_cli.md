@@ -1,5 +1,4 @@
-Create an Instance
-======================
+# Create an Instance
 
 Instances in OpenStack comprise the cloud's computing power. This guide
 demonstrates how to make an instance using OpenStackClient.
@@ -8,30 +7,40 @@ You will also learn how to upload or create an SSH key pair, assign
 storage using a volume, and create a security group. Each of these
 components will be added to the instance.
 
-------------------------------------------------------------------------
+-----
 
+## **Table of Contents**
 
-**Before Creating an Instance**
--------------------------------
+1.  [Before Creating an
+    Instance](users_manual/create_an_instance_cli.rst#before-creating-an-instance)
+2.  [SSH Key
+    Pairs](users_manual/create_an_instance_cli.rst#ssh-key-pairs)
+3.  [Security
+    Groups](users_manual/create_an_instance_cli.rst#security-groups)
+4.  [Add a Volume](users_manual/create_an_instance_cli.rst#add-a-volume)
+5.  [How to Create an
+    Instance](users_manual/create_an_instance_cli.rst#how-to-create-an-instance)
+
+-----
+
+## **Before Creating an Instance**
 
 Before creating an instance, several pieces need to be in place.
 
 Generally speaking, these items should exist before creating an
 instance:
 
--   An SSH public key \-- The public portion of an SSH key pair
--   A security group \-- Defines network traffic rules
--   A flavor \-- Defines resources, like vCPUs, RAM, and disk storage
--   An image \-- This is a bootable operating system
--   A network \-- This is typically a private network
+  - An SSH public key -- The public portion of an SSH key pair
+  - A security group -- Defines network traffic rules
+  - A flavor -- Defines resources, like vCPUs, RAM, and disk storage
+  - An image -- This is a bootable operating system
+  - A network -- This is typically a private network
 
 Each item will be explained throughout this guide.
 
-------------------------------------------------------------------------
+-----
 
-
-**SSH Key Pairs**
------------------
+## **SSH Key Pairs**
 
 An SSH key pair is required to access any instances over SSH. Password
 authentication is by default disabled in the operating system images.
@@ -39,7 +48,7 @@ authentication is by default disabled in the operating system images.
 You can either create an SSH key pair within OpenStack or upload your
 public key.
 
-------------------------------------------------------------------------
+-----
 
 ### **Create an SSH key pair**
 
@@ -49,7 +58,7 @@ using OpenStackClient.
 This section will explain the steps needed to create an SSH key pair
 within OpenStack.
 
-------------------------------------------------------------------------
+-----
 
 To make a key pair, use:
 
@@ -57,7 +66,7 @@ To make a key pair, use:
 
 **KEY\_NAME** is the name of the SSH key pair.
 
-------------------------------------------------------------------------
+-----
 
 Create key pair called **ssh-1**:
 
@@ -66,14 +75,13 @@ Create key pair called **ssh-1**:
 This generates a key pair and returns the private key. The private key
 should be kept somewhere safe and be inaccessible to others.
 
-
 ### Upload SSH Key
 
 If you have an existing SSH key pair to use, you can upload it to the
 cloud instead of making a new one. This section demonstrates how to do
 this.
 
-------------------------------------------------------------------------
+-----
 
 To upload your public key, use:
 
@@ -83,7 +91,7 @@ To upload your public key, use:
 **PATH\_TO\_PUBLIC\_KEY** is the path on the filesystem to the public
 key.
 
-------------------------------------------------------------------------
+-----
 
 Here's an example uploading an SSH public key:
 
@@ -96,11 +104,9 @@ Here's an example uploading an SSH public key:
     | user_id     | 43317575cccc440fbcb38a1f23b45125                |
     +-------------+-------------------------------------------------+
 
-------------------------------------------------------------------------
+-----
 
-
-**Security Groups**
--------------------
+## **Security Groups**
 
 A security group in OpenStack controls inbound and outbound network
 access. OpenStack, by default, assigns a security group to each instance
@@ -112,9 +118,9 @@ instance traffic.
 This section demonstrates creating a security group allowing inbound SSH
 traffic for a specific IP address.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Create a security group
+**Step 1** -- Create a security group
 
 There are several steps needed to create a security group using
 OpenStackClient. The group first needs to be created, then additional
@@ -127,14 +133,13 @@ The command to create a security group is:
 
 **SECURITY\_GROUP** is the name of the security group.
 
-------------------------------------------------------------------------
+-----
 
 Create an SSH security group:
 
     $ openstack security group create ssh
 
-
-**Step 2** \-- Add rules
+**Step 2** -- Add rules
 
 Next, rules need to be added to allow SSH access.
 
@@ -148,20 +153,19 @@ called **ssh**. **REMOTE\_IP** is the IP address for which traffic
 should be allowed. The remaining flags specify the rule is for ingress
 TCP traffic over port 22.
 
-------------------------------------------------------------------------
+-----
 
 Create rule allowing SSH from 192.168.1.20 (arbitrary IP):
 
     $ openstack security group rule create ssh --remote-ip 192.168.1.20
     --dst-port 22:22 --ingress --protocol tcp
 
-
-**Step 3** \-- Confirm security group details
+**Step 3** -- Confirm security group details
 
 Finally, confirm the previous steps were successful by listing the
 details of the **ssh** security group.
 
-------------------------------------------------------------------------
+-----
 
 **List security groups**
 
@@ -174,7 +178,6 @@ List security groups using:
     | 42989271-94b4-4209-8a81-5b7f370cbb22 | default | Default security group | fece7ddb8663497bb99ee0988719143c | []   |
     | cdf392cd-0f8a-409c-837b-b8409981da93 | ssh     | ssh                    | fece7ddb8663497bb99ee0988719143c | []   |
     +--------------------------------------+---------+------------------------+----------------------------------+------+
-
 
 **Show details**
 
@@ -201,11 +204,9 @@ Show the details of the group:
 In the above output, the rule allowing SSH traffic from **192.168.1.20**
 is visible.
 
-------------------------------------------------------------------------
+-----
 
-
-**Add a Volume**
-----------------
+## **Add a Volume**
 
 Additional disk space can be added to instances through volumes. A
 volume in OpenStack is like a removable USB drive that can be attached
@@ -217,11 +218,11 @@ This section explains how to create a volume using OpenStackClient by
 creating a 5GB example volume. This is an optional step should your
 instance not require additional storage through a volume.
 
-------------------------------------------------------------------------
+-----
 
 ### **Create and Attach a Volume**
 
-**Step 1** \-- Create volume
+**Step 1** -- Create volume
 
 Use the following to create volumes:
 
@@ -230,14 +231,13 @@ Use the following to create volumes:
 **VOLUME\_NAME** is the name of the volume and **SIZE** is the numeric
 size in gigabytes.
 
-------------------------------------------------------------------------
+-----
 
 Create a volume with size 5GB:
 
     $ openstack volume create volume-1 --size 5
 
-
-**Step 2** \-- List volume
+**Step 2** -- List volume
 
 List the newly created volume using:
 
@@ -250,11 +250,9 @@ List the newly created volume using:
 
 This volume will later be attached to the instance.
 
-------------------------------------------------------------------------
+-----
 
-
-**How to Create an Instance**
------------------------------
+## **How to Create an Instance**
 
 An instance is another name for a virtual machine in OpenStack.
 Instances are created by the Nova service and contribute to the
@@ -265,7 +263,7 @@ an instance.
 
 This section will explain how to create a **volume-backed** instance.
 
-------------------------------------------------------------------------
+-----
 
 ### **Steps for Creating an Instance**
 
@@ -274,19 +272,19 @@ several pieces needed first. This section walks you through obtaining
 each part and then brings them all together to explain how to create an
 instance.
 
-------------------------------------------------------------------------
+-----
 
 To begin you will need to obtain **UUIDs** for:
 
--   Boot source (image, volume)
--   Flavor
--   Network
--   Security Group
--   SSH Key Pair
+  - Boot source (image, volume)
+  - Flavor
+  - Network
+  - Security Group
+  - SSH Key Pair
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Obtain boot source UUID
+**Step 1** -- Obtain boot source UUID
 
 To obtain the image UUIDs, you will need to list images using
 OpenStackClient by using `openstack image list`:
@@ -303,8 +301,7 @@ For this example, the **CentOS 8 Stream** image will be used which is
 associated with UUID `d5a101ff-0870-435f-bf76-c3309e542a53`. This UUID
 is later used to build this instance.
 
-
-**Step 2** \-- Get flavors
+**Step 2** -- Get flavors
 
 Next, list available flavors using `openstack flavor list`:
 
@@ -318,8 +315,7 @@ Next, list available flavors using `openstack flavor list`:
 Choose the appropriate flavor the instance will require. This example
 will use the `c1.micro` flavor.
 
-
-**Step 3** \-- Choose network
+**Step 3** -- Choose network
 
 List networks in OpenStack using `openstack network list`:
 
@@ -335,8 +331,7 @@ This example will use **network-1** as the network, which is associated
 with UUID `29aa8aec-36ec-416d-9828-4a3b6bb10f4b`. This UUID will later
 be used to create this instance.
 
-
-**Step 4** \-- Security groups
+**Step 4** -- Security groups
 
 List security groups using `openstack security group list`:
 
@@ -350,11 +345,10 @@ List security groups using `openstack security group list`:
 The **ssh** security group will be associated with this instance via
 UUID `44668612-1a18-4289-b5fb-f24de8e20c09`.
 
+**Step 5** -- SSH key pair
 
-**Step 5** \-- SSH key pair
-
-Lastly, obtain the name of the SSH key pair using
-`openstack keypair list`:
+Lastly, obtain the name of the SSH key pair using `openstack keypair
+list`:
 
     +-------+-------------------------------------------------+------+
     | Name  | Fingerprint                                     | Type |
@@ -365,8 +359,7 @@ Lastly, obtain the name of the SSH key pair using
 
 This instance will use the SSH key pair called `key-1`.
 
-
-**Step 6** \-- Create instance
+**Step 6** -- Create instance
 
 With the collected information, the instance can be created.
 
@@ -378,7 +371,7 @@ For the full list of options to make an instance, run:
 
     $ openstack help server create
 
-------------------------------------------------------------------------
+-----
 
 The full command to make this instance, including variable placeholders,
 is:
@@ -391,34 +384,32 @@ is:
 
 The following explains what each variable in the above command is for:
 
--   **IMAGE\_UUID** \-- UUID of the image you want to use
--   **FLAVOR** \-- The name of the flavor
--   **VOLUME\_SIZE** \-- Size in GB of boot volume
--   **NETWORK\_UUID** \-- UUID of the network to be associated with the
+  - **IMAGE\_UUID** -- UUID of the image you want to use
+  - **FLAVOR** -- The name of the flavor
+  - **VOLUME\_SIZE** -- Size in GB of boot volume
+  - **NETWORK\_UUID** -- UUID of the network to be associated with the
     instance
--   **SSH\_KEY\_NAME** \-- Name of the SSH key
--   **SECURITY\_GROUP\_UUID** \-- UUID of the security group to use
--   **INSTANCE\_NAME** \-- Name of the instance
+  - **SSH\_KEY\_NAME** -- Name of the SSH key
+  - **SECURITY\_GROUP\_UUID** -- UUID of the security group to use
+  - **INSTANCE\_NAME** -- Name of the instance
 
-**NOTE** \-- By default, the instance creation will occur in the
+**NOTE** -- By default, the instance creation will occur in the
 background. You can add `--wait` to the flags to have the command wait
 until the instance creation is done which will show you the status of
 instance creation.
 
-------------------------------------------------------------------------
-
+-----
 
 **Create the Instance**
 
 Here are the collected details to make an instance from the previous
 section:
 
--   **Image UUID**: d5a101ff-0870-435f-bf76-c3309e542a53
--   **Flavor**: c1.micro
--   **Network UUID**: 29aa8aec-36ec-416d-9828-4a3b6bb10f4b
--   **Security Group UUID**: 44668612-1a18-4289-b5fb-f24de8e20c09
--   **SSH Key**: key-1
-
+  - **Image UUID**: d5a101ff-0870-435f-bf76-c3309e542a53
+  - **Flavor**: c1.micro
+  - **Network UUID**: 29aa8aec-36ec-416d-9828-4a3b6bb10f4b
+  - **Security Group UUID**: 44668612-1a18-4289-b5fb-f24de8e20c09
+  - **SSH Key**: key-1
 
 Create an instance called **instance-1** booted from a 20GB volume:
 
@@ -431,9 +422,9 @@ Create an instance called **instance-1** booted from a 20GB volume:
 This starts the process of creating the instance and takes a small
 amount of time to complete.
 
-After creating the instance, verify the build process by running
-`$ openstack server show INSTANCE_NAME`, replacing **INSTANCE\_NAME**
-with the actual name of the instance:
+After creating the instance, verify the build process by running `$
+openstack server show INSTANCE_NAME`, replacing **INSTANCE\_NAME** with
+the actual name of the instance:
 
     $ openstack server show instance-1 | grep status
     | status                      | ACTIVE                                                              |
@@ -446,15 +437,13 @@ documentation](https://docs.openstack.org/api-guide/compute/server_concepts.html
 for a list of instance status meanings and additional commands that can
 be used to troubleshoot any issues.
 
-
-**Troubleshooting Instance Error Status**
------------------------------------------
+## **Troubleshooting Instance Error Status**
 
 Sometimes, instance creation will not succeed which can be for a variety
 of reasons. Running `openstack server list` will show the **Status** of
 an instance.
 
-Here's an example of an instance with Status, ERROR:
+Here's an example of an instance with Status, "ERROR":
 
     $ openstack server list
     +--------------------------------------+-----------------------------+---------+-------------------------+----------------------------+------------+
@@ -473,11 +462,9 @@ to create.
 For assistance with instance errors, consider consulting with your
 OpenStack administrator.
 
-------------------------------------------------------------------------
+-----
 
-
-**Next Steps**
---------------
+## **Next Steps**
 
 The [next guide](users_manual/backups_cli.rst) in this series is
 regarding backing up and restoring your instance data.

@@ -1,5 +1,4 @@
-How to Get Started with OpenStack
-=====================================
+# How to Get Started with OpenStack
 
 To get started using OpenStack, you will need to log in to Horizon,
 OpenStack's browser-based dashboard. Your administrator should provide
@@ -15,13 +14,13 @@ such. The **Identity** tab is where you will find user-based
 information, such as what project your user is associated with or
 details about your user.
 
-------------------------------------------------------------------------
+-----
 
-**Log in to Horizon** \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\--
+**Log in to Horizon** --------------------
 
 This section demonstrates how to log in to Horizon.
 
-**Step 1** \-- Navigate to Horizon
+**Step 1** -- Navigate to Horizon
 
 Pull up the domain name provided for Horizon from your administrator in
 a browser to load the Horizon login page.
@@ -30,8 +29,7 @@ a browser to load the Horizon login page.
 
 ![image](images/um_horizon_login.png)
 
-
-**Step 2** \-- Log in to Horizon
+**Step 2** -- Log in to Horizon
 
 From here, enter in the provided credentials to log in.
 
@@ -39,11 +37,9 @@ From here, enter in the provided credentials to log in.
 
 ![image](images/um_initial_horizon_login.png)
 
-------------------------------------------------------------------------
+-----
 
-
-**Next Steps**
---------------
+## **Next Steps**
 
 The [next guide](users_manual/network_ip_traffic.rst) in this series
 explains how to create a private network, a basic building block of an

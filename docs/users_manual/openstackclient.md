@@ -1,5 +1,4 @@
-Get Started with OpenStackClient
-====================================
+# Get Started with OpenStackClient
 
 OpenStack offers a way to administer your cloud over the command line
 using OpenStackClient.
@@ -9,17 +8,16 @@ using the command line. You will learn how to install OpenStackClient,
 authenticate, and run introductory commands. Everything that can be done
 using Horizon, can also be accomplished using OpenStackClient.
 
-------------------------------------------------------------------------
+-----
 
-**Installing OpenStackClient**
-------------------------------
+## **Installing OpenStackClient**
 
 OpenStackClient is available as a Python pip package.
 
 For more information about this package, see OpenStackClient's [pip
 project page](https://pypi.org/project/openstackclient/).
 
-**Note!** \-- There exist two OpenStackClient packages:
+**Note\!** -- There exist two OpenStackClient packages:
 `openstackclient` and `python-openstackclient`. This guide recommends
 using `openstackclient` as it comes with many more OpenStack service
 command line clients. You can use either package, but if you want to
@@ -28,7 +26,7 @@ install that separately.
 
 ### **How to Install OpenStackClient**
 
-**Note!** \-- These instructions are meant for a Linux environment.
+**Note\!** -- These instructions are meant for a Linux environment.
 
 Before getting started, make sure Python 3 and `pip` are installed to
 your machine.
@@ -37,9 +35,9 @@ The first step is to create a Python virtual environment. This is useful
 in that this environment will not interfere with your system's Python
 installation.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Create Python virtual environment
+**Step 1** -- Create Python virtual environment
 
 The following demonstrates creating a virtual environment in the path
 `~/venv/openstackclient`.
@@ -56,8 +54,7 @@ Activate the environment using `source`:
 Notice the shell now has `(openstackclient)` where commands are entered.
 This indicates the virtual environment is active.
 
-
-**Step 2** \-- Update pip
+**Step 2** -- Update pip
 
 Pip may need to be updated before installing OpenStackClient.
 
@@ -65,26 +62,23 @@ To do so, use:
 
     python3 -m pip install -U pip
 
-
-**Step 3** \-- Download OpenStackClient
+**Step 3** -- Download OpenStackClient
 
 With the virtual environment prepared, use `pip` to download the
 OpenStackClient package:
 
     $ pip3 install openstackclient
 
-
-**Step 4** \-- Download **OpenStack RC** and **clouds.yaml** files
+**Step 4** -- Download **OpenStack RC** and **clouds.yaml** files
 
 Next, you will need to obtain two files from Horizon:
 
-> -   OpenStack RC
-> -   clouds.yaml
+>   - OpenStack RC
+>   - clouds.yaml
 
 These are located under the **Project** tab, then **API Access**.
 
 ![image](images/um_api_access_osc.png)
-
 
 From here, click the **Download OpenStack RC File** drop-down, and then
 download both files.
@@ -122,8 +116,7 @@ Example `clouds.yaml` with two cloud entries, `cloud-1` and `cloud-2`:
         interface: "public"
         identity_api_version: 3
 
-
-**Step 5** \-- Finish preparing environment
+**Step 5** -- Finish preparing environment
 
 Next, load the **OpenStack RC** file into your shell using `source`:
 
@@ -139,10 +132,9 @@ authenticate as your OpenStack user:
 Enter in the password for your user, and you are now set to use
 OpenStackClient.
 
+-----
 
-------------------------------------------------------------------------
-
-**Note!** \-- In addition to OpenStackClient, there are other command
+**Note\!** -- In addition to OpenStackClient, there are other command
 line clients for various OpenStack services that can be used. For
 example,
 [Nova](https://docs.openstack.org/python-novaclient/latest/cli/nova.html)
@@ -153,14 +145,12 @@ each have their own command line client, as well as other services.
 In later releases of OpenStack use of service-specific command line
 interfaces will be deprecated. When using the command line to administer
 OpenStack it is recommended to use OpenStackClient where possible as
-opposed to individual service's command line interfaces such as
-`nova`'s CLI.
+opposed to individual service's command line interfaces such as `nova`'s
+CLI.
 
-------------------------------------------------------------------------
+-----
 
-
-First Time Using OpenStackClient
---------------------------------
+## First Time Using OpenStackClient
 
 For users using OpenStackClient for the first time, follow this section
 to learn how to list and show the details of the project associated with
@@ -194,8 +184,7 @@ Next, list the details of the project under ID
     | tags        | []                                                                    |
     +-------------+-----------------------------------------------------------------------+
 
-
-**Note!** \-- Entering only `openstack` and running that will take you
+**Note\!** -- Entering only `openstack` and running that will take you
 into the OpenStackClient shell allowing commands to be run without
 needing to prefix them with `openstack`:
 
@@ -211,11 +200,9 @@ needing to prefix them with `openstack`:
 
 Type `exit` to leave the OpenStackClient shell.
 
-------------------------------------------------------------------------
+-----
 
-
-**Next Steps**
---------------
+## **Next Steps**
 
 Navigate to the next guide in this series to learn how to [create
 networks in OpenStack](users_manual/network_ip_traffic_cli.rst).

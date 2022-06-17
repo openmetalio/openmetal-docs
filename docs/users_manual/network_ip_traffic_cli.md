@@ -1,5 +1,4 @@
-Create a Network
-====================
+# Create a Network
 
 This guide explains networking in OpenStack including how to create a
 private network, a router, and allocate and assign floating IPs.
@@ -10,24 +9,21 @@ creating an instance.
 
 [Neutron](https://docs.openstack.org/neutron/latest/) is the service
 that manages networking in OpenStack and allows for networks, routers,
-floating IPs, and security groups to be created. It provides network
-connectivity as a service between interfaces and uses the OpenStack
+floating IPs, and security groups to be created. It provides "network
+connectivity as a service" between interfaces and uses the OpenStack
 Networking API.
 
-------------------------------------------------------------------------
+-----
 
-**Table of Contents**
----------------------
+## **Table of Contents**
 
 1.  [Create a Network and
     Router](users_manual/users_manual/network_ip_traffic_cli.rst#create-a-network-and-router)
 2.  [Floating IPs](users_manual/network_ip_traffic_cli.rst#floating-ips)
 
-------------------------------------------------------------------------
+-----
 
-
-**Create a Network and Router**
--------------------------------
+## **Create a Network and Router**
 
 This section demonstrates creating a private network and router. The
 router is important as it will allow you to create a route between
@@ -36,7 +32,7 @@ networks, such as from the private network to the Internet.
 This section explains how to make a network and router using the command
 line with OpenStackClient.
 
-------------------------------------------------------------------------
+-----
 
 ### **Create a network**
 
@@ -44,19 +40,19 @@ Listed are the steps needed to create a private network. Variables are
 presented in all capital and should be replaced accordingly. Note the
 output of most of the commands has been truncated.
 
-**Note!** \-- Private networks should be used where possible. Only
+**Note\!** -- Private networks should be used where possible. Only
 expose the portions of your cloud to a public network when needed.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Create private network
+**Step 1** -- Create private network
 
 Use this command to create a network, replacing **NETWORK\_NAME** with
 the name of the network:
 
     $ openstack network create NETWORK_NAME
 
-------------------------------------------------------------------------
+-----
 
 Create a network called **network-1**:
 
@@ -72,8 +68,7 @@ Create a network called **network-1**:
     | dns_domain                | None                                 |
     | id                        | 0a193fa1-2019-4fbc-a862-6f6ced157c1e |
 
-
-**Step 2** \-- Create subnet
+**Step 2** -- Create subnet
 
 Next, a subnet will need to be created.
 
@@ -85,7 +80,7 @@ range could be **10.0.0.0/24**:
     $ openstack subnet create --subnet-range SUBNET_RANGE --network NETWORK_NAME \
     SUBNET_NAME
 
-------------------------------------------------------------------------
+-----
 
 Create a subnet called **subnet-1** with subnet range of
 **10.0.0.0/24**:
@@ -103,8 +98,7 @@ Create a subnet called **subnet-1** with subnet range of
     | enable_dhcp          | True                                 |
     | gateway_ip           | 10.0.0.1                             |
 
-
-**Step 3** \-- Show network details
+**Step 3** -- Show network details
 
 You can list the network and subnet and show more information about
 each.
@@ -135,8 +129,7 @@ specify the UUID for the network and subnet:
     $ openstack network show 0a193fa1-2019-4fbc-a862-6f6ced157c1e
     $ openstack subnet show df4d6183-9c3b-4bb9-a686-cf1fc7d60f7f
 
-------------------------------------------------------------------------
-
+-----
 
 ### **Create a Router**
 
@@ -144,16 +137,16 @@ With a network created, the next step is to create a router which will
 bridge the connection from the **External** or **provider network** to
 the private network.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Create router
+**Step 1** -- Create router
 
 To make a router, use this base command, replacing **ROUTER\_NAME** with
 the name of the router:
 
     $ openstack router create ROUTER_NAME
 
-------------------------------------------------------------------------
+-----
 
 Create a router called **router-1**:
 
@@ -166,8 +159,7 @@ Create a router called **router-1**:
     | availability_zones      |                                      |
     | created_at              | 2021-05-19T20:35:14Z                 |
 
-
-**Step 2** \-- Attach interfaces
+**Step 2** -- Attach interfaces
 
 With the router created, the **External** and **subnet-1** interfaces
 need to be attached to it.
@@ -177,7 +169,7 @@ To add a subnet, use this command, replacing **ROUTER\_NAME** and
 
     $ openstack router add subnet ROUTER_NAME SUBNET_NAME
 
-------------------------------------------------------------------------
+-----
 
 **Attach subnet**:
 
@@ -187,7 +179,6 @@ Add subnet **subnet-1** to the router called **router-1**:
 
 The command to add the subnet to the router returns no output if
 successful.
-
 
 **Attach External network**:
 
@@ -199,18 +190,17 @@ Use this command to add the external network, replacing
     $ openstack router set --external-gateway EXTERNAL_NETWORK_UUID \
     ROUTER_NAME
 
-Obtain the UUID of the **External** network by running
-`openstack network list`. The UUID will be listed in the first column.
+Obtain the UUID of the **External** network by running `openstack
+network list`. The UUID will be listed in the first column.
 
-------------------------------------------------------------------------
+-----
 
 Add the external network to the router called **router-1**:
 
     $ openstack router set --external-gateway \
     5cc755c9-41fc-44c2-87e7-642dfdfb0208 router-1
 
-
-**Step 4** \-- Confirm router details
+**Step 4** -- Confirm router details
 
 With these steps completed, you have a router that connects the external
 network to the private network.
@@ -220,7 +210,7 @@ replacing **ROUTER\_NAME** with the name of the router:
 
     $ openstack router show ROUTER_NAME
 
-------------------------------------------------------------------------
+-----
 
 Show the details for the router called **router-1**, including the
 interfaces that were previously attached:
@@ -242,11 +232,9 @@ interfaces that were previously attached:
     |                         | "df4d6183-9c3b-4bb9-a686-cf1fc7d60f7f"}]                                                            |
     | name                    | router-1                                                                                            |
 
-------------------------------------------------------------------------
+-----
 
-
-**Floating IPs**
-----------------
+## **Floating IPs**
 
 Floating IPs in OpenStack are publicly routable IP addresses that can be
 attached and detached to instances. For example if there's an instance
@@ -254,17 +242,17 @@ associated with a private network but needs to be accessed from the
 Internet, a floating IP can be associated with the instance, allowing
 communication from the Internet.
 
-------------------------------------------------------------------------
+-----
 
 ### **Allocate and Assign Floating IPs**
 
 To use Floating IPs they will first need to be allocated from the
-provider network's pool of IPs. The following is a list of commands
-used to manage floating IPs.
+provider network's pool of IPs. The following is a list of commands used
+to manage floating IPs.
 
-------------------------------------------------------------------------
+-----
 
-**Step 1** \-- Allocate floating IP
+**Step 1** -- Allocate floating IP
 
 Allocate additional floating IPs where `NETWORK` is the UUID of the
 network to allocate IPs from:
@@ -274,7 +262,7 @@ network to allocate IPs from:
 You will need to first obtain the **External** network's UUID using
 `openstack network list`.
 
-------------------------------------------------------------------------
+-----
 
 Allocate a floating IP from the **External** network:
 
@@ -289,13 +277,12 @@ Allocate a floating IP from the **External** network:
     | fixed_ip_address    | None                                 |
     | floating_ip_address | 173.231.217.75                       |
 
-
-**Step 2** \-- List floating IPs
+**Step 2** -- List floating IPs
 
 Make use of `openstack floating ip list` to view floating IPs. You will
 see the IP allocated from the previous section.
 
-------------------------------------------------------------------------
+-----
 
 List floating IPs:
 
@@ -306,14 +293,11 @@ List floating IPs:
     | 99d58cc0-1b27-4171-aa44-6c15d15718fa | 173.231.217.75      | None             | None | 5cc755c9-41fc-44c2-87e7-642dfdfb0208 | fece7ddb8663497bb99ee0988719143c |
     +--------------------------------------+---------------------+------------------+------+--------------------------------------+----------------------------------+
 
-
 This floating IP will be used later to access an instance over SSH.
 
-------------------------------------------------------------------------
+-----
 
-
-**Next Steps**
---------------
+## **Next Steps**
 
 The [next
 guide](users_manual/users_manual/using_creating_images_cli.rst) goes
