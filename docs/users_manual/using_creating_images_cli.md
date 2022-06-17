@@ -127,5 +127,5 @@ List the newly uploaded image:
 ## Next Steps
 
 With this guide complete, move on to the next guide, which explains [how
-to create an Instance](users_manual/create_an_instance_cli.rst) using
+to create an Instance](users_manual/create_an_instance_cli.md) using
 the command line.

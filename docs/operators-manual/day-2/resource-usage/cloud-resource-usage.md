@@ -12,23 +12,23 @@ nodes from your Ceph cluster.
 
 ## Table of Contents
 
-1.  [Datadog](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#datadog)
+1.  [Datadog](operators_manual/day-2/resource-usage/cloud-resource-usage.md#datadog)
 
 2.    - [Resources of a Private
-        Cloud](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#resources-of-a-private-cloud)
+        Cloud](operators_manual/day-2/resource-usage/cloud-resource-usage.md#resources-of-a-private-cloud)
         
         1.  [View Memory and Compute Usage in
-            Horizon](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#view-memory-and-compute-usage-in-horizon)
+            Horizon](operators_manual/day-2/resource-usage/cloud-resource-usage.md#view-memory-and-compute-usage-in-horizon)
         2.  [View Instance State Across
-            Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#view-instance-state-across-cluster)
+            Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.md#view-instance-state-across-cluster)
         3.  [How to Access Resource Information from
-            Ceph](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#how-to-access-resource-information-from-ceph)
+            Ceph](operators_manual/day-2/resource-usage/cloud-resource-usage.md#how-to-access-resource-information-from-ceph)
 
 3.  [Adding nodes to your Ceph
-    Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#adding-nodes-to-your-ceph-cluster)
+    Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.md#adding-nodes-to-your-ceph-cluster)
 
 4.  [Removing nodes from your Ceph
-    Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.rst#removing-nodes-from-your-ceph-cluster)
+    Cluster](operators_manual/day-2/resource-usage/cloud-resource-usage.md#removing-nodes-from-your-ceph-cluster)
 
 ## Datadog
 
@@ -98,7 +98,7 @@ page.
 
 In order to add additional hardware for your cluster, first review
 [Cloud Hardware Best
-Practices](operators_manual/day-3/add-remove-hardware-nodes.rst#cloud-hardware-selection-best-practices).
+Practices](operators_manual/day-3/add-remove-hardware-nodes.md#cloud-hardware-selection-best-practices).
 This is to ensure that you have selected the appropriate node for your
 cloud. Once you have selected the appropriate node, navigate to
 [OpenMetal Central](https://central.openmetal.io) and click on your

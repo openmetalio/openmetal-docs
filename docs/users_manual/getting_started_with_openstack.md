@@ -41,6 +41,6 @@ From here, enter in the provided credentials to log in.
 
 ## **Next Steps**
 
-The [next guide](users_manual/network_ip_traffic.rst) in this series
+The [next guide](users_manual/network_ip_traffic.md) in this series
 explains how to create a private network, a basic building block of an
 OpenStack cloud.

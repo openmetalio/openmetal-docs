@@ -12,14 +12,14 @@ components will be added to the instance.
 ## **Table of Contents**
 
 1.  [Before Creating an
-    Instance](users_manual/create_an_instance_cli.rst#before-creating-an-instance)
+    Instance](users_manual/create_an_instance_cli.md#before-creating-an-instance)
 2.  [SSH Key
-    Pairs](users_manual/create_an_instance_cli.rst#ssh-key-pairs)
+    Pairs](users_manual/create_an_instance_cli.md#ssh-key-pairs)
 3.  [Security
-    Groups](users_manual/create_an_instance_cli.rst#security-groups)
-4.  [Add a Volume](users_manual/create_an_instance_cli.rst#add-a-volume)
+    Groups](users_manual/create_an_instance_cli.md#security-groups)
+4.  [Add a Volume](users_manual/create_an_instance_cli.md#add-a-volume)
 5.  [How to Create an
-    Instance](users_manual/create_an_instance_cli.rst#how-to-create-an-instance)
+    Instance](users_manual/create_an_instance_cli.md#how-to-create-an-instance)
 
 -----
 
@@ -466,5 +466,5 @@ OpenStack administrator.
 
 ## **Next Steps**
 
-The [next guide](users_manual/backups_cli.rst) in this series is
+The [next guide](users_manual/backups_cli.md) in this series is
 regarding backing up and restoring your instance data.

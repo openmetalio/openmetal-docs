@@ -10,18 +10,18 @@ documentation, and how to submit and view support requests.
 ## Table of Contents
 
 1.  [A Brief Overview of your OpenMetal Private
-    Cloud](operators_manual/day-1/intro-to-openmetal-private-cloud.rst#a-brief-overview-of-your-openmetal-private-cloud)
+    Cloud](operators_manual/day-1/intro-to-openmetal-private-cloud.md#a-brief-overview-of-your-openmetal-private-cloud)
 
 2.  [How to View your Hardware
-    Assets](operators_manual/day-1/intro-to-openmetal-private-cloud.rst#how-to-view-your-hardware-assets)
+    Assets](operators_manual/day-1/intro-to-openmetal-private-cloud.md#how-to-view-your-hardware-assets)
 
 3.    - [How to Get
-        Support](operators_manual/day-1/intro-to-openmetal-private-cloud.rst#how-to-get-support)
+        Support](operators_manual/day-1/intro-to-openmetal-private-cloud.md#how-to-get-support)
         
         1.  [How to Access OpenMetal
-            Documentation](operators_manual/day-1/intro-to-openmetal-private-cloud.rst#how-to-access-openmetal-documentation)
+            Documentation](operators_manual/day-1/intro-to-openmetal-private-cloud.md#how-to-access-openmetal-documentation)
         2.  [How to Submit a Support
-            Ticket](operators_manual/day-1/intro-to-openmetal-private-cloud.rst#how-to-submit-a-support-ticket)
+            Ticket](operators_manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
 
 ## A Brief Overview of Your OpenMetal Private Cloud
 

@@ -10,20 +10,20 @@ and associate a user with it. Additionally, we explain how project
 quotas can be adjusted.
 
 1.  [Quick Overview: Project, Admin, and Identity
-    Tabs](operators_manual/day-1/horizon/create-user-project.rst#quick-overview-project-admin-and-identity-tabs)
+    Tabs](operators_manual/day-1/horizon/create-user-project.md#quick-overview-project-admin-and-identity-tabs)
 
 2.    - [How to Create a
-        Project](operators_manual/day-1/horizon/create-user-project.rst#how-to-create-a-project)
+        Project](operators_manual/day-1/horizon/create-user-project.md#how-to-create-a-project)
         
         1.  [Create your First
-            Project](operators_manual/day-1/horizon/create-user-project.rst#create-your-first-project)
+            Project](operators_manual/day-1/horizon/create-user-project.md#create-your-first-project)
         2.  [Project
-            Quotas](operators_manual/day-1/horizon/create-user-project.rst#project-quotas)
+            Quotas](operators_manual/day-1/horizon/create-user-project.md#project-quotas)
 
 3.  [How to Create a User and Associate with
-    Project](operators_manual/day-1/horizon/create-user-project.rst#how-to-create-a-user-and-associate-with-project)
+    Project](operators_manual/day-1/horizon/create-user-project.md#how-to-create-a-user-and-associate-with-project)
 
-4.  [Reference](operators_manual/day-1/horizon/create-user-project.rst#reference)
+4.  [Reference](operators_manual/day-1/horizon/create-user-project.md#reference)
 
 ## Quick Overview: Project, Admin, and Identity Tabs
 

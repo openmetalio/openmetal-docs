@@ -9,24 +9,24 @@ guide, we outline how to manage flavors in your Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisite](how-to-guides/horizon/manage-flavors.rst#prerequisite)
+1.  [Prerequisite](how-to-guides/horizon/manage-flavors.md#prerequisite)
 
 2.  [How to Create a
-    Flavor](how-to-guides/horizon/manage-flavors.rst#how-to-create-a-flavor)
+    Flavor](how-to-guides/horizon/manage-flavors.md#how-to-create-a-flavor)
 
 3.    - [Update Flavor
-        Metadata](how-to-guides/horizon/manage-flavors.rst#update-flavor-metadata)
+        Metadata](how-to-guides/horizon/manage-flavors.md#update-flavor-metadata)
         
         1.  [How to Update Flavor
-            Metadata](how-to-guides/horizon/manage-flavors.rst#how-to-update-flavor-metadata)
+            Metadata](how-to-guides/horizon/manage-flavors.md#how-to-update-flavor-metadata)
 
 4.    - [Deleting a
-        Flavor](how-to-guides/horizon/manage-flavors.rst#deleting-a-flavor)
+        Flavor](how-to-guides/horizon/manage-flavors.md#deleting-a-flavor)
         
         1.  [How to Delete a
-            Flavor](how-to-guides/horizon/manage-flavors.rst#how-to-delete-a-flavor)
+            Flavor](how-to-guides/horizon/manage-flavors.md#how-to-delete-a-flavor)
 
-5.  [References](how-to-guides/horizon/manage-flavors.rst#references)
+5.  [References](how-to-guides/horizon/manage-flavors.md#references)
 
 ## Prerequisite
 

@@ -10,25 +10,25 @@ managed this way.
 ## Table of Contents
 
 1.    - [How to Log in to
-        Horizon](operators_manual/day-1/horizon/getting-started-with-horizon.rst#how-to-log-in-to-horizon)
+        Horizon](operators_manual/day-1/horizon/getting-started-with-horizon.md#how-to-log-in-to-horizon)
         
         1.  [Log in to OpenMetal
-            Central](operators_manual/day-1/horizon/getting-started-with-horizon.rst#step-1-log-in-to-openmetal-central)
+            Central](operators_manual/day-1/horizon/getting-started-with-horizon.md#step-1-log-in-to-openmetal-central)
         
         2.  [Navigate to Cloud's Details
-            Page](operators_manual/day-1/horizon/getting-started-with-horizon.rst#step-2-navigate-to-cloud-s-details-page)
+            Page](operators_manual/day-1/horizon/getting-started-with-horizon.md#step-2-navigate-to-cloud-s-details-page)
         
         3.  [Load Horizon
-            URL](operators_manual/day-1/horizon/getting-started-with-horizon.rst#step-3-load-horizon-url)
+            URL](operators_manual/day-1/horizon/getting-started-with-horizon.md#step-3-load-horizon-url)
         
         4.    - [SSH into a Hardware Node, Obtain Horizon
-                Password](operators_manual/day-1/horizon/getting-started-with-horizon.rst#step-4-ssh-into-a-hardware-node-obtain-horizon-password)
+                Password](operators_manual/day-1/horizon/getting-started-with-horizon.md#step-4-ssh-into-a-hardware-node-obtain-horizon-password)
                 
                 1.  [Requirements to SSH into a
-                    node](operators_manual/day-1/horizon/getting-started-with-horizon.rst#requirements-to-ssh-into-a-node)
+                    node](operators_manual/day-1/horizon/getting-started-with-horizon.md#requirements-to-ssh-into-a-node)
         
         5.  [Log in to
-            Horizon](operators_manual/day-1/horizon/getting-started-with-horizon.rst#step-5-log-in-to-horizon)
+            Horizon](operators_manual/day-1/horizon/getting-started-with-horizon.md#step-5-log-in-to-horizon)
 
 ## How to Log in to Horizon
 

@@ -20,30 +20,30 @@ To follow this guide, ensure you have:
 ## Table of Contents
 
 1.  [Software that can be
-    Updated](operators_manual/day-2/maintenance.rst#software-that-can-be-updated)
+    Updated](operators_manual/day-2/maintenance.md#software-that-can-be-updated)
 
 2.  [Updating Kolla Ansible Docker
-    Images](operators_manual/day-2/maintenance.rst#updating-kolla-ansible-docker-images)
+    Images](operators_manual/day-2/maintenance.md#updating-kolla-ansible-docker-images)
 
 3.    - [Performing Package Manager
-        Updates](operators_manual/day-2/maintenance.rst#performing-package-manager-updates)
+        Updates](operators_manual/day-2/maintenance.md#performing-package-manager-updates)
         
         1.  [Migrate
-            Workload](operators_manual/day-2/maintenance.rst#migrate-workload)
+            Workload](operators_manual/day-2/maintenance.md#migrate-workload)
         2.  [Update One Node at a
-            Time](operators_manual/day-2/maintenance.rst#update-one-node-at-a-time)
+            Time](operators_manual/day-2/maintenance.md#update-one-node-at-a-time)
         3.  [Disable
-            Docker](operators_manual/day-2/maintenance.rst#disable-docker)
+            Docker](operators_manual/day-2/maintenance.md#disable-docker)
         4.  [Upgrade Host OS
-            Packages](operators_manual/day-2/maintenance.rst#upgrade-host-os-packages)
+            Packages](operators_manual/day-2/maintenance.md#upgrade-host-os-packages)
         5.  [Determine Reboot
-            Need](operators_manual/day-2/maintenance.rst#determine-reboot-need)
+            Need](operators_manual/day-2/maintenance.md#determine-reboot-need)
         6.  [Ceph
-            Maintenance](operators_manual/day-2/maintenance.rst#ceph-maintenance)
+            Maintenance](operators_manual/day-2/maintenance.md#ceph-maintenance)
         7.  [Reboot if
-            Required](operators_manual/day-2/maintenance.rst#reboot-if-required)
+            Required](operators_manual/day-2/maintenance.md#reboot-if-required)
         8.  [Verify Successful
-            Reboot](operators_manual/day-2/maintenance.rst#verify-successful-reboot)
+            Reboot](operators_manual/day-2/maintenance.md#verify-successful-reboot)
 
 ## Software that can be Updated
 

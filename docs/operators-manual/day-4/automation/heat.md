@@ -12,30 +12,30 @@ of a Heat Stack.
 ## Table of Contents
 
 1.    - [Overview of Heat
-        Orchestration](operators_manual/day-4/automation/heat.rst#overview-of-heat-orchestration)
+        Orchestration](operators_manual/day-4/automation/heat.md#overview-of-heat-orchestration)
         
-        1.  [Architecture](operators_manual/day-4/automation/heat.rst#architecture)
+        1.  [Architecture](operators_manual/day-4/automation/heat.md#architecture)
 
 2.    - [Heat Orchestration Template
-        Components](operators_manual/day-4/automation/heat.rst#heat-orchestration-template-components)
+        Components](operators_manual/day-4/automation/heat.md#heat-orchestration-template-components)
         
         1.  [Template
-            Version](operators_manual/day-4/automation/heat.rst#template-version)
-        2.  [Description](operators_manual/day-4/automation/heat.rst#description)
-        3.  [Parameters](operators_manual/day-4/automation/heat.rst#parameters)
-        4.  [Resources](operators_manual/day-4/automation/heat.rst#resources)
-        5.  [Output](operators_manual/day-4/automation/heat.rst#output)
+            Version](operators_manual/day-4/automation/heat.md#template-version)
+        2.  [Description](operators_manual/day-4/automation/heat.md#description)
+        3.  [Parameters](operators_manual/day-4/automation/heat.md#parameters)
+        4.  [Resources](operators_manual/day-4/automation/heat.md#resources)
+        5.  [Output](operators_manual/day-4/automation/heat.md#output)
 
 3.    - [Sample Heat Orchestration
-        Template](operators_manual/day-4/automation/heat.rst#sample-heat-orchestration-template)
+        Template](operators_manual/day-4/automation/heat.md#sample-heat-orchestration-template)
         
-        1.  [Attributes](operators_manual/day-4/automation/heat.rst#attributes)
+        1.  [Attributes](operators_manual/day-4/automation/heat.md#attributes)
 
 4.  [Deploying a Heat Template in
-    Horizon](operators_manual/day-4/automation/heat.rst#deploying-a-heat-template-in-horizon)
+    Horizon](operators_manual/day-4/automation/heat.md#deploying-a-heat-template-in-horizon)
 
 5.  [Viewing Recently Deployed Stacks in
-    Horizon](operators_manual/day-4/automation/heat.rst#viewing-recently-deployed-stacks-in-horizon)
+    Horizon](operators_manual/day-4/automation/heat.md#viewing-recently-deployed-stacks-in-horizon)
 
 ## Overview of Heat Orchestration
 

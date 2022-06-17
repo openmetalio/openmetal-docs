@@ -9,31 +9,31 @@ them.
 
 ## Table of Contents
 
-1.    - [Prerequisites](operators_manual/day-4/troubleshooting/ceph.rst#prerequisites)
+1.    - [Prerequisites](operators_manual/day-4/troubleshooting/ceph.md#prerequisites)
         
         1.  [Root Access to OpenStack Control
-            Plane](operators_manual/day-4/troubleshooting/ceph.rst#root-access-to-openstack-control-plane)
+            Plane](operators_manual/day-4/troubleshooting/ceph.md#root-access-to-openstack-control-plane)
 
 2.  [Get Ceph's
-    Status](operators_manual/day-4/troubleshooting/ceph.rst#get-ceph-s-status)
+    Status](operators_manual/day-4/troubleshooting/ceph.md#get-ceph-s-status)
 
 3.  [Ceph Log
-    Files](operators_manual/day-4/troubleshooting/ceph.rst#ceph-log-files)
+    Files](operators_manual/day-4/troubleshooting/ceph.md#ceph-log-files)
 
 4.    - [Common
-        Issues](operators_manual/day-4/troubleshooting/ceph.rst#common-issues)
+        Issues](operators_manual/day-4/troubleshooting/ceph.md#common-issues)
         
         1.    - [Clock
-                Skew](operators_manual/day-4/troubleshooting/ceph.rst#clock-skew)
+                Skew](operators_manual/day-4/troubleshooting/ceph.md#clock-skew)
                 
                 1.  [Confirm Ceph's
-                    Health](operators_manual/day-4/troubleshooting/ceph.rst#confirm-ceph-s-health)
+                    Health](operators_manual/day-4/troubleshooting/ceph.md#confirm-ceph-s-health)
                 2.  [Examine Chrony
-                    Logs](operators_manual/day-4/troubleshooting/ceph.rst#examine-chrony-logs)
+                    Logs](operators_manual/day-4/troubleshooting/ceph.md#examine-chrony-logs)
                 3.  [Addressing Clock
-                    Skew](operators_manual/day-4/troubleshooting/ceph.rst#addressing-clock-skew)
+                    Skew](operators_manual/day-4/troubleshooting/ceph.md#addressing-clock-skew)
 
-5.  [References](operators_manual/day-4/troubleshooting/ceph.rst#reference)
+5.  [References](operators_manual/day-4/troubleshooting/ceph.md#reference)
 
 ## Prerequisites
 

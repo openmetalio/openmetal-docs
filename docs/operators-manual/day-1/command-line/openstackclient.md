@@ -13,32 +13,32 @@ and use OpenStackClient.
 ## Table of Contents
 
 1.    - [How to Install
-        OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#how-to-install-openstackclient)
+        OpenStackClient](operators_manual/day-1/command-line/openstackclient.md#how-to-install-openstackclient)
         
-        1.  [Prerequisites](operators_manual/day-1/command-line/openstackclient.rst#prerequisites)
+        1.  [Prerequisites](operators_manual/day-1/command-line/openstackclient.md#prerequisites)
         
         2.    - [Install
-                OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#install-openstackclient)
+                OpenStackClient](operators_manual/day-1/command-line/openstackclient.md#install-openstackclient)
                 
                 1.  [Initial
-                    Preparation](operators_manual/day-1/command-line/openstackclient.rst#initial-preparation)
+                    Preparation](operators_manual/day-1/command-line/openstackclient.md#initial-preparation)
                 2.  [Prepare and Install
-                    OpenStackClient](operators_manual/day-1/command-line/openstackclient.rst#prepare-and-install-openstackclient)
+                    OpenStackClient](operators_manual/day-1/command-line/openstackclient.md#prepare-and-install-openstackclient)
 
 2.    - [Command
-        Structure](operators_manual/day-1/command-line/openstackclient.rst#command-structure)
+        Structure](operators_manual/day-1/command-line/openstackclient.md#command-structure)
         
         1.  [List all Available
-            Subcommands](operators_manual/day-1/command-line/openstackclient.rst#list-all-available-subcommands)
+            Subcommands](operators_manual/day-1/command-line/openstackclient.md#list-all-available-subcommands)
         2.  [Learn more about a
-            Subcommand](operators_manual/day-1/command-line/openstackclient.rst#learn-more-about-a-subcommand)
+            Subcommand](operators_manual/day-1/command-line/openstackclient.md#learn-more-about-a-subcommand)
         3.  [List Items and Show
-            Details](operators_manual/day-1/command-line/openstackclient.rst#list-items-and-show-details)
+            Details](operators_manual/day-1/command-line/openstackclient.md#list-items-and-show-details)
 
 3.  [Enable Bash
-    Autocompletion](operators_manual/day-1/command-line/openstackclient.rst#enable-bash-autocompletion)
+    Autocompletion](operators_manual/day-1/command-line/openstackclient.md#enable-bash-autocompletion)
 
-4.  [Reference](operators_manual/day-1/command-line/openstackclient.rst#reference)
+4.  [Reference](operators_manual/day-1/command-line/openstackclient.md#reference)
 
 ## How to Install OpenStackClient
 
@@ -86,7 +86,7 @@ user **nick** and that user's primary project, **Development**.
 Next, use SSH to log in to the instance created previously. If you
 created your instance by following the guide, [How to Create an Instance
 in OpenStack
-Horizon](operators_manual/day-1/horizon/create-first-instance.rst), then
+Horizon](operators_manual/day-1/horizon/create-first-instance.md), then
 this instance can only be accessed from one of your control plane nodes.
 
 -----

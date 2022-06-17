@@ -10,42 +10,42 @@ in your OpenMetal Private Cloud.
 ## Table of Contents
 
 1.    - [Advantages of
-        Ceph](operators_manual/day-2/introduction-to-ceph.rst#advantages-of-ceph)
+        Ceph](operators_manual/day-2/introduction-to-ceph.md#advantages-of-ceph)
         
         1.  [Data
-            Resiliency](operators_manual/day-2/introduction-to-ceph.rst#data-resiliency)
+            Resiliency](operators_manual/day-2/introduction-to-ceph.md#data-resiliency)
         2.  [Ceph Scales Extremely
-            Well](operators_manual/day-2/introduction-to-ceph.rst#ceph-scales-extremely-well)
+            Well](operators_manual/day-2/introduction-to-ceph.md#ceph-scales-extremely-well)
 
 2.  [Disadvantages of
-    Ceph](operators_manual/day-2/introduction-to-ceph.rst#disadvantages-of-ceph)
+    Ceph](operators_manual/day-2/introduction-to-ceph.md#disadvantages-of-ceph)
 
 3.  [Ceph Version Used by Private
-    Clouds](operators_manual/day-2/introduction-to-ceph.rst#ceph-version-used-by-private-clouds)
+    Clouds](operators_manual/day-2/introduction-to-ceph.md#ceph-version-used-by-private-clouds)
 
 4.  [View Disk Usage of the Ceph
-    Cluster](operators_manual/day-2/introduction-to-ceph.rst#view-disk-usage-of-the-ceph-cluster)
+    Cluster](operators_manual/day-2/introduction-to-ceph.md#view-disk-usage-of-the-ceph-cluster)
 
 5.    - [Default Configuration for the Ceph
-        Cluster](operators_manual/day-2/introduction-to-ceph.rst#default-configuration-for-the-ceph-cluster)
+        Cluster](operators_manual/day-2/introduction-to-ceph.md#default-configuration-for-the-ceph-cluster)
         
         1.    - [Default Ceph
-                Pools](operators_manual/day-2/introduction-to-ceph.rst#default-ceph-pools)
+                Pools](operators_manual/day-2/introduction-to-ceph.md#default-ceph-pools)
                 
                 1.  [Pool:
-                    images](operators_manual/day-2/introduction-to-ceph.rst#pool-images)
+                    images](operators_manual/day-2/introduction-to-ceph.md#pool-images)
                 2.  [Pool:
-                    volumes](operators_manual/day-2/introduction-to-ceph.rst#pool-volumes)
+                    volumes](operators_manual/day-2/introduction-to-ceph.md#pool-volumes)
                 3.  [Pool:
-                    vms](operators_manual/day-2/introduction-to-ceph.rst#pool-vms)
+                    vms](operators_manual/day-2/introduction-to-ceph.md#pool-vms)
                 4.  [Pool:
-                    backups](operators_manual/day-2/introduction-to-ceph.rst#pool-backups)
+                    backups](operators_manual/day-2/introduction-to-ceph.md#pool-backups)
 
 6.  [Swift and Cinder Ceph
-    Configuration](operators_manual/day-2/introduction-to-ceph.rst#swift-and-cinder-ceph-configuration)
+    Configuration](operators_manual/day-2/introduction-to-ceph.md#swift-and-cinder-ceph-configuration)
 
 7.  [Reconfiguring your Ceph
-    Cluster](operators_manual/day-2/introduction-to-ceph.rst#reconfiguring-your-ceph-cluster)
+    Cluster](operators_manual/day-2/introduction-to-ceph.md#reconfiguring-your-ceph-cluster)
 
 ## Advantages of Ceph
 
@@ -83,7 +83,7 @@ release](https://docs.ceph.com/en/latest/releases/octopus/) is used.
 ## View Disk Usage of the Ceph Cluster
 
 For more, see the guide on [How to Check Ceph's Status and Disk
-Usage](operators_manual/day-3/check-ceph-status-disk-usage.rst).
+Usage](operators_manual/day-3/check-ceph-status-disk-usage.md).
 
 ## Default Configuration for the Ceph Cluster
 
@@ -168,4 +168,4 @@ your Account Manager should this apply to you.
 Your Ceph cluster was deployed using Ceph Ansible. Any configuration
 changes must be made using Ceph Ansible. For more information, see [How
 to Prepare and Use Ceph
-Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.rst).
+Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.md).

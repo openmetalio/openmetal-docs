@@ -1,13 +1,4 @@
-# OpenStack Operator's Manual -- Extended
-
-Welcome to the extension of the OpenStack Operator's Manual.
-
-Contained are guides detailing our latest additions to Private Cloud
-Core.
-
------
-
-## Table of Contents
+# Table of Contents
 
 1.  [Load Balancing with Octavia](extras/lb_with_octavia.md)
 2.  [Brief Kubernetes Demonstration](extras/kubernetes.md)

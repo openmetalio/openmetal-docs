@@ -11,39 +11,39 @@ instance within a OpenMetal Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisites](operators_manual/day-4/automation/terraform.rst#prerequisites)
+1.  [Prerequisites](operators_manual/day-4/automation/terraform.md#prerequisites)
 
 2.    - [How to Create an Instance Using
-        Terraform](operators_manual/day-4/automation/terraform.rst#how-to-create-an-instance-using-terraform)
+        Terraform](operators_manual/day-4/automation/terraform.md#how-to-create-an-instance-using-terraform)
         
         1.  [Prepare Terraform
-            Directory](operators_manual/day-4/automation/terraform.rst#step-1-prepare-terraform-directory)
+            Directory](operators_manual/day-4/automation/terraform.md#step-1-prepare-terraform-directory)
         
         2.  [Specify Terraform
-            Provider](operators_manual/day-4/automation/terraform.rst#step-2-specify-terraform-provider)
+            Provider](operators_manual/day-4/automation/terraform.md#step-2-specify-terraform-provider)
         
         3.  [Initialize
-            Terraform](operators_manual/day-4/automation/terraform.rst#step-3-initialize-terraform)
+            Terraform](operators_manual/day-4/automation/terraform.md#step-3-initialize-terraform)
         
         4.  [Create OpenStack Application
-            Credentials](operators_manual/day-4/automation/terraform.rst#step-4-create-openstack-application-credentials)
+            Credentials](operators_manual/day-4/automation/terraform.md#step-4-create-openstack-application-credentials)
         
         5.    - [Create Main Terraform
-                File](operators_manual/day-4/automation/terraform.rst#step-5-create-main-terraform-file)
+                File](operators_manual/day-4/automation/terraform.md#step-5-create-main-terraform-file)
                 
                 1.  [Configure OpenStack
-                    Provider](operators_manual/day-4/automation/terraform.rst#configure-openstack-provider)
+                    Provider](operators_manual/day-4/automation/terraform.md#configure-openstack-provider)
                 2.  [Configure Compute
-                    Resource](operators_manual/day-4/automation/terraform.rst#configure-compute-resource)
+                    Resource](operators_manual/day-4/automation/terraform.md#configure-compute-resource)
         
         6.  [Create Terraform
-            Plan](operators_manual/day-4/automation/terraform.rst#step-6-create-terraform-plan)
+            Plan](operators_manual/day-4/automation/terraform.md#step-6-create-terraform-plan)
         
         7.  [Deploy Terraform
-            Plan](operators_manual/day-4/automation/terraform.rst#step-7-deploy-terraform-plan)
+            Plan](operators_manual/day-4/automation/terraform.md#step-7-deploy-terraform-plan)
 
 3.  [View Instance Created by
-    Terraform](operators_manual/day-4/automation/terraform.rst#view-instance-created-by-terraform)
+    Terraform](operators_manual/day-4/automation/terraform.md#view-instance-created-by-terraform)
 
 ## Prerequisites
 

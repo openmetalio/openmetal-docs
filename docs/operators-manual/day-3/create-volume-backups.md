@@ -11,19 +11,19 @@ Horizon.
 ## Table of Contents
 
 1.    - [Create a Volume
-        Backup](operators_manual/day-3/create-volume-backups.rst#create-a-volume-backup)
+        Backup](operators_manual/day-3/create-volume-backups.md#create-a-volume-backup)
         
         1.  [Test Volume
-            Backups](operators_manual/day-3/create-volume-backups.rst#test-volume-backups)
+            Backups](operators_manual/day-3/create-volume-backups.md#test-volume-backups)
 
 2.  [Restore a Volume
-    Backup](operators_manual/day-3/create-volume-backups.rst#restore-a-volume-backup)
+    Backup](operators_manual/day-3/create-volume-backups.md#restore-a-volume-backup)
 
 3.  [Ceph, Volumes, and Data
-    Durability](operators_manual/day-3/create-volume-backups.rst#ceph-volumes-and-data-durability)
+    Durability](operators_manual/day-3/create-volume-backups.md#ceph-volumes-and-data-durability)
 
 4.  [Store Data Outside of the
-    Cloud](operators_manual/day-3/create-volume-backups.rst#store-data-outside-of-the-cloud)
+    Cloud](operators_manual/day-3/create-volume-backups.md#store-data-outside-of-the-cloud)
 
 ## Create a Volume Backup
 
@@ -92,7 +92,7 @@ control plane nodes. With this configuration, your cloud could suffer
 losing all but one Ceph node and still retain all of the cluster's data.
 For more about how your Ceph cluster was configure, see the heading
 **Default Configuration for the Ceph Cluster** in the [Introduction to
-Ceph](operators_manual/day-2/introduction-to-ceph.rst) guide.
+Ceph](operators_manual/day-2/introduction-to-ceph.md) guide.
 
 ## Store Data Outside of the Cloud
 

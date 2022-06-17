@@ -18,79 +18,79 @@ Read commands carefully before executing them.
 ## Table of Contents
 
 1.    - [Kolla Ansible and Ceph
-        Ansible](operators_manual/day-3/create-openstack-service-backups.rst#kolla-ansible-and-ceph-ansible)
+        Ansible](operators_manual/day-3/create-openstack-service-backups.md#kolla-ansible-and-ceph-ansible)
         
         1.  [Prepare Kolla Ansible and Ceph Ansible
-            Environment](operators_manual/day-3/create-openstack-service-backups.rst#prepare-kolla-ansible-and-ceph-ansible-environment)
+            Environment](operators_manual/day-3/create-openstack-service-backups.md#prepare-kolla-ansible-and-ceph-ansible-environment)
         
         2.    - [Where are my Private Cloud's Configuration
-                Files?](operators_manual/day-3/create-openstack-service-backups.rst#where-are-my-private-cloud-s-configuration-files)
+                Files?](operators_manual/day-3/create-openstack-service-backups.md#where-are-my-private-cloud-s-configuration-files)
                 
                 1.  [Kolla Ansible Configuration
-                    Files](operators_manual/day-3/create-openstack-service-backups.rst#kolla-ansible-configuration-files)
+                    Files](operators_manual/day-3/create-openstack-service-backups.md#kolla-ansible-configuration-files)
                 2.  [Ceph Ansible Configuration
-                    Files](operators_manual/day-3/create-openstack-service-backups.rst#ceph-ansible-configuration-files)
+                    Files](operators_manual/day-3/create-openstack-service-backups.md#ceph-ansible-configuration-files)
                 3.  [FM-Deploy Configuration
-                    File](operators_manual/day-3/create-openstack-service-backups.rst#fm-deploy-configuration-file)
+                    File](operators_manual/day-3/create-openstack-service-backups.md#fm-deploy-configuration-file)
                 4.  [Network Ansible Configuration
-                    File](operators_manual/day-3/create-openstack-service-backups.rst#network-ansible-configuration-file)
+                    File](operators_manual/day-3/create-openstack-service-backups.md#network-ansible-configuration-file)
         
         3.  [Keep a Backup Copy a Private Cloud's Configuration
-            Files](operators_manual/day-3/create-openstack-service-backups.rst#keep-a-backup-copy-a-private-cloud-s-configuration-files)
+            Files](operators_manual/day-3/create-openstack-service-backups.md#keep-a-backup-copy-a-private-cloud-s-configuration-files)
 
 2.    - [How to Restore a Private Cloud's Configuration
-        Files](operators_manual/day-3/create-openstack-service-backups.rst#how-to-restore-a-private-cloud-s-configuration-files)
+        Files](operators_manual/day-3/create-openstack-service-backups.md#how-to-restore-a-private-cloud-s-configuration-files)
         
         1.    - [Example: Recover Neutron's Configuration File using
                 Kolla
-                Ansible](operators_manual/day-3/create-openstack-service-backups.rst#example-recover-neutron-s-configuration-file-using-kolla-ansible)
+                Ansible](operators_manual/day-3/create-openstack-service-backups.md#example-recover-neutron-s-configuration-file-using-kolla-ansible)
                 
                 1.  [Prerequisite: Prepare a Kolla Ansible
-                    Environment](operators_manual/day-3/create-openstack-service-backups.rst#prerequisite-prepare-a-kolla-ansible-environment)
+                    Environment](operators_manual/day-3/create-openstack-service-backups.md#prerequisite-prepare-a-kolla-ansible-environment)
                 2.  [Regenerate an OpenStack Service's Configuration
                     File using Kolla
-                    Ansible](operators_manual/day-3/create-openstack-service-backups.rst#regenerate-an-openstack-service-s-configuration-file-using-kolla-ansible)
+                    Ansible](operators_manual/day-3/create-openstack-service-backups.md#regenerate-an-openstack-service-s-configuration-file-using-kolla-ansible)
 
 3.    - [Create Full and Incremental Copies of a Private Cloud's
         OpenStack Service
-        Databases](operators_manual/day-3/create-openstack-service-backups.rst#create-full-and-incremental-copies-of-a-private-cloud-s-openstack-service-databases)
+        Databases](operators_manual/day-3/create-openstack-service-backups.md#create-full-and-incremental-copies-of-a-private-cloud-s-openstack-service-databases)
         
-        1.  [Prerequisites](operators_manual/day-3/create-openstack-service-backups.rst#prerequisites)
+        1.  [Prerequisites](operators_manual/day-3/create-openstack-service-backups.md#prerequisites)
         
         2.    - [How to Create OpenStack Service Database
-                Backups](operators_manual/day-3/create-openstack-service-backups.rst#how-to-create-openstack-service-database-backups)
+                Backups](operators_manual/day-3/create-openstack-service-backups.md#how-to-create-openstack-service-database-backups)
                 
                 1.  [Command Syntax for Full Database
-                    Backups](operators_manual/day-3/create-openstack-service-backups.rst#command-syntax-for-full-database-backups)
+                    Backups](operators_manual/day-3/create-openstack-service-backups.md#command-syntax-for-full-database-backups)
                 2.  [Command Syntax for Incremental Database
-                    Backups](operators_manual/day-3/create-openstack-service-backups.rst#command-syntax-for-incremental-database-backups)
+                    Backups](operators_manual/day-3/create-openstack-service-backups.md#command-syntax-for-incremental-database-backups)
                 3.  [Path to the Kolla Ansible Inventory
-                    File](operators_manual/day-3/create-openstack-service-backups.rst#path-to-the-kolla-ansible-inventory-file)
+                    File](operators_manual/day-3/create-openstack-service-backups.md#path-to-the-kolla-ansible-inventory-file)
                 4.  [Command Usage Example for a Full Database
-                    Backup](operators_manual/day-3/create-openstack-service-backups.rst#command-usage-example-for-a-full-database-backup)
+                    Backup](operators_manual/day-3/create-openstack-service-backups.md#command-usage-example-for-a-full-database-backup)
                 5.  [Command Usage Example for an Incremental Database
-                    Backup](operators_manual/day-3/create-openstack-service-backups.rst#command-usage-example-for-an-incremental-database-backup)
+                    Backup](operators_manual/day-3/create-openstack-service-backups.md#command-usage-example-for-an-incremental-database-backup)
 
 4.    - [How to Restore a Private Cloud's OpenStack Service
-        Databases](operators_manual/day-3/create-openstack-service-backups.rst#how-to-restore-a-private-cloud-s-openstack-service-databases)
+        Databases](operators_manual/day-3/create-openstack-service-backups.md#how-to-restore-a-private-cloud-s-openstack-service-databases)
         
         1.    - [Full Database Restoration
-                Steps](operators_manual/day-3/create-openstack-service-backups.rst#full-database-restoration-steps)
+                Steps](operators_manual/day-3/create-openstack-service-backups.md#full-database-restoration-steps)
                 
                 1.  [Full Restoration: Create Temporary Docker
-                    Container](operators_manual/day-3/create-openstack-service-backups.rst#full-restoration-create-temporary-docker-container)
+                    Container](operators_manual/day-3/create-openstack-service-backups.md#full-restoration-create-temporary-docker-container)
                 2.  [Full Restoration: Prepare Backup
-                    Directory](operators_manual/day-3/create-openstack-service-backups.rst#full-restoration-prepare-backup-directory)
+                    Directory](operators_manual/day-3/create-openstack-service-backups.md#full-restoration-prepare-backup-directory)
         
         2.    - [Incremental Database Restoration
-                Steps](operators_manual/day-3/create-openstack-service-backups.rst#incremental-database-restoration-steps)
+                Steps](operators_manual/day-3/create-openstack-service-backups.md#incremental-database-restoration-steps)
                 
                 1.  [Incremental Restoration: Create Temporary Docker
-                    Container](operators_manual/day-3/create-openstack-service-backups.rst#incremental-restoration-create-temporary-docker-container)
+                    Container](operators_manual/day-3/create-openstack-service-backups.md#incremental-restoration-create-temporary-docker-container)
                 2.  [Incremental Restoration: Prepare Backup
-                    Directory](operators_manual/day-3/create-openstack-service-backups.rst#incremental-restoration-prepare-backup-directory)
+                    Directory](operators_manual/day-3/create-openstack-service-backups.md#incremental-restoration-prepare-backup-directory)
 
-5.  [References](operators_manual/day-3/create-openstack-service-backups.rst#references)
+5.  [References](operators_manual/day-3/create-openstack-service-backups.md#references)
 
 ## Kolla Ansible and Ceph Ansible
 
@@ -105,9 +105,9 @@ Before working with either Kolla Ansible or Ceph Ansible, you must
 prepare an environment in your shell:
 
   - [How to Prepare and Use Kolla
-    Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.rst)
+    Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md)
   - [How to Prepare and Use Ceph
-    Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.rst)
+    Ansible](operators_manual/day-4/ceph-ansible/ceph-ansible.md)
 
 ### Where are my Private Cloud's Configuration Files?
 
@@ -176,7 +176,7 @@ to recover this configuration by using Kolla Ansible.
 Before proceeding, a Kolla Ansible environment needs to be prepared. For
 information about preparing a Kolla Ansible environment, see [How to
 Prepare and Use Kolla
-Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.rst). Once
+Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md). Once
 the environment is prepared, navigate back to this section.
 
 #### Regenerate an OpenStack Service's Configuration File using Kolla Ansible
@@ -195,7 +195,7 @@ defined as control plane nodes under the heading `[control]`:
 
 To restore the Neutron server configuration file for `relaxed-flamingo`,
 first ensure you have [prepared a Kolla Ansible
-environment](operators_manual/day-4/kolla-ansible/kolla-ansible.rst).
+environment](operators_manual/day-4/kolla-ansible/kolla-ansible.md).
 
 Next, use Kolla Ansible's `reconfigure` function, targeting only the
 Neutron service by using the flag `--tags neutron` and limit the run to
@@ -221,7 +221,7 @@ of a Private Cloud's OpenStack services.
 Before proceeding with this guide, a Kolla Ansible environment needs to
 be prepared. For information about preparing a Kolla Ansible
 environment, see [How to Prepare and Use Kolla
-Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.rst). Once
+Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.md). Once
 the environment is prepared, come back to this guide to learn how to
 create database backups of OpenStack services.
 
