@@ -30,15 +30,15 @@ function getCatagory( cat ) {
 function CategoryArticles( { category } ) {
 	return (
 		<div>
-			{getCatagory(category).map((documentation) => (
-				<div class="documentation-item">
-					<span class="material-icons">chevron_right</span>
+			{getCatagory(category).map((documentation, index) => (
+				<div className="documentation-item" key={index}>
+					<span className="material-icons">chevron_right</span>
 					<div>
 						{ ( documentation.htmlPath || documentation.pdfPath ) &&
-							<a class="title link" href={documentation.htmlPath || documentation.pdfPath}>{documentation.title}</a>
+							<a className="title link"  target={(documentation.pdfPath !== '' && documentation.htmlPath === '') ? '_blank' : ''} href={documentation.htmlPath || documentation.pdfPath}>{documentation.title}</a>
 						 }
 						{ ! ( documentation.htmlPath || documentation.pdfPath ) &&
-						<div class="title">
+						<div className="title">
 							{documentation.title}
 						</div> }
 						{ documentation.pdfPath && documentation.htmlPath  === '' &&
@@ -62,12 +62,12 @@ function CategoryArticles( { category } ) {
 
 function Categories() {
 	return (
-		<section class="custom-index-page catagories">
+		<section className="custom-index-page catagories">
 			<div>
-				<div class="cat-hero admin">
+				<div className="cat-hero admin">
 					<h3>Cloud Administrators</h3>
 				</div>
-				<div class="desc">
+				<div className="desc">
 					Learn how to integrate Flex Metal into an existing infrastructure or create a new one.
 				</div>
 				<div>
@@ -75,10 +75,10 @@ function Categories() {
 				</div>
 			</div>
 			<div>
-				<div class="cat-hero users">
+				<div className="cat-hero users">
 					<h3>Cloud Users</h3>
 				</div>
-				<div class="desc">
+				<div className="desc">
 					Guides and tutorials to help users on getting started with Flex Metal and Openstack management.
 				</div>
 				<div>
@@ -86,10 +86,10 @@ function Categories() {
 				</div>
 			</div>
 			<div>
-				<div class="cat-hero management">
+				<div className="cat-hero management">
 					<h3>General Management</h3>
 				</div>
-				<div class="desc">
+				<div className="desc">
 					Resources that can show how Flex Metal can improve your scalability at reduced costs of public clouds.
 				</div>
 				<div>
