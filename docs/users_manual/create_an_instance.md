@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # How to Create an Instance
 
 Instances in OpenStack comprise the cloud's computing power. This guide
@@ -12,13 +15,13 @@ components will be added to the instance.
 ## **Table of Contents**
 
 1.  [Before Creating an
-    Instance](users_manual/create_an_instance#before-creating-an-instance)
-2.  [SSH Key Pairs](users_manual/create_an_instance#ssh-key-pairs)
+    Instance](create_an_instance#before-creating-an-instance)
+2.  [SSH Key Pairs](create_an_instance#ssh-key-pairs)
 3.  [Security
-    Groups](users_manual/create_an_instance#security-groups)
-4.  [Add a Volume](users_manual/create_an_instance#add-a-volume)
+    Groups](create_an_instance#security-groups)
+4.  [Add a Volume](create_an_instance#add-a-volume)
 5.  [Create an
-    Instance](users_manual/create_an_instance#create-an-instance)
+    Instance](create_an_instance#create-an-instance)
 
 -----
 
@@ -271,7 +274,7 @@ only expose what is needed to the Internet, such as a load balancer, or
 front-end web servers.
 
 This example uses the private network created from the [networking
-guide](users_manual/network_ip_traffic).
+guide](network_ip_traffic).
 
 **Step 6** -- Launch Instance -\> Security Groups
 
@@ -332,5 +335,5 @@ is **debian**.
 
 ## **Next Steps**
 
-Navigate to the [next guide](users_manual/backups) in this series to
+Navigate to the [next guide](backups) in this series to
 learn how to back up and restore instance data.

@@ -9,31 +9,31 @@ them.
 
 ## Table of Contents
 
-1.    - [Prerequisites](operators_manual/day-4/troubleshooting/ceph#prerequisites)
+1.    - [Prerequisites](ceph#prerequisites)
         
         1.  [Root Access to OpenStack Control
-            Plane](operators_manual/day-4/troubleshooting/ceph#root-access-to-openstack-control-plane)
+            Plane](ceph#root-access-to-openstack-control-plane)
 
 2.  [Get Ceph's
-    Status](operators_manual/day-4/troubleshooting/ceph#get-ceph-s-status)
+    Status](ceph#get-ceph-s-status)
 
 3.  [Ceph Log
-    Files](operators_manual/day-4/troubleshooting/ceph#ceph-log-files)
+    Files](ceph#ceph-log-files)
 
 4.    - [Common
-        Issues](operators_manual/day-4/troubleshooting/ceph#common-issues)
+        Issues](ceph#common-issues)
         
         1.    - [Clock
-                Skew](operators_manual/day-4/troubleshooting/ceph#clock-skew)
+                Skew](ceph#clock-skew)
                 
                 1.  [Confirm Ceph's
-                    Health](operators_manual/day-4/troubleshooting/ceph#confirm-ceph-s-health)
+                    Health](ceph#confirm-ceph-s-health)
                 2.  [Examine Chrony
-                    Logs](operators_manual/day-4/troubleshooting/ceph#examine-chrony-logs)
+                    Logs](ceph#examine-chrony-logs)
                 3.  [Addressing Clock
-                    Skew](operators_manual/day-4/troubleshooting/ceph#addressing-clock-skew)
+                    Skew](ceph#addressing-clock-skew)
 
-5.  [References](operators_manual/day-4/troubleshooting/ceph#reference)
+5.  [References](ceph#reference)
 
 ## Prerequisites
 

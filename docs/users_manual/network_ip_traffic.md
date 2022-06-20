@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # Networking in OpenStack
 
 This guide explains networking in OpenStack including how to create a
@@ -23,8 +26,8 @@ be created.
 ## **Table of Contents**
 
 1.  [Create a Network and
-    Router](users_manual/network_ip_traffic#create-a-network-and-router)
-2.  [Floating IPs](users_manual/network_ip_traffic#floating-ips)
+    Router](network_ip_traffic#create-a-network-and-router)
+2.  [Floating IPs](network_ip_traffic#floating-ips)
 
 -----
 
@@ -218,5 +221,5 @@ SSH.
 
 ## **Next Steps**
 
-The [next guide](users_manual/using_creating_images) goes over
+The [next guide](using_creating_images) goes over
 images in OpenStack, which are bootable operating systems.

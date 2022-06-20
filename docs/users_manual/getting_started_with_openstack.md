@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Get Started with OpenStack
 
 To get started using OpenStack, you will need to log in to Horizon,
@@ -41,6 +44,6 @@ From here, enter in the provided credentials to log in.
 
 ## **Next Steps**
 
-The [next guide](users_manual/network_ip_traffic) in this series
+The [next guide](network_ip_traffic) in this series
 explains how to create a private network, a basic building block of an
 OpenStack cloud.

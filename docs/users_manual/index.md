@@ -1,4 +1,4 @@
-# **OpenStack User's Manual**
+# OpenStack User's Manual
 
 ## Private Cloud Core - OpenStack User Manual
 

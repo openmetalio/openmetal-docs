@@ -16,31 +16,31 @@ cloud's workload.
 ## Table of Contents
 
 1.    - [Use Watcher to Consolidate your Cloud's
-        Workload](operators_manual/day-4/watcher/watcher-demo#use-watcher-to-consolidate-your-cloud's-workload)
+        Workload](watcher-demo#use-watcher-to-consolidate-your-cloud's-workload)
         
         1.  [Cloud State Before Watcher is
-            Applied](operators_manual/day-4/watcher/watcher-demo#cloud-state-before-watcher-is-applied)
+            Applied](watcher-demo#cloud-state-before-watcher-is-applied)
         
         2.    - [How to use Watcher's VM Workload Consolidation
-                Strategy](operators_manual/day-4/watcher/watcher-demo#how-to-use-watcher-s-vm-workload-consolidation-strategy)
+                Strategy](watcher-demo#how-to-use-watcher-s-vm-workload-consolidation-strategy)
                 
                 1.  [Obtain List of
-                    Goals](operators_manual/day-4/watcher/watcher-demo#step-1-obtain-list-of-goals)
+                    Goals](watcher-demo#step-1-obtain-list-of-goals)
                 2.  [List Strategies Available for a
-                    Goal](operators_manual/day-4/watcher/watcher-demo#step-2-list-strategies-available-for-a-goal)
+                    Goal](watcher-demo#step-2-list-strategies-available-for-a-goal)
                 3.  [Create Audit
-                    Template](operators_manual/day-4/watcher/watcher-demo#step-3-create-audit-template)
+                    Template](watcher-demo#step-3-create-audit-template)
                 4.  [Execute
-                    Audit](operators_manual/day-4/watcher/watcher-demo#step-4-execute-audit)
+                    Audit](watcher-demo#step-4-execute-audit)
                 5.  [Retrieve Action
-                    Plan](operators_manual/day-4/watcher/watcher-demo#step-5-retrieve-action-plan)
+                    Plan](watcher-demo#step-5-retrieve-action-plan)
                 6.  [Review Action
-                    Plan](operators_manual/day-4/watcher/watcher-demo#step-6-review-action-plan)
+                    Plan](watcher-demo#step-6-review-action-plan)
                 7.  [Execute Action
-                    Plan](operators_manual/day-4/watcher/watcher-demo#step-7-execute-action-plan)
+                    Plan](watcher-demo#step-7-execute-action-plan)
         
         3.  [Cloud State After Watcher is
-            Applied](operators_manual/day-4/watcher/watcher-demo#cloud-state-after-watcher-is-applied)
+            Applied](watcher-demo#cloud-state-after-watcher-is-applied)
 
 ## Use Watcher to Consolidate your Cloud's Workload
 

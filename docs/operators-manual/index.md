@@ -117,7 +117,7 @@ your cloud through the use of OpenStack's Heat service and through
 HashiCorp's Terraform application.
 
 1.  [How to Prepare and Use Kolla
-    Ansible](day-4/kolla-ansible/kolla-ansible)
+    Ansible](day-4/kolla-ansible/)
 2.  [Enable TLS Using Kolla
     Ansible](day-4/kolla-ansible/enable-tls)
 3.  [Enable ElasticSearch and Kibana Logging using Kolla
@@ -125,7 +125,7 @@ HashiCorp's Terraform application.
 4.  [Security and Your OpenMetal Private
     Cloud](day-4/security/security-best-practices)
 5.  [How to Prepare and Use Ceph
-    Ansible](day-4/ceph-ansible/ceph-ansible)
+    Ansible](day-4/ceph-ansible/)
 6.  [OpenStack Watcher
     Demonstration](day-4/watcher/watcher-demo)
 7.  [Troubleshooting

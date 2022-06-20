@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # Get Started with OpenStackClient
 
 OpenStack offers a way to administer your cloud over the command line
@@ -205,4 +208,4 @@ Type `exit` to leave the OpenStackClient shell.
 ## **Next Steps**
 
 Navigate to the next guide in this series to learn how to [create
-networks in OpenStack](users_manual/network_ip_traffic_cli).
+networks in OpenStack](network_ip_traffic_cli).

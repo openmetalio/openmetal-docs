@@ -1,3 +1,6 @@
+---
+sidebar_position: 7
+---
 # Create a Network
 
 This guide explains networking in OpenStack including how to create a
@@ -18,8 +21,8 @@ Networking API.
 ## **Table of Contents**
 
 1.  [Create a Network and
-    Router](users_manual/users_manual/network_ip_traffic_cli#create-a-network-and-router)
-2.  [Floating IPs](users_manual/network_ip_traffic_cli#floating-ips)
+    Router](network_ip_traffic_cli#create-a-network-and-router)
+2.  [Floating IPs](network_ip_traffic_cli#floating-ips)
 
 -----
 
@@ -300,5 +303,5 @@ This floating IP will be used later to access an instance over SSH.
 ## **Next Steps**
 
 The [next
-guide](users_manual/users_manual/using_creating_images_cli) goes
+guide](using_creating_images_cli) goes
 over images in OpenStack, which are bootable operating systems.

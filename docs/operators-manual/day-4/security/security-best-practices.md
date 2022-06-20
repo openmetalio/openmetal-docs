@@ -15,40 +15,40 @@ threats.
 ## Table of Contents
 
 1.    - [Principle of Least
-        Privilege](operators_manual/day-4/security/security-best-practices#principle-of-least-privilege)
+        Privilege](security-best-practices#principle-of-least-privilege)
         
-        1.  [Roles](operators_manual/day-4/security/security-best-practices#roles)
+        1.  [Roles](security-best-practices#roles)
         
         2.    - [Users, Groups, and
-                Projects](operators_manual/day-4/security/security-best-practices#users-groups-and-projects)
+                Projects](security-best-practices#users-groups-and-projects)
                 
-                1.  [Users](operators_manual/day-4/security/security-best-practices#users)
-                2.  [Groups](operators_manual/day-4/security/security-best-practices#groups)
-                3.  [Projects](operators_manual/day-4/security/security-best-practices#projects)
+                1.  [Users](security-best-practices#users)
+                2.  [Groups](security-best-practices#groups)
+                3.  [Projects](security-best-practices#projects)
 
 2.    - [Updating
-        Software](operators_manual/day-4/security/security-best-practices#updating-software)
+        Software](security-best-practices#updating-software)
         
         1.  [Update Individual
-            Instances](operators_manual/day-4/security/security-best-practices#update-individual-instances)
+            Instances](security-best-practices#update-individual-instances)
         2.  [Update Operating System
-            Images](operators_manual/day-4/security/security-best-practices#update-operating-system-images)
+            Images](security-best-practices#update-operating-system-images)
         3.  [Update Kolla Ansible
-            Images](operators_manual/day-4/security/security-best-practices#update-kolla-ansible-images)
+            Images](security-best-practices#update-kolla-ansible-images)
         4.  [Update Control Plane
-            Nodes](operators_manual/day-4/security/security-best-practices#update-control-plane-nodes)
+            Nodes](security-best-practices#update-control-plane-nodes)
 
 3.  [Enabling
-    TLS](operators_manual/day-4/security/security-best-practices#enabling-tls)
+    TLS](security-best-practices#enabling-tls)
 
 4.  [Security
-    Groups](operators_manual/day-4/security/security-best-practices#security-groups)
+    Groups](security-best-practices#security-groups)
 
 5.  [SSH
-    Authentication](operators_manual/day-4/security/security-best-practices#ssh-authentication)
+    Authentication](security-best-practices#ssh-authentication)
 
 6.  [Additional
-    Documentation](operators_manual/day-4/security/security-best-practices#additional-documentation)
+    Documentation](security-best-practices#additional-documentation)
 
 ## Principle of Least Privilege
 
@@ -88,7 +88,7 @@ user.
 
 For information about how to create a user and project, see [Create an
 OpenStack User and Project in
-Horizon](operators_manual/day-1/horizon/create-user-project.rs).
+Horizon](../../day-1/horizon/create-user-project).
 
 #### Users
 
@@ -150,7 +150,7 @@ necessary to maintain security updates and patches. We recommend
 routinely updating and managing these images within your existing
 OpenStack cluster. For further information on how to upload images visit
 [Manage and Upload Images in
-Horizon](operators_manual/day-1/horizon/images)
+Horizon](../../day-1/horizon/images)
 
 ### Update Kolla Ansible Images
 
@@ -159,7 +159,7 @@ containers. Over time, updates occur, causing existing images to be out
 of date. As part of regular cloud maintenance, these images can be
 updated, using Kolla Ansible. To learn more, see [How to Obtain Latest
 OpenStack Images using Kolla
-Ansible](operators_manual/day-2/maintenance#how-to-obtain-latest-openstack-images-using-kolla-ansible).
+Ansible](../../day-2/maintenance#how-to-obtain-latest-openstack-images-using-kolla-ansible).
 
 ### Update Control-Plane Nodes
 
@@ -168,7 +168,7 @@ be performed as part of routine maintenance. These updates are best
 handled by the operating system's package manager, which for Private
 Clouds running CentOS 8, is `dnf`. For more information on how to update
 control plane nodes visit [OpenStack Hardware Node
-Maintenance](operators_manual/day-2/maintenance).
+Maintenance](../../day-2/maintenance).
 
 ## Enabling TLS
 
@@ -180,7 +180,7 @@ credentials for your Horizon Dashboard.
 
 For more information on how to enable TLS within Horizon, visit [How to
 Enable TLS for OpenStack using Kolla
-Ansible](operators_manual/day-4/kolla-ansible/enable-tls).
+Ansible](../kolla-ansible/enable-tls).
 
 ## Security Groups
 
@@ -196,7 +196,7 @@ For more information on how to create and manage security groups, see
 the title heading <span class="title-ref">Security Groups
 \<operators\_manual/day-1/horizon/create-first-instance\#security-groups\></span>
 in the [How to Create an Instance in OpenStack
-Horizon](operators_manual/day-1/horizon/create-first-instance)
+Horizon](../../day-1/horizon/create-first-instance)
 guide.
 
 ## SSH Authentication

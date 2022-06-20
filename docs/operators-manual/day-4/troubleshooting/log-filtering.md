@@ -10,25 +10,25 @@ of a failure.
 
 ## Table of Contents
 
-1.    - [Prerequisites](operators_manual/day-4/troubleshooting/log-filtering#prerequisites)
+1.    - [Prerequisites](log-filtering#prerequisites)
         
         1.  [Root Access to OpenStack Control
-            Plane](operators_manual/day-4/troubleshooting/log-filtering#root-access-to-openstack-control-plane)
+            Plane](log-filtering#root-access-to-openstack-control-plane)
 
 2.  [Elasticsearch and
-    Kibana](operators_manual/day-4/troubleshooting/log-filtering#elasticsearch-and-kibana)
+    Kibana](log-filtering#elasticsearch-and-kibana)
 
 3.  [Kolla Ansible Log
-    Locations](operators_manual/day-4/troubleshooting/log-filtering#kolla-ansible-log-locations)
+    Locations](log-filtering#kolla-ansible-log-locations)
 
 4.  [Determining the Correct
-    Log](operators_manual/day-4/troubleshooting/log-filtering#determining-the-correct-log)
+    Log](log-filtering#determining-the-correct-log)
 
 5.  [Determining the Correct
-    Host](operators_manual/day-4/troubleshooting/log-filtering#determining-the-correct-host)
+    Host](log-filtering#determining-the-correct-host)
 
 6.  [Viewing
-    Logs](operators_manual/day-4/troubleshooting/log-filtering#viewing-logs)
+    Logs](log-filtering#viewing-logs)
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ from a single location, visually.
 
 For more information about enabling an ELK stack in your cloud, see [How
 to Enable Elasticsearch and Kibana using Kolla
-Ansible](operators_manual/day-4/kolla-ansible/enable-elk).
+Ansible](../../day-4/kolla-ansible/enable-elk).
 
 ## Kolla Ansible Log Locations
 

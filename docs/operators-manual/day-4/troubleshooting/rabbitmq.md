@@ -12,17 +12,17 @@ address them.
 
 ## Table of Contents
 
-1.  [Prerequisites](operators_manual/day-4/troubleshooting/rabbitmq#prerequisites)
+1.  [Prerequisites](rabbitmq#prerequisites)
 2.  [Symptoms of a RabbitMQ
-    Problem](operators_manual/day-4/troubleshooting/rabbitmq#symptoms-of-a-rabbitmq-problem)
+    Problem](rabbitmq#symptoms-of-a-rabbitmq-problem)
 3.  [How Check your RabbitMQ Cluster's
-    Status](operators_manual/day-4/troubleshooting/rabbitmq#how-check-your-rabbitmq-cluster-s-status)
+    Status](rabbitmq#how-check-your-rabbitmq-cluster-s-status)
 4.  [List RabbitMQ
-    Queues](operators_manual/day-4/troubleshooting/rabbitmq#list-rabbitmq-queues)
+    Queues](rabbitmq#list-rabbitmq-queues)
 5.  [Addressing Network
-    Partitions](operators_manual/day-4/troubleshooting/rabbitmq#addressing-network-partitions)
+    Partitions](rabbitmq#addressing-network-partitions)
 6.  [Redeploy RabbitMQ
-    Cluster](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq#redeploy-rabbitmq-cluster)
+    Cluster](../kolla-ansible/redeploy-rabbitmq#redeploy-rabbitmq-cluster)
 
 ## Prerequisites
 
@@ -95,4 +95,4 @@ In worst case scenarios it is possible to redeploy your cloud's RabbitMQ
 cluster. This tends to be a last resort effort to get RabbitMQ
 functioning again. Kolla Ansible is used to redeploy a cloud's RabbitMQ
 cluster. For more, see [How to Redeploy RabbitMQ Cluster using Kolla
-Ansible](operators_manual/day-4/kolla-ansible/redeploy-rabbitmq).
+Ansible](../kolla-ansible/redeploy-rabbitmq).

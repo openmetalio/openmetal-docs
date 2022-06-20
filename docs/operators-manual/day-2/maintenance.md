@@ -20,30 +20,30 @@ To follow this guide, ensure you have:
 ## Table of Contents
 
 1.  [Software that can be
-    Updated](operators_manual/day-2/maintenance#software-that-can-be-updated)
+    Updated](maintenance#software-that-can-be-updated)
 
 2.  [Updating Kolla Ansible Docker
-    Images](operators_manual/day-2/maintenance#updating-kolla-ansible-docker-images)
+    Images](maintenance#updating-kolla-ansible-docker-images)
 
 3.    - [Performing Package Manager
-        Updates](operators_manual/day-2/maintenance#performing-package-manager-updates)
+        Updates](maintenance#performing-package-manager-updates)
         
         1.  [Migrate
-            Workload](operators_manual/day-2/maintenance#migrate-workload)
+            Workload](maintenance#migrate-workload)
         2.  [Update One Node at a
-            Time](operators_manual/day-2/maintenance#update-one-node-at-a-time)
+            Time](maintenance#update-one-node-at-a-time)
         3.  [Disable
-            Docker](operators_manual/day-2/maintenance#disable-docker)
+            Docker](maintenance#disable-docker)
         4.  [Upgrade Host OS
-            Packages](operators_manual/day-2/maintenance#upgrade-host-os-packages)
+            Packages](maintenance#upgrade-host-os-packages)
         5.  [Determine Reboot
-            Need](operators_manual/day-2/maintenance#determine-reboot-need)
+            Need](maintenance#determine-reboot-need)
         6.  [Ceph
-            Maintenance](operators_manual/day-2/maintenance#ceph-maintenance)
+            Maintenance](maintenance#ceph-maintenance)
         7.  [Reboot if
-            Required](operators_manual/day-2/maintenance#reboot-if-required)
+            Required](maintenance#reboot-if-required)
         8.  [Verify Successful
-            Reboot](operators_manual/day-2/maintenance#verify-successful-reboot)
+            Reboot](maintenance#verify-successful-reboot)
 
 ## Software that can be Updated
 

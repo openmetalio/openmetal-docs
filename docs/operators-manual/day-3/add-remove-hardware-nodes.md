@@ -13,39 +13,39 @@ cloud.
 ## Table of Contents
 
 1.    - [Cloud Hardware
-        Selection](operators_manual/day-3/add-remove-hardware-nodes#cloud-hardware-selection)
+        Selection](add-remove-hardware-nodes#cloud-hardware-selection)
         
         1.  [Types of Private
-            Clouds](operators_manual/day-3/add-remove-hardware-nodes#types-of-private-clouds)
+            Clouds](add-remove-hardware-nodes#types-of-private-clouds)
         2.  [Types of
-            Nodes](operators_manual/day-3/add-remove-hardware-nodes#types-of-nodes)
+            Nodes](add-remove-hardware-nodes#types-of-nodes)
         3.  [The Benefit of Homogeneous
-            Clouds](operators_manual/day-3/add-remove-hardware-nodes#the-benefit-of-homogeneous-clouds)
+            Clouds](add-remove-hardware-nodes#the-benefit-of-homogeneous-clouds)
 
 2.    - [Adding Hardware Nodes to a
-        Cloud](operators_manual/day-3/add-remove-hardware-nodes#adding-hardware-nodes-to-a-cloud)
+        Cloud](add-remove-hardware-nodes#adding-hardware-nodes-to-a-cloud)
         
         1.    - [How to add a Hardware
-                Node](operators_manual/day-3/add-remove-hardware-nodes#how-to-add-a-hardware-node)
+                Node](add-remove-hardware-nodes#how-to-add-a-hardware-node)
                 
                 1.  [Navigate in OpenMetal Central to Cloud Assets
-                    Page](operators_manual/day-3/add-remove-hardware-nodes#navigate-in-openmetal-central-to-cloud-assets-page)
+                    Page](add-remove-hardware-nodes#navigate-in-openmetal-central-to-cloud-assets-page)
                 2.  [View Hardware Node
-                    Types](operators_manual/day-3/add-remove-hardware-nodes#view-hardware-node-types)
+                    Types](add-remove-hardware-nodes#view-hardware-node-types)
                 3.  [Confirm Hardware Node
-                    Addition](operators_manual/day-3/add-remove-hardware-nodes#confirm-hardware-node-addition)
+                    Addition](add-remove-hardware-nodes#confirm-hardware-node-addition)
                 4.  [Verify Hardware Addition
-                    Success](operators_manual/day-3/add-remove-hardware-nodes#verify-hardware-addition-success)
+                    Success](add-remove-hardware-nodes#verify-hardware-addition-success)
 
 3.    - [Removing Hardware Nodes from a
-        Cloud](operators_manual/day-3/add-remove-hardware-nodes#removing-hardware-nodes-from-a-cloud)
+        Cloud](add-remove-hardware-nodes#removing-hardware-nodes-from-a-cloud)
         
         1.  [Consider Before
-            Removing](operators_manual/day-3/add-remove-hardware-nodes#consider-before-removing)
+            Removing](add-remove-hardware-nodes#consider-before-removing)
         2.  [Initial
-            Preparation](operators_manual/day-3/add-remove-hardware-nodes#initial-preparation)
+            Preparation](add-remove-hardware-nodes#initial-preparation)
         3.  [How to Remove a Hardware Node from a
-            Cloud](operators_manual/day-3/add-remove-hardware-nodes#how-to-remove-a-hardware-node-from-a-cloud)
+            Cloud](add-remove-hardware-nodes#how-to-remove-a-hardware-node-from-a-cloud)
 
 ## Cloud Hardware Selection
 
@@ -187,7 +187,7 @@ or submit a ticket through OpenMetal Central. It is very important all
 data required from this node is copied elsewhere prior to making a
 request to remove a hardware node. You can help facilitate the process
 of removing the node by [migrating any running
-instances](operators_manual/day-2/live-migrate-instances) from it to
+instances](../day-2/live-migrate-instances) from it to
 another node.
 
 ### Consider Before Removing
@@ -220,7 +220,7 @@ To prepare for removal of a hardware node, migrate any instances to
 another node that has compute services running. All hyperconverged nodes
 run OpenStack's compute service. For instruction regarding migrating
 instances to another node, see the [How to Live Migrate
-Instances](operators_manual/day-2/live-migrate-instances) guide.
+Instances](../day-2/live-migrate-instances) guide.
 
 ### How to Remove a Hardware Node from a Cloud
 

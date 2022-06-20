@@ -12,11 +12,11 @@ advantageous.
 
 ## Table of Contents
 
-1.  [Prerequisite](operators_manual/day-2/live-migrate-instances#prerequisite)
+1.  [Prerequisite](live-migrate-instances#prerequisite)
 2.  [Determining an Instance's Parent
-    Host](operators_manual/day-2/live-migrate-instances#determining-an-instance-s-parent-host)
+    Host](live-migrate-instances#determining-an-instance-s-parent-host)
 3.  [Migrate
-    Instance](operators_manual/day-2/live-migrate-instances#migrate-instance)
+    Instance](live-migrate-instances#migrate-instance)
 
 ## Prerequisite
 

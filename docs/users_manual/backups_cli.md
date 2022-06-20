@@ -1,3 +1,6 @@
+---
+sidebar_position: 10
+---
 # Managing Backups in OpenStack
 
 Having a solid backup strategy is important in the event where data is
@@ -264,7 +267,7 @@ If the backup is ready to use, the **Status** column will show as
 
 A new instance can now be created using this volume. For help with how
 to create an instance see the [Create an
-Instance](users_manual/create_an_instance_cli) guide.
+Instance](create_an_instance_cli) guide.
 
 The following builds an instance booted from the previously restored
 volume backup:

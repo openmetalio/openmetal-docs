@@ -1,3 +1,6 @@
+---
+sidebar_position: 11
+---
 # OpenStack CLI for Common Operational Tasks
 
 ## **Background**

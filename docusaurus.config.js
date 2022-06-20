@@ -38,6 +38,9 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        disableSwitch: true
+      },
       navbar: {
         title: '',
         logo: {
@@ -60,8 +63,8 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
-        links: [
+        style: 'light',
+        /*links: [
           {
             title: 'Docs',
             items: [
@@ -97,7 +100,13 @@ const config = {
               },
             ],
           },
-        ],
+        ],*/
+        logo: {
+          alt: 'Facebook Open Source Logo',
+          src: 'img/openmetal.svg',
+          width: 160,
+          height: 51,
+        },
         copyright: `Copyright © ${new Date().getFullYear()} Openmetal.`,
       },
       prism: {

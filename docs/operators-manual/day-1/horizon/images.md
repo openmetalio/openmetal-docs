@@ -16,12 +16,12 @@ to create an image from an instance snapshot.
 ## Table of Contents
 
 1.  [Managing
-    Images](operators_manual/day-1/horizon/images#managing-images)
+    Images](images#managing-images)
 2.  [Uploading
-    Images](operators_manual/day-1/horizon/images#uploading-images)
+    Images](images#uploading-images)
 3.  [Create Images from Running
-    Instances](operators_manual/day-1/horizon/images#create-images-from-running-instances)
-4.  [Reference](operators_manual/day-1/horizon/images#reference)
+    Instances](images#create-images-from-running-instances)
+4.  [Reference](images#reference)
 
 ## Managing Images
 

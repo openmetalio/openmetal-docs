@@ -1,3 +1,6 @@
+---
+sidebar_position: 9
+---
 # Create an Instance
 
 Instances in OpenStack comprise the cloud's computing power. This guide
@@ -12,14 +15,14 @@ components will be added to the instance.
 ## **Table of Contents**
 
 1.  [Before Creating an
-    Instance](users_manual/create_an_instance_cli#before-creating-an-instance)
+    Instance](create_an_instance_cli#before-creating-an-instance)
 2.  [SSH Key
-    Pairs](users_manual/create_an_instance_cli#ssh-key-pairs)
+    Pairs](create_an_instance_cli#ssh-key-pairs)
 3.  [Security
-    Groups](users_manual/create_an_instance_cli#security-groups)
-4.  [Add a Volume](users_manual/create_an_instance_cli#add-a-volume)
+    Groups](create_an_instance_cli#security-groups)
+4.  [Add a Volume](create_an_instance_cli#add-a-volume)
 5.  [How to Create an
-    Instance](users_manual/create_an_instance_cli#how-to-create-an-instance)
+    Instance](create_an_instance_cli#how-to-create-an-instance)
 
 -----
 
@@ -466,5 +469,5 @@ OpenStack administrator.
 
 ## **Next Steps**
 
-The [next guide](users_manual/backups_cli) in this series is
+The [next guide](backups_cli) in this series is
 regarding backing up and restoring your instance data.

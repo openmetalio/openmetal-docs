@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # How to Make Backups in OpenStack
 
 Having a solid backup strategy is important in the event where data is

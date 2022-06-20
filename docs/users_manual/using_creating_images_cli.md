@@ -1,3 +1,6 @@
+---
+sidebar_position: 8
+---
 # Manage OpenStack Images
 
 Images in OpenStack are what powers instances. In this guide, you will
@@ -127,5 +130,5 @@ List the newly uploaded image:
 ## Next Steps
 
 With this guide complete, move on to the next guide, which explains [how
-to create an Instance](users_manual/create_an_instance_cli) using
+to create an Instance](create_an_instance_cli) using
 the command line.
