@@ -48,12 +48,6 @@ const config = {
           src: 'img/openmetal.svg',
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Manuals',
-          },
         //   {to: '/blog', label: 'Blog', position: 'left'},
           {
             href: 'https://github.com/inmotionhosting/openmetal-docs',
