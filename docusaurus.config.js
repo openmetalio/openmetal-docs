@@ -64,50 +64,13 @@ const config = {
       },
       footer: {
         style: 'light',
-        /*links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/openmetal',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/openmetalio',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-            //   {
-            //     label: 'Blog',
-            //     to: '/blog',
-            //   },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/openmetal',
-              },
-            ],
-          },
-        ],*/
         logo: {
           alt: 'Facebook Open Source Logo',
           src: 'img/openmetal.svg',
           width: 160,
           height: 51,
         },
-        copyright: `Copyright © ${new Date().getFullYear()} Openmetal.`,
+        copyright: `<strong>${new Date().getFullYear()} © OpenMetal, a division of <a href="https://www.inmotionhosting.com" target="_blank" rel="noopener">InMotion Hosting</a>.  All rights reserved.</strong>`,
       },
       prism: {
         theme: lightCodeTheme,

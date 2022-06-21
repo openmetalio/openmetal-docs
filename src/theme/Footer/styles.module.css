@@ -13,3 +13,19 @@
 .footerLogoLink:hover {
   opacity: 1;
 }
+
+.footerContact {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.footerContact p {
+  margin: 0px;
+}
+.contactLinks a{
+  display: inline-block;
+  margin: .5rem;
+}

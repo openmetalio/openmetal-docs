@@ -172,6 +172,17 @@ function Footer() {
             ) : null}
           </div>
         )}
+        <div className={styles.footerContact}>
+          <p>555 S. Independence Blvd, Virginia Beach, VA 23452</p>
+          <div className={styles.contactLinks}>
+            <a href="tel:+18777289664">877-7-BUY-OMI</a>
+            <a href="mailto:sales@openmetal.io">sales@openmetal.io</a>
+            <a href="https://openmetal.io/schedule-meeting/">Schedule a Demo</a>
+          </div>
+          <p>
+            <strong>OpenMetal Central:</strong> <a target="_blank" href='https://central.openmetal.io/auth/sign-in'>Login</a> or <a target="_blank" href='https://central.openmetal.io/sign-up'>Create New Account</a>
+          </p>
+        </div>
       </div>
     </footer>
   );
