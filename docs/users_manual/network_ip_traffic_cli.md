@@ -20,9 +20,9 @@ Networking API.
 
 ## **Table of Contents**
 
-1.  [Create a Network and
+1. [Create a Network and
     Router](network_ip_traffic_cli#create-a-network-and-router)
-2.  [Floating IPs](network_ip_traffic_cli#floating-ips)
+2. [Floating IPs](network_ip_traffic_cli#floating-ips)
 
 -----
 
@@ -53,7 +53,7 @@ expose the portions of your cloud to a public network when needed.
 Use this command to create a network, replacing **NETWORK\_NAME** with
 the name of the network:
 
-    $ openstack network create NETWORK_NAME
+    openstack network create NETWORK_NAME
 
 -----
 
@@ -129,8 +129,8 @@ List subnets using:
 To get more information about each, use the `show` subcommand and
 specify the UUID for the network and subnet:
 
-    $ openstack network show 0a193fa1-2019-4fbc-a862-6f6ced157c1e
-    $ openstack subnet show df4d6183-9c3b-4bb9-a686-cf1fc7d60f7f
+    openstack network show 0a193fa1-2019-4fbc-a862-6f6ced157c1e
+    openstack subnet show df4d6183-9c3b-4bb9-a686-cf1fc7d60f7f
 
 -----
 
@@ -147,7 +147,7 @@ the private network.
 To make a router, use this base command, replacing **ROUTER\_NAME** with
 the name of the router:
 
-    $ openstack router create ROUTER_NAME
+    openstack router create ROUTER_NAME
 
 -----
 
@@ -170,7 +170,7 @@ need to be attached to it.
 To add a subnet, use this command, replacing **ROUTER\_NAME** and
 **SUBNET\_NAME** with the names of the respective router and subnet:
 
-    $ openstack router add subnet ROUTER_NAME SUBNET_NAME
+    openstack router add subnet ROUTER_NAME SUBNET_NAME
 
 -----
 
@@ -178,7 +178,7 @@ To add a subnet, use this command, replacing **ROUTER\_NAME** and
 
 Add subnet **subnet-1** to the router called **router-1**:
 
-    $ openstack router add subnet router-1 subnet-1
+    openstack router add subnet router-1 subnet-1
 
 The command to add the subnet to the router returns no output if
 successful.
@@ -211,7 +211,7 @@ network to the private network.
 You can see the details of the router by running the following,
 replacing **ROUTER\_NAME** with the name of the router:
 
-    $ openstack router show ROUTER_NAME
+    openstack router show ROUTER_NAME
 
 -----
 
@@ -260,7 +260,7 @@ to manage floating IPs.
 Allocate additional floating IPs where `NETWORK` is the UUID of the
 network to allocate IPs from:
 
-    $ openstack floating ip create NETWORK
+    openstack floating ip create NETWORK
 
 You will need to first obtain the **External** network's UUID using
 `openstack network list`.

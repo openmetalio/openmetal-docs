@@ -21,9 +21,9 @@ To reboot an instance, click the small arrow next to the button **Rescue
 Instance**. Depending on the current status of your instance you have
 the options to Soft Reboot Instance and Hard Reboot Instance
 
-  - Soft Reboot Instance - attempts a graceful shutdown and restart of
+- Soft Reboot Instance - attempts a graceful shutdown and restart of
     instance
-  - Hard Reboot Instance - power cycles instance
+- Hard Reboot Instance - power cycles instance
 
 **Note:** Because of the use of Ceph, the rebuild function will not
 work.

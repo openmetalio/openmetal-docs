@@ -12,44 +12,44 @@ and use OpenStackClient.
 
 ## Table of Contents
 
-1.    - [How to Install
+1. - [How to Install
         OpenStackClient](openstackclient#how-to-install-openstackclient)
-        
-        1.  [Prerequisites](openstackclient#prerequisites)
-        
-        2.    - [Install
+
+        1. [Prerequisites](openstackclient#prerequisites)
+
+        2. - [Install
                 OpenStackClient](openstackclient#install-openstackclient)
-                
-                1.  [Initial
+
+                1. [Initial
                     Preparation](openstackclient#initial-preparation)
-                2.  [Prepare and Install
+                2. [Prepare and Install
                     OpenStackClient](openstackclient#prepare-and-install-openstackclient)
 
-2.    - [Command
+2. - [Command
         Structure](openstackclient#command-structure)
-        
-        1.  [List all Available
+
+        1. [List all Available
             Subcommands](openstackclient#list-all-available-subcommands)
-        2.  [Learn more about a
+        2. [Learn more about a
             Subcommand](openstackclient#learn-more-about-a-subcommand)
-        3.  [List Items and Show
+        3. [List Items and Show
             Details](openstackclient#list-items-and-show-details)
 
-3.  [Enable Bash
+3. [Enable Bash
     Autocompletion](openstackclient#enable-bash-autocompletion)
 
-4.  [Reference](openstackclient#reference)
+4. [Reference](openstackclient#reference)
 
 ## How to Install OpenStackClient
 
 ### Prerequisites
 
-  - A Linux machine in which you can install OpenStackClient. This can
+- A Linux machine in which you can install OpenStackClient. This can
     be your own machine, the cloud's hardware nodes, or an instance
     running in the cloud.
-  - Python 3.6 or greater
-  - OpenStack RC file
-  - `clouds.yaml` file
+- Python 3.6 or greater
+- OpenStack RC file
+- `clouds.yaml` file
 
 ### Install OpenStackClient
 
@@ -63,9 +63,9 @@ Before installing OpenStackClient, you must obtain two files from
 Horizon, which are required to prepare your shell environment. Those two
 files are `clouds.yaml` and the OpenStack RC file.
 
-  - `clouds.yaml`: Used as a source of configuration for how to connect
+- `clouds.yaml`: Used as a source of configuration for how to connect
     to a cloud
-  - OpenStack RC file: Used as a source of authentication for your user
+- OpenStack RC file: Used as a source of authentication for your user
     and project
 
 To collect these files, log in to Horizon as your user. Navigate to
@@ -119,7 +119,7 @@ home directory.
 
 For example:
 
-    $ vi ~/Development-openrc.sh
+    vi ~/Development-openrc.sh
 
 **Step 2**: Create a Python virtual environment
 
@@ -135,7 +135,7 @@ environment in path `~/venv`.
 
 For example:
 
-    $ /usr/libexec/platform-python -m venv ~/venv
+    /usr/libexec/platform-python -m venv ~/venv
 
 **Step 3**: Activate the Python virtual environment
 
@@ -143,7 +143,7 @@ Use `source ~/venv/bin/activate` to activate the virtual environment.
 
 For example:
 
-    $ source ~/venv/bin/activate
+    source ~/venv/bin/activate
 
 **Step 4**: Upgrade `pip`
 
@@ -152,7 +152,7 @@ upgrade `pip`. Upgrade `pip` by using `pip install --upgrade pip`.
 
 For example:
 
-    $ pip install --upgrade pip
+    pip install --upgrade pip
 
 **Step 5**: Install OpenStackClient
 
@@ -165,7 +165,7 @@ than the prior package.
 
 Install OpenStackClient using:
 
-    $ pip install python-openstackclient
+    pip install python-openstackclient
 
 **Step 6**: List servers associated with your project
 
@@ -257,14 +257,14 @@ store the output of `openstack complete` into
 For example, we print the autocomplete configuration and redirect its
 output to `/etc/bash_completion.d/osc.bash_completion` using `tee`:
 
-    $ openstack complete | sudo tee /etc/bash_completion.d/osc.bash_completion > /dev/null
+    openstack complete | sudo tee /etc/bash_completion.d/osc.bash_completion > /dev/null
 
 Next, either log out and back in to your shell or use `source` to load
 the autocompletion script for your current shell.
 
 For example:
 
-    $ source /etc/bash_completion.d/osc.bash_completion
+    source /etc/bash_completion.d/osc.bash_completion
 
 ## Reference
 

@@ -13,15 +13,15 @@ usage using the command line.
 
 ## Table of Contents
 
-1.  [Prerequisites](check-ceph-status-disk-usage#prerequisites)
-2.  [Check Ceph
+1. [Prerequisites](check-ceph-status-disk-usage#prerequisites)
+2. [Check Ceph
     Status](check-ceph-status-disk-usage#check-ceph-status)
-3.  [Check Ceph Disk
+3. [Check Ceph Disk
     Usage](check-ceph-status-disk-usage#check-ceph-disk-usage)
 
 ## Prerequisites
 
-  - Root access to your cloud's control plane nodes
+- Root access to your cloud's control plane nodes
 
 ## Check Ceph Status
 

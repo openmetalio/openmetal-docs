@@ -20,11 +20,11 @@ allows for custom configuration changes.
 
 ## Table of Contents
 
-1.  [Getting
+1. [Getting
     Started](add-provider-ips#getting-started)
-2.  [Confirm new Provider Block
+2. [Confirm new Provider Block
     Addition](add-provider-ips#confirm-new-provider-block-addition)
-3.  [How are the new Provider Block IPs
+3. [How are the new Provider Block IPs
     Used?](add-provider-ips#how-are-the-new-provider-block-ips-used)
 
 ## Getting Started

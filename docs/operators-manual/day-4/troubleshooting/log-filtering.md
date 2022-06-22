@@ -10,24 +10,24 @@ of a failure.
 
 ## Table of Contents
 
-1.    - [Prerequisites](log-filtering#prerequisites)
-        
-        1.  [Root Access to OpenStack Control
+1. - [Prerequisites](log-filtering#prerequisites)
+
+        1. [Root Access to OpenStack Control
             Plane](log-filtering#root-access-to-openstack-control-plane)
 
-2.  [Elasticsearch and
+2. [Elasticsearch and
     Kibana](log-filtering#elasticsearch-and-kibana)
 
-3.  [Kolla Ansible Log
+3. [Kolla Ansible Log
     Locations](log-filtering#kolla-ansible-log-locations)
 
-4.  [Determining the Correct
+4. [Determining the Correct
     Log](log-filtering#determining-the-correct-log)
 
-5.  [Determining the Correct
+5. [Determining the Correct
     Host](log-filtering#determining-the-correct-host)
 
-6.  [Viewing
+6. [Viewing
     Logs](log-filtering#viewing-logs)
 
 ## Prerequisites

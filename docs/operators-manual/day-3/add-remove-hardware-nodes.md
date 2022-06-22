@@ -12,39 +12,39 @@ cloud.
 
 ## Table of Contents
 
-1.    - [Cloud Hardware
+1. - [Cloud Hardware
         Selection](add-remove-hardware-nodes#cloud-hardware-selection)
-        
-        1.  [Types of Private
+
+        1. [Types of Private
             Clouds](add-remove-hardware-nodes#types-of-private-clouds)
-        2.  [Types of
+        2. [Types of
             Nodes](add-remove-hardware-nodes#types-of-nodes)
-        3.  [The Benefit of Homogeneous
+        3. [The Benefit of Homogeneous
             Clouds](add-remove-hardware-nodes#the-benefit-of-homogeneous-clouds)
 
-2.    - [Adding Hardware Nodes to a
+2. - [Adding Hardware Nodes to a
         Cloud](add-remove-hardware-nodes#adding-hardware-nodes-to-a-cloud)
-        
-        1.    - [How to add a Hardware
+
+        1. - [How to add a Hardware
                 Node](add-remove-hardware-nodes#how-to-add-a-hardware-node)
-                
-                1.  [Navigate in OpenMetal Central to Cloud Assets
+
+                1. [Navigate in OpenMetal Central to Cloud Assets
                     Page](add-remove-hardware-nodes#navigate-in-openmetal-central-to-cloud-assets-page)
-                2.  [View Hardware Node
+                2. [View Hardware Node
                     Types](add-remove-hardware-nodes#view-hardware-node-types)
-                3.  [Confirm Hardware Node
+                3. [Confirm Hardware Node
                     Addition](add-remove-hardware-nodes#confirm-hardware-node-addition)
-                4.  [Verify Hardware Addition
+                4. [Verify Hardware Addition
                     Success](add-remove-hardware-nodes#verify-hardware-addition-success)
 
-3.    - [Removing Hardware Nodes from a
+3. - [Removing Hardware Nodes from a
         Cloud](add-remove-hardware-nodes#removing-hardware-nodes-from-a-cloud)
-        
-        1.  [Consider Before
+
+        1. [Consider Before
             Removing](add-remove-hardware-nodes#consider-before-removing)
-        2.  [Initial
+        2. [Initial
             Preparation](add-remove-hardware-nodes#initial-preparation)
-        3.  [How to Remove a Hardware Node from a
+        3. [How to Remove a Hardware Node from a
             Cloud](add-remove-hardware-nodes#how-to-remove-a-hardware-node-from-a-cloud)
 
 ## Cloud Hardware Selection
@@ -63,26 +63,26 @@ the following image:
 
 **Figure 1:** Private Cloud Core Selections
 
-  - **Cloud Core - Small**: This cluster type should be considered for
+- **Cloud Core - Small**: This cluster type should be considered for
     testing environments. Each node has a 1Gbit Network Interface Card
     (NIC). The network throughput across cluster members could be a
     bottleneck.
-  - **Cloud Core - Standard**: This cluster type is considered ready for
+- **Cloud Core - Standard**: This cluster type is considered ready for
     production. Each node has a 10Gbit Network Interface Card. The
     network throughput across cluster members should not be a
     bottleneck.
-  - **Cloud Core - Large**: Production-ready and provides the most
+- **Cloud Core - Large**: Production-ready and provides the most
     resources. Each node also has a 10Gbit Network Interface Card.
 
 ### Types of Nodes
 
 The following are the types of nodes that can be added to a cloud.
 
-  - **Storage and Compute - Small**
-  - **Storage and Compute - Standard**
-  - **Storage and Compute - Large**
-  - **Compute - Large**
-  - **GPU - A100**
+- **Storage and Compute - Small**
+- **Storage and Compute - Standard**
+- **Storage and Compute - Large**
+- **Compute - Large**
+- **GPU - A100**
 
 ### The Benefit of Homogeneous Clouds
 

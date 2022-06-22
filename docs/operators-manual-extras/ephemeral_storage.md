@@ -44,12 +44,12 @@ ephemeral storage.
 
 Flavors that set ephemeral storage:
 
-  - cc.micro
-  - cc.small
-  - cc.medium
-  - cc.large
-  - cc.xlarge
-  - cc.2xlarge
+- cc.micro
+- cc.small
+- cc.medium
+- cc.large
+- cc.xlarge
+- cc.2xlarge
 
 To see the new flavors, as an administrative user, navigate in Horizon
 to **Admin -\> Compute -\> Flavors**. The flavors prefixed with `cc` are
@@ -80,8 +80,8 @@ Of those options, these are important to consider:
 
 **Boot Sources**
 
-  - Image
-  - Volume
+- Image
+- Volume
 
 **Boot from Image**: When booting an instance from an image, the image
 is copied from Glance into the Compute node's local LVM volume and so
@@ -202,8 +202,8 @@ performance.
 
 The tests performed are:
 
-  - Random disk reads and writes
-  - Sequential disk reads and writes
+- Random disk reads and writes
+- Sequential disk reads and writes
 
 ### Results
 

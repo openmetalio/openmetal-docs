@@ -9,25 +9,25 @@ managed this way.
 
 ## Table of Contents
 
-1.    - [How to Log in to
+1. - [How to Log in to
         Horizon](getting-started-with-horizon#how-to-log-in-to-horizon)
-        
-        1.  [Log in to OpenMetal
+
+        1. [Log in to OpenMetal
             Central](getting-started-with-horizon#step-1-log-in-to-openmetal-central)
-        
-        2.  [Navigate to Cloud's Details
+
+        2. [Navigate to Cloud's Details
             Page](getting-started-with-horizon#step-2-navigate-to-cloud-s-details-page)
-        
-        3.  [Load Horizon
+
+        3. [Load Horizon
             URL](getting-started-with-horizon#step-3-load-horizon-url)
-        
-        4.    - [SSH into a Hardware Node, Obtain Horizon
+
+        4. - [SSH into a Hardware Node, Obtain Horizon
                 Password](getting-started-with-horizon#step-4-ssh-into-a-hardware-node-obtain-horizon-password)
-                
-                1.  [Requirements to SSH into a
+
+                1. [Requirements to SSH into a
                     node](getting-started-with-horizon#requirements-to-ssh-into-a-node)
-        
-        5.  [Log in to
+
+        5. [Log in to
             Horizon](getting-started-with-horizon#step-5-log-in-to-horizon)
 
 ## How to Log in to Horizon
@@ -83,9 +83,9 @@ list, then use SSH to log in.
 
 To SSH into a hardware node, ensure these requirements are met:
 
-  - Username: root
-  - Authentication: SSH key pair
-  - IP address of a hardware node
+- Username: root
+- Authentication: SSH key pair
+- IP address of a hardware node
 
 As an example, we demonstrate using SSH to log in to the first hardware
 node, located by `173.231.254.165`. The SSH key file for this example is
@@ -94,7 +94,7 @@ for this step.
 
 For example:
 
-    $ ssh -i ~/.ssh/id_rsa root@173.231.254.165
+    ssh -i ~/.ssh/id_rsa root@173.231.254.165
 
 Once logged in, search for `keystone_admin_password` inside of
 `/etc/kolla/passwords.yml`.

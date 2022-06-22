@@ -15,31 +15,31 @@ cloud's workload.
 
 ## Table of Contents
 
-1.    - [Use Watcher to Consolidate your Cloud's
+1. - [Use Watcher to Consolidate your Cloud's
         Workload](watcher-demo#use-watcher-to-consolidate-your-cloud's-workload)
-        
-        1.  [Cloud State Before Watcher is
+
+        1. [Cloud State Before Watcher is
             Applied](watcher-demo#cloud-state-before-watcher-is-applied)
-        
-        2.    - [How to use Watcher's VM Workload Consolidation
+
+        2. - [How to use Watcher's VM Workload Consolidation
                 Strategy](watcher-demo#how-to-use-watcher-s-vm-workload-consolidation-strategy)
-                
-                1.  [Obtain List of
+
+                1. [Obtain List of
                     Goals](watcher-demo#step-1-obtain-list-of-goals)
-                2.  [List Strategies Available for a
+                2. [List Strategies Available for a
                     Goal](watcher-demo#step-2-list-strategies-available-for-a-goal)
-                3.  [Create Audit
+                3. [Create Audit
                     Template](watcher-demo#step-3-create-audit-template)
-                4.  [Execute
+                4. [Execute
                     Audit](watcher-demo#step-4-execute-audit)
-                5.  [Retrieve Action
+                5. [Retrieve Action
                     Plan](watcher-demo#step-5-retrieve-action-plan)
-                6.  [Review Action
+                6. [Review Action
                     Plan](watcher-demo#step-6-review-action-plan)
-                7.  [Execute Action
+                7. [Execute Action
                     Plan](watcher-demo#step-7-execute-action-plan)
-        
-        3.  [Cloud State After Watcher is
+
+        3. [Cloud State After Watcher is
             Applied](watcher-demo#cloud-state-after-watcher-is-applied)
 
 ## Use Watcher to Consolidate your Cloud's Workload
@@ -125,9 +125,9 @@ strategy using:
     openstack optimize audittemplate create <template-name> <goal> \
         --strategy <strategy>
 
-  - `<template-name>`: Specify a name for the audit template
-  - `<goal>`: Specify a goal
-  - `<strategy>`: Specify a strategy
+- `<template-name>`: Specify a name for the audit template
+- `<goal>`: Specify a goal
+- `<strategy>`: Specify a strategy
 
 For example, the following creates an audit template called
 **server\_consolidation-template** based on the goal

@@ -12,16 +12,16 @@ address them.
 
 ## Table of Contents
 
-1.  [Prerequisites](rabbitmq#prerequisites)
-2.  [Symptoms of a RabbitMQ
+1. [Prerequisites](rabbitmq#prerequisites)
+2. [Symptoms of a RabbitMQ
     Problem](rabbitmq#symptoms-of-a-rabbitmq-problem)
-3.  [How Check your RabbitMQ Cluster's
+3. [How Check your RabbitMQ Cluster's
     Status](rabbitmq#how-check-your-rabbitmq-cluster-s-status)
-4.  [List RabbitMQ
+4. [List RabbitMQ
     Queues](rabbitmq#list-rabbitmq-queues)
-5.  [Addressing Network
+5. [Addressing Network
     Partitions](rabbitmq#addressing-network-partitions)
-6.  [Redeploy RabbitMQ
+6. [Redeploy RabbitMQ
     Cluster](../kolla-ansible/redeploy-rabbitmq#redeploy-rabbitmq-cluster)
 
 ## Prerequisites

@@ -14,13 +14,13 @@ components will be added to the instance.
 
 ## **Table of Contents**
 
-1.  [Before Creating an
+1. [Before Creating an
     Instance](create_an_instance#before-creating-an-instance)
-2.  [SSH Key Pairs](create_an_instance#ssh-key-pairs)
-3.  [Security
+2. [SSH Key Pairs](create_an_instance#ssh-key-pairs)
+3. [Security
     Groups](create_an_instance#security-groups)
-4.  [Add a Volume](create_an_instance#add-a-volume)
-5.  [Create an
+4. [Add a Volume](create_an_instance#add-a-volume)
+5. [Create an
     Instance](create_an_instance#create-an-instance)
 
 -----
@@ -32,11 +32,11 @@ Before creating an instance, several pieces need to be in place.
 Generally speaking, these items should exist before creating an
 instance:
 
-  - An SSH public key -- The public portion of an SSH key pair
-  - A security group -- Defines network traffic rules
-  - A flavor -- Defines resources, like vCPUs, RAM, and disk storage
-  - An image -- This is a bootable operating system
-  - A network -- This is typically a private network
+- An SSH public key -- The public portion of an SSH key pair
+- A security group -- Defines network traffic rules
+- A flavor -- Defines resources, like vCPUs, RAM, and disk storage
+- An image -- This is a bootable operating system
+- A network -- This is typically a private network
 
 Each item will be explained throughout this guide.
 
@@ -236,10 +236,10 @@ typically going to be an image.
 
 ![image](images/um_instance_form_2.png)
 
-  - **Select Boot Source**: Select **Image** from the drop down.
-  - **Create New Volume**: Select **Yes**
-  - **Volume Size**: Set an appropriate amount of disk space
-  - **Delete Volume on Instance Delete**: Leave the default of **No**
+- **Select Boot Source**: Select **Image** from the drop down.
+- **Create New Volume**: Select **Yes**
+- **Volume Size**: Set an appropriate amount of disk space
+- **Delete Volume on Instance Delete**: Leave the default of **No**
     selected
 
 You should see a variety of operating systems images to choose from.

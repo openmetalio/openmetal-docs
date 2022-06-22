@@ -25,9 +25,9 @@ be created.
 
 ## **Table of Contents**
 
-1.  [Create a Network and
+1. [Create a Network and
     Router](network_ip_traffic#create-a-network-and-router)
-2.  [Floating IPs](network_ip_traffic#floating-ips)
+2. [Floating IPs](network_ip_traffic#floating-ips)
 
 -----
 
@@ -63,12 +63,12 @@ button near the top right.
 
 ![image](images/um_create_a_network_form.png)
 
-  - **Network Name** -- This is the name of the network. In this
+- **Network Name** -- This is the name of the network. In this
     example, the network is called **network-1**.
-  - **Enable Admin State** -- This enables the network and should remain
+- **Enable Admin State** -- This enables the network and should remain
     checked.
-  - **Create Subnet** -- Leave checked to create a subnet.
-  - **Availability Zone Hints** -- This option's default is sufficient
+- **Create Subnet** -- Leave checked to create a subnet.
+- **Availability Zone Hints** -- This option's default is sufficient
     for this guide.
 
 Fill out any other needed details and navigate to the **Subnet** tab.
@@ -77,16 +77,16 @@ Fill out any other needed details and navigate to the **Subnet** tab.
 
 ![image](images/um_create_a_subnet_form.png)
 
-  - **Subnet Name** -- Specify a name for the subnet, this example is
+- **Subnet Name** -- Specify a name for the subnet, this example is
     called **subnet-1**
 
-  - **Network Address** -- Choose a network in CIDR notation. This
+- **Network Address** -- Choose a network in CIDR notation. This
     example uses **192.168.0.1/24**.
 
-  - **Gateway IP** -- Optionally choose the gateway IP for this network.
+- **Gateway IP** -- Optionally choose the gateway IP for this network.
     If the gateway IP is not filled out, one will be chosen by the
     neutron service.
-    
+
     The final tab is called **Subnet Details**. This tab does not need
     to be filled out to create the network and subnet. This example will
     stop here, however on this page you can enable or disable DHCP,
@@ -125,11 +125,11 @@ right.
 
 ![image](images/um_create_router.png)
 
-  - **Router Name** -- Choose a name for the router. This example router
+- **Router Name** -- Choose a name for the router. This example router
     will be called **router-1**.
-  - **Enable Admin State** -- Leave checked to enable the router.
-  - **External Network** -- The **External** network will be used
-  - **Availability Zone Hints** -- This option's default is sufficient
+- **Enable Admin State** -- Leave checked to enable the router.
+- **External Network** -- The **External** network will be used
+- **Availability Zone Hints** -- This option's default is sufficient
     for this guide.
 
 The router will need to be connected to an external network, which will

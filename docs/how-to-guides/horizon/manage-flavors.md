@@ -9,24 +9,24 @@ guide, we outline how to manage flavors in your Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisite](manage-flavors#prerequisite)
+1. [Prerequisite](manage-flavors#prerequisite)
 
-2.  [How to Create a
+2. [How to Create a
     Flavor](manage-flavors#how-to-create-a-flavor)
 
-3.    - [Update Flavor
+3. - [Update Flavor
         Metadata](manage-flavors#update-flavor-metadata)
-        
-        1.  [How to Update Flavor
+
+        1. [How to Update Flavor
             Metadata](manage-flavors#how-to-update-flavor-metadata)
 
-4.    - [Deleting a
+4. - [Deleting a
         Flavor](manage-flavors#deleting-a-flavor)
-        
-        1.  [How to Delete a
+
+        1. [How to Delete a
             Flavor](manage-flavors#how-to-delete-a-flavor)
 
-5.  [References](manage-flavors#references)
+5. [References](manage-flavors#references)
 
 ## Prerequisite
 
@@ -91,6 +91,6 @@ select the option **Delete Flavor**.
 
 ## References
 
-  - <https://docs.openstack.org/horizon/latest/admin/manage-flavors.html>
-  - <https://docs.openstack.org/nova/latest/admin/flavors.html>
-  - <https://docs.openstack.org/nova/latest/user/metadata.html>
+- <https://docs.openstack.org/horizon/latest/admin/manage-flavors.html>
+- <https://docs.openstack.org/nova/latest/admin/flavors.html>
+- <https://docs.openstack.org/nova/latest/user/metadata.html>

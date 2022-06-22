@@ -12,31 +12,31 @@ disaster recovery plan.
 
 ## Table of Contents
 
-1.    - [Disaster Recovery
+1. - [Disaster Recovery
         Strategies](disaster-recovery#disaster-recovery-strategies)
-        
-        1.  [Recovery
+
+        1. [Recovery
             Objectives](disaster-recovery#recovery-objectives)
-        2.  [Off-site
+        2. [Off-site
             Backups](disaster-recovery#off-site-backups)
-        3.  [RBD Mirroring with
+        3. [RBD Mirroring with
             Ceph](disaster-recovery#rbd-mirroring-with-ceph)
 
-2.    - [Handling a Hardware
+2. - [Handling a Hardware
         Failure](disaster-recovery#handling-a-hardware-failure)
-        
-        1.  [Determine Hardware Node
+
+        1. [Determine Hardware Node
             Failure](disaster-recovery#determine-hardware-node-failure)
-        2.  [Cluster
+        2. [Cluster
             Failure](disaster-recovery#cluster-failure)
 
-3.  [Cloud Monitoring with
+3. [Cloud Monitoring with
     Datadog](disaster-recovery#cloud-monitoring-with-datadog)
 
-4.  [Contact
+4. [Contact
     Support](disaster-recovery#contact-support)
 
-5.  [Additional
+5. [Additional
     Reading](disaster-recovery#additional-reading)
 
 ## Disaster Recovery Strategies
@@ -56,9 +56,9 @@ potential impacts on your private cloud.
 
 The objectives behind a disaster recovery plan fall into two categories:
 
-  - **Recovery Point Objectives** - This is a specific point in time
+- **Recovery Point Objectives** - This is a specific point in time
     that data must be backed up to resume business.
-  - **Recovery Time Objectives** - Length of time that a system can be
+- **Recovery Time Objectives** - Length of time that a system can be
     offline before the business is negatively impacted.
 
 Consider the above objectives when determining the needs of your
@@ -150,9 +150,9 @@ Support](https://central.openmetal.io/).
 
 For more regarding OpenStack Disaster Recovery, see:
 
-  - RedHat's [Disaster Recovery Enablement in
+- RedHat's [Disaster Recovery Enablement in
     OpenStack](https://www.redhat.com/en/blog/disaster-recovery-enablement-openstack)
-  - InMotion Hosting's [What is Disaster Recovery as a Service
+- InMotion Hosting's [What is Disaster Recovery as a Service
     (DRaaS)?](https://www.inmotionhosting.com/support/product-guides/private-cloud/what-is-disaster-recovery-as-a-service-draas/)
-  - OpenStack's [Disaster Recovery Wiki
+- OpenStack's [Disaster Recovery Wiki
     Page](https://wiki.openstack.org/wiki/DisasterRecovery)

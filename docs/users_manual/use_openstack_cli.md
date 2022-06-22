@@ -58,7 +58,7 @@ Say you want just the **UUID** of all the servers on a host. You can run
 something like this to achieve that goal (where `example_host` is the
 host you are working with):
 
-    $ openstack server list --host example_host -f value -c ID
+    openstack server list --host example_host -f value -c ID
 
 -----
 
@@ -68,17 +68,17 @@ Below is a list of common operational tasks that can be done with the
 OpenStack Client. This guide will include examples of how to perform the
 following tasks:
 
-  - Manage OpenStack users, including listing, creating, updating and
+- Manage OpenStack users, including listing, creating, updating and
     removing users
-  - Manage instances by creating them, stopping and starting them,
+- Manage instances by creating them, stopping and starting them,
     creating a snapshot, plus much more.
-  - Live migration of instances
-  - Troubleshoot instance issues
-  - Upload images
-  - Create a network
-  - Create security groups
-  - Manage SSH key pairs
-  - Collect details about OpenStack environment
+- Live migration of instances
+- Troubleshoot instance issues
+- Upload images
+- Create a network
+- Create security groups
+- Manage SSH key pairs
+- Collect details about OpenStack environment
 
 -----
 
@@ -94,7 +94,7 @@ OpenStack users:
 
 List users:
 
-    $ openstack user list
+    openstack user list
 
 Create a user where **PROJECT\_NAME** is the name of the project,
 **PASSWORD** is the password to set, and **USERNAME** is the username:
@@ -110,16 +110,16 @@ change details, such as the email address associated with the user.
 
 Disable a user:
 
-    $ openstack user set USERNAME --disable
+    openstack user set USERNAME --disable
 
 Enable a user:
 
-    $ openstack user set USERNAME --enable
+    openstack user set USERNAME --enable
 
 Change the email address, where **EMAIL\_ADDRESS** should be the email
 to set:
 
-    $ openstack user set USERNAME --email EMAIL_ADDRESS
+    openstack user set USERNAME --email EMAIL_ADDRESS
 
 ## **Instance Management**
 
@@ -132,17 +132,17 @@ create an instance.
 
 Stop an instance:
 
-    $ openstack server stop
+    openstack server stop
 
 Start an instance:
 
-    $ openstack server start
+    openstack server start
 
 ### **Create an instance snapshot**
 
 Here's an example:
 
-    $ openstack server image create --name SNAPSHOT_NAME INSTANCE_NAME
+    openstack server image create --name SNAPSHOT_NAME INSTANCE_NAME
 
 You can verify the snapshot has been created by using both `openstack
 image list` to find the newly created snapshot, then `openstack image
@@ -341,7 +341,7 @@ should be replaced accordingly.
 
 Create a network:
 
-    $ openstack network create NETWORK_NAME
+    openstack network create NETWORK_NAME
 
 Create a subnet on that network:
 
@@ -350,11 +350,11 @@ Create a subnet on that network:
 
 Create a router that will connect to an external, public-facing network:
 
-    $ openstack router create ROUTER_NAME
+    openstack router create ROUTER_NAME
 
 Add the subnet to the router:
 
-    $ openstack router add subnet ROUTER_NAME SUBNET_NAME
+    openstack router add subnet ROUTER_NAME SUBNET_NAME
 
 Add the external network gateway:
 
@@ -371,7 +371,7 @@ Here's an example that opens inbound traffic for all IPs on ports 80 and
 Create a security group where **SECURITY\_GROUP** is the name of the
 security group:
 
-    $ openstack security group create SECURITY_GROUP
+    openstack security group create SECURITY_GROUP
 
 List security groups:
 
@@ -386,7 +386,7 @@ List security groups:
 
 List details of a security group:
 
-    $ openstack security group show UUID
+    openstack security group show UUID
 
 Open ports 80 and 443 on all IP ranges for ingress TCP traffic:
 

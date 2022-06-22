@@ -30,14 +30,14 @@ from the drop down on the right, choose **Modify Quotas**.
 
 This guide requires the following resources:
 
-  - 2 instances
-  - 2 VCPUs
-  - 2GB RAM
-  - 50GB Disk space
-  - At least one floating IP, ideally 2
-  - At least one IP from the External pool
-  - 1 network
-  - 1 router
+- 2 instances
+- 2 VCPUs
+- 2GB RAM
+- 50GB Disk space
+- At least one floating IP, ideally 2
+- At least one IP from the External pool
+- 1 network
+- 1 router
 
 **Note\!** -- Only an OpenStack administrator can modify projects.
 
@@ -46,8 +46,8 @@ This guide requires the following resources:
 To create a load balancer, the project user's roles must be set to
 either:
 
-  - `admin`
-  - `load-balancer_admin`
+- `admin`
+- `load-balancer_admin`
 
 Alternatively, the user that owns a project can create a load balancer.
 
@@ -131,11 +131,11 @@ Two instances need to be created for this demonstration.
 
 Create them using these details:
 
-  - **Operating System**: Ubuntu 20.04 (focal-amd64)
-  - **Flavor**: `gp1.micro`
-  - **Network**: The private network previously created
-  - **Security Group**: Inbound HTTP, HTTPS, SSH, ICMP
-  - **SSH key**: A key you can use to access instances over SSH
+- **Operating System**: Ubuntu 20.04 (focal-amd64)
+- **Flavor**: `gp1.micro`
+- **Network**: The private network previously created
+- **Security Group**: Inbound HTTP, HTTPS, SSH, ICMP
+- **SSH key**: A key you can use to access instances over SSH
 
 Note that in the instance creation form you can specify multiple
 instances be created at once using the **Count** form option.
@@ -185,8 +185,8 @@ Certain details now need to be filled in.
 
 The following are two main items to fill in on the first page:
 
-  - **Name**: Specify a name for the load balancer
-  - **Subnet**: Choose the **External** network
+- **Name**: Specify a name for the load balancer
+- **Subnet**: Choose the **External** network
 
 All other details are not required for this demonstration.
 
@@ -198,7 +198,7 @@ On this page, only the **Protocol** needs to be set.
 
 Set the following:
 
-  - **Protocol**: HTTP
+- **Protocol**: HTTP
 
 ![image](images/umx_lb_form_2.png)
 
@@ -208,7 +208,7 @@ This page only needs the **Algorithm** option set.
 
 Set the following:
 
-  - **Algorithm**: ROUND\_ROBIN
+- **Algorithm**: ROUND\_ROBIN
 
 ![image](images/umx_lb_form_3.png)
 
@@ -231,8 +231,8 @@ For the Monitor Details, fill in a **Name** for the monitor and set
 
 Set the following:
 
-  - **Name**: Name of the monitor
-  - **Type**: HTTP
+- **Name**: Name of the monitor
+- **Type**: HTTP
 
 ![image](images/umx_lb_form_5.png)
 

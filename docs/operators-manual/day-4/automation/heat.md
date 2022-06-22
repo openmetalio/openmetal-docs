@@ -11,30 +11,30 @@ of a Heat Stack.
 
 ## Table of Contents
 
-1.    - [Overview of Heat
+1. - [Overview of Heat
         Orchestration](heat#overview-of-heat-orchestration)
-        
-        1.  [Architecture](heat#architecture)
 
-2.    - [Heat Orchestration Template
+        1. [Architecture](heat#architecture)
+
+2. - [Heat Orchestration Template
         Components](heat#heat-orchestration-template-components)
-        
-        1.  [Template
+
+        1. [Template
             Version](heat#template-version)
-        2.  [Description](heat#description)
-        3.  [Parameters](heat#parameters)
-        4.  [Resources](heat#resources)
-        5.  [Output](heat#output)
+        2. [Description](heat#description)
+        3. [Parameters](heat#parameters)
+        4. [Resources](heat#resources)
+        5. [Output](heat#output)
 
-3.    - [Sample Heat Orchestration
+3. - [Sample Heat Orchestration
         Template](heat#sample-heat-orchestration-template)
-        
-        1.  [Attributes](heat#attributes)
 
-4.  [Deploying a Heat Template in
+        1. [Attributes](heat#attributes)
+
+4. [Deploying a Heat Template in
     Horizon](heat#deploying-a-heat-template-in-horizon)
 
-5.  [Viewing Recently Deployed Stacks in
+5. [Viewing Recently Deployed Stacks in
     Horizon](heat#viewing-recently-deployed-stacks-in-horizon)
 
 ## Overview of Heat Orchestration
@@ -117,13 +117,13 @@ parameter and additional attributes are grouped below each element.
 
 ### Attributes
 
-  - Parameter Name: Name of Parameter
-  - Type: Required value that supports the following types: **string**,
+- Parameter Name: Name of Parameter
+- Type: Required value that supports the following types: **string**,
     **comma\_delimited\_list**, **json**, **boolean**
-  - Label: Optional attribute, creates a name for the parameter for
+- Label: Optional attribute, creates a name for the parameter for
     additional readability
-  - Description: Optional attribute, creates a description for parameter
-  - Default: Optional attribute, default values for parameters if input
+- Description: Optional attribute, creates a description for parameter
+- Default: Optional attribute, default values for parameters if input
     is not specified by the user
 
 Example Heat Orchestration Template:
@@ -185,12 +185,12 @@ example template, click **Next**.
 For the example template listed above, the following parameters are
 needed to launch a running instance:
 
-  - Stack Name
-  - Image
-  - Instance Type
-  - Key
-  - Network
-  - Security groups
+- Stack Name
+- Image
+- Instance Type
+- Key
+- Network
+- Security groups
 
 In the Launch stack window, fill out the following parameters with the
 type of stack you wish to deploy.

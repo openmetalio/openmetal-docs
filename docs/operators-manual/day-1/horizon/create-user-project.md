@@ -9,21 +9,21 @@ by modifying quotas. In this guide, we explain how to create a project
 and associate a user with it. Additionally, we explain how project
 quotas can be adjusted.
 
-1.  [Quick Overview: Project, Admin, and Identity
+1. [Quick Overview: Project, Admin, and Identity
     Tabs](create-user-project#quick-overview-project-admin-and-identity-tabs)
 
-2.    - [How to Create a
+2. - [How to Create a
         Project](create-user-project#how-to-create-a-project)
-        
-        1.  [Create your First
+
+        1. [Create your First
             Project](create-user-project#create-your-first-project)
-        2.  [Project
+        2. [Project
             Quotas](create-user-project#project-quotas)
 
-3.  [How to Create a User and Associate with
+3. [How to Create a User and Associate with
     Project](create-user-project#how-to-create-a-user-and-associate-with-project)
 
-4.  [Reference](create-user-project#reference)
+4. [Reference](create-user-project#reference)
 
 ## Quick Overview: Project, Admin, and Identity Tabs
 
@@ -145,11 +145,11 @@ the upper right of the screen.
 For this example, we set values for **User Name**, **Password**,
 **Primary Project**, and **Role**.
 
-  - **User Name**: Specify your user here
-  - **Password**: Set a unique, randomly generated password
-  - **Email**: Optional, but is useful for password resets
-  - **Primary Project**: Choose the project created earlier
-  - **Role**: This example selects the `member` role
+- **User Name**: Specify your user here
+- **Password**: Set a unique, randomly generated password
+- **Email**: Optional, but is useful for password resets
+- **Primary Project**: Choose the project created earlier
+- **Role**: This example selects the `member` role
 
 For **Role**, there are several options, depending on the level of
 access required. The default OpenStack roles are **reader**, **member**,

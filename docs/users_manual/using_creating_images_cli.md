@@ -46,7 +46,7 @@ To list available images, use:
 
 To get more information about an image, use `openstack image show ID`:
 
-    $ openstack image show ID
+    openstack image show ID
 
 **ID** is the **Name** or the **ID** column in the above output.
 
@@ -90,7 +90,7 @@ CirrOS](https://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img)
 is available from their download page. Ensure the latest version of the
 CirrOS image is downloaded. You can use `wget` to download the image:
 
-    $ wget https://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img
+    wget https://download.cirros-cloud.net/0.5.2/cirros-0.5.2-x86_64-disk.img
 
 **Step 2** -- Upload the image into OpenStack
 

@@ -13,38 +13,38 @@ Horizon.
 
 ## Table of Contents
 
-1.    - [Networking](create-first-instance#networking)
-        
-        1.  [Create a Private
+1. - [Networking](create-first-instance#networking)
+
+        1. [Create a Private
             Network](create-first-instance#create-a-private-network)
-        
-        2.    - [Create a
+
+        2. - [Create a
                 Router](create-first-instance#create-a-router)
-                
-                1.  [Connect Router to Private
+
+                1. [Connect Router to Private
                     Network](create-first-instance#connect-router-to-private-network)
-                2.  [View Network
+                2. [View Network
                     Topology](create-first-instance#view-network-topology)
-        
-        3.    - [Security
+
+        3. - [Security
                 Groups](create-first-instance#security-groups)
-                
-                1.  [Create an SSH Security
+
+                1. [Create an SSH Security
                     Group](create-first-instance#create-an-ssh-security-group)
-                2.  [Add Rule to SSH Security
+                2. [Add Rule to SSH Security
                     Group](create-first-instance#add-rule-to-ssh-security-group)
 
-2.    - [How to Create your First
+2. - [How to Create your First
         Instance](create-first-instance#how-to-create-your-first-instance)
-        
-        1.  [Prerequisites](create-first-instance#prerequisites)
-        
-        2.    - [Create your First
+
+        1. [Prerequisites](create-first-instance#prerequisites)
+
+        2. - [Create your First
                 Instance](create-first-instance#create-your-first-instance)
-                
-                1.  [SSH Public
+
+                1. [SSH Public
                     Key](create-first-instance#ssh-public-key)
-                2.  [Operating System
+                2. [Operating System
                     Image](create-first-instance#operating-system-image)
 
 ## Networking
@@ -74,11 +74,11 @@ near the top right.
 
 **Figure 2:** Network Tab
 
-  - **Network Name**: Set a name for the network. This example is called
+- **Network Name**: Set a name for the network. This example is called
     **Private**.
-  - **Enable Admin State**: Leave this checked to enable the network.
-  - **Create Subnet**: Leave this checked to create a subnet.
-  - **Availability Zone Hints**: Leave this option as default.
+- **Enable Admin State**: Leave this checked to enable the network.
+- **Create Subnet**: Leave this checked to create a subnet.
+- **Availability Zone Hints**: Leave this option as default.
 
 Next, move on to the **Subnet** tab of this form.
 
@@ -86,14 +86,14 @@ Next, move on to the **Subnet** tab of this form.
 
 **Figure 3:** Subnet Tab
 
-  - **Subnet Name**: Set a name for the subnet. This example subnet is
+- **Subnet Name**: Set a name for the subnet. This example subnet is
     called **private-subnet**.
-  - **Network Address**: Select a private network range. For example:
+- **Network Address**: Select a private network range. For example:
     `192.168.0.1/24`
-  - **IP Version**: Leave this as IPv4.
-  - **Gateway IP**: This is optional. If unset, a gateway IP is selected
+- **IP Version**: Leave this as IPv4.
+- **Gateway IP**: This is optional. If unset, a gateway IP is selected
     automatically.
-  - **Disable Gateway**: Leave this unchecked.
+- **Disable Gateway**: Leave this unchecked.
 
 Next, move on to the **Subnet Details** tab of this form.
 
@@ -101,11 +101,11 @@ Next, move on to the **Subnet Details** tab of this form.
 
 **Figure 4:** Subnet Details Tab
 
-  - **Enable DHCP**: Leave this option checked.
-  - **Allocation Pools**: Optional, can specify the range from which IPs
+- **Enable DHCP**: Leave this option checked.
+- **Allocation Pools**: Optional, can specify the range from which IPs
     are selected.
-  - **DNS Name Servers**: Optional. Specify any DNS name servers here.
-  - **Host Routes**: Optional. Specify any host routes here.
+- **DNS Name Servers**: Optional. Specify any DNS name servers here.
+- **Host Routes**: Optional. Specify any host routes here.
 
 Click **Create** to create the network. Once created, it appears in the
 list of networks.
@@ -134,11 +134,11 @@ the top right.
 
 **Figure 7:** Create a Router
 
-  - **Router Name**: Set a name for the router here. This example router
+- **Router Name**: Set a name for the router here. This example router
     is called **Router**.
-  - **Enable Admin State**: Leave this checked to enable the router.
-  - **External Network**: Choose the network **External**.
-  - **Availability Zone Hints**: Leave this as the default.
+- **Enable Admin State**: Leave this checked to enable the router.
+- **External Network**: Choose the network **External**.
+- **Availability Zone Hints**: Leave this as the default.
 
 Once complete, create the router by pressing **Create Router**.
 
@@ -169,9 +169,9 @@ clicking **Add Interface** near the top right.
 
 **Figure 10:** Attach Interface
 
-  - **Subnet**: Select the appropriate subnet. In this example, we
+- **Subnet**: Select the appropriate subnet. In this example, we
     choose the **private-subnet**.
-  - **IP Address**: Optional. Specify an IP if required, otherwise one
+- **IP Address**: Optional. Specify an IP if required, otherwise one
     is selected automatically.
 
 Press **Submit** to attach the **Private** network to this router. The
@@ -223,9 +223,9 @@ To create a security group for SSH, load the form by navigating to
 
 **Figure 14:** Create Security Group Form
 
-  - **Name**: Specify a name for the security group. This example
+- **Name**: Specify a name for the security group. This example
     security group is called **SSH**.
-  - **Description**: Optional. Describe the security group if
+- **Description**: Optional. Describe the security group if
     applicable.
 
 #### Add Rule to SSH Security Group
@@ -253,12 +253,12 @@ that understanding.
 
 **Figure 16:** Add SSH Rule
 
-  - **Rule**: Select **SSH**. When adding rules you can choose from
+- **Rule**: Select **SSH**. When adding rules you can choose from
     predefined options. In this case, we choose the **SSH** rule from
     the first drop down.
-  - **Description**: Optional. Provide a description of the rule.
-  - **Remote**: Select **CIDR**.
-  - **CIDR**: Specify the IP address of your first hardware node.
+- **Description**: Optional. Provide a description of the rule.
+- **Remote**: Select **CIDR**.
+- **CIDR**: Specify the IP address of your first hardware node.
 
 Press **Add** to add this rule to the security group. This concludes
 creating the security group.
@@ -307,11 +307,11 @@ Instance** near the top right.
 
 **Figure 18:** Instance Details
 
-  - **Instance Name**: Set a name for the instance. This example
+- **Instance Name**: Set a name for the instance. This example
     instance is called **Jumpstation**.
-  - **Description**: Optional. Set a description if this applies.
-  - **Availability Zone**: Leave as the default, which is **nova**.
-  - **Count**: Controls the number of instances spawned. This example
+- **Description**: Optional. Set a description if this applies.
+- **Availability Zone**: Leave as the default, which is **nova**.
+- **Count**: Controls the number of instances spawned. This example
     creates a single instance.
 
 Next, move to the **Source** tab allowing you to specify an operating
@@ -321,14 +321,14 @@ system image.
 
 **Figure 19:** Instance Source
 
-  - **Select Boot Source**: In this example, we use **Image** as the
+- **Select Boot Source**: In this example, we use **Image** as the
     boot source.
-  - **Create New Volume**: Leave this checked as **Yes**. This creates a
+- **Create New Volume**: Leave this checked as **Yes**. This creates a
     new Cinder volume where the specified operating system image is
     copied into it. The volume ultimately exists with the Ceph cluster,
     in the `vms` pool.
-  - **Volume Size**: Allow the system to determine this for you.
-  - **Delete Volume on Instance Delete**: Leave this option set as
+- **Volume Size**: Allow the system to determine this for you.
+- **Delete Volume on Instance Delete**: Leave this option set as
     **No**. If checked, when the instance is deleted, the volume is as
     well.
 
@@ -392,12 +392,12 @@ one of the control plane nodes.
 
 **Figure 24:** Import Key Pair Form
 
-  - **Key Pair Name**: Set a name for the SSH public key. This example
+- **Key Pair Name**: Set a name for the SSH public key. This example
     public key is called `relaxed-flamingo-key`.
-  - **Key Type**: This example uses an **SSH Key** key type.
-  - **Load Public Key from a file**: Specify the location of the public
+- **Key Type**: This example uses an **SSH Key** key type.
+- **Load Public Key from a file**: Specify the location of the public
     key on your machine.
-  - **Public Key**: Here you can paste in the public key.
+- **Public Key**: Here you can paste in the public key.
 
 Once the public key is imported, create the instance by pressing
 **Launch Instance**.
@@ -433,8 +433,8 @@ to Project**.
 
 ![image](images/allocate-floating-ip.png)
 
-  - **Pool**: Select **External** for the allocation pool.
-  - **Description**: Optional. Set a description for the floating IP.
+- **Pool**: Select **External** for the allocation pool.
+- **Description**: Optional. Set a description for the floating IP.
 
 Press **Allocate IP** to add this floating IP address for use.
 
@@ -449,9 +449,9 @@ by clicking the **Associate** button at the far right.
 
 **Figure 28:** Manage Floating IP Associations
 
-  - **IP Address**: This field comes pre-selected with the floating IP
+- **IP Address**: This field comes pre-selected with the floating IP
     so there's no need to change anything here.
-  - **Port to be associated**: Select the instance created previously.
+- **Port to be associated**: Select the instance created previously.
     In this case, we use the Jumpstation instance.
 
 This concludes allocating the floating IP to the instance. This instance

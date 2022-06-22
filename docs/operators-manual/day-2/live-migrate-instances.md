@@ -12,10 +12,10 @@ advantageous.
 
 ## Table of Contents
 
-1.  [Prerequisite](live-migrate-instances#prerequisite)
-2.  [Determining an Instance's Parent
+1. [Prerequisite](live-migrate-instances#prerequisite)
+2. [Determining an Instance's Parent
     Host](live-migrate-instances#determining-an-instance-s-parent-host)
-3.  [Migrate
+3. [Migrate
     Instance](live-migrate-instances#migrate-instance)
 
 ## Prerequisite

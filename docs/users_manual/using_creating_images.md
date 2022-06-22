@@ -58,12 +58,12 @@ Next, fill in the required details.
 
 ![image](images/um_create_image_form.png)
 
-  - **Image Name** - This is what you want to call this image in
+- **Image Name** - This is what you want to call this image in
     OpenStack
-  - **Image Description** - This is an optional description for the
+- **Image Description** - This is an optional description for the
     image
-  - **File** - Where is the file located on your machine?
-  - **Format** - The format should be **QCOW2 - QEMU Emulator**
+- **File** - Where is the file located on your machine?
+- **Format** - The format should be **QCOW2 - QEMU Emulator**
 
 Optionally, you can specify requirements, like minimum disk space and
 RAM, for the image under the **Image Requirements** heading.

@@ -47,7 +47,7 @@ The following demonstrates creating a virtual environment in the path
 
 Create the environment:
 
-    $ python3 -m venv ~/venv/openstackclient
+    python3 -m venv ~/venv/openstackclient
 
 Activate the environment using `source`:
 
@@ -70,14 +70,14 @@ To do so, use:
 With the virtual environment prepared, use `pip` to download the
 OpenStackClient package:
 
-    $ pip3 install openstackclient
+    pip3 install openstackclient
 
 **Step 4** -- Download **OpenStack RC** and **clouds.yaml** files
 
 Next, you will need to obtain two files from Horizon:
 
->   - OpenStack RC
->   - clouds.yaml
+> - OpenStack RC
+> - clouds.yaml
 
 These are located under the **Project** tab, then **API Access**.
 
@@ -123,7 +123,7 @@ Example `clouds.yaml` with two cloud entries, `cloud-1` and `cloud-2`:
 
 Next, load the **OpenStack RC** file into your shell using `source`:
 
-    $ source ~/Downloads/user-openrc.sh
+    source ~/Downloads/user-openrc.sh
 
 This action sets needed environment variables and will also ask you to
 authenticate as your OpenStack user:
