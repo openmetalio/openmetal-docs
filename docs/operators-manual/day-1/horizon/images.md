@@ -15,13 +15,13 @@ to create an image from an instance snapshot.
 
 ## Table of Contents
 
-1.  [Managing
+1. [Managing
     Images](images#managing-images)
-2.  [Uploading
+2. [Uploading
     Images](images#uploading-images)
-3.  [Create Images from Running
+3. [Create Images from Running
     Instances](images#create-images-from-running-instances)
-4.  [Reference](images#reference)
+4. [Reference](images#reference)
 
 ## Managing Images
 
@@ -70,10 +70,10 @@ this image, click the **Create Image** button near the top right.
 
 For this demonstration, we enter in values for the following fields:
 
-  - **Image Name**: Name of the image
-  - **Image Description**: Optional description of the image
-  - **File**: The source file on your machine
-  - **Format**: - For this example, we are using QCOW2 - QEMU Emulator
+- **Image Name**: Name of the image
+- **Image Description**: Optional description of the image
+- **File**: The source file on your machine
+- **Format**: - For this example, we are using QCOW2 - QEMU Emulator
 
 Fill out the details as needed and submit the form. It may take some
 time to complete uploading the image.

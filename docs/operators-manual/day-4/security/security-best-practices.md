@@ -14,40 +14,40 @@ threats.
 
 ## Table of Contents
 
-1.    - [Principle of Least
+1. - [Principle of Least
         Privilege](security-best-practices#principle-of-least-privilege)
-        
-        1.  [Roles](security-best-practices#roles)
-        
-        2.    - [Users, Groups, and
-                Projects](security-best-practices#users-groups-and-projects)
-                
-                1.  [Users](security-best-practices#users)
-                2.  [Groups](security-best-practices#groups)
-                3.  [Projects](security-best-practices#projects)
 
-2.    - [Updating
+        1. [Roles](security-best-practices#roles)
+
+        2. - [Users, Groups, and
+                Projects](security-best-practices#users-groups-and-projects)
+
+                1. [Users](security-best-practices#users)
+                2. [Groups](security-best-practices#groups)
+                3. [Projects](security-best-practices#projects)
+
+2. - [Updating
         Software](security-best-practices#updating-software)
-        
-        1.  [Update Individual
+
+        1. [Update Individual
             Instances](security-best-practices#update-individual-instances)
-        2.  [Update Operating System
+        2. [Update Operating System
             Images](security-best-practices#update-operating-system-images)
-        3.  [Update Kolla Ansible
+        3. [Update Kolla Ansible
             Images](security-best-practices#update-kolla-ansible-images)
-        4.  [Update Control Plane
+        4. [Update Control Plane
             Nodes](security-best-practices#update-control-plane-nodes)
 
-3.  [Enabling
+3. [Enabling
     TLS](security-best-practices#enabling-tls)
 
-4.  [Security
+4. [Security
     Groups](security-best-practices#security-groups)
 
-5.  [SSH
+5. [SSH
     Authentication](security-best-practices#ssh-authentication)
 
-6.  [Additional
+6. [Additional
     Documentation](security-best-practices#additional-documentation)
 
 ## Principle of Least Privilege
@@ -60,14 +60,14 @@ software engineer should not need to access financial records.
 The benefits of operating a system using the principle of least
 privilege are:
 
-  - **System stability** - Limiting the scope of changes reduces adverse
+- **System stability** - Limiting the scope of changes reduces adverse
     effects of applications running on your system. This means that
     programs are less likely to perform actions that could crash your
     machine.
-  - **System security** - Limiting the system-wide changes can reduce
+- **System security** - Limiting the system-wide changes can reduce
     blast radius. The blast radius is the maximum amount of damage an
     intruder can inflict after gaining access to your system.
-  - **Ease of deployment** - As a general rule, the fewer privileges an
+- **Ease of deployment** - As a general rule, the fewer privileges an
     application needs to run, the easier it is to deploy to a larger
     environment.
 
@@ -193,10 +193,8 @@ ports that are available on your instance as well as the IP addresses
 that can connect to these specific ports.
 
 For more information on how to create and manage security groups, see
-the title heading <span class="title-ref">Security Groups
-\<operators\_manual/day-1/horizon/create-first-instance\#security-groups\></span>
-in the [How to Create an Instance in OpenStack
-Horizon](../../day-1/horizon/create-first-instance)
+the title heading [Security Groups](../../day-1/horizon/create-first-instance.md#security-groups)
+in the [How to Create an Instance in OpenStack Horizon](../../day-1/horizon/create-first-instance)
 guide.
 
 ## SSH Authentication

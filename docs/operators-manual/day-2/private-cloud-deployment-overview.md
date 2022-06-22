@@ -30,13 +30,13 @@ during any system updates.
 
 ### Advantages of Containerization Through Docker
 
-  - Containers create an isolated environment reducing software
+- Containers create an isolated environment reducing software
     dependencies
-  - Containers can be scaled and allow for services to balance across
+- Containers can be scaled and allow for services to balance across
     your cluster
-  - Containers provide increased flexibility for test releases, patches,
+- Containers provide increased flexibility for test releases, patches,
     and automation
-  - Containers have a consistent and repeatable deployment and a shorter
+- Containers have a consistent and repeatable deployment and a shorter
     initialization time
 
 ## Disk Storage and Ceph
@@ -63,8 +63,8 @@ recognized as blocks.
 
 ### Advantages of using Ceph
 
-  - Data is self-healing and will redistribute data across your cluster
+- Data is self-healing and will redistribute data across your cluster
     in the event of power, hardware, or connectivity issues
-  - Data is replicated and highly available
-  - Ceph has the ability to run on commodity hardware and to mix
+- Data is replicated and highly available
+- Ceph has the ability to run on commodity hardware and to mix
     hardware from different vendors

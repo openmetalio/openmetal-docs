@@ -11,46 +11,46 @@ instance within a OpenMetal Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisites](terraform#prerequisites)
+1. [Prerequisites](terraform#prerequisites)
 
-2.    - [How to Create an Instance Using
+2. - [How to Create an Instance Using
         Terraform](terraform#how-to-create-an-instance-using-terraform)
-        
-        1.  [Prepare Terraform
+
+        1. [Prepare Terraform
             Directory](terraform#step-1-prepare-terraform-directory)
-        
-        2.  [Specify Terraform
+
+        2. [Specify Terraform
             Provider](terraform#step-2-specify-terraform-provider)
-        
-        3.  [Initialize
+
+        3. [Initialize
             Terraform](terraform#step-3-initialize-terraform)
-        
-        4.  [Create OpenStack Application
+
+        4. [Create OpenStack Application
             Credentials](terraform#step-4-create-openstack-application-credentials)
-        
-        5.    - [Create Main Terraform
+
+        5. - [Create Main Terraform
                 File](terraform#step-5-create-main-terraform-file)
-                
-                1.  [Configure OpenStack
+
+                1. [Configure OpenStack
                     Provider](terraform#configure-openstack-provider)
-                2.  [Configure Compute
+                2. [Configure Compute
                     Resource](terraform#configure-compute-resource)
-        
-        6.  [Create Terraform
+
+        6. [Create Terraform
             Plan](terraform#step-6-create-terraform-plan)
-        
-        7.  [Deploy Terraform
+
+        7. [Deploy Terraform
             Plan](terraform#step-7-deploy-terraform-plan)
 
-3.  [View Instance Created by
+3. [View Instance Created by
     Terraform](terraform#view-instance-created-by-terraform)
 
 ## Prerequisites
 
-  - An OpenStack user account. The account does not have to have the
+- An OpenStack user account. The account does not have to have the
     administrator role.
-  - Linux command line experience
-  - A [Terraform installation](https://www.terraform.io/downloads)
+- Linux command line experience
+- A [Terraform installation](https://www.terraform.io/downloads)
 
 ## How to Create an Instance Using Terraform
 
@@ -92,7 +92,7 @@ With a provider defined, Terraform must be initialized.
 
 To initialize Terraform, execute:
 
-    $ terraform init
+    terraform init
 
 When Terraform has been successfully initialized, the following message
 is returned:
@@ -199,12 +199,12 @@ this resource and its configuration options, see Terraform's
 
 A description of variables used for the `resource` block:
 
-  - **name**: Defines the instance's name
-  - **image\_id**: UUID for an operating system image hosted in your
+- **name**: Defines the instance's name
+- **image\_id**: UUID for an operating system image hosted in your
     cloud
-  - **flavor\_id**: The value for an instance flavor
-  - **key\_pair**: The value for a key pair hosted in your cloud
-  - **security\_groups**: The value in list format for security groups
+- **flavor\_id**: The value for an instance flavor
+- **key\_pair**: The value for a key pair hosted in your cloud
+- **security\_groups**: The value in list format for security groups
     to set
 
 Then within the `resource` block, we also configure a network with which
@@ -212,7 +212,7 @@ the instance will be associated by creating a `network` block.
 
 A description of the variable used for the `network` block:
 
-  - **name**: This is the name of a network available to your project
+- **name**: This is the name of a network available to your project
 
 As an example, here is the above template filled out using details from
 a Private Cloud:
@@ -240,19 +240,19 @@ to making them, giving an operator a chance for review.
 
 The command to create a Terraform plan is:
 
-    $ terraform plan
+    terraform plan
 
 By default `terraform plan` does not save the plan to disk. To have the
 plan written to disk, use:
 
-    $ terraform plan -out <path>
+    terraform plan -out <path>
 
 Replacing `<path>` with where you want to store the Terraform plan.
 
 For this example, we will have Terraform create the plan and write the
 plan to disk using:
 
-    $ terraform plan -out ~/terraform/plan
+    terraform plan -out ~/terraform/plan
 
 This creates a Terraform plan in the location `~/terraform/plan`.
 
@@ -263,14 +263,14 @@ expectations, use Terraform to deploy the plan.
 
 The command to deploy a Terraform plan is:
 
-    $ terraform apply [PLAN]
+    terraform apply [PLAN]
 
 Where `[PLAN]` is an optional variable. For this example, since we saved
 the plan to disk, we will use that plan when applying Terraform.
 
 For example:
 
-    $ terraform apply ~/terraform/plan
+    terraform apply ~/terraform/plan
 
 Results of a successful plan application:
 

@@ -63,7 +63,7 @@ node. This section explains how to evacuate instances using Horizon.
 
 ### Prerequisites
 
-  - A Horizon account with the **admin** role
+- A Horizon account with the **admin** role
 
 To begin evacuating instances, log in to Horizon with a user that has
 the **admin** role. Typically you can use the "admin" account to

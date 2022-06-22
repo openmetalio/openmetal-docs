@@ -10,19 +10,19 @@ Horizon.
 
 ## Table of Contents
 
-1.    - [Create a Volume
+1. - [Create a Volume
         Backup](create-volume-backups#create-a-volume-backup)
-        
-        1.  [Test Volume
+
+        1. [Test Volume
             Backups](create-volume-backups#test-volume-backups)
 
-2.  [Restore a Volume
+2. [Restore a Volume
     Backup](create-volume-backups#restore-a-volume-backup)
 
-3.  [Ceph, Volumes, and Data
+3. [Ceph, Volumes, and Data
     Durability](create-volume-backups#ceph-volumes-and-data-durability)
 
-4.  [Store Data Outside of the
+4. [Store Data Outside of the
     Cloud](create-volume-backups#store-data-outside-of-the-cloud)
 
 ## Create a Volume Backup
@@ -40,15 +40,15 @@ Backup**.
 
 **Figure 2:** Create Volume Backup Form
 
-  - **Backup Name**: Specify a name for the volume backup
-  - **Description**: Provide a description if necessary
-  - **Container Name**: Leave this blank otherwise the volume backup
+- **Backup Name**: Specify a name for the volume backup
+- **Description**: Provide a description if necessary
+- **Container Name**: Leave this blank otherwise the volume backup
     cannot be created. Horizon tells you if this field is blank, the
     backup is stored in a container called `volumebackups`, but this is
     not the case with our configuration. With Private Clouds, all volume
     backups created this way are stored in the Ceph pool called
     `backups`.
-  - **Backup Snapshot**: If applicable specify a snapshot to create a
+- **Backup Snapshot**: If applicable specify a snapshot to create a
     backup from
 
 After submitting the form, you are navigated to **Project -\> Volume -\>

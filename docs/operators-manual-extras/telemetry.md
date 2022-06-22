@@ -72,9 +72,9 @@ To work with Gnocchi, Ceilometer, and Aodh over the command line, the
 following packages must be installed to your OpenStackClient virtual
 environment:
 
-  - `gnocchiclient`
-  - `python-ceilometerclient`
-  - `aodhclient`
+- `gnocchiclient`
+- `python-ceilometerclient`
+- `aodhclient`
 
 #### How to Collect Instance Metrics from Ceilometer
 

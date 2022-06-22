@@ -26,30 +26,30 @@ should this apply to you.
 
 ## Table of Contents
 
-1.  [Prerequisites](./#prerequisites)
+1. [Prerequisites](./#prerequisites)
 
-2.  [Using Kolla Ansible Quick
+2. [Using Kolla Ansible Quick
     Start](#using-kolla-ansible-quick-start)
 
-3.    - [Prepare Kolla Ansible for
+3. - [Prepare Kolla Ansible for
         Use](#prepare-kolla-ansible-for-use)
-        
-        1.  [Kolla Ansible Configuration
+
+        1. [Kolla Ansible Configuration
             Files](#kolla-ansible-configuration-files)
-        2.  [Before Making
+        2. [Before Making
             Changes](#before-making-changes)
-        3.  [Prepare Kolla Ansible
+        3. [Prepare Kolla Ansible
             Environment](#prepare-kolla-ansible-environment)
 
-4.  [References](#references)
+4. [References](#references)
 
-5.  [Next
+5. [Next
     Steps](#next-steps)
 
 ## Prerequisites
 
-  - Root access to your cloud's control plane nodes is required.
-  - Experience using [Ansible](https://www.ansible.com/).
+- Root access to your cloud's control plane nodes is required.
+- Experience using [Ansible](https://www.ansible.com/).
 
 ## Using Kolla Ansible Quick Start
 
@@ -107,8 +107,8 @@ First, we introduce you to the files required for adjusting Kolla
 Ansible's configuration. These files are used when preparing Kolla
 Ansible.
 
-  - Kolla Ansible Inventory: `/etc/fm-deploy/kolla-ansible-inventory`
-  - Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
+- Kolla Ansible Inventory: `/etc/fm-deploy/kolla-ansible-inventory`
+- Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
 
 **Note\!** It is possible `/etc/fm-deploy/kolla-ansible-inventory`
 exists on a single node instead of being synced across all nodes. We
@@ -151,16 +151,16 @@ and is used to provide our custom configuration to OpenStack services.
 Next, create a folder where you will install Kolla Ansible and its
 dependency, Ansible. For example:
 
-    $ mkdir /opt/kolla-ansible
+    mkdir /opt/kolla-ansible
 
 **Step 2** -- Prepare Python virtual environment
 
 Navigate into the folder created previously, create a Python virtual
 environment and activate it:
 
-    $ cd /opt/kolla-ansible
-    $ virtualenv .venv
-    $ source .venv/bin/activate
+    cd /opt/kolla-ansible
+    virtualenv .venv
+    source .venv/bin/activate
 
 **Step 3** -- Update pip
 
@@ -169,7 +169,7 @@ packages may not install as expected.
 
 Update `pip` using:
 
-    $ pip install --upgrade pip
+    pip install --upgrade pip
 
 **Step 4** -- Install Kolla Ansible
 
@@ -179,8 +179,8 @@ and Ansible using `pip`.
 Install Kolla Ansible, and its dependency Ansible, using these specified
 versions:
 
-    $ pip install git+https://github.com/inmotionhosting/kolla-ansible@stable/victoria
-    $ pip install 'ansible>=2.9,<2.10,!=2.9.10'
+    pip install git+https://github.com/inmotionhosting/kolla-ansible@stable/victoria
+    pip install 'ansible>=2.9,<2.10,!=2.9.10'
 
 **Caution\!** -- It is important the version of Kolla Ansible installed
 during this step match your cloud's OpenStack version. Your cloud's
@@ -213,9 +213,9 @@ Kolla](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html
 
 ## References
 
-  - [OpenStack Kolla Ansible
+- [OpenStack Kolla Ansible
     documentation](https://docs.openstack.org/kolla-ansible/latest/)
-  - [Kolla Ansible Quick
+- [Kolla Ansible Quick
     Start](https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html)
 
 ## Next Steps
@@ -224,7 +224,7 @@ The following guides go into detail about specific things you can
 configure using Kolla Ansible, such enabling TLS for Horizon or enabling
 Central Logging with an ELK stack:
 
-  - [Enable TLS for
+- [Enable TLS for
     Horizon](enable-tls)
-  - [Enable Central Logging using
+- [Enable Central Logging using
     ELK](enable-elk)

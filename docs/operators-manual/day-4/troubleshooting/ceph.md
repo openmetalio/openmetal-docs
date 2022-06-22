@@ -9,31 +9,31 @@ them.
 
 ## Table of Contents
 
-1.    - [Prerequisites](ceph#prerequisites)
-        
-        1.  [Root Access to OpenStack Control
+1. - [Prerequisites](ceph#prerequisites)
+
+        1. [Root Access to OpenStack Control
             Plane](ceph#root-access-to-openstack-control-plane)
 
-2.  [Get Ceph's
+2. [Get Ceph's
     Status](ceph#get-ceph-s-status)
 
-3.  [Ceph Log
+3. [Ceph Log
     Files](ceph#ceph-log-files)
 
-4.    - [Common
+4. - [Common
         Issues](ceph#common-issues)
-        
-        1.    - [Clock
+
+        1. - [Clock
                 Skew](ceph#clock-skew)
-                
-                1.  [Confirm Ceph's
+
+                1. [Confirm Ceph's
                     Health](ceph#confirm-ceph-s-health)
-                2.  [Examine Chrony
+                2. [Examine Chrony
                     Logs](ceph#examine-chrony-logs)
-                3.  [Addressing Clock
+                3. [Addressing Clock
                     Skew](ceph#addressing-clock-skew)
 
-5.  [References](ceph#reference)
+5. [References](ceph#reference)
 
 ## Prerequisites
 
@@ -97,10 +97,10 @@ log files.
 
 For example:
 
-  - **Primary Log File**: `/var/log/ceph/ceph.log`
-  - **Ceph Monitor Log File**:
+- **Primary Log File**: `/var/log/ceph/ceph.log`
+- **Ceph Monitor Log File**:
     `/var/log/ceph/ceph-mon.focused-capybara.log`
-  - **Ceph RADOSGW Log File**:
+- **Ceph RADOSGW Log File**:
     `/var/log/ceph/ceph-rgw-focused-capybara.rgw0.log`
 
 If you are unsure which Ceph service's log to look through, consider
@@ -182,7 +182,7 @@ skew issues.
 
 ## References
 
-  - Ceph's
+- Ceph's
     [Troubleshooting](https://docs.ceph.com/en/latest/rados/troubleshooting/index.html)
-  - Ceph's [Troubleshooting
+- Ceph's [Troubleshooting
     Monitors](https://docs.ceph.com/en/latest/rados/troubleshooting/troubleshooting-mon/)

@@ -14,14 +14,14 @@ components will be added to the instance.
 
 ## **Table of Contents**
 
-1.  [Before Creating an
+1. [Before Creating an
     Instance](create_an_instance_cli#before-creating-an-instance)
-2.  [SSH Key
+2. [SSH Key
     Pairs](create_an_instance_cli#ssh-key-pairs)
-3.  [Security
+3. [Security
     Groups](create_an_instance_cli#security-groups)
-4.  [Add a Volume](create_an_instance_cli#add-a-volume)
-5.  [How to Create an
+4. [Add a Volume](create_an_instance_cli#add-a-volume)
+5. [How to Create an
     Instance](create_an_instance_cli#how-to-create-an-instance)
 
 -----
@@ -33,11 +33,11 @@ Before creating an instance, several pieces need to be in place.
 Generally speaking, these items should exist before creating an
 instance:
 
-  - An SSH public key -- The public portion of an SSH key pair
-  - A security group -- Defines network traffic rules
-  - A flavor -- Defines resources, like vCPUs, RAM, and disk storage
-  - An image -- This is a bootable operating system
-  - A network -- This is typically a private network
+- An SSH public key -- The public portion of an SSH key pair
+- A security group -- Defines network traffic rules
+- A flavor -- Defines resources, like vCPUs, RAM, and disk storage
+- An image -- This is a bootable operating system
+- A network -- This is typically a private network
 
 Each item will be explained throughout this guide.
 
@@ -65,7 +65,7 @@ within OpenStack.
 
 To make a key pair, use:
 
-    $ openstack keypair create KEY_NAME
+    openstack keypair create KEY_NAME
 
 **KEY\_NAME** is the name of the SSH key pair.
 
@@ -73,7 +73,7 @@ To make a key pair, use:
 
 Create key pair called **ssh-1**:
 
-    $ openstack keypair create ssh-1
+    openstack keypair create ssh-1
 
 This generates a key pair and returns the private key. The private key
 should be kept somewhere safe and be inaccessible to others.
@@ -88,7 +88,7 @@ this.
 
 To upload your public key, use:
 
-    $ openstack keypair create --public-key PATH_TO_PUBLIC_KEY KEY_NAME
+    openstack keypair create --public-key PATH_TO_PUBLIC_KEY KEY_NAME
 
 **KEY\_NAME** is the name of the SSH key pair and
 **PATH\_TO\_PUBLIC\_KEY** is the path on the filesystem to the public
@@ -132,7 +132,7 @@ group's details to ensure it has been configured appropriately.
 
 The command to create a security group is:
 
-    $ openstack security group create SECURITY_GROUP
+    openstack security group create SECURITY_GROUP
 
 **SECURITY\_GROUP** is the name of the security group.
 
@@ -140,7 +140,7 @@ The command to create a security group is:
 
 Create an SSH security group:
 
-    $ openstack security group create ssh
+    openstack security group create ssh
 
 **Step 2** -- Add rules
 
@@ -229,7 +229,7 @@ instance not require additional storage through a volume.
 
 Use the following to create volumes:
 
-    $ openstack volume create VOLUME_NAME --save SIZE
+    openstack volume create VOLUME_NAME --save SIZE
 
 **VOLUME\_NAME** is the name of the volume and **SIZE** is the numeric
 size in gigabytes.
@@ -238,7 +238,7 @@ size in gigabytes.
 
 Create a volume with size 5GB:
 
-    $ openstack volume create volume-1 --size 5
+    openstack volume create volume-1 --size 5
 
 **Step 2** -- List volume
 
@@ -279,11 +279,11 @@ instance.
 
 To begin you will need to obtain **UUIDs** for:
 
-  - Boot source (image, volume)
-  - Flavor
-  - Network
-  - Security Group
-  - SSH Key Pair
+- Boot source (image, volume)
+- Flavor
+- Network
+- Security Group
+- SSH Key Pair
 
 -----
 
@@ -368,11 +368,11 @@ With the collected information, the instance can be created.
 
 This is the base command needed to make an instance:
 
-    $ openstack server create
+    openstack server create
 
 For the full list of options to make an instance, run:
 
-    $ openstack help server create
+    openstack help server create
 
 -----
 
@@ -387,14 +387,14 @@ is:
 
 The following explains what each variable in the above command is for:
 
-  - **IMAGE\_UUID** -- UUID of the image you want to use
-  - **FLAVOR** -- The name of the flavor
-  - **VOLUME\_SIZE** -- Size in GB of boot volume
-  - **NETWORK\_UUID** -- UUID of the network to be associated with the
+- **IMAGE\_UUID** -- UUID of the image you want to use
+- **FLAVOR** -- The name of the flavor
+- **VOLUME\_SIZE** -- Size in GB of boot volume
+- **NETWORK\_UUID** -- UUID of the network to be associated with the
     instance
-  - **SSH\_KEY\_NAME** -- Name of the SSH key
-  - **SECURITY\_GROUP\_UUID** -- UUID of the security group to use
-  - **INSTANCE\_NAME** -- Name of the instance
+- **SSH\_KEY\_NAME** -- Name of the SSH key
+- **SECURITY\_GROUP\_UUID** -- UUID of the security group to use
+- **INSTANCE\_NAME** -- Name of the instance
 
 **NOTE** -- By default, the instance creation will occur in the
 background. You can add `--wait` to the flags to have the command wait
@@ -408,11 +408,11 @@ instance creation.
 Here are the collected details to make an instance from the previous
 section:
 
-  - **Image UUID**: d5a101ff-0870-435f-bf76-c3309e542a53
-  - **Flavor**: c1.micro
-  - **Network UUID**: 29aa8aec-36ec-416d-9828-4a3b6bb10f4b
-  - **Security Group UUID**: 44668612-1a18-4289-b5fb-f24de8e20c09
-  - **SSH Key**: key-1
+- **Image UUID**: d5a101ff-0870-435f-bf76-c3309e542a53
+- **Flavor**: c1.micro
+- **Network UUID**: 29aa8aec-36ec-416d-9828-4a3b6bb10f4b
+- **Security Group UUID**: 44668612-1a18-4289-b5fb-f24de8e20c09
+- **SSH Key**: key-1
 
 Create an instance called **instance-1** booted from a 20GB volume:
 
@@ -457,7 +457,7 @@ Here's an example of an instance with Status, "ERROR":
 
 Get more information on the error status by running:
 
-    $ openstack server show $INSTANCE_UUID --fit-width
+    openstack server show $INSTANCE_UUID --fit-width
 
 Look for the **fault** row for the reason as to why the instance failed
 to create.

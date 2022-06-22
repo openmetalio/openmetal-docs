@@ -35,7 +35,7 @@ Migration** and **Disk Over Commit** do not apply to clouds using shared
 storage. These options are used if instance data is stored locally on
 the hardware nodes.
 
-**Migration Status**
+## Migration Status
 
 Back in the instance listing, you will see an indicator the instance is
 being migrated.

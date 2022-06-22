@@ -12,22 +12,22 @@ nodes from your Ceph cluster.
 
 ## Table of Contents
 
-1.  [Datadog](cloud-resource-usage#datadog)
+1. [Datadog](cloud-resource-usage#datadog)
 
-2.    - [Resources of a Private
+2. - [Resources of a Private
         Cloud](cloud-resource-usage#resources-of-a-private-cloud)
-        
-        1.  [View Memory and Compute Usage in
+
+        1. [View Memory and Compute Usage in
             Horizon](cloud-resource-usage#view-memory-and-compute-usage-in-horizon)
-        2.  [View Instance State Across
+        2. [View Instance State Across
             Cluster](cloud-resource-usage#view-instance-state-across-cluster)
-        3.  [How to Access Resource Information from
+        3. [How to Access Resource Information from
             Ceph](cloud-resource-usage#how-to-access-resource-information-from-ceph)
 
-3.  [Adding nodes to your Ceph
+3. [Adding nodes to your Ceph
     Cluster](cloud-resource-usage#adding-nodes-to-your-ceph-cluster)
 
-4.  [Removing nodes from your Ceph
+4. [Removing nodes from your Ceph
     Cluster](cloud-resource-usage#removing-nodes-from-your-ceph-cluster)
 
 ## Datadog
@@ -61,9 +61,9 @@ and assigned to the admin project. Once you are in the admin project,
 navigate to **Admin -\> Compute -\> Hypervisors**. This section, lists
 the following items:
 
-  - VCPU Usage
-  - Memory Usage
-  - Local disk usage
+- VCPU Usage
+- Memory Usage
+- Local disk usage
 
 **Figure 2:** Hypervisor Summary showing disk and resource usage
 
@@ -88,10 +88,10 @@ monitoring and health commands. For further information, visit Ceph's
 [Ceph Administration Tool](https://docs.ceph.com/en/latest/man/8/ceph/)
 page.
 
-  - `ceph -s` to check the status of Ceph
-  - `ceph df` to list the disk usage overview
-  - `ceph health detail` provides details about existing health issues
-  - `ceph osd pool ls` to list pools add `detail` for additional details
+- `ceph -s` to check the status of Ceph
+- `ceph df` to list the disk usage overview
+- `ceph health detail` provides details about existing health issues
+- `ceph osd pool ls` to list pools add `detail` for additional details
     regarding replication and health metrics
 
 ## Adding nodes to your Ceph Cluster

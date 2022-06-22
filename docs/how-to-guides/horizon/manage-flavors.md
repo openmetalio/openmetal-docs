@@ -9,24 +9,24 @@ guide, we outline how to manage flavors in your Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisite](manage-flavors#prerequisite)
+1. [Prerequisite](manage-flavors#prerequisite)
 
-2.  [How to Create a
+2. [How to Create a
     Flavor](manage-flavors#how-to-create-a-flavor)
 
-3.    - [Update Flavor
+3. - [Update Flavor
         Metadata](manage-flavors#update-flavor-metadata)
-        
-        1.  [How to Update Flavor
+
+        1. [How to Update Flavor
             Metadata](manage-flavors#how-to-update-flavor-metadata)
 
-4.    - [Deleting a
+4. - [Deleting a
         Flavor](manage-flavors#deleting-a-flavor)
-        
-        1.  [How to Delete a
+
+        1. [How to Delete a
             Flavor](manage-flavors#how-to-delete-a-flavor)
 
-5.  [References](manage-flavors#references)
+5. [References](manage-flavors#references)
 
 ## Prerequisite
 
@@ -39,21 +39,21 @@ Begin by navigating in Horizon to **Admin -\> Compute -\> Flavors**. By
 default, our Private Clouds come with flavors defined so you should see
 several options.
 
-![image](images/flavor-list.png)
+![Figure 1](images/flavor-list.png "List of Flavors")
 
-**Figure 1: List of Flavors**
+**Figure 1**: List of Flavors
 
 Click **Create Flavor** to create a new flavor.
 
-![image](images/flavor-create.png)
+![Figure 2](images/flavor-create.png "Create Flavor Form")
 
-**Figure 2: Create Flavor Form**
+**Figure 2**: Create Flavor Form
 
 Fill out the details as needed and submit the form.
 
-![image](images/newly-created-flavor-list.png)
+![Figure 3](images/newly-created-flavor-list.png "Newly Created Flavor Listed")
 
-**Figure 3: Newly Created Flavor Listed**
+**Figure 3**: Newly Created Flavor Listed
 
 ## Update Flavor Metadata
 
@@ -71,9 +71,9 @@ To update the metadata for a flavor, first navigate to **Admin -\>
 Compute -\> Flavors**, and locate the flavor in the list. From the drop
 down on the right, select the option **Update Metadata**.
 
-![image](images/flavor-update-metadata.png)
+![Figure 4](images/flavor-update-metadata.png "Update Flavor Metadata")
 
-**Figure 4: Update Flavor Metadata**
+**Figure 4**: Update Flavor Metadata
 
 ## Deleting a Flavor
 
@@ -85,12 +85,12 @@ To delete a flavor, first navigate to **Admin -\> Compute -\> Flavors**,
 and locate the flavor in the list. From the drop down on the right,
 select the option **Delete Flavor**.
 
-![image](images/delete-flavor.png)
+![Figure 5](images/delete-flavor.png "Delete Flavor")
 
-**Figure 5: Delete Flavor**
+**Figure 5**: Delete Flavor
 
 ## References
 
-  - <https://docs.openstack.org/horizon/latest/admin/manage-flavors.html>
-  - <https://docs.openstack.org/nova/latest/admin/flavors.html>
-  - <https://docs.openstack.org/nova/latest/user/metadata.html>
+- <https://docs.openstack.org/horizon/latest/admin/manage-flavors.html>
+- <https://docs.openstack.org/nova/latest/admin/flavors.html>
+- <https://docs.openstack.org/nova/latest/user/metadata.html>

@@ -11,44 +11,44 @@ public, or external, network of your Private Cloud.
 
 ## Table of Contents
 
-1.  [Prerequisites](enable-tls#prerequisites)
+1. [Prerequisites](enable-tls#prerequisites)
 
-2.    - [Specify an External Fully Qualified Domain Name for
+2. - [Specify an External Fully Qualified Domain Name for
         Horizon](enable-tls#specify-an-external-fully-qualified-domain-name-for-horizon)
-        
-        1.  [Determine Public
+
+        1. [Determine Public
             IP](enable-tls#determine-public-ip)
-        2.  [Configure an
+        2. [Configure an
             FQDN](enable-tls#configure-an-fqdn)
-        3.  [Apply Configuration Change Using Kolla
+        3. [Apply Configuration Change Using Kolla
             Ansible](enable-tls#apply-configuration-change-using-kolla-ansible)
 
-3.    - [Enable SSL Externally, Encrypting Horizon
+3. - [Enable SSL Externally, Encrypting Horizon
         Traffic](enable-tls#enable-ssl-externally-encrypting-horizon-traffic)
-        
-        1.  [Modify Kolla Ansible
+
+        1. [Modify Kolla Ansible
             Configuration](enable-tls#modify-kolla-ansible-configuration)
-        2.  [Configure Root CA
+        2. [Configure Root CA
             Bundle](enable-tls#configure-root-ca-bundle)
-        3.  [Prepare SSL
+        3. [Prepare SSL
             File](enable-tls#prepare-ssl-file)
-        4.  [Specify SSL
+        4. [Specify SSL
             Certificate](enable-tls#specify-ssl-certificate)
-        5.  [Enable External
+        5. [Enable External
             TLS](enable-tls#enable-external-tls)
-        6.  [Reconfigure Cloud using Kolla
+        6. [Reconfigure Cloud using Kolla
             Ansible](enable-tls#reconfigure-cloud-using-kolla-ansible)
 
-4.    - [Reconfigure Ceph Cluster using Ceph
+4. - [Reconfigure Ceph Cluster using Ceph
         Ansible](enable-tls#reconfigure-ceph-cluster-using-ceph-ansible)
-        
-        1.  [Procedure](enable-tls#procedure)
 
-5.  [Reference](enable-tls#reference)
+        1. [Procedure](enable-tls#procedure)
+
+5. [Reference](enable-tls#reference)
 
 ## Prerequisites
 
-  - **Prepare Kolla Ansible**: This guide explains how to configure your
+- **Prepare Kolla Ansible**: This guide explains how to configure your
     cloud with an SSL using Kolla Ansible. Any time you work with Kolla
     Ansible, you must prepare a shell environment. For more, see [How to
     Prepare and Use Kolla
@@ -56,16 +56,16 @@ public, or external, network of your Private Cloud.
     The remaining instruction assume this environment has been prepared.
     All commands are to be executed from the control plane node where
     this environment has been prepared.
-  - **Prepare Ceph Ansible**: This guide makes use of Ceph Ansible to
+- **Prepare Ceph Ansible**: This guide makes use of Ceph Ansible to
     reconfigure your cloud's Ceph cluster. When working with Ceph
     Ansible, you must first prepare a shell environment. For more, see
     [How to Prepare and Use Ceph
     Ansible](../ceph-ansible/). The
     portion of this guide that has to do with using Ceph Ansible assumes
     this environment has been prepared.
-  - **Root Access**: Root access to your cloud's control plane nodes is
+- **Root Access**: Root access to your cloud's control plane nodes is
     required.
-  - **Provide your own SSL Files**: This guide requires the private key,
+- **Provide your own SSL Files**: This guide requires the private key,
     certificate and intermediate chain. Your certificate and
     intermediate chain may be combined as a "Full Chain".
 

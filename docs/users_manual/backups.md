@@ -8,7 +8,7 @@ lost and you need to recover it. In this guide, you will learn how to
 make backups of instance data, volumes, and how to store backups outside
 of the OpenStack cloud.
 
-**Considerations for Testing Backups**
+## Testing Considerations
 
 Backups should not only be created, but should be confirmed they contain
 all data as well as be restored and tested as part of a polished backup
@@ -16,11 +16,7 @@ strategy. Consider a disaster recovery scenario where you have known
 backups, however they were never tested, and are not usable due to some
 circumstance.
 
------
-
-## Instance Backups
-
-### How to Create an Instance Backup
+### Instance Backups
 
 This section demonstrates how to create an instance backup using Horizon
 by creating a snapshot.
