@@ -193,10 +193,8 @@ ports that are available on your instance as well as the IP addresses
 that can connect to these specific ports.
 
 For more information on how to create and manage security groups, see
-the title heading <span class="title-ref">Security Groups
-\<operators\_manual/day-1/horizon/create-first-instance\#security-groups\></span>
-in the [How to Create an Instance in OpenStack
-Horizon](../../day-1/horizon/create-first-instance)
+the title heading [Security Groups](../../day-1/horizon/create-first-instance.md#security-groups)
+in the [How to Create an Instance in OpenStack Horizon](../../day-1/horizon/create-first-instance)
 guide.
 
 ## SSH Authentication

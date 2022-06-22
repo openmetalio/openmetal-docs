@@ -78,17 +78,16 @@ boot source options available.
 
 Of those options, these are important to consider:
 
-**Boot Sources**
+- **Boot Sources**:
+  - Image
+  - Volume
 
-- Image
-- Volume
+- **Boot from Image**: When booting an instance from an image, the image
+    is copied from Glance into the Compute node's local LVM volume and so
+    the operating system is running on ephemeral storage.
 
-**Boot from Image**: When booting an instance from an image, the image
-is copied from Glance into the Compute node's local LVM volume and so
-the operating system is running on ephemeral storage.
-
-**Boot from Volume**: An instance booted from a volume means the
-operating system is loaded from Ceph.
+- **Boot from Volume**: An instance booted from a volume means the
+    operating system is loaded from Ceph.
 
 ### How can Ephemeral Storage be Used?
 

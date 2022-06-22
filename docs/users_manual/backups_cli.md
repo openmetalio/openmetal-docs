@@ -8,7 +8,7 @@ lost and you need to recover it. In this guide, you will learn how to
 make backups of instance data, volumes, and how to store backups outside
 of the OpenStack cloud.
 
-**Considerations for Testing Backups**
+## Testing Considerations
 
 Backups should not only be created, but should be confirmed they contain
 all data as well as be restored and tested as part of a polished backup
@@ -16,11 +16,7 @@ strategy. Consider a disaster recovery scenario where you have known
 backups, however they were never tested, and are not usable due to some
 circumstance.
 
------
-
-## Instance Backups
-
-### How to Create an Instance Backup
+## How to Create an Instance Backup
 
 This section demonstrates how to create an instance backup using
 OpenStackClient.
@@ -33,9 +29,7 @@ backup. If the instance is volume-backed, you will have to back up the
 volume. If the instance is image-backed, you can back up the instance
 itself, which creates an image backup. Each method is described below.
 
------
-
-#### Volume-backed Instance
+### Volume-backed
 
 To create a backup of a volume-backed instance using OpenStackClient,
 you will need to create a backup of the volume, by first obtaining the
@@ -44,19 +38,19 @@ volume's UUID, then use `openstack volume backup create VOLUME_UUID`.
 In addition, if the volume is in use by an instance, the `--force` flag
 is required to create the volume backup.
 
------
-
-**Step 1** -- Create Backup
+#### Create Backup
 
 Create a backup of a volume-backed instance by first listing volumes
 then issuing the command to back up that volume:
 
-    $ openstack volume list
-    +--------------------------------------+-------------------+-----------+------+--------------------------------------------+
-    | ID                                   | Name              | Status    | Size | Attached to                                |
-    +--------------------------------------+-------------------+-----------+------+--------------------------------------------+
-    | 9887730c-e804-4353-af2d-a92b750ed6b5 |                   | in-use    |   17 | Attached to instance-2-volume on /dev/vda  |
-    | 9a1dfde3-9113-400c-b06e-80d67c636ef9 |                   | in-use    |   25 | Attached to wordpress-1 on /dev/vda
+```shell
+$ openstack volume list
++--------------------------------------+-------------------+-----------+------+--------------------------------------------+
+| ID                                   | Name              | Status    | Size | Attached to                                |
++--------------------------------------+-------------------+-----------+------+--------------------------------------------+
+| 9887730c-e804-4353-af2d-a92b750ed6b5 |                   | in-use    |   17 | Attached to instance-2-volume on /dev/vda  |
+| 9a1dfde3-9113-400c-b06e-80d67c636ef9 |                   | in-use    |   25 | Attached to wordpress-1 on /dev/vda
+```
 
 This example demonstrates creating a backup of `instance-2-volume` by
 backing up its associated volume, referenced by
@@ -64,117 +58,125 @@ backing up its associated volume, referenced by
 
 Create backup of `instance-2-volume`:
 
-    $ openstack volume backup create 9887730c-e804-4353-af2d-a92b750ed6b5 \
-    --force
-    +-------+--------------------------------------+
-    | Field | Value                                |
-    +-------+--------------------------------------+
-    | id    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 |
-    | name  | None                                 |
-    +-------+--------------------------------------+
+```shell
+$ openstack volume backup create 9887730c-e804-4353-af2d-a92b750ed6b5 \
+--force
++-------+--------------------------------------+
+| Field | Value                                |
++-------+--------------------------------------+
+| id    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 |
+| name  | None                                 |
++-------+--------------------------------------+
+```
 
 Take note of the **id** of the backup as this will be used next to
 determine the backup status.
 
-**Step 2** -- Confirm Backup Completion
+#### Confirm Backup Completion
 
 The backup will take some time to complete. After a period of time,
 check the status by using `openstack volume backup show
 VOLUME_BACKUP_UUID`, replacing **VOLUME\_BACKUP\_UUID** with the actual
 UUID of the volume backup:
 
-    $ openstack volume backup show bc8d29c4-be51-4675-b290-bd0bdc8c9be7
-    +-----------------------+--------------------------------------+
-    | Field                 | Value                                |
-    +-----------------------+--------------------------------------+
-    | availability_zone     | None                                 |
-    | container             | backups                              |
-    | created_at            | 2021-05-24T16:04:49.000000           |
-    | data_timestamp        | 2021-05-24T16:04:49.000000           |
-    | description           | None                                 |
-    | fail_reason           | None                                 |
-    | has_dependent_backups | False                                |
-    | id                    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 |
-    | is_incremental        | False                                |
-    | name                  | None                                 |
-    | object_count          | 0                                    |
-    | size                  | 17                                   |
-    | snapshot_id           | None                                 |
-    | status                | available                            |
-    | updated_at            | 2021-05-24T16:05:35.000000           |
-    | volume_id             | 9887730c-e804-4353-af2d-a92b750ed6b5 |
-    +-----------------------+--------------------------------------+
+```shell
+$ openstack volume backup show bc8d29c4-be51-4675-b290-bd0bdc8c9be7
++-----------------------+--------------------------------------+
+| Field                 | Value                                |
++-----------------------+--------------------------------------+
+| availability_zone     | None                                 |
+| container             | backups                              |
+| created_at            | 2021-05-24T16:04:49.000000           |
+| data_timestamp        | 2021-05-24T16:04:49.000000           |
+| description           | None                                 |
+| fail_reason           | None                                 |
+| has_dependent_backups | False                                |
+| id                    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 |
+| is_incremental        | False                                |
+| name                  | None                                 |
+| object_count          | 0                                    |
+| size                  | 17                                   |
+| snapshot_id           | None                                 |
+| status                | available                            |
+| updated_at            | 2021-05-24T16:05:35.000000           |
+| volume_id             | 9887730c-e804-4353-af2d-a92b750ed6b5 |
++-----------------------+--------------------------------------+
+```
 
-#### Image-backed Instance
+### Image-backed
 
 To create a backup of an image-backed instance, use `openstack server
 backup create INSTANCE_UUID`.
 
------
-
-**Step 1** -- Create Backup
+#### Create Backup
 
 First list instances to obtain the UUID, or you can specify the instance
 name to the backup command:
 
-    $ openstack server list
-    +--------------------------------------+-------------------+--------+-----------------------------------------+------------------------------+----------+
-    | ID                                   | Name              | Status | Networks                                | Image                        | Flavor   |
-    +--------------------------------------+-------------------+--------+-----------------------------------------+------------------------------+----------+
-    | 226ebf42-f58d-4149-8393-dd4f241c33aa | image-backed      | ACTIVE | network-1=192.168.0.199                 | CentOS 8 Stream (el8-x86_64) | c1.micro |
+ ```shell
+ $ openstack server list
+ +--------------------------------------+-------------------+--------+-----------------------------------------+------------------------------+----------+
+ | ID                                   | Name              | Status | Networks                                | Image                        | Flavor   |
+ +--------------------------------------+-------------------+--------+-----------------------------------------+------------------------------+----------+
+ | 226ebf42-f58d-4149-8393-dd4f241c33aa | image-backed      | ACTIVE | network-1=192.168.0.199                 | CentOS 8 Stream (el8-x86_64) | c1.micro |
+```
 
 Next, create a backup of the instance called **image-backed** using:
 
-    $ openstack server backup create image-backed
-    +------------------+------------------------------------------------------------------------+
-    | Field            | Value                                                                  |
-    +------------------+------------------------------------------------------------------------+
-    | container_format | bare                                                                   |
-    | created_at       | 2021-05-24T16:45:17Z                                                   |
-    | disk_format      | qcow2                                                                  |
-    | file             | /v2/images/um_f3f2bf61-c699-43ce-9db5-4bb3343cbfad/file                   |
-    | id               | f3f2bf61-c699-43ce-9db5-4bb3343cbfad                                   |
-    | min_disk         | 25                                                                     |
-    | min_ram          | 0                                                                      |
-    | name             | image-backed                                                           |
+```shell
+$ openstack server backup create image-backed
++------------------+------------------------------------------------------------------------+
+| Field            | Value                                                                  |
++------------------+------------------------------------------------------------------------+
+| container_format | bare                                                                   |
+| created_at       | 2021-05-24T16:45:17Z                                                   |
+| disk_format      | qcow2                                                                  |
+| file             | /v2/images/um_f3f2bf61-c699-43ce-9db5-4bb3343cbfad/file                   |
+| id               | f3f2bf61-c699-43ce-9db5-4bb3343cbfad                                   |
+| min_disk         | 25                                                                     |
+| min_ram          | 0                                                                      |
+| name             | image-backed                                                           |
+```
 
 Note the **id** column from the output. This is the UUID of the backup
 and will be used to verify backup completion.
 
-**Step 2** -- Confirm Backup Completion
+#### Confirm Backup Completion
 
 When a backup of an image-backed instance is created, it is created as
 an image.
 
 To confirm the status of the backup, use `openstack image show UUID`:
 
-    $ openstack image show f3f2bf61-c699-43ce-9db5-4bb3343cbfad --fit-width
-    +------------------+------------------------------------------------------------------------+
-    | Field            | Value                                                                  |
-    +------------------+------------------------------------------------------------------------+
-    | container_format | bare                                                                   |
-    | created_at       | 2021-05-24T16:45:17Z                                                   |
-    | disk_format      | raw                                                                    |
-    | file             | /v2/images/um_f3f2bf61-c699-43ce-9db5-4bb3343cbfad/file                   |
-    | id               | f3f2bf61-c699-43ce-9db5-4bb3343cbfad                                   |
-    | min_disk         | 25                                                                     |
-    | min_ram          | 0                                                                      |
-    | name             | image-backed                                                           |
-    | owner            | b93259ca0a5b4541b30e4e16ae1d699d                                       |
-    | properties       | [truncated]                                                            |
-    | protected        | False                                                                  |
-    | schema           | /v2/schemas/image                                                      |
-    | size             | 26843545600                                                            |
-    | status           | active                                                                 |
-    | tags             |                                                                        |
-    | updated_at       | 2021-05-24T16:45:50Z                                                   |
-    | visibility       | private                                                                |
-    +------------------+------------------------------------------------------------------------+
+```shell
+$ openstack image show f3f2bf61-c699-43ce-9db5-4bb3343cbfad --fit-width
++------------------+------------------------------------------------------------------------+
+| Field            | Value                                                                  |
++------------------+------------------------------------------------------------------------+
+| container_format | bare                                                                   |
+| created_at       | 2021-05-24T16:45:17Z                                                   |
+| disk_format      | raw                                                                    |
+| file             | /v2/images/um_f3f2bf61-c699-43ce-9db5-4bb3343cbfad/file                   |
+| id               | f3f2bf61-c699-43ce-9db5-4bb3343cbfad                                   |
+| min_disk         | 25                                                                     |
+| min_ram          | 0                                                                      |
+| name             | image-backed                                                           |
+| owner            | b93259ca0a5b4541b30e4e16ae1d699d                                       |
+| properties       | [truncated]                                                            |
+| protected        | False                                                                  |
+| schema           | /v2/schemas/image                                                      |
+| size             | 26843545600                                                            |
+| status           | active                                                                 |
+| tags             |                                                                        |
+| updated_at       | 2021-05-24T16:45:50Z                                                   |
+| visibility       | private                                                                |
++------------------+------------------------------------------------------------------------+
+```
 
 Look for the **status** column to indicate the status of the backup. If
 the backup is complete, the status will show as `active`.
 
-### How to Recover an Instance Backup
+## How to Recover an Instance Backup
 
 This section explains how to recover an instance backup using
 OpenStackClient.
@@ -182,9 +184,7 @@ OpenStackClient.
 To recover an instance backup, the process involves creating a new
 instance based on the image or volume backup.
 
------
-
-#### Volume-backed Instance
+### Volume-backed Instance
 
 This section demonstrates how to recover an instance using a volume
 backup.
@@ -193,45 +193,47 @@ To restore an instance from a volume backup, the volume backup needs to
 first be restored into a new volume, then an instance can be booted
 using that new volume.
 
------
-
-**Step 1** -- Create new volume
+#### Create new volume
 
 First create a volume of appropriate size to restore the volume backup
 into, using `openstack volume create --size SIZE`:
 
-    $ openstack volume create wordpress-1-backup-1 --size 25
-    +---------------------+--------------------------------------+
-    | Field               | Value                                |
-    +---------------------+--------------------------------------+
-    | attachments         | []                                   |
-    | availability_zone   | nova                                 |
-    | bootable            | false                                |
-    | consistencygroup_id | None                                 |
-    | created_at          | 2021-05-24T17:57:29.000000           |
-    | description         | None                                 |
-    | encrypted           | False                                |
-    | id                  | 1810a215-67e4-48b5-ba51-feef9d263660 |
-    | multiattach         | False                                |
-    | name                | wordpress-1-backup-1                 |
+```shell
+$ openstack volume create wordpress-1-backup-1 --size 25
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| attachments         | []                                   |
+| availability_zone   | nova                                 |
+| bootable            | false                                |
+| consistencygroup_id | None                                 |
+| created_at          | 2021-05-24T17:57:29.000000           |
+| description         | None                                 |
+| encrypted           | False                                |
+| id                  | 1810a215-67e4-48b5-ba51-feef9d263660 |
+| multiattach         | False                                |
+| name                | wordpress-1-backup-1                 |
+```
 
 Take note of the **id**, `1810a215-67e4-48b5-ba51-feef9d263660`, as this
 will be used in the next section to recover.
 
-**Step 2** -- Restore volume backup
+#### Restore volume backup
 
 The volume backup can be restored now, but first you will need the UUID
 of the backup created previously. This can be listed by using `openstack
 volume backup list`:
 
-    $ openstack volume backup list
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | ID                                   | Name                     | Description | Status    | Size |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
-    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
-    | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
+```shell
+ $ openstack volume backup list
+ +--------------------------------------+--------------------------+-------------+-----------+------+
+ | ID                                   | Name                     | Description | Status    | Size |
+ +--------------------------------------+--------------------------+-------------+-----------+------+
+ | f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
+ | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
+ | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
+ +--------------------------------------+--------------------------+-------------+-----------+------+
+ ```
 
 This example will recover the volume backup under UUID
 `f8440441-92b8-4522-9dfe-18868e089d6e`.
@@ -240,25 +242,29 @@ Restore the volume backup into the new volume using `openstack volume
 backup restore BACKUP_UUID VOLUME_UUID`, replacing **BACKUP\_UUID** and
 **VOLUME\_UUID** with the UUIDs of the backup and the new volume:
 
-    $ openstack volume backup restore f8440441-92b8-4522-9dfe-18868e089d6e 1810a215-67e4-48b5-ba51-feef9d263660
-    +-------------+--------------------------------------+
-    | Field       | Value                                |
-    +-------------+--------------------------------------+
-    | backup_id   | f8440441-92b8-4522-9dfe-18868e089d6e |
-    | volume_id   | 1810a215-67e4-48b5-ba51-feef9d263660 |
-    | volume_name | wordpress-1-backup-1                 |
-    +-------------+--------------------------------------+
+```shell
+$ openstack volume backup restore f8440441-92b8-4522-9dfe-18868e089d6e 1810a215-67e4-48b5-ba51-feef9d263660
++-------------+--------------------------------------+
+| Field       | Value                                |
++-------------+--------------------------------------+
+| backup_id   | f8440441-92b8-4522-9dfe-18868e089d6e |
+| volume_id   | 1810a215-67e4-48b5-ba51-feef9d263660 |
+| volume_name | wordpress-1-backup-1                 |
++-------------+--------------------------------------+
+```
 
-**Step 3** -- Confirm volume
+#### Confirm volume
 
 Confirm the volume backup restored into the new volume by listing
 volumes and note the **Status** column:
 
-    $ openstack volume list
-    +--------------------------------------+----------------------+-----------+------+--------------------------------------------+
-    | ID                                   | Name                 | Status    | Size | Attached to                                |
-    +--------------------------------------+----------------------+-----------+------+--------------------------------------------+
-    | 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1 | available |   25 |                                            |
+```shell
+$ openstack volume list
++--------------------------------------+----------------------+-----------+------+--------------------------------------------+
+| ID                                   | Name                 | Status    | Size | Attached to                                |
++--------------------------------------+----------------------+-----------+------+--------------------------------------------+
+| 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1 | available |   25 |                                            |
+```
 
 If the backup is ready to use, the **Status** column will show as
 `available`.
@@ -331,7 +337,7 @@ With the image UUID, spawn a new instance called
 Confirm the instance created successfully by listing instances or
 showing the specific details of the instance.
 
-**List Instances**
+**List Instances**:
 
 List instances using `openstack server list`:
 

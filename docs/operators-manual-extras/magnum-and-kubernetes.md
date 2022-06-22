@@ -161,20 +161,18 @@ where you will see the cluster being created with **Status**,
 This section explains how to check the status the Kubernetes cluster
 using OpenStackClient.
 
------
-
-**Step 1** -- Prepare OpenStackClient
+### Prepare OpenStackClient
 
 Before beginning, ensure OpenStackClient is installed and pointed to the
 appropriate project.
 
-**Step 2** -- Install `python-magnumclient`
+### Install `python-magnumclient`
 
 Next install Magnum's CLI, `python-magnumclient` using `pip`:
 
     pip install python-magnumclient
 
-**Step 3** -- List Heat Stacks
+### List Heat Stacks
 
 Next, you will need to list the Heat stacks. This output includes the
 Kubernetes stack created previously.
@@ -196,7 +194,7 @@ in the next section.
 OpenStack uses [Heat](https://docs.openstack.org/heat/latest/) for
 template-based orchestration.
 
-**Step 4** -- Check deployment status
+### Check deployment status
 
 To check the status of the deployment, use `openstack stack resource
 list <stack-name>`, where `<stack-name>` is the name of the stack.
@@ -232,8 +230,8 @@ It will take around 10 to 15 minutes for everything to finish deploying.
 
 Kubernetes deployed by Magnum is handled by a series of Heat stacks.
 
-**Note\!** -- You cannot move on with this guide if the deployment is
-not completely finished.
+> **Note!** You cannot move on with this guide if the deployment is
+> not completely finished.
 
 ## Test Kubernetes Cluster
 
@@ -246,35 +244,33 @@ The following steps are all run in a local development, or testing,
 environment and assumes OpenStackClient is installed and pointed to the
 appropriate project.
 
-**Step 1**
+1. Obtain a copy of `kubectl` and make it executable:
 
-Obtain a copy of `kubectl` and make it executable:
-
+    ```sh
     curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
     chmod +x kubectl
+    ```
 
-**Step 2**
+1. Create testing directory:
 
-Create testing directory:
-
+    ```sh
     mkdir k8s-test
+    ```
 
-**Step 3**
+1. Obtain cluster configuration:
 
-Obtain cluster configuration:
-
+    ```sh
     openstack coe cluster config --dir k8s-test kubernetes-demo
+    ```
 
-**Step 4**
-
-Set the `KUBECONFIG` environment variable by executing the output of the
+1. Set the `KUBECONFIG` environment variable by executing the output of the
 previous step:
 
+    ```sh
     export KUBECONFIG=/home/<user>/k8s-test/config
+    ```
 
-**Step 5**
-
-Interact with the cluster using `./kubectl get svc -A`.
+1. Interact with the cluster using `./kubectl get svc -A`.
 
 For example:
 
@@ -294,7 +290,7 @@ At present, there is an issue with resizing a Kubernetes cluster's node
 count using Horizon. To perform this task, you must perform the action
 over SSH using OpenStackClient.
 
-### Prerequisites
+### Resize Prerequisites
 
 Before preparing OpenStackClient, ensure a user with the admin role is
 associated with the project under which the Kubernetes cluster exists.
@@ -313,9 +309,7 @@ python-magnumclient`.
 Once the environment is prepared, you can issue the command to resize
 the cluster.
 
------
-
-### Procedure
+### Resize Procedure
 
 To resize the cluster, you need to first list all clusters to get the
 UUID.
@@ -331,7 +325,7 @@ where `<cluster-uuid>` should be replaced with the actual UUID:
 
     openstack coe cluster resize <cluster-uuid> 3
 
-## Troubleshooting
+### Troubleshooting
 
 This section will be filled as common failure scenarios and solutions
 are collected. For general troubleshooting see the [Magnum
