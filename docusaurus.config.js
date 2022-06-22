@@ -9,7 +9,7 @@ const config = {
   title: 'Openmetal Docs',
   tagline: 'Openmetal On-Demand Private Cloud Documentation',
 //   url: 'https://docs.openmetal.io',
-  url: 'https://inmotionhosting.github.io',
+  url: 'https://openmetalio.github.io',
   baseUrl: '/openmetal-docs/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
@@ -26,7 +26,7 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/inmotionhosting/openmetal-docs/blob/main/',
+          editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -50,7 +50,7 @@ const config = {
         items: [
         //   {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/inmotionhosting/openmetal-docs',
+            href: 'https://github.com/openmetalio/openmetal-docs',
             label: 'GitHub',
             position: 'right',
           },
