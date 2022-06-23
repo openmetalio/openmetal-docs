@@ -10,8 +10,8 @@
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
-	"lint": "markdownlint docs/",
-	"lint-fix": "markdownlint docs/ --fix",
+    "lint": "markdownlint docs/",
+    "lint-fix": "markdownlint docs/ --fix",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids"
   },
