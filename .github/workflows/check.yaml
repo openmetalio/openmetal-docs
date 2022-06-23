@@ -7,12 +7,9 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      # - name: markdownlint-cli
-      #   uses: nosborn/github-action-markdown-cli@v3.0.1
-      #   with:
-      #     files: ./docs/
-      #     config_file: .markdownlint.json
+      - uses: actions/checkout@v2
       - name: markdownlint-cli
-        uses: DavidAnson/markdownlint-cli2-action@v5
+        uses: nosborn/github-action-markdown-cli@v3.0.1
         with:
-          globs: "**/*.md"
+          files: ./docs/
+          config_file: .markdownlint.json
