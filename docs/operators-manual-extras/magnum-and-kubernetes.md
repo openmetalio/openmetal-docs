@@ -201,8 +201,8 @@ template-based orchestration.
 
 ### Check deployment status
 
-To check the status of the deployment, use 
-`openstack stack resourcelist <stack-name>`, 
+To check the status of the deployment, use
+`openstack stack resourcelist <stack-name>`,
 where `<stack-name>` is the name of the stack.
 
 Check status of stack `kubernetes-demo-ojlnzq4w252q`:
