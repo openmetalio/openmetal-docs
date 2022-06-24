@@ -278,19 +278,23 @@ Instance](create_an_instance_cli) guide.
 The following builds an instance booted from the previously restored
 volume backup:
 
-    $ openstack server create --volume 1810a215-67e4-48b5-ba51-feef9d263660 \\
-        --flavor c1.micro \\
-        --network 29aa8aec-36ec-416d-9828-4a3b6bb10f4b \\
-        --key-name key-1 \\
-        --security-group 44668612-1a18-4289-b5fb-f24de8e20c09 \\
-        wordpress-2-volume-restored
+```sh
+$ openstack server create --volume 1810a215-67e4-48b5-ba51-feef9d263660 \\
+    --flavor c1.micro \\
+    --network 29aa8aec-36ec-416d-9828-4a3b6bb10f4b \\
+    --key-name key-1 \\
+    --security-group 44668612-1a18-4289-b5fb-f24de8e20c09 \\
+    wordpress-2-volume-restored
+```
 
 **Step 5** -- Confirm instance restoration
 
 Show the details of the instance to confirm it is active:
 
-    $ openstack server show wordpress-2-volume-restored | grep status
-    | status                      | ACTIVE                                                   |
+```sh
+$ openstack server show wordpress-2-volume-restored | grep status
+| status                      | ACTIVE                                                   |
+```
 
 #### Image-backed Instance
 
@@ -303,18 +307,20 @@ This section explains how to recover an instance using an image backup.
 First, acquire the UUID of the image you wish to restore using
 `openstack image list`:
 
-    $ openstack image list
-    +--------------------------------------+------------------------------------------------------+--------+
-    | ID                                   | Name                                                 | Status |
-    +--------------------------------------+------------------------------------------------------+--------+
-    | d5a101ff-0870-435f-bf76-c3309e542a53 | CentOS 8 Stream (el8-x86_64)                         | active |
-    | 8c8e0a35-61dd-4540-b9fd-ca36ca0ef181 | Debian 10 (buster-amd64)                             | active |
-    | be44af12-aa34-4b25-b4af-60a66599f442 | Fedora CoreOS (fedora-coreos-33.20210412.3.0-stable) | active |
-    | c005b6f3-9d34-4f91-94b6-1ff50c174750 | Ubuntu 20.04 (focal-amd64)                           | active |
-    | f3f2bf61-c699-43ce-9db5-4bb3343cbfad | image-backed                                         | active |
-    | d589995e-7425-42fd-8a6a-3bf98783e0cc | wordpress-1-snap                                     | active |
-    | ec4c8f61-6f44-4360-99b3-47b3022d177d | wordpress-2-snap                                     | active |
-    +--------------------------------------+------------------------------------------------------+--------+
+```sh
+$ openstack image list
++--------------------------------------+------------------------------------------------------+--------+
+| ID                                   | Name                                                 | Status |
++--------------------------------------+------------------------------------------------------+--------+
+| d5a101ff-0870-435f-bf76-c3309e542a53 | CentOS 8 Stream (el8-x86_64)                         | active |
+| 8c8e0a35-61dd-4540-b9fd-ca36ca0ef181 | Debian 10 (buster-amd64)                             | active |
+| be44af12-aa34-4b25-b4af-60a66599f442 | Fedora CoreOS (fedora-coreos-33.20210412.3.0-stable) | active |
+| c005b6f3-9d34-4f91-94b6-1ff50c174750 | Ubuntu 20.04 (focal-amd64)                           | active |
+| f3f2bf61-c699-43ce-9db5-4bb3343cbfad | image-backed                                         | active |
+| d589995e-7425-42fd-8a6a-3bf98783e0cc | wordpress-1-snap                                     | active |
+| ec4c8f61-6f44-4360-99b3-47b3022d177d | wordpress-2-snap                                     | active |
++--------------------------------------+------------------------------------------------------+--------+
+```
 
 This example will use the image called **image-backed**, which is
 associated with UUID `f3f2bf61-c699-43ce-9db5-4bb3343cbfad`.
@@ -324,13 +330,15 @@ associated with UUID `f3f2bf61-c699-43ce-9db5-4bb3343cbfad`.
 With the image UUID, spawn a new instance called
 **instance-3-image-backed**:
 
-    $ openstack server create \
-    --image f3f2bf61-c699-43ce-9db5-4bb3343cbfad \
-    --flavor c1.micro \
-    --network 29aa8aec-36ec-416d-9828-4a3b6bb10f4b \
-    --key-name key-1 \
-    --security-group 44668612-1a18-4289-b5fb-f24de8e20c09 \
-    instance-3-image-backed
+```sh
+$ openstack server create \
+--image f3f2bf61-c699-43ce-9db5-4bb3343cbfad \
+--flavor c1.micro \
+--network 29aa8aec-36ec-416d-9828-4a3b6bb10f4b \
+--key-name key-1 \
+--security-group 44668612-1a18-4289-b5fb-f24de8e20c09 \
+instance-3-image-backed
+```
 
 **Step 3** -- Confirm instance creation
 
@@ -341,22 +349,22 @@ showing the specific details of the instance.
 
 List instances using `openstack server list`:
 
-    $ openstack server list
-    +--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
-    | ID                                   | Name                        | Status | Networks                | Image                        | Flavor   |
-    +--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
-    | 98174d7f-53c1-4861-84a5-2517b90ba92e | instance-3-image-backed     | ACTIVE | network-1=192.168.0.176 | image-backed                 | c1.micro |
-    | ff205cad-965c-4ae1-9e47-65fa4d1df82b | wordpress-2-volume-restored | ACTIVE | network-1=192.168.0.226 | N/A (booted from volume)     | c1.micro |
-    | 226ebf42-f58d-4149-8393-dd4f241c33aa | image-backed                | ACTIVE | network-1=192.168.0.199 | CentOS 8 Stream (el8-x86_64) | c1.micro |
-    | da6591d9-7cbd-47aa-9a46-ff3cb6d52c24 | instance-2-volume           | ACTIVE | network-1=192.168.0.178 | N/A (booted from volume)     | c1.micro |
-    | 72e1e2db-0276-4ddd-85b4-452aa7c449c0 | instance-1                  | ACTIVE | network-1=192.168.0.50  | CentOS 8 Stream (el8-x86_64) | c1.micro |
-    +--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
+```sh
+$ openstack server list
++--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
+| ID                                   | Name                        | Status | Networks                | Image                        | Flavor   |
++--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
+| 98174d7f-53c1-4861-84a5-2517b90ba92e | instance-3-image-backed     | ACTIVE | network-1=192.168.0.176 | image-backed                 | c1.micro |
+| ff205cad-965c-4ae1-9e47-65fa4d1df82b | wordpress-2-volume-restored | ACTIVE | network-1=192.168.0.226 | N/A (booted from volume)     | c1.micro |
+| 226ebf42-f58d-4149-8393-dd4f241c33aa | image-backed                | ACTIVE | network-1=192.168.0.199 | CentOS 8 Stream (el8-x86_64) | c1.micro |
+| da6591d9-7cbd-47aa-9a46-ff3cb6d52c24 | instance-2-volume           | ACTIVE | network-1=192.168.0.178 | N/A (booted from volume)     | c1.micro |
+| 72e1e2db-0276-4ddd-85b4-452aa7c449c0 | instance-1                  | ACTIVE | network-1=192.168.0.50  | CentOS 8 Stream (el8-x86_64) | c1.micro |
++--------------------------------------+-----------------------------+--------+-------------------------+------------------------------+----------+
+```
 
 The first item in the above list is the instance previously created. The
 **Status** column shows `ACTIVE` indicating the instance is ready to
 use.
-
------
 
 ## Volume Backups
 
@@ -366,8 +374,6 @@ In addition to creating instance snapshots, you can also create backups
 of volumes using OpenStackClient. This is important when a persistent
 volume is used and you want to create backup copies of it.
 
------
-
 **Step 1** -- List existing volumes
 
 To create a volume backup, you first need to know the name or UUID of
@@ -375,16 +381,18 @@ the volume being backed up.
 
 Determine this by listing volumes, using `openstack volume list`:
 
-    $ openstack volume list
-    +--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
-    | ID                                   | Name                 | Status    | Size | Attached to                                          |
-    +--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
-    | 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1 | available |   25 |                                                      |
-    | 9887730c-e804-4353-af2d-a92b750ed6b5 |                      | in-use    |   17 | Attached to instance-2-volume on /dev/vda            |
-    | 2a8eb736-9e7b-4ede-9a4e-9a50fc571da2 |                      | in-use    |   25 | Attached to wordpress-2-volume-restored on /dev/vda  |
-    | 664e09b7-e1f9-46e1-9504-794ff75e7295 |                      | available |   25 |                                                      |
-    | 0860845e-ba18-4f1f-84ed-22600ad7bbca | wordpress-media-1    | available |    5 |                                                      |
-    +--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
+```sh
+$ openstack volume list
++--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
+| ID                                   | Name                 | Status    | Size | Attached to                                          |
++--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
+| 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1 | available |   25 |                                                      |
+| 9887730c-e804-4353-af2d-a92b750ed6b5 |                      | in-use    |   17 | Attached to instance-2-volume on /dev/vda            |
+| 2a8eb736-9e7b-4ede-9a4e-9a50fc571da2 |                      | in-use    |   25 | Attached to wordpress-2-volume-restored on /dev/vda  |
+| 664e09b7-e1f9-46e1-9504-794ff75e7295 |                      | available |   25 |                                                      |
+| 0860845e-ba18-4f1f-84ed-22600ad7bbca | wordpress-media-1    | available |    5 |                                                      |
++--------------------------------------+----------------------+-----------+------+------------------------------------------------------+
+```
 
 **Step 2** -- Create volume backup
 
@@ -394,13 +402,15 @@ called `wordpress-media-1`.
 To create a volume backup of this volume, use `openstack volume backup
 create wordpress-media-1`:
 
-    $ openstack volume backup create wordpress-media-1
-    +-------+--------------------------------------+
-    | Field | Value                                |
-    +-------+--------------------------------------+
-    | id    | 3db892b4-809e-400b-9d85-1f3340de49a5 |
-    | name  | None                                 |
-    +-------+--------------------------------------+
+```sh
+$ openstack volume backup create wordpress-media-1
++-------+--------------------------------------+
+| Field | Value                                |
++-------+--------------------------------------+
+| id    | 3db892b4-809e-400b-9d85-1f3340de49a5 |
+| name  | None                                 |
++-------+--------------------------------------+
+```
 
 **Step 3** -- Confirm volume backup completion
 
@@ -409,20 +419,20 @@ or show the details of the specific volume backup.
 
 List volume backups using `openstack volume backup list`:
 
-    $ openstack volume backup list
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | ID                                   | Name                     | Description | Status    | Size |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | 3db892b4-809e-400b-9d85-1f3340de49a5 | None                     | None        | available |    5 |
-    | f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
-    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
-    | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
+```sh
+$ openstack volume backup list
++--------------------------------------+--------------------------+-------------+-----------+------+
+| ID                                   | Name                     | Description | Status    | Size |
++--------------------------------------+--------------------------+-------------+-----------+------+
+| 3db892b4-809e-400b-9d85-1f3340de49a5 | None                     | None        | available |    5 |
+| f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
+| bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
+| 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
++--------------------------------------+--------------------------+-------------+-----------+------+
+```
 
 The **Status** column indicates if the volume backup is ready to use or
 not and should report `available` when the backup is ready.
-
------
 
 ### How to Recover a Volume Backup
 
@@ -431,22 +441,22 @@ OpenStackClient. The flow for recovering a volume backup is to find the
 volume backup UUID, create an empty volume, then recover the backup into
 the new volume.
 
------
-
 **Step 1** -- Find the volume backup
 
 First, list the available volume backups using `openstack volume backup
 list`:
 
-    $ openstack volume backup list
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | ID                                   | Name                     | Description | Status    | Size |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
-    | 3db892b4-809e-400b-9d85-1f3340de49a5 | None                     | None        | available |    5 |
-    | f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
-    | bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
-    | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
-    +--------------------------------------+--------------------------+-------------+-----------+------+
+```sh
+$ openstack volume backup list
++--------------------------------------+--------------------------+-------------+-----------+------+
+| ID                                   | Name                     | Description | Status    | Size |
++--------------------------------------+--------------------------+-------------+-----------+------+
+| 3db892b4-809e-400b-9d85-1f3340de49a5 | None                     | None        | available |    5 |
+| f8440441-92b8-4522-9dfe-18868e089d6e | None                     | None        | available |   25 |
+| bc8d29c4-be51-4675-b290-bd0bdc8c9be7 | None                     | None        | available |   17 |
+| 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 | wordpress-media-1-backup |             | available |    5 |
++--------------------------------------+--------------------------+-------------+-----------+------+
+```
 
 This example will recover the volume backup called
 **wordpress-media-1-backup**.
@@ -457,18 +467,20 @@ Next, create a new volume at least the size of the volume backup using
 `openstack volume create --size SIZE VOLUME_NAME`, where **SIZE** is in
 gigabytes and the **VOLUME\_NAME** is the name of the volume:
 
-    $ openstack volume create --size 5 wordpress-media-1-backup-2
-    +---------------------+--------------------------------------+
-    | Field               | Value                                |
-    +---------------------+--------------------------------------+
-    | attachments         | []                                   |
-    | availability_zone   | nova                                 |
-    | bootable            | false                                |
-    | consistencygroup_id | None                                 |
-    | created_at          | 2021-05-24T22:04:02.000000           |
-    | description         | None                                 |
-    | encrypted           | False                                |
-    | id                  | 05b1310b-35d0-497f-a150-3ca436b6a969 |
+```sh
+$ openstack volume create --size 5 wordpress-media-1-backup-2
++---------------------+--------------------------------------+
+| Field               | Value                                |
++---------------------+--------------------------------------+
+| attachments         | []                                   |
+| availability_zone   | nova                                 |
+| bootable            | false                                |
+| consistencygroup_id | None                                 |
+| created_at          | 2021-05-24T22:04:02.000000           |
+| description         | None                                 |
+| encrypted           | False                                |
+| id                  | 05b1310b-35d0-497f-a150-3ca436b6a969 |
+```
 
 The UUID of this volume is `05b1310b-35d0-497f-a150-3ca436b6a969` and
 will be used in the next section.
@@ -479,30 +491,34 @@ Restore the volume backup into the new volume using `openstack volume
 backup restore BACKUP_UUID VOLUME_UUID`, replacing **BACKUP\_UUID** and
 **VOLUME\_UUID** with the UUIDs of the backup and the new volume:
 
-    $ openstack volume backup restore wordpress-media-1-backup 05b1310b-35d0-497f-a150-3ca436b6a969
-    +-------------+--------------------------------------+
-    | Field       | Value                                |
-    +-------------+--------------------------------------+
-    | backup_id   | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 |
-    | volume_id   | 05b1310b-35d0-497f-a150-3ca436b6a969 |
-    | volume_name | wordpress-media-1-backup-2           |
-    +-------------+--------------------------------------+
+```sh
+$ openstack volume backup restore wordpress-media-1-backup 05b1310b-35d0-497f-a150-3ca436b6a969
++-------------+--------------------------------------+
+| Field       | Value                                |
++-------------+--------------------------------------+
+| backup_id   | 1ae23283-e43f-4a67-97a1-0b7f7afaaff2 |
+| volume_id   | 05b1310b-35d0-497f-a150-3ca436b6a969 |
+| volume_name | wordpress-media-1-backup-2           |
++-------------+--------------------------------------+
+```
 
 **Step 4** -- Confirm backup recovery
 
 Finally, confirm the backup restored by listing volumes:
 
-    $ openstack volume list
-    +--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
-    | ID                                   | Name                       | Status    | Size | Attached to                                          |
-    +--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
-    | 05b1310b-35d0-497f-a150-3ca436b6a969 | wordpress-media-1-backup-2 | available |    5 |                                                      |
-    | 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1       | available |   25 |                                                      |
-    | 9887730c-e804-4353-af2d-a92b750ed6b5 |                            | in-use    |   17 | Attached to instance-2-volume on /dev/vda            |
-    | 2a8eb736-9e7b-4ede-9a4e-9a50fc571da2 |                            | in-use    |   25 | Attached to wordpress-2-volume-restored on /dev/vda  |
-    | 664e09b7-e1f9-46e1-9504-794ff75e7295 |                            | available |   25 |                                                      |
-    | 0860845e-ba18-4f1f-84ed-22600ad7bbca | wordpress-media-1          | available |    5 |                                                      |
-    +--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
+```sh
+$ openstack volume list
++--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
+| ID                                   | Name                       | Status    | Size | Attached to                                          |
++--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
+| 05b1310b-35d0-497f-a150-3ca436b6a969 | wordpress-media-1-backup-2 | available |    5 |                                                      |
+| 1810a215-67e4-48b5-ba51-feef9d263660 | wordpress-1-backup-1       | available |   25 |                                                      |
+| 9887730c-e804-4353-af2d-a92b750ed6b5 |                            | in-use    |   17 | Attached to instance-2-volume on /dev/vda            |
+| 2a8eb736-9e7b-4ede-9a4e-9a50fc571da2 |                            | in-use    |   25 | Attached to wordpress-2-volume-restored on /dev/vda  |
+| 664e09b7-e1f9-46e1-9504-794ff75e7295 |                            | available |   25 |                                                      |
+| 0860845e-ba18-4f1f-84ed-22600ad7bbca | wordpress-media-1          | available |    5 |                                                      |
++--------------------------------------+----------------------------+-----------+------+------------------------------------------------------+
+```
 
 The first item in the above list is the restored backup,
 **wordpress-media-1-backup-2**. Note the **Status** column reports
