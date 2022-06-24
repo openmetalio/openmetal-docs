@@ -194,7 +194,7 @@ provider network's pool of IPs.
 
 -----
 
-**Allocate floating IP**
+### Allocate floating IP
 
 To allocate floating IPs in Horizon, navigate to the **Network** tab on
 the left, and find **Floating IPs**.

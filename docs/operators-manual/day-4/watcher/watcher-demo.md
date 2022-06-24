@@ -180,9 +180,9 @@ For example:
     | Force         | False                                                |
     +---------------+------------------------------------------------------+
 
-This step may take some time to complete. You can use `openstack
-optimize audit show <audit-uuid>` to get the status of the audit. For
-example:
+This step may take some time to complete. You can use
+`openstack optimize audit show <audit-uuid>` to get the status of the audit.
+For example:
 
     # openstack optimize audit show 50b571c6-faff-4b0e-803d-558708bc5ec5
     +---------------+------------------------------------------------------+
@@ -282,8 +282,8 @@ For example:
     | Hostname            | None                                                                                                                                                                                                                                                                                                                                                                                              |
     +---------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Get status of the action plan using `openstack optimize actionplan show
-<action-plan-uuid>`.
+Get status of the action plan using
+`openstack optimize actionplan show <action-plan-uuid>`.
 
 For example:
 
