@@ -52,7 +52,7 @@ To get more information about an image, use `openstack image show ID`:
 
 -----
 
-**Show image details**
+### Show image details
 
 Example showing the details of an image:
 

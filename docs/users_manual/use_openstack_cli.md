@@ -280,17 +280,9 @@ Confirm the instance has been migrated to the destination host:
 
 ## **Troubleshoot instance issues**
 
-<div class="note">
-
-<div class="title">
-
-Note
-
-</div>
-
-This section will be filled out as common scenarios occur.
-
-</div>
+> Note
+>
+> This section will be filled out as common scenarios occur.
 
 ## **Upload images**
 

@@ -170,7 +170,7 @@ details of the **ssh** security group.
 
 -----
 
-**List security groups**
+### List security groups
 
 List security groups using:
 
@@ -182,7 +182,7 @@ List security groups using:
     | cdf392cd-0f8a-409c-837b-b8409981da93 | ssh     | ssh                    | fece7ddb8663497bb99ee0988719143c | []   |
     +--------------------------------------+---------+------------------------+----------------------------------+------+
 
-**Show details**
+### Show details
 
 Show the details of the group:
 
@@ -403,7 +403,7 @@ instance creation.
 
 -----
 
-**Create the Instance**
+### Create the Instance
 
 Here are the collected details to make an instance from the previous
 section:

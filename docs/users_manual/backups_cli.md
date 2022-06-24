@@ -108,7 +108,7 @@ $ openstack volume backup show bc8d29c4-be51-4675-b290-bd0bdc8c9be7
 To create a backup of an image-backed instance, use `openstack server
 backup create INSTANCE_UUID`.
 
-#### Create Backup
+#### Create Instance Backup
 
 First list instances to obtain the UUID, or you can specify the instance
 name to the backup command:
@@ -141,7 +141,7 @@ $ openstack server backup create image-backed
 Note the **id** column from the output. This is the UUID of the backup
 and will be used to verify backup completion.
 
-#### Confirm Backup Completion
+#### Confirm Instance Backup Completion
 
 When a backup of an image-backed instance is created, it is created as
 an image.
