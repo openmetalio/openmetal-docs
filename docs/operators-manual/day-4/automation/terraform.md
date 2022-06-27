@@ -13,34 +13,34 @@ instance within a OpenMetal Private Cloud.
 
 1. [Prerequisites](terraform#prerequisites)
 
-2. - [How to Create an Instance Using
-        Terraform](terraform#how-to-create-an-instance-using-terraform)
+2. [How to Create an Instance Using
+    Terraform](terraform#how-to-create-an-instance-using-terraform)
 
-        1. [Prepare Terraform
-            Directory](terraform#step-1-prepare-terraform-directory)
+    1. [Prepare Terraform
+        Directory](terraform#step-1-prepare-terraform-directory)
 
-        2. [Specify Terraform
-            Provider](terraform#step-2-specify-terraform-provider)
+    2. [Specify Terraform
+        Provider](terraform#step-2-specify-terraform-provider)
 
-        3. [Initialize
-            Terraform](terraform#step-3-initialize-terraform)
+    3. [Initialize
+        Terraform](terraform#step-3-initialize-terraform)
 
-        4. [Create OpenStack Application
-            Credentials](terraform#step-4-create-openstack-application-credentials)
+    4. [Create OpenStack Application
+        Credentials](terraform#step-4-create-openstack-application-credentials)
 
-        5. - [Create Main Terraform
-                File](terraform#step-5-create-main-terraform-file)
+    5. [Create Main Terraform
+        File](terraform#step-5-create-main-terraform-file)
 
-                1. [Configure OpenStack
-                    Provider](terraform#configure-openstack-provider)
-                2. [Configure Compute
-                    Resource](terraform#configure-compute-resource)
+        1. [Configure OpenStack
+            Provider](terraform#configure-openstack-provider)
+        2. [Configure Compute
+            Resource](terraform#configure-compute-resource)
 
-        6. [Create Terraform
-            Plan](terraform#step-6-create-terraform-plan)
+    6. [Create Terraform
+        Plan](terraform#step-6-create-terraform-plan)
 
-        7. [Deploy Terraform
-            Plan](terraform#step-7-deploy-terraform-plan)
+    7. [Deploy Terraform
+        Plan](terraform#step-7-deploy-terraform-plan)
 
 3. [View Instance Created by
     Terraform](terraform#view-instance-created-by-terraform)

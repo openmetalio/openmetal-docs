@@ -89,7 +89,7 @@ in.
 
 ![image](images/um_import_ssh_key_form.png)
 
-### Confirm SSH key pair upload
+### **Confirm SSH key pair upload**
 
 To confirm success, navigate back to the SSH key pair listing and
 confirm the key pair was uploaded.
@@ -314,7 +314,7 @@ Once the instance creation is complete, it will show like so and the
 
 -----
 
-### How to Access the Instance over SSH
+### **How to Access the Instance over SSH**
 
 Since this instance is on a private network, it is only possible to
 access it over SSH from the OpenStack hardware nodes, which is not a

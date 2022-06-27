@@ -9,13 +9,13 @@ in your OpenMetal Private Cloud.
 
 ## Table of Contents
 
-1. - [Advantages of
-        Ceph](introduction-to-ceph#advantages-of-ceph)
+1. [Advantages of
+    Ceph](introduction-to-ceph#advantages-of-ceph)
 
-        1. [Data
-            Resiliency](introduction-to-ceph#data-resiliency)
-        2. [Ceph Scales Extremely
-            Well](introduction-to-ceph#ceph-scales-extremely-well)
+    1. [Data
+        Resiliency](introduction-to-ceph#data-resiliency)
+    2. [Ceph Scales Extremely
+        Well](introduction-to-ceph#ceph-scales-extremely-well)
 
 2. [Disadvantages of
     Ceph](introduction-to-ceph#disadvantages-of-ceph)
@@ -26,20 +26,20 @@ in your OpenMetal Private Cloud.
 4. [View Disk Usage of the Ceph
     Cluster](introduction-to-ceph#view-disk-usage-of-the-ceph-cluster)
 
-5. - [Default Configuration for the Ceph
-        Cluster](introduction-to-ceph#default-configuration-for-the-ceph-cluster)
+5. [Default Configuration for the Ceph
+    Cluster](introduction-to-ceph#default-configuration-for-the-ceph-cluster)
 
-        1. - [Default Ceph
-                Pools](introduction-to-ceph#default-ceph-pools)
+    1. [Default Ceph
+        Pools](introduction-to-ceph#default-ceph-pools)
 
-                1. [Pool:
-                    images](introduction-to-ceph#pool-images)
-                2. [Pool:
-                    volumes](introduction-to-ceph#pool-volumes)
-                3. [Pool:
-                    vms](introduction-to-ceph#pool-vms)
-                4. [Pool:
-                    backups](introduction-to-ceph#pool-backups)
+        1. [Pool:
+            images](introduction-to-ceph#pool-images)
+        2. [Pool:
+            volumes](introduction-to-ceph#pool-volumes)
+        3. [Pool:
+            vms](introduction-to-ceph#pool-vms)
+        4. [Pool:
+            backups](introduction-to-ceph#pool-backups)
 
 6. [Swift and Cinder Ceph
     Configuration](introduction-to-ceph#swift-and-cinder-ceph-configuration)

@@ -12,23 +12,23 @@ disaster recovery plan.
 
 ## Table of Contents
 
-1. - [Disaster Recovery
-        Strategies](disaster-recovery#disaster-recovery-strategies)
+1. [Disaster Recovery
+    Strategies](disaster-recovery#disaster-recovery-strategies)
 
-        1. [Recovery
-            Objectives](disaster-recovery#recovery-objectives)
-        2. [Off-site
-            Backups](disaster-recovery#off-site-backups)
-        3. [RBD Mirroring with
-            Ceph](disaster-recovery#rbd-mirroring-with-ceph)
+    1. [Recovery
+        Objectives](disaster-recovery#recovery-objectives)
+    2. [Off-site
+        Backups](disaster-recovery#off-site-backups)
+    3. [RBD Mirroring with
+        Ceph](disaster-recovery#rbd-mirroring-with-ceph)
 
-2. - [Handling a Hardware
-        Failure](disaster-recovery#handling-a-hardware-failure)
+2. [Handling a Hardware
+    Failure](disaster-recovery#handling-a-hardware-failure)
 
-        1. [Determine Hardware Node
-            Failure](disaster-recovery#determine-hardware-node-failure)
-        2. [Cluster
-            Failure](disaster-recovery#cluster-failure)
+    1. [Determine Hardware Node
+        Failure](disaster-recovery#determine-hardware-node-failure)
+    2. [Cluster
+        Failure](disaster-recovery#cluster-failure)
 
 3. [Cloud Monitoring with
     Datadog](disaster-recovery#cloud-monitoring-with-datadog)

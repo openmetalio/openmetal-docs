@@ -19,7 +19,7 @@ details about your user.
 
 -----
 
-**Log in to Horizon** --------------------
+## **Log in to Horizon** 
 
 This section demonstrates how to log in to Horizon.
 

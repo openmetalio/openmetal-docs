@@ -274,6 +274,4 @@ hostname of each server oscillate upon each refresh.
 
 This concludes the guide on how to create a load balancer in OpenStack.
 Note this is a rudimentary example, but should be enough to get you
-acquainted with the process. \<\<\<\<\<\<\< HEAD
-
-\======= \>\>\>\>\>\>\> add\_ip\_blocks
+acquainted with the process.
