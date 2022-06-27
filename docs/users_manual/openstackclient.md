@@ -153,7 +153,7 @@ CLI.
 
 -----
 
-## First Time Using OpenStackClient
+## **First Time Using OpenStackClient**
 
 For users using OpenStackClient for the first time, follow this section
 to learn how to list and show the details of the project associated with

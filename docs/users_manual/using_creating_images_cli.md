@@ -52,7 +52,7 @@ To get more information about an image, use `openstack image show ID`:
 
 -----
 
-### Show image details
+### **Show image details**
 
 Example showing the details of an image:
 
@@ -127,7 +127,7 @@ List the newly uploaded image:
 
 -----
 
-## Next Steps
+## **Next Steps**
 
 With this guide complete, move on to the next guide, which explains [how
 to create an Instance](create_an_instance_cli) using

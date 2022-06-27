@@ -46,9 +46,12 @@ const config = {
         logo: {
           alt: 'Openmetal',
           src: 'img/openmetal.svg',
+          href: 'https://openmetal.io'
         },
         items: [
-        //   {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            to: '/', label: 'Documentation', position: 'left'
+          },
           {
             href: 'https://github.com/openmetalio/openmetal-docs',
             label: 'GitHub',
@@ -59,7 +62,7 @@ const config = {
       footer: {
         style: 'light',
         logo: {
-          alt: 'Facebook Open Source Logo',
+          alt: 'Openmetal Logo',
           src: 'img/openmetal.svg',
           width: 160,
           height: 51,

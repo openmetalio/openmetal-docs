@@ -10,10 +10,10 @@ of a failure.
 
 ## Table of Contents
 
-1. - [Prerequisites](log-filtering#prerequisites)
+1. [Prerequisites](log-filtering#prerequisites)
 
-        1. [Root Access to OpenStack Control
-            Plane](log-filtering#root-access-to-openstack-control-plane)
+    1. [Root Access to OpenStack Control
+        Plane](log-filtering#root-access-to-openstack-control-plane)
 
 2. [Elasticsearch and
     Kibana](log-filtering#elasticsearch-and-kibana)

@@ -10,11 +10,11 @@ Horizon.
 
 ## Table of Contents
 
-1. - [Create a Volume
-        Backup](create-volume-backups#create-a-volume-backup)
+1. [Create a Volume
+    Backup](create-volume-backups#create-a-volume-backup)
 
-        1. [Test Volume
-            Backups](create-volume-backups#test-volume-backups)
+    1. [Test Volume
+        Backups](create-volume-backups#test-volume-backups)
 
 2. [Restore a Volume
     Backup](create-volume-backups#restore-a-volume-backup)

@@ -12,13 +12,13 @@ quotas can be adjusted.
 1. [Quick Overview: Project, Admin, and Identity
     Tabs](create-user-project#quick-overview-project-admin-and-identity-tabs)
 
-2. - [How to Create a
+2. [How to Create a
         Project](create-user-project#how-to-create-a-project)
 
-        1. [Create your First
-            Project](create-user-project#create-your-first-project)
-        2. [Project
-            Quotas](create-user-project#project-quotas)
+    1. [Create your First
+        Project](create-user-project#create-your-first-project)
+    2. [Project
+        Quotas](create-user-project#project-quotas)
 
 3. [How to Create a User and Associate with
     Project](create-user-project#how-to-create-a-user-and-associate-with-project)

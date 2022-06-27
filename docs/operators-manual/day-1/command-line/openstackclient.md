@@ -12,28 +12,28 @@ and use OpenStackClient.
 
 ## Table of Contents
 
-1. - [How to Install
-        OpenStackClient](openstackclient#how-to-install-openstackclient)
+1. [How to Install
+    OpenStackClient](openstackclient#how-to-install-openstackclient)
 
-        1. [Prerequisites](openstackclient#prerequisites)
+    1. [Prerequisites](openstackclient#prerequisites)
 
-        2. - [Install
-                OpenStackClient](openstackclient#install-openstackclient)
+    2. [Install
+        OpenStackClient](openstackclient#install-openstackclient)
 
-                1. [Initial
-                    Preparation](openstackclient#initial-preparation)
-                2. [Prepare and Install
-                    OpenStackClient](openstackclient#prepare-and-install-openstackclient)
+        1. [Initial
+            Preparation](openstackclient#initial-preparation)
+        2. [Prepare and Install
+            OpenStackClient](openstackclient#prepare-and-install-openstackclient)
 
-2. - [Command
-        Structure](openstackclient#command-structure)
+2. [Command
+    Structure](openstackclient#command-structure)
 
-        1. [List all Available
-            Subcommands](openstackclient#list-all-available-subcommands)
-        2. [Learn more about a
-            Subcommand](openstackclient#learn-more-about-a-subcommand)
-        3. [List Items and Show
-            Details](openstackclient#list-items-and-show-details)
+    1. [List all Available
+        Subcommands](openstackclient#list-all-available-subcommands)
+    2. [Learn more about a
+        Subcommand](openstackclient#learn-more-about-a-subcommand)
+    3. [List Items and Show
+        Details](openstackclient#list-items-and-show-details)
 
 3. [Enable Bash
     Autocompletion](openstackclient#enable-bash-autocompletion)
