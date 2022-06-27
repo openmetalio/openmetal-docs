@@ -10,7 +10,7 @@ const config = {
   tagline: 'Openmetal On-Demand Private Cloud Documentation',
 //   url: 'https://docs.openmetal.io',
   url: 'https://openmetalio.github.io',
-  baseUrl: '/openmetal-docs/',
+  baseUrl: '/docs/manual/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
