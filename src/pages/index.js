@@ -102,6 +102,12 @@ function Categories() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+
+	// Redirect to proxy site from github pages
+	if ( window.location.hostname === 'openmetalio.github.io' ) {
+		window.location.href = 'https://central.openmetal.io/docs/manuals/';
+	}
+
   return (
     <Layout
       title={`${siteConfig.title}`}
