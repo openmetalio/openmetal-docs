@@ -146,16 +146,16 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
   }
   .dropdown_menu_left {
 	  width: 50%;
-	  padding: 1rem 2rem 2rem 1rem;
+	  padding: 1.5rem 2rem 2rem 1.5rem;
   }
   .dropdown_menu_right {
 	  width: 50%;
 	  background-color: lightgrey;
-	  padding-top: 1rem;
+	  padding-top: 1.5rem;
 	  padding-bottom: 2rem;
   }
   .dropdown_menu_right .dropdown__link, .dropdown_menu_right p {
-	  padding-left: 1rem;
+	  padding-left: 1.5rem;
 	  padding-right: 2rem;
   }
   .dropdown_menu_right .dropdown__link {
