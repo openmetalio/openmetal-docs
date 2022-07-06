@@ -8,14 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Openmetal Docs',
   tagline: 'Openmetal On-Demand Private Cloud Documentation',
-//   url: 'https://docs.openmetal.io',
   url: 'https://openmetalio.github.io',
-  baseUrl: '/docs/manual/',
+  baseUrl: '/docs/manuals/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'inmotionhosting', // Usually your GitHub org/user name.
+  organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
 
   presets: [
@@ -56,6 +55,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'twitter:site', content: '@openmetalio'},
+        {name: 'twitter:creator', content: '@openmetalio'}
+      ],
+      gtag: {
+        trackingID: 'UA-213530121-1',
+     },
       colorMode: {
         disableSwitch: true
       },
