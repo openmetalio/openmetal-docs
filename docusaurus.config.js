@@ -6,10 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Openmetal Docs',
-  tagline: 'Openmetal On-Demand Private Cloud Documentation',
+  title: 'OpenMetal Docs',
+  tagline: 'OpenMetal On-Demand Private Cloud Documentation',
   url: 'https://central.openmetal.io',
-  baseUrl: '/manuals/',
+  baseUrl: '/docs/manuals/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -24,7 +24,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          path: 'docs',
+        //   path: 'docs',
           routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
@@ -70,8 +70,8 @@ const config = {
       navbar: {
         title: '',
         logo: {
-          alt: 'Openmetal',
-          src: 'img/openmetal.svg',
+          alt: 'OpenMetal',
+          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
           href: 'https://openmetal.io'
         },
         items: [
@@ -474,7 +474,7 @@ const config = {
         ],
         logo: {
           alt: 'Openmetal Logo',
-          src: 'img/openmetal.svg',
+          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
           width: 160,
           height: 51,
         },
