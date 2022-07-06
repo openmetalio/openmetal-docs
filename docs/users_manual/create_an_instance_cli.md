@@ -78,7 +78,7 @@ Create key pair called **ssh-1**:
 This generates a key pair and returns the private key. The private key
 should be kept somewhere safe and be inaccessible to others.
 
-### Upload SSH Key
+### **Upload SSH Key**
 
 If you have an existing SSH key pair to use, you can upload it to the
 cloud instead of making a new one. This section demonstrates how to do
@@ -170,7 +170,7 @@ details of the **ssh** security group.
 
 -----
 
-**List security groups**
+### **List security groups**
 
 List security groups using:
 
@@ -182,7 +182,7 @@ List security groups using:
     | cdf392cd-0f8a-409c-837b-b8409981da93 | ssh     | ssh                    | fece7ddb8663497bb99ee0988719143c | []   |
     +--------------------------------------+---------+------------------------+----------------------------------+------+
 
-**Show details**
+### **Show details**
 
 Show the details of the group:
 
@@ -403,7 +403,7 @@ instance creation.
 
 -----
 
-**Create the Instance**
+### **Create the Instance**
 
 Here are the collected details to make an instance from the previous
 section:

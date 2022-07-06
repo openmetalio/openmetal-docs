@@ -31,15 +31,15 @@ should this apply to you.
 2. [Using Kolla Ansible Quick
     Start](#using-kolla-ansible-quick-start)
 
-3. - [Prepare Kolla Ansible for
-        Use](#prepare-kolla-ansible-for-use)
+3. [Prepare Kolla Ansible for
+    Use](#prepare-kolla-ansible-for-use)
 
-        1. [Kolla Ansible Configuration
-            Files](#kolla-ansible-configuration-files)
-        2. [Before Making
-            Changes](#before-making-changes)
-        3. [Prepare Kolla Ansible
-            Environment](#prepare-kolla-ansible-environment)
+    1. [Kolla Ansible Configuration
+        Files](#kolla-ansible-configuration-files)
+    2. [Before Making
+        Changes](#before-making-changes)
+    3. [Prepare Kolla Ansible
+        Environment](#prepare-kolla-ansible-environment)
 
 4. [References](#references)
 

@@ -90,15 +90,16 @@ In this guide, the project's quotas are set to:
 
 This guide assumes OpenStackClient has been installed and pointed to the
 appropriate project. For information on how to install OpenStackClient,
-see [How to Install and Use OpenStack's
-CLI](https://central.openmetal.io/documentation/operators-manual/how-to-install-and-use-openstack-s-cli/).
+see [How to Install and Use OpenStack's CLI](https://central.openmetal.io/documentation/operators-manual/how-to-install-and-use-openstack-s-cli/).
 
 To confirm the cluster status using the command line, OpenStackClient
 requires the Python package `python-magnumclient`.
 
 Install this package using:
 
-    pip install python-magnumclient
+```sh
+pip install python-magnumclient
+```
 
 ## Procedure
 
@@ -170,7 +171,9 @@ appropriate project.
 
 Next install Magnum's CLI, `python-magnumclient` using `pip`:
 
-    pip install python-magnumclient
+```sh
+pip install python-magnumclient
+```
 
 ### List Heat Stacks
 
@@ -179,12 +182,14 @@ Kubernetes stack created previously.
 
 List Heat stacks using `openstack stack list`:
 
-    $ openstack stack list
-    +--------------------------------------+------------------------------+--------------------+----------------------+--------------+
-    | ID                                   | Stack Name                   | Stack Status       | Creation Time        | Updated Time |
-    +--------------------------------------+------------------------------+--------------------+----------------------+--------------+
-    | 545b100b-ba3c-4366-9d68-eca7b1df98b6 | kubernetes-demo-ojlnzq4w252q | CREATE_IN_PROGRESS | 2021-06-14T21:19:35Z | None         |
-    +--------------------------------------+------------------------------+--------------------+----------------------+--------------+
+```sh
+$ openstack stack list
++--------------------------------------+------------------------------+--------------------+----------------------+--------------+
+| ID                                   | Stack Name                   | Stack Status       | Creation Time        | Updated Time |
++--------------------------------------+------------------------------+--------------------+----------------------+--------------+
+| 545b100b-ba3c-4366-9d68-eca7b1df98b6 | kubernetes-demo-ojlnzq4w252q | CREATE_IN_PROGRESS | 2021-06-14T21:19:35Z | None         |
++--------------------------------------+------------------------------+--------------------+----------------------+--------------+
+```
 
 You should see the stack created previously appended with random
 characters. In this example, the stack is named
@@ -196,32 +201,35 @@ template-based orchestration.
 
 ### Check deployment status
 
-To check the status of the deployment, use `openstack stack resource
-list <stack-name>`, where `<stack-name>` is the name of the stack.
+To check the status of the deployment, use
+`openstack stack resourcelist <stack-name>`,
+where `<stack-name>` is the name of the stack.
 
 Check status of stack `kubernetes-demo-ojlnzq4w252q`:
 
-    $ openstack stack resource list kubernetes-demo-ojlnzq4w252q
-    +-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
-    | resource_name                 | physical_resource_id                 | resource_type                                                                        | resource_status    | updated_time         |
-    +-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
-    | kube_cluster_deploy           |                                      | OS::Heat::SoftwareDeployment                                                         | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | kube_cluster_config           |                                      | OS::Heat::SoftwareConfig                                                             | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | secgroup_rule_tcp_kube_minion | 4a76ee7a-dde2-4190-9ccf-6a144d7d42a4 | OS::Neutron::SecurityGroupRule                                                       | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | api_address_floating_switch   |                                      | Magnum::FloatingIPAddressSwitcher                                                    | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | kube_minions                  |                                      | OS::Heat::ResourceGroup                                                              | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | etcd_address_lb_switch        |                                      | Magnum::ApiGatewaySwitcher                                                           | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | api_address_lb_switch         |                                      | Magnum::ApiGatewaySwitcher                                                           | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
-    | kube_masters                  | 2f5b992c-c15e-4650-95e4-c7348efc7f7e | OS::Heat::ResourceGroup                                                              | CREATE_IN_PROGRESS | 2021-06-14T21:19:35Z |
-    | etcd_lb                       | 3a8df57f-2f43-4af1-9248-bd886c392344 | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/lb_etcd.yaml | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | api_lb                        | 2455a996-b772-4664-b99e-c7a67ca9285b | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/lb_api.yaml  | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | network                       | 90947279-ec72-4ed6-9e62-6e5501e0bd1d | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/network.yaml | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | worker_nodes_server_group     | d135f907-5e8e-4a2c-b3fd-397418837d8d | OS::Nova::ServerGroup                                                                | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | secgroup_rule_udp_kube_minion | c0892f17-4d46-403b-9cf9-6e89d95bc0f1 | OS::Neutron::SecurityGroupRule                                                       | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | secgroup_kube_minion          | 8d130ac5-c356-43d9-bdcb-a7b779610638 | OS::Neutron::SecurityGroup                                                           | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | secgroup_kube_master          | 6e52a531-762a-4f29-b85f-c149c5b461f1 | OS::Neutron::SecurityGroup                                                           | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    | master_nodes_server_group     | f2235409-575e-4fb8-b3b8-cde0fc1ed9da | OS::Nova::ServerGroup                                                                | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
-    +-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
+```sh
+$ openstack stack resource list kubernetes-demo-ojlnzq4w252q
++-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
+| resource_name                 | physical_resource_id                 | resource_type                                                                        | resource_status    | updated_time         |
++-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
+| kube_cluster_deploy           |                                      | OS::Heat::SoftwareDeployment                                                         | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| kube_cluster_config           |                                      | OS::Heat::SoftwareConfig                                                             | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| secgroup_rule_tcp_kube_minion | 4a76ee7a-dde2-4190-9ccf-6a144d7d42a4 | OS::Neutron::SecurityGroupRule                                                       | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| api_address_floating_switch   |                                      | Magnum::FloatingIPAddressSwitcher                                                    | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| kube_minions                  |                                      | OS::Heat::ResourceGroup                                                              | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| etcd_address_lb_switch        |                                      | Magnum::ApiGatewaySwitcher                                                           | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| api_address_lb_switch         |                                      | Magnum::ApiGatewaySwitcher                                                           | INIT_COMPLETE      | 2021-06-14T21:19:35Z |
+| kube_masters                  | 2f5b992c-c15e-4650-95e4-c7348efc7f7e | OS::Heat::ResourceGroup                                                              | CREATE_IN_PROGRESS | 2021-06-14T21:19:35Z |
+| etcd_lb                       | 3a8df57f-2f43-4af1-9248-bd886c392344 | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/lb_etcd.yaml | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| api_lb                        | 2455a996-b772-4664-b99e-c7a67ca9285b | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/lb_api.yaml  | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| network                       | 90947279-ec72-4ed6-9e62-6e5501e0bd1d | file:///usr/lib/python3.6/site-packages/magnum/drivers/common/templates/network.yaml | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| worker_nodes_server_group     | d135f907-5e8e-4a2c-b3fd-397418837d8d | OS::Nova::ServerGroup                                                                | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| secgroup_rule_udp_kube_minion | c0892f17-4d46-403b-9cf9-6e89d95bc0f1 | OS::Neutron::SecurityGroupRule                                                       | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| secgroup_kube_minion          | 8d130ac5-c356-43d9-bdcb-a7b779610638 | OS::Neutron::SecurityGroup                                                           | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| secgroup_kube_master          | 6e52a531-762a-4f29-b85f-c149c5b461f1 | OS::Neutron::SecurityGroup                                                           | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
+| master_nodes_server_group     | f2235409-575e-4fb8-b3b8-cde0fc1ed9da | OS::Nova::ServerGroup                                                                | CREATE_COMPLETE    | 2021-06-14T21:19:35Z |
++-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
+```
 
 Once the column **resource\_status** reflects `CREATE_COMPLETE` for all
 items, the Kubernetes deployment is done.
@@ -274,15 +282,17 @@ previous step:
 
 For example:
 
-    $ ./kubectl get svc -A
-    NAMESPACE     NAME                            TYPE        CLUSTER-IP
-    EXTERNAL-IP   PORT(S)                  AGE
-    default       kubernetes                      ClusterIP   10.254.0.1
-    <none>        443/TCP                  115m
-    kube-system   csi-cinder-controller-service   ClusterIP   10.254.98.104
-    <none>        12345/TCP                114m
-    kube-system   kube-dns                        ClusterIP   10.254.0.10
-    <none>        53/UDP,53/TCP,9153/TCP   115m
+```sh
+$ ./kubectl get svc -A
+NAMESPACE     NAME                            TYPE        CLUSTER-IP
+EXTERNAL-IP   PORT(S)                  AGE
+default       kubernetes                      ClusterIP   10.254.0.1
+<none>        443/TCP                  115m
+kube-system   csi-cinder-controller-service   ClusterIP   10.254.98.104
+<none>        12345/TCP                114m
+kube-system   kube-dns                        ClusterIP   10.254.0.10
+<none>        53/UDP,53/TCP,9153/TCP   115m
+```
 
 ## How to Resize a Kubernetes Cluster's Node Count
 
@@ -299,8 +309,7 @@ user. Finally, source this file to prepare your local shell.
 
 This guide assumes OpenStackClient has been installed and pointed to the
 appropriate project. For information on how to install OpenStackClient,
-see [How to Install and Use OpenStack's
-CLI](https://central.openmetal.io/documentation/operators-manual/how-to-install-and-use-openstack-s-cli/).
+see [How to Install and Use OpenStack's CLI](https://central.openmetal.io/documentation/operators-manual/how-to-install-and-use-openstack-s-cli/).
 
 In addition, `python-magnumclient` needs to be installed to work with
 the Kubernetes cluster. This can be installed using `pip install
@@ -316,19 +325,21 @@ UUID.
 
 For example:
 
-    openstack coe cluster list
+```sh
+openstack coe cluster list
+```
 
 From the above output, copy the cluster's UUID.
 
 To resize a cluster to 3 nodes for example, use the following command,
 where `<cluster-uuid>` should be replaced with the actual UUID:
 
-    openstack coe cluster resize <cluster-uuid> 3
+```sh
+openstack coe cluster resize <cluster-uuid> 3
+```
 
 ### Troubleshooting
 
 This section will be filled as common failure scenarios and solutions
-are collected. For general troubleshooting see the [Magnum
-Troubleshooting
-Guide](https://docs.openstack.org/magnum/latest/admin/troubleshooting-guide.html)
+are collected. For general troubleshooting see the [Magnum Troubleshooting Guide](https://docs.openstack.org/magnum/latest/admin/troubleshooting-guide.html)
 from OpenStack's documentation.

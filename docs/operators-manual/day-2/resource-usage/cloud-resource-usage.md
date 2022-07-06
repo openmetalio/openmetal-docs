@@ -14,15 +14,15 @@ nodes from your Ceph cluster.
 
 1. [Datadog](cloud-resource-usage#datadog)
 
-2. - [Resources of a Private
-        Cloud](cloud-resource-usage#resources-of-a-private-cloud)
+2. [Resources of a Private
+    Cloud](cloud-resource-usage#resources-of-a-private-cloud)
 
-        1. [View Memory and Compute Usage in
-            Horizon](cloud-resource-usage#view-memory-and-compute-usage-in-horizon)
-        2. [View Instance State Across
-            Cluster](cloud-resource-usage#view-instance-state-across-cluster)
-        3. [How to Access Resource Information from
-            Ceph](cloud-resource-usage#how-to-access-resource-information-from-ceph)
+    1. [View Memory and Compute Usage in
+        Horizon](cloud-resource-usage#view-memory-and-compute-usage-in-horizon)
+    2. [View Instance State Across
+        Cluster](cloud-resource-usage#view-instance-state-across-cluster)
+    3. [How to Access Resource Information from
+        Ceph](cloud-resource-usage#how-to-access-resource-information-from-ceph)
 
 3. [Adding nodes to your Ceph
     Cluster](cloud-resource-usage#adding-nodes-to-your-ceph-cluster)

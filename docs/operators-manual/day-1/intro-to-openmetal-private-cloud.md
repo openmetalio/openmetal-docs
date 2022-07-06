@@ -15,13 +15,12 @@ documentation, and how to submit and view support requests.
 2. [How to View your Hardware
     Assets](intro-to-openmetal-private-cloud#how-to-view-your-hardware-assets)
 
-3. - [How to Get
-        Support](intro-to-openmetal-private-cloud#how-to-get-support)
+3. [How to Get Support](intro-to-openmetal-private-cloud#how-to-get-support)
 
-        1. [How to Access OpenMetal
-            Documentation](intro-to-openmetal-private-cloud#how-to-access-openmetal-documentation)
-        2. [How to Submit a Support
-            Ticket](intro-to-openmetal-private-cloud#how-to-submit-a-support-ticket)
+    1. [How to Access OpenMetal
+        Documentation](intro-to-openmetal-private-cloud#how-to-access-openmetal-documentation)
+    2. [How to Submit a Support
+        Ticket](intro-to-openmetal-private-cloud#how-to-submit-a-support-ticket)
 
 ## A Brief Overview of Your OpenMetal Private Cloud
 

@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import data from '../data/index-data';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -102,6 +103,16 @@ function Categories() {
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
+
+	// Redirect to openmetal docs if not on the docs site using browser only
+	<BrowserOnly> {
+		() => {
+			if ( window.location.hostname === 'openmetalio.github.io' ) {
+				window.location.href = 'https://central.openmetal.io/docs/manuals/';
+			}
+		}
+	} </BrowserOnly>
+
   return (
     <Layout
       title={`${siteConfig.title}`}

@@ -9,12 +9,12 @@ using Kolla Ansible.
 
 ## Table of Contents
 
-1. - [Prerequisites](redeploy-rabbitmq#prerequisites)
+1. [Prerequisites](redeploy-rabbitmq#prerequisites)
 
-        1. [Prepare Kolla
-            Ansible](redeploy-rabbitmq#prepare-kolla-ansible)
-        2. [Root Access to OpenStack Control
-            Plane](redeploy-rabbitmq#root-access-to-openstack-control-plane)
+    1. [Prepare Kolla
+        Ansible](redeploy-rabbitmq#prepare-kolla-ansible)
+    2. [Root Access to OpenStack Control
+        Plane](redeploy-rabbitmq#root-access-to-openstack-control-plane)
 
 2. [How to Redeploy
     RabbitMQ](redeploy-rabbitmq#how-to-redeploy-rabbitmq)

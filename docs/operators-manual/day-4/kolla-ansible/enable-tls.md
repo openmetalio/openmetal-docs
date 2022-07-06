@@ -13,36 +13,36 @@ public, or external, network of your Private Cloud.
 
 1. [Prerequisites](enable-tls#prerequisites)
 
-2. - [Specify an External Fully Qualified Domain Name for
-        Horizon](enable-tls#specify-an-external-fully-qualified-domain-name-for-horizon)
+2. [Specify an External Fully Qualified Domain Name for
+    Horizon](enable-tls#specify-an-external-fully-qualified-domain-name-for-horizon)
 
-        1. [Determine Public
-            IP](enable-tls#determine-public-ip)
-        2. [Configure an
-            FQDN](enable-tls#configure-an-fqdn)
-        3. [Apply Configuration Change Using Kolla
-            Ansible](enable-tls#apply-configuration-change-using-kolla-ansible)
+    1. [Determine Public
+        IP](enable-tls#determine-public-ip)
+    2. [Configure an
+        FQDN](enable-tls#configure-an-fqdn)
+    3. [Apply Configuration Change Using Kolla
+        Ansible](enable-tls#apply-configuration-change-using-kolla-ansible)
 
-3. - [Enable SSL Externally, Encrypting Horizon
-        Traffic](enable-tls#enable-ssl-externally-encrypting-horizon-traffic)
+3. [Enable SSL Externally, Encrypting Horizon
+    Traffic](enable-tls#enable-ssl-externally-encrypting-horizon-traffic)
 
-        1. [Modify Kolla Ansible
-            Configuration](enable-tls#modify-kolla-ansible-configuration)
-        2. [Configure Root CA
-            Bundle](enable-tls#configure-root-ca-bundle)
-        3. [Prepare SSL
-            File](enable-tls#prepare-ssl-file)
-        4. [Specify SSL
-            Certificate](enable-tls#specify-ssl-certificate)
-        5. [Enable External
-            TLS](enable-tls#enable-external-tls)
-        6. [Reconfigure Cloud using Kolla
-            Ansible](enable-tls#reconfigure-cloud-using-kolla-ansible)
+    1. [Modify Kolla Ansible
+        Configuration](enable-tls#modify-kolla-ansible-configuration)
+    2. [Configure Root CA
+        Bundle](enable-tls#configure-root-ca-bundle)
+    3. [Prepare SSL
+        File](enable-tls#prepare-ssl-file)
+    4. [Specify SSL
+        Certificate](enable-tls#specify-ssl-certificate)
+    5. [Enable External
+        TLS](enable-tls#enable-external-tls)
+    6. [Reconfigure Cloud using Kolla
+        Ansible](enable-tls#reconfigure-cloud-using-kolla-ansible)
 
-4. - [Reconfigure Ceph Cluster using Ceph
-        Ansible](enable-tls#reconfigure-ceph-cluster-using-ceph-ansible)
+4. [Reconfigure Ceph Cluster using Ceph
+    Ansible](enable-tls#reconfigure-ceph-cluster-using-ceph-ansible)
 
-        1. [Procedure](enable-tls#procedure)
+    1. [Procedure](enable-tls#procedure)
 
 5. [Reference](enable-tls#reference)
 

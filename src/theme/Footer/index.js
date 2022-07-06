@@ -33,7 +33,6 @@ function FooterLink({to, href, label, prependBaseUrlToHref, ...props}) {
       {href && !isInternalUrl(href) ? (
         <span>
           {label}
-          <IconExternalLink />
         </span>
       ) : (
         label

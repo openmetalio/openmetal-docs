@@ -3,8 +3,8 @@ export default {
 		{
 			title: "Cloud Operators Manual - Zero to Production in 40 Hours",
 			description: "Key document for all IT teams that are managing their own Private Cloud.",
-			htmlPath: "/openmetal-docs/docs/operators-manual/",
-			pdfPath: "https://central.inmotionhosting.com/assets/docs/openstack_ops_manual.pdf",
+			htmlPath: "./docs/operators-manual/",
+			pdfPath: "https://inmotionhosting.github.io/static-assets/docs/openstack_ops_manual.pdf",
 			comingSoon: false,
 			manualName: 'Operator\'s Manual',
 			manualSlug: 'operators-manual',
@@ -14,7 +14,7 @@ export default {
 		{
 			title: "Cloud Operators Manual - Extras",
 			description: "Extra guides an OpenStack administrator may find interesting.",
-			htmlPath: "/openmetal-docs/docs/operators-manual-extras/",
+			htmlPath: "./docs/operators-manual-extras/",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'Operator\'s Manual Extras',
@@ -26,7 +26,7 @@ export default {
 			title: "IT Leadership Buyer's Guide",
 			description: "This guide provides a framework for this new technology that can increase competitiveness and lower costs.",
 			htmlPath: "",
-			pdfPath: "https://central.inmotionhosting.com/assets/docs/2021-IT-Leadership-Cloud-Buyers-Guide-by-InMotion-Cloud.pdf",
+			pdfPath: "https://inmotionhosting.github.io/static-assets/docs/2021-IT-Leadership-Cloud-Buyers-Guide-by-InMotion-Cloud.pdf",
 			comingSoon: false,
 			catagories: ['management'],
 		},
@@ -34,7 +34,7 @@ export default {
 			title: "Reduce Costs and Drive Innovation",
 			description: "The executive's guide to leveraging private clouds.",
 			htmlPath: "",
-			pdfPath: "https://central.inmotionhosting.com/assets/docs/Reduce-IT-Costs-and-Drive-Innovation-by-InMotion-Cloud.pdf",
+			pdfPath: "https://inmotionhosting.github.io/static-assets/docs/Reduce-IT-Costs-and-Drive-Innovation-by-InMotion-Cloud.pdf",
 			comingSoon: false,
 			catagories: ['management'],
 
@@ -42,7 +42,7 @@ export default {
 		{
 			title: "OpenStack Horizon Quick Start for Project Users",
 			description: "Helps new Project Users to self serve their Infrastructure.",
-			htmlPath: "/openmetal-docs/docs/users_manual/",
+			htmlPath: "./docs/users_manual/",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'User\'s Manual',
@@ -53,7 +53,7 @@ export default {
 		{
 			title: "Cloud Operators Manual Extended - Kubernetes on OpenStack",
 			description: "Learn how to use your OpenStack to run your Kubernetes deployments.",
-			htmlPath: "/openmetal-docs/docs/operators-manual-extras/magnum-and-kubernetes",
+			htmlPath: "./docs/operators-manual-extras/magnum-and-kubernetes",
 			pdfPath: "",
 			comingSoon: false,
 			catagories: ['users'],

@@ -116,8 +116,9 @@ step.
 
 **Step 3** -- List metrics for an instance
 
-With the instance UUID, use `openstack metric list -c resource_id -c
-name -c unit | grep <instance-uuid>` to list metrics.
+With the instance UUID, use
+`openstack metric list -c resource_id -c name -c unit | grep <instance-uuid>`
+to list metrics.
 
 For example:
 
@@ -138,8 +139,8 @@ are measured.
 
 This step demonstrates collecting the CPU usage for an instance.
 
-To collect CPU usage, use `openstack metric measures show
---resource-id=<instance-uuid> cpu`.
+To collect CPU usage, use
+`openstack metric measures show --resource-id=<instance-uuid> cpu`.
 
 For example:
 
