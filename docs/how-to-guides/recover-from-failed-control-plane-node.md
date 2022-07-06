@@ -1,7 +1,5 @@
 # How to Handle a Failed OpenStack Control Plane Node
 
-\[todo\] revise
-
 ## Introduction
 
 Private Cloud Core clouds come with three nodes comprising the core of
