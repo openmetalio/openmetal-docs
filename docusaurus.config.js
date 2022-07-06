@@ -8,8 +8,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Openmetal Docs',
   tagline: 'Openmetal On-Demand Private Cloud Documentation',
-  url: 'https://openmetalio.github.io',
-  baseUrl: '/docs/manuals/',
+  url: 'https://central.openmetal.io',
+  baseUrl: '/manuals/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -24,6 +24,8 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+          path: 'docs',
+          routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
         },
