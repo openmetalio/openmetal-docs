@@ -4,38 +4,57 @@
  * work well for content-centric websites.
  */
 
- @import '../css/index.css';
- @import url('https://fonts.googleapis.com/icon?family=Material+Icons|Montserrat:400:700:900');
+@import '../css/index.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons|Barlow:400:700|Montserrat:400:700:900');
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #267ab5;
-  --ifm-color-primary-dark: #226da2;
-  --ifm-color-primary-darker: #1e6190;
-  --ifm-color-primary-darkest: #133d5a;
-  --ifm-color-primary-light: #2b8acd;
-  --ifm-color-primary-lighter: #3e97d6;
-  --ifm-color-primary-lightest: #86bee5;
-  --ifm-code-font-size: 95%;
-  --ifm-font-family-base: 'Montserrat';
+	--ifm-color-primary: #267ab5;
+	--ifm-color-primary-dark: #226da2;
+	--ifm-color-primary-darker: #1e6190;
+	--ifm-color-primary-darkest: #133d5a;
+	--ifm-color-primary-light: #2b8acd;
+	--ifm-color-primary-lighter: #3e97d6;
+	--ifm-color-primary-lightest: #86bee5;
+
+	--ifm-color-accent: #898f95;
+	--ifm-color-accent-dark: #59626a;
+	--ifm-color-accent-darker: #36404a;
+	--ifm-color-accent-darkest: #121e2a;
+	--ifm-color-accent-light: #b8bcbf;
+	--ifm-color-accent-lighter: #e3e4e5;
+	--ifm-code-font-size: 95%;
+	--ifm-font-family-base: 'Montserrat';
+	--ifm-navbar-height: unset;
+
+	--ifm-font-family-heading: 'Barlow';
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.1);
-  display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+	background-color: rgba(0, 0, 0, 0.1);
+	display: block;
+	margin: 0 calc(-1 * var(--ifm-pre-padding));
+	padding: 0 var(--ifm-pre-padding);
 }
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--ifm-font-family-heading);
 }
 
 .material-icons {
 	font-family: 'Material Icons';
 	font-weight: normal;
 	font-style: normal;
-	font-size: 24px;  /* Preferred icon size */
+	font-size: 24px; /* Preferred icon size */
 	display: inline-block;
 	line-height: 1;
 	text-transform: none;
@@ -54,4 +73,127 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 	/* Support for IE. */
 	font-feature-settings: 'liga';
-  }
+}
+
+/*Navbar styles */
+.navbar {
+	padding-bottom: 0px;
+	flex-direction: column;
+	align-items: center;
+}
+.navbar__brand {
+	margin-right: 5rem;
+}
+
+.navbar__logo {
+	height: 2.5rem;
+	margin-bottom: 0.5rem;
+}
+.navbar-sidebar--show .navbar__logo {
+	margin-top: 1rem;
+}
+.navbar__items {
+	justify-content: center;
+	align-items: flex-end;
+}
+.navbar__link {
+	font-weight: bold;
+}
+.navbar__item {
+	border-bottom: solid 4px transparent;
+	padding: 0.5rem 1rem;
+	color: var(--ifm-color-accent-darker);
+	font-family: var(--ifm-font-family-heading);
+}
+.navbar__item:hover {
+	border-bottom: solid 4px var(--ifm-color-accent-dark);
+	color: var(--ifm-color-accent-darker);
+}
+.navbar__item:hover .dropdown_menu_container {
+	display: flex;
+}
+.navbar_top_row {
+	align-self: flex-end;
+	padding-top: 20px;
+	color: var(--ifm-color-primary);
+}
+.navbar_top_row .navbar__link {
+	color: var(--ifm-color-primary);
+}
+.navbar_top_row .navbar__item:hover {
+	border-bottom: solid 4px var(--ifm-color-primary);
+}
+.navbar__inner {
+	flex-direction: column;
+	width: fit-content;
+}
+.navbar__items navbar__items--right {
+	align-self: flex-end;
+}
+.navbar__toggle {
+	order: 2;
+	align-self: center;
+}
+.dropdown__menu {
+	padding: 0px;
+	position: relative;
+	display: flex;
+	width: 700px;
+	border-radius: unset;
+}
+.dropdown__menu .dropdown__link {
+	color: var(--ifm-color-primary);
+	text-decoration: none;
+	padding-left: 0px;
+	white-space: normal;
+	font-size: 1rem;
+}
+.dropdown__menu .dropdown__link:hover {
+	background-color: unset;
+}
+.dropdown_menu_container {
+	position: fixed;
+	display: none;
+	justify-content: center;
+	width: 100%;
+	min-height: 1px;
+	top: 119px;
+	left: 0px;
+}
+.dropdown_menu_left {
+	width: 50%;
+	padding: 1.5rem 2rem 2rem 1.5rem;
+}
+.dropdown_menu_right {
+	width: 50%;
+	background-color: lightgrey;
+	padding-top: 1.5rem;
+	padding-bottom: 2rem;
+}
+.dropdown_menu_right .dropdown__link,
+.dropdown_menu_right p {
+	padding-left: 1.5rem;
+	padding-right: 2rem;
+}
+.dropdown_menu_right .dropdown__link {
+	white-space: normal;
+}
+.dropdown > .navbar__link:after {
+	content: unset;
+}
+
+/* Footer Styles */
+.footer {
+	font-size: 0.9rem;
+}
+
+.footer__col {
+	width: 25%;
+	min-width: 25%;
+	max-width: 25%;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+.footer__link-item {
+	color: var(--ifm-color-primary);
+}
