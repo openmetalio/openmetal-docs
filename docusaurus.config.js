@@ -6,16 +6,15 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Openmetal Docs',
-  tagline: 'Openmetal On-Demand Private Cloud Documentation',
-//   url: 'https://docs.openmetal.io',
-  url: 'https://openmetalio.github.io',
-  baseUrl: '/docs/manual/',
+  title: 'OpenMetal Docs',
+  tagline: 'OpenMetal On-Demand Private Cloud Documentation',
+  url: 'https://central.openmetal.io',
+  baseUrl: '/docs/manuals/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'inmotionhosting', // Usually your GitHub org/user name.
+  organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
 
   presets: [
@@ -25,6 +24,8 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
+        //   path: 'docs',
+          routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
         },
@@ -56,14 +57,21 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      metadata: [
+        {name: 'twitter:site', content: '@openmetalio'},
+        {name: 'twitter:creator', content: '@openmetalio'}
+      ],
+      gtag: {
+        trackingID: 'UA-213530121-1',
+     },
       colorMode: {
         disableSwitch: true
       },
       navbar: {
         title: '',
         logo: {
-          alt: 'Openmetal',
-          src: 'img/openmetal.svg',
+          alt: 'OpenMetal',
+          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
           href: 'https://openmetal.io'
         },
         items: [
@@ -466,7 +474,7 @@ const config = {
         ],
         logo: {
           alt: 'Openmetal Logo',
-          src: 'img/openmetal.svg',
+          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
           width: 160,
           height: 51,
         },

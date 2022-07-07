@@ -76,58 +76,6 @@ function DropdownNavbarItemDesktop({items, position, className, ...props}) {
         }}>
         {props.children ?? props.label}
       </NavLink>
-      <div className="dropdown_menu_container">
-        <ul className="dropdown__menu">
-          <div className='dropdown_menu_left' >
-            <h2>{ props.header }</h2>
-            {items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => (
-              <div key={i}>
-                <NavbarItem
-                  isDropdownItem
-                  onKeyDown={(e) => {
-                    if (i === items.length - 1 && e.key === 'Tab') {
-                      e.preventDefault();
-                      setShowDropdown(false);
-                      const nextNavbarItem = dropdownRef.current.nextElementSibling;
-
-                      if (nextNavbarItem) {
-                        nextNavbarItem.focus();
-                      }
-                    }
-                  }}
-                  activeClassName={dropdownLinkActiveClass}
-                  {...childItemProps}
-                />
-                <p>{childItemProps.description}</p>
-              </div>
-            ))}
-          </div>
-          <div className='dropdown_menu_right' >
-            {items.filter((item) => { return item.itemType === 'article' }).map((childItemProps, i) => (
-              <div key={i}>
-                <img className='img-responsive' src={childItemProps.image_url}/>
-                <NavbarItem
-                  isDropdownItem
-                  onKeyDown={(e) => {
-                    if (i === items.length - 1 && e.key === 'Tab') {
-                      e.preventDefault();
-                      setShowDropdown(false);
-                      const nextNavbarItem = dropdownRef.current.nextElementSibling;
-
-                      if (nextNavbarItem) {
-                        nextNavbarItem.focus();
-                      }
-                    }
-                  }}
-                  activeClassName={dropdownLinkActiveClass}
-                  {...childItemProps}
-                />
-                <p>{childItemProps.description}</p>
-              </div>
-            ))}
-          </div>
-        </ul>
-      </div>
     </div>
   );
 }

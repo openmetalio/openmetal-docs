@@ -5,6 +5,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import data from '../data/index-data';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import { Link } from 'react-router-dom';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -35,8 +36,11 @@ function CategoryArticles( { category } ) {
 				<div className="documentation-item" key={index}>
 					<span className="material-icons">chevron_right</span>
 					<div>
-						{ ( documentation.htmlPath || documentation.pdfPath ) &&
-							<a className="title link"  target={(documentation.pdfPath !== '' && documentation.htmlPath === '') ? '_blank' : ''} href={documentation.htmlPath || documentation.pdfPath}>{documentation.title}</a>
+						{ ( documentation.pdfPath !== '' && documentation.htmlPath === '' ) &&
+								<a className="title link"  target={(documentation.pdfPath !== '' && documentation.htmlPath === '') ? '_blank' : ''} href={documentation.htmlPath || documentation.pdfPath}>{documentation.title}</a>
+						 }
+						{ ( documentation.htmlPath !== '' ) &&
+							<Link className="title link" to={documentation.htmlPath}>{documentation.title}</Link>
 						 }
 						{ ! ( documentation.htmlPath || documentation.pdfPath ) &&
 						<div className="title">
