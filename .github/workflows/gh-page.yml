@@ -14,9 +14,17 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: Build website
+
+      - name: Install Dependencies
         run: |
           yarn install --frozen-lockfile
+
+      - name: Lint Files
+        run: |
+          yarn lint
+
+      - name: Build Site
+        run: |
           yarn build
 
       # Popular action to deploy to GitHub Pages:
