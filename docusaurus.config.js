@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'OpenMetal Docs',
   tagline: 'OpenMetal On-Demand Private Cloud Documentation',
-  url: 'https://central.openmetal.io',
+  url: 'https://openmetal.io',
   baseUrl: '/docs/manuals/',
 //   onBrokenLinks: 'throw',
   onBrokenLinks: 'warn',
@@ -24,7 +24,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-        //   path: 'docs',
           routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
@@ -32,6 +31,9 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'UA-213530121-1',
+        }
       }),
     ],
   ],
@@ -61,9 +63,6 @@ const config = {
         {name: 'twitter:site', content: '@openmetalio'},
         {name: 'twitter:creator', content: '@openmetalio'}
       ],
-      gtag: {
-        trackingID: 'UA-213530121-1',
-     },
       colorMode: {
         disableSwitch: true
       },
@@ -424,7 +423,7 @@ const config = {
                 href: 'https://openmetal.io/docs/product-guides/private-cloud/',
               },
               {
-                label: 'Product Release Updatess',
+                label: 'Product Release Updates',
                 href: 'https://openmetal.io/docs/releases/',
               },
             ],

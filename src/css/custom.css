@@ -169,7 +169,7 @@ h6 {
 	min-height: 1px;
 	top: 133px;
 	left: 0;
-	width: 100vw;
+	width: calc(100vw - 20px);
 }
 .dropdown_menu_left {
 	width: 50%;

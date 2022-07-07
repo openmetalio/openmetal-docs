@@ -1,3 +1,10 @@
+# Docs
+This repository builds the documentation found here: https://openmetal.io/docs/manuals
+
+# Contributing
+All documentation exists within the `docs/` directory. Simply create or update the markdown files, and the documentation site will be updated after the changes have been merged into main.
+
+
 # Website
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern
