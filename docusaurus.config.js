@@ -423,7 +423,7 @@ const config = {
                 href: 'https://openmetal.io/docs/product-guides/private-cloud/',
               },
               {
-                label: 'Product Release Updatess',
+                label: 'Product Release Updates',
                 href: 'https://openmetal.io/docs/releases/',
               },
             ],
