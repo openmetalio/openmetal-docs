@@ -218,10 +218,12 @@ function Navbar() {
   const items = useNavbarItems();
   const hasSearchNavbarItem = items.some((item) => item.type === 'search');
   const {leftItems, rightItems} = splitNavItemsByPosition(items);
+
+
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', 'navbar--fixed-top', {
+      className={clsx('navbar', {
         'navbar--dark': style === 'dark',
         'navbar--primary': style === 'primary',
         'navbar-sidebar--show': mobileSidebar.shown,
@@ -253,7 +255,10 @@ function Navbar() {
             titleClassName="navbar__title"
           />
           {leftItems.map((item, i) => (
-            <NavbarItem {...item} key={i} />
+            <div className='custom-navbar-item-dropdown' key={i} >
+              <NavbarItem {...item}/>
+              { item.type === 'dropdown' ? renderDropDownItems(item) : '' }
+            </div>
           ))}
         </div>
         <div className="navbar__items navbar__items--right">
@@ -287,4 +292,61 @@ function Navbar() {
   );
 }
 
+function renderDropDownItems(item) {
+  const dropdownLinkActiveClass = 'dropdown__link--active';
+  return (
+    <div className="dropdown_menu_container">
+    <ul className="dropdown__menu">
+      <div className='dropdown_menu_left' >
+        <h2>{ item.header }</h2>
+        {item.items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => (
+          <div key={i}>
+            <NavbarItem
+              isDropdownItem
+              onKeyDown={(e) => {
+                if (i === items.length - 1 && e.key === 'Tab') {
+                  e.preventDefault();
+                  setShowDropdown(false);
+                  const nextNavbarItem = dropdownRef.current.nextElementSibling;
+
+                  if (nextNavbarItem) {
+                    nextNavbarItem.focus();
+                  }
+                }
+              }}
+              activeClassName={dropdownLinkActiveClass}
+              {...childItemProps}
+            />
+            <p>{childItemProps.description}</p>
+          </div>
+        ))}
+      </div>
+      <div className='dropdown_menu_right' >
+        {item.items.filter((item) => { return item.itemType === 'article' }).map((childItemProps, i) => (
+          <div key={i}>
+            <img className='img-responsive' src={childItemProps.image_url}/>
+            <NavbarItem
+              isDropdownItem
+              onKeyDown={(e) => {
+                if (i === items.length - 1 && e.key === 'Tab') {
+                  e.preventDefault();
+                  setShowDropdown(false);
+                  const nextNavbarItem = dropdownRef.current.nextElementSibling;
+
+                  if (nextNavbarItem) {
+                    nextNavbarItem.focus();
+                  }
+                }
+              }}
+              activeClassName={dropdownLinkActiveClass}
+              {...childItemProps}
+            />
+            <p>{childItemProps.description}</p>
+          </div>
+        ))}
+      </div>
+    </ul>
+  </div>
+  );
+}
 export default Navbar;
