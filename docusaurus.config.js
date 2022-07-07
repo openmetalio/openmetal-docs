@@ -31,6 +31,9 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'UA-213530121-1',
+        }
       }),
     ],
   ],
@@ -60,9 +63,6 @@ const config = {
         {name: 'twitter:site', content: '@openmetalio'},
         {name: 'twitter:creator', content: '@openmetalio'}
       ],
-      gtag: {
-        trackingID: 'UA-213530121-1',
-     },
       colorMode: {
         disableSwitch: true
       },
