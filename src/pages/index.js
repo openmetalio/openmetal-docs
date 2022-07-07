@@ -108,15 +108,6 @@ function Categories() {
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
 
-	// Redirect to openmetal docs if not on the docs site using browser only
-	<BrowserOnly> {
-		() => {
-			if ( window.location.hostname === 'openmetalio.github.io' ) {
-				window.location.href = 'https://central.openmetal.io/docs/manuals/';
-			}
-		}
-	} </BrowserOnly>
-
   return (
     <Layout
       title={`${siteConfig.title}`}
