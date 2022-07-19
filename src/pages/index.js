@@ -73,7 +73,7 @@ function Categories() {
 					<h3>Cloud Administrators</h3>
 				</div>
 				<div className="desc">
-					Learn how to integrate Flex Metal into an existing infrastructure or create a new one.
+					Learn how to integrate Open Metal into an existing infrastructure or create a new one.
 				</div>
 				<div>
 				<CategoryArticles category="admin" />
@@ -84,7 +84,7 @@ function Categories() {
 					<h3>Cloud Users</h3>
 				</div>
 				<div className="desc">
-					Guides and tutorials to help users on getting started with Flex Metal and Openstack management.
+					Guides and tutorials to help users on getting started with Open Metal and Openstack management.
 				</div>
 				<div>
 				<CategoryArticles category="users" />
@@ -95,7 +95,7 @@ function Categories() {
 					<h3>General Management</h3>
 				</div>
 				<div className="desc">
-					Resources that can show how Flex Metal can improve your scalability at reduced costs of public clouds.
+					Resources that can show how Open Metal can improve your scalability at reduced costs of public clouds.
 				</div>
 				<div>
 					<CategoryArticles category="management" />
