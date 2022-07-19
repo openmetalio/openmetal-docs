@@ -12,8 +12,8 @@ export default {
 			catagories: ['admin'],
 		},
 		{
-			title: "Cloud Operators Manual - Extras",
-			description: "Extra guides an OpenStack administrator may find interesting.",
+			title: "Tutorials",
+			description: "Tutorials for OpenStack administrators.",
 			htmlPath: "/docs/manuals/operators-manual-extras/",
 			pdfPath: "",
 			comingSoon: false,
