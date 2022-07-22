@@ -1,3 +1,7 @@
+---
+slug: tutorials
+---
+
 # Tutorials
 
 Welcome to our tutorials for the OpenMetal cloud product line! Contained within are
