@@ -73,7 +73,7 @@ writes, consider using a compute only node, where instances can be spun
 up on local, LVM-backed storage.
 
 For more, see [Spin up an Instance with Ephemeral
-Storage](https://central.openmetal.io/documentation/operators-manual-extras/spin-up-an-instance-with-ephemeral-storage).
+Storage](https://openmetal.io/docs/manuals/tutorials/ephemeral_storage).
 
 ## Ceph Version Used by Private Clouds
 
