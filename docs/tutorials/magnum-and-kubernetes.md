@@ -19,24 +19,19 @@ cluster can be created.
 ## Magnum Deployment Details
 
 With Private Cloud Core OpenStack clouds, the deployment of Magnum
-integrates with the [Kubernetes Openstack Cloud
-Provider](https://github.com/kubernetes/cloud-provider-openstack).
+integrates with the [Kubernetes Openstack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
 Presently,
 [release-1.18](https://github.com/kubernetes/cloud-provider-openstack/tree/release-1.18)
 of this repository is used.
 
 The following items have been integrated:
 
-- [OpenStack Cloud Controller
-    Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-openstack-cloud-controller-manager)
-- [Octavia Ingress
-    Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
-- [Cinder CSI
-    Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin)
+- [OpenStack Cloud Controller Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-openstack-cloud-controller-manager)
+- [Octavia Ingress Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
+- [Cinder CSI Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin)
 
-For an example of how to set up load balancing, see [Setting up HTTP
-Load Balancing with
-Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#setting-up-http-load-balancing-with-ingress).
+For an example of how to set up load balancing, see
+[Setting up HTTP Load Balancing with Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller#setting-up-http-load-balancing-with-ingress).
 
 ## Prerequisites
 

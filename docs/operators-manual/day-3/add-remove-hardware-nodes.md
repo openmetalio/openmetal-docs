@@ -10,43 +10,6 @@ hardware nodes for your cloud. Next we cover how to add nodes, which
 types of nodes you can add, and the process for removing nodes from your
 cloud.
 
-## Table of Contents
-
-1. [Cloud Hardware
-    Selection](add-remove-hardware-nodes#cloud-hardware-selection)
-
-    1. [Types of Private
-        Clouds](add-remove-hardware-nodes#types-of-private-clouds)
-    2. [Types of
-        Nodes](add-remove-hardware-nodes#types-of-nodes)
-    3. [The Benefit of Homogeneous
-        Clouds](add-remove-hardware-nodes#the-benefit-of-homogeneous-clouds)
-
-2. [Adding Hardware Nodes to a
-    Cloud](add-remove-hardware-nodes#adding-hardware-nodes-to-a-cloud)
-
-    1. [How to add a Hardware
-        Node](add-remove-hardware-nodes#how-to-add-a-hardware-node)
-
-        1. [Navigate in OpenMetal Central to Cloud Assets
-            Page](add-remove-hardware-nodes#navigate-in-openmetal-central-to-cloud-assets-page)
-        2. [View Hardware Node
-            Types](add-remove-hardware-nodes#view-hardware-node-types)
-        3. [Confirm Hardware Node
-            Addition](add-remove-hardware-nodes#confirm-hardware-node-addition)
-        4. [Verify Hardware Addition
-            Success](add-remove-hardware-nodes#verify-hardware-addition-success)
-
-3. [Removing Hardware Nodes from a
-    Cloud](add-remove-hardware-nodes#removing-hardware-nodes-from-a-cloud)
-
-    1. [Consider Before
-        Removing](add-remove-hardware-nodes#consider-before-removing)
-    2. [Initial
-        Preparation](add-remove-hardware-nodes#initial-preparation)
-    3. [How to Remove a Hardware Node from a
-        Cloud](add-remove-hardware-nodes#how-to-remove-a-hardware-node-from-a-cloud)
-
 ## Cloud Hardware Selection
 
 In this section we outline the types of clouds offered, the types of

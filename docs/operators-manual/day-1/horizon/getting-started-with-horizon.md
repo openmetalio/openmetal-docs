@@ -7,22 +7,6 @@ dashboard. It is accessible through a web browser and allows a user to
 interact with the cloud. As an administrator, most of the cloud can be
 managed this way.
 
-## Table of Contents
-
-1. [How to Log in to Horizon](getting-started-with-horizon#how-to-log-in-to-horizon)
-
-    1. [Log in to OpenMetal Central](getting-started-with-horizon#step-1-log-in-to-openmetal-central)
-
-    2. [Navigate to Cloud's Details Page](getting-started-with-horizon#step-2-navigate-to-cloud-s-details-page)
-
-    3. [Load Horizon URL](getting-started-with-horizon#step-3-load-horizon-url)
-
-    4. [SSH into a Hardware Node, Obtain Horizon Password](getting-started-with-horizon#step-4-ssh-into-a-hardware-node-obtain-horizon-password)
-
-        1. [Requirements to SSH into a node](getting-started-with-horizon#requirements-to-ssh-into-a-node)
-
-    5. [Log in to Horizon](getting-started-with-horizon#step-5-log-in-to-horizon)
-
 ## How to Log in to Horizon
 
 The Horizon administrator password is present in a file within the cloud

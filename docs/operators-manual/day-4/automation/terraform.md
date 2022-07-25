@@ -9,42 +9,6 @@ cloud's infrastructure as code can then be shared and iterated over as
 needed. In this guide, we demonstrate how to use Terraform to spin up an
 instance within a OpenMetal Private Cloud.
 
-## Table of Contents
-
-1. [Prerequisites](terraform#prerequisites)
-
-2. [How to Create an Instance Using
-    Terraform](terraform#how-to-create-an-instance-using-terraform)
-
-    1. [Prepare Terraform
-        Directory](terraform#step-1-prepare-terraform-directory)
-
-    2. [Specify Terraform
-        Provider](terraform#step-2-specify-terraform-provider)
-
-    3. [Initialize
-        Terraform](terraform#step-3-initialize-terraform)
-
-    4. [Create OpenStack Application
-        Credentials](terraform#step-4-create-openstack-application-credentials)
-
-    5. [Create Main Terraform
-        File](terraform#step-5-create-main-terraform-file)
-
-        1. [Configure OpenStack
-            Provider](terraform#configure-openstack-provider)
-        2. [Configure Compute
-            Resource](terraform#configure-compute-resource)
-
-    6. [Create Terraform
-        Plan](terraform#step-6-create-terraform-plan)
-
-    7. [Deploy Terraform
-        Plan](terraform#step-7-deploy-terraform-plan)
-
-3. [View Instance Created by
-    Terraform](terraform#view-instance-created-by-terraform)
-
 ## Prerequisites
 
 - An OpenStack user account. The account does not have to have the

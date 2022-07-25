@@ -7,21 +7,6 @@ obtain an overview of your Private Cloud. Next, we detail where to view
 the assets that comprise your cloud, point you to existing
 documentation, and how to submit and view support requests.
 
-## Table of Contents
-
-1. [A Brief Overview of your OpenMetal Private
-    Cloud](intro-to-openmetal-private-cloud#a-brief-overview-of-your-openmetal-private-cloud)
-
-2. [How to View your Hardware
-    Assets](intro-to-openmetal-private-cloud#how-to-view-your-hardware-assets)
-
-3. [How to Get Support](intro-to-openmetal-private-cloud#how-to-get-support)
-
-    1. [How to Access OpenMetal
-        Documentation](intro-to-openmetal-private-cloud#how-to-access-openmetal-documentation)
-    2. [How to Submit a Support
-        Ticket](intro-to-openmetal-private-cloud#how-to-submit-a-support-ticket)
-
 ## A Brief Overview of Your OpenMetal Private Cloud
 
 OpenMetal Private Clouds are deployed with OpenStack to three bare metal

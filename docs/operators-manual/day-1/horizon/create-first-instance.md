@@ -11,42 +11,6 @@ up a private network and router, creating a security group, and how to
 add an SSH key pair. Then, we explain how to create an instance using
 Horizon.
 
-## Table of Contents
-
-1. [Networking](create-first-instance#networking)
-
-    1. [Create a Private
-        Network](create-first-instance#create-a-private-network)
-
-    2. [Create a
-        Router](create-first-instance#create-a-router)
-
-        1. [Connect Router to Private
-            Network](create-first-instance#connect-router-to-private-network)
-        2. [View Network
-            Topology](create-first-instance#view-network-topology)
-
-    3. [Security
-        Groups](create-first-instance#security-groups)
-
-        1. [Create an SSH Security
-            Group](create-first-instance#create-an-ssh-security-group)
-        2. [Add Rule to SSH Security
-            Group](create-first-instance#add-rule-to-ssh-security-group)
-
-2. [How to Create your First
-    Instance](create-first-instance#how-to-create-your-first-instance)
-
-    1. [Prerequisites](create-first-instance#prerequisites)
-
-    2. [Create your First
-        Instance](create-first-instance#create-your-first-instance)
-
-        1. [SSH Public
-            Key](create-first-instance#ssh-public-key)
-        2. [Operating System
-            Image](create-first-instance#operating-system-image)
-
 ## Networking
 
 In this section, we explain how to create a private network and router.

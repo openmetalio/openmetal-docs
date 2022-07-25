@@ -13,16 +13,6 @@ images can be created out of snapshots of instances. This guide will
 walk you through how to upload images to Glance through Horizon and how
 to create an image from an instance snapshot.
 
-## Table of Contents
-
-1. [Managing
-    Images](images#managing-images)
-2. [Uploading
-    Images](images#uploading-images)
-3. [Create Images from Running
-    Instances](images#create-images-from-running-instances)
-4. [Reference](images#reference)
-
 ## Managing Images
 
 The primary tool for managing images is OpenStack's Glance service.

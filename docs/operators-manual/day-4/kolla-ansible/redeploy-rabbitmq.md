@@ -7,18 +7,6 @@ RabbitMQ cluster by redeploying the service using Kolla Ansible. In this
 guide, we explain how to redeploy a private cloud's RabbitMQ cluster
 using Kolla Ansible.
 
-## Table of Contents
-
-1. [Prerequisites](redeploy-rabbitmq#prerequisites)
-
-    1. [Prepare Kolla
-        Ansible](redeploy-rabbitmq#prepare-kolla-ansible)
-    2. [Root Access to OpenStack Control
-        Plane](redeploy-rabbitmq#root-access-to-openstack-control-plane)
-
-2. [How to Redeploy
-    RabbitMQ](redeploy-rabbitmq#how-to-redeploy-rabbitmq)
-
 ## Prerequisites
 
 ### Prepare Kolla Ansible

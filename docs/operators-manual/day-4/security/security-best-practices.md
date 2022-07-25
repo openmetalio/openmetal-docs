@@ -12,44 +12,6 @@ security through reduced privileges. Finally, additional documentation
 is provided for the OpenStack Security Center for analysis on current
 threats.
 
-## Table of Contents
-
-1. [Principle of Least
-    Privilege](security-best-practices#principle-of-least-privilege)
-
-    1. [Roles](security-best-practices#roles)
-
-    2. [Users, Groups, and
-        Projects](security-best-practices#users-groups-and-projects)
-
-        1. [Users](security-best-practices#users)
-        2. [Groups](security-best-practices#groups)
-        3. [Projects](security-best-practices#projects)
-
-2. [Updating
-    Software](security-best-practices#updating-software)
-
-    1. [Update Individual
-        Instances](security-best-practices#update-individual-instances)
-    2. [Update Operating System
-        Images](security-best-practices#update-operating-system-images)
-    3. [Update Kolla Ansible
-        Images](security-best-practices#update-kolla-ansible-images)
-    4. [Update Control Plane
-        Nodes](security-best-practices#update-control-plane-nodes)
-
-3. [Enabling
-    TLS](security-best-practices#enabling-tls)
-
-4. [Security
-    Groups](security-best-practices#security-groups)
-
-5. [SSH
-    Authentication](security-best-practices#ssh-authentication)
-
-6. [Additional
-    Documentation](security-best-practices#additional-documentation)
-
 ## Principle of Least Privilege
 
 The philosophy around the principle of least privilege is a user account

@@ -10,14 +10,6 @@ migration process. This process is useful when applications need to
 remain running and shutting down an instance is not possible or
 advantageous.
 
-## Table of Contents
-
-1. [Prerequisite](live-migrate-instances#prerequisite)
-2. [Determining an Instance's Parent
-    Host](live-migrate-instances#determining-an-instance-s-parent-host)
-3. [Migrate
-    Instance](live-migrate-instances#migrate-instance)
-
 ## Prerequisite
 
 Live migrating instances requires having a user account with the

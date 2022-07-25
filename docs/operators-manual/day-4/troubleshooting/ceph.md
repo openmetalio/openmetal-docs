@@ -7,34 +7,6 @@ your Private Cloud's Ceph cluster. A goal of this guide is to collect
 common troubleshooting scenarios and outline a method of addressing
 them.
 
-## Table of Contents
-
-1. [Prerequisites](ceph#prerequisites)
-
-    1. [Root Access to OpenStack Control
-        Plane](ceph#root-access-to-openstack-control-plane)
-
-2. [Get Ceph's
-    Status](ceph#get-ceph-s-status)
-
-3. [Ceph Log
-    Files](ceph#ceph-log-files)
-
-4. [Common
-    Issues](ceph#common-issues)
-
-    1. [Clock
-        Skew](ceph#clock-skew)
-
-        1. [Confirm Ceph's
-            Health](ceph#confirm-ceph-s-health)
-        2. [Examine Chrony
-            Logs](ceph#examine-chrony-logs)
-        3. [Addressing Clock
-            Skew](ceph#addressing-clock-skew)
-
-5. [References](ceph#reference)
-
 ## Prerequisites
 
 ### Root Access to OpenStack Control Plane

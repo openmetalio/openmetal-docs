@@ -18,15 +18,6 @@ through a support ticket. We are aware of the inflexibility of the
 deployment system and are working to produce a more flexible system that
 allows for custom configuration changes.
 
-## Table of Contents
-
-1. [Getting
-    Started](add-provider-ips#getting-started)
-2. [Confirm new Provider Block
-    Addition](add-provider-ips#confirm-new-provider-block-addition)
-3. [How are the new Provider Block IPs
-    Used?](add-provider-ips#how-are-the-new-provider-block-ips-used)
-
 ## Getting Started
 
 To add the IP block you need to reach out to your Account Manager who
