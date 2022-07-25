@@ -81,8 +81,7 @@ For example:
     $ vi ~/.config/openstack/clouds.yaml
 
 **Note** -- The `clouds.yaml` file can be placed in several locations.
-For more see the [Configuration
-Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
+For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
 heading of OpenStack Victoria's documentation.
 
 Next, copy the contents of your OpenStack RC file, in our case called
@@ -140,7 +139,18 @@ Install OpenStackClient using:
 
     pip install python-openstackclient
 
-**Step 6**: List servers associated with your project
+**Step 6**: Activate User Authentication
+
+The previously created openrc file is now used to set environment variables
+related to authentication.
+
+For example:
+
+    $ source ~/Development-openrc.sh 
+    Please enter your OpenStack Password for project Development as user dev-user:
+
+
+**Step 7**: List servers associated with your project
 
 For an initial command, list the servers associated with your project by
 running `openstack server list`.
