@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Maintaining OpenStack Software Updates
 
 ## Introduction

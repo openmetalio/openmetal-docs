@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Add or Remove OpenStack Hardware Nodes
 
 ## Introduction

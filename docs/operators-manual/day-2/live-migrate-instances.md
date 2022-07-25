@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # How to Live Migrate Instances Using OpenStack Horizon
 
 ## Introduction

@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # OpenStack Disaster Planning, Testing, and Recovery
 
 ## Introduction

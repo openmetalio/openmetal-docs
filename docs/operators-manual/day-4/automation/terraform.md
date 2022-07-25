@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # Launch an OpenStack Instance Automatically with HashiCorp Terraform
 
 ## Introduction

@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Introduction to OpenMetal Central and Your Private Cloud Core
 
 ## Introduction
@@ -16,8 +19,7 @@ Clouds are deployed with Ceph, providing your cloud with shared storage.
 
 ## How to View Your Hardware Assets
 
-To view your assets, log in to the homepage for [OpenMetal
-Central](https://central.openmetal.io).
+To view your assets, log in to the homepage for [OpenMetal Central](https://central.openmetal.io).
 
 ![image](images/fmc-login-page.png)
 
@@ -27,7 +29,7 @@ Figure 2 is the Homepage for OpenMetal Central. The Homepage provides
 access to your Cloud Management Dashboard. Click on the link **Manage**
 to access your Cloud Management Dashboard.
 
-![image](images/fmc-homepage.png)
+![image](images/omc-homepage.png)
 
 **Figure 2:** OpenMetal Central Homepage
 

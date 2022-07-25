@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # Troubleshooting a Private Cloud's Ceph Cluster
 
 ## Introduction

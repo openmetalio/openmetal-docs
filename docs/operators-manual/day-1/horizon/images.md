@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # Manage and Upload Images in OpenStack Horizon
 
 ## Introduction

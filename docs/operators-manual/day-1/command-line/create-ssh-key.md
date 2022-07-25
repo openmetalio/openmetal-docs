@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # Create SSH Key Pair for an OpenStack Control Plane Node
 
 ## Introduction

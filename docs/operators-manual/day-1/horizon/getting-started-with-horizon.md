@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Getting Started with OpenStack Horizon
 
 ## Introduction
@@ -15,10 +18,10 @@ password.
 
 ### Step 1: Log in to OpenMetal Central
 
-To get started, navigate to [OpenMetal
-Central](https://central.openmetal.io/) and log in.
+To get started, navigate to [OpenMetal Central](https://central.openmetal.io/)
+and log in.
 
-![image](images/openmetal-central.png)
+![OpenMetal Central Login](images/openmetal-central.png)
 
 **Figure 1:** OpenMetal Central Login Page
 
@@ -27,20 +30,33 @@ Central](https://central.openmetal.io/) and log in.
 Click **Manage** to the right for the cloud you're working with to load
 this cloud's details page.
 
-![image](images/manage-cloud.png)
+![Manage Cloud](images/manage-cloud.png)
 
 **Figure 2:** Cloud List
 
 ### Step 3: Load Horizon URL
 
-Next, navigate to the **Horizon** link within the left sidebar located
-as the last item in the list.
+Next, navigate to the **Horizon** link within the left sidebar, or the
+**Launch Horizon** button under Cloud Management Dashboard.
 
-![image](images/horizon-url.png)
+![Access horizon](images/horizon-url.png)
 
 **Figure 3:** Horizon URL Location
 
-### Step 4: SSH into a Hardware Node, Obtain Horizon Password
+### Step 4a: Obtain Horizon Password
+
+You can obtain the admin user password for your clouds Horizon using the
+**show password** button under **Access Details**.
+
+![Show password](images/show-password.png)
+
+**Figure 4a:** Retrieve Password
+
+You can also manually retrieve the Horizon password from the hardware node
+manually, this method is detailed in **Step 4b**, If you wish to jump right in
+proceed to **Step 5**.
+
+#### Step 4b: Obtain Horizon Password Via SSH
 
 During cloud creation, your SSH public key was added to each hardware
 node. With this key, you are able to log in as root using SSH. To SSH
@@ -48,9 +64,9 @@ in, ensure you have one node's IP address and the private key on the
 system you use to access your cloud. To find your cloud's hardware node
 IP addresses, click **Assets** on the cloud's details page.
 
-![image](images/assets-page.png)
+![Assets page](images/assets-page.png)
 
-**Figure 4:** Assets Page
+**Figure 4b:** Assets Page
 
 The IP address for each node is listed under the **Public IP** column.
 You can SSH into any of the nodes for this step. Select an IP from this
@@ -87,13 +103,13 @@ You can now log in to Horizon using the credentials obtained from the
 previous section. The username for the Horizon administrator account is
 **admin**.
 
-![image](images/horizon-log-in.png)
+![Horizon login](images/horizon-log-in.png)
 
 **Figure 5:** Horizon Login Page
 
 When you log in to Horizon, your dashboard appears similar to the
 following:
 
-![image](images/horizon-initial-log-in.png)
+![Successful login](images/horizon-initial-log-in.png)
 
 **Figure 6:** Horizon Dashboard

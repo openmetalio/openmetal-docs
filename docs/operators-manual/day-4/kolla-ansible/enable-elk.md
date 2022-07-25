@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # How to Enable Elasticsearch and Kibana using Kolla Ansible
 
 ## Introduction

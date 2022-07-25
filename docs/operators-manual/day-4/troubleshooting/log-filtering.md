@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Guidelines for Searching through OpenStack Logs
 
 ## Introduction

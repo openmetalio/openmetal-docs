@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # How to Add Additional Provider IP Blocks
 
 ## Introduction

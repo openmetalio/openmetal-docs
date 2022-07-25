@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # How to Check Ceph's Status and Disk Usage
 
 ## Introduction

@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # How to Redeploy OpenStack's RabbitMQ Cluster using Kolla Ansible
 
 ## Introduction

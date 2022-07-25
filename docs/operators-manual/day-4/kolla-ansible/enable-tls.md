@@ -1,3 +1,6 @@
+---
+sidebar_position: 2
+---
 # How to Enable TLS for OpenStack using Kolla Ansible
 
 ## Introduction

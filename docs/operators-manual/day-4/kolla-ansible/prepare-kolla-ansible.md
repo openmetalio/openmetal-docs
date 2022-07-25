@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Prepare and Use Kolla Ansible
 
 ## Introduction

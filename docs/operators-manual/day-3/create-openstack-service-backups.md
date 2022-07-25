@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # How to Copy and Restore OpenStack Service Databases and Configuration
 
 ## Introduction
