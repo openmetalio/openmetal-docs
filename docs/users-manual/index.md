@@ -18,8 +18,7 @@ into two categories.
 
 ### Horizon Guides
 
-1. [How to Get Started with
-    OpenStack](getting_started_with_openstack)
+1. [How to Get Started with OpenStack](getting_started_with_openstack)
 2. [Networking in OpenStack](network_ip_traffic)
 3. [Working with Images](using_creating_images)
 4. [How to Create an Instance](create_an_instance)
@@ -29,7 +28,6 @@ into two categories.
 
 1. [Introduction to OpenStackClient](openstackclient)
 2. [Create a Network](network_ip_traffic_cli)
-3. [Manage OpenStack
-    Images](using_creating_images_cli)
+3. [Manage OpenStack Images](using_creating_images_cli)
 4. [Create an Instance](create_an_instance_cli)
 5. [Managing Backups in OpenStack](backups_cli)

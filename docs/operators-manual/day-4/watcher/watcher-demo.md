@@ -13,35 +13,6 @@ number of pre-defined goals Watcher can help accomplish. In this guide,
 we use demonstrate using a pre-defined Watcher goal to consolidate a
 cloud's workload.
 
-## Table of Contents
-
-1. [Use Watcher to Consolidate your Cloud's
-    Workload](watcher-demo#use-watcher-to-consolidate-your-cloud's-workload)
-
-    1. [Cloud State Before Watcher is
-        Applied](watcher-demo#cloud-state-before-watcher-is-applied)
-
-    2. [How to use Watcher's VM Workload Consolidation
-        Strategy](watcher-demo#how-to-use-watcher-s-vm-workload-consolidation-strategy)
-
-        1. [Obtain List of
-            Goals](watcher-demo#step-1-obtain-list-of-goals)
-        2. [List Strategies Available for a
-            Goal](watcher-demo#step-2-list-strategies-available-for-a-goal)
-        3. [Create Audit
-            Template](watcher-demo#step-3-create-audit-template)
-        4. [Execute
-            Audit](watcher-demo#step-4-execute-audit)
-        5. [Retrieve Action
-            Plan](watcher-demo#step-5-retrieve-action-plan)
-        6. [Review Action
-            Plan](watcher-demo#step-6-review-action-plan)
-        7. [Execute Action
-            Plan](watcher-demo#step-7-execute-action-plan)
-
-    3. [Cloud State After Watcher is
-        Applied](watcher-demo#cloud-state-after-watcher-is-applied)
-
 ## Use Watcher to Consolidate your Cloud's Workload
 
 This section demonstrates use of Watcher's [VM Workload Consolidation

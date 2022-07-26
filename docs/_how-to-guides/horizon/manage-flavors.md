@@ -7,27 +7,6 @@ allocated to an instance. Flavors are managed by an administrative user.
 Further control is available by setting metadata for a flavor. In this
 guide, we outline how to manage flavors in your Private Cloud.
 
-## Table of Contents
-
-1. [Prerequisite](manage-flavors#prerequisite)
-
-2. [How to Create a
-    Flavor](manage-flavors#how-to-create-a-flavor)
-
-3. - [Update Flavor
-        Metadata](manage-flavors#update-flavor-metadata)
-
-        1. [How to Update Flavor
-            Metadata](manage-flavors#how-to-update-flavor-metadata)
-
-4. - [Deleting a
-        Flavor](manage-flavors#deleting-a-flavor)
-
-        1. [How to Delete a
-            Flavor](manage-flavors#how-to-delete-a-flavor)
-
-5. [References](manage-flavors#references)
-
 ## Prerequisite
 
 You must use an OpenStack administrator account. By default, this is the

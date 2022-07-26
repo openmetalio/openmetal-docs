@@ -23,14 +23,6 @@ be created.
 
 -----
 
-## **Table of Contents**
-
-1. [Create a Network and
-    Router](network_ip_traffic#create-a-network-and-router)
-2. [Floating IPs](network_ip_traffic#floating-ips)
-
------
-
 ## **Create a network and router**
 
 This section demonstrates creating a private network and router. The

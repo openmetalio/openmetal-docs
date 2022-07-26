@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Create a Load Balancer
 
 Load Balancing in OpenStack is made possible by the

@@ -1,19 +1,5 @@
 # Manage Node Firewall Using iptables
 
-- [Manage Node Firewall Using
-    iptables](#manage-node-firewall-using-iptables)
-  - [Use Case](#use-case)
-  - [Goal](#goal)
-  - [Prerequisites](#prerequisites)
-    - [Identify Active Firewall
-            Driver](#identify-active-firewall-driver)
-    - [Reconfigure Firewall Driver with Kolla
-            Ansible](#reconfigure-firewall-driver-with-kolla-ansible)
-  - [Install and Configure
-        Firewall](#install-and-configure-firewall)
-    - [Install ipset and iptables](#install-ipset-and-iptables)
-    - [Configure Services](#configure-services)
-
 ## Use Case
 
 In cases where access restriction and attack surface reduction is key,

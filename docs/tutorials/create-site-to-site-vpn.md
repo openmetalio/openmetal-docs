@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # Create a Site-to-Site VPN Connection with Endpoint Groups
 
 Neutron provides Site-to-Site IPsec VPN through VPN as a Service (VPNaaS).

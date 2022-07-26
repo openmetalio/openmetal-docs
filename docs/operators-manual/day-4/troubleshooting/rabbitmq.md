@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Troubleshooting RabbitMQ
 
 ## Introduction
@@ -9,20 +12,6 @@ function as expected. If requests in Horizon are not completing as
 before, or seem to get stuck, you may have an issue with RabbitMQ. In
 this guide, we explain symptoms of a RabbitMQ issue and generally how to
 address them.
-
-## Table of Contents
-
-1. [Prerequisites](rabbitmq#prerequisites)
-2. [Symptoms of a RabbitMQ
-    Problem](rabbitmq#symptoms-of-a-rabbitmq-problem)
-3. [How Check your RabbitMQ Cluster's
-    Status](rabbitmq#how-check-your-rabbitmq-cluster-s-status)
-4. [List RabbitMQ
-    Queues](rabbitmq#list-rabbitmq-queues)
-5. [Addressing Network
-    Partitions](rabbitmq#addressing-network-partitions)
-6. [Redeploy RabbitMQ
-    Cluster](../kolla-ansible/redeploy-rabbitmq#redeploy-rabbitmq-cluster)
 
 ## Prerequisites
 

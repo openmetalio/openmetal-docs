@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How Private Clouds are Deployed
 
 ## Introduction

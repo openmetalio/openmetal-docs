@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # How to Copy and Restore OpenStack Service Databases and Configuration
 
 ## Introduction
@@ -14,83 +17,6 @@ items.
 This guide introduces potentially harmful commands and actions that
 could cause the cloud to become inoperable or be in an unexpected state.
 Read commands carefully before executing them.
-
-## Table of Contents
-
-1. [Kolla Ansible and Ceph
-    Ansible](create-openstack-service-backups#kolla-ansible-and-ceph-ansible)
-
-    1. [Prepare Kolla Ansible and Ceph Ansible
-        Environment](create-openstack-service-backups#prepare-kolla-ansible-and-ceph-ansible-environment)
-
-    2. [Where are my Private Cloud's Configuration
-        Files?](create-openstack-service-backups#where-are-my-private-cloud-s-configuration-files)
-
-        1. [Kolla Ansible Configuration
-            Files](create-openstack-service-backups#kolla-ansible-configuration-files)
-        2. [Ceph Ansible Configuration
-            Files](create-openstack-service-backups#ceph-ansible-configuration-files)
-        3. [FM-Deploy Configuration
-            File](create-openstack-service-backups#fm-deploy-configuration-file)
-        4. [Network Ansible Configuration
-            File](create-openstack-service-backups#network-ansible-configuration-file)
-
-    3. [Keep a Backup Copy a Private Cloud's Configuration
-        Files](create-openstack-service-backups#keep-a-backup-copy-a-private-cloud-s-configuration-files)
-
-2. [How to Restore a Private Cloud's Configuration
-    Files](create-openstack-service-backups#how-to-restore-a-private-cloud-s-configuration-files)
-
-    1. [Example: Recover Neutron's Configuration File using
-        Kolla
-        Ansible](create-openstack-service-backups#example-recover-neutron-s-configuration-file-using-kolla-ansible)
-
-        1. [Prerequisite: Prepare a Kolla Ansible
-            Environment](create-openstack-service-backups#prerequisite-prepare-a-kolla-ansible-environment)
-        2. [Regenerate an OpenStack Service's Configuration
-            File using Kolla
-            Ansible](create-openstack-service-backups#regenerate-an-openstack-service-s-configuration-file-using-kolla-ansible)
-
-3. [Create Full and Incremental Copies of a Private Cloud's
-    OpenStack Service
-    Databases](create-openstack-service-backups#create-full-and-incremental-copies-of-a-private-cloud-s-openstack-service-databases)
-
-    1. [Prerequisites](create-openstack-service-backups#prerequisites)
-
-    2. [How to Create OpenStack Service Database
-        Backups](create-openstack-service-backups#how-to-create-openstack-service-database-backups)
-
-        1. [Command Syntax for Full Database
-            Backups](create-openstack-service-backups#command-syntax-for-full-database-backups)
-        2. [Command Syntax for Incremental Database
-            Backups](create-openstack-service-backups#command-syntax-for-incremental-database-backups)
-        3. [Path to the Kolla Ansible Inventory
-            File](create-openstack-service-backups#path-to-the-kolla-ansible-inventory-file)
-        4. [Command Usage Example for a Full Database
-            Backup](create-openstack-service-backups#command-usage-example-for-a-full-database-backup)
-        5. [Command Usage Example for an Incremental Database
-            Backup](create-openstack-service-backups#command-usage-example-for-an-incremental-database-backup)
-
-4. [How to Restore a Private Cloud's OpenStack Service
-    Databases](create-openstack-service-backups#how-to-restore-a-private-cloud-s-openstack-service-databases)
-
-    1. [Full Database Restoration
-        Steps](create-openstack-service-backups#full-database-restoration-steps)
-
-        1. [Full Restoration: Create Temporary Docker
-            Container](create-openstack-service-backups#full-restoration-create-temporary-docker-container)
-        2. [Full Restoration: Prepare Backup
-            Directory](create-openstack-service-backups#full-restoration-prepare-backup-directory)
-
-    2. [Incremental Database Restoration
-        Steps](create-openstack-service-backups#incremental-database-restoration-steps)
-
-        1. [Incremental Restoration: Create Temporary Docker
-            Container](create-openstack-service-backups#incremental-restoration-create-temporary-docker-container)
-        2. [Incremental Restoration: Prepare Backup
-            Directory](create-openstack-service-backups#incremental-restoration-prepare-backup-directory)
-
-5. [References](create-openstack-service-backups#references)
 
 ## Kolla Ansible and Ceph Ansible
 

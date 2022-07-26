@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # Container Orchestration with OpenStack Heat
 
 ## Introduction
@@ -8,34 +11,6 @@ and the mechanics of the Heat Orchestration Engine. Then we review a
 sample of a Heat Orchestration Template and provide the appropriate
 syntax. Lastly, we cover how to deploy a template and check the status
 of a Heat Stack.
-
-## Table of Contents
-
-1. [Overview of Heat
-    Orchestration](heat#overview-of-heat-orchestration)
-
-    1. [Architecture](heat#architecture)
-
-2. [Heat Orchestration Template
-    Components](heat#heat-orchestration-template-components)
-
-    1. [Template
-        Version](heat#template-version)
-    2. [Description](heat#description)
-    3. [Parameters](heat#parameters)
-    4. [Resources](heat#resources)
-    5. [Output](heat#output)
-
-3. [Sample Heat Orchestration
-    Template](heat#sample-heat-orchestration-template)
-
-    1. [Attributes](heat#attributes)
-
-4. [Deploying a Heat Template in
-    Horizon](heat#deploying-a-heat-template-in-horizon)
-
-5. [Viewing Recently Deployed Stacks in
-    Horizon](heat#viewing-recently-deployed-stacks-in-horizon)
 
 ## Overview of Heat Orchestration
 
