@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Maintaining OpenStack Software Updates
 
 ## Introduction
@@ -16,34 +19,6 @@ Before getting started, it is beneficial to have experience with Docker.
 To follow this guide, ensure you have:
 
 - Root access to your cloud's control plane
-
-## Table of Contents
-
-1. [Software that can be
-    Updated](maintenance#software-that-can-be-updated)
-
-2. [Updating Kolla Ansible Docker
-    Images](maintenance#updating-kolla-ansible-docker-images)
-
-3. [Performing Package Manager
-    Updates](maintenance#performing-package-manager-updates)
-
-    1. [Migrate
-        Workload](maintenance#migrate-workload)
-    2. [Update One Node at a
-        Time](maintenance#update-one-node-at-a-time)
-    3. [Disable
-        Docker](maintenance#disable-docker)
-    4. [Upgrade Host OS
-        Packages](maintenance#upgrade-host-os-packages)
-    5. [Determine Reboot
-        Need](maintenance#determine-reboot-need)
-    6. [Ceph
-        Maintenance](maintenance#ceph-maintenance)
-    7. [Reboot if
-        Required](maintenance#reboot-if-required)
-    8. [Verify Successful
-        Reboot](maintenance#verify-successful-reboot)
 
 ## Software that can be Updated
 

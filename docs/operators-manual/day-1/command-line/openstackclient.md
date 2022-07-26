@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Install and Use OpenStack's CLI
 
 ## Introduction
@@ -9,36 +12,6 @@ more flexibility in automation tasks and can generally make an
 administrator's life simpler. In this guide, we introduce you to the
 command line method of managing your cloud by explaining how to install
 and use OpenStackClient.
-
-## Table of Contents
-
-1. [How to Install
-    OpenStackClient](openstackclient#how-to-install-openstackclient)
-
-    1. [Prerequisites](openstackclient#prerequisites)
-
-    2. [Install
-        OpenStackClient](openstackclient#install-openstackclient)
-
-        1. [Initial
-            Preparation](openstackclient#initial-preparation)
-        2. [Prepare and Install
-            OpenStackClient](openstackclient#prepare-and-install-openstackclient)
-
-2. [Command
-    Structure](openstackclient#command-structure)
-
-    1. [List all Available
-        Subcommands](openstackclient#list-all-available-subcommands)
-    2. [Learn more about a
-        Subcommand](openstackclient#learn-more-about-a-subcommand)
-    3. [List Items and Show
-        Details](openstackclient#list-items-and-show-details)
-
-3. [Enable Bash
-    Autocompletion](openstackclient#enable-bash-autocompletion)
-
-4. [Reference](openstackclient#reference)
 
 ## How to Install OpenStackClient
 
@@ -108,8 +81,7 @@ For example:
     $ vi ~/.config/openstack/clouds.yaml
 
 **Note** -- The `clouds.yaml` file can be placed in several locations.
-For more see the [Configuration
-Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
+For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
 heading of OpenStack Victoria's documentation.
 
 Next, copy the contents of your OpenStack RC file, in our case called
@@ -167,7 +139,17 @@ Install OpenStackClient using:
 
     pip install python-openstackclient
 
-**Step 6**: List servers associated with your project
+**Step 6**: Activate User Authentication
+
+The previously created openrc file is now used to set environment variables
+related to authentication.
+
+For example:
+
+    $ source ~/Development-openrc.sh 
+    Please enter your OpenStack Password for project Development as user dev-user:
+
+**Step 7**: List servers associated with your project
 
 For an initial command, list the servers associated with your project by
 running `openstack server list`.

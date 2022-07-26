@@ -1,3 +1,6 @@
+---
+sidebar_position: 4
+---
 # Guidelines for Searching through OpenStack Logs
 
 ## Introduction
@@ -7,28 +10,6 @@ be daunting knowing which log and on which host to look in to diagnose
 an issue. In this guide, we present strategies for extracting
 information from a private cloud's log files to determine the root cause
 of a failure.
-
-## Table of Contents
-
-1. [Prerequisites](log-filtering#prerequisites)
-
-    1. [Root Access to OpenStack Control
-        Plane](log-filtering#root-access-to-openstack-control-plane)
-
-2. [Elasticsearch and
-    Kibana](log-filtering#elasticsearch-and-kibana)
-
-3. [Kolla Ansible Log
-    Locations](log-filtering#kolla-ansible-log-locations)
-
-4. [Determining the Correct
-    Log](log-filtering#determining-the-correct-log)
-
-5. [Determining the Correct
-    Host](log-filtering#determining-the-correct-host)
-
-6. [Viewing
-    Logs](log-filtering#viewing-logs)
 
 ## Prerequisites
 

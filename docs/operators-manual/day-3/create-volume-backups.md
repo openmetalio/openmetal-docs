@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # Create and Restore Volume Backups
 
 ## Introduction
@@ -7,23 +10,6 @@ snapshots of your volume data. If a volume's data goes corrupt or is
 removed by mistake, having a copy of that data could be invaluable. In
 this guide, we explain how to create and recover volume backups using
 Horizon.
-
-## Table of Contents
-
-1. [Create a Volume
-    Backup](create-volume-backups#create-a-volume-backup)
-
-    1. [Test Volume
-        Backups](create-volume-backups#test-volume-backups)
-
-2. [Restore a Volume
-    Backup](create-volume-backups#restore-a-volume-backup)
-
-3. [Ceph, Volumes, and Data
-    Durability](create-volume-backups#ceph-volumes-and-data-durability)
-
-4. [Store Data Outside of the
-    Cloud](create-volume-backups#store-data-outside-of-the-cloud)
 
 ## Create a Volume Backup
 

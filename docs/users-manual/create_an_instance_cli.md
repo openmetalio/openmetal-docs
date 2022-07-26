@@ -10,22 +10,6 @@ You will also learn how to upload or create an SSH key pair, assign
 storage using a volume, and create a security group. Each of these
 components will be added to the instance.
 
------
-
-## **Table of Contents**
-
-1. [Before Creating an
-    Instance](create_an_instance_cli#before-creating-an-instance)
-2. [SSH Key
-    Pairs](create_an_instance_cli#ssh-key-pairs)
-3. [Security
-    Groups](create_an_instance_cli#security-groups)
-4. [Add a Volume](create_an_instance_cli#add-a-volume)
-5. [How to Create an
-    Instance](create_an_instance_cli#how-to-create-an-instance)
-
------
-
 ## **Before Creating an Instance**
 
 Before creating an instance, several pieces need to be in place.

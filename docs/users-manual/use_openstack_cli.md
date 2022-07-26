@@ -19,8 +19,7 @@ this [guide](create_an_instance#create-an-instance) for installation
 instructions.
 
 For a full list and explanation of the available options use `openstack
-help` or refer to the [OpenStack
-documentation](https://docs.openstack.org/python-openstackclient/latest/).
+help` or refer to the [OpenStack documentation](https://docs.openstack.org/python-openstackclient/latest/).
 
 Additional command line applications exist for some services such as
 Nova and Cinder but will eventually be deprecated. While these command

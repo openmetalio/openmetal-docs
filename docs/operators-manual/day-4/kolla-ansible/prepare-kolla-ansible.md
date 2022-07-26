@@ -1,3 +1,6 @@
+---
+sidebar_position: 1
+---
 # How to Prepare and Use Kolla Ansible
 
 ## Introduction
@@ -23,28 +26,6 @@ will be reverted. We are working on rolling out a new deployment system
 allowing custom cloud configurations. We can still help you modify your
 cloud, but must do so manually. Please reach out to your Account Manager
 should this apply to you.
-
-## Table of Contents
-
-1. [Prerequisites](./#prerequisites)
-
-2. [Using Kolla Ansible Quick
-    Start](#using-kolla-ansible-quick-start)
-
-3. [Prepare Kolla Ansible for
-    Use](#prepare-kolla-ansible-for-use)
-
-    1. [Kolla Ansible Configuration
-        Files](#kolla-ansible-configuration-files)
-    2. [Before Making
-        Changes](#before-making-changes)
-    3. [Prepare Kolla Ansible
-        Environment](#prepare-kolla-ansible-environment)
-
-4. [References](#references)
-
-5. [Next
-    Steps](#next-steps)
 
 ## Prerequisites
 

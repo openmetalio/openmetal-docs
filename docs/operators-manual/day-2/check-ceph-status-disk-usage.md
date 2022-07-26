@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # How to Check Ceph's Status and Disk Usage
 
 ## Introduction
@@ -10,14 +13,6 @@ nodes, which can make recovering an instance and its data trivial. As an
 administrator of this cloud, we aim to provide you information about how
 you can check the status of your Ceph cluster and see available disk
 usage using the command line.
-
-## Table of Contents
-
-1. [Prerequisites](check-ceph-status-disk-usage#prerequisites)
-2. [Check Ceph
-    Status](check-ceph-status-disk-usage#check-ceph-status)
-3. [Check Ceph Disk
-    Usage](check-ceph-status-disk-usage#check-ceph-disk-usage)
 
 ## Prerequisites
 

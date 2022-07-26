@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # VPNaaS Configuration and Deployment
 
 Installation and configuration of Virtual Private Networking as a Service

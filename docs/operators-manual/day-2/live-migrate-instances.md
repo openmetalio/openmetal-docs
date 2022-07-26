@@ -1,3 +1,6 @@
+---
+sidebar_position: 5
+---
 # How to Live Migrate Instances Using OpenStack Horizon
 
 ## Introduction
@@ -9,14 +12,6 @@ host. Live migration keeps instances in an active state during the
 migration process. This process is useful when applications need to
 remain running and shutting down an instance is not possible or
 advantageous.
-
-## Table of Contents
-
-1. [Prerequisite](live-migrate-instances#prerequisite)
-2. [Determining an Instance's Parent
-    Host](live-migrate-instances#determining-an-instance-s-parent-host)
-3. [Migrate
-    Instance](live-migrate-instances#migrate-instance)
 
 ## Prerequisite
 

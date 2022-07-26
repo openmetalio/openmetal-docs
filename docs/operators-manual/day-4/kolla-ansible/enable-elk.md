@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # How to Enable Elasticsearch and Kibana using Kolla Ansible
 
 ## Introduction
@@ -10,21 +13,6 @@ Elasticsearch and Kibana (ELK) could be leveraged to see all of your
 cloud's log files from a single location in your browser. This feature
 set is not enabled by default. In this guide we walk you through how to
 enable the ELK stack for your Private Cloud using Kolla Ansible.
-
-1. [Prerequisites](enable-elk#prerequisites)
-
-    1. [Prepare Kolla
-        Ansible](enable-elk#prepare-kolla-ansible)
-    2. [Root Access to OpenStack Control
-        Plane](enable-elk#root-access-to-openstack-control-plane)
-
-2. [How to Enable Central
-    Logging](enable-elk#how-to-enable-central-logging)
-
-    1. [Prevent Root Disk from
-        Filling](enable-elk#prevent-root-disk-from-filling)
-
-3. [Reference](enable-elk#reference)
 
 ## Prerequisites
 

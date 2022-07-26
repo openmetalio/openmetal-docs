@@ -1,3 +1,6 @@
+---
+sidebar_position: 3
+---
 # Spin up an Instance with Ephemeral Storage
 
 ## Introduction
