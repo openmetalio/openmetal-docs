@@ -18,7 +18,7 @@ public, or external, network of your Private Cloud.
     cloud with an SSL using Kolla Ansible. Any time you work with Kolla
     Ansible, you must prepare a shell environment. For more, see [How to
     Prepare and Use Kolla
-    Ansible](./kolla-ansible).
+    Ansible](./prepare-kolla-ansible).
     The remaining instruction assume this environment has been prepared.
     All commands are to be executed from the control plane node where
     this environment has been prepared.
@@ -26,7 +26,7 @@ public, or external, network of your Private Cloud.
     reconfigure your cloud's Ceph cluster. When working with Ceph
     Ansible, you must first prepare a shell environment. For more, see
     [How to Prepare and Use Ceph
-    Ansible](../ceph-ansible/ceph-ansible). The
+    Ansible](../ceph-ansible/prepare-ceph-ansible). The
     portion of this guide that has to do with using Ceph Ansible assumes
     this environment has been prepared.
 - **Root Access**: Root access to your cloud's control plane nodes is
