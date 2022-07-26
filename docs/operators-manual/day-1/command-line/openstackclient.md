@@ -149,7 +149,6 @@ For example:
     $ source ~/Development-openrc.sh 
     Please enter your OpenStack Password for project Development as user dev-user:
 
-
 **Step 7**: List servers associated with your project
 
 For an initial command, list the servers associated with your project by
