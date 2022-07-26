@@ -16,16 +16,6 @@ floating IPs, and security groups to be created. It provides "network
 connectivity as a service" between interfaces and uses the OpenStack
 Networking API.
 
------
-
-## **Table of Contents**
-
-1. [Create a Network and
-    Router](network_ip_traffic_cli#create-a-network-and-router)
-2. [Floating IPs](network_ip_traffic_cli#floating-ips)
-
------
-
 ## **Create a Network and Router**
 
 This section demonstrates creating a private network and router. The
