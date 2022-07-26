@@ -14,7 +14,7 @@ export default {
 		{
 			title: "Tutorials",
 			description: "Tutorials for OpenStack administrators.",
-			htmlPath: "/docs/manuals/operators-manual-extras/",
+			htmlPath: "/docs/manuals/tutorials/",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'Operator\'s Manual Extras',
