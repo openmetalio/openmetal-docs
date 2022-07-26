@@ -16,8 +16,7 @@ using Kolla Ansible.
 
 This guide explains how to configure your cloud using Kolla Ansible. Any
 time you work with Kolla Ansible, you must prepare a shell environment.
-For more, see [How to Prepare and Use Kolla
-Ansible](./).
+For more, see [How to Prepare and Use Kolla Ansible](../kolla-ansible/prepare-kolla-ansible).
 
 All commands are to be executed from the control plane node in which
 Kolla Ansible has been prepared.
