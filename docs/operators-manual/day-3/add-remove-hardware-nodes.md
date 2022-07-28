@@ -152,9 +152,8 @@ hardware node from your cloud, consult with your Account Manager first
 or submit a ticket through OpenMetal Central. It is very important all
 data required from this node is copied elsewhere prior to making a
 request to remove a hardware node. You can help facilitate the process
-of removing the node by [migrating any running
-instances](../day-2/live-migrate-instances) from it to
-another node.
+of removing the node by [migrating any running instances](../day-2/live-migrate-instances)
+from it to another node.
 
 ### Consider Before Removing
 

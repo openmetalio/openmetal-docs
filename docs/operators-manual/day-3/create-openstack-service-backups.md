@@ -30,10 +30,8 @@ required for a Private Cloud, including their configurations.
 Before working with either Kolla Ansible or Ceph Ansible, you must
 prepare an environment in your shell:
 
-- [How to Prepare and Use Kolla
-    Ansible](../day-4/kolla-ansible/)
-- [How to Prepare and Use Ceph
-    Ansible](../day-4/ceph-ansible/)
+- [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible)
+- [How to Prepare and Use Ceph Ansible](../day-4/ceph-ansible/prepare-ceph-ansible)
 
 ### Where are my Private Cloud's Configuration Files?
 
@@ -100,10 +98,9 @@ to recover this configuration by using Kolla Ansible.
 #### Prerequisite: Prepare a Kolla Ansible Environment
 
 Before proceeding, a Kolla Ansible environment needs to be prepared. For
-information about preparing a Kolla Ansible environment, see [How to
-Prepare and Use Kolla
-Ansible](../day-4/kolla-ansible/). Once
-the environment is prepared, navigate back to this section.
+information about preparing a Kolla Ansible environment, see
+[How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible)
+Once the environment is prepared, navigate back to this section.
 
 #### Regenerate an OpenStack Service's Configuration File using Kolla Ansible
 
@@ -120,8 +117,7 @@ defined as control plane nodes under the heading `[control]`:
     lovely-ladybug ansible_host=10.204.25.253
 
 To restore the Neutron server configuration file for `relaxed-flamingo`,
-first ensure you have [prepared a Kolla Ansible
-environment](../day-4/kolla-ansible/).
+first ensure you have [prepared a Kolla Ansible environment](../day-4/kolla-ansible/prepare-kolla-ansible)
 
 Next, use Kolla Ansible's `reconfigure` function, targeting only the
 Neutron service by using the flag `--tags neutron` and limit the run to
@@ -146,9 +142,8 @@ of a Private Cloud's OpenStack services.
 
 Before proceeding with this guide, a Kolla Ansible environment needs to
 be prepared. For information about preparing a Kolla Ansible
-environment, see [How to Prepare and Use Kolla
-Ansible](../day-4/kolla-ansible/). Once
-the environment is prepared, come back to this guide to learn how to
+environment, see [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/).
+Once the environment is prepared, come back to this guide to learn how to
 create database backups of OpenStack services.
 
 ### How to Create OpenStack Service Database Backups
@@ -421,9 +416,6 @@ Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
 ## References
 
-- Kolla Ansible's [MariaDB database backup and
-    restore](https://docs.openstack.org/kolla-ansible/victoria/admin/mariadb-backup-and-restore.html)
-- MariaDB's [Full Backup and Restore with
-    Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
-- MariaDB's [Incremental Backup and Restore with
-    Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)
+- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/victoria/admin/mariadb-backup-and-restore.html)
+- MariaDB's [Full Backup and Restore with Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
+- MariaDB's [Incremental Backup and Restore with Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)

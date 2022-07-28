@@ -39,7 +39,7 @@ If the `firewall_driver` is defined as `openvswitch` proceed to
 ### Reconfigure Firewall Driver with Kolla Ansible
 
 If the default Hybrid driver is in use you will need to update the
-[Kolla Ansible](operators_manual/day-4/kolla-ansible/kolla-ansible.rst)
+[Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible)
 configuration at `/etc/kolla/config/neutron/openvswitch_agent.ini`.
 
 If the `openvswitch_agent.ini` file does not exist, create it with the

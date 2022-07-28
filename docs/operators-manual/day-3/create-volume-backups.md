@@ -77,8 +77,8 @@ configured with host level replication across each of your cloud's three
 control plane nodes. With this configuration, your cloud could suffer
 losing all but one Ceph node and still retain all of the cluster's data.
 For more about how your Ceph cluster was configure, see the heading
-**Default Configuration for the Ceph Cluster** in the [Introduction to
-Ceph](../day-2/introduction-to-ceph) guide.
+**Default Configuration for the Ceph Cluster** in the
+[Introduction to Ceph](../day-2/introduction-to-ceph) guide.
 
 ## Store Data Outside of the Cloud
 
@@ -86,7 +86,6 @@ Taking data backups a step further, consider storing critical data
 outside of the cloud. Storing data both in the cloud's Ceph cluster as
 well as outside of it increases the failure domain.
 
-With Ceph you can use [RBD
-mirroring](https://docs.ceph.com/en/latest/rbd/rbd-mirroring/), which
-effectively is a way to mirror your Ceph cluster's data to another Ceph
+With Ceph you can use [RBD mirroring](https://docs.ceph.com/en/latest/rbd/rbd-mirroring/),
+which effectively is a way to mirror your Ceph cluster's data to another Ceph
 cluster.

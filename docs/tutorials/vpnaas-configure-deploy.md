@@ -8,8 +8,8 @@ Installation and configuration of Virtual Private Networking as a Service
 
 ## Prerequisites
 
-- [Kolla Ansible](../operators-manual/day-4/kolla-ansible/kolla-ansible.md)
-- [OpenstackCLI](../operators-manual/day-1/command-line/openstackclient.md)
+- [Kolla Ansible](../operators-manual/day-4/kolla-ansible/prepare-kolla-ansible)
+- [OpenstackCLI](../operators-manual/day-1/command-line/openstackclient)
 - `python-neutronclient` cli plugin for advanced networking.
 
 ## Preparation

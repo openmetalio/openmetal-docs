@@ -253,6 +253,15 @@ const config = {
                 href: 'https://openmetal.io/docs/product-guides/private-cloud/',
                 itemType: 'link',
               },
+              /*
+              Scaffold added for new section.
+              {
+                label: 'Engineer\'s Notes',
+                description: '',
+                href: 'https://openmetal.io/docs/manuals/engineers-notes/',
+                itemType: 'link',
+              },
+              */
               {
                 label: 'Product Release Updates',
                 description: '',
