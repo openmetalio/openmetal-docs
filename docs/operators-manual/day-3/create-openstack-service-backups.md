@@ -98,7 +98,7 @@ to recover this configuration by using Kolla Ansible.
 #### Prerequisite: Prepare a Kolla Ansible Environment
 
 Before proceeding, a Kolla Ansible environment needs to be prepared. For
-information about preparing a Kolla Ansible environment, see 
+information about preparing a Kolla Ansible environment, see
 [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible)
 Once the environment is prepared, navigate back to this section.
 
@@ -142,9 +142,8 @@ of a Private Cloud's OpenStack services.
 
 Before proceeding with this guide, a Kolla Ansible environment needs to
 be prepared. For information about preparing a Kolla Ansible
-environment, see [How to Prepare and Use Kolla
-Ansible](../day-4/kolla-ansible/). Once
-the environment is prepared, come back to this guide to learn how to
+environment, see [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/).
+Once the environment is prepared, come back to this guide to learn how to
 create database backups of OpenStack services.
 
 ### How to Create OpenStack Service Database Backups
@@ -417,9 +416,6 @@ Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
 ## References
 
-- Kolla Ansible's [MariaDB database backup and
-    restore](https://docs.openstack.org/kolla-ansible/victoria/admin/mariadb-backup-and-restore.html)
-- MariaDB's [Full Backup and Restore with
-    Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
-- MariaDB's [Incremental Backup and Restore with
-    Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)
+- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/victoria/admin/mariadb-backup-and-restore.html)
+- MariaDB's [Full Backup and Restore with Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
+- MariaDB's [Incremental Backup and Restore with Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)

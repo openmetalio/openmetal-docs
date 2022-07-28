@@ -16,7 +16,7 @@ public, or external, network of your Private Cloud.
 
 - **Prepare Kolla Ansible**: This guide explains how to configure your
     cloud with an SSL using Kolla Ansible. Any time you work with Kolla
-    Ansible, you must prepare a shell environment. For more, see 
+    Ansible, you must prepare a shell environment. For more, see
     [How to Prepare and Use Kolla Ansible](./prepare-kolla-ansible).
     The remaining instruction assume this environment has been prepared.
     All commands are to be executed from the control plane node where
