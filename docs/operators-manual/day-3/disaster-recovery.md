@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 ---
 # OpenStack Disaster Planning, Testing, and Recovery
 
@@ -30,9 +30,9 @@ potential impacts on your private cloud.
 
 The objectives behind a disaster recovery plan fall into two categories:
 
-- **Recovery Point Objectives** - This is a specific point in time
+- **Recovery Point Objectives**: This is a specific point in time
     that data must be backed up to resume business.
-- **Recovery Time Objectives** - Length of time that a system can be
+- **Recovery Time Objectives**: Length of time that a system can be
     offline before the business is negatively impacted.
 
 Consider the above objectives when determining the needs of your
@@ -124,9 +124,6 @@ Support](https://central.openmetal.io/).
 
 For more regarding OpenStack Disaster Recovery, see:
 
-- RedHat's [Disaster Recovery Enablement in
-    OpenStack](https://www.redhat.com/en/blog/disaster-recovery-enablement-openstack)
-- InMotion Hosting's [What is Disaster Recovery as a Service
-    (DRaaS)?](https://www.inmotionhosting.com/support/product-guides/private-cloud/what-is-disaster-recovery-as-a-service-draas/)
-- OpenStack's [Disaster Recovery Wiki
-    Page](https://wiki.openstack.org/wiki/DisasterRecovery)
+- RedHat's [Disaster Recovery Enablement in OpenStack](https://www.redhat.com/en/blog/disaster-recovery-enablement-openstack)
+- InMotion Hosting's [What is Disaster Recovery as a Service (DRaaS)?](https://www.inmotionhosting.com/support/product-guides/private-cloud/what-is-disaster-recovery-as-a-service-draas/)
+- OpenStack's [Disaster Recovery Wiki Page](https://wiki.openstack.org/wiki/DisasterRecovery)
