@@ -25,7 +25,6 @@ function HomepageHeader() {
 
 function getCatagory( cat ) {
 	const documentationObject = data.documentationIndex;
-	console.log( data );
 	return documentationObject.filter( item => item.catagories.includes( cat ) );
 }
 

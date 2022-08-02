@@ -234,7 +234,7 @@ function Navbar() {
       <div className="navbar__inner">
       <div className='navbar_top_row'>
           {useDocusaurusContext().siteConfig.customFields.navbarTopRow.map((item, i) => (
-            <NavbarItem {...item} key={i} />
+            <NavbarItem {...item} key={i} target="_self" />
           ))}
         </div>
         <div className="navbar__items">
@@ -256,14 +256,14 @@ function Navbar() {
           />
           {leftItems.map((item, i) => (
             <div className='custom-navbar-item-dropdown' key={i} >
-              <NavbarItem {...item}/>
+              <NavbarItem {...item} target="_self"/>
               { item.type === 'dropdown' ? renderDropDownItems(item) : '' }
             </div>
           ))}
         </div>
         <div className="navbar__items navbar__items--right">
           {rightItems.map((item, i) => (
-            <NavbarItem {...item} key={i} />
+            <NavbarItem {...item} key={i} target="_self"/>
           ))}
           {!colorModeToggle.disabled && (
             <Toggle
@@ -302,6 +302,7 @@ function renderDropDownItems(item) {
         {item.items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => (
           <div key={i}>
             <NavbarItem
+              target="_self"
               isDropdownItem
               onKeyDown={(e) => {
                 if (i === items.length - 1 && e.key === 'Tab') {
@@ -326,6 +327,7 @@ function renderDropDownItems(item) {
           <div key={i}>
             <img className='img-responsive' src={childItemProps.image_url}/>
             <NavbarItem
+              target="_self"
               isDropdownItem
               onKeyDown={(e) => {
                 if (i === items.length - 1 && e.key === 'Tab') {
