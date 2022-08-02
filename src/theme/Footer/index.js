@@ -25,6 +25,7 @@ function FooterLink({to, href, label, prependBaseUrlToHref, ...props}) {
       {...(href
         ? {
             href: prependBaseUrlToHref ? normalizedHref : href,
+            target: '_self'
           }
         : {
             to: toUrl,
