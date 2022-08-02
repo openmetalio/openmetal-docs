@@ -57,9 +57,8 @@ are used for the most mission-critical data.
 ### RBD Mirroring with Ceph
 
 Private Clouds by default use Ceph as a shared storage backend. As part
-of your disaster recovery plan, consider using Ceph's [RBD
-mirroring](https://docs.ceph.com/en/latest/rbd/rbd-mirroring/) feature
-to mirror important data to another Ceph cluster, in a geographically
+of your disaster recovery plan, consider using Ceph's [RBD mirroring](https://docs.ceph.com/en/latest/rbd/rbd-mirroring/)
+feature to mirror important data to another Ceph cluster, in a geographically
 different data center location. **Note** that we currently only provide
 one data center in which to host your Private Cloud.
 
@@ -117,8 +116,7 @@ Central.
 ## Contact Support
 
 If you are experiencing hardware failure or any other issues with your
-Open Metal Private Cloud, [Contact
-Support](https://central.openmetal.io/).
+Open Metal Private Cloud, [Contact Support](https://central.openmetal.io/).
 
 ## Additional Reading
 
