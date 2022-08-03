@@ -84,4 +84,4 @@ In worst case scenarios it is possible to redeploy your cloud's RabbitMQ
 cluster. This tends to be a last resort effort to get RabbitMQ
 functioning again. Kolla Ansible is used to redeploy a cloud's RabbitMQ
 cluster. For more, see [How to Redeploy RabbitMQ Cluster using Kolla
-Ansible](../kolla-ansible/redeploy-rabbitmq).
+Ansible](redeploy-rabbitmq).
