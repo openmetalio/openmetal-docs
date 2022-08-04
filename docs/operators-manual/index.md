@@ -86,7 +86,8 @@ provide a general outline for how you can recover from a disaster.
 2. [How to Add Additional Provider IP Blocks](day-3/add-provider-ips)
 3. [Create and Restore Volume Backups](day-3/create-volume-backups)
 4. [How to Create OpenStack Service Configuration Backups](day-3/create-openstack-service-backups)
-5. [OpenStack Disaster Planning, Testing, and Recovery](day-3/disaster-recovery)
+5. [Backup and Restore OpenStack Service Databases](day-3/backup-restore-openstack-databases)
+6. [OpenStack Disaster Planning, Testing, and Recovery](day-3/disaster-recovery)
 
 ### Day 4
 
