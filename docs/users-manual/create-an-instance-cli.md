@@ -1,4 +1,5 @@
 ---
+slug: create-an-instance
 sidebar_position: 9
 ---
 # Create an Instance
@@ -453,5 +454,5 @@ OpenStack administrator.
 
 ## **Next Steps**
 
-The [next guide](backups_cli) in this series is
+The [next guide](backups-cli) in this series is
 regarding backing up and restoring your instance data.

@@ -208,4 +208,4 @@ Type `exit` to leave the OpenStackClient shell.
 ## **Next Steps**
 
 Navigate to the next guide in this series to learn how to [create
-networks in OpenStack](network_ip_traffic_cli).
+networks in OpenStack](network-ip-traffic-cli).
