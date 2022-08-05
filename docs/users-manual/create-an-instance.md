@@ -260,7 +260,7 @@ only expose what is needed to the Internet, such as a load balancer, or
 front-end web servers.
 
 This example uses the private network created from the [networking
-guide](network_ip_traffic).
+guide](network-ip-traffic).
 
 **Step 6** -- Launch Instance -\> Security Groups
 
@@ -321,5 +321,5 @@ is **debian**.
 
 ## **Next Steps**
 
-Navigate to the [next guide](backups) in this series to
-learn how to back up and restore instance data.
+Navigate to the [next guide](how-to-make-backups-in-openstack) in this series
+to learn how to back up and restore instance data.

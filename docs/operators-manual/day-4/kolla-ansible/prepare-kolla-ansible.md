@@ -180,7 +180,7 @@ changes to your Private Cloud.
 **Caution\!** -- Kolla Ansible's configuration is set through the file
 `/etc/kolla/globals.yml` where some variables should not be changed. See
 the section titled [Before Making
-Changes](kolla-ansible#before-making-changes)
+Changes](prepare-kolla-ansible#before-making-changes)
 at the top of this guide for more information.
 
 An example configuration change made at this step is to enable TLS for

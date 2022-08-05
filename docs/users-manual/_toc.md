@@ -3,7 +3,7 @@
 ## Horizon
 
 1. [Get Started with Horizon](users-manual/getting-started-with-openstack)
-2. [Create a Network](users-manual/network_ip_traffic)
+2. [Create a Network](users-manual/network-ip-traffic)
 3. [OpenStack Images](users-manual/using-creating-images)
 4. [Create an Instance](users-manual/create-an-instance)
 5. [Backups](users-manual/backups)

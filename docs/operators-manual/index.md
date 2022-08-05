@@ -72,8 +72,7 @@ maintenance tasks for your cluster's hardware nodes.
 2. [Introduction to Ceph](day-2/introduction-to-ceph)
 3. [How to Check Ceph's Status and Disk Usage](day-2/check-ceph-status-disk-usage)
 4. [Maintaining OpenStack Software Updates](day-2/maintenance)
-5. [View OpenStack Resource Usage](day-2/resource-usage/cloud-resource-usage)
-6. [How to Live Migrate Instances](day-2/live-migrate-instances)
+5. [How to Live Migrate Instances](day-2/live-migrate-instances)
 
 ### Day 3
 
@@ -106,7 +105,7 @@ HashiCorp's Terraform application.
 5. [How to Prepare and Use Ceph Ansible](day-4/ceph-ansible/prepare-ceph-ansible)
 6. [OpenStack Watcher Demonstration](day-4/watcher/watcher-demo)
 7. [Troubleshooting RabbitMQ](day-4/troubleshooting/rabbitmq)
-8. [How to Redeploy RabbitMQ using Kolla Ansible](day-4/kolla-ansible/redeploy-rabbitmq)
+8. [How to Redeploy RabbitMQ using Kolla Ansible](day-4/troubleshooting/redeploy-rabbitmq)
 9. [Troubleshooting Ceph](day-4/troubleshooting/ceph)
 10. [Guidelines for Searching through Logs](day-4/troubleshooting/log-filtering)
 11. [OpenStack Automation through Heat](day-4/automation/heat)

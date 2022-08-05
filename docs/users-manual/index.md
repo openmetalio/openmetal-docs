@@ -12,22 +12,20 @@ There are two primary ways to work in an OpenStack cloud: Through
 Horizon or the command line. Because of this, the guides are grouped
 into two categories.
 
-### **Table of Contents**
-
------
+## **Table of Contents**
 
 ### Horizon Guides
 
 1. [How to Get Started with OpenStack](getting-started-with-openstack)
-2. [Networking in OpenStack](network_ip_traffic)
-3. [Working with Images](using-creating-images)
+2. [Networking in OpenStack](network-ip-traffic)
+3. [Working with Images](working-with-images)
 4. [How to Create an Instance](create-an-instance)
-5. [Backups](backups)
+5. [Backups](how-to-make-backups-in-openstack)
 
 ### Command Line Guides
 
 1. [Introduction to OpenStackClient](openstackclient)
-2. [Create a Network](network-ip-traffic-cli)
+2. [Create a Network](create-a-network)
 3. [Manage OpenStack Images](using-creating-images-cli)
-4. [Create an Instance](create-an-instance-cli)
-5. [Managing Backups in OpenStack](backups-cli)
+4. [Create an Instance](create-an-instance)
+5. [Managing Backups in OpenStack](managing-backups-in-openstack)
