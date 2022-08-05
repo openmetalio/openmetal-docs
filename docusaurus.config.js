@@ -43,52 +43,52 @@ const config = {
       {
         redirects: [
           {
-            from : '/docs/manuals/openstack-users/openstack-users-manual',
-            to: '/docs/manuals/users-manual',
+            from : '/openstack-users/openstack-users-manual',
+            to: '/users-manual/',
           },
           {
-            from : '/docs/manuals/openstack-users/private-cloud-core-manual',
-            to: '/docs/manuals/users-manual',
+            from : '/openstack-users/private-cloud-core-manual',
+            to: '/users-manual/',
           },
           {
-            from : '/docs/manuals/openstack-users/private-cloud-core-openstack-user-manual',
-            to: '/docs/manuals/users-manual',
+            from : '/openstack-users/private-cloud-core-openstack-user-manual',
+            to: '/users-manual/',
           },
           {
-            from : '/docs/manuals/operators-manual-extras/ephemeral_storage',
-            to: '/docs/manuals/tutorials/ephemeral-storage',
+            from : '/operators-manual-extras/ephemeral_storage',
+            to: '/tutorials/ephemeral-storage',
           },
           {
-            from : '/docs/manuals/operators-manual-extras/lb_with_octavia',
-            to: '/docs/manuals/tutorials/lb-with-octavia',
+            from : '/operators-manual-extras/lb_with_octavia',
+            to: '/tutorials/lb-with-octavia',
           },
           {
-            from : '/docs/manuals/operators-manual-extras/magnum-and-kubernetes',
-            to: '/docs/manuals/tutorials/magnum-and-kubernetes',
+            from : '/operators-manual-extras/magnum-and-kubernetes',
+            to: '/tutorials/magnum-and-kubernetes',
           },
           {
-            from : '/docs/manuals/operators-manual-extras/telemetry',
-            to: '/docs/manuals/tutorials/getting-started-with-ceilometer-and-gnocchi',
+            from : '/operators-manual-extras/telemetry',
+            to: '/tutorials/getting-started-with-ceilometer-and-gnocchi',
           },
           {
-            from : '/docs/manuals/operators-manual-extras/vpnaas-configure-deploy',
-            to: '/docs/manuals/tutorials/create-site-to-site-vpn',
+            from : '/operators-manual-extras/vpnaas-configure-deploy',
+            to: '/tutorials/create-site-to-site-vpn',
           },
           {
-            from : '/docs/manuals/users-manual/getting_started_with_openstack',
-            to: '/docs/manuals/users-manual/getting-started-with-openstack',
+            from : '/users-manual/getting_started_with_openstack',
+            to: '/users-manual/getting-started-with-openstack',
           },
           {
             from : '/docs/openstack-operators',
-            to: '/docs/manuals/operators-manual',
+            to: '/operators-manual/',
           },
           {
             from : '/docs/openstack-users',
-            to: '/docs/manuals/users-manual',
+            to: '/users-manual/',
           },
           {
             from : '/docs/operators-extended',
-            to: '/docs/manuals/tutorials',
+            to: '/tutorials/',
           },
         ],
       },
