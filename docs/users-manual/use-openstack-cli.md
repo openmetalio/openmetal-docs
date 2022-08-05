@@ -15,7 +15,7 @@ OpenStackClient.
 ## **Get started**
 
 OpenStackClient will need to be installed before it can be used. See
-this [guide](create_an_instance#create-an-instance) for installation
+this [guide](create-an-instance#create-an-instance) for installation
 instructions.
 
 For a full list and explanation of the available options use `openstack
@@ -124,7 +124,7 @@ to set:
 
 ### **Create an instance**
 
-See the Day 1 [guide](create_an_instance) for information on how to
+See the Day 1 [guide](create-an-instance) for information on how to
 create an instance.
 
 ### **Stop and start an instance**

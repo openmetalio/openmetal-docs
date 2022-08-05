@@ -213,5 +213,5 @@ SSH.
 
 ## **Next Steps**
 
-The [next guide](using_creating_images) goes over
+The [next guide](using-creating-images) goes over
 images in OpenStack, which are bootable operating systems.

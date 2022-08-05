@@ -1,6 +1,8 @@
 ---
+slug: create-a-network
 sidebar_position: 7
 ---
+
 # Create a Network
 
 This guide explains networking in OpenStack including how to create a
@@ -293,5 +295,5 @@ This floating IP will be used later to access an instance over SSH.
 ## **Next Steps**
 
 The [next
-guide](using_creating_images_cli) goes
+guide](using-creating-images-cli) goes
 over images in OpenStack, which are bootable operating systems.

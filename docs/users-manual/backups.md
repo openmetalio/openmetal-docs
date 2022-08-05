@@ -1,4 +1,5 @@
 ---
+slug: how-to-make-backups-in-openstack
 sidebar_position: 5
 ---
 # How to Make Backups in OpenStack

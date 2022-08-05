@@ -1,4 +1,5 @@
 ---
+slug: how-to-create-an-instance
 sidebar_position: 4
 ---
 # How to Create an Instance

@@ -1,4 +1,5 @@
 ---
+slug: managing-backups-in-openstack
 sidebar_position: 10
 ---
 # Managing Backups in OpenStack
@@ -273,7 +274,7 @@ If the backup is ready to use, the **Status** column will show as
 
 A new instance can now be created using this volume. For help with how
 to create an instance see the [Create an
-Instance](create_an_instance_cli) guide.
+Instance](create-an-instance-cli) guide.
 
 The following builds an instance booted from the previously restored
 volume backup:
