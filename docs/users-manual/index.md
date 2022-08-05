@@ -12,14 +12,12 @@ There are two primary ways to work in an OpenStack cloud: Through
 Horizon or the command line. Because of this, the guides are grouped
 into two categories.
 
-### **Table of Contents**
-
------
+## **Table of Contents**
 
 ### Horizon Guides
 
 1. [How to Get Started with OpenStack](getting-started-with-openstack)
-2. [Networking in OpenStack](network_ip_traffic)
+2. [Networking in OpenStack](network-ip-traffic)
 3. [Working with Images](using-creating-images)
 4. [How to Create an Instance](create-an-instance)
 5. [Backups](backups)

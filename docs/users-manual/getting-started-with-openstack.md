@@ -44,6 +44,6 @@ From here, enter in the provided credentials to log in.
 
 ## **Next Steps**
 
-The [next guide](network_ip_traffic) in this series
+The [next guide](network-ip-traffic) in this series
 explains how to create a private network, a basic building block of an
 OpenStack cloud.
