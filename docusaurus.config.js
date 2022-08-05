@@ -10,9 +10,7 @@ const config = {
   tagline: 'OpenMetal On-Demand Private Cloud Documentation',
   url: 'https://openmetal.io',
   baseUrl: '/docs/manuals/',
-//   onBrokenLinks: 'throw',
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenMarkdownLinks: 'error',
   favicon: 'img/favicon.ico',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
