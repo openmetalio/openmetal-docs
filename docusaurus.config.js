@@ -77,15 +77,15 @@ const config = {
             to: '/users-manual/getting-started-with-openstack',
           },
           {
-            from : '/docs/openstack-operators',
+            from : '/openstack-operators',
             to: '/operators-manual/',
           },
           {
-            from : '/docs/openstack-users',
+            from : '/openstack-users',
             to: '/users-manual/',
           },
           {
-            from : '/docs/operators-extended',
+            from : '/operators-extended',
             to: '/tutorials/',
           },
         ],
