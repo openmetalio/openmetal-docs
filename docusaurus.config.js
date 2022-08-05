@@ -37,6 +37,59 @@ const config = {
       }),
     ],
   ],
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        redirects: [
+          {
+            from : '/docs/manuals/openstack-users/openstack-users-manual',
+            to: '/docs/manuals/users-manual',
+          },
+          {
+            from : '/docs/manuals/openstack-users/private-cloud-core-manual',
+            to: '/docs/manuals/users-manual',
+          },
+          {
+            from : '/docs/manuals/openstack-users/private-cloud-core-openstack-user-manual',
+            to: '/docs/manuals/users-manual',
+          },
+          {
+            from : '/docs/manuals/operators-manual-extras/ephemeral_storage',
+            to: '/docs/manuals/tutorials/ephemeral-storage',
+          },
+          {
+            from : '/docs/manuals/operators-manual-extras/lb_with_octavia',
+            to: '/docs/manuals/tutorials/lb-with-octavia',
+          },
+          {
+            from : '/docs/manuals/operators-manual-extras/magnum-and-kubernetes',
+            to: '/docs/manuals/tutorials/magnum-and-kubernetes',
+          },
+          {
+            from : '/docs/manuals/operators-manual-extras/telemetry',
+            to: '/docs/manuals/tutorials/getting-started-with-ceilometer-and-gnocchi',
+          },
+          {
+            from : '/docs/manuals/operators-manual-extras/vpnaas-configure-deploy',
+            to: '/docs/manuals/tutorials/create-site-to-site-vpn',
+          },
+          {
+            from : '/docs/openstack-operators',
+            to: '/docs/manuals/operators-manual',
+          },
+          {
+            from : '/docs/openstack-users',
+            to: '/docs/manuals/users-manual',
+          },
+          {
+            from : '/docs/operators-extended',
+            to: '/docs/manuals/tutorials',
+          },
+        ],
+      },
+    ],
+  ],
   customFields: {
     navbarTopRow: [
       {
