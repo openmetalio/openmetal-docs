@@ -75,6 +75,10 @@ const config = {
             to: '/docs/manuals/tutorials/create-site-to-site-vpn',
           },
           {
+            from : '/docs/manuals/users-manual/getting_started_with_openstack',
+            to: '/docs/manuals/users-manual/getting-started-with-openstack',
+          },
+          {
             from : '/docs/openstack-operators',
             to: '/docs/manuals/operators-manual',
           },
