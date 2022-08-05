@@ -2,6 +2,7 @@
 slug: create-an-instance
 sidebar_position: 9
 ---
+
 # Create an Instance
 
 Instances in OpenStack comprise the cloud's computing power. This guide
@@ -454,5 +455,5 @@ OpenStack administrator.
 
 ## **Next Steps**
 
-The [next guide](backups-cli) in this series is
-regarding backing up and restoring your instance data.
+The [next guide](managing-backups-in-openstack) in this series is regarding
+backing up and restoring your instance data.
