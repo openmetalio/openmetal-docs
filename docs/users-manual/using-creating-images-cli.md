@@ -130,4 +130,4 @@ List the newly uploaded image:
 ## **Next Steps**
 
 With this guide complete, move on to the next guide, which explains [how to
-create an Instance](create-an-instance-cli) using the command line.
+create an Instance](create-an-instance) using the command line.

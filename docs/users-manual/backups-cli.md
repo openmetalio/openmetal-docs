@@ -273,7 +273,7 @@ If the backup is ready to use, the **Status** column will show as
 **Step 4** -- Create new instance
 
 A new instance can now be created using this volume. For help with how to
-create an instance see the [Create an Instance](create-an-instance-cli) guide.
+create an instance see the [Create an Instance](create-an-instance) guide.
 
 The following builds an instance booted from the previously restored
 volume backup:

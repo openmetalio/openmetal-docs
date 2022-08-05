@@ -455,5 +455,5 @@ OpenStack administrator.
 
 ## **Next Steps**
 
-The [next guide](backups-cli) in this series is regarding backing up and
-restoring your instance data.
+The [next guide](managing-backups-in-openstack) in this series is regarding
+backing up and restoring your instance data.
