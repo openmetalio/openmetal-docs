@@ -1,9 +1,12 @@
 # Building Windows Cloud Images on OpenMetal
 
-: No
-Description: Nested Virtualization, Remote VNC, Image Extraction
-Difficulty: Hard
-Priority: High
+Written by Yuriy Shyyan
+
+Edited by Sean Lafferty
+
+[//]: # (Description: Nested Virtualization, Remote VNC, Image Extraction)
+[//]: # (Difficulty: Hard)
+[//]: # (Priority: High)
 
 This document is meant as a guide to utilizing an OpenMetal Private Cloud Core
 to build various Windows Images for OpenStack on KVM with Virtio Storage drivers.
@@ -20,6 +23,7 @@ point of confusion. While ISOs typically contain installation media and have
 and configured Operating System that is copied to newly provisioned instances
 with some slight post modification abilities via cloud deployment utilities
 such as Cloudbase Init.
+
 Many Linux Operating Systems provide cloud VM image snapshots that you can
 download and upload for use on your cloud. OpenMetal provides a few of the
 most recent and common Linux distribution images to newly provisioned OpenMetal
@@ -128,7 +132,7 @@ We deployed an internal network called Private with a 192.168.0.0/24 subnet, and
 set up a router connected to the External network with a port on the internal
 network for our Private network’s gateway. We also got a Floating IP added to a
 provisioned Ubuntu instance. For more information on setting up some initial
-networking you can refer to our guide here: [Networking in OpenStack](https://openmetal.io/docs/manuals/openstack-users/networking-in-openstack/)
+networking you can refer to our guide here: [Networking in OpenStack](https://openmetal.io/docs/manuals/users-manual/create-a-network/)
 
 ![Network details](./windows-build-images/Untitled_4.png)
 
@@ -167,7 +171,7 @@ accessible via SSH from the IP we allowed in our Security Group. Any SSH Client
 can be used to access the Ubuntu instance using your private key pair for
 authentication.
 
-> **Note**:The username for the Ubuntu cloud image is **ubuntu.** That user
+> **Note**: The username for the Ubuntu cloud image is **ubuntu.** That user
 > will have root/administrative privileges to configure the rest of what we need.
 
 ![Instance ssh](./windows-build-images/Untitled_7.png)
