@@ -14,6 +14,7 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
+  trailingSlash: true,
 
   presets: [
     [
