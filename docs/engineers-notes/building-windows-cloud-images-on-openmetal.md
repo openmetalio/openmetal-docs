@@ -2,7 +2,7 @@
 
 Written by Yuriy Shyyan
 
-Edited by Sean Lafferty
+Co-Authored by Sean Lafferty
 
 [//]: # (Description: Nested Virtualization, Remote VNC, Image Extraction)
 [//]: # (Difficulty: Hard)
