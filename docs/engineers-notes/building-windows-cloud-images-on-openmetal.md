@@ -496,8 +496,8 @@ On **Windows 10 for example** this may look like image below.
 
 ### Correct Disk Configuration
 
-While not an issue when following this example if you are installing Windows 10
-or other distributions, removal of the Recovery Partition may be required.
+While not an issue in this example, removal of the Recovery Partition may be
+required when installing Windows 10 or other distributions.
 
 ![Correct partitioning](./windows-build-images/Untitled_32.png)
 
@@ -552,8 +552,8 @@ Cloudbase, below.
 > packages like SharePoint server, require a proper user logon profile and fail
 > when executed as _Local System_
 
-CloudBase Init allows for customization of your created image learn more in their
-documentation: <https://cloudbase-init.readthedocs.io/en/latest/tutorial.html>
+CloudBase Init allows for customization of your created images, learn more in
+their [documentation](https://cloudbase-init.readthedocs.io/en/latest/tutorial.html)
 
 > Note: At this point it is recommended to ensure that all available updates,
 > service packs and required software changes are complete and applied. This
@@ -564,25 +564,24 @@ You will want to make these modifications before running SysPrep.
 
 ![Wizard complete](./windows-build-images/Untitled_40.png)
 
-Make sure you've made all desired adjustments, once SysPrep is run the image is
-finalized. Click Finish and the system will shut down.
+Make sure you've made all desired adjustments, once you run SysPrep the image is
+finalized.
+
+Click Finish and the system will shut down.
 
 ## Upload our Windows Image to your OpenMetal OpenStack Cloud
 
 Now that your Windows VM is installed, configured, and stored in your
-windowsserver2019.qcow2 image, it can be uploaded to our cloud for reuse and
+windowsserver2019.qcow2 image, it can be uploaded to your cloud for reuse and
 general provisioning by all of your OpenStack users and administrators.
 
 You can utilize OpenStack CLI from within the image-builder instance we created
 to build our Windows VM Image, and use it to upload our hard work and result to
 OpenMetal cloud from which we initially began our journey. It’s “Cloud Inception”.
 
-Refer to the following documentation to set up OpenStack CLI and upload images
+Refer to the following for setup of [OpenStack CLI](https://openmetal.io/docs/manuals/openstack-operators/how-to-install-and-use-openstacks-cli/)
+and [uploading images](https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/image-v1.html#image-create)
 to your cloud.
-
-[OpenStackClient](https://openmetal.io/docs/manuals/openstack-operators/how-to-install-and-use-openstacks-cli/)
-
-[OpenStackClient image creation](https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/image-v1.html#image-create)
 
 ```bash
 ubuntu@image-builder:~$ sudo apt-get -y install python3-venv
@@ -612,7 +611,16 @@ image to RAW format:
 As we are converting a 9.7GB image from qcow2 to a 15GB RAW image, the above
 command may take a few minutes.
 
-The upload command is as follows:
+The upload command we use:
+
+```bash
+openstack image create --progress \
+--min-disk 15 --min-ram 4096 --public \
+--file WindowsSever2019.raw \
+"Windows Server 2019"
+```
+
+Results in output as follows:
 
 ```bash
 (venv) ubuntu@image-builder:~$ openstack image create --progress --min-disk 15 --min-ram 4096 --public --file WindowsSever2019.raw "Windows Server 2019"
