@@ -14,7 +14,6 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
-  //trailingSlash: true,
 
   presets: [
     [
@@ -36,59 +35,18 @@ const config = {
       }),
     ],
   ],
+  scripts: [
+    {
+      src: '/docs/manuals/js/fix-location.js',
+      async: false,
+      defer: false,
+    },
+  ],
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          {
-            from : '/openstack-users/openstack-users-manual',
-            to: '/users-manual/',
-          },
-          {
-            from : '/openstack-users/private-cloud-core-manual',
-            to: '/users-manual/',
-          },
-          {
-            from : '/openstack-users/private-cloud-core-openstack-user-manual',
-            to: '/users-manual/',
-          },
-          {
-            from : '/operators-manual-extras/ephemeral_storage',
-            to: '/tutorials/ephemeral-storage',
-          },
-          {
-            from : '/operators-manual-extras/lb_with_octavia',
-            to: '/tutorials/lb-with-octavia',
-          },
-          {
-            from : '/operators-manual-extras/magnum-and-kubernetes',
-            to: '/tutorials/magnum-and-kubernetes',
-          },
-          {
-            from : '/operators-manual-extras/telemetry',
-            to: '/tutorials/getting-started-with-ceilometer-and-gnocchi',
-          },
-          {
-            from : '/operators-manual-extras/vpnaas-configure-deploy',
-            to: '/tutorials/create-site-to-site-vpn',
-          },
-          {
-            from : '/users-manual/getting_started_with_openstack',
-            to: '/users-manual/getting-started-with-openstack',
-          },
-          {
-            from : '/openstack-operators',
-            to: '/operators-manual/',
-          },
-          {
-            from : '/openstack-users',
-            to: '/users-manual/',
-          },
-          {
-            from : '/operators-extended',
-            to: '/tutorials/',
-          },
         ],
       },
     ],
