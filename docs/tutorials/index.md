@@ -7,7 +7,7 @@ within an OpenMetal cloud.
 ## Table of Contents
 
 1. [Load Balancing with Octavia](lb-with-octavia)
-2. [Brief Kubernetes Demonstration](magnum-and-kubernetes)
+2. [Magnum and Kubernetes](magnum-and-kubernetes)
 3. [Spin up an Instance with Ephemeral Storage](ephemeral-storage)
 4. [Getting Started with Ceilometer and Gnocchi](getting-started-with-ceilometer-and-gnocchi)
 5. [VPNaaS Configuration and Deployment](vpnaas-configure-deploy)
