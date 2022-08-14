@@ -441,7 +441,7 @@ okd-dstmh-worker-0-mjzlr   Ready    worker   3h24m   v1.24.0+9546431
 #### Delete the cluster
 
 ```bash
-./openshift-install destroy cluster --dir install-dir/ --log-level info
+./openshift-install destroy cluster --dir install-directory/ --log-level info
 ```
 
 #### Copy the config
