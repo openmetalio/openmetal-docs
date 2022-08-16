@@ -1,8 +1,8 @@
 ---
-slug: /kubernetes-guides/installing-an-okd-cluster-on-openstack
+slug: /kubernetes-guides/installing-an-openshift-cluster-on-openstack
 ---
 
-# Installing an OKD cluster on OpenStack
+# Installing an OpenShift cluster on OpenStack
 
 We'll be using the following guide to install a OKD Kubernetes cluster on an
 OpenMetal provisioned OpenStack cloud:
