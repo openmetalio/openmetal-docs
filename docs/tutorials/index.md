@@ -12,3 +12,4 @@ within an OpenMetal cloud.
 4. [Getting Started with Ceilometer and Gnocchi](getting-started-with-ceilometer-and-gnocchi)
 5. [VPNaaS Configuration and Deployment](vpnaas-configure-deploy)
 6. [Create a Site-to-Site VPN Connection with Endpoint Groups](create-site-to-site-vpn)
+7. [How to install and configure Barbican on your OpenMetal Cloud](install-configure-barbican-openmetal.md)

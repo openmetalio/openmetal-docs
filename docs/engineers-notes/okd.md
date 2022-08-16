@@ -1,8 +1,8 @@
 ---
-slug: /kubernetes-guides/installing-an-okd-cluster-on-openstack
+slug: /kubernetes-guides/installing-an-openshift-cluster-on-openstack
 ---
 
-# Installing an OKD cluster on OpenStack
+# Installing an OpenShift cluster on OpenStack
 
 We'll be using the following guide to install a OKD Kubernetes cluster on an
 OpenMetal provisioned OpenStack cloud:
@@ -22,8 +22,7 @@ to preform additional steps.
 
 ### Installing OpenStack CLI
 
-Complete the following steps to install the OpenStack CLI:
-[Installing the OpenStack CLI](/operators-manual/day-1/command-line/openstackclient.md).
+Complete the following steps to [install the OpenStack CLI:](/operators-manual/day-1/command-line/openstackclient.md).
 
 ### Update quotas
 
@@ -95,16 +94,6 @@ eval "$(ssh-agent -s)"
 ssh-add /root/.ssh/id_okd
 ```
 
-### Create Manifest Files
-
-```bash
-mkdir ~/okd/install-directory
-```
-
-```bash
-./openshift-install --dir ~/okd/install-directory create manifests
-```
-
 ### Create floating IPs
 
 Record the IP addresses it returns, we'll pass these IPs to the installer later.
@@ -150,7 +139,7 @@ Output:
 
 #### Option 1
 
-Setup DNS records._Recommended for production clusters._
+Setup DNS records. _Recommended for production clusters._
 
 - api.<cluster_name>.<base_domain>.  IN  A  <API_FLOATING_IP>
 - *.apps.<cluster_name>.<base_domain>. IN  A <APPS_FLOATING_IP>
@@ -164,7 +153,7 @@ Setup DNS records._Recommended for production clusters._
 
 Add the following to `/etc/hosts`. Replace the floating IPs with the IPs you
 created above. You'll need to use this block on several servers.
- _Only recomended for testing purposes._
+ _Only recommended for testing purposes._
 
 ```bash
 API_FLOATING_IP api.okd.testing-okd.com
@@ -178,10 +167,21 @@ APPS_FLOATING_IP integrated-oauth-server-openshift-authentication.apps.okd.testi
 
 ### Generate Installation Configs
 
-You'll be prompted with for information about the cluster.  As a reference,
+### Create Manifest Files
+
+```bash
+mkdir ~/okd/install-directory
+```
+
+```bash
+./openshift-install --dir ~/okd/install-directory create manifests
+```
+
+You'll be prompted for information about the cluster.  As a reference,
 we used the following values for each prompt.
 
-- Base domain will be the domain you setup DNS or the domain in your hosts file mod.
+- Base domain will be the domain you set up DNS or the domain in your hosts file
+  mod.
 - OKD wants a pull secret. The pull secret is used for making pull requests from
   private container image registries. If you have a private registry secret you
   can provide that. Otherwise, you can use a fake secret the OKD documentation
@@ -190,12 +190,12 @@ we used the following values for each prompt.
   asterisks.
   **OKD will fail if the pull secret is not a valid pull secret or the fake secret.**
    If you use the fake secret, OKD will pull its container images from public
-   repositories. OKD does cache container images so you do not have to repull
+   repositories. OKD does cache container images, so you do not have to repull
    them for every run of OKD. If you use the pull secret provided, Red Hat
-   operators will be unavailable. For more information see: <https://docs.okd.io/latest/installing/installing_openstack/installing-openstack-installer-custom.html#installation-obtaining-installer_installing-openstack-installer-custom>
-- You must choose a flavor with atleast 16 GB memory, 4 vCPUs, and 100 GB
-  storage space. The `gp1.large` flavor has enough resources. OKD will fail
-  with an error about the flavor not having enough RAM or vCPU if you pick
+   operators will be unavailable. For more information see their [documentation:](https://docs.okd.io/latest/installing/installing_openstack/installing-openstack-installer-custom.html#installation-obtaining-installer_installing-openstack-installer-custom)
+- You must choose a flavor with at least 16 GB memory, 4 vCPUs, and 100 GB
+  storage space. The `gp1.xlarge` flavor has enough resources. OKD will fail
+  with an error about the flavor not having enough RAM or vCPUs if you pick
    a small flavor.
 
 ```bash
@@ -210,16 +210,18 @@ we used the following values for each prompt.
 ? Pull Secret [? for help] {"auths":{"fake":{"auth":"aWQ6cGFzcwo="}}}
 ```
 
+### Generate Install Configuration
+
 ```bash
-./openshift-install create install-config --dir ./install-directory
+./openshift-install create install-config --dir ~/okd/install-directory
 ```
 
 ### Create Security Group
 
 Create a security group that allows for SSH access from the host on which
- you are running the **openshift-install** application. You can get failures
- if the host cannot access the bootstrap node via SSH Provision floating IPs
- for the project that will host the OKD infrastructure.
+you are running the `openshift-install` application. You can get failures
+if the host cannot access the bootstrap node via SSH Provision floating IPs
+for the project that will host the OKD infrastructure.
 
 ```bash
 openstack security group create okd-deploy
@@ -233,7 +235,7 @@ openstack security group rule create okd-deploy \
 ### Update the Install Config
 
 ```bash
-vim ./install-config.yaml
+vim ~/okd/install-directory/install-config.yaml
 ```
 
 Add security group UUID so the installer can access the cluster. Replace
@@ -246,7 +248,7 @@ controlPlane:
       additionalSecurityGroupIDs: ["7af89a64-3cc0-444f-9273-63f309a003c2"]
 ```
 
-Specify the IP of the floating IPs you created earlier. The API Ip should
+Specify the IP of the floating IPs you created earlier. The API IP should
 already be filled in.
 
 ```yaml
@@ -257,7 +259,7 @@ platform:
 ```
 
 The complete config looks like the following example. You can customize this
- config to your needs.
+config to your needs.
 
 ```yaml
 apiVersion: v1
@@ -290,7 +292,7 @@ networking:
 platform:
   openstack:
     apiFloatingIP: 127.0.0.1
-    ingressFloatingIP: 127.0.0.1
+    ingressFloatingIP: 127.0.0.2
     apiVIP: 10.0.0.5
     cloud: openstack
     defaultMachinePlatform:
@@ -310,31 +312,29 @@ The installation process will delete your configuration file. Save a copy of
 the config before running the installer.
 
 ```bash
-cp install-dir/install-config.yaml .
+cp ~/okd/install-directory/install-config.yaml .
 ```
 
 ## Install OKD
 
 This process can take up to an hour. If the process fails, you'll need to
-delete the cluster and start again. Please see [troubleshooting](#install-failed)
+delete the cluster and start again. Please see [troubleshooting](#troubleshooting)
 for more information.
 
 ```bash
-./openshift-install create cluster --dir ./install-directory/ --log-level=info
+./openshift-install create cluster --dir ~/okd/install-directory/ --log-level=info
 ```
 
 If everything is successful, you should see URLs to access the API and the
 console. There will also be a username and password for the console.
  **Save the username and password from the log output somewhere safe.**
 
-### Optional
-
-If your deploying with hosts file mods, you'll need to add the same entries
-to the bootstrapping VM after it's created.
-
-```bash
-watch openstack server list
-```
+> **NOTE!** If you are deploying with hosts file mods, you'll need to add the
+> same entries to the bootstrapping VM after it's created.
+>
+> ```bash
+> watch openstack server list
+> ```
 
 ## Verify Installation
 
@@ -354,7 +354,7 @@ Navigate to <https://console-openshift-console.apps.okd.testing-okd.com/dashboar
 
 Use the username and password that were output after you completed the
 installation. If you forget to save the password, the password is stored
-in the **auth** folder in the current directory in the **kubeadmin-password** file.
+in the `auth` folder in the current directory in the `kubeadmin-password` file.
 
 ![OKD Web Console on OpenMetal](okd-images/okd-web-console.jpg)
 
@@ -373,7 +373,7 @@ install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 #### Load configuration
 
 ```bash
- export KUBECONFIG=/root/okd/install-dir/auth/kubeconfig
+ export KUBECONFIG=/root/okd/install-directory/auth/kubeconfig
 ```
 
 #### List Pods
@@ -402,7 +402,7 @@ openshift-cluster-csi-drivers                      openstack-cinder-csi-driver-n
 
 #### Install OKD Client
 
-To verify operation, download the OKD client from the OKD GitHub releases page <https://github.com/openshift/okd/releases>
+To verify operation, download the OKD client from the OKD GitHub [releases page:](https://github.com/openshift/okd/releases)
 
 ```bash
 curl -OL https://github.com/openshift/okd/releases/download/4.11.0-0.okd-2022-07-29-154152/openshift-client-linux-4.11.0-0.okd-2022-07-29-154152.tar.gz
@@ -414,7 +414,7 @@ tar -xvf openshift-client-linux-4.11.0-0.okd-2022-07-29-154152.tar.gz
 
 #### Fetch Kubernetes resources using OKD Client
 
-Run the following OKD client commands using the **oc** binary:
+Run the following OKD client commands using the `oc` binary:
 
 - `./oc get nodes`
 - `./oc get clusterversion`
@@ -441,13 +441,13 @@ okd-dstmh-worker-0-mjzlr   Ready    worker   3h24m   v1.24.0+9546431
 #### Delete the cluster
 
 ```bash
-./openshift-install destroy cluster --dir install-directory/ --log-level info
+./openshift-install destroy cluster --dir ~/okd/install-directory/ --log-level=info
 ```
 
 #### Copy the config
 
 ```bash
-cp install-config.yaml ./install-dir/
+cp install-config.yaml ~/okd/install-directory/
 ```
 
 #### Create the manifests
@@ -459,5 +459,5 @@ cp install-config.yaml ./install-dir/
 #### Start Install
 
 ```bash
-./openshift-install create cluster --dir ./install-directory/ --log-level=info
+./openshift-install create cluster --dir ~/okd/install-directory/ --log-level=info
 ```
