@@ -330,7 +330,7 @@ console. There will also be a username and password for the console.
 
 > **NOTE!** If your deploying with hosts file mods, you'll need to add the same
 > entries to the bootstrapping VM after it's created.
-> 
+>
 > ```bash
 > watch openstack server list
 > ```
