@@ -139,7 +139,7 @@ Output:
 
 #### Option 1
 
-Setup DNS records._Recommended for production clusters._
+Setup DNS records. _Recommended for production clusters._
 
 - api.<cluster_name>.<base_domain>.  IN  A  <API_FLOATING_IP>
 - *.apps.<cluster_name>.<base_domain>. IN  A <APPS_FLOATING_IP>
@@ -153,7 +153,7 @@ Setup DNS records._Recommended for production clusters._
 
 Add the following to `/etc/hosts`. Replace the floating IPs with the IPs you
 created above. You'll need to use this block on several servers.
- _Only recomended for testing purposes._
+ _Only recommended for testing purposes._
 
 ```bash
 API_FLOATING_IP api.okd.testing-okd.com
@@ -177,10 +177,10 @@ mkdir ~/okd/install-directory
 ./openshift-install --dir ~/okd/install-directory create manifests
 ```
 
-You'll be prompted with for information about the cluster.  As a reference,
+You'll be prompted for information about the cluster.  As a reference,
 we used the following values for each prompt.
 
-- Base domain will be the domain you setup DNS or the domain in your hosts file mod.
+- Base domain will be the domain you set up DNS or the domain in your hosts file mod.
 - OKD wants a pull secret. The pull secret is used for making pull requests from
   private container image registries. If you have a private registry secret you
   can provide that. Otherwise, you can use a fake secret the OKD documentation
@@ -189,12 +189,12 @@ we used the following values for each prompt.
   asterisks.
   **OKD will fail if the pull secret is not a valid pull secret or the fake secret.**
    If you use the fake secret, OKD will pull its container images from public
-   repositories. OKD does cache container images so you do not have to repull
+   repositories. OKD does cache container images, so you do not have to repull
    them for every run of OKD. If you use the pull secret provided, Red Hat
    operators will be unavailable. For more information see their [documentation:](https://docs.okd.io/latest/installing/installing_openstack/installing-openstack-installer-custom.html#installation-obtaining-installer_installing-openstack-installer-custom)
-- You must choose a flavor with atleast 16 GB memory, 4 vCPUs, and 100 GB
+- You must choose a flavor with at least 16 GB memory, 4 vCPUs, and 100 GB
   storage space. The `gp1.xlarge` flavor has enough resources. OKD will fail
-  with an error about the flavor not having enough RAM or vCPU if you pick
+  with an error about the flavor not having enough RAM or vCPUs if you pick
    a small flavor.
 
 ```bash
@@ -218,9 +218,9 @@ we used the following values for each prompt.
 ### Create Security Group
 
 Create a security group that allows for SSH access from the host on which
- you are running the **openshift-install** application. You can get failures
- if the host cannot access the bootstrap node via SSH Provision floating IPs
- for the project that will host the OKD infrastructure.
+you are running the `openshift-install` application. You can get failures
+if the host cannot access the bootstrap node via SSH Provision floating IPs
+for the project that will host the OKD infrastructure.
 
 ```bash
 openstack security group create okd-deploy
@@ -247,7 +247,7 @@ controlPlane:
       additionalSecurityGroupIDs: ["7af89a64-3cc0-444f-9273-63f309a003c2"]
 ```
 
-Specify the IP of the floating IPs you created earlier. The API Ip should
+Specify the IP of the floating IPs you created earlier. The API IP should
 already be filled in.
 
 ```yaml
@@ -258,7 +258,7 @@ platform:
 ```
 
 The complete config looks like the following example. You can customize this
- config to your needs.
+config to your needs.
 
 ```yaml
 apiVersion: v1
@@ -328,8 +328,8 @@ If everything is successful, you should see URLs to access the API and the
 console. There will also be a username and password for the console.
  **Save the username and password from the log output somewhere safe.**
 
-> **NOTE!** If your deploying with hosts file mods, you'll need to add the same
-> entries to the bootstrapping VM after it's created.
+> **NOTE!** If you are deploying with hosts file mods, you'll need to add the
+> same entries to the bootstrapping VM after it's created.
 >
 > ```bash
 > watch openstack server list
@@ -353,7 +353,7 @@ Navigate to <https://console-openshift-console.apps.okd.testing-okd.com/dashboar
 
 Use the username and password that were output after you completed the
 installation. If you forget to save the password, the password is stored
-in the **auth** folder in the current directory in the **kubeadmin-password** file.
+in the `auth` folder in the current directory in the `kubeadmin-password` file.
 
 ![OKD Web Console on OpenMetal](okd-images/okd-web-console.jpg)
 
@@ -413,7 +413,7 @@ tar -xvf openshift-client-linux-4.11.0-0.okd-2022-07-29-154152.tar.gz
 
 #### Fetch Kubernetes resources using OKD Client
 
-Run the following OKD client commands using the **oc** binary:
+Run the following OKD client commands using the `oc` binary:
 
 - `./oc get nodes`
 - `./oc get clusterversion`
