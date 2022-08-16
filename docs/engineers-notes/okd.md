@@ -180,7 +180,8 @@ mkdir ~/okd/install-directory
 You'll be prompted for information about the cluster.  As a reference,
 we used the following values for each prompt.
 
-- Base domain will be the domain you set up DNS or the domain in your hosts file mod.
+- Base domain will be the domain you set up DNS or the domain in your hosts file
+  mod.
 - OKD wants a pull secret. The pull secret is used for making pull requests from
   private container image registries. If you have a private registry secret you
   can provide that. Otherwise, you can use a fake secret the OKD documentation
