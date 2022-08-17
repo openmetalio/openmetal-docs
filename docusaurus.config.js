@@ -47,6 +47,10 @@ const config = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
+            {
+                to: '/users-manual/using-creating-images-cli',
+                from: '/users-manual/using_creating_images_cli',
+            },
         ],
       },
     ],
