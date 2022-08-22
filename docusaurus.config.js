@@ -52,8 +52,8 @@ const config = {
                 from: '/users-manual/using_creating_images_cli',
             },
             {
-                to: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
-                from: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
+                from: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
+                to: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
             },
         ],
       },
