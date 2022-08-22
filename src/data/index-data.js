@@ -3,7 +3,7 @@ export default {
 		{
 			title: "Cloud Operators Manual - Zero to Production in 40 Hours",
 			description: "Key document for all IT teams that are managing their own Private Cloud.",
-			htmlPath: "/docs/manuals/operators-manual/",
+			htmlPath: "/docs/manuals/operators-manual",
 			pdfPath: "https://inmotionhosting.github.io/static-assets/docs/openstack_ops_manual.pdf",
 			comingSoon: false,
 			manualName: 'Operator\'s Manual',
@@ -14,7 +14,7 @@ export default {
 		{
 			title: "Tutorials",
 			description: "Tutorials for OpenStack administrators.",
-			htmlPath: "/docs/manuals/tutorials/",
+			htmlPath: "/docs/manuals/tutorials",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'Operator\'s Manual Extras',
@@ -42,7 +42,7 @@ export default {
 		{
 			title: "OpenStack Horizon Quick Start for Project Users",
 			description: "Helps new Project Users to self serve their Infrastructure.",
-			htmlPath: "/docs/manuals/users-manual/",
+			htmlPath: "/docs/manuals/users-manual",
 			pdfPath: "",
 			comingSoon: false,
 			manualName: 'User\'s Manual',
@@ -53,7 +53,7 @@ export default {
 		{
 			title: "Cloud Operators Manual Extended - Kubernetes on OpenStack",
 			description: "Learn how to use your OpenStack to run your Kubernetes deployments.",
-			htmlPath: "/docs/manuals/tutorials/magnum-and-kubernetes/",
+			htmlPath: "/docs/manuals/tutorials/magnum-and-kubernetes",
 			pdfPath: "",
 			comingSoon: false,
 			catagories: ['users'],

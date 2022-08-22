@@ -51,6 +51,10 @@ const config = {
                 to: '/users-manual/using-creating-images-cli',
                 from: '/users-manual/using_creating_images_cli',
             },
+            {
+                to: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
+                from: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
+            },
         ],
       },
     ],
@@ -262,7 +266,7 @@ const config = {
               {
                 label: 'OpenStack Users Manual',
                 description: '',
-                href: 'https://openmetal.io/docs/manuals/openstack-users/openstack-users-manual/',
+                href: 'https://openmetal.io/docs/manuals/openstack-users/openstack-users-manual',
                 itemType: 'link',
               },
               {
