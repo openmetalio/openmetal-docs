@@ -214,48 +214,30 @@ Above each table are the parameters passed to `fio`.
 These tests were performed within a **Private Cloud Core - Small** using
 an additional **Compute - Large** node.
 
------
+`rw=randread bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1 ioengine=posixaio`
 
-`rw=randread bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1
-ioengine=posixaio`
+| Random Reads | Bandwidth (MiB/s) | IOPS (average) |
+|---------------|-------------------|----------------|
+| LVM Ephemeral |              34.4 |           8819 |
+| Ceph          |               8.5 |           2125 |
 
-\+----------------------------------------------------+ | Random Reads |
-+===============+===================+================+ | | Bandwidth
-(MiB/s) | IOPS (average) |
-+---------------+-------------------+----------------+ | LVM Ephemeral |
-34.4 | 8819 | +---------------+-------------------+----------------+ |
-Ceph | 8.5 | 2125 |
-+---------------+-------------------+----------------+
+`rw=randwrite bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1 ioengine=posixaio`
 
-`rw=randwrite bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1
-ioengine=posixaio`
+| Random Writes | Bandwidth (MiB/s) | IOPS (average) |
+|---------------|-------------------|----------------|
+| LVM Ephemeral | 285 | 72998 |
+|Ceph | 94.1 | 39305 |
 
-\+----------------------------------------------------+ | Random Writes
-| +===============+===================+================+ | | Bandwidth
-(MiB/s) | IOPS (average) |
-+---------------+-------------------+----------------+ | LVM Ephemeral |
-285 | 72998 | +---------------+-------------------+----------------+ |
-Ceph | 94.1 | 39305 |
-+---------------+-------------------+----------------+
+`rw=read bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1 ioengine=posixaio`
 
-`rw=read bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1
-ioengine=posixaio`
+| Sequential Reads | Bandwidth (MiB/s) | IOPS (average) |
+|---------------|-------------------|----------------|
+| LVM Ephemeral | 302 | 83314 |
+| Ceph | 197 | 50210 |
 
-\+----------------------------------------------------+ | Sequential
-Reads | +===============+===================+================+ | |
-Bandwidth (MiB/s) | IOPS (average) |
-+---------------+-------------------+----------------+ | LVM Ephemeral |
-302 | 83314 | +---------------+-------------------+----------------+ |
-Ceph | 197 | 50210 |
-+---------------+-------------------+----------------+
+`rw=write bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1 ioengine=posixaio`
 
-`rw=write bs=4k size=2g numjobs=1 iodepth=2 runtime=60 end_fsync=1
-ioengine=posixaio`
-
-\+----------------------------------------------------+ | Sequential
-Writes | +===============+===================+================+ | |
-Bandwidth (MiB/s) | IOPS (average) |
-+---------------+-------------------+----------------+ | LVM Ephemeral |
-294 | 76620 | +---------------+-------------------+----------------+ |
-Ceph | 104 | 40244 |
-+---------------+-------------------+----------------+
+| Sequential Writes | Bandwidth (MiB/s) | IOPS (average) |
+|---------------|-------------------|----------------|
+| LVM Ephemeral | 294 | 76620 |
+| Ceph | 104 | 40244 |
