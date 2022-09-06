@@ -143,7 +143,7 @@ Setup DNS records. _Recommended for production clusters._
 
 - api.<cluster_name>.<base_domain>.  IN  A  <API_FLOATING_IP>
 - *.apps.<cluster_name>.<base_domain>. IN  A <APPS_FLOATING_IP>
-- api.<cluster_name>.<base_domain>.  IN  A  <API_FLOATING_IP>
+- api-int.<cluster_name>.<base_domain>.  IN  A  <API_FLOATING_IP>
 
 > Note: OKD will fail if it cannot resolve these DNS records to the floating IP
 > addresses you selected. If the install does fail for this reason, it will tell
