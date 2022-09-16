@@ -1,5 +1,5 @@
 ---
-slug: /kubernetes-guides/installing-an-rancher-cluster-on-openstack
+slug: /kubernetes-guides/installing-a-rancher-cluster-on-openstack
 ---
 
 # Installing a Rancher managed cluster on OpenStack
@@ -42,6 +42,17 @@ openstack project create --domain default --description "RKE1 Cluster" rke1
 
 ```bash
 openstack role add --project rke1 --user admin admin
+```
+
+#### Update the OpenStack CLI
+
+Update the following environment variables.
+
+> Note: Replace <project_id> with the project id from the previous step.
+
+```bash
+export OS_PROJECT_ID=<project_id>
+export OS_PROJECT_NAME=rke1
 ```
 
 ### Network
