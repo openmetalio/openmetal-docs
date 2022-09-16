@@ -90,14 +90,15 @@ openstack router create \
 ```bash
 openstack router add subnet \
   rke1-router \
-  rke1-subnet \
-  --project rke1
+  rke1-subnet
 ```
 
 #### Set the Router's External Gateway
 
 ```bash
-openstack router set --external-gateway public rke1-router
+openstack router set --external-gateway \
+  $(openstack network list --external -f value -c ID) \
+  rke1-router
 ```
 
 ### Create a Security Group
@@ -111,22 +112,21 @@ to the nodes and ports that need it.
 
 ```bash
 openstack security group create rke1 --project rke1
-openstack security group rule create --protocol icmp --dst-port 1:65535 rke
-openstack security group rule create --protocol tcp --dst-port 22:22 rke
-openstack security group rule create --protocol tcp --dst-port 53:53 rke
-openstack security group rule create --protocol tcp --dst-port 179:179 rke
-openstack security group rule create --protocol tcp --dst-port 6443:6443 rke
-openstack security group rule create --protocol tcp --dst-port 2379:2379 rke
-openstack security group rule create --protocol tcp --dst-port 2380:2380 rke
-openstack security group rule create --protocol tcp --dst-port 2380:2380 rke
-openstack security group rule create --protocol tcp --dst-port 7080:7080 rke
-openstack security group rule create --protocol tcp --dst-port 8472:8472 rke
-openstack security group rule create --protocol tcp --dst-port 8080:8080 rke
-openstack security group rule create --protocol tcp --dst-port 9100:9100 rke
-openstack security group rule create --protocol tcp --dst-port 10250:10250 rke
-openstack security group rule create --protocol udp --dst-port 8472:8472 rke
-openstack security group rule create --protocol tcp --dst-port 30000:32767 rke
-
+openstack security group rule create --protocol icmp --dst-port 1:65535 rke1
+openstack security group rule create --protocol tcp --dst-port 22:22 rke1
+openstack security group rule create --protocol tcp --dst-port 53:53 rke1
+openstack security group rule create --protocol tcp --dst-port 179:179 rke1
+openstack security group rule create --protocol tcp --dst-port 6443:6443 rke1
+openstack security group rule create --protocol tcp --dst-port 2379:2379 rke1
+openstack security group rule create --protocol tcp --dst-port 2380:2380 rke1
+openstack security group rule create --protocol tcp --dst-port 2380:2380 rke1
+openstack security group rule create --protocol tcp --dst-port 7080:7080 rke1
+openstack security group rule create --protocol tcp --dst-port 8472:8472 rke1
+openstack security group rule create --protocol tcp --dst-port 8080:8080 rke1
+openstack security group rule create --protocol tcp --dst-port 9100:9100 rke1
+openstack security group rule create --protocol tcp --dst-port 10250:10250 rke1
+openstack security group rule create --protocol udp --dst-port 8472:8472 rke1
+openstack security group rule create --protocol tcp --dst-port 30000:32767 rke1
 ```
 
 ### Create a Key Pair
@@ -136,7 +136,7 @@ This key will be used by the deployment environment to access the nodes.
 #### Generate a key pair
 
 ```bash
-ssh-keygen -t ed25519 -N '' -f /root/.ssh/id_rke1 && chmod 600 /root/.ssh/id_rke1
+ssh-keygen -t ed25519 -N '' -f /root/.ssh/id_rke1
 ```
 
 #### Upload the public key to OpenStack
@@ -153,10 +153,12 @@ Each of your nodes will need docker installed on them. This script will install
 any dependencies after the VM is created.
 
 ```bash
-echo '#!/bin/bash
+cat <<EOF > ./install_docker.sh
+#!/bin/bash
 
 curl https://releases.rancher.com/install-docker/20.10.sh | sh
-sudo usermod -aG docker ubuntu' > ./install_docker.sh
+sudo usermod -aG docker ubuntu
+EOF
 ```
 
 #### Create Servers
@@ -207,7 +209,7 @@ openstack floating ip create \
 ```
 
 ```bash
-openstack server add floating ip rke1-launcher <floating-ip>
+openstack server add floating ip rke1-launcher2 <floating-ip>
 ```
 
 > Note: You'll need to replace `<floating-ip>` with the floating IP you created
@@ -273,13 +275,22 @@ openstack server list --project rke1
 nodes:
   - address: <node_1_IP_address>
     user: ubuntu
-    role: [controlplane, worker, etcd]
+    role:
+      - controlplane
+      - worker
+      - etcd
   - address: <node_2_IP_address>
     user: ubuntu
-    role: [controlplane, worker, etcd]
+    role:
+      - controlplane
+      - worker
+      - etcd
   - address: <node_3_IP_address>
     user: ubuntu
-    role: [controlplane, worker, etcd]
+    role:
+      - controlplane
+      - worker
+      - etcd
 
 services:
   etcd:
