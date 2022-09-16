@@ -1,17 +1,17 @@
 ---
-slug: /Kubernetes-guides/installing-a-rancher-cluster-on-openstack
+slug: /kubernetes-guides/installing-a-rancher-cluster-on-openstack
 ---
 
 # Installing a Rancher managed cluster on OpenStack
 
 This guide will validate running an RKE1 (Rancher) cluster on an OpenStack
 environment. We'll be following the official rancher documentation: [Setting up
-a High-availability RKE Kubernetes Cluster](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/Kubernetes-cluster-setup/rke1-for-rancher).
+a High-availability RKE Kubernetes Cluster](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/kubernetes-cluster-setup/rke1-for-rancher).
 
 RKE1 is the first iteration of Rancher's Kubernetes deployment system. RKE2 is
 available and also works within Openstack. We'll be creating a guide on RKE2 in
 the near future. To learn the differences between RKE1 and RKE2, please see
-[RKE1 vs RKE2](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/Kubernetes-clusters-in-rancher-setup/launch-Kubernetes-with-rancher/rke1-vs-rke2-differences).
+[RKE1 vs RKE2](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/Kubernetes-clusters-in-rancher-setup/launch-kubernetes-with-rancher/rke1-vs-rke2-differences).
 
 Setting up an RKE1 cluster on OpenStack is rather simple. First, we need create the
 nodes for our cluster within OpenStack. Then we create an RKE configuration
@@ -369,4 +369,4 @@ Cloud Provider.
 
 We'll be creating guides on how to do this in the near future. In the meantime,
 you can find more information on the OpenStack Cloud Provider here:
-[OpenStack Cloud Provider](https://github.com/Kubernetes/cloud-provider-openstack).
+[OpenStack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
