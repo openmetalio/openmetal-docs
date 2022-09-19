@@ -381,7 +381,7 @@ To do this, you'll need to setup OpenStack Cloud Provider resources. We're in th
 process of creating guides on how to do this.
 
 - [OpenStack Cloud Controller Manager]('./openstack-cloud-controller-manager.md')
-- Cinder CSI Driver - *Coming soon*
+- Cinder CSI Driver - _Coming soon_
 
 You can find more information on the OpenStack Cloud Provider resources here:
 [OpenStack Cloud Provider](https://github.com/Kubernetes/cloud-provider-openstack).

@@ -44,7 +44,6 @@ remove the volume from OpenStack. To get around this, we had to edit the
 `volumeattachment` and remove the `finalizers`. This allowed the CSI driver to
 delete the volume attachment from Kubernetes automatically.
 
-
 ### List all `VolumeAttachments` and `PersistentVolumes`
 
 ```bash
