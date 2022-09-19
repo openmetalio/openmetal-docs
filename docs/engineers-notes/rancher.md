@@ -375,9 +375,13 @@ Save a copy of the following files in a secure location:
 
 You've now deployed a Kubernetes cluster using RKE1. You can now deploy
 workloads to the cluster. However, likely want to deploy an Openstack load
-balancer and persistent volumes as well. You can do this by using up the OpenStack
-Cloud Provider.
+balancer and persistent volumes as well.
 
-We'll be creating guides on how to do this in the near future. In the meantime,
-you can find more information on the OpenStack Cloud Provider here:
-[OpenStack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
+To do this, you'll need to setup OpenStack Cloud Provider resources. We're in the
+process of creating guides on how to do this.
+
+- [OpenStack Cloud Controller Manager]('./openstack-cloud-controller-manager.md')
+- Cinder CSI Driver - *Coming soon*
+
+You can find more information on the OpenStack Cloud Provider resources here:
+[OpenStack Cloud Provider](https://github.com/Kubernetes/cloud-provider-openstack).
