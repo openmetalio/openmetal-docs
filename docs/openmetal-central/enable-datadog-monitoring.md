@@ -48,6 +48,5 @@ Datadog provides fairly comprehensive guides you will want to review.
 - [Getting Started](https://docs.datadoghq.com/getting_started/application/)
 - [Alerting](https://docs.datadoghq.com/getting_started/monitors/)
 - [Dashboards](https://docs.datadoghq.com/getting_started/dashboards/)
- 
+
  As we expand our platform specific guides we will link them here.
- 
