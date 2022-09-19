@@ -29,7 +29,7 @@ block storage and dynamically provisioned volumes.
 For more information, please see the cloud provider documentation:
 [OpenStack Cloud Controller Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.24/docs/openstack-cloud-controller-manager/using-openstack-cloud-controller-manager.md)
 
-> Note: This documentation was written for kubernetes version 1.24. If installing
+> Note: This documentation was written for Kubernetes version 1.24. If installing
 > on a different Kubernetes version, please see the cooresponding documentation
 > for that version: [Cloud Provider Openstack](https://github.com/kubernetes/cloud-provider-openstack)
 
@@ -54,7 +54,7 @@ to authenticate with your OpenStack.
 
 - `auth-url`: You can find this under "API Access" within your project. It's
   labeled as "Identity".
-- `floating-network-id`: The ID of the network you your cluster is on.
+- `floating-network-id`: The ID of the network your cluster is on.
 - `subnet-id`: The ID of the subnet within your network.
 
 ```ini
@@ -127,7 +127,7 @@ openstack-cloud-controller-manager-jqpbk   1/1     Running     0             2d1
 
 ## Verify
 
-We'll verify the functionality of your cloud provider by creating a kubernetes
+We'll verify the functionality of your cloud provider by creating a Kubernetes
 load balancer service. This will create a load balancer in OpenStack and assign
 a floating IP to it.
 
@@ -180,7 +180,7 @@ hostname-server
 ## What's Next
 
 Now that you've configured, deployed, and verified your cloud provider, you can
-setup other cloud provider features. Cinder, Barbican, and Octavia are all supported
+set up other cloud provider features. Cinder, Barbican, and Octavia are all supported
 by the cloud provider.
 
 We'll cover how to configure them in our next Kubernetes guides. For now, please
