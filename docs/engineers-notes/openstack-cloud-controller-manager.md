@@ -1,13 +1,13 @@
 ---
-slug: /kubernetes-guides/installing-the-openstack-cloud-controller-manager
+slug: /kubernetes-guides/installing-the-kubernetes-openstack-cloud-controller-manager
 ---
 
-# Installing the OpenStack Cloud Controller Manager
+# Installing the Kubernetes OpenStack Cloud Controller Manager
 
 ## Objective
 
 After following this guide you will be able to create publicly
-available endpoints from your cluster.
+available endpoints from your Kubernetes cluster.
 
 ## Background
 
@@ -176,3 +176,12 @@ Output:
 ```bash
 hostname-server
 ```
+
+## What's Next
+
+Now that you've configured, deployed, and verified your cloud provider, you can
+setup other cloud provider features. Cinder, Barbican, and Octavia are all supported
+by the cloud provider.
+
+We'll cover how to configure them in our next Kubernetes guides. For now, please
+see the [Cloud Provider OpenStack](https://github.com/kubernetes/cloud-provider-openstack).
