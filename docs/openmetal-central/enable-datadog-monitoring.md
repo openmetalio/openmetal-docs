@@ -1,5 +1,6 @@
 ---
 slug: /openmetal-central/enable-datadog-monitoring
+description: Learn how to obtain a Datadog license for your OpenMetal Private Cloud and enable Datadog cloud monitoring.
 ---
 
 # Enable Datadog Cloud Monitoring in OpenMetal Central
