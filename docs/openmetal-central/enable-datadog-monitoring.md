@@ -37,11 +37,6 @@ organization directly.
 
 ![Single Sign On](images/single-sign-on.png)
 
-Additionally, the API and application keys can be retrieved for scripting and
-code integration.
-
-![Agent Key Retrieval](images/agent-key-retrieval.png)
-
 ### Next Steps
 
 Datadog provides fairly comprehensive guides you will want to review.
