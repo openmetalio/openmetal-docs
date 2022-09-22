@@ -24,7 +24,7 @@ simply move your cloud into production after your trial period is over. You
 can set this up before you even launch your trial cloud.
 
 1. From the [Cloud Home Page](https://central.openmetal.io/clouds), select the
-   _Get Started_ button
+   _Get Started_ button.
 
     ![OpenMetal Central Get Started](images/purchase6.png)
 
@@ -53,17 +53,17 @@ trial cloud is launched. Simply log back in and update your billing parameters.
 > **NOTE!** This needs to be done before your trial cloud expires. Once a trial
 > expires, the cloud cannot be recovered.
 
-1. Sign in to your [OpenMetal Central Account](https://central.openmetal.io/auth/sign-in)
+1. Sign in to your [OpenMetal Central Account](https://central.openmetal.io/auth/sign-in).
 
 1. After logging into OpenMetal Central hover over the icon on the top right.
 
     ![OpenMetal Central Profile From Home](images/purchase1.png)
 
-1. On the Dropdown click _Personal Profile_
+1. On the drop-down click _Personal Profile_.
 
     ![OpenMetal Central Profile From Dropdown](images/purchase2.png)
 
-1. On the left menu click _Payment Methods_
+1. On the left menu click _Payment Methods_.
 
     ![OpenMetal Central Payment Methods From Personal Profile](images/purchase8.png)
 
@@ -72,9 +72,9 @@ trial cloud is launched. Simply log back in and update your billing parameters.
 
     ![OpenMetal Central Billing Information Form](images/purchase7.png)
 
-1. Add your billing information
+1. Add your billing information.
 
-1. Update your choice to purchase your cloud after the trial is over
+1. Update your choice to purchase your cloud after the trial is over.
 
 1. Please note that you cannot purchase your trial cloud after the trial cloud
    has expired. If you need to add time to your trial cloud to prevent this
@@ -82,9 +82,7 @@ trial cloud is launched. Simply log back in and update your billing parameters.
 
 ### Extending your current trial
 
-To extend a current trial cloud
-
-1. [Create a Support Request](https://openmetal.io/docs/manuals/openmetal-central/creating-a-support-request)
+1. To extend a current trial cloud [Create a Support Request](https://openmetal.io/docs/manuals/openmetal-central/creating-a-support-request)
    in your OpenMetal Central portal. Request a trial extension and why you need
    it.
 
@@ -102,32 +100,32 @@ other than the cloud that you launched for your trial.
 
 ### Buy a new cloud after the trial has expired
 
-1. After your cloud expires, go back to the [Central Home page](https://central.openmetal.io/clouds)
+1. After your cloud expires, go back to the [Central Home page](https://central.openmetal.io/clouds).
 
-1. Click get started
+1. Click get started.
 
     ![Get Started](images/purchase6.png)
 
-1. Choose your cloud size
+1. Choose your cloud size.
 
     ![Hardware Selection](images/purchase3.png)
 
-1. Add your billing information as prompted. (Skip this step if already added)
+1. Add your billing information as prompted. (Skip this step if already added.)
 
-1. Launch Log back in before the trial period ends, add billing information, and
-   request to pay for that trial
+1. Log back in before the trial period ends, add billing information, and
+   request to pay for that trial.
 
 ## To start with a longer cloud trial
 
-If you know upfront that the standard cloud trial does not provide enough time
-to develop and test your required functionality, or you wish to invite a team
-to develop and test your trial cloud. For this, you need to have an
-_Organization Trial_.
+An _Organization Trial_ is required if you know up-front that the standard
+cloud trial does not provide enough time to develop and test your required
+functionality, or you wish to invite a team to develop and test your trial
+cloud. For this, you need to have an _Organization Trial_.
 
 ### Requesting an Organizational Trial
 
 1. If you have not already done so, [create an organization](creating-an-organization.md)
-   inside OpenMetal Central
+   inside OpenMetal Central.
 
 2. [Submit a _Support Request_](creating-a-support-request.md) requesting your
    organizational trial be approved.
