@@ -25,7 +25,7 @@ Under **_Start Here_**, click the middle Icon titles **_New Request_**
 
 ![OpenMetal Central Support Page](images/request12.png "OpenMetal Central Support Page")
 
-You will get a popup form that you can use to outline the details of your
+You will get a pop-up form that you can use to outline the details of your
 request.
 
 ![OpenMetal Central Request Form](images/request6.png "OpenMetal Central Request Form")
@@ -56,7 +56,7 @@ Support Page click the icon on the right titled **_View Requests._**
 
 ![OpenMetal Central View Support Requests](images/request11.png)
 
-Likewise, If you are in your Personal Profile you can click Requests on the
+Likewise, if you are in your Personal Profile you can click Requests on the
 left menu
 
 ![OpenMetal Central Requests from Personal Profile](images/request10.png)
