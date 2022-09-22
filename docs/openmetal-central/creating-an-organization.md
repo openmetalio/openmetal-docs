@@ -1,6 +1,7 @@
 ---
 slug: /openmetal-central/creating-an-organization
 description: Learn to create organizations in the OpenMetal platform that enable you to easily collaborate with others to build and manage your private cloud.
+sidebar_position: 2
 image: images/organization1.png
 ---
 

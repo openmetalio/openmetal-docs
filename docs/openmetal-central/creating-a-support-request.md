@@ -1,6 +1,7 @@
 ---
 slug: /openmetal-central/creating-a-support-request
 description: Learn step-by-step the process of creating support requests inside of the OpenMetal Central portal and how to check the status of support requests.
+sidebar_position: 3
 image: images/request2.png
 ---
 

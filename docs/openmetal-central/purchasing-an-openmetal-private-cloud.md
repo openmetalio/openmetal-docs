@@ -1,6 +1,7 @@
 ---
 slug: /openmetal-central/how-to-purchase-a-private-cloud
 description: Learn how to purchase an OpenMetal Private Cloud using the OpenMetal Central portal. Get the benefits of private cloud control on-demand.
+sidebar_position: 1
 ---
 
 # How to Purchase an OpenMetal Private Cloud
