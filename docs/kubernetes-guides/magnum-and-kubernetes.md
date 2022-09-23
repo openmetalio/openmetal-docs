@@ -1,6 +1,8 @@
 ---
 sidebar_position: 2
+slug: /tutorials/magnum-and-kubernetes
 ---
+
 # Magnum and Kubernetes
 
 ## Introduction
@@ -106,7 +108,7 @@ pip install python-magnumclient
 To create a Kubernetes cluster, navigate in Horizon to **Project -\>
 Container Infra -\> Clusters**, and follow the **Create Cluster** link.
 
-![image](images/umx_kube_cluster_list.png)
+![image](../tutorials/images/umx_kube_cluster_list.png)
 
 -----
 
@@ -114,7 +116,7 @@ Fill the form sections out as outlined in the following steps.
 
 **Step 1** -- Details
 
-![image](images/umx_kube_cluster_form_1.png)
+![image](../tutorials/images/umx_kube_cluster_form_1.png)
 
 Fill out the following fields:
 
@@ -124,7 +126,7 @@ Fill out the following fields:
 
 **Step 2** -- Size
 
-![image](images/umx_kube_cluster_form_2.png)
+![image](../tutorials/images/umx_kube_cluster_form_2.png)
 
 Fill out the following fields:
 
@@ -135,7 +137,7 @@ Fill out the following fields:
 
 **Step 3** -- Network
 
-![image](images/umx_kube_cluster_form_3.png)
+![image](../tutorials/images/umx_kube_cluster_form_3.png)
 
 Fill out the following fields:
 
@@ -153,7 +155,7 @@ Once the form is submitted, you will be taken back to the cluster list
 where you will see the cluster being created with **Status**,
 `CREATE_IN_PROGRESS`:
 
-![image](images/umx_kube_create_in_progress.png)
+![image](../tutorials/images/umx_kube_create_in_progress.png)
 
 ## Check Status of the Kubernetes Cluster
 
