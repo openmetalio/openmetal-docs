@@ -67,7 +67,6 @@ used to create a secret that is used to authenticate with the OpenStack API. We
 will be using the `cloud-config` secret that we created in the previous step or
 already exists in your cluster.
 
-
 #### Remove the csi-secret-cinderplugin.yaml manifest
 
 ```bash
