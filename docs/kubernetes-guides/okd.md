@@ -1,5 +1,6 @@
 ---
 slug: /kubernetes-guides/installing-an-openshift-cluster-on-openstack
+sidebar_position: 1
 ---
 
 # Installing an OpenShift cluster on OpenStack
