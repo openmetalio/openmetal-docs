@@ -1,5 +1,6 @@
 ---
 slug: /openmetal-central/enable-datadog-monitoring
+description: Learn how to obtain a Datadog license for your OpenMetal Private Cloud and enable Datadog cloud monitoring.
 ---
 
 # Enable Datadog Cloud Monitoring in OpenMetal Central
@@ -35,11 +36,6 @@ the "Single Sign On" option in OpenMetal Central to access your clouds' Datadog
 organization directly.
 
 ![Single Sign On](images/single-sign-on.png)
-
-Additionally, the API and application keys can be retrieved for scripting and
-code integration.
-
-![Agent Key Retrieval](images/agent-key-retrieval.png)
 
 ### Next Steps
 

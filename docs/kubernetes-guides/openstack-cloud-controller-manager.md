@@ -55,7 +55,7 @@ to authenticate with your OpenStack.
 
 - `auth-url`: You can find this under "API Access" within your project. It's
   labeled as "Identity".
-- `floating-network-id`: The ID of the network your cluster is on.
+- `floating-network-id`: The ID of the external network floating IPs are issued on.
 - `subnet-id`: The ID of the subnet within your network.
 
 ```ini
@@ -112,13 +112,15 @@ openstack-cloud-controller-manager-jqpbk   1/1     Running     0             2d1
 
     During our testing with RKE1, we found that the pods did not deploy on the control
     plane nodes. We had to manually update the `nodeSelector` in the DaemonSet
-    to add
-    the label of our control plane nodes. The default `nodeSelector` is:
-    `node-role.kubernetes.io/control-plane: ""`
+    to add the label of our control plane nodes.
+
+    The default `nodeSelector` is: `node-role.kubernetes.io/control-plane: ""`
 
     ``` yaml
     node-role.kubernetes.io/controlplane: "true"
     ```
+
+    Note that `control-plane` becomes `controlplane`.
 
     Edit the DaemonSet with the following command to update the `nodeSelector`:
 

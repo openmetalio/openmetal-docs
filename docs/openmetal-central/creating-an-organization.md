@@ -1,6 +1,7 @@
 ---
 slug: /openmetal-central/creating-an-organization
 description: Learn to create organizations in the OpenMetal platform that enable you to easily collaborate with others to build and manage your private cloud.
+sidebar_position: 2
 image: images/organization1.png
 ---
 
@@ -31,7 +32,7 @@ After logging into OpenMetal Central hover over the icon on the top right.
 
 ![OpenMetal Central Create Organization From Home](images/organization9.png)
 
-On the Dropdown click **_My Organizations_**
+On the drop-down click **_My Organizations_**.
 
 ![OpenMetal Central Find My Organizations In Dropdown](images/organization2.png)
 
@@ -49,7 +50,7 @@ Once you have created an organization, you are the owner by default.
 
 You can invite team members into your organization. To do so, hover over the 3
 dots on the right of your organization name on the organization page. In the
-drop-down select **_Members_**
+drop-down select **_Members_**.
 
 ![OpenMetal Central Add Organization Members](images/organization12.png)
 
@@ -76,7 +77,7 @@ will need to resend it.
 ![OpenMetal Central View Invited Members](images/organization3.png)
 
 To resend an invitation, click the gear to the right of the member’s name that
-you want to reinvite. The drop-down menu associated with this gear allows you
+you want to invite. The drop-down menu associated with this gear allows you
 to resend your invitation. You can also revoke your invitation if it was sent
 in error.
 
@@ -84,7 +85,7 @@ in error.
 
 ## Managing Organization Member Permissions
 
-To manage the permissions for a member. Click the gear to the right of the
+To manage the permissions for a member click the gear to the right of the
 member’s name. The drop-down menu associated with this gear will give you the
 option to **_Edit Permissions_** for this member.
 
