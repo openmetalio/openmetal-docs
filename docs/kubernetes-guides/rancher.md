@@ -10,7 +10,7 @@ environment. We'll be following the official rancher documentation: [Setting up
 a High-availability RKE Kubernetes Cluster](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/kubernetes-cluster-setup/rke1-for-rancher).
 
 RKE1 is the first iteration of Rancher's Kubernetes deployment system. RKE2 is
-available and also works within Openstack. We'll be creating a guide on RKE2 in
+available and also works within OpenStack. We'll be creating a guide on RKE2 in
 the near future. To learn the differences between RKE1 and RKE2, please see
 [RKE1 vs RKE2](https://docs.ranchermanager.rancher.io/how-to-guides/new-user-guides/Kubernetes-clusters-in-rancher-setup/launch-kubernetes-with-rancher/rke1-vs-rke2-differences).
 
@@ -382,7 +382,8 @@ To do this, you'll need to setup OpenStack Cloud Provider resources. We're in th
 process of creating guides on how to do this.
 
 - [OpenStack Cloud Controller Manager](./openstack-cloud-controller-manager.md)
-- Cinder CSI Driver - _Coming soon_
+- [Cinder CSI Driver](cinder.md)
+- Barbican KMS Plugin - _Coming soon_
 
 You can find more information on the OpenStack Cloud Provider resources here:
 [OpenStack Cloud Provider](https://github.com/Kubernetes/cloud-provider-openstack).
