@@ -41,6 +41,13 @@ const config = {
       async: false,
       defer: false,
     },
+    {
+      src: '//js.hs-scripts.com/5297785.js?businessUnitId=188922',
+      type: 'text/javascript',
+      id: 'hs-script-loader',
+      async: true,
+      defer: true,
+    },
   ],
   plugins: [
     [
