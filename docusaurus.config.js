@@ -43,7 +43,6 @@ const config = {
     },
   ],
   plugins: [
-    'docusaurus-plugin-hubspot',
     [
       '@docusaurus/plugin-client-redirects',
       {
@@ -90,10 +89,6 @@ const config = {
         {name: 'twitter:site', content: '@openmetalio'},
         {name: 'twitter:creator', content: '@openmetalio'}
       ],
-      hubspot: {
-        accountId: '5297785',
-        businessUnitId: '188922'
-      },
       colorMode: {
         disableSwitch: true
       },
