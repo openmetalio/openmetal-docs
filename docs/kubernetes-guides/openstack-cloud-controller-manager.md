@@ -134,7 +134,7 @@ We'll verify the functionality of your cloud provider by creating a Kubernetes
 load balancer service. This will create a load balancer in OpenStack and assign
 a floating IP to it.
 
-### Deploy a simply application
+### Deploy a simple application
 
 ```bash
 kubectl run hostname-server --image=lingxiankong/alpine-test --port=8080
