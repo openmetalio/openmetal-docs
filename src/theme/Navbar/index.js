@@ -298,7 +298,9 @@ function renderDropDownItems(item) {
     <div className="dropdown_menu_container">
     <ul className="dropdown__menu">
       <div className='dropdown_menu_left' >
-        <h2>{ item.header }</h2>
+        {
+          item.header &&  <h2>{ item.header }</h2>
+        }
         {item.items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => (
           <div key={i}>
             <NavbarItem
@@ -318,13 +320,47 @@ function renderDropDownItems(item) {
               activeClassName={dropdownLinkActiveClass}
               {...childItemProps}
             />
-            <p>{childItemProps.description}</p>
+            {childItemProps.description && <p>{childItemProps.description}</p>}
+          </div>
+        ))}
+
+        {item.items.filter((item) => { return item.itemType === 'section' }).map((sectionitem, i) => (
+          <div key={i}>
+            {
+              sectionitem.href ? 
+              <h3><a href={sectionitem.href}>{sectionitem.header}</a></h3> :
+              <h3>{sectionitem.header}</h3>
+            }
+            {
+              sectionitem.links.map((childItemProps, i) => (
+                <div key={i}>
+                  <NavbarItem
+                    target="_self"
+                    isDropdownItem
+                    onKeyDown={(e) => {
+                      if (i === items.length - 1 && e.key === 'Tab') {
+                        e.preventDefault();
+                        setShowDropdown(false);
+                        const nextNavbarItem = dropdownRef.current.nextElementSibling;
+
+                        if (nextNavbarItem) {
+                          nextNavbarItem.focus();
+                        }
+                      }
+                    }}
+                    activeClassName={dropdownLinkActiveClass}
+                    {...childItemProps}
+                  />
+                  { childItemProps.description && <p>{childItemProps.description}</p> }
+                </div>
+              ))
+            }
           </div>
         ))}
       </div>
       <div className='dropdown_menu_right' >
         {item.items.filter((item) => { return item.itemType === 'article' }).map((childItemProps, i) => (
-          <div key={i}>
+          <div className="article" key={i}>
             <img className='img-responsive' src={childItemProps.image_url}/>
             <NavbarItem
               target="_self"

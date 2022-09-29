@@ -120,9 +120,15 @@ const config = {
                 itemType: 'link',
               },
               {
-                label: 'Private Pods',
-                description: 'The complete OpenMetal Platform in a data center of your choice',
-                href: 'https://openmetal.io/products/products/private-pods',
+                label: 'On-Demand OpenStack',
+                description: 'Production ready OpenStack clusters in 45 seconds. Fully customizable.',
+                href: 'https://openmetal.io/solutions/on-demand-openstack-cloud/',
+                itemType: 'link',
+              },
+              {
+                label: 'Bare Metal Clusters',
+                description: 'Large scale clusters for Clickhouse, Spark, Ceph, Hadoop, and more',
+                href: 'https://openmetal.io/solutions/on-demand-openstack-cloud/',
                 itemType: 'link',
               },
               {
@@ -177,25 +183,63 @@ const config = {
             type: 'dropdown',
             label: 'Platform',
             position: 'left',
-            header: 'Openmetal Platform',
+            //header: 'Openmetal Platform',
             items: [
               {
-                label: 'OpenStack Services',
-                description: '',
-                href: 'https://openmetal.io/platform/openstack-services/',
-                itemType: 'link',
+                header: 'Private Cloud Overview',
+                itemType: 'section',
+                href: 'https://openmetal.io/platform/cloud-features/',
+                links: [
+                  {
+                    label: 'Compute',
+                    description: '',
+                    href: 'https://openmetal.io/platform/cloud-features/cloud-compute/',
+                    itemType: 'link',
+                  },              
+                  {
+                    label: 'Block Storage',
+                    description: '',
+                    href: 'https://openmetal.io/platform/features/block-storage/',
+                    itemType: 'link',
+                  },
+                  {
+                    label: 'Networking',
+                    description: '',
+                    href: 'https://openmetal.io/platform/features/networking/',
+                    itemType: 'link',
+                  },              
+                  {
+                    label: 'Object Storage',
+                    description: '',
+                    href: 'https://openmetal.io/platform/features/object-storage/',
+                    itemType: 'link',
+                  },
+                ]
               },
               {
-                label: 'Features and Components',
-                description: '',
-                href: 'https://openmetal.io/platform/features/',
-                itemType: 'link',
+                header: 'On-Demand OpenStack Overview',
+                itemType: 'section',
+                href: 'https://openmetal.io/solutions/on-demand-openstack-cloud',
+                links: [
+                  {
+                    label: 'For Public Cloud Providers',
+                    description: '',
+                    href: 'https://openmetal.io/solutions/openstack-public-cloud-providers/',
+                    itemType: 'link',
+                  },              
+                  {
+                    label: 'For SAAS Companies',
+                    description: '',
+                    href: 'https://openmetal.io/solutions/saas',
+                    itemType: 'link',
+                  },
+                ]
               },
               {
-                label: 'Global Locations',
-                description: '',
-                href: 'https://openmetal.io/platform/locations/',
-                itemType: 'link',
+                header: 'Bare Metal Overview',
+                itemType: 'section',
+                href: 'https://openmetal.io/platform/cloud-features/bare-metal/',
+                links: [],
               },
               {
                 label: 'Why Move from Public Cloud to Private Cloud',
@@ -302,10 +346,10 @@ const config = {
                 itemType: 'link',
               },
               {
-                label: 'OMI Release V1.4: New XL-V2 Node Type Added',
-                description: 'OpenMetal Cloud Hardware Catalog Update – March 15th, 2022We are refreshing our catalog based on feedback and customization for customers ...',
-                href: 'https://openmetal.io/docs/releases/release-update-v1-4/',
-                image_url: 'https://openmetal.io/wp-content/uploads/2022/03/Release-Update-768x403.png',
+                label: 'OMI Release V1.5: New Software Integrations',
+                description: 'New OpenMetal Integrations with Datadog and SecurityTrails – July 14, 2022Datadog Integration Datadog is a monitoring and security platform for cloud ...',
+                href: 'https://openmetal.io/docs/releases/omi-release-v1-5-new-software-integrations/',
+                image_url: 'https://openmetal.io/wp-content/uploads/2022/07/Product-Release-Update-v1.5-768x403.png',
                 itemType: 'article',
               },
             ],
@@ -326,6 +370,30 @@ const config = {
                 label: 'Core Guiding Principles',
                 description: '',
                 href: 'https://openmetal.io/company/guiding-principles/',
+                itemType: 'link',
+              },
+              {
+                label: 'The OpenMetal Team',
+                description: '',
+                href: 'https://openmetal.io/about-openmetal/team-page/',
+                itemType: 'link',
+              },
+              {
+                label: 'Data Center Locations',
+                description: '',
+                href: 'https://openmetal.io/about-openmetal/data-center-locations/',
+                itemType: 'link',
+              },
+              {
+                label: 'Network Connectivity',
+                description: '',
+                href: 'https://openmetal.io/about-openmetal/network-connectivity/',
+                itemType: 'link',
+              },
+              {
+                label: 'Support and Service Levels',
+                description: '',
+                href: 'https://openmetal.io/about-openmetal/support-and-service-levels/',
                 itemType: 'link',
               },
               {
