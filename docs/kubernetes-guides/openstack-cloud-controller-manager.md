@@ -1,5 +1,6 @@
 ---
 slug: /kubernetes-guides/installing-the-kubernetes-openstack-cloud-controller-manager
+description: OpenMetal provides instructions on how to create publicly available endpoints from your Kubernetes cluster on OpenStack.
 sidebar_position: 5
 ---
 
