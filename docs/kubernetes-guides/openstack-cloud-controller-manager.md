@@ -1,6 +1,6 @@
 ---
 slug: /kubernetes-guides/installing-the-kubernetes-openstack-cloud-controller-manager
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # Installing the Kubernetes OpenStack Cloud Controller Manager
