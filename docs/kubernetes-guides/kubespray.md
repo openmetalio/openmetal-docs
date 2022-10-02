@@ -1,5 +1,6 @@
 ---
 slug: /kubernetes-guides/deploying-a-kubespray-cluster-to-openstack-using-terraform
+description: This guide will walk you through deploying a Kubespray cluster to OpenStack using Terraform.
 sidebar_position: 4
 ---
 
