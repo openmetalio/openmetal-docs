@@ -1,6 +1,7 @@
 ---
 slug: /kubernetes-guides/installing-the-kubernetes-openstack-cloud-controller-manager
-Description: OpenMetal provides instructions on how to create publicly available endpoints from your Kubernetes cluster on OpenStack.
+description: OpenMetal provides instructions on how to create publicly available endpoints from your Kubernetes cluster on OpenStack.
+sidebar_position: 5
 ---
 
 # Installing the Kubernetes OpenStack Cloud Controller Manager
@@ -55,7 +56,7 @@ to authenticate with your OpenStack.
 
 - `auth-url`: You can find this under "API Access" within your project. It's
   labeled as "Identity".
-- `floating-network-id`: The ID of the network your cluster is on.
+- `floating-network-id`: The ID of the external network floating IPs are issued on.
 - `subnet-id`: The ID of the subnet within your network.
 
 ```ini
@@ -112,13 +113,15 @@ openstack-cloud-controller-manager-jqpbk   1/1     Running     0             2d1
 
     During our testing with RKE1, we found that the pods did not deploy on the control
     plane nodes. We had to manually update the `nodeSelector` in the DaemonSet
-    to add
-    the label of our control plane nodes. The default `nodeSelector` is:
-    `node-role.kubernetes.io/control-plane: ""`
+    to add the label of our control plane nodes.
+
+    The default `nodeSelector` is: `node-role.kubernetes.io/control-plane: ""`
 
     ``` yaml
     node-role.kubernetes.io/controlplane: "true"
     ```
+
+    Note that `control-plane` becomes `controlplane`.
 
     Edit the DaemonSet with the following command to update the `nodeSelector`:
 
@@ -132,7 +135,7 @@ We'll verify the functionality of your cloud provider by creating a Kubernetes
 load balancer service. This will create a load balancer in OpenStack and assign
 a floating IP to it.
 
-### Deploy a simply application
+### Deploy a simple application
 
 ```bash
 kubectl run hostname-server --image=lingxiankong/alpine-test --port=8080
