@@ -115,14 +115,29 @@ function DropdownNavbarItemMobile({
       </NavLink>
       <Collapsible lazy as="ul" className="menu__list" collapsed={collapsed}>
         {items.map((childItemProps, i) => (
-          <NavbarItem
-            mobile
-            isDropdownItem
-            onClick={props.onClick}
-            activeClassName="menu__link--active"
-            {...childItemProps}
-            key={i}
-          />
+          <div key={i}>
+            <NavbarItem
+              mobile
+              isDropdownItem
+              onClick={props.onClick}
+              activeClassName="menu__link--active"
+              {...childItemProps}
+              key={i}
+              className={childItemProps.itemType === 'section' ? 'font-bold' : ''}
+            />
+
+            {childItemProps.itemType === 'section' && childItemProps.links.map((item, idx)=> (
+              <NavbarItem
+              mobile
+              isDropdownItem
+              onClick={props.onClick}
+              activeClassName="menu__link--active"
+              {...item}
+              key={idx}
+              className="sectionItemsMobile"
+            />
+            ))}
+          </div>
         ))}
       </Collapsible>
     </li>

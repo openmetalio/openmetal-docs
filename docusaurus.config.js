@@ -186,7 +186,7 @@ const config = {
             //header: 'Openmetal Platform',
             items: [
               {
-                header: 'Private Cloud Overview',
+                label: 'Private Cloud Overview',
                 itemType: 'section',
                 href: 'https://openmetal.io/platform/cloud-features/',
                 links: [
@@ -217,7 +217,7 @@ const config = {
                 ]
               },
               {
-                header: 'On-Demand OpenStack Overview',
+                label: 'On-Demand OpenStack Overview',
                 itemType: 'section',
                 href: 'https://openmetal.io/solutions/on-demand-openstack-cloud',
                 links: [
@@ -236,7 +236,7 @@ const config = {
                 ]
               },
               {
-                header: 'Bare Metal Overview',
+                label: 'Bare Metal Overview',
                 itemType: 'section',
                 href: 'https://openmetal.io/platform/cloud-features/bare-metal/',
                 links: [],

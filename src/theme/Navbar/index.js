@@ -183,6 +183,7 @@ function NavbarMobileSidebar({sidebarShown, toggleSidebar}) {
           <ul className="menu__list">
             {items.map((item, i) => (
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
+              
             ))}
           </ul>
         </div>
@@ -328,8 +329,8 @@ function renderDropDownItems(item) {
           <div key={i}>
             {
               sectionitem.href ? 
-              <h3><a href={sectionitem.href}>{sectionitem.header}</a></h3> :
-              <h3>{sectionitem.header}</h3>
+              <h3><a href={sectionitem.href}>{sectionitem.label}</a></h3> :
+              <h3>{sectionitem.label}</h3>
             }
             {
               sectionitem.links.map((childItemProps, i) => (
