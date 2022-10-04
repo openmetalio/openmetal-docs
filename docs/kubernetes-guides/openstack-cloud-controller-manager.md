@@ -33,7 +33,7 @@ For more information, please see the cloud provider documentation:
 
 > Note: This documentation was written for Kubernetes version 1.24. If installing
 > on a different Kubernetes version, please see the cooresponding documentation
-> for that version: [Cloud Provider Openstack](https://github.com/kubernetes/cloud-provider-openstack)
+> for that version: [Cloud Provider OpenStack](https://github.com/kubernetes/cloud-provider-openstack)
 
 ## Prerequisites
 

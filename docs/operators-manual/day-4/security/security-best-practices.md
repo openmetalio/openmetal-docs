@@ -48,13 +48,12 @@ setting a project and allocating resources to managing groups of
 individuals. There is even the ability to manage down to an individual
 user.
 
-For information about how to create a user and project, see [Create an
-OpenStack User and Project in
-Horizon](../../day-1/horizon/create-user-project).
+For information about how to create a user and project, see
+[Create an OpenStack User and Project in Horizon](../../day-1/horizon/create-user-project.md).
 
 #### Users
 
-When working in Openstack, there is only one administrative user. Using
+When working in OpenStack, there is only one administrative user. Using
 the principle of least privilege, you should create additional users
 when handling various tasks within your private cloud environment.
 
@@ -111,17 +110,15 @@ updated. Over time, these images can become vulnerable as it becomes
 necessary to maintain security updates and patches. We recommend
 routinely updating and managing these images within your existing
 OpenStack cluster. For further information on how to upload images visit
-[Manage and Upload Images in
-Horizon](../../day-1/horizon/images)
+[Manage and Upload Images in Horizon](../../day-1/horizon/images.md)
 
 ### Update Kolla Ansible Images
 
 Kolla Ansible relies on Docker images to deploy the various OpenStack
 containers. Over time, updates occur, causing existing images to be out
 of date. As part of regular cloud maintenance, these images can be
-updated, using Kolla Ansible. To learn more, see [How to Obtain Latest
-OpenStack Images using Kolla
-Ansible](../../day-2/maintenance#how-to-obtain-latest-openstack-images-using-kolla-ansible).
+updated, using Kolla Ansible. To learn more, see
+[How to Obtain Latest OpenStack Images using Kolla Ansible](../../day-2/maintenance.md#how-to-obtain-latest-openstack-images-using-kolla-ansible).
 
 ### Update Control-Plane Nodes
 

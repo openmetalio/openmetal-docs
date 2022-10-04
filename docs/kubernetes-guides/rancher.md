@@ -375,7 +375,7 @@ Save a copy of the following files in a secure location:
 ## What's Next?
 
 You've now deployed a Kubernetes cluster using RKE1. You can now deploy
-workloads to the cluster. However, likely want to deploy an Openstack load
+workloads to the cluster. However, likely want to deploy an OpenStack load
 balancer and persistent volumes as well.
 
 To do this, you'll need to setup OpenStack Cloud Provider resources. We're in the

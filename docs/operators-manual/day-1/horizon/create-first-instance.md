@@ -209,9 +209,9 @@ To add a rule, load the form by navigating to **Add Rule** near the top
 right.
 
 To follow this example, obtain the IP address of the first hardware node
-of your cloud. You can find this using [OpenMetal
-Central](https://central.openmetal.io/) under your cloud's [Assets
-Page](../intro-to-openmetal-private-cloud#how-to-view-your-hardware-assets).
+of your cloud. You can find this using [OpenMetal Central](https://central.openmetal.io/)
+under your cloud's
+[Assets Page](../intro-to-openmetal-private-cloud.md#how-to-view-your-hardware-assets).
 To be consistent, this guide assumes you are working with the first
 hardware node's IP address and the remaining instruction is created with
 that understanding.

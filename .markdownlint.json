@@ -7,5 +7,21 @@
 	"MD049": { "style": "underscore" },
 	"MD050": { "style": "asterisk" },
 	"whitespace": true,
-	"accessibility": true
+	"accessibility": true,
+	"MD044": {
+		"code_blocks": false,
+		"names": [
+			"OpenMetal",
+			"OpenStack",
+			"Kolla Ansible",
+			"kolla-ansible",
+			"Kubernetes",
+			"Terraform",
+			"Horizon",
+			"FreeBSD",
+			"NetBSD",
+			"OpenBSD",
+			"Ceph"
+		]
+	}
 }

@@ -146,7 +146,7 @@ ssh-keygen -t ed25519 -N '' -f ~/.ssh/id_rsa.kubespray
 ### Clone Kubespray
 
 Pull down the kubespray repository. It contains the ansible playbooks and the
-terraform templates we'll be using.
+Terraform templates we'll be using.
 
 ```bash
 git clone --depth 1 --branch v2.20.0  https://github.com/kubernetes-sigs/kubespray
@@ -172,7 +172,7 @@ documentation for a full list of variables.
 For this example, we'll be using the following variables:
 
 > Note: We've added comments to help you fetch the values you want to replace from
-> Openstack.
+> OpenStack.
 
 ```bash
 cluster_name = "test-cluster"
@@ -224,7 +224,7 @@ bastion_allowed_remote_ips = ["0.0.0.0/0"]
 terraform -chdir="../../contrib/terraform/openstack" init
 ```
 
-### Apply the terraform plan
+### Apply the Terraform plan
 
 You'll be prompted to confirm your changes to OpenStack, type `yes` to continue.
 After this process completes, your OpenStack project will have any required resources
@@ -412,7 +412,7 @@ You can verify that the load balancer was created by running the following comma
 openstack loadbalancer list
 ```
 
-You should also see a floating ip associated with the load balancer service in kubernetes.
+You should also see a floating ip associated with the load balancer service in Kubernetes.
 This may take a couple of minutes to complete.
 
 ```bash

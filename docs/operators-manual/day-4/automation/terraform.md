@@ -162,7 +162,7 @@ With the OpenStack Terraform provider, `openstack_compute_instance_v2`
 is a resource we can use to create an instance. For more details about
 this resource and its configuration options, see Terraform's
 [Registry](https://registry.terraform.io/) and search for
-"openstack\_compute\_instance\_v2".
+`openstack_compute_instance_v2`.
 
 A description of variables used for the `resource` block:
 
