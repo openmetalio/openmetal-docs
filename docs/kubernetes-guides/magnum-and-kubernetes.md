@@ -24,7 +24,7 @@ cluster can be created.
 ## Magnum Deployment Details
 
 With Private Cloud Core OpenStack clouds, the deployment of Magnum
-integrates with the [Kubernetes Openstack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
+integrates with the [Kubernetes OpenStack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
 Presently,
 [release-1.18](https://github.com/kubernetes/cloud-provider-openstack/tree/release-1.18)
 of this repository is used.

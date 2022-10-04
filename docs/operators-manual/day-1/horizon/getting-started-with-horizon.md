@@ -39,7 +39,7 @@ this cloud's details page.
 Next, navigate to the **Horizon** link within the left sidebar, or the
 **Launch Horizon** button under Cloud Management Dashboard.
 
-![Access horizon](images/horizon-url.png)
+![Access Horizon](images/horizon-url.png)
 
 **Figure 3:** Horizon URL Location
 

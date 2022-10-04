@@ -75,8 +75,7 @@ For example:
 To have access to another machine, this public key needs to exist within
 the file `~/.ssh/authorized_keys`. For the sake of this series of
 guides, this public key is injected into the instance created within
-[How to Create an Instance in OpenStack
-Horizon](../horizon/create-first-instance)
+[How to Create an Instance in OpenStack Horizon](../horizon/create-first-instance.md)
 
 ## Conclusion
 
