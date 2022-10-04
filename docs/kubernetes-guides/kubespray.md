@@ -85,7 +85,7 @@ pip install netaddr
 export PATH=$PATH:$HOME/.local/bin
 ```
 
-### Setup the OpenStack CLI
+### Set up the OpenStack CLI
 
 We'll be using the CLI to help populate our Terraform variables. If you don't have
 access to the OpenStack CLI, please follow the steps in this guide:
