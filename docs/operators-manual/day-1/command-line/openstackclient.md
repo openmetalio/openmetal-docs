@@ -57,10 +57,9 @@ user **nick** and that user's primary project, **Development**.
 #### Prepare and Install OpenStackClient
 
 Next, use SSH to log in to the instance created previously. If you
-created your instance by following the guide, [How to Create an Instance
-in OpenStack
-Horizon](../horizon/create-first-instance), then
-this instance can only be accessed from one of your control plane nodes.
+created your instance by following the guide,
+[How to Create an Instance in OpenStack Horizon](../horizon/create-first-instance),
+then this instance can only be accessed from one of your control plane nodes.
 
 -----
 

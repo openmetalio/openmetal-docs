@@ -1,5 +1,6 @@
 ---
 slug: /kubernetes-guides/configuring-openstack-cinder-with-kubernetes
+sidebar_position: 6
 ---
 
 # Configuring OpenStack Cinder with Kubernetes

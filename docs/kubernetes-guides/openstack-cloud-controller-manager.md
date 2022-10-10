@@ -1,6 +1,7 @@
 ---
 slug: /kubernetes-guides/installing-the-kubernetes-openstack-cloud-controller-manager
-sidebar_position: 4
+description: OpenMetal provides instructions on how to create publicly available endpoints from your Kubernetes cluster on OpenStack.
+sidebar_position: 5
 ---
 
 # Installing the Kubernetes OpenStack Cloud Controller Manager
@@ -32,7 +33,7 @@ For more information, please see the cloud provider documentation:
 
 > Note: This documentation was written for Kubernetes version 1.24. If installing
 > on a different Kubernetes version, please see the cooresponding documentation
-> for that version: [Cloud Provider Openstack](https://github.com/kubernetes/cloud-provider-openstack)
+> for that version: [Cloud Provider OpenStack](https://github.com/kubernetes/cloud-provider-openstack)
 
 ## Prerequisites
 
