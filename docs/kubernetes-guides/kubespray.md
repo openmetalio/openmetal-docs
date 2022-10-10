@@ -101,7 +101,7 @@ openstack project create --domain default --description "Kubespray Cluster" kube
 ```
 
 ```bash
-openstack role add --project rke1 --user admin admin
+openstack role add --project kubespray-demo --user admin admin
 ```
 
 > Note: You can substitute the admin user if you already have your own user.
