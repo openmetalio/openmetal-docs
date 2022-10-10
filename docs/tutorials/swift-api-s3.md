@@ -8,7 +8,7 @@ description: Learn how to generate EC2 credentials in OpenStack for Swift S3 API
 
 Generate EC2 credentials to access and manage Ceph backed object storage
 containers through Swift's middleware emulation of the S3 REST API on your
-OpenMetal private cloud. 
+OpenMetal private cloud.
 
 See the OpenStack [S3/Swift REST API Comparison Matrix](https://docs.openstack.org/swift/latest/s3_compat.html)
 for compatibility information.
