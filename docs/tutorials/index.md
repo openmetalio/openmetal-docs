@@ -12,3 +12,4 @@ within an OpenMetal cloud.
 4. [VPNaaS Configuration and Deployment](./vpnaas-configure-deploy.md)
 5. [Create a Site-to-Site VPN Connection with Endpoint Groups](./create-site-to-site-vpn.md)
 6. [How to install and configure Barbican on your OpenMetal Cloud](./install-configure-barbican-openmetal.md)
+7. [Create EC2 Credentials for Swift S3 API Access](swift-api-s3.md)
