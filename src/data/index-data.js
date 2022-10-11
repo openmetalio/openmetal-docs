@@ -53,7 +53,7 @@ export default {
 		{
 			title: "Cloud Operators Manual Extended - Kubernetes on OpenStack",
 			description: "Learn how to use your OpenStack to run your Kubernetes deployments.",
-			htmlPath: "/docs/manuals/tutorials/magnum-and-kubernetes",
+			htmlPath: "/docs/manuals/kubernetes-guides",
 			pdfPath: "",
 			comingSoon: false,
 			catagories: ['users'],
