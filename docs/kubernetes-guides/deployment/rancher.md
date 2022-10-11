@@ -1,6 +1,6 @@
 ---
 slug: /kubernetes-guides/installing-a-rancher-cluster-on-openstack
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 # Installing a Rancher managed cluster on OpenStack
@@ -118,8 +118,6 @@ openstack security group rule create --protocol tcp --dst-port 22:22 rke1
 openstack security group rule create --protocol tcp --dst-port 53:53 rke1
 openstack security group rule create --protocol tcp --dst-port 179:179 rke1
 openstack security group rule create --protocol tcp --dst-port 6443:6443 rke1
-openstack security group rule create --protocol tcp --dst-port 2379:2379 rke1
-openstack security group rule create --protocol tcp --dst-port 2380:2380 rke1
 openstack security group rule create --protocol tcp --dst-port 2380:2380 rke1
 openstack security group rule create --protocol tcp --dst-port 7080:7080 rke1
 openstack security group rule create --protocol tcp --dst-port 8472:8472 rke1
@@ -381,8 +379,8 @@ balancer and persistent volumes as well.
 To do this, you'll need to setup OpenStack Cloud Provider resources. We're in the
 process of creating guides on how to do this.
 
-- [OpenStack Cloud Controller Manager](./openstack-cloud-controller-manager.md)
-- [Cinder CSI Driver](cinder.md)
+- [OpenStack Cloud Controller Manager](../openstack-provider/openstack-cloud-controller-manager.md)
+- [Cinder CSI Driver](../openstack-provider/cinder.md)
 - Barbican KMS Plugin - _Coming soon_
 
 You can find more information on the OpenStack Cloud Provider resources here:

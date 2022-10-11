@@ -1,7 +1,7 @@
 ---
 slug: /kubernetes-guides/deploying-a-kubespray-cluster-to-openstack-using-terraform
 description: This guide will walk you through deploying a Kubespray cluster to OpenStack using Terraform.
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # Deploying a Kubespray cluster to OpenStack using Terraform
@@ -89,7 +89,7 @@ export PATH=$PATH:$HOME/.local/bin
 
 We'll be using the CLI to help populate our Terraform variables. If you don't have
 access to the OpenStack CLI, please follow the steps in this guide:
-[How to Install and Use OpenStack's CLI](../operators-manual/day-1/command-line/openstackclient.md#how-to-install-openstackclient).
+[How to Install and Use OpenStack's CLI](../../operators-manual/day-1/command-line/openstackclient.md#how-to-install-openstackclient).
 
 ### Create a OpenStack project
 
