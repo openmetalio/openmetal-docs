@@ -16,16 +16,16 @@ into two categories.
 
 ### Horizon Guides
 
-1. [How to Get Started with OpenStack](getting-started-with-openstack)
-2. [Networking in OpenStack](network-ip-traffic)
-3. [Working with Images](working-with-images)
-4. [How to Create an Instance](create-an-instance)
-5. [Backups](how-to-make-backups-in-openstack)
+1. [How to Get Started with OpenStack](getting-started-with-openstack.md)
+2. [Networking in OpenStack](network-ip-traffic.md)
+3. [Working with Images](using-creating-images.md)
+4. [How to Create an Instance](create-an-instance.md)
+5. [Backups](backups.md)
 
 ### Command Line Guides
 
-1. [Introduction to OpenStackClient](openstackclient)
-2. [Create a Network](create-a-network)
-3. [Manage OpenStack Images](using-creating-images-cli)
-4. [Create an Instance](create-an-instance)
-5. [Managing Backups in OpenStack](managing-backups-in-openstack)
+1. [Introduction to OpenStackClient](openstackclient.md)
+2. [Create a Network](network-ip-traffic-cli.md)
+3. [Manage OpenStack Images](using-creating-images-cli.md)
+4. [Create an Instance](create-an-instance-cli.md)
+5. [Managing Backups in OpenStack](backups-cli.md)
