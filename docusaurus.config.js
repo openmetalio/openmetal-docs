@@ -195,7 +195,7 @@ const config = {
                     description: '',
                     href: 'https://openmetal.io/platform/cloud-features/cloud-compute/',
                     itemType: 'link',
-                  },              
+                  },
                   {
                     label: 'Block Storage',
                     description: '',
@@ -207,7 +207,7 @@ const config = {
                     description: '',
                     href: 'https://openmetal.io/platform/features/networking/',
                     itemType: 'link',
-                  },              
+                  },
                   {
                     label: 'Object Storage',
                     description: '',
@@ -226,7 +226,7 @@ const config = {
                     description: '',
                     href: 'https://openmetal.io/solutions/openstack-public-cloud-providers/',
                     itemType: 'link',
-                  },              
+                  },
                   {
                     label: 'For SAAS Companies',
                     description: '',
@@ -315,13 +315,19 @@ const config = {
               {
                 label: 'OpenStack Operators Manual',
                 description: '',
-                href: 'https://openmetal.io/docs/manuals/openstack-operators/openstack-operators-manual-private-cloud-core/',
+                href: 'https://openmetal.io/docs/manuals/operators-manual',
+                itemType: 'link',
+              },
+              {
+                label: 'Kubernetes',
+                description: '',
+                href: 'https://openmetal.io/docs/manuals/kubernetes-guides',
                 itemType: 'link',
               },
               {
                 label: 'OpenStack Users Manual',
                 description: '',
-                href: 'https://openmetal.io/docs/manuals/openstack-users/openstack-users-manual',
+                href: 'https://openmetal.io/docs/manuals/users-manual',
                 itemType: 'link',
               },
               {
@@ -522,15 +528,19 @@ const config = {
               },
               {
                 label: 'OpenStack Operator’s Manual',
-                href: 'https://openmetal.io/docs/manuals/openstack-operators/openstack-operators-manual-private-cloud-core/',
+                href: 'https://openmetal.io/docs/manuals/operators-manual',
               },
               {
                 label: 'OpenStack User’s Manual',
-                href: 'https://openmetal.io/docs/manuals/openstack-users/openstack-users-manual/',
+                href: 'https://openmetal.io/docs/manuals/users-manual',
               },
               {
                 label: 'Private Cloud Users',
                 href: 'https://openmetal.io/docs/product-guides/private-cloud/',
+              },
+              {
+                label: 'Kubernetes',
+                href: 'https://openmetal.io/docs/manuals/kubernetes-guides',
               },
               {
                 label: 'Product Release Updates',
