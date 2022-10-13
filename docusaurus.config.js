@@ -47,6 +47,7 @@ const config = {
    ssrTemplate: `<!DOCTYPE html>
 <html <%~ it.htmlAttributes %>>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <meta name="generator" content="Docusaurus v<%= it.version %>">
     <% it.metaAttributes.forEach((metaAttribute) => { %>
