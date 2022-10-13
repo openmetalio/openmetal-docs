@@ -8,28 +8,27 @@ description: This guide will walk you through the process of installing a Kubern
 
 This guide will walk you through the process of installing a Kubernetes cluster
 on OpenStack using [kOps - Kubernetes Operations](https://kops.sigs.k8s.io/).
-kOps is a tool that allows you to install Kubernetes
-clusters on a variety of cloud providers. It is a command line tool that is
-written in Go and is maintained by the Kubernetes community. kOps is a great
-option for those who want to install Kubernetes clusters on OpenStack. It
-provides a lot of flexibility and allows you to install a Kubernetes cluster
-that is highly available and secure.
+kOps is a command line tool, written in Go, and maintained by the Kubernetes
+community allowing you to install Kubernetes clusters on a variety of cloud
+providers.  kOps is a great option for those who want to install
+Kubernetes clusters on OpenStack. It provides a lot of flexibility and allows
+you to install a Kubernetes cluster that is highly available and secure.
 
-At the time of writing this guide, October, 2022, kOps for OpenStack is still
+At the time of writing this guide, October 2022, kOps for OpenStack is still
 in beta. According to kOps, it is in good shape for production, but some
 features are still missing.
 
 ## Objectives
 
-We plan to validate the installation of a v1.25.1 Kubernetes cluster on OpenStack
- using kOps. We'll be configuring it to use the OpenStack cloud provider with
-  cinder as the storage provider. We'll also be configuring it to use the
-  OpenStack load balancer to provide ingress to the cluster.
+Our plan is to validate the installation of a v1.25.1 Kubernetes cluster on
+OpenStack using kOps. We'll be configuring it to use the OpenStack cloud provider
+with Cinder as the storage provider with the OpenStack load balancer providing
+ingress to the cluster.
 
-We're following the official [kOps OpenStack guide](https://kops.sigs.k8s.io/getting_started/openstack/).
- Please refer to it for more details. We'll be running these steps from
- one of our OpenMetal servers deployed with each new OpenStack instance. You
- can also run these steps from a VM or a local machine.
+This guide follows the official [kOps OpenStack guide](https://kops.sigs.k8s.io/getting_started/openstack/).
+Please refer to it for more details. We'll be running these steps from one of
+our OpenMetal servers deployed with each new OpenStack instance. They can also
+be run from a VM or a local machine.
 
 ## Prerequisites
 
@@ -78,7 +77,7 @@ export OS_PROJECT_ID=<project_id>
 export OS_PROJECT_NAME=kops
 ```
 
-### Create swift object store
+### Create Swift object store
 
 This object store will be used to store your cluster configuration file.
 
@@ -88,9 +87,9 @@ openstack container create kops
 
 ### Create application credentials
 
-These credentials will be used by kOps to interact with the OpenStack cloud. They
-will be saved in a secret in the cluster. You could also use your personal credentials,
-but it's recommended to use application credentials.
+The credentials are saved as a secret in the cluster and used by kOps to interact
+with the OpenStack cloud. Your personal credentials could also be used, but use
+of application credentials is recommended.
 
 ```bash
 openstack application credential create --description "kOps" kops
@@ -119,13 +118,21 @@ export OS_APPLICATION_CREDENTIAL_SECRET=<secret>
 ### Source in the credentials
 
 Next, we'll source in the credentials file. If you're using the same shell that
-you used for the CLI, you'll need to log out, and log back in to source the credentials.
-Some of the environment variables when using your personal credentials would
-conflict with the application credentials.
+you used for the CLI, you'll need to log out and back in before sourcing the
+credentials, as some environment variables set when using your personal credentials
+can conflict with those for the application credentials.
 
 ```bash
 exit
 ```
+
+> Note: If you wish to retain your current shell the following command will
+> extract all OpenStack related variables from the environment with `env` and
+> unset them:
+>
+> ```bash
+> unset $(env | awk -F'=' '/OS_/ {print $1}' | tr "\n" " ")
+> ```
 
 Log back in.
 
@@ -154,13 +161,13 @@ sudo mv kops /usr/local/bin/kops
 This key will be used to access the Kubernetes nodes.
 
 ```bash
-ssh-keygen -t ed25519 -N '' -f /root/.ssh/id_kops
+ssh-keygen -t ed25519 -N '' -f ~/.ssh/id_kops
 ```
 
 ### Set state store
 
-This is the location where kOps will store the cluster configuration file. We
-created a swift object store in a previous step. We'll use that as the state store.
+KOps will store the cluster configuration file in a Swift object store. Use the
+one you created earlier as the state store.
 
 ```bash
 export KOPS_STATE_STORE=swift://kops
@@ -179,21 +186,24 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ### Create cluster configuration
 
 The following command will create a cluster configuration file. It will be stored
-in the swift object store that we created in a previous step. You may need to
-pull some information from your OpenStack cloud.
+in the Swift object store we created in a previous step. You may need to pull
+some information from your OpenStack cloud.
 
-OpenStack Values:
+OpenStack Values of note:
 
-- Images can be found by running `openstack image list`.
-  The following operating systems are supported: [kOps supported operating systems
-  ](https://github.com/kubernetes/kops/blob/v1.25.1/docs/operations/images.md).
-- Node sizes can be found by running `openstack flavor list`. You can also create
-  custom flavors in the OpenStack dashboard.
-- Availability zones can be found by running `openstack availability zone list`.
-- External network can be found by running `openstack network list --external`.
+- `--image`: Operating system image
+  - Found by running `openstack image list`
+  - Supported operating systems: [kOps supported operating systems](https://github.com/kubernetes/kops/blob/v1.25.1/docs/operations/images.md).
+- `--node-size`: Instance flavor
+  - Found by running `openstack flavor list`.
+  - Custom flavors can also be created in the OpenStack dashboard.
+- `--zones`: Availability zone
+  - Found by running `openstack availability zone list`.
+- `--os-ext-net`: External network
+  - Found by running `openstack network list --external`.
 
 ```bash
-kops create cluster \
+$ kops create cluster \
   --cloud openstack \
   --name my-cluster.k8s.local \
   --state ${KOPS_STATE_STORE} \
@@ -211,11 +221,9 @@ kops create cluster \
   --ssh-public-key ~/.ssh/id_kops.pub \
   --networking flannel \
   --os-ext-net External
-```
 
-Output:
+---Output truncated---
 
-```bash
 Must specify --yes to apply changes
 
 Cluster configuration has been created.
@@ -232,15 +240,20 @@ Finally configure your cluster with: kops update cluster --name my-cluster.k8s.l
 ### Update cluster configuration
 
 Now that we have a cluster configuration file, we can provide additional
-configuration options. For an extensive list of options on the Cluster resource
-see: [Cluster Spec](https://kops.sigs.k8s.io/cluster_spec/).
+configuration options.
+
+> For an extensive list of options on the Cluster resource see: [Cluster Spec](https://kops.sigs.k8s.io/cluster_spec/).
 
 For our example, we'll override a setting that will otherwise cause the nodes
-to fail setup. This is a known issue with Ubuntu images and
-kubeadm. For more information see:
-[ERROR Swap: running with swap on is not supported. Please disable swap](https://github.com/kubernetes/kubeadm/issues/610)
-or [Node swap support](https://github.com/kubernetes/enhancements/issues/2400)
-. We'll suppress the error by setting `kubelet.failSwapOn` to `false`. For
+to fail setup. This is a known issue with Ubuntu images and kubeadm.
+
+For more information see:
+
+- [ERROR Swap: running with swap on is not supported. Please disable swap](https://github.com/kubernetes/kubeadm/issues/610)
+or
+- [Node swap support](https://github.com/kubernetes/enhancements/issues/2400).
+
+We'll suppress the error by setting `kubelet.failSwapOn` to `false`. For
 production use cases we recommend disabling swap.
 
 ```bash
@@ -252,7 +265,7 @@ kops edit cluster my-cluster.k8s.local
     failSwapOn: false
 ```
 
-> Note: You should already have a kubelet section.
+> **Note**: You should already have a kubelet section.
 
 ### Deploy configuration
 
@@ -262,18 +275,15 @@ kops edit cluster my-cluster.k8s.local
 
 ### Validate Cluster
 
-Our small 3-node cluster took about 8 minutes to deploy. If you deployment
+Our small 3-node cluster took about 8 minutes to deploy. If your deployment
 is larger, it will take longer. Run the following command to watch the deployment
 status.
 
 ```bash
-kops validate cluster --wait 10m
-```
+$ kops validate cluster --wait 10m
 
-Output:
+---Output truncated---
 
-```bash
-...
 Pod     kube-system/csi-cinder-controllerplugin-84b9c4955-dmjqv system-cluster-critical pod "csi-cinder-controllerplugin-84b9c4955-dmjqv" is pending
 
 Validation Failed
@@ -348,15 +358,16 @@ kube-system    openstack-cloud-provider-hlhzx                1/1     Running   0
 ### Verify OpenStack cloud provider services
 
 Our installation allows you to provision volumes and load balancers. If you want
-validate the installation check out our other guides.
+to validate the installation check out our other guides.
 
 - [Validate Load Balancer (Octavia)](../openstack-provider/openstack-cloud-controller-manager.md#verify)
 - [Validate Storage Class (Cinder)](../openstack-provider/cinder.md#verify)
 
 ## Troubleshooting
 
-The kOps documentation provides helpfil troubleshooting steps for common issues:
+The kOps documentation provides helpful troubleshooting steps for common issues:
 [Troubleshooting kOps clusters](https://kops.sigs.k8s.io/operations/troubleshoot/).
+
 If you need to start over you can delete your cluster with the following command:
 
 ```bash
