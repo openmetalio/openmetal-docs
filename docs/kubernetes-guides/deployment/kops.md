@@ -11,7 +11,8 @@ on OpenStack using [kOps - Kubernetes Operations](https://kops.sigs.k8s.io/).
 kOps is a command line tool, written in Go, and maintained by the Kubernetes
 community allowing you to install Kubernetes clusters on a variety of cloud
 providers.  kOps is a great option for those who want to install
-Kubernetes clusters on OpenStack. It provides a lot of flexibility and allows you to install a Kubernetes cluster that is highly available and secure.
+Kubernetes clusters on OpenStack. It provides a lot of flexibility and allows
+you to install a Kubernetes cluster that is highly available and secure.
 
 At the time of writing this guide, October 2022, kOps for OpenStack is still
 in beta. According to kOps, it is in good shape for production, but some
@@ -244,9 +245,10 @@ configuration options.
 > For an extensive list of options on the Cluster resource see: [Cluster Spec](https://kops.sigs.k8s.io/cluster_spec/).
 
 For our example, we'll override a setting that will otherwise cause the nodes
-to fail setup. This is a known issue with Ubuntu images and kubeadm. 
+to fail setup. This is a known issue with Ubuntu images and kubeadm.
 
 For more information see:
+
 - [ERROR Swap: running with swap on is not supported. Please disable swap](https://github.com/kubernetes/kubeadm/issues/610)
 or
 - [Node swap support](https://github.com/kubernetes/enhancements/issues/2400).
@@ -263,7 +265,7 @@ kops edit cluster my-cluster.k8s.local
     failSwapOn: false
 ```
 
-> Note!: You should already have a kubelet section.
+> **Note**: You should already have a kubelet section.
 
 ### Deploy configuration
 
