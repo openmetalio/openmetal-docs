@@ -22,7 +22,7 @@ features are still missing.
 
 Our plan is to validate the installation of a v1.25.1 Kubernetes cluster on
 OpenStack using kOps. We'll be configuring it to use the OpenStack cloud provider
-with cinder as the storage provider with the OpenStack load balancer providing
+with Cinder as the storage provider with the OpenStack load balancer providing
 ingress to the cluster.
 
 This guide follows the official [kOps OpenStack guide](https://kops.sigs.k8s.io/getting_started/openstack/).
