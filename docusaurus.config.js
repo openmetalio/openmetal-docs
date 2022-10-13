@@ -37,11 +37,6 @@ const config = {
   ],
   scripts: [
     {
-      src: '/docs/manuals/js/fix-location.js',
-      async: false,
-      defer: false,
-    },
-    {
       src: '//js.hs-scripts.com/5297785.js?businessUnitId=188922',
       type: 'text/javascript',
       id: 'hs-script-loader',
@@ -49,6 +44,38 @@ const config = {
       defer: true,
     },
   ],
+   ssrTemplate: `<!DOCTYPE html>
+<html <%~ it.htmlAttributes %>>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="generator" content="Docusaurus v<%= it.version %>">
+    <% it.metaAttributes.forEach((metaAttribute) => { %>
+      <%~ metaAttribute %>
+    <% }); %>
+    <%~ it.headTags %>
+	<script>
+		if (window && window.location && window.location.pathname.endsWith('/') && window.location.pathname !== '/') {
+			window.history.replaceState('', '', window.location.pathname.substr(0, window.location.pathname.length - 1))
+		}
+	</script>
+    <% it.stylesheets.forEach((stylesheet) => { %>
+      <link rel="stylesheet" href="<%= it.baseUrl %><%= stylesheet %>" />
+    <% }); %>
+    <% it.scripts.forEach((script) => { %>
+      <link rel="preload" href="<%= it.baseUrl %><%= script %>" as="script">
+    <% }); %>
+  </head>
+  <body <%~ it.bodyAttributes %>>
+    <%~ it.preBodyTags %>
+    <div id="__docusaurus">
+      <%~ it.appHtml %>
+    </div>
+    <% it.scripts.forEach((script) => { %>
+      <script src="<%= it.baseUrl %><%= script %>"></script>
+    <% }); %>
+    <%~ it.postBodyTags %>
+  </body>
+</html>`,
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
