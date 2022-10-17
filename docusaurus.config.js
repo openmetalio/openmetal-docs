@@ -14,7 +14,9 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
-
+  clientModules: [
+    require.resolve('./src/modules/trackers.ts'),
+  ],
   presets: [
     [
       'classic',
@@ -29,49 +31,9 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-        gtag: {
-          trackingID: 'UA-213530121-1',
-        }
       }),
     ],
   ],
-  scripts: [
-    {
-      src: '//js.hs-scripts.com/5297785.js?businessUnitId=188922',
-      type: 'text/javascript',
-      id: 'hs-script-loader',
-      async: true,
-      defer: true,
-    },
-  ],
-   ssrTemplate: `<!DOCTYPE html>
-<html <%~ it.htmlAttributes %>>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
-    <meta name="generator" content="Docusaurus v<%= it.version %>">
-    <% it.metaAttributes.forEach((metaAttribute) => { %>
-      <%~ metaAttribute %>
-    <% }); %>
-    <%~ it.headTags %>
-    <% it.stylesheets.forEach((stylesheet) => { %>
-      <link rel="stylesheet" href="<%= it.baseUrl %><%= stylesheet %>" />
-    <% }); %>
-    <% it.scripts.forEach((script) => { %>
-      <link rel="preload" href="<%= it.baseUrl %><%= script %>" as="script">
-    <% }); %>
-  </head>
-  <body <%~ it.bodyAttributes %>>
-    <%~ it.preBodyTags %>
-    <div id="__docusaurus">
-      <%~ it.appHtml %>
-    </div>
-    <% it.scripts.forEach((script) => { %>
-      <script src="<%= it.baseUrl %><%= script %>"></script>
-    <% }); %>
-    <%~ it.postBodyTags %>
-  </body>
-</html>`,
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
