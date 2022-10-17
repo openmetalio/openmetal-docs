@@ -183,7 +183,7 @@ function NavbarMobileSidebar({sidebarShown, toggleSidebar}) {
           <ul className="menu__list">
             {items.map((item, i) => (
               <NavbarItem mobile {...item} onClick={toggleSidebar} key={i} />
-              
+
             ))}
           </ul>
         </div>
@@ -328,7 +328,7 @@ function renderDropDownItems(item) {
         {item.items.filter((item) => { return item.itemType === 'section' }).map((sectionitem, i) => (
           <div key={i}>
             {
-              sectionitem.href ? 
+              sectionitem.href ?
               <h3><a href={sectionitem.href}>{sectionitem.label}</a></h3> :
               <h3>{sectionitem.label}</h3>
             }
@@ -362,7 +362,7 @@ function renderDropDownItems(item) {
       <div className='dropdown_menu_right' >
         {item.items.filter((item) => { return item.itemType === 'article' }).map((childItemProps, i) => (
           <div className="article" key={i}>
-            <img className='img-responsive' src={childItemProps.image_url}/>
+            <img className='img-responsive' data-src={childItemProps.image_url}/>
             <NavbarItem
               target="_self"
               isDropdownItem
@@ -388,4 +388,14 @@ function renderDropDownItems(item) {
   </div>
   );
 }
+
+(function loadNavbarImages() {
+  setTimeout( () => {
+    const images = document.querySelectorAll('.img-responsive');
+    images.forEach((img) => {
+      img.src = img.dataset.src;
+    });
+  }, 1000);
+})();
+
 export default Navbar;
