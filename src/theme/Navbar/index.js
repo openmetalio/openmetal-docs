@@ -391,12 +391,15 @@ function renderDropDownItems(item) {
 
 (function loadNavbarImages() {
 	if ( typeof window !== 'undefined' ) {
-		setTimeout( () => {
-		  const images = document.querySelectorAll('.img-responsive');
-		  images.forEach((img) => {
-			img.src = img.dataset.src;
-		  });
-		}, 1000);
+		const isCrawl = typeof navigator !== 'undefined' && /bot|crawler|spider|crawling/i.test( navigator.userAgent );
+		if ( ! isCrawl ) {
+			setTimeout( () => {
+			  const images = document.querySelectorAll('.img-responsive');
+			  images.forEach((img) => {
+				img.src = img.dataset.src;
+			  });
+			}, 1000);
+		}
 	}
 })();
 
