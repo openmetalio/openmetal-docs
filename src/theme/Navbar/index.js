@@ -390,12 +390,14 @@ function renderDropDownItems(item) {
 }
 
 (function loadNavbarImages() {
-  setTimeout( () => {
-    const images = document.querySelectorAll('.img-responsive');
-    images.forEach((img) => {
-      img.src = img.dataset.src;
-    });
-  }, 1000);
+	if ( typeof window !== 'undefined' ) {
+		setTimeout( () => {
+		  const images = document.querySelectorAll('.img-responsive');
+		  images.forEach((img) => {
+			img.src = img.dataset.src;
+		  });
+		}, 1000);
+	}
 })();
 
 export default Navbar;

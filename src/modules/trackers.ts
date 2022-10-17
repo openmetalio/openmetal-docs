@@ -49,6 +49,10 @@ if ( trackers.find( ( tracker ) => tracker.name === 'googleAnalytics' ) ) {
 
 // Loop through all trackers and add them to the head.
 trackers.forEach( ( tracker ) => {
+	if ( typeof window === 'undefined' ) {
+		return;
+	}
+
 	// If user agent is a bot/crawler, don't load the tracker
 	if ( tracker.disableOnCrawl && isCrawl ) {
 		return;
