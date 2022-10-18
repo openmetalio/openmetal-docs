@@ -34,6 +34,31 @@ const config = {
       }),
     ],
   ],
+  ssrTemplate: `<!DOCTYPE html>
+  <html <%~ it.htmlAttributes %>>
+	<head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta charset="UTF-8">
+	  <meta name="generator" content="Docusaurus v<%= it.version %>">
+	  <% it.metaAttributes.forEach((metaAttribute) => { %>
+		<%~ metaAttribute %>
+	  <% }); %>
+	  <%~ it.headTags %>
+	  <% it.stylesheets.forEach((stylesheet) => { %>
+		<link rel="stylesheet" href="<%= it.baseUrl %><%= stylesheet %>" />
+	  <% }); %>
+	</head>
+	<body <%~ it.bodyAttributes %>>
+	  <%~ it.preBodyTags %>
+	  <div id="__docusaurus">
+		<%~ it.appHtml %>
+	  </div>
+	  <% it.scripts.forEach((script) => { %>
+		<script src="<%= it.baseUrl %><%= script %>"></script>
+	  <% }); %>
+	  <%~ it.postBodyTags %>
+	</body>
+  </html>`,
   plugins: [
     [
       '@docusaurus/plugin-client-redirects',
