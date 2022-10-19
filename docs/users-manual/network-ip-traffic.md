@@ -77,7 +77,7 @@ Fill out any other needed details and navigate to the **Subnet** tab.
 
 - **Gateway IP** -- Optionally choose the gateway IP for this network.
     If the gateway IP is not filled out, one will be chosen by the
-    neutron service.
+    Neutron service.
 
     The final tab is called **Subnet Details**. This tab does not need
     to be filled out to create the network and subnet. This example will

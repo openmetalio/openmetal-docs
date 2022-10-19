@@ -1,8 +1,9 @@
+---
+slug: /cloud-administration/intro-to-cloud-init
+description: Introduction to cloud-init for Linux cloud instance initialization.
+---
+
 # Intro to cloud-init
-
-Updated on July 30, 2020 by Chris Bermudez
-
-2 Minutes, 13 Seconds to Read
 
 Cloud-init is an industry standard method for Linux cloud instance initialization.
 Cloud-init has support across all major Linux distributions, FreeBSD, NetBSD and
@@ -11,7 +12,7 @@ provisioning systems for private cloud infrastructure, and bare-metal installati
 
 Cloud-init will identify the cloud it is running on, using the provided metadata
 from the cloud, and configure the system accordingly. Tasks can include things
-like networking configurations, setting up the drives, ssh access, and other server
+like networking configurations, drive setup, ssh access, and other server
 tasks before you even log into the server.
 
 ## Using a cloud-config script
@@ -28,7 +29,7 @@ about to receive.
 
 Below we will go over some examples of cloud-configs.
 
-```sh
+```yaml
 #cloud-config
 users:
   - name: chrisb
@@ -45,7 +46,7 @@ runcmd:
 In this example we are creating a user for chrisb and giving that user sudo access.
 We also specify some public ssh keys so that ssh access is simple.
 
-```sh
+```yaml
 #cloud-config
 package_upgrade: true
 packages:
@@ -56,8 +57,8 @@ packages:
   - libffi-dev
 ```
 
-In this example we make sure that all packages are up to date as well as ensure
-that some specific packages are installed on the server.
+In the above example we ensure that all packages are up-to-date, and some specific
+packages are installed on the server.
 
 ```sh
 #cloud-config
@@ -68,5 +69,4 @@ resolv_conf:
     - '8.8.8.8' #google
 ```
 
-In our last example we are setting the server’s resolvers to the ones specified
-there.
+In our last example we are setting the server’s resolvers to the ones specified.

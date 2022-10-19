@@ -133,7 +133,7 @@ EOF
 Now that we have a storage class, we can create a persistent volume claim (PVC).
 This will create a persistent volume (PV) that is backed by Cinder block storage.
 
-In the previous step, we set the cinder storage class as the default storage
+In the previous step, we set the Cinder storage class as the default storage
 class. This means that we do not need to specify the storage class in the PVC. The
 `storageClassName` field is optional, but we've included it in the example below
 for clarity.
