@@ -277,7 +277,7 @@ Instance** near the top right.
 - **Instance Name**: Set a name for the instance. This example
     instance is called **Jumpstation**.
 - **Description**: Optional. Set a description if this applies.
-- **Availability Zone**: Leave as the default, which is **nova**.
+- **Availability Zone**: Leave as the default, which is **Nova**.
 - **Count**: Controls the number of instances spawned. This example
     creates a single instance.
 

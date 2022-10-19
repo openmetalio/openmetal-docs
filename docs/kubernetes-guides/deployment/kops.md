@@ -100,7 +100,7 @@ openstack application credential create --description "kOps" kops
 Create a file named `app-creds.sh`
 
 - Replace `<ip-address>` with the IP address of your OpenStack cloud. If you dont
-know the URL to your keystone service, you can find it in the OpenStack dashboard
+know the URL to your Keystone service, you can find it in the OpenStack dashboard
 or by running `openstack endpoint list`.
 - Replace `<secret-id>` with the id from the previous step.
 - Replace `<secret>` with the secret from the previous step.

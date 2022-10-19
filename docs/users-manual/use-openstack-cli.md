@@ -298,13 +298,13 @@ OpenStack provides an operating system called
 requirements to be an operating system that is generally used to test
 instance creation.
 
-This example will explain how to upload the CirrOS image into glance.
+This example will explain how to upload the CirrOS image into Glance.
 
-To get this CirrOS image into the glance service, you'll need to first
+To get this CirrOS image into the Glance service, you'll need to first
 download it to where the OpenStackClient lives, then the base command
 `openstack image create` can be used to upload the image.
 
-Download CirrOS and upload into glance:
+Download CirrOS and upload into Glance:
 
     # grab the latest CirrOS image
     $ wget http://download.cirros-cloud.net/0.5.1/cirros-0.5.1-x86_64-disk.img
