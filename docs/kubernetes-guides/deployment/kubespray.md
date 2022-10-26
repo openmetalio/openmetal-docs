@@ -90,6 +90,12 @@ Activate the environment.
 source .kubespray/bin/activate
 ```
 
+Update pip
+
+```bash
+pip install -U pip
+```
+
 ### Setup the OpenStack CLI
 
 We'll be using the CLI to help populate our Terraform variables. If you don't have
