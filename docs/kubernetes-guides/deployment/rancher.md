@@ -1,6 +1,6 @@
 ---
 slug: /kubernetes-guides/installing-a-rancher-cluster-on-openstack
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 # Installing a Rancher managed cluster on OpenStack
