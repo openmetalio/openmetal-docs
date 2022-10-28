@@ -133,16 +133,16 @@ source it.
 `openrc.sh`
 
 ```bash
-OS_AUTH_URL=https://openstack:5000
-OS_PROJECT_ID=projectid
-OS_PROJECT_NAME="kubespray-demo"
-OS_PROJECT_DOMAIN_ID=default
-OS_USERNAME=username
-OS_PASSWORD=password
-OS_REGION_NAME=RegionOne
-OS_INTERFACE=public
-OS_IDENTITY_API_VERSION=3
-OS_USER_DOMAIN_NAME=Default
+export OS_AUTH_URL=https://openstack:5000
+export OS_PROJECT_ID=projectid
+export OS_PROJECT_NAME="kubespray-demo"
+export OS_PROJECT_DOMAIN_ID=default
+export OS_USERNAME=username
+export OS_PASSWORD=password
+export OS_REGION_NAME=RegionOne
+export OS_INTERFACE=public
+export OS_IDENTITY_API_VERSION=3
+export OS_USER_DOMAIN_NAME=Default
 ```
 
 ```bash
