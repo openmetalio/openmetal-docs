@@ -142,7 +142,7 @@ export OS_PASSWORD=password
 export OS_REGION_NAME=RegionOne
 export OS_INTERFACE=public
 export OS_IDENTITY_API_VERSION=3
-export OS_USER_DOMAIN_NAME=Default
+export OS_USER_DOMAIN_ID=default
 ```
 
 ```bash
