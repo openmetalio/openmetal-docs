@@ -486,7 +486,7 @@ EOF
 Now create a PersistentVolumeClaim by running the following command:
 
 ```bash
-apply -f - <<EOF
+kubectl apply -f - <<EOF
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
