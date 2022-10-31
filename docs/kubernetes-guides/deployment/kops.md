@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 slug: /kubernetes-guides/installing-a-kops-cluster-on-openstack
 description: This guide will walk you through the process of installing a Kubernetes cluster on OpenStack using kops.
 ---
