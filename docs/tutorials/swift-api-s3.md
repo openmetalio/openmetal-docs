@@ -100,6 +100,9 @@ openstack ec2 credentials delete e2053effd013413fac4a4e320007e827
 
 Look forward to future use case articles as we expand our documentation.
 
+- [How to Configure and Use AWS Client for Swift S3 API Access on OpenMetal](swift-s3-aws-cli.md)
+- [How to Configure and Use s3cmd for Swift S3 API Access on OpenMetal](swift-s3cmd-cli.md)
+
 ## Resources
 
 - [Swift AWS S3 Api middleware](https://docs.openstack.org/swift/latest/middleware.html#module-swift.common.middleware.s3api.s3api)

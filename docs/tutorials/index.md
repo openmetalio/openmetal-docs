@@ -13,3 +13,5 @@ within an OpenMetal cloud.
 5. [Create a Site-to-Site VPN Connection with Endpoint Groups](./create-site-to-site-vpn.md)
 6. [How to install and configure Barbican on your OpenMetal Cloud](./install-configure-barbican-openmetal.md)
 7. [Create EC2 Credentials for Swift S3 API Access](swift-api-s3.md)
+8. [How to Configure and Use AWS Client for Swift S3 API Access on OpenMetal](swift-s3-aws-cli.md)
+9. [How to Configure and Use s3cmd for Swift S3 API Access on OpenMetal](swift-s3cmd-cli.md)
