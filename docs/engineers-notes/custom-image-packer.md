@@ -10,7 +10,7 @@ OpenMetal cloud.
 ## Prerequisites
 
 - An OpenStack Cloud
-- Familiarity with [OpenStack Client CLI](../users-operators-manual/day-1/command-line/openstackclient.md)
+- Familiarity with [OpenStack Client CLI](../operators-manual/day-1/command-line/openstackclient.md)
 - [Packer](https://www.packer.io)
 
 ## Install packer
