@@ -3,7 +3,7 @@
 ## Overview
 
 If you store any customer of personal data on your VMs, it is important to make
-regular backups. As data can be corrupted or become otherwise inaccessible for
+regular backups as data can be corrupted or become otherwise inaccessible for
 a number of reasons (accidental deletion, misconfigurations, hacking, etc).
 Having a recent backup on hand makes it much easier to recover from the
 unforeseen.
