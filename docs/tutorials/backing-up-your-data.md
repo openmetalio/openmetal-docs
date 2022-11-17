@@ -1,3 +1,7 @@
+---
+slug: /tutorials/backing-up-important-data
+description: What to consider when determining backup needs and methodology
+---
 # Backing Up Important Data
 
 ## Overview
