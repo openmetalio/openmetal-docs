@@ -1,4 +1,4 @@
-# Backing Up Your Data
+# Backing Up Important Data
 
 ## Overview
 
@@ -111,5 +111,14 @@ _at least_ two. For example, if you replace your backup every day, and don’t
 retain any of your old ones, you would be out of luck if you discovered that
 your website had been hacked a week ago. The safest option is to store backups
 as frequently as possible without overwriting them. Just make sure you don’t
-run out of space on your backup machine! Backup methods that include compression
+run out of space on your backup machine. Backup methods that include compression
 and other efficiencies make storing multiple backups much easier.
+
+## Periodic backup testing
+
+Once you have a backup method in place it is recommended you perform periodic
+integrity testing. An incorrect or corrupted backup is, in a way, worse than no
+backup at all as it can provide a false sense of security. Testing is normally
+done by restoring the most recently archived backup into a development environment
+identical to production, allowing you to confirm everything will function as
+expected if disaster recovery is ever required.
