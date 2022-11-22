@@ -1,3 +1,7 @@
+---
+slug: /engineers-notes/custom-image-packer
+description: Learn how to build custom OpenStack images with Hashicorp Packer
+---
 # Creating Custom Images with Packer on OpenMetal
 
 ## Overview
