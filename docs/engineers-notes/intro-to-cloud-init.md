@@ -18,7 +18,7 @@ tasks before you even log into the server.
 ## Using a cloud-config script
 
 More than likely you will pass a cloud-config script to the server on provision.
-This will get picked up by Cloud-init and actions in the file are carried out.
+This will get picked up by cloud-init and actions in the file are carried out.
 The cloud-config script is a YAML formatted file. YAML is a human-readable data
 serialization standard that is generally used for configuration files, but can
 have various other uses as well.
