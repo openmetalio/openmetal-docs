@@ -272,7 +272,7 @@ allow needs to specified using security groups.
 ![image](images/um_instance_form_5.png)
 
 Choose from the list the security group to apply to this instance. This
-example applies the **ssh** security group, allowing SSH access.
+example applies the **SSH** security group, allowing SSH access.
 
 **Step 7** -- Launch Instance -\> Key Pair
 

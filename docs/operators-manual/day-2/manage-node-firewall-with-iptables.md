@@ -11,7 +11,7 @@ or OpenStack internal communication.
 
 ## Goal
 
-Use `iptables` and `ipset` to restrict access to local (eg. ssh) and/or
+Use `iptables` and `ipset` to restrict access to local (eg. SSH) and/or
 Cloud services (HAProxy) on an OpenStack node without interfering with
 Docker.
 
@@ -204,7 +204,7 @@ bond0.8
     ```
 
 3. Confirm that the firewall is working as expected. This can be done
-    by attempting to access services (ssh etc) from both a whitelisted
+    by attempting to access services (SSH etc) from both a whitelisted
     IP and an undefined network.
 
 4. Once confirmed, enable auto-start for both services.

@@ -16,7 +16,7 @@ process on an OpenMetal cloud.
 
 We'll be performing these installation steps on one of the hardware nodes
 provisioned for your cloud. Make sure that you have deployed a cloud and have
-access ssh access to the nodes. If deploying from another machine, you may need
+access SSH access to the nodes. If deploying from another machine, you may need
 to preform additional steps.
 
 ## Setup OpenStack Access

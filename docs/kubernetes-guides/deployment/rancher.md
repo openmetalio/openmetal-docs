@@ -20,7 +20,7 @@ file that points to each of our nodes. Finally, we use RKE to install
 Kubernetes on our nodes.
 
 We'll be performing these steps on a Standard - OpenMetal Cloud. You can follow
-along by deploying a trial, then accessing one of your hardware nodes via ssh.
+along by deploying a trial, then accessing one of your hardware nodes via SSH.
 
 ## Prerequisites
 
