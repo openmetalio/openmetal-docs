@@ -30,7 +30,8 @@
 			"Neutron",
 			"Octavia",
 			"Glance",
-			"Keystone"
+			"Keystone",
+			"SSH"
 		]
 	}
 }

@@ -12,7 +12,7 @@ provisioning systems for private cloud infrastructure, and bare-metal installati
 
 Cloud-init will identify the cloud it is running on, using the provided metadata
 from the cloud, and configure the system accordingly. Tasks can include things
-like networking configurations, drive setup, ssh access, and other server
+like networking configurations, drive setup, SSH access, and other server
 tasks before you even log into the server.
 
 ## Using a cloud-config script
@@ -38,12 +38,12 @@ users:
     groups: sudo
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
-    ssh-authorized-keys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE0PUM9qcLkttJp330AHwp7M5kNQ5YQCU0iE0NhZkK8nTxJ3NelTST739nlaQxCYIdPhMegJQgNqsVkcZ2daaRYlc8fWGnzRYfL+f9AgM5fGAAmveBFYajZe/5Kp+81IYcfLQhfoWTvytoBq9gmn0PwwFsLlwe138r6M2aaWJl80V/mDp2BiAwDh0xJYR2+Ei7AD4O66lAeZJhjqaue/Ctpez4MpXp2XRufErsmCBHX9bN0wVPWNNJgrfTIBhrDqr1JbMHZo73d5iQntxJAmc1+y8qTueUGpiitC5Fl/jKyLycIjOM4OPpKgsvc1DtT+UWudfzG2kpAYJWaA3t6r8IxMS6a/9leavL7TKUcoAdqQahB75iJ38CZKxVB0sF0xxxyBS2JtMokHfex6bHtWS0D0eBwpQZPSKT18egmal4sFEcQwxEHeqK16U+9N01hv7KatImG2pHUQJxmtPmdRMOhltFOQCmIfm21mHxsXgaYY8In5xbZD1Lg05FYmOmwgE= omi-admin@example.io
+    SSH-authorized-keys:
+      - SSH-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE0PUM9qcLkttJp330AHwp7M5kNQ5YQCU0iE0NhZkK8nTxJ3NelTST739nlaQxCYIdPhMegJQgNqsVkcZ2daaRYlc8fWGnzRYfL+f9AgM5fGAAmveBFYajZe/5Kp+81IYcfLQhfoWTvytoBq9gmn0PwwFsLlwe138r6M2aaWJl80V/mDp2BiAwDh0xJYR2+Ei7AD4O66lAeZJhjqaue/Ctpez4MpXp2XRufErsmCBHX9bN0wVPWNNJgrfTIBhrDqr1JbMHZo73d5iQntxJAmc1+y8qTueUGpiitC5Fl/jKyLycIjOM4OPpKgsvc1DtT+UWudfzG2kpAYJWaA3t6r8IxMS6a/9leavL7TKUcoAdqQahB75iJ38CZKxVB0sF0xxxyBS2JtMokHfex6bHtWS0D0eBwpQZPSKT18egmal4sFEcQwxEHeqK16U+9N01hv7KatImG2pHUQJxmtPmdRMOhltFOQCmIfm21mHxsXgaYY8In5xbZD1Lg05FYmOmwgE= omi-admin@example.io
 ```
 
 In this example we are creating a new user, `omi-admin`, giving that user sudo
-access, and specifying a public ssh key to simplify ssh access.
+access, and specifying a public SSH key to simplify SSH access.
 
 ```yaml
 #cloud-config
