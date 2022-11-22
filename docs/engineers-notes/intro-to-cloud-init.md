@@ -18,33 +18,32 @@ tasks before you even log into the server.
 ## Using a cloud-config script
 
 More than likely you will pass a cloud-config script to the server on provision.
-This will get picked up by cloud-init and actions in the file are carried out.
+This will get picked up by Cloud-init and actions in the file are carried out.
 The cloud-config script is a YAML formatted file. YAML is a human-readable data
 serialization standard that is generally used for configuration files, but can
 have various other uses as well.
 
 When creating a cloud-config file you will want to place a special identifier of
-`#cloud-config` so that cloud-init can be aware of the set of instructions its
+`#cloud-config` so that Cloud-init can be aware of the set of instructions it's
 about to receive.
 
 Below we will go over some examples of cloud-configs.
 
 ```yaml
 #cloud-config
+
 users:
-  - name: chrisb
+  - default
+  - name: omi-admin
     groups: sudo
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-authorized-keys:
-      - ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCaGLKWXz61dB0E5yJrpJ8kcfKHaQQIS91XjjPY/2o8mCkNXoC/XkXiVhvL0mlzyzs6ALeUBmTXS5iy1llFbqQsRNkTaZHIWD3REYyv5lPuHWWFYklgf2Sd0vEWQfQBrGBnqRnvIwL1ajFEEpm0HbNtE1xhukfsH+FAl+JrMkPbYTBkvvCX/6a2g8A8qsUnb5zQ+uEoEdKu85kB54x7i6IQboG9z6u4xEu6ISYArZo+UPSf5HxcLkbv776RJWOQb81tJIDEbLSn+xNS3ThAtC4DgSo2OjP7KgLKk1X5o1PTOaTiL/oq5NHOnwuegwtVkqNrq2mULhN3Tot3ayV2+Efr chris@work_laptop
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCEO/nW7MeFTKETbjesBQFLYhYa/Os9eKBGWiBCuP9ZstzSwkwA9dmNgtseRAnp01OvHMDFyTUcIuaHPBBqxafixF4RnV54QYz8bEIdDR6LpBj1y3ih8foobe9tFPiERzbVmZysP19Hag9e6HkLgJ9OjLqsO1eiR2djC/UGPQt601MYZhk7EpxFJpO8uu28G9nM8BRw0dBqrB525Q4/yKtekMz2nbQnfeYrR6kbmCqbgcvFHlgnBsapeVlP5v9T2qQnz1JfUUDIgJ6Zpyldld+qJCQERU0C9kldUHEijnBvoC68+1BBLJNTT9hUV0XivwCqJ/F6IlMp8bI4sTKCuysX chris@home_desktop
-runcmd:
-  - touch /done.txt
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDE0PUM9qcLkttJp330AHwp7M5kNQ5YQCU0iE0NhZkK8nTxJ3NelTST739nlaQxCYIdPhMegJQgNqsVkcZ2daaRYlc8fWGnzRYfL+f9AgM5fGAAmveBFYajZe/5Kp+81IYcfLQhfoWTvytoBq9gmn0PwwFsLlwe138r6M2aaWJl80V/mDp2BiAwDh0xJYR2+Ei7AD4O66lAeZJhjqaue/Ctpez4MpXp2XRufErsmCBHX9bN0wVPWNNJgrfTIBhrDqr1JbMHZo73d5iQntxJAmc1+y8qTueUGpiitC5Fl/jKyLycIjOM4OPpKgsvc1DtT+UWudfzG2kpAYJWaA3t6r8IxMS6a/9leavL7TKUcoAdqQahB75iJ38CZKxVB0sF0xxxyBS2JtMokHfex6bHtWS0D0eBwpQZPSKT18egmal4sFEcQwxEHeqK16U+9N01hv7KatImG2pHUQJxmtPmdRMOhltFOQCmIfm21mHxsXgaYY8In5xbZD1Lg05FYmOmwgE= omi-admin@example.io
 ```
 
-In this example we are creating a user for chrisb and giving that user sudo access.
-We also specify some public ssh keys so that ssh access is simple.
+In this example we are creating a new user, `omi-admin`, giving that user sudo
+access, and specifying a public ssh key to simplify ssh access.
 
 ```yaml
 #cloud-config
@@ -57,8 +56,8 @@ packages:
   - libffi-dev
 ```
 
-In the above example we ensure that all packages are up-to-date, and some specific
-packages are installed on the server.
+In the example above we ensure that all packages are up-to-date, and ensure
+specific packages are installed on the server.
 
 ```sh
 #cloud-config
@@ -69,4 +68,4 @@ resolv_conf:
     - '8.8.8.8' #google
 ```
 
-In our last example we are setting the server’s resolvers to the ones specified.
+Our last example sets the server to use the specified resolvers.
