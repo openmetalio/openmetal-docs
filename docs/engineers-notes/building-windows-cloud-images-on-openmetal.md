@@ -174,7 +174,7 @@ authentication.
 > **Note**: The username for the Ubuntu cloud image is **ubuntu.** That user
 > will have root/administrative privileges to configure the rest of what we need.
 
-![Instance ssh](./windows-build-images/Untitled_7.png)
+![Instance SSH](./windows-build-images/Untitled_7.png)
 
 ## Install Packages
 

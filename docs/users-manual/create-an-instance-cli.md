@@ -57,7 +57,7 @@ To make a key pair, use:
 
 -----
 
-Create key pair called **ssh-1**:
+Create key pair called **SSH-1**:
 
     openstack keypair create ssh-1
 
@@ -138,7 +138,7 @@ The base command to do this is:
     REMOTE_IP --dst-port 22:22 --ingress --protocol tcp
 
 **SECURITY\_GROUP** is the name of the group, which in this case is
-called **ssh**. **REMOTE\_IP** is the IP address for which traffic
+called **SSH**. **REMOTE\_IP** is the IP address for which traffic
 should be allowed. The remaining flags specify the rule is for ingress
 TCP traffic over port 22.
 
@@ -152,7 +152,7 @@ Create rule allowing SSH from 192.168.1.20 (arbitrary IP):
 **Step 3** -- Confirm security group details
 
 Finally, confirm the previous steps were successful by listing the
-details of the **ssh** security group.
+details of the **SSH** security group.
 
 -----
 
@@ -331,7 +331,7 @@ List security groups using `openstack security group list`:
     | c132bb35-bdc6-4161-b64c-440ab6b631bf | default | Default security group | b93259ca0a5b4541b30e4e16ae1d699d | []   |
     +--------------------------------------+---------+------------------------+----------------------------------+------+
 
-The **ssh** security group will be associated with this instance via
+The **SSH** security group will be associated with this instance via
 UUID `44668612-1a18-4289-b5fb-f24de8e20c09`.
 
 **Step 5** -- SSH key pair
