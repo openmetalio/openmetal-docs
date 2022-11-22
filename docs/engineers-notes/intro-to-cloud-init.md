@@ -24,7 +24,7 @@ serialization standard that is generally used for configuration files, but can
 have various other uses as well.
 
 When creating a cloud-config file you will want to place a special identifier of
-`#cloud-config` so that Cloud-init can be aware of the set of instructions it's
+`#cloud-config` so that cloud-init can be aware of the set of instructions it's
 about to receive.
 
 Below we will go over some examples of cloud-configs.
