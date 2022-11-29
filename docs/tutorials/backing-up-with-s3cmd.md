@@ -57,7 +57,7 @@ Linux native rsync tool.
 
 We perform an initial sync of the user directory which includes the SQL dump
 files and document root, excluding all cache folders with the command below:
- 
+
 ```shell
 s3cmd sync --exclude="*/cache/*" /home/ubuntu s3://back-me-up/$(date -u +%Y-%m-%dT%H:%M:%SZ)/
 ```
