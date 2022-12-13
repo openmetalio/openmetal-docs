@@ -62,7 +62,7 @@ need so our first task is:
 
    ![Input JSON](datadog-images/json-input.png)
 
-2. Confirm overwrite action
+1. Confirm overwrite action
 
    ![Import confirmation](datadog-images/do-want-paste.png)
 
