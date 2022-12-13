@@ -13,7 +13,7 @@ with your OpenMetal clouds' Ceph-backed Object store via the Swift S3 API.
 
 - [EC2 Credentials](swift-api-s3.md) generated for your cloud.
 
-## Install and configure
+## Install
 
 - Create and/or activate your virtual environment:
   
@@ -28,6 +28,8 @@ with your OpenMetal clouds' Ceph-backed Object store via the Swift S3 API.
   ```shell
   pip install s3cmd
   ```
+
+## Configure
 
 - `s3cmd --configure` provides interactive configuration prompts. You will need
   to enter only **Access Key**, **Secret Key**, **S3 Endpoint**, and
