@@ -1,6 +1,7 @@
 ---
 slug: /openstack-admin/access-swift-s3-api
 description: Learn how to generate EC2 credentials in OpenStack for Swift S3 API access.
+sidebar_position: 7
 ---
 # Create EC2 Credentials for Swift S3 API Access
 

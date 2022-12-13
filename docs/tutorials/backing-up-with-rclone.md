@@ -1,6 +1,7 @@
 ---
 slug: /tutorials/backing-up-vm-data-with-rclone
 description: Practical example of VM data backup to Swift S3API with rclone.
+sidebar_position: 12
 ---
 # Backup VM Data to Ceph with Swift S3API
 
