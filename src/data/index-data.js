@@ -86,13 +86,5 @@ export default {
 			catagories: ['admin'],
 
 		},
-		{
-			title: "OpenStack Horizon Quick Start for Project Users",
-			description: "Helps new Project Users to self serve their Infrastructure.",
-			htmlPath: "",
-			pdfPath: "",
-			comingSoon: true,
-			catagories: ['users'],
-		},
 	],
 }
