@@ -6,8 +6,8 @@ description: Learn how to access your OpenMetal clouds' Object store using rclon
 
 ## Objective
 
-This guide will show you how to configure and use the [rclone](rclone.org) CLI
-tool to interact with your OpenMetal clouds' Ceph-backed Object store via the
+This guide will show you how to configure and use the [rclone](https://rclone.org)
+CLI tool to interact with your OpenMetal clouds' Ceph-backed Object store via the
 Swift S3 API.
 
 ## Prerequisites
