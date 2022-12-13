@@ -1,3 +1,6 @@
+---
+sidebar_position: 6
+---
 # How to install and configure Barbican on your OpenMetal Cloud
 
 ## What is Barbican?

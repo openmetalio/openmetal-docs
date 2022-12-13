@@ -1,6 +1,7 @@
 ---
 slug: /openstack-admin/use-aws-client-to-access-swift-s3-api
 description: Learn how to access your OpenMetal clouds' Object store using awscli and the Swift S3 API.
+sidebar_position: 8
 ---
 # How to Configure and Use AWS Client for Swift S3 API Access on OpenMetal
 

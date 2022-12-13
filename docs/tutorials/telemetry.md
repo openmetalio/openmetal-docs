@@ -1,6 +1,6 @@
 ---
 slug: getting-started-with-ceilometer-and-gnocchi
-sidebar_position: 4
+sidebar_position: 3
 ---
 # Getting Started with Ceilometer and Gnocchi
 

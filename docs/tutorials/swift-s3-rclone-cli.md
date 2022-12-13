@@ -1,6 +1,7 @@
 ---
 slug: /openstack-admin/swift-s3-api-access-with-rclone
 description: Learn how to access your OpenMetal clouds' Object store using rclone and the Swift S3 API
+sidebar_position: 10
 ---
 # How to Configure and Use Rclone for Swift S3 API Access on OpenMetal
 

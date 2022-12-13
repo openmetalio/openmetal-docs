@@ -15,3 +15,6 @@ within an OpenMetal cloud.
 7. [Create EC2 Credentials for Swift S3 API Access](swift-api-s3.md)
 8. [How to Configure and Use AWS Client for Swift S3 API Access on OpenMetal](swift-s3-aws-cli.md)
 9. [How to Configure and Use s3cmd for Swift S3 API Access on OpenMetal](swift-s3cmd-cli.md)
+10. [How to Configure and Use Rclone for Swift S3 API Access on OpenMetal](swift-s3-rclone-cli.md)
+11. [Backing Up Important Data](backing-up-your-data.md)
+12. [Backup VM Data to Ceph with Swift S3API](backing-up-with-rclone.md)

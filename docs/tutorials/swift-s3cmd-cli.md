@@ -1,6 +1,7 @@
 ---
 slug: /openstack-admin/swift-s3-api-access-with-s3cmd
 description: Learn how to access your OpenMetal clouds' Object store using s3cmd and the Swift S3 API
+sidebar_position: 9
 ---
 # How to Configure and Use s3cmd for Swift S3 API Access on OpenMetal
 
