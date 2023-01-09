@@ -6,10 +6,10 @@
  */
 import React from 'react';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs';
+/** import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs'; */
 import clsx from 'clsx';
 import {getInfimaActiveClassName} from './index';
-import {useDocsPreferredVersion, uniq} from '@docusaurus/theme-common';
+import {useDocsPreferredVersion, uniq, seLatestVersion, useActiveDocContext} from '@docusaurus/theme-common';
 
 function getDocInVersions(versions, docId) {
   const allDocs = versions.flatMap((version) => version.docs);

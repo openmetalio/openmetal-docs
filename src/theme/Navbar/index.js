@@ -9,22 +9,25 @@ import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
-import useThemeContext from '@theme/hooks/useThemeContext';
+import ColorModeToggle from '@theme/ColorModeToggle';
+import {useColorMode} from '@docusaurus/theme-common';
 import {
   useThemeConfig,
   useMobileSecondaryMenuRenderer,
   usePrevious,
   useHistoryPopHandler,
-} from '@docusaurus/theme-common';
-import useHideableNavbar from '@theme/hooks/useHideableNavbar';
+  useHideableNavbar,
+  useLockBodyScroll,
+  useWindowSize,
+} from '@docusaurus/theme-common/internal';
+/** import useHideableNavbar from '@theme/hooks/useHideableNavbar'; 
 import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
-import useWindowSize from '@theme/hooks/useWindowSize';
-import {useActivePlugin} from '@theme/hooks/useDocs';
+import useWindowSize from '@theme/hooks/useWindowSize'; */
+import {useActivePlugin} from '@docusaurus/plugin-content-docs/client';
 import NavbarItem from '@theme/NavbarItem';
 import Logo from '@theme/Logo';
-import IconMenu from '@theme/IconMenu';
-import IconClose from '@theme/IconClose';
+import IconMenu from '@theme/Icon/Menu';
+import IconClose from '@theme/Icon/Close';
 import styles from './styles.module.css'; // retrocompatible with v1
 
 const DefaultNavItemPosition = 'right';
@@ -85,7 +88,7 @@ function useColorModeToggle() {
   const {
     colorMode: {disableSwitch},
   } = useThemeConfig();
-  const {isDarkTheme, setLightTheme, setDarkTheme} = useThemeContext();
+  const {isDarkTheme, setLightTheme, setDarkTheme} = useColorMode();
   const toggle = useCallback(
     (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
     [setLightTheme, setDarkTheme],
@@ -158,7 +161,7 @@ function NavbarMobileSidebar({sidebarShown, toggleSidebar}) {
           titleClassName="navbar__title"
         />
         {!colorModeToggle.disabled && (
-          <Toggle
+          <ColorModeToggle
             className={styles.navbarSidebarToggle}
             checked={colorModeToggle.isDarkTheme}
             onChange={colorModeToggle.toggle}
@@ -267,7 +270,7 @@ function Navbar() {
             <NavbarItem {...item} key={i} target="_self"/>
           ))}
           {!colorModeToggle.disabled && (
-            <Toggle
+            <ColorModeToggle
               className={styles.toggle}
               checked={colorModeToggle.isDarkTheme}
               onChange={colorModeToggle.toggle}

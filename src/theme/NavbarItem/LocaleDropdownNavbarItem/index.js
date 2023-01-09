@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import IconLanguage from '@theme/IconLanguage';
+import IconLanguage from '@theme/Icon/Language';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import {useAlternatePageUtils} from '@docusaurus/theme-common';
 import styles from './styles.module.css';

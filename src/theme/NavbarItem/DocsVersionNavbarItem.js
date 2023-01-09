@@ -6,8 +6,11 @@
  */
 import React from 'react';
 import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import {useActiveVersion, useLatestVersion} from '@theme/hooks/useDocs';
-import {useDocsPreferredVersion} from '@docusaurus/theme-common';
+import {
+  useActiveVersion,
+  useLatestVersion,
+  useDocsPreferredVersion,
+} from '@docusaurus/theme-common';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);
