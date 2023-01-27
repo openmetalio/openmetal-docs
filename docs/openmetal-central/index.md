@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # OpenMetal Central
 
 Welcome to our tutorials for OpenMetal Central! Contained within are

@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # OpenStack User's Manual
 
 ## Private Cloud Core - OpenStack User Manual
