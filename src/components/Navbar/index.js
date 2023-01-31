@@ -88,13 +88,13 @@ function useColorModeToggle() {
   const {
     colorMode: {disableSwitch},
   } = useThemeConfig();
-  const {isDarkTheme, setLightTheme, setDarkTheme} = useColorMode();
+  const {colorMode, setLightTheme, setDarkTheme} = useColorMode();
   const toggle = useCallback(
     (e) => (e.target.checked ? setDarkTheme() : setLightTheme()),
     [setLightTheme, setDarkTheme],
   );
   return {
-    isDarkTheme,
+    colorMode,
     toggle,
     disabled: disableSwitch,
   };
@@ -163,7 +163,7 @@ function NavbarMobileSidebar({sidebarShown, toggleSidebar}) {
         {!colorModeToggle.disabled && (
           <ColorModeToggle
             className={styles.navbarSidebarToggle}
-            checked={colorModeToggle.isDarkTheme}
+            checked={colorModeToggle.colorMode === "dark"}
             onChange={colorModeToggle.toggle}
           />
         )}
@@ -272,7 +272,7 @@ function NavbarCustom() {
           {!colorModeToggle.disabled && (
             <ColorModeToggle
               className={styles.toggle}
-              checked={colorModeToggle.isDarkTheme}
+              checked={colorModeToggle.colorMode === "dark"}
               onChange={colorModeToggle.toggle}
             />
           )}
