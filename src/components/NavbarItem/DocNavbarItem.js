@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
+import DefaultNavbarItem from './DefaultNavbarItem';
 /** import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs'; */
 import clsx from 'clsx';
 import {getInfimaActiveClassName} from './index';

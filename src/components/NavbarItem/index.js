@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import LocaleDropdownNavbarItem from '@theme/NavbarItem/LocaleDropdownNavbarItem';
-import SearchNavbarItem from '@theme/NavbarItem/SearchNavbarItem';
+import DefaultNavbarItem from './DefaultNavbarItem';
+import DropdownNavbarItem from './DropdownNavbarItem';
+import LocaleDropdownNavbarItem from './LocaleDropdownNavbarItem';
+import SearchNavbarItem from './SearchNavbarItem';
 const NavbarItemComponents = {
   default: () => DefaultNavbarItem,
   localeDropdown: () => LocaleDropdownNavbarItem,
@@ -18,10 +18,10 @@ const NavbarItemComponents = {
   // See https://github.com/facebook/docusaurus/issues/3360
 
   /* eslint-disable @typescript-eslint/no-var-requires, global-require */
-  docsVersion: () => require('@theme/NavbarItem/DocsVersionNavbarItem').default,
+  docsVersion: () => require('./DocsVersionNavbarItem').default,
   docsVersionDropdown: () =>
-    require('@theme/NavbarItem/DocsVersionDropdownNavbarItem').default,
-  doc: () => require('@theme/NavbarItem/DocNavbarItem').default,
+    require('./DocsVersionDropdownNavbarItem').default,
+  doc: () => require('./DocNavbarItem').default,
   /* eslint-enable @typescript-eslint/no-var-requires, global-require */
 };
 

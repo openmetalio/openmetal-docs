@@ -13,8 +13,8 @@ import {
   isRegexpStringMatch,
   useLocalPathname,
 } from '@docusaurus/theme-common';
-import {NavLink} from '@theme/NavbarItem/DefaultNavbarItem';
-import NavbarItem from '@theme/NavbarItem';
+import {NavLink} from './DefaultNavbarItem';
+import NavbarItem from '../NavbarItem';
 const dropdownLinkActiveClass = 'dropdown__link--active';
 
 function isItemActive(item, localPathname) {

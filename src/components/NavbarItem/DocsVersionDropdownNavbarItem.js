@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import DefaultNavbarItem from './DefaultNavbarItem';
+import DropdownNavbarItem from './DropdownNavbarItem';
 import {
   useVersions,
   useLatestVersion,
