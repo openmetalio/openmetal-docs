@@ -80,25 +80,6 @@ const config = {
       },
     ],
   ],
-  customFields: {
-    navbarTopRow: [
-      {
-        label: 'SCHEDULE MEETING',
-        position: 'right',
-        href: 'https://openmetal.io/schedule-meeting/',
-      },
-      {
-        label: 'FREE TRIAL',
-        position: 'right',
-        href: 'https://openmetal.io/free-trial/',
-      },
-      {
-        label: 'LOGIN',
-        position: 'right',
-        href: 'https://central.openmetal.io/auth/sign-in',
-      },
-    ],
-  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -109,6 +90,32 @@ const config = {
       colorMode: {
         disableSwitch: true
       },
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+      },
+      navbar: {
+        items: [],
+      },
+    }),
+    customFields: {
+      navbarTopRow: [
+        {
+          label: 'SCHEDULE MEETING',
+          position: 'right',
+          href: 'https://openmetal.io/schedule-meeting/',
+        },
+        {
+          label: 'FREE TRIAL',
+          position: 'right',
+          href: 'https://openmetal.io/free-trial/',
+        },
+        {
+          label: 'LOGIN',
+          position: 'right',
+          href: 'https://central.openmetal.io/auth/sign-in',
+        },
+      ],
       navbar: {
         title: '',
         logo: {
@@ -610,11 +617,7 @@ const config = {
         },
         copyright: `<strong>${new Date().getFullYear()} © OpenMetal, a division of <a href="https://www.inmotionhosting.com" target="_blank" rel="noopener">InMotion Hosting</a>.  All rights reserved.</strong>`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+    },
 };
 
 module.exports = config;
