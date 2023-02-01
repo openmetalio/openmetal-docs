@@ -213,6 +213,27 @@ h6 {
 .omi-navbar .sectionItemsMobile {
 	margin-left: .5rem;
 }
+.omi-navbar .menu__link {
+	color: var(--ifm-menu-color);
+	flex: 1;
+	justify-content: space-between;
+	line-height: 1.25;
+}
+.omi-navbar .menu__link--sublist::after {
+	background: var(--ifm-menu-link-sublist-icon) 50%/2rem 2rem;
+	min-width: 1.25rem;
+}
+.omi-navbar .menu__list-item--collapsed .menu__caret::before, .menu__list-item--collapsed .menu__link--sublist::after {
+	transform: rotate(90deg);
+}
+.omi-navbar .menu__caret::before, .menu__link--sublist::after {
+	content: "";
+	height: 1.25rem;
+	transform: rotate(180deg);
+	transition: transform var(--ifm-transition-fast) linear;
+	width: 1.25rem;
+	filter: var(--ifm-menu-link-sublist-icon-filter);
+}
 
 /* Footer Styles */
 .omi-footer .footer {
