@@ -19,6 +19,7 @@ import {
   useHideableNavbar,
   useLockBodyScroll,
   useWindowSize,
+  useNavbarMobileSidebar
 } from '@docusaurus/theme-common/internal';
 /** import useHideableNavbar from '@theme/hooks/useHideableNavbar'; 
 import useLockBodyScroll from '@theme/hooks/useLockBodyScroll';
@@ -219,7 +220,8 @@ function NavbarCustom() {
   const {
     navbar: {hideOnScroll, style},
   } = useThemeConfig();
-  const mobileSidebar = useMobileSidebar();
+  // const mobileSidebar = useMobileSidebar();
+  const mobileSidebar = useNavbarMobileSidebar();
   const colorModeToggle = useColorModeToggle();
   const activeDocPlugin = useActivePlugin();
   const {navbarRef, isNavbarVisible} = useHideableNavbar(hideOnScroll);
@@ -290,7 +292,7 @@ function NavbarCustom() {
         onClick={mobileSidebar.toggle}
       />
 
-      {mobileSidebar.shouldRender && (
+      {(useWindowSize() === 'mobile') && (
         <NavbarMobileSidebar
           sidebarShown={mobileSidebar.shown}
           toggleSidebar={mobileSidebar.toggle}
