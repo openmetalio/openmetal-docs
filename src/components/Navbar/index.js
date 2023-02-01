@@ -227,7 +227,7 @@ function NavbarCustom() {
   return (
     <nav
       ref={navbarRef}
-      className={clsx('navbar', {
+      className={clsx('omi-navbar navbar', {
         'navbar--dark': style === 'dark',
         'navbar--primary': style === 'primary',
         'navbar-sidebar--show': mobileSidebar.shown,

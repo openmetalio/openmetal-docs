@@ -128,7 +128,7 @@ function Footer() {
 
   return (
     <footer
-      className={clsx('footer', {
+      className={clsx('omi-footer footer', {
         'footer--dark': footer.style === 'dark',
       })}>
       <div className="container container-fluid">
