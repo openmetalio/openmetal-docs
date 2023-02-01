@@ -612,8 +612,8 @@ const config = {
         logo: {
           alt: 'Openmetal Logo',
           src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
-          width: 160,
-          height: 51,
+          width: '160px',
+          height: '51px',
         },
         copyright: `<strong>${new Date().getFullYear()} © OpenMetal, a division of <a href="https://www.inmotionhosting.com" target="_blank" rel="noopener">InMotion Hosting</a>.  All rights reserved.</strong>`,
       },

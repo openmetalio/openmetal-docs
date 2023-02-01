@@ -13,6 +13,7 @@ import isInternalUrl from '@docusaurus/isInternalUrl';
 import styles from './styles.module.css';
 import ThemedImage from '@theme/ThemedImage';
 import IconExternalLink from '@theme/Icon/ExternalLink';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 function FooterLink({to, href, label, prependBaseUrlToHref, ...props}) {
   const toUrl = useBaseUrl(to);
@@ -114,8 +115,8 @@ function isMultiColumnFooterLinks(links) {
   return 'title' in links[0];
 }
 
-function Footer() {
-  const {footer} = useThemeConfig();
+function FooterCustom() {
+  const {footer} = useDocusaurusContext().siteConfig.customFields;
   const {copyright, links = [], logo = {}} = footer || {};
   const sources = {
     light: useBaseUrl(logo.src),
@@ -157,7 +158,7 @@ function Footer() {
                     />
                   </Link>
                 ) : (
-                  <FooterLogo alt={logo.alt} sources={sources} />
+                  <FooterLogo alt={logo.alt} sources={sources} width={logo.width}/>
                 )}
               </div>
             )}
@@ -188,4 +189,4 @@ function Footer() {
   );
 }
 
-export default React.memo(Footer);
+export default React.memo(FooterCustom);

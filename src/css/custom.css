@@ -220,12 +220,29 @@ h6 {
 }
 
 .omi-footer .footer__col {
-	width: 25%;
-	min-width: 25%;
-	max-width: 25%;
+	flex-basis: 25%;
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
+@media (max-width: 996px) {
+	.omi-footer .footer__col {
+		flex-basis: 50%;
+	}
+}
+@media (max-width: 768px) {
+	.omi-footer .footer__col {
+		flex-basis: 100%;
+	}
+}
+
+.omi-footer .footer__items {
+	padding-left: 0;
+}
+
+.omi-footer .footer__item {
+	list-style: none;
+}
+
 .omi-footer .footer__link-item {
 	color: var(--ifm-color-primary);
 }
