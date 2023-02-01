@@ -8,7 +8,7 @@ import React from 'react';
 import DropdownNavbarItem from '../DropdownNavbarItem';
 import IconLanguage from '@theme/Icon/Language';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useAlternatePageUtils} from '@docusaurus/theme-common';
+import {useAlternatePageUtils} from '@docusaurus/theme-common/internal';
 import styles from './styles.module.css';
 export default function LocaleDropdownNavbarItem({
   mobile,

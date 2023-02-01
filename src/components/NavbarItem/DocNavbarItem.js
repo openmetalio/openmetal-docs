@@ -9,7 +9,8 @@ import DefaultNavbarItem from './DefaultNavbarItem';
 /** import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs'; */
 import clsx from 'clsx';
 import {getInfimaActiveClassName} from './index';
-import {useDocsPreferredVersion, uniq, seLatestVersion, useActiveDocContext} from '@docusaurus/theme-common';
+import {useDocsPreferredVersion, uniq, } from '@docusaurus/theme-common';
+import {useLatestVersion, useActiveDocContext} from '@docusaurus/plugin-content-docs/client';
 
 function getDocInVersions(versions, docId) {
   const allDocs = versions.flatMap((version) => version.docs);

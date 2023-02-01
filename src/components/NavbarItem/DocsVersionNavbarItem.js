@@ -7,10 +7,9 @@
 import React from 'react';
 import DefaultNavbarItem from './DefaultNavbarItem';
 import {
-  useActiveVersion,
-  useLatestVersion,
   useDocsPreferredVersion,
 } from '@docusaurus/theme-common';
+import {useActiveVersion, useLatestVersion} from '@docusaurus/plugin-content-docs/client';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);

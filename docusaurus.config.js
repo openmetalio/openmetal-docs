@@ -102,6 +102,7 @@ const config = {
         src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
         href: 'https://openmetal.io'
       },
+      hideOnScroll: true,
         items: [],
       },
     }),

@@ -8,11 +8,9 @@ import React from 'react';
 import DefaultNavbarItem from './DefaultNavbarItem';
 import DropdownNavbarItem from './DropdownNavbarItem';
 import {
-  useVersions,
-  useLatestVersion,
-  useActiveDocContext,
   useDocsPreferredVersion,
 } from '@docusaurus/theme-common';
+import {useVersions, useLatestVersion, useActiveDocContext} from '@docusaurus/plugin-content-docs/client';
 import {translate} from '@docusaurus/Translate';
 
 const getVersionMainDoc = (version) =>
