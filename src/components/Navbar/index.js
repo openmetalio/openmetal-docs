@@ -13,7 +13,7 @@ import ColorModeToggle from '@theme/ColorModeToggle';
 import {useColorMode} from '@docusaurus/theme-common';
 import {
   useThemeConfig,
-  useMobileSecondaryMenuRenderer,
+  // useMobileSecondaryMenuRenderer,
   usePrevious,
   useHistoryPopHandler,
   useHideableNavbar,
@@ -29,6 +29,7 @@ import Logo from '@theme/Logo';
 import IconMenu from '@theme/Icon/Menu';
 import IconClose from '@theme/Icon/Close';
 import styles from './styles.module.css'; // retrocompatible with v1
+import {useNavbarSecondaryMenu} from '@docusaurus/theme-common/internal';
 
 const DefaultNavItemPosition = 'right';
 
@@ -100,58 +101,61 @@ function useColorModeToggle() {
   };
 }
 
-function useSecondaryMenu({sidebarShown, toggleSidebar}) {
-  const content = useMobileSecondaryMenuRenderer()?.({
-    toggleSidebar,
-  });
-  const previousContent = usePrevious(content);
-  const [shown, setShown] = useState(
-    () =>
-      // /!\ content is set with useEffect,
-      // so it's not available on mount anyway
-      // "return !!content" => always returns false
-      false,
-  ); // When content is become available for the first time (set in useEffect)
-  // we set this content to be shown!
+//  No Longer used after theme upgrade to v2.2, kept in Swizzled theme component to preserve original functionality
+// function useSecondaryMenu({sidebarShown, toggleSidebar}) {
+//   const content = useMobileSecondaryMenuRenderer({
+//     toggleSidebar,
+//   });
+//   const previousContent = usePrevious(content);
+//   const [shown, setShown] = useState(
+//     () =>
+//       // /!\ content is set with useEffect,
+//       // so it's not available on mount anyway
+//       // "return !!content" => always returns false
+//       false,
+//   ); // When content is become available for the first time (set in useEffect)
+//   // we set this content to be shown!
 
-  useEffect(() => {
-    const contentBecameAvailable = content && !previousContent;
+//   useEffect(() => {
+//     const contentBecameAvailable = content && !previousContent;
 
-    if (contentBecameAvailable) {
-      setShown(true);
-    }
-  }, [content, previousContent]);
-  const hasContent = !!content; // On sidebar close, secondary menu is set to be shown on next re-opening
-  // (if any secondary menu content available)
+//     if (contentBecameAvailable) {
+//       setShown(true);
+//     }
+//   }, [content, previousContent]);
+//   const hasContent = !!content; // On sidebar close, secondary menu is set to be shown on next re-opening
+//   // (if any secondary menu content available)
 
-  useEffect(() => {
-    if (!hasContent) {
-      setShown(false);
-      return;
-    }
+//   useEffect(() => {
+//     if (!hasContent) {
+//       setShown(false);
+//       return;
+//     }
 
-    if (!sidebarShown) {
-      setShown(true);
-    }
-  }, [sidebarShown, hasContent]);
-  const hide = useCallback(() => {
-    setShown(false);
-  }, []);
-  return {
-    shown,
-    hide,
-    content,
-  };
-}
+//     if (!sidebarShown) {
+//       setShown(true);
+//     }
+//   }, [sidebarShown, hasContent]);
+//   const hide = useCallback(() => {
+//     setShown(false);
+//   }, []);
+//   return {
+//     shown,
+//     hide,
+//     content,
+//   };
+// }
 
 function NavbarMobileSidebar({sidebarShown, toggleSidebar}) {
   useLockBodyScroll(sidebarShown);
   const items = useNavbarItems();
   const colorModeToggle = useColorModeToggle();
-  const secondaryMenu = useSecondaryMenu({
-    sidebarShown,
-    toggleSidebar,
-  });
+  //No longer used after theme upgrade to v2.2
+  // const secondaryMenu = useSecondaryMenu({
+  //   sidebarShown,
+  //   toggleSidebar,
+  // });
+  const secondaryMenu = useNavbarSecondaryMenu();
   return (
     <div className="navbar-sidebar">
       <div className="navbar-sidebar__brand">

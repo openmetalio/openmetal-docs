@@ -12,7 +12,7 @@ import {
   Collapsible,
   isRegexpStringMatch,
   useLocalPathname,
-} from '@docusaurus/theme-common';
+} from '@docusaurus/theme-common/internal';
 import {NavLink} from './DefaultNavbarItem';
 import NavbarItem from '../NavbarItem';
 const dropdownLinkActiveClass = 'dropdown__link--active';

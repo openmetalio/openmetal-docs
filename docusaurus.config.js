@@ -94,7 +94,14 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      navbar: {
+      navbar: {        
+      title: '',
+      logo: {
+        target: '_self',
+        alt: 'OpenMetal',
+        src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
+        href: 'https://openmetal.io'
+      },
         items: [],
       },
     }),
@@ -117,13 +124,6 @@ const config = {
         },
       ],
       navbar: {
-        title: '',
-        logo: {
-          target: '_self',
-          alt: 'OpenMetal',
-          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
-          href: 'https://openmetal.io'
-        },
         items: [
           {
             type: 'dropdown',
