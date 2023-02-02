@@ -76,6 +76,10 @@ h6 {
 }
 
 /*Navbar styles */
+.navbar--fixed-top {
+	display: none !important;
+}
+
 .omi-navbar.navbar {
 	z-index: 9999999;
 	padding-bottom: 0px;
