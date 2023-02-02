@@ -5,11 +5,12 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs';
+import DefaultNavbarItem from './DefaultNavbarItem';
+/** import {useLatestVersion, useActiveDocContext} from '@theme/hooks/useDocs'; */
 import clsx from 'clsx';
 import {getInfimaActiveClassName} from './index';
-import {useDocsPreferredVersion, uniq} from '@docusaurus/theme-common';
+import {useDocsPreferredVersion, uniq, } from '@docusaurus/theme-common';
+import {useLatestVersion, useActiveDocContext} from '@docusaurus/plugin-content-docs/client';
 
 function getDocInVersions(versions, docId) {
   const allDocs = versions.flatMap((version) => version.docs);

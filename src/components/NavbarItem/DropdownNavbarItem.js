@@ -12,9 +12,9 @@ import {
   Collapsible,
   isRegexpStringMatch,
   useLocalPathname,
-} from '@docusaurus/theme-common';
-import {NavLink} from '@theme/NavbarItem/DefaultNavbarItem';
-import NavbarItem from '@theme/NavbarItem';
+} from '@docusaurus/theme-common/internal';
+import {NavLink} from './DefaultNavbarItem';
+import NavbarItem from '../NavbarItem';
 const dropdownLinkActiveClass = 'dropdown__link--active';
 
 function isItemActive(item, localPathname) {
@@ -105,7 +105,7 @@ function DropdownNavbarItemMobile({
       })}>
       <NavLink
         role="button"
-        className={clsx('menu__link menu__link--sublist', className)}
+        className={clsx('menu__link menu__link--sublist menu__link--sublist menu__link--sublist-caret', className)}
         {...props}
         onClick={(e) => {
           e.preventDefault();

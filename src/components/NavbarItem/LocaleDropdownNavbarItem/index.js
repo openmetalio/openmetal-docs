@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
-import IconLanguage from '@theme/IconLanguage';
+import DropdownNavbarItem from '../DropdownNavbarItem';
+import IconLanguage from '@theme/Icon/Language';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import {useAlternatePageUtils} from '@docusaurus/theme-common';
+import {useAlternatePageUtils} from '@docusaurus/theme-common/internal';
 import styles from './styles.module.css';
 export default function LocaleDropdownNavbarItem({
   mobile,

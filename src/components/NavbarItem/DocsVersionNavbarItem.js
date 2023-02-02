@@ -5,9 +5,11 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from 'react';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
-import {useActiveVersion, useLatestVersion} from '@theme/hooks/useDocs';
-import {useDocsPreferredVersion} from '@docusaurus/theme-common';
+import DefaultNavbarItem from './DefaultNavbarItem';
+import {
+  useDocsPreferredVersion,
+} from '@docusaurus/theme-common';
+import {useActiveVersion, useLatestVersion} from '@docusaurus/plugin-content-docs/client';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);

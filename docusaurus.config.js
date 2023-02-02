@@ -10,7 +10,7 @@ const config = {
   tagline: 'OpenMetal On-Demand Private Cloud Documentation',
   url: 'https://openmetal.io',
   baseUrl: '/docs/manuals/',
-  onBrokenMarkdownLinks: 'error',
+  onBrokenMarkdownLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
@@ -80,25 +80,6 @@ const config = {
       },
     ],
   ],
-  customFields: {
-    navbarTopRow: [
-      {
-        label: 'SCHEDULE MEETING',
-        position: 'right',
-        href: 'https://openmetal.io/schedule-meeting/',
-      },
-      {
-        label: 'FREE TRIAL',
-        position: 'right',
-        href: 'https://openmetal.io/free-trial/',
-      },
-      {
-        label: 'LOGIN',
-        position: 'right',
-        href: 'https://central.openmetal.io/auth/sign-in',
-      },
-    ],
-  },
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -109,7 +90,11 @@ const config = {
       colorMode: {
         disableSwitch: true
       },
-      navbar: {
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+      },
+      navbar: {        
         title: '',
         logo: {
           target: '_self',
@@ -117,6 +102,29 @@ const config = {
           src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
           href: 'https://openmetal.io'
         },
+        hideOnScroll: false,
+        items: [],
+      },
+    }),
+    customFields: {
+      navbarTopRow: [
+        {
+          label: 'SCHEDULE MEETING',
+          position: 'right',
+          href: 'https://openmetal.io/schedule-meeting/',
+        },
+        {
+          label: 'FREE TRIAL',
+          position: 'right',
+          href: 'https://openmetal.io/free-trial/',
+        },
+        {
+          label: 'LOGIN',
+          position: 'right',
+          href: 'https://central.openmetal.io/auth/sign-in',
+        },
+      ],
+      navbar: {
         items: [
           {
             type: 'dropdown',
@@ -605,16 +613,12 @@ const config = {
         logo: {
           alt: 'Openmetal Logo',
           src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
-          width: 160,
-          height: 51,
+          width: '160px',
+          height: '51px',
         },
         copyright: `<strong>${new Date().getFullYear()} © OpenMetal, a division of <a href="https://www.inmotionhosting.com" target="_blank" rel="noopener">InMotion Hosting</a>.  All rights reserved.</strong>`,
       },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+    },
 };
 
 module.exports = config;

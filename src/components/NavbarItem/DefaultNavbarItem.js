@@ -8,7 +8,7 @@ import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import IconExternalLink from '@theme/IconExternalLink';
+import IconExternalLink from '@theme/Icon/ExternalLink';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import {isRegexpStringMatch} from '@docusaurus/theme-common';
 import {getInfimaActiveClassName} from './index';
