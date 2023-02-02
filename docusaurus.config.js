@@ -94,7 +94,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      navbar: {        
+      navbar: {
         title: '',
         logo: {
           target: '_self',
@@ -616,7 +616,7 @@ const config = {
           width: '160px',
           height: '51px',
         },
-        copyright: `<strong>${new Date().getFullYear()} © OpenMetal, a division of <a href="https://www.inmotionhosting.com" target="_blank" rel="noopener">InMotion Hosting</a>.  All rights reserved.</strong>`,
+        copyright: `<strong>${new Date().getFullYear()} © OpenMetal.  All rights reserved.</strong>`,
       },
     },
 };
