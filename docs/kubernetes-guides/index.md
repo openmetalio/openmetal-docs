@@ -1,3 +1,7 @@
+---
+comments: false
+---
+
 # Kubernetes Guides
 
 A collection of guides demonstrating various implementations of Kubernetes
