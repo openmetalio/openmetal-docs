@@ -95,14 +95,14 @@ const config = {
         darkTheme: darkCodeTheme,
       },
       navbar: {        
-      title: '',
-      logo: {
-        target: '_self',
-        alt: 'OpenMetal',
-        src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
-        href: 'https://openmetal.io'
-      },
-      hideOnScroll: true,
+        title: '',
+        logo: {
+          target: '_self',
+          alt: 'OpenMetal',
+          src: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/medium.png',
+          href: 'https://openmetal.io'
+        },
+        hideOnScroll: false,
         items: [],
       },
     }),
