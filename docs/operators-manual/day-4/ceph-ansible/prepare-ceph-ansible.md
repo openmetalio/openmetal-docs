@@ -30,9 +30,9 @@ Root access to your cloud's control plane nodes is required.
 
 :::info New Clouds
 
-On clouds provisioned ***after* Dec 2022** you will need to open a 
+On clouds provisioned ***after* Dec 2022** you will need to open a
 [support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
- to have the configuration saved to your nodes.
+to have the configuration saved to your nodes.
 
 :::
 
@@ -40,7 +40,6 @@ On clouds provisioned ***after* Dec 2022** you will need to open a
   - `/etc/fm-deploy/ceph-inventory.yml`
 - Ceph Ansible Config
   - `/opt/ceph-ansible/group_vars/all.yml`
-
 
 ## Preparation
 
