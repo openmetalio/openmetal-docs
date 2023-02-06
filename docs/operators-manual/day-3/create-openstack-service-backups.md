@@ -34,9 +34,12 @@ prepare an environment in your shell:
 - [How to Prepare and Use Ceph Ansible](../day-4/ceph-ansible/prepare-ceph-ansible)
 
 ### Where are my Private Cloud's Configuration Files?
+
 :::info New Clouds
 
-On clouds provisioned ***after* Dec 2022** you will need to open a [support ticket](../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) to have the configuration saved to your nodes.
+On clouds provisioned ***after* Dec 2022** you will need to open a 
+[support ticket](../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
+ to have the configuration saved to your nodes.
 
 :::
 
