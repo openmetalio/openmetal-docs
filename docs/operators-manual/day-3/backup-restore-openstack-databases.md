@@ -42,6 +42,11 @@ Kolla Ansible is...:
 ...where `<inventory>` is the path to the Kolla Ansible inventory file.
 
 ### Path to the Kolla Ansible Inventory File
+:::info New Clouds
+
+On clouds provisioned ***after* Dec 2022** you will need to open a [support ticket](../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) to have the configuration saved to your nodes.
+
+:::
 
 The Kolla Ansible inventory file is located across all control plane
 nodes as:

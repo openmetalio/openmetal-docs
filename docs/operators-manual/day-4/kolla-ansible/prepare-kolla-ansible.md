@@ -81,8 +81,12 @@ should be performed from the node in your cloud that contains the path
 `/etc/kolla/config`. This directory exists on a single node and is used
 to provide our custom configuration to OpenStack services.
 
-Kolla Ansible Configuration Files
-\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
+### Kolla Ansible Configuration Files
+:::info New Clouds
+
+On clouds provisioned ***after* Dec 2022** you will need to open a [support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) to have the configuration saved to your nodes.
+
+:::
 
 First, we introduce you to the files required for adjusting Kolla
 Ansible's configuration. These files are used when preparing Kolla
@@ -96,7 +100,7 @@ exists on a single node instead of being synced across all nodes. We
 recently corrected a bug where the contents in `/etc/fm-deploy` were not
 being synced across all nodes at the end of a deployment.
 
-Before Making Changes \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
+#### Before Making Changes
 
 Before any changes are made to the Kolla Ansible configuration, the
 following variables in `/etc/kolla/globals.yml` should not be modified,
@@ -120,10 +124,9 @@ otherwise they will be overwritten:
 For more information, see the section titled [Before
 Proceeding](#before-proceeding) at the top of this guide.
 
-Prepare Kolla Ansible Environment
-\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~
+### Prepare Kolla Ansible Environment
 
-**Step 1** - Prepare environment
+#### **Step 1** - Prepare environment
 
 First ensure the node you are logged into over SSH contains the
 directory `/etc/kolla/config`. This directory exists on a single node
@@ -134,7 +137,7 @@ dependency, Ansible. For example:
 
     mkdir /opt/kolla-ansible
 
-**Step 2** -- Prepare Python virtual environment
+#### **Step 2** -- Prepare Python virtual environment
 
 Navigate into the folder created previously, create a Python virtual
 environment and activate it:
@@ -143,7 +146,7 @@ environment and activate it:
     virtualenv .venv
     source .venv/bin/activate
 
-**Step 3** -- Update pip
+#### **Step 3** -- Update pip
 
 Update the virtual environment's `pip` to the latest version, otherwise
 packages may not install as expected.
@@ -152,7 +155,7 @@ Update `pip` using:
 
     pip install --upgrade pip
 
-**Step 4** -- Install Kolla Ansible
+#### **Step 4** -- Install Kolla Ansible
 
 With the virtual environment prepared, we can now install Kolla Ansible
 and Ansible using `pip`.
@@ -169,7 +172,7 @@ OpenStack version can be determined by looking at the Docker image tags
 associated with the Kolla containers from the output of `docker image
 ls`, for example.
 
-**Step 5** -- Kolla Ansible is Ready for Use
+#### **Step 5** -- Kolla Ansible is Ready for Use
 
 At this step, you have everything prepared to use Kolla Ansible. Before
 proceeding, familiarize yourself with the available Kolla Ansible

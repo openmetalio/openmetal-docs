@@ -17,6 +17,11 @@ enable the ELK stack for your Private Cloud using Kolla Ansible.
 ## Prerequisites
 
 ### Prepare Kolla Ansible
+:::info New Clouds
+
+On clouds provisioned ***after* Dec 2022** you will need to open a [support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) to have the configuration saved to your nodes.
+
+:::
 
 This guide explains how to configure your cloud using Kolla Ansible. Any
 time you work with Kolla Ansible, you must prepare a shell environment.
