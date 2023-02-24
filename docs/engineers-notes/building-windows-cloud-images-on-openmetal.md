@@ -187,7 +187,7 @@ sudo apt update -y
 ```
 
 ```bash
-sudo apt -y install qemu qemu-kvm libvirt-clients libvirt-daemon-system virt-manager bridge-utils cpu-checker libosinfo-bin
+sudo apt -y install qemu qemu-kvm libvirt-clients libvirt-daemon-system virt-manager bridge-utils cpu-checker libosinfo-bin dnsmasq
 ```
 
 Let’s make sure the system supports virtualization and acceleration.
