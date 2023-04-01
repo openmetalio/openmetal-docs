@@ -34,7 +34,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 ```
 
 If the `firewall_driver` is defined as `openvswitch` proceed to
-[Setup](#setup).
+Setup.
 
 ### Reconfigure Firewall Driver with Kolla Ansible
 
