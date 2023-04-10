@@ -101,10 +101,23 @@ function gtagOnRouteUpdate ( { location, previousLocation } ) {
 	}
 }
 
+function hsOnRouteUpdate ( { location, previousLocation } ) {
+	if ( previousLocation && location.pathname !== previousLocation.pathname ) {
+		setTimeout( () => {
+			const _hsq = window['_hsq'] = window['_hsq'] || [];
+			_hsq.push( ['setPath', window.location.href ] );
+			_hsq.push( ['trackPageView'] );
+		}, 100 );
+	}
+}
+
 const clientModule: ClientModule = {
 	onRouteUpdate ( { location, previousLocation } ) {
 		if ( window[ 'gtag' ] ) {
 			gtagOnRouteUpdate( { location, previousLocation } );
+		}
+		if ( window['_hsq'] ) {
+			hsOnRouteUpdate( { location, previousLocation } );
 		}
 	}
 }
