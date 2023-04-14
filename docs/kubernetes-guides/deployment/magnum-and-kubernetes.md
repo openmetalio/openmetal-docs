@@ -231,7 +231,7 @@ $ openstack stack resource list kubernetes-demo-ojlnzq4w252q
 +-------------------------------+--------------------------------------+--------------------------------------------------------------------------------------+--------------------+----------------------+
 ```
 
-Once the column **resource\_status** reflects `CREATE_COMPLETE` for all
+Once the column **resource_status** reflects `CREATE_COMPLETE` for all
 items, the Kubernetes deployment is done.
 
 It will take around 10 to 15 minutes for everything to finish deploying.
@@ -272,7 +272,7 @@ appropriate project.
     ```
 
 1. Set the `KUBECONFIG` environment variable by executing the output of the
-previous step:
+   previous step:
 
     ```sh
     export KUBECONFIG=/home/<user>/k8s-test/config
