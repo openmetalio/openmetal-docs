@@ -8,7 +8,7 @@ device. The TRIM command is used to inform the storage device which blocks
 of data are no longer in use and can be safely erased, allowing the device
 to maintain optimal performance over time.
 
-Without trim support, the storage device would not know which blocks are free
+Without TRIM support, the storage device would not know which blocks are free
 and which are still in use by the guest operating system. As a result, the
 device may not be able to efficiently manage the available storage space,
 leading to decreased performance over time.
