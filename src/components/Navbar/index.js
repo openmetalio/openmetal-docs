@@ -31,6 +31,7 @@ import IconMenu from '@theme/Icon/Menu';
 import IconClose from '@theme/Icon/Close';
 import styles from './styles.module.css'; // retrocompatible with v1
 import {useNavbarSecondaryMenu} from '@docusaurus/theme-common/internal';
+import NavbarIcon from '../NavbarIcon/NavbarIcon';
 
 const DefaultNavItemPosition = 'right';
 
@@ -242,10 +243,17 @@ function NavbarCustom() {
       })}>
 
       <div className="navbar__inner">
-      <div className='navbar_top_row'>
-          {useDocusaurusContext().siteConfig.customFields.navbarTopRow.map((item, i) => (
-            <NavbarItem {...item} key={i} target="_self" />
-          ))}
+        <div className='navbar_top_row'>
+          <Logo
+            className="navbar__brand"
+            imageClassName="navbar__logo"
+            titleClassName="navbar__title"
+          />
+          <div className="linkContainer">
+            {useDocusaurusContext().siteConfig.customFields.navbarTopRow.map((item, i) => (
+              <NavbarItem {...item} key={i} target="_self" />
+            ))}
+          </div>
         </div>
         <div className="navbar__items">
           {(items?.length > 0 || activeDocPlugin) && (
@@ -259,11 +267,6 @@ function NavbarCustom() {
               <IconMenu />
             </button>
           )}
-          <Logo
-            className="navbar__brand"
-            imageClassName="navbar__logo"
-            titleClassName="navbar__title"
-          />
           {leftItems.map((item, i) => (
             <div className='custom-navbar-item-dropdown' key={i} >
               <NavbarItem {...item} target="_self"/>
@@ -311,65 +314,66 @@ function renderDropDownItems(item) {
         {
           item.header &&  <h2>{ item.header }</h2>
         }
-        {item.items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => (
-          <div key={i}>
-            <NavbarItem
-              target="_self"
-              isDropdownItem
-              onKeyDown={(e) => {
-                if (i === items.length - 1 && e.key === 'Tab') {
-                  e.preventDefault();
-                  setShowDropdown(false);
-                  const nextNavbarItem = dropdownRef.current.nextElementSibling;
+        {item.items.filter((item) => { return item.itemType === 'link' }).map((childItemProps, i) => {
+          return (
+              <NavbarItem
+                key={i}
+                target="_self"
+                isDropdownItem
+                onKeyDown={(e) => {
+                  if (i === items.length - 1 && e.key === 'Tab') {
+                    e.preventDefault();
+                    setShowDropdown(false);
+                    const nextNavbarItem = dropdownRef.current.nextElementSibling;
 
-                  if (nextNavbarItem) {
-                    nextNavbarItem.focus();
+                    if (nextNavbarItem) {
+                      nextNavbarItem.focus();
+                    }
                   }
-                }
-              }}
-              activeClassName={dropdownLinkActiveClass}
-              {...childItemProps}
-            />
-            {childItemProps.description && <p>{childItemProps.description}</p>}
-          </div>
-        ))}
+                }}
+                activeClassName={dropdownLinkActiveClass}
+                {...childItemProps}
+              />
+          );
+        })}
 
         {item.items.filter((item) => { return item.itemType === 'section' }).map((sectionitem, i) => (
-          <div key={i}>
-            {
-              sectionitem.href ?
-              <h3><a href={sectionitem.href}>{sectionitem.label}</a></h3> :
-              <h3>{sectionitem.label}</h3>
-            }
-            {
-              sectionitem.links.map((childItemProps, i) => (
-                <div key={i}>
-                  <NavbarItem
-                    target="_self"
-                    isDropdownItem
-                    onKeyDown={(e) => {
-                      if (i === items.length - 1 && e.key === 'Tab') {
-                        e.preventDefault();
-                        setShowDropdown(false);
-                        const nextNavbarItem = dropdownRef.current.nextElementSibling;
+            <div key={i}>
+              {
+                sectionitem.href ?
+                <h3><a href={sectionitem.href}>{sectionitem.label}</a></h3> :
+                <h3>{sectionitem.label}</h3>
+              }
+              {
+                sectionitem.links.map((childItemProps, i) => {                  
+                  return (
+                    <NavbarItem
+                      key={i}
+                      target="_self"
+                      isDropdownItem
+                      onKeyDown={(e) => {
+                        if (i === items.length - 1 && e.key === 'Tab') {
+                          e.preventDefault();
+                          setShowDropdown(false);
+                          const nextNavbarItem = dropdownRef.current.nextElementSibling;
 
-                        if (nextNavbarItem) {
-                          nextNavbarItem.focus();
+                          if (nextNavbarItem) {
+                            nextNavbarItem.focus();
+                          }
                         }
-                      }
-                    }}
-                    activeClassName={dropdownLinkActiveClass}
-                    {...childItemProps}
-                  />
-                  { childItemProps.description && <p>{childItemProps.description}</p> }
-                </div>
-              ))
-            }
-          </div>
-        ))}
+                      }}
+                      activeClassName={dropdownLinkActiveClass}
+                      {...childItemProps}
+                    />
+                  )
+                })
+              }
+            </div>
+          ))}
       </div>
+      { item.items.find((item) => { return item?.itemType === 'article' }) && (
       <div className='dropdown_menu_right' >
-        {item.items.filter((item) => { return item.itemType === 'article' }).map((childItemProps, i) => (
+        {item.items.filter((item) => { return item?.itemType === 'article' }).map((childItemProps, i) => (
           <div className="article" key={i}>
             <img className='img-responsive' data-src={childItemProps.image_url}/>
             <NavbarItem
@@ -392,7 +396,7 @@ function renderDropDownItems(item) {
             <p>{childItemProps.description}</p>
           </div>
         ))}
-      </div>
+      </div>)}
     </ul>
   </div>
   );
