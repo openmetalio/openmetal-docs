@@ -12,6 +12,8 @@ import IconExternalLink from '@theme/Icon/ExternalLink';
 import isInternalUrl from '@docusaurus/isInternalUrl';
 import {isRegexpStringMatch} from '@docusaurus/theme-common';
 import {getInfimaActiveClassName} from './index';
+import { useWindowSize } from '@docusaurus/theme-common/internal';
+import NavbarIcon from '../NavbarIcon/NavbarIcon';
 const dropdownLinkActiveClass = 'dropdown__link--active';
 export function NavLink({
   activeBasePath,
@@ -32,6 +34,15 @@ export function NavLink({
   });
   const isExternalLink = label && href && !isInternalUrl(href);
   const isDropdownLink = activeClassName === dropdownLinkActiveClass;
+
+  const windowSize = useWindowSize();
+  const isMobile = windowSize === 'mobile';
+  const hasIcon= props.icon ? true : false;
+  const iconData = {
+    icontype: props.icontype,
+    iconstyle: props.iconstyle,
+    icon: props.icon,
+  };
   return (
     <Link
       {...(href
@@ -54,19 +65,19 @@ export function NavLink({
               : null),
           })}
       {...props}>
-      {false && isExternalLink ? (
-        <span>
-          {label}
-          <IconExternalLink
-            {...(isDropdownLink && {
-              width: 12,
-              height: 12,
-            })}
-          />
-        </span>
-      ) : (
-        label
-      )}
+
+      { isDropdownLink ? (
+        <div className='dropDownLinkContainer'>
+          {(hasIcon && !isMobile) && (
+            <NavbarIcon iconData={iconData}></NavbarIcon>
+          )}
+          <div>
+            <p>{label}</p>
+            {props.description && <p className='link-description'>{props.description}</p>}
+          </div>
+        </div>
+      ) : label
+      }
     </Link>
   );
 }

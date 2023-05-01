@@ -1,0 +1,52 @@
+.icon {
+    margin-right: 1rem;
+    background: #eee;
+    height: 45px;
+    min-height: 45px;
+    width: 45px;
+    min-width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 45px;
+    transition: background .5s;
+    padding: 5px;
+}
+.dropDownLinkContainer:hover .icon {
+    background: #267ab5;
+}
+.icon .faIcon {
+    color: #646464;
+    padding: 5px;
+    transition: color .5s;
+    font-size: 22px;
+}
+.dropDownLinkContainer:hover .icon .faIcon {
+    color: #fff;
+    transition: color .5s, background 1s;
+}
+.icon img {
+    width: 24px;
+    height: 24px;
+    border-radius: 45px;
+    max-width: 45px;
+    transition: filter .5s, background .5s;
+}
+.icon img.solid{
+    filter: invert(40%);
+}
+.dropDownLinkContainer:hover .icon img.solid{
+    filter: invert(100%);
+}
+.icon img.detailed{
+    width: 100%;
+    height: auto;
+    filter: grayscale(50%);
+
+}
+.dropDownLinkContainer:hover .icon img.detailed{
+    
+    filter: grayscale(0%);
+    transition: filter .5s, background .5s;
+    background: #267ab5;
+}
