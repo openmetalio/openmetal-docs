@@ -39,8 +39,8 @@ export function NavLink({
   const isMobile = windowSize === 'mobile';
   const hasIcon= props.icon ? true : false;
   const iconData = {
-    iconType: props.iconType,
-    iconStyle: props.iconStyle,
+    icontype: props.icontype,
+    iconstyle: props.iconstyle,
     icon: props.icon,
   };
   return (

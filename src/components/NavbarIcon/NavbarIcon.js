@@ -5,11 +5,11 @@ import styles from './NavbarIcon.css';
 
 
 export default function NavbarIcon({iconData}) {
-  const { iconType, iconStyle, icon } = iconData;
+  const { icontype, iconstyle, icon } = iconData;
   let iconEle;
-  if(iconType === 'external') {
-    iconEle = getExternalIcon(icon, iconStyle);
-  } else if(iconType === 'fontAwesome') {
+  if(icontype === 'external') {
+    iconEle = getExternalIcon(icon, iconstyle);
+  } else if(icontype === 'fontAwesome') {
     iconEle = getFontAwesomeIcon(icon);
   }
 
@@ -20,9 +20,9 @@ export default function NavbarIcon({iconData}) {
   );
 }
 
-function getExternalIcon(icon, iconStyle) {
+function getExternalIcon(icon, iconstyle) {
     return (
-        <img src={icon} className={iconStyle ? iconStyle : 'solid'}/>
+        <img src={icon} className={iconstyle ? iconstyle : 'solid'}/>
     );
 }
 
