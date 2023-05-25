@@ -32,9 +32,9 @@ export default {
 		},
 		{
 			title: "Reduce Costs and Drive Innovation",
-			description: "The executive's guide to leveraging private clouds.",
+			description: "Find out how you can break free from the mega-corps and reclaim your revenue, all while paying less for your cloud infrastructure.",
 			htmlPath: "",
-			pdfPath: "https://inmotionhosting.github.io/static-assets/docs/Reduce-IT-Costs-and-Drive-Innovation-by-InMotion-Cloud.pdf",
+			pdfPath: "https://hub.openmetal.io/hubfs/OpenMetal/OMI%20PDFs/Breaking%20the%20Mega%20Cloud%20Chains%20How%20to%20Gain%20More%20by%20Paying%20Less%20for%20Your%20Cloud%20Infrastructure.pdf",
 			comingSoon: false,
 			catagories: ['management'],
 
