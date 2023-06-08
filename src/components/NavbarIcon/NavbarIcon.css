@@ -48,5 +48,4 @@
     
     filter: grayscale(0%);
     transition: filter .5s, background .5s;
-    /* background: #267ab5; */
 }
