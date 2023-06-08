@@ -55,30 +55,51 @@ function FooterLogo({sources, alt, width, height}) {
   );
 }
 
+function ColumnLinks({linkItem}) {
+  return (
+    <ul className="footer__items">
+      {linkItem.items.map((item, key) =>
+        item.html ? (
+          <li
+            key={key}
+            className="footer__item" // Developer provided the HTML, so assume it's safe.
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: item.html,
+            }}
+          />
+        ) : (
+          <li key={item.href || item.to} className="footer__item">
+            <FooterLink {...item} />
+          </li>
+        ),
+      )}
+    </ul>
+  );
+}
+
 function MultiColumnLinks({links}) {
   return (
     <>
       {links.map((linkItem, i) => (
         <div key={i} className="col footer__col">
-          <div className="footer__title">{linkItem.title}</div>
-          <ul className="footer__items">
-            {linkItem.items.map((item, key) =>
-              item.html ? (
-                <li
-                  key={key}
-                  className="footer__item" // Developer provided the HTML, so assume it's safe.
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{
-                    __html: item.html,
-                  }}
-                />
-              ) : (
-                <li key={item.href || item.to} className="footer__item">
-                  <FooterLink {...item} />
-                </li>
-              ),
-            )}
-          </ul>
+          {
+            linkItem.title && (
+              <div className="footer__title">{linkItem.title}</div>
+            )
+          }
+          {
+            linkItem.type === 'section' && linkItem.items ? 
+              linkItem.items.map((subLinkItem, i) => (
+                <div className='footerSection' key={i}>
+                  <div className='footer__title'>{subLinkItem.title}</div>
+                  <ColumnLinks linkItem={subLinkItem} />
+                </div>
+              )) :
+            (
+              <ColumnLinks linkItem={linkItem} />
+            )
+          }
         </div>
       ))}
     </>
