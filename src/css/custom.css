@@ -320,6 +320,10 @@ h6 {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
 }
+
+.footerSection {
+	margin-bottom: 2rem;
+  }
 @media (max-width: 996px) {
 	.omi-footer .footer__col {
 		flex-basis: 50%;

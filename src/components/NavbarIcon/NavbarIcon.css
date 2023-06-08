@@ -11,6 +11,7 @@
     border-radius: 45px;
     transition: background .5s;
     padding: 5px;
+    overflow: hidden;
 }
 .dropDownLinkContainer:hover .icon {
     background: #267ab5;
@@ -23,12 +24,11 @@
 }
 .dropDownLinkContainer:hover .icon .faIcon {
     color: #fff;
-    transition: color .5s, background 1s;
+    transition: color .5s, background .5s;
 }
 .icon img {
     width: 24px;
     height: 24px;
-    border-radius: 45px;
     max-width: 45px;
     transition: filter .5s, background .5s;
 }
@@ -48,5 +48,5 @@
     
     filter: grayscale(0%);
     transition: filter .5s, background .5s;
-    background: #267ab5;
+    /* background: #267ab5; */
 }

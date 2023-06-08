@@ -181,73 +181,12 @@ const config = {
           },
           {
             type: 'dropdown',
-            label: 'Programs',
-            position: 'left',
-            items: [
-              {
-                label: 'SaaS Providers',
-                description: 'Scale business while maintaining a cost-effective infrastructure that improves margins',
-                href: 'https://openmetal.io/programs/saas-providers-program/',
-                itemType: 'link',
-                icontype: 'external',
-                iconstyle: 'solid',
-                icon: 'https://openmetal.io/wp-content/uploads/2023/04/saas-providers-menu.png',
-              },
-              {
-                label: 'Hosting and Public Cloud Providers',
-                description: 'Combined scale yields better costs, new locations, and more features',
-                href: 'https://openmetal.io/programs/hosting-cloud-providers/',
-                itemType: 'link',
-                icontype: 'external',
-                iconstyle: 'solid',
-                icon: 'https://openmetal.io/wp-content/uploads/2023/04/hosting-public-cloud-menu.png',
-              },
-              {
-                label: 'OpenStack',
-                description: 'Harness the power of OpenStack to build private clouds at any size, on-demand',
-                href: 'https://openmetal.io/programs/on-demand-openstack-cloud/',
-                itemType: 'link',
-                icontype: 'external',
-                iconstyle: 'solid',
-                icon: 'https://openmetal.io/wp-content/uploads/2023/04/openstack-menu.png',
-              },
-              {
-                label: 'Education and Training',
-                description: 'Become the next generation of Cloud Architects and Cloud Native Developers',
-                href: 'https://openmetal.io/programs/education-and-training/',
-                itemType: 'link',
-                icontype: 'fontAwesome',
-                iconstyle: 'solid',
-                icon: 'faGraduationCap',
-              },
-              {
-                label: 'Partners',
-                description: 'Realize new paths to profitability or business success with open source services',
-                href: 'https://openmetal.io/programs/openmetal-partner-programs/',
-                itemType: 'link',
-                icontype: 'fontAwesome',
-                iconstyle: 'solid',
-                icon: 'faHandshake',
-              },
-            ],
-          },
-          {
-            type: 'dropdown',
             label: 'Use Cases',
             position: 'left',
             items: [
               {
-                label: 'Public Cloud Alternative',
-                description: 'The benefits of public cloud on a platform built to be tenant-first.',
-                href: 'https://openmetal.io/use-cases/public-cloud-alternative/',
-                itemType: 'link',
-                icontype: 'external',
-                iconstyle: 'solid',
-                icon: 'https://openmetal.io/wp-content/uploads/2023/04/cloud-alternative-menu.png',
-              },
-              {
                 label: 'Hosted Private Cloud',
-                description: 'The rich benefits of private cloud now delivered in 45 seconds.',
+                description: '',
                 href: 'https://openmetal.io/use-cases/hosted-private-cloud/',
                 itemType: 'link',
                 icontype: 'external',
@@ -255,8 +194,35 @@ const config = {
                 icon: 'https://openmetal.io/wp-content/uploads/2023/04/private-cloud-menu.png',
               },
               {
+                label: 'Reduce Cloud Costs',
+                description: '',
+                href: 'https://openmetal.io/use-cases/reduce-cloud-costs/',
+                itemType: 'link',
+                icontype: 'fontAwesome',
+                iconstyle: 'solid',
+                icon: 'faSackDollar',
+              },
+              {
+                label: 'Public Cloud Alternative',
+                description: '',
+                href: 'https://openmetal.io/use-cases/public-cloud-alternative/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/04/cloud-alternative-menu.png',
+              },
+              {
+                label: 'Managed Private Cloud',
+                description: '',
+                href: 'https://openmetal.io/use-cases/managed-private-cloud/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/05/cloud-service.png',
+              },
+              {
                 label: 'On-Demand OpenStack',
-                description: 'Production ready OpenStack clusters in 45 seconds. Fully customizable.',
+                description: '',
                 href: 'https://openmetal.io/use-cases/on-demand-openstack-cloud/',
                 itemType: 'link',
                 icontype: 'external',
@@ -264,8 +230,17 @@ const config = {
                 icon: 'https://openmetal.io/wp-content/uploads/2023/04/openstack-menu.png',
               },
               {
+                label: 'S3 Alternatives',
+                description: '',
+                href: 'https://openmetal.io/use-cases/s3-alternatives/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/05/blocks.png',
+              },
+              {
                 label: 'Kubernetes Workloads',
-                description: 'OpenMetal Cloud Cores support Kubernetes integration, with deployment and management flexibility.',
+                description: '',
                 href: 'https://openmetal.io/use-cases/kubernetes-workloads/',
                 itemType: 'link',
                 icontype: 'external',
@@ -274,7 +249,7 @@ const config = {
               },
               {
                 label: 'Large Iaas Deployments',
-                description: 'Leverage the on-demand fleet and team for innovative solutions.',
+                description: '',
                 href: 'https://openmetal.io/products/large-iaas-deployments/',
                 itemType: 'link',
                 icontype: 'external',
@@ -428,14 +403,75 @@ const config = {
           },
           {
             type: 'dropdown',
+            label: 'Programs',
+            position: 'left',
+            items: [
+              {
+                label: 'SaaS Providers',
+                description: 'Scale business while maintaining a cost-effective infrastructure that improves margins',
+                href: 'https://openmetal.io/programs/saas-providers-program/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/04/saas-providers-menu.png',
+              },
+              {
+                label: 'Hosting and Public Cloud Providers',
+                description: 'Combined scale yields better costs, new locations, and more features',
+                href: 'https://openmetal.io/programs/hosting-cloud-providers/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/04/hosting-public-cloud-menu.png',
+              },
+              {
+                label: 'OpenStack',
+                description: 'Harness the power of OpenStack to build private clouds at any size, on-demand',
+                href: 'https://openmetal.io/programs/on-demand-openstack-cloud/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/04/openstack-menu.png',
+              },
+              {
+                label: 'Education and Training',
+                description: 'Become the next generation of Cloud Architects and Cloud Native Developers',
+                href: 'https://openmetal.io/programs/education-and-training/',
+                itemType: 'link',
+                icontype: 'fontAwesome',
+                iconstyle: 'solid',
+                icon: 'faGraduationCap',
+              },
+              {
+                label: 'Partners',
+                description: 'Realize new paths to profitability or business success with open source services',
+                href: 'https://openmetal.io/programs/openmetal-partner-programs/',
+                itemType: 'link',
+                icontype: 'fontAwesome',
+                iconstyle: 'solid',
+                icon: 'faHandshake',
+              },
+            ],
+          },
+          {
+            type: 'dropdown',
             label: 'Resources',
             position: 'left',
             header: '',
             items: [
               {
-                label: 'OpenMetal Blog',
+                label: 'Resources Home',
                 description: '',
                 href: 'https://openmetal.io/resources/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/04/documentation-menu.png',
+              },
+              {
+                label: 'OpenMetal Blog',
+                description: '',
+                href: 'https://openmetal.io/resources/blog/',
                 itemType: 'link',
                 icontype: 'external',
                 iconstyle: 'solid',
@@ -618,15 +654,6 @@ const config = {
                 icon: 'faGlobe',
               },
               {
-                label: 'Support and Service Levels',
-                description: '',
-                href: 'https://openmetal.io/about-openmetal/support-and-service-levels/',
-                itemType: 'link',
-                icontype: 'fontAwesome',
-                iconstyle: 'solid',
-                icon: 'faQuestionCircle',
-              },
-              {
                 label: 'Contact Us',
                 description: '',
                 href: 'https://openmetal.io/about-openmetal/contact-us/',
@@ -634,6 +661,15 @@ const config = {
                 icontype: 'fontAwesome',
                 iconstyle: 'solid',
                 icon: 'faPhoneSquare',
+              },
+              {
+                label: 'Sitemap',
+                description: '',
+                href: 'https://openmetal.io/sitemap/',
+                itemType: 'link',
+                icontype: 'external',
+                iconstyle: 'solid',
+                icon: 'https://openmetal.io/wp-content/uploads/2023/05/sitemap-1.png',
               },
             ],
           }
@@ -646,37 +682,82 @@ const config = {
             title: 'Products',
             items: [
               {
-                label: 'On-Demand Private Cloud',
-                href: 'https://openmetal.io/products/private-cloud/hosted/',
+                label: 'Cloud Cores',
+                href: 'https://openmetal.io/products/cloud-cores/',
               },
               {
-                label: 'Large Deployments',
-                href: 'https://openmetal.io/products/large-iaas-deployments/',
+                label: 'Cloud Expansion Nodes',
+                href: 'https://openmetal.io/products/cloud-expansion/',
               },
               {
-                label: 'Private Pods',
-                href: 'https://openmetal.io/products/private-pods/',
+                label: 'Storage Clusters',
+                href: 'https://openmetal.io/products/storage-clusters/',
+              },
+              {
+                label: 'Bare Metal Clusters',
+                href: 'https://openmetal.io/products/bare-metal/',
               },
             ],
           },
           {
-            title: 'Solutions',
+            title: 'Programs',
             items: [
               {
-                label: 'SaaS Cloud',
-                href: 'https://openmetal.io/solutions/saas/',
+                label: 'SaaS Providers',
+                href: 'https://openmetal.io/programs/saas-providers-program/',
               },
               {
-                label: 'IT Modernization',
-                href: 'https://openmetal.io/solutions/it-modernization/',
+                label: 'Hosting and Public Cloud Providers',
+                href: 'https://openmetal.io/programs/hosting-cloud-providers/',
               },
               {
-                label: 'Public Cloud Providers',
-                href: 'https://openmetal.io/solutions/openstack-public-cloud-providers/',
+                label: 'OpenStack',
+                href: 'https://openmetal.io/programs/on-demand-openstack-cloud/',
+              },
+              {
+                label: 'Education and Training',
+                href: 'https://openmetal.io/programs/education-and-training/',
+              },
+              {
+                label: 'Partners',
+                href: 'https://openmetal.io/programs/openmetal-partner-programs/',
+              },
+            ],
+          },
+          {
+            title: 'Use Cases',
+            items: [
+              {
+                label: 'Reduce Cloud Costs',
+                href: 'https://openmetal.io/use-cases/reduce-cloud-costs/',
+              },
+              {
+                label: 'Public Cloud Alternative',
+                href: 'https://openmetal.io/use-cases/public-cloud-alternative/',
+              },
+              {
+                label: 'Hosted Private Cloud',
+                href: 'https://openmetal.io/use-cases/hosted-private-cloud/',
+              },
+              {
+                label: 'Managed Private Cloud',
+                href: 'https://openmetal.io/use-cases/managed-private-cloud/',
               },
               {
                 label: 'On-Demand OpenStack',
-                href: 'https://openmetal.io/solutions/on-demand-openstack-cloud/',
+                href: 'https://openmetal.io/use-cases/on-demand-openstack-cloud/',
+              },
+              {
+                label: 'S3 Alternatives',
+                href: 'https://openmetal.io/use-cases/s3-alternatives/',
+              },
+              {
+                label: 'Kubernetes Workloads',
+                href: 'https://openmetal.io/use-cases/kubernetes-workloads/',
+              },
+              {
+                label: 'Large IaaS Deployments',
+                href: 'https://openmetal.io/products/large-iaas-deployments/',
               },
             ],
           },
@@ -684,60 +765,90 @@ const config = {
             title: 'Platform',
             items: [
               {
-                label: 'OpenStack Services',
-                href: 'https://openmetal.io/platform/openstack-services/',
+                label: 'Private Cloud Overview',
+                href: 'https://openmetal.io/platform/cloud-features/',
               },
               {
-                label: 'Features and Components',
-                href: 'https://openmetal.io/platform/features/',
+                label: 'Compute',
+                href: 'https://openmetal.io/resources/blog/using-self-service-tools-to-buy-private-openstack-clouds/',
               },
               {
-                label: 'Global Locations',
-                href: 'https://openmetal.io/platform/locations/',
+                label: 'Object Storage',
+                href: 'https://openmetal.io/products/cloud-cores/object-storage/',
+              },
+              {
+                label: 'Block Storage',
+                href: 'https://openmetal.io/products/cloud-cores/block-storage/',
+              },
+              {
+                label: 'Cloud Monitoring',
+                href: 'https://openmetal.io/platform/cloud-monitoring/',
+              },
+              {
+                label: 'Central Cloud Portal',
+                href: 'https://openmetal.io/platform/openmetal-central-cloud-portal/',
+              },
+              {
+                label: 'On-Demand OpenStack Overview',
+                href: 'https://openmetal.io/solutions/on-demand-openstack-cloud',
+              },
+              {
+                label: 'Bare Metal Overview',
+                href: 'https://openmetal.io/platform/cloud-features/bare-metal/',
               },
             ],
           },
           {
-            title: 'Pricing',
+            title: '',
+            type: 'section',
             items: [
               {
-                label: 'On-Demand Pricing',
-                href: 'https://openmetal.io/pricing/',
+                title: 'Pricing',
+                items: [
+                  {
+                    label: 'Cloud Core',
+                    href: 'https://openmetal.io/iaas-pricing/',
+                  },
+                  {
+                    label: 'Cloud Expansion Nodes',
+                    href: 'https://openmetal.io/cloud-expansion-pricing/',
+                  },
+                  {
+                    label: 'Storage Clusters',
+                    href: 'https://openmetal.io/storage-cluster-pricing/',
+                  },
+                  {
+                    label: 'Egress',
+                    href: 'https://openmetal.io/egress-pricing-calculator/',
+                  },
+                ],
               },
               {
-                label: 'General Sales FAQ',
-                href: 'https://openmetal.io/resources/sales-faq/',
+                title: 'Resources',
+                items: [
+                  {
+                    label: 'Resources',
+                    href: 'https://openmetal.io/resources/',
+                  },
+                  {
+                    label: 'OpenMetal Blog',
+                    href: 'https://openmetal.io/resources/blog/',
+                  },
+                  {
+                    label: 'Cloud Industry Events',
+                    href: 'https://openmetal.io/resources/cloud-industry-events/',
+                  },
+                  {
+                    label: 'Sales FAQ',
+                    href: 'https://openmetal.io/resources/sales-faq/',
+                  },
+                  {
+                    label: 'Login to OpenMetal Central',
+                    href: 'https://central.openmetal.io/auth/sign-in?_gl=1*1f9nq84*_ga*NjU4MzA2NTUzLjE2NTc2NTQ2NDU.*_ga_6NRHQVXHG4*MTY4NjIzMTE0NS4xNjAuMS4xNjg2MjMxMjk4LjAuMC4w*_gcl_au*MTY3ODcxNDU4My4xNjgxMjQ0MjQzLjYxMTMwMDYyMC4xNjgzODMxMTA0LjE2ODM4MzExMDM.&_ga=2.59192749.1018032181.1685979564-658306553.1657654645',
+                  },
+                ],
               },
-              {
-                label: 'Free Trial',
-                href: 'https://openmetal.io/free-trial/',
-              },
-              {
-                label: 'Schedule a Meeting',
-                href: 'https://openmetal.io/schedule-meeting/',
-              },
-            ],
-          },
-          {
-            title: 'Resources',
-            items: [
-              {
-                label: 'OpenMetal Blog',
-                href: 'https://openmetal.io/blog/',
-              },
-              {
-                label: 'Cloud Industry Events',
-                href: 'https://openmetal.io/resources/cloud-industry-events/',
-              },
-              {
-                label: 'Sales FAQ',
-                href: 'https://openmetal.io/resources/sales-faq/',
-              },
-              {
-                label: 'Login to OpenMetal Central',
-                href: 'https://central.openmetal.io/auth/sign-in',
-              },
-            ],
+            ]
           },
           {
             title: 'Documentation',
@@ -745,6 +856,14 @@ const config = {
               {
                 label: 'Documentation Home',
                 href: 'https://openmetal.io/docs/',
+              },
+              {
+                label: 'Education Docs',
+                href: 'https://openmetal.io/docs/edu/',
+              },
+              {
+                label: 'OpenStack Tutorials',
+                href: 'https://openmetal.io/docs/edu/openstack/',
               },
               {
                 label: 'OpenStack Operator’s Manual',
@@ -755,12 +874,16 @@ const config = {
                 href: 'https://openmetal.io/docs/manuals/users-manual',
               },
               {
+                label: 'Kubernetes',
+                href: 'https://openmetal.io/docs/manuals/kubernetes-guides',
+              },
+              {
                 label: 'Private Cloud Users',
                 href: 'https://openmetal.io/docs/product-guides/private-cloud/',
               },
               {
-                label: 'Kubernetes',
-                href: 'https://openmetal.io/docs/manuals/kubernetes-guides',
+                label: 'Private Cloud Docs',
+                href: 'https://openmetal.io/docs/private-cloud/',
               },
               {
                 label: 'Product Release Updates',
@@ -780,8 +903,24 @@ const config = {
                 href: 'https://openmetal.io/company/guiding-principles/',
               },
               {
+                label: 'OpenMetal Team',
+                href: 'https://openmetal.io/about-openmetal/team-page/',
+              },
+              {
+                label: 'Cloud Support Services',
+                href: 'https://openmetal.io/about-openmetal/cloud-support-services/',
+              },
+              {
+                label: 'Data Center Locations',
+                href: 'https://openmetal.io/about-openmetal/data-center-locations/',
+              },
+              {
                 label: 'Contact Us',
                 href: 'https://openmetal.io/company/contact-us/',
+              },
+              {
+                label: 'Sitemap',
+                href: 'https://openmetal.io/sitemap',
               },
             ],
           },
@@ -789,24 +928,48 @@ const config = {
             title: 'Legal',
             items: [
               {
-                label: 'Terms of Service',
-                href: 'https://openmetal.io/company/legal/',
+                label: 'Terms of Use',
+                href: 'https://openmetal.io/universal-terms-of-use/',
+              },
+              {
+                label: 'Acceptable Use Policy',
+                href: 'https://openmetal.io/aup/',
               },
               {
                 label: 'Privacy Policy',
-                href: 'https://openmetal.io/company/legal/privacy-policy/',
+                href: 'https://openmetal.io/privacy-policy/',
               },
               {
-                label: 'Do Not Sell My Personal Data',
-                href: 'https://openmetal.io/company/legal/donotsellmypersonaldata/',
+                label: 'Cookie Policy',
+                href: 'https://openmetal.io/cookie-policy/',
+              },
+              {
+                label: 'Data Processing Addendum',
+                href: 'https://openmetal.io/dpa/',
+              },
+              {
+                label: 'CCPA Compliance',
+                href: 'https://openmetal.io/ccpa-compliance/',
+              },
+              {
+                label: 'Do Not Sell or Share My Data',
+                href: 'https://openmetal.io/do-not-sell-or-share-my-personal-information/',
+              },
+              {
+                label: 'Limit the Use of My Sensitive Personal Information',
+                href: 'https://openmetal.io/limit-use-and-disclosure-of-sensitive-personal-information/',
               },
               {
                 label: 'Accessibility Statement',
-                href: 'https://openmetal.io/company/legal/accessibility-statement/',
+                href: 'https://openmetal.io/accessibility-statement/',
               },
               {
-                label: 'Legal Inquiries and DMCA',
-                href: 'https://openmetal.io/company/legal/legal-inquiries/',
+                label: 'Legal Inquiries',
+                href: 'https://openmetal.io/legal-inquiries/',
+              },
+              {
+                label: 'Attribution',
+                href: 'https://openmetal.io/attribution/',
               },
             ],
           },
