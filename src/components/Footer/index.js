@@ -91,7 +91,7 @@ function MultiColumnLinks({links}) {
           {
             linkItem.type === 'section' && linkItem.items ? 
               linkItem.items.map((subLinkItem, i) => (
-                <div className='footerSection'>
+                <div className='footerSection' key={i}>
                   <div className='footer__title'>{subLinkItem.title}</div>
                   <ColumnLinks linkItem={subLinkItem} />
                 </div>
