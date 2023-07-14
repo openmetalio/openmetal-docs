@@ -34,6 +34,12 @@ const config = {
       }),
     ],
   ],
+  scripts: [
+    {
+      src: 'js/accessibility.js',
+      async: true,
+    },
+  ],
   ssrTemplate: `<!DOCTYPE html>
   <html <%~ it.htmlAttributes %>>
 	<head>
