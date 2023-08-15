@@ -22,7 +22,7 @@ export default function NavbarIcon({iconData}) {
 
 function getExternalIcon(icon, iconstyle) {
     return (
-        <img src={icon} className={iconstyle ? iconstyle : 'solid'}/>
+        <img src={icon} className={iconstyle ? iconstyle : 'solid'} alt='icon'/>
     );
 }
 
