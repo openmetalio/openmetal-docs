@@ -14,6 +14,27 @@ remotely.
   - To download and install the latest version of Java, click [here](https://www.java.com/en/download/).
 
 :::caution
+In order to access the IPMI of some legacy products you may need to adjust the
+Java security settings to allow SHA1. In your downloaded copy of Java 8, open
+the file lib/security/java.security and navigate to where
+jdk.jar.disabledAlgorithms is defined and change the denyAfter date
+associated with SHA1:
+
+```ini
+# Before
+jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
+      DSA keySize < 1024, include jdk.disabled.namedCurves, \
+      SHA1 denyAfter 2019-01-01
+
+# After
+jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
+      DSA keySize < 1024, include jdk.disabled.namedCurves, \
+      SHA1 denyAfter 2020-01-01
+```
+
+:::
+
+:::caution
 Please bear in mind that while the IPMI Java applet can be utilized on macOS,
 certain compatibility concerns may arise. Therefore, it is advisable to opt for
 a system running either the Windows or Linux operating system for a smoother
