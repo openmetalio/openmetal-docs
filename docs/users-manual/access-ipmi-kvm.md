@@ -38,6 +38,7 @@ jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
       DSA keySize < 1024, include jdk.disabled.namedCurves, \
       SHA1 denyAfter 2020-01-01
 ```
+:::
 
 ## Instructions
 
