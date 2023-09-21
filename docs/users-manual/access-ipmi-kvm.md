@@ -27,8 +27,7 @@ the file `lib/security/java.security` and navigate to where
 `jdk.jar.disabledAlgorithms` is defined and change the `denyAfter` date
 associated with `SHA1`:
 
-```conf
-
+```
 # Before
 jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
       DSA keySize < 1024, include jdk.disabled.namedCurves, \
@@ -38,7 +37,6 @@ jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
 jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
       DSA keySize < 1024, include jdk.disabled.namedCurves, \
       SHA1 denyAfter 2020-01-01
-
 ```
 :::
 
