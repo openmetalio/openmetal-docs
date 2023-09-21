@@ -20,6 +20,25 @@ a system running either the Windows or Linux operating system for a smoother
 experience.
 :::
 
+:::caution
+In order to access the IPMI of some legacy products you may need to adjust the
+Java security settings to allow `SHA1`. In your downloaded copy of Java 8, open
+the file `lib/security/java.security` and navigate to where 
+`jdk.jar.disabledAlgorithms` is defined and change the `denyAfter` date 
+associated with `SHA1`:
+
+```conf
+# Before
+jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
+      DSA keySize < 1024, include jdk.disabled.namedCurves, \
+      SHA1 denyAfter 2019-01-01
+
+# After
+jdk.jar.disabledAlgorithms=MD2, MD5, RSA keySize < 1024, \
+      DSA keySize < 1024, include jdk.disabled.namedCurves, \
+      SHA1 denyAfter 2020-01-01
+```
+
 ## Instructions
 
 First, you will want to navigate to the `Assets` page for the cloud with the
