@@ -23,8 +23,8 @@ experience.
 :::caution
 In order to access the IPMI of some legacy products you may need to adjust the
 Java security settings to allow `SHA1`. In your downloaded copy of Java 8, open
-the file `lib/security/java.security` and navigate to where 
-`jdk.jar.disabledAlgorithms` is defined and change the `denyAfter` date 
+the file `lib/security/java.security` and navigate to where
+`jdk.jar.disabledAlgorithms` is defined and change the `denyAfter` date
 associated with `SHA1`:
 
 ```conf
