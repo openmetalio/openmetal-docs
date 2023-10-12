@@ -40,7 +40,7 @@ kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory reconfigure
 :::info
 
 Should the Kolla Ansible Inventory not exist, open a
-[support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) and we'll ensure it's copied to the control plane nodes.
+[support ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket) and we'll ensure it's copied to the control plane nodes.
 
 :::
 
