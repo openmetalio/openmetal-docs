@@ -5,8 +5,9 @@ sidebar_position: 6
 
 Barbican is the OpenStack Key Manager service. It provides secure storage,
 provisioning and management of secret data. This includes keying material such
-as Symmetric Keys, Asymmetric Keys, Certificates and raw binary data. In our default Cloud
-Core deployment, Cinder, Nova, and Octavia use Barbican to manage secrets. In this guide, we demonstrate booting a VM with an encrypted volume.
+as Symmetric Keys, Asymmetric Keys, Certificates and raw binary data. In our
+default Cloud Core deployment, Cinder, Nova, and Octavia use Barbican to manage
+secrets. In this guide, we demonstrate booting a VM with an encrypted volume.
 
 ## What can I do with a Secret Store?
 
@@ -17,14 +18,17 @@ With Barbican configured the service can be utilized for a number of use cases.
 - SSL/TLS keypair storage
 - Secure password storage
 
-See the [OpenStack Security Guide](https://docs.openstack.org/security-guide/secrets-management/secrets-management-use-cases.html)
+See the [OpenStack Security
+Guide](https://docs.openstack.org/security-guide/secrets-management/secrets-management-use-cases.html)
 for additional information.
 
 :::info
 
-If Barbican is not installed to your cloud, see our [guide](docs/tutorials/install-barbican.md) or
-[submit a support ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
+If Barbican is not installed to your cloud, see our
+[guide](docs/tutorials/install-barbican.md) or [submit a support
+ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
 for installation.
+
 :::
 
 ## Creator Keystone Role
@@ -44,7 +48,9 @@ Alternatively, in Horizon, you can adjust the role for a user by navigating to *
 
 ## Encrypted Volume Type
 
-You can create encrypted volumes with Cinder. Before creating an encrypted volume, a new volume type in Cinder must be created. Create a new Encrypted Volume type using:
+You can create encrypted volumes with Cinder. Before creating an encrypted
+volume, a new volume type in Cinder must be created. Create a new Encrypted
+Volume type using:
 
 ```sh
 openstack volume type create --encryption-provider luks --encryption-cipher aes-xts-plain64 --encryption-key-size 256 --encryption-control-location front-end encrypted
@@ -103,7 +109,8 @@ Output:
 
 ## Spin up a VM with Encrypted Volume
 
-Using the encrypted volume created in the previous step, spin up a VM with it using:
+Using the encrypted volume created in the previous step, spin up a VM with it
+using:
 
 ```sh
 vol=dd4fc56c-d1f1-4700-add2-d06c0183dbe3
