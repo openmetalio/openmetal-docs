@@ -43,8 +43,8 @@ Set the creator role using:
 openstack role add creator --user nick --project 966582d3de534089a36cc39a2e5d0ff9
 ```
 
-Alternatively, in Horizon, you can adjust the role for a user by navigating to **Identity -> Projects**
-![image](images/manage-members.jpg)
+Alternatively, in Horizon, you can adjust the role for a user by navigating to
+**Identity -> Projects** ![image](images/manage-members.jpg)
 
 ## Encrypted Volume Type
 
