@@ -2,6 +2,7 @@
 sidebar_position: 6
 ---
 # Working with OpenStack Barbican
+
 Barbican is the OpenStack Key Manager service. It provides secure storage,
 provisioning and management of secret data. This includes keying material such
 as Symmetric Keys, Asymmetric Keys, Certificates and raw binary data. In our default Cloud
@@ -21,17 +22,19 @@ for additional information.
 
 :::info
 
-If Barbican is not installed to your cloud, see our [guide](docs/tutorials/install-barbican.md) or 
+If Barbican is not installed to your cloud, see our [guide](docs/tutorials/install-barbican.md) or
 [submit a support ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
 for installation.
 :::
 
 ## Creator Keystone Role
+
 The `creator` Keystone role is required by non-admin users who wish to use
 Barbican to manage secrets. The `admin` role is required to modify the roles of
 a user.
 
 Set the creator role using:
+
 ```sh
 openstack role add creator --user nick --project 966582d3de534089a36cc39a2e5d0ff9
 ```
@@ -40,11 +43,15 @@ Alternatively, in Horizon, you can adjust the role for a user by navigating to *
 ![image](images/manage-members.jpg)
 
 ## Encrypted Volume Type
+
 You can create encrypted volumes with Cinder. Before creating an encrypted volume, a new volume type in Cinder must be created. Create a new Encrypted Volume type using:
+
 ```sh
 openstack volume type create --encryption-provider luks --encryption-cipher aes-xts-plain64 --encryption-key-size 256 --encryption-control-location front-end encrypted
 ```
+
 Output:
+
 ```sh
 +-------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 | Field       | Value                                                                                                                                         |
@@ -56,12 +63,17 @@ Output:
 | name        | encrypted                                                                                                                                     |
 +-------------+-----------------------------------------------------------------------------------------------------------------------------------------------+
 ```
+
 ### Encrypted Volume
+
 Create an encrypted volume using:
+
 ```sh
 openstack volume create --size 10 --type encrypted --image 'Ubuntu 22.04 (Jammy)' --bootable ubuntu22
 ```
+
 Output:
+
 ```sh
 +---------------------+--------------------------------------+
 | Field               | Value                                |
@@ -90,12 +102,16 @@ Output:
 ```
 
 ## Spin up a VM with Encrypted Volume
+
 Using the encrypted volume created in the previous step, spin up a VM with it using:
+
 ```sh
 vol=dd4fc56c-d1f1-4700-add2-d06c0183dbe3
 openstack server create --flavor gen.small --volume $vol --network External --security-group "SSH ingress" --key-name key ubuntu22_encrypted
 ```
+
 Output:
+
 ```sh
 +-------------------------------------+---------------------------------------------+
 | Field                               | Value                                       |

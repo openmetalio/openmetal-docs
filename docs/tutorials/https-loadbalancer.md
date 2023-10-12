@@ -1,16 +1,19 @@
 ---
 sidebar_position: 8
 ---
+
 # Create an HTTPS-Terminated Load Balancer
+
 This guide covers the steps needed to create an HTTPS-terminated load balancer
 using the command line.
 
 This guide applies to OpenMetal clouds running OpenStack Yoga with Barbican enabled.
 
 Before starting there are few things to prepare:
-* A Python [virtual environment with OpenStackClient installed](docs/operators-manual/day-1/command-line/openstackclient.md)
-* Obtain a TLS certificate from an external certficate authority
-* Create 2 VMs, ensuring they are on the same network.
+
+- A Python [virtual environment with OpenStackClient installed](docs/operators-manual/day-1/command-line/openstackclient.md)
+- Obtain a TLS certificate from an external certficate authority
+- Create 2 VMs, ensuring they are on the same network.
 
 Two VMs have been created on a network called `private_net_1`, reachable by
 `10.0.0.57` and `10.0.0.250`. NGINX has been installed to each and is listening
@@ -18,20 +21,25 @@ on port 80. Security groups for ICMP and HTTP have been added to each VM. A TLS
 certificate from an external certificate authority has been acquired.
 
 ## Initial Preparation
+
 In your virtual environment, install the `stable/yoga` branch of `python-octaviaclient`:
+
 ```sh
 pip install git+https://github.com/openstack/python-octaviaclient@stable/yoga
 ```
 
 The CA certificate chain, TLS certificate, and private key are layed out in a
 directory like so:
+
 ```sh
 $ ls cert
 ca-certs.pem  server.crt  server.key
 ```
 
 ## Procedure
+
 Create a copy of the certificate in PKCS#12 format using `openssl`:
+
 ```sh
 openssl \
   pkcs12 -export \
@@ -43,6 +51,7 @@ openssl \
 ```
 
 Store the SSL certificate as a secret using Barbican:
+
 ```sh
 openstack secret store \
   --name='tls_secret1' \
@@ -52,6 +61,7 @@ openstack secret store \
 ```
 
 Create the load balancer and ensure it is on the same network as your VMs:
+
 ```sh
 openstack loadbalancer create \
   --name lb1 \
@@ -60,6 +70,7 @@ openstack loadbalancer create \
 
 Create a listener with protocol `TERMINATED_HTTPS`, listening on port `443`,
 using the certificate secret uploaded earlier:
+
 ```sh
 openstack loadbalancer listener create \
   lb1 \
@@ -70,6 +81,7 @@ openstack loadbalancer listener create \
 ```
 
 Create a `ROUND_ROBIN` pool using the `HTTP` protocol:
+
 ```sh
 openstack loadbalancer pool create \
   --name pool1 \
@@ -79,6 +91,7 @@ openstack loadbalancer pool create \
 ```
 
 Create 2 members using the appropriate IPs for your VMs:
+
 ```sh
 openstack loadbalancer member create \
   --subnet-id private_net_1 \
@@ -93,11 +106,13 @@ openstack loadbalancer member create \
 ```
 
 Associate a floating IP to the VIP address of the load balancer:
+
 ```sh
-$ openstack floating ip set --port d77f97aa-9d33-40c1-b191-1ca549a95075 173.231.202.91
+openstack floating ip set --port d77f97aa-9d33-40c1-b191-1ca549a95075 173.231.202.91
 ```
 
 Show the details of the load balancer:
+
 ```sh
 $ openstack loadbalancer show lb1
 +---------------------+--------------------------------------+
@@ -127,5 +142,6 @@ $ openstack loadbalancer show lb1
 ```
 
 ## Conclusion
+
 Update the DNS for your FQDN to point to the floating IP address and verify the
 load balancer works as expected.
