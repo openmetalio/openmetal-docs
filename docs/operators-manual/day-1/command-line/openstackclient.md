@@ -127,16 +127,9 @@ For example:
 
 **Step 5**: Install OpenStackClient
 
-With everything prepared, OpenStackClient can be installed.
+With everything prepared, install OpenStackClient with:
 
-**Note\!** - There exist two OpenStackClient packages:
-`python-openstackclient` and `openstackclient`. We recommend using
-`python-openstackclient` because it is maintained much more frequently
-than the prior package.
-
-Install OpenStackClient using:
-
-    pip install python-openstackclient
+    pip install openstackclient
 
 **Step 6**: Activate User Authentication
 

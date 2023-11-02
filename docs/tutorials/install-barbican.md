@@ -1,25 +1,7 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 ---
-# How to install and configure Barbican on your OpenMetal Cloud
-
-## What is Barbican?
-
-Barbican is the OpenStack Key Manager service. It provides secure storage,
-provisioning and management of secret data. This includes keying material such
-as Symmetric Keys, Asymmetric Keys, Certificates and raw binary data.
-
-## What can I do with a Secret Store?
-
-With Barbican configured the service can be utilized for a number of use cases.
-
-- Image signature verification
-- Disk and volume encryption
-- SSL/TLS keypair storage
-- Secure password storage
-
-See the [OpenStack Security Guide](https://docs.openstack.org/security-guide/secrets-management/secrets-management-use-cases.html)
-for additional information.
+# How to Install OpenStack Barbican on your OpenMetal Cloud
 
 ## Prerequisites
 
@@ -42,9 +24,10 @@ enable_barbican: 'yes'
 
 ## Step 2 - Reconfigure kolla-ansible
 
-Whenever calling `kolla-ansible` you will want to note these 2 important files:
+Whenever calling `kolla-ansible` you will want to note the Kolla Ansible
+inventory and globals files:
 
-- Kolla Ansible Inventory: `/etc/fm-deploy/kolla-ansible-inventory`
+- Kolla Ansible Inventory: `/opt/kolla-ansible-cli/inventory.yml`
 - Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
 
 Once you have ensured that your configuration and inventory are there you will
@@ -53,6 +36,14 @@ want to run the following command to install and configure Barbican to your clou
 ```yaml
 kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory reconfigure
 ```
+
+:::info
+
+Should the Kolla Ansible Inventory not exist, open a [support
+ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
+and we'll ensure it's copied to the control plane nodes.
+
+:::
 
 ## Step 3 - Verify that the Barbican endpoints are there
 
@@ -78,7 +69,7 @@ storage.
 
 ## Step 5 - Create a test secret
 
-Just to validate that its working, run the following command to create your
+To validate Barbican's functionality, run the following command to create your
 first test secret.
 
 ```bash
