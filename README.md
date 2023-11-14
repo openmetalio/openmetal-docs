@@ -12,6 +12,16 @@ static website generator.
 
 ## Installation
 
+### Prerequisites
+This readme assumes that you already have node 14 or greater installed. To perform this install on Ubuntu, we run the following
+
+```sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+nvm install node
+npm install --global yarn
+```
+
+### Install Dependencies
 ```sh
 yarn
 ```
