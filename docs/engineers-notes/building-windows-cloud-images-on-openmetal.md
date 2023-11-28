@@ -279,7 +279,8 @@ ubuntu@image-builder:~$ osinfo-query os
 win2k12              | Microsoft Windows Server 2012                      | 6.3      | http://microsoft.com/win/2k12           
 win2k12r2            | Microsoft Windows Server 2012 R2                   | 6.3      | http://microsoft.com/win/2k12r2         
 win2k16              | Microsoft Windows Server 2016                      | 10.0     | http://microsoft.com/win/2k16           
-win2k19              | Microsoft Windows Server 2019                      | 10.0     | http://microsoft.com/win/2k19           
+win2k19              | Microsoft Windows Server 2019                      | 10.0     | http://microsoft.com/win/2k19
+win2k22              | Microsoft Windows Server 2022                      | 10.0     | http://microsoft.com/win/2k22           
 win2k3               | Microsoft Windows Server 2003                      | 5.2      | http://microsoft.com/win/2k3            
 win2k3r2             | Microsoft Windows Server 2003 R2                   | 5.2      | http://microsoft.com/win/2k3r2          
 win2k8               | Microsoft Windows Server 2008                      | 6.0      | http://microsoft.com/win/2k8
@@ -714,9 +715,6 @@ Our hard drive was automatically expanded to the `c1.xlarge` flavor defined size
 We also detect 4 processors and a total of 8 VCPUs
 
 ![Windows CPU stats](./windows-build-images/Untitled_45.png)
-
-RDP connections to the CloudBase user and password retrieval functionality will
-be covered in a future article.
 
 ## Password Retrieval Process
 
