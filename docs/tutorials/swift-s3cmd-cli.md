@@ -36,15 +36,21 @@ with your OpenMetal clouds' Ceph-backed Object store via the Swift S3 API.
   to enter only **Access Key**, **Secret Key**, **S3 Endpoint**, and
   **Use HTTPS protocol**:
 
-  ```shell
+- To gather your exact endpoint run the following command
+
+```shell
+openstack endpoint list --interface public --service object-store
+```
+
+```shell
   $ s3cmd --configure
   [...]
   Access Key: <access_key>
   Secret Key: <secret_key>
   [...]
-  S3 Endpoint: <cloud_ip_or_configured_domain>
+  S3 Endpoint: <cloud_ip_or_configured_domain:port>
   [...]
-  DNS-style bucket+hostname:port template for accessing a bucket: <cloud_ip_or_configured_domain>
+  DNS-style bucket+hostname:port template for accessing a bucket: <FQDN only (ie. mycloud.openmetal.cloud)>
   [...]
   Use HTTPS protocol: <yes/no determined by your clouds TLS status>
   [...]

@@ -279,7 +279,8 @@ ubuntu@image-builder:~$ osinfo-query os
 win2k12              | Microsoft Windows Server 2012                      | 6.3      | http://microsoft.com/win/2k12           
 win2k12r2            | Microsoft Windows Server 2012 R2                   | 6.3      | http://microsoft.com/win/2k12r2         
 win2k16              | Microsoft Windows Server 2016                      | 10.0     | http://microsoft.com/win/2k16           
-win2k19              | Microsoft Windows Server 2019                      | 10.0     | http://microsoft.com/win/2k19           
+win2k19              | Microsoft Windows Server 2019                      | 10.0     | http://microsoft.com/win/2k19
+win2k22              | Microsoft Windows Server 2022                      | 10.0     | http://microsoft.com/win/2k22           
 win2k3               | Microsoft Windows Server 2003                      | 5.2      | http://microsoft.com/win/2k3            
 win2k3r2             | Microsoft Windows Server 2003 R2                   | 5.2      | http://microsoft.com/win/2k3r2          
 win2k8               | Microsoft Windows Server 2008                      | 6.0      | http://microsoft.com/win/2k8
@@ -601,10 +602,10 @@ file storage as configured on OpenMetal Clouds, you will now convert your qcow2
 image to RAW format:
 
 ```bash
-(venv) ubuntu@image-builder:~$ qemu-img convert -f qcow2 -O raw windowsserver2019.qcow2 WindowsSever2019.raw
+(venv) ubuntu@image-builder:~$ qemu-img convert -f qcow2 -O raw windowsserver2019.qcow2 WindowsServer2019.raw
 (venv) ubuntu@image-builder:~$ ls -lashr | grep -i windows
 9.7G -rw-r--r-- 1 ubuntu       ubuntu 9.7G Jun 28 14:58 windowsserver2019.qcow2
-9.5G -rw-r--r-- 1 ubuntu       ubuntu  15G Jun 28 15:29 WindowsSever2019.raw
+9.5G -rw-r--r-- 1 ubuntu       ubuntu  15G Jun 28 15:29 WindowsServer2019.raw
 5.0G -rw-rw-r-- 1 libvirt-qemu kvm    5.0G Sep 21  2019 Windows.iso
 ```
 
@@ -616,14 +617,14 @@ The upload command we use:
 ```bash
 openstack image create --progress \
 --min-disk 15 --min-ram 4096 --public \
---file WindowsSever2019.raw \
+--file WindowsServer2019.raw \
 "Windows Server 2019"
 ```
 
 Results in output as follows:
 
 ```bash
-(venv) ubuntu@image-builder:~$ openstack image create --progress --min-disk 15 --min-ram 4096 --public --file WindowsSever2019.raw "Windows Server 2019"
+(venv) ubuntu@image-builder:~$ openstack image create --progress --min-disk 15 --min-ram 4096 --public --file WindowsServer2019.raw "Windows Server 2019"
 [=============================>] 100%
 +------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Field            | Value                                                                                                                                                                   |
@@ -715,8 +716,49 @@ We also detect 4 processors and a total of 8 VCPUs
 
 ![Windows CPU stats](./windows-build-images/Untitled_45.png)
 
-RDP connections to the CloudBase user and password retrieval functionality will
-be covered in a future article.
+## Password Retrieval Process
+
+In order to utilize the Retrieval Password feature for Windows Instances
+through OpenStack Horizon, you will need to enable the functionality and reload
+Horizon.
+
+This can be accomplished by running the following two commands on each control
+plane node
+
+```bash
+echo "OPENSTACK_ENABLE_PASSWORD_RETRIEVE = True" >> /etc/kolla/horizon/custom_local_settings
+```
+
+```bash
+docker container restart horizon
+```
+
+To persist the setting with future kolla-ansible reconfigurations on the asset
+that runs kolla-ansible and contains the configurations for various services
+in /etc/kolla/config
+
+```bash
+mkdir -p /etc/kolla/config/horizon
+echo "OPENSTACK_ENABLE_PASSWORD_RETRIEVE = True" >> /etc/kolla/config/horizon/custom_local_settings
+```
+
+To retrieve the password in Horizon, select “RETRIEVE PASSWORD” from the
+instance dropdown menu:
+
+You need to boot your instance with a SSH keypair (exactly like you would do
+on Linux for SSH public key authentication). Keep in mind current limitation
+require a new keypair be provided for each running Windows instances.
+
+![Retrieval button](./windows-build-images/password-retrieval-button.png)
+
+Browse for your private key or enter it into the text box:
+
+![Password-Retrieval](./windows-build-images/password-retrieval.png)
+
+Click “DECRYPT PASSWORD” (de decryption will occur in the browser, no data
+will be sent to the server) and retrieve your password:
+
+![Decrypt-Password](./windows-build-images/decrypt-password.png)
 
 ## Suggestions and Conclusions
 

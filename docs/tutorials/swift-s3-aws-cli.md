@@ -46,10 +46,10 @@ endpoint = awscli_plugin_endpoint
 [profile default]
 region = iad3
 s3 =
-  endpoint_url = <cloud_ip_or_url>:8080/
+  endpoint_url = <cloud_ip_or_url>:6780
   signature_version = s3v4
 s3api =
-  endpoint_url = <cloud_ip_or_url>:8080/
+  endpoint_url = <cloud_ip_or_url>:6780
 ```
 
 ## Basic AWS client usage
