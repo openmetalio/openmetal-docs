@@ -42,8 +42,7 @@ with your OpenMetal clouds' Ceph-backed Object store via the Swift S3 API.
 openstack endpoint list --interface public --service object-store
 ```
 
-
-  ```shell
+```shell
   $ s3cmd --configure
   [...]
   Access Key: <access_key>

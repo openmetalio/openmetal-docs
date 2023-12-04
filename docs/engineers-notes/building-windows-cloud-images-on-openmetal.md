@@ -718,50 +718,47 @@ We also detect 4 processors and a total of 8 VCPUs
 
 ## Password Retrieval Process
 
+In order to utilize the Retrieval Password feature for Windows Instances
+through OpenStack Horizon, you will need to enable the functionality and reload
+Horizon.
 
-In order to utilize the Retrieval Password feature for Windows Instances through Openstack Horizon, you will need to enable the functionality and reload Horizon.
-
-
-This can be accomplished by running the following two commands on each control plane node
-
+This can be accomplished by running the following two commands on each control
+plane node
 
 ```bash
 echo "OPENSTACK_ENABLE_PASSWORD_RETRIEVE = True" >> /etc/kolla/horizon/custom_local_settings
 ```
+
 ```bash
 docker container restart horizon
 ```
 
-
-To persist the setting with future kolla-ansible reconfigurations on the asset that runs kolla-ansible and contains the configurations for various services in /etc/kolla/config
-
+To persist the setting with future kolla-ansible reconfigurations on the asset
+that runs kolla-ansible and contains the configurations for various services
+in /etc/kolla/config
 
 ```bash
 mkdir -p /etc/kolla/config/horizon
 echo "OPENSTACK_ENABLE_PASSWORD_RETRIEVE = True" >> /etc/kolla/config/horizon/custom_local_settings
 ```
 
+To retrieve the password in Horizon, select “RETRIEVE PASSWORD” from the
+instance dropdown menu:
 
-To retrieve the password in Horizon, select “RETRIEVE PASSWORD” from the instance dropdown menu:
-
-
-You need to boot your instance with a SSH keypair (exactly like you would do on Linux for SSH public key authentication). Keep in mind current limitation require a new keypair be provided for each running Windows instances.
-
+You need to boot your instance with a SSH keypair (exactly like you would do
+on Linux for SSH public key authentication). Keep in mind current limitation
+require a new keypair be provided for each running Windows instances.
 
 ![Retrieval button](./windows-build-images/password-retrieval-button.png)
 
-
 Browse for your private key or enter it into the text box:
-
 
 ![Password-Retrieval](./windows-build-images/password-retrieval.png)
 
-
-Click “DECRYPT PASSWORD” (de decryption will occur in the browser, no data will be sent to the server) and retrieve your password:
-
+Click “DECRYPT PASSWORD” (de decryption will occur in the browser, no data
+will be sent to the server) and retrieve your password:
 
 ![Decrypt-Password](./windows-build-images/decrypt-password.png)
-
 
 ## Suggestions and Conclusions
 
