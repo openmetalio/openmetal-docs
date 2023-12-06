@@ -16,8 +16,8 @@ leading to decreased performance over time.
 ## Enable TRIM in VMs using `fstrim`
 
 Note that to fully benefit from TRIM, it needs to be configured both in the
-Glance image using metadata as well as in your VMs using the SystemD service 
-[`fstrim`](https://www.man7.org/linux/man-pages/man8/fstrim.8.html). By 
+Glance image using metadata as well as in your VMs using the SystemD service
+[`fstrim`](https://www.man7.org/linux/man-pages/man8/fstrim.8.html). By
 default, this service runs weekly.
 
 ## Intro to virtio-scsi
