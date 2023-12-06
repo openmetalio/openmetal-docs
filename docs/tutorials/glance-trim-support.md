@@ -13,6 +13,13 @@ and which are still in use by the guest operating system. As a result, the
 device may not be able to efficiently manage the available storage space,
 leading to decreased performance over time.
 
+## Enable TRIM in VMs using `fstrim`
+
+Note that to fully benefit from TRIM, it needs to be configured both in the
+Glance image using metadata as well as in your VMs using the SystemD service 
+[`fstrim`](https://www.man7.org/linux/man-pages/man8/fstrim.8.html). By 
+default, this service runs weekly.
+
 ## Intro to virtio-scsi
 
 Virtio-scsi is a virtualization interface that allows virtual machines (VMs)
