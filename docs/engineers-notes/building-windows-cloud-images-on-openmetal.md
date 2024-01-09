@@ -684,6 +684,22 @@ openstack image set 8305ddb7-a5d7-477e-adfe-9fb31da776e0 --property hw_cpu_max_s
 Adjust the number to the desired amount of physical processors your OS chosen
 distribution supports.
 
+### Update Windows 11 Secure Boot options
+
+In the process of working with Windows 11 instances we learned that certain properties
+had to be set on the windows image for firmware and machine hardware type. In this
+case, UEFI Secure Boot requires that a UEFI bootloader be configured for guests.
+You can also configure the hardware machine type. QEMU’s machine type concept
+can be thought of as a virtual chipset that provides certain default devices
+(e.g. PCIe graphics card, Ethernet controller, SATA controller, etc). QEMU
+supports two main variants of “machine type” for x86 hosts: (a) pc, which
+corresponds to Intel’s I440FX chipset (released in 1996) and (b) q35, which
+corresponds to Intel’s 82Q35 chipset (released in 2007).
+
+```bash
+openstack image set --property hw_firmware_type=uefi --property hw_machine_type=q35 --property os_secure_boot=required "Windows 11"
+```
+
 ## Test Out Provisioning the new Windows Image
 
 For our test we used the following parameters on an OpenMetal Cloud
