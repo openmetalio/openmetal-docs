@@ -686,8 +686,8 @@ distribution supports.
 
 ### Update Windows 11 Secure Boot options
 
-In the process of working with Windows 11 instances we learned that certain properties
-had to be set on the windows image for firmware and machine hardware type. In this
+We have found that Windows 11 instances require certain properties
+be set on the windows image for firmware and machine hardware type. In this
 case, UEFI Secure Boot requires that a UEFI bootloader be configured for guests.
 You can also configure the hardware machine type. QEMU’s machine type concept
 can be thought of as a virtual chipset that provides certain default devices
