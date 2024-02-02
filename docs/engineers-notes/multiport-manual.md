@@ -366,11 +366,11 @@ Go to Instances - and attach the new port to the instance you created initially.
 
 ![Select network](./multiport-imges/pbrselectnetwork.png)
 
-![Attach floating IP]()
+![Show Port](./multiport-imges/pbrshowport.png)
 
 Attach a floating IP to this new port. Your instance will now have 4 distinct IPs
 
-![Show Port](./multiport-imges/pbrshowport.png)
+![Attach floating IP](./multiport-imges/pbrattachfloatinip.png)
 
 #### Configure Policy Based Routing
 
