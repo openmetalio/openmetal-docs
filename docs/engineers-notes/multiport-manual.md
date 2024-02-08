@@ -1,7 +1,4 @@
-# 1. Prelude - "There can only be one"
-
-- Briefly explain the concept of having a single default gateway in a networking
- environment.
+# Persistent Port VM Multiple Interface Configurations
 
 A default gateway is a network device or node in a computer network that serves
 as an entry and exit point for data traffic flowing to and from other networks.
@@ -12,8 +9,6 @@ In summary, the default gateway is a fundamental component of network
 communication, allowing devices within a local network to access external
 networks, including the internet. It plays a crucial role in routing data between
 different networks, ensuring proper communication and connectivity.
-
--
 
 ## 2. The Right Way to Do It (Private with Gateway) Floating for (NAT/SNAT)
 
@@ -83,13 +78,16 @@ default via 192.168.0.1 dev ens3 proto dhcp src 192.168.0.147 metric 100
 
 ```
 
-- Explain the purpose of the private interface and its associated gateway.
-
-- Discuss the importance of keeping additional ports/networks without a gateway.
+In summary, the private interface with its associated gateway facilitates
+controlled communication between internal and external networks, enabling
+internet access and centralized management. Simultaneously, keeping additional
+ports/networks without a gateway is crucial for network isolation, security, and
+flexibility in designing custom network configurations. Both aspects contribute
+to creating a well-architected and secure network environment.
 
 ## Direct External (No Floating IP) + Private with No Gateway
 
-## Secondary Network without Gateway
+### Secondary Network without Gateway
 
 - Configure a direct external interface on 1 instance
 
