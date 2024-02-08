@@ -146,9 +146,13 @@ For example:
 For an initial command, list the servers associated with your project by
 running `openstack server list`.
 
+If your cloud is configured with a Self Signed certificate (our default)
+you will need to pass the `--insecure` flag with your commands, otherwise
+you will get a SSL Verify error due to the self signed certficiate.
+
 For example:
 
-    $ openstack server list
+    $ openstack --insecure server list
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
     | ID                                   | Name        | Status | Networks                               | Image                    | Flavor   |
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
