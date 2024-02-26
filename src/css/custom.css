@@ -114,7 +114,7 @@ h6 {
 		width: 100%;
 		height: auto;
 	}
-	
+
 	.omi-navbar .navbar__inner .navbar__logo img {
 		width: 100%;
 	}
@@ -185,6 +185,13 @@ h6 {
 	border-bottom: solid 4px var(--ifm-color-primary);
 }
 
+.om-sidebar-category {
+	margin-left: 0.8rem;
+	margin-top: 1.5rem;
+	margin-bottom: .5rem;
+	border-bottom: 3px solid var(--ifm-color-primary);
+}
+
 @media (min-width: 768px){
 	.omi-navbar .navbar__inner {
 		width: 750px;
@@ -206,7 +213,6 @@ h6 {
 	}
 }
 .omi-navbar .navbar__inner {
-	border-bottom: solid 1px var(--ifm-color-accent-dark);
 	flex-direction: column;
 }
 .omi-navbar .navbar__items navbar__items--right {
