@@ -76,6 +76,10 @@ const config = {
             from: '/users-manual/create_an_instance_cli',
           },
           {
+            to: '/baremetal/tutorials/access-ipmi-kvm',
+            from: '/users-manual/access-ipmi-kvm',
+          },
+          {
             from: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
             to: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
           },
