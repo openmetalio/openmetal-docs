@@ -30,13 +30,17 @@ valid option, but Magnum does.
 To correct this, in Horizon navigate to **Project -> Container Infra -> Cluster
 Templates**, find the appropriate template, and adjust the value of **Docker
 Storage Driver** to `overlay2`.
-![Magnum Cluster template list](magnum-template.png) ![Update Cluster form](magnum-template-form.png) 
+
+![Magnum Cluster template list](magnum-template.png)
+![Update Cluster form](magnum-template-form.png) 
 
 ## Kubernetes OpenStack Cloud Provider Integrations 
 
-In our Private Cloud Core platform, Magnum integrates with the [Kubernetes OpenStack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
-Presently,
-[release-1.18](https://github.com/kubernetes/cloud-provider-openstack/tree/release-1.18) is used.
+In our Private Cloud Core platform, Magnum integrates with the [Kubernetes
+OpenStack Cloud
+Provider](https://github.com/kubernetes/cloud-provider-openstack). Presently,
+[release-1.18](https://github.com/kubernetes/cloud-provider-openstack/tree/release-1.18)
+is used.
 
 The following from the Kubernetes OpenStack Cloud Provider have been integrated:
 
@@ -44,8 +48,10 @@ The following from the Kubernetes OpenStack Cloud Provider have been integrated:
 - [Octavia Ingress Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
 - [Cinder CSI Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin.md)
 
-Additionally, see
-[Setting up HTTP Load Balancing with Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress) as a demonstration of setting up HTTP load balancing using Kubernetes and OpenStack. 
+Additionally, see [Setting up HTTP Load Balancing with
+Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress)
+as a demonstration of setting up HTTP load balancing using Kubernetes and
+OpenStack. 
 
 ## Before Deploying Kubernetes
 
