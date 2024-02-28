@@ -32,9 +32,9 @@ Templates**, find the appropriate template, and adjust the value of **Docker
 Storage Driver** to `overlay2`.
 
 ![Magnum Cluster template list](magnum-template.png)
-![Update Cluster form](magnum-template-form.png) 
+![Update Cluster form](magnum-template-form.png)
 
-## Kubernetes OpenStack Cloud Provider Integrations 
+## Kubernetes OpenStack Cloud Provider Integrations
 
 In our Private Cloud Core platform, Magnum integrates with the [Kubernetes
 OpenStack Cloud
@@ -51,7 +51,7 @@ The following from the Kubernetes OpenStack Cloud Provider have been integrated:
 Additionally, see [Setting up HTTP Load Balancing with
 Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress)
 as a demonstration of setting up HTTP load balancing using Kubernetes and
-OpenStack. 
+OpenStack.
 
 ## Before Deploying Kubernetes
 
