@@ -1,1 +1,0 @@
-{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qdhclient, provides a means for configuring one or more network interfaces using the DHCP to request an IP from a DHCP server.\\E$"}
