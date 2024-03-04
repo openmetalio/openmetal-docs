@@ -12,7 +12,7 @@ communication, allowing devices within a local network to access external
 networks, including the internet. It plays a crucial role in routing data between
 different networks, ensuring proper communication and connectivity.
 
-## 2. The Right Way to Do It (Private with Gateway) Floating for (NAT/SNAT)
+## The Right Way to Do It (Private with Gateway) Floating for (NAT/SNAT)
 
 - Configure a private interface with a gateway.
 
@@ -521,7 +521,7 @@ as its gateway
 
 ```
 
-#### 6. (Bonus) Persistence - Ubuntu/RHEL
+#### (Bonus) Persistence - Ubuntu/RHEL
 
 - Provide instructions for making network configurations persistent on Ubuntu.
 
