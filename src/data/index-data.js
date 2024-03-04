@@ -59,32 +59,5 @@ export default {
 			catagories: ['users'],
 
 		},
-		{
-			title: "Automating Against OpenStack - Terraform, Ansible, and Heat",
-			description: "Learn common ways to automate infrastructure creation and deletion.",
-			htmlPath: "",
-			pdfPath: "",
-			comingSoon: true,
-			catagories: ['admin'],
-
-		},
-		{
-			title: "Managed Private Cloud Service Catalog",
-			description: "For Customers that have purchased a Managed option for their Private Cloud.",
-			htmlPath: "",
-			pdfPath: "",
-			comingSoon: true,
-			catagories: ['management'],
-
-		},
-		{
-			title: "OpenStack Horizon Quick Start for Administrators",
-			description: "Great for first time Administrators on a Timed Trial or a first PoC.",
-			htmlPath: "",
-			pdfPath: "",
-			comingSoon: true,
-			catagories: ['admin'],
-
-		},
 	],
 }

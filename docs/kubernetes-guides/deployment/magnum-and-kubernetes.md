@@ -5,9 +5,7 @@ slug: /tutorials/magnum-and-kubernetes
 
 # Magnum and Kubernetes
 
-## Introduction
-
-Kubernetes in OpenStack is made possible by
+Kubernetes clusters are deployed in OpenStack using
 [Magnum](https://docs.openstack.org/magnum/latest/user/), a container
 orchestration engine service.
 
@@ -21,27 +19,41 @@ cluster can be created.
 
 -----
 
-## Magnum Deployment Details
+## Magnum Heat Template Update
 
-With Private Cloud Core OpenStack clouds, the deployment of Magnum
-integrates with the [Kubernetes OpenStack Cloud Provider](https://github.com/kubernetes/cloud-provider-openstack).
-Presently,
+Kubernetes clusters **will not deploy** with our current Magnum Heat template.
+The template will need to be updated to address this. This is because we specify
+`overlay` as the Docker Storage driver, however `overlay2` should be used, which
+is recommended from Docker. OpenStack Heat does not support `overlay2` as a
+valid option, but Magnum does.
+
+To correct this, in Horizon navigate to **Project -> Container Infra -> Cluster
+Templates**, find the appropriate template, and adjust the value of **Docker
+Storage Driver** to `overlay2`.
+
+![Magnum Cluster template list](magnum-template.png)
+![Update Cluster form](magnum-template-form.png)
+
+## Kubernetes OpenStack Cloud Provider Integrations
+
+In our Private Cloud Core platform, Magnum integrates with the [Kubernetes
+OpenStack Cloud
+Provider](https://github.com/kubernetes/cloud-provider-openstack). Presently,
 [release-1.18](https://github.com/kubernetes/cloud-provider-openstack/tree/release-1.18)
-of this repository is used.
+is used.
 
-The following items have been integrated:
+The following from the Kubernetes OpenStack Cloud Provider have been integrated:
 
 - [OpenStack Cloud Controller Manager](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-openstack-cloud-controller-manager.md)
 - [Octavia Ingress Controller](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#deploy-octavia-ingress-controller-in-the-kubernetes-cluster)
 - [Cinder CSI Plugin](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-cinder-csi-plugin.md)
 
-For an example of how to set up load balancing, see
-[Setting up HTTP Load Balancing with Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress).
+Additionally, see [Setting up HTTP Load Balancing with
+Ingress](https://github.com/kubernetes/cloud-provider-openstack/blob/release-1.18/docs/using-octavia-ingress-controller.md#setting-up-http-load-balancing-with-ingress)
+as a demonstration of setting up HTTP load balancing using Kubernetes and
+OpenStack.
 
-## Prerequisites
-
-This section explains what is required before creating a Kubernetes
-cluster.
+## Before Deploying Kubernetes
 
 ### Project Roles
 
