@@ -70,7 +70,7 @@ Click on the "Launch Instance" button.![Launchinstance](./multiport-imges/launch
 Add a floating IP for external access
 
 ![Floatingip](./multiport-imges/floatingip.png)
-SSH into the instance with the public floating Ip and run ip route.
+SSH into the instance with the public floating IP and run IP route.
 
 ```bash
 ubuntu@test1:~$ ip route
@@ -155,9 +155,8 @@ IP addresses with a single network interface.
 
 #### Use Case for Address Pairs
 
-Floating IPs: In OpenStack, floating IPs can be implemented using address pairs.
-A floating IP is an IP address that can be dynamically reassigned to different
-instances, providing high availability and failover capabilities.
+Floating IPs: In OpenStack a floating IP is an IP address that can be dynamically
+reassigned to different instances, providing high availability and failover capabilities.
 
 #### Benefits of Address Pairs
 
@@ -395,8 +394,8 @@ Then you send traffic out dev eth0 - Floating IP - External IP (Success)
 
 ### **Sending traffic to Secondary interface created**
 
-External packet (ICMP Ping) -\[ Floating IP - Internal IP (eth1) - Pong -
-Check IPRoute - This IP route has lowest metric and is used
+External packet (ICMP Ping) - Floating IP - Internal IP (eth1) - Pong -
+Check IPRoute - This IP route has the lowest metric and is used
 
 ```bash
 default via 192.168.0.1 dev eth0 proto dhcp src 192.168.0.107 metric 100
@@ -427,7 +426,7 @@ cloud-user@multiport-test ~]$echo "1 port2" >> /etc/iproute2/rt_tables
 ```
 
 Add IP routes to the new IP route table “port2” and delete secondary interface
-routes from the primary IP route table. Run ip route and copy paste the entries
+routes from the primary IP route table. Run IP route and copy, paste the entries
 with eth1(secondary interface) for ease of use during this process.
 
 #### ADD ROUTES TO NEW TABLE
@@ -622,13 +621,13 @@ ip rule add iif eth1 table port2
 
 ```
 
-This file will include the ip routes for your secondary routing table( in this
+This file will include the IP routes for your secondary routing table(in this
 example called port2).
 
-You will also remove the secondary interface eth1 ip routes from the main routing
+You will also remove the secondary interface eth1 IP routes from the main routing
 table.
 
-To finalize, you will add the ip rules for your routing table.
+To finalize, you will add the IP rules for your routing table.
 
 Create a systemd service unit file (e.g., /etc/systemd/system/policy-routing.service):
 
@@ -650,7 +649,7 @@ Make the script executable:
 
 Reload systemd to pick up the changes:
 
-dynamically enable and start the service for a specific interface, i.e to
+dynamically enable and start the service for a specific interface, i.e. to
 configure policy-based routing for `eth0` -
 
 ```bash
