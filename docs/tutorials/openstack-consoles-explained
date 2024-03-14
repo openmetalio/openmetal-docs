@@ -1,5 +1,7 @@
 # Comparison of OpenStack NoVNC and SPICE Console
 
+Author: Ramon Grullon
+
 ## Introduction
 
 OpenStack provides multiple options for accessing virtual machine consoles,
@@ -21,6 +23,8 @@ Performance: Generally good performance for remote console access.
 
 Configuration: Usually configured as the default console access method in OpenStack.
 
+[NoVNC](images/console_images/novnc.png.png "NoVNC")
+
 ### SPICE (Simple Protocol for Independent Computing Environments)
 
 - Technology: SPICE is a protocol for remote computing environments. SPICE
@@ -33,6 +37,8 @@ user's machine.
 
 - Integration: Integrated with QEMU/KVM hypervisors and provides additional
 features like audio and video streaming.
+
+[Spice](images/console_images/spice.png.png "Spice")
 
 ## Features Comparison
 
@@ -109,10 +115,11 @@ like audio and video streaming are required.
 - Configured in the Horizon dashboard, but users need to ensure SPICE support in
 hypervisors.
 
-Requires using Kolla-Ansible to reconfigure Openstack to use Spice and deploy
-the agent to all instances.
+#### Kolla-Ansible method
 
-- Edit your globals.yaml file for Kolla-Ansible
+Requires using Kolla-Ansible to deploy Spice support and reconfiguring Nova
+
+- Edit your /etc/kolla/globals.yaml file for Kolla-Ansible
 
 ```bash
 # Nova
@@ -137,6 +144,16 @@ agent_enabled = true
 docker restart nova_compute nova_spice5htmlproxy
 ```
 
+#### Manual Spice configuration
+
+To enable the SPICE console service, you must configure both the
+nova-spicehtml5proxy service and the nova-compute service. Most options are
+defined in the spice group.
+
+Further reading on process to enable Spice manually
+
+- <https://docs.openstack.org/nova/latest/admin/remote-console-access.html#spice-console>
+
 ## Summary
 
 Choosing between NoVNC and SPICE depends on specific use cases, user preferences,
@@ -148,3 +165,7 @@ Both options provide reliable console access, and the choice may be influenced
 by factors such as the user environment, desired features, and performance
 requirements. Consider the needs of your users and the nature of your virtualized
 environment when selecting the most suitable console access method.
+
+## References
+
+- <https://docs.openstack.org/nova/latest/admin/remote-console-access.html>
