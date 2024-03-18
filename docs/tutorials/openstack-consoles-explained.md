@@ -115,11 +115,11 @@ like audio and video streaming are required.
 - Configured in the Horizon dashboard, but users need to ensure SPICE support in
 hypervisors.
 
-#### Kolla-Ansible method
+#### Kolla-ansible method
 
-Requires using Kolla-Ansible to deploy Spice support and reconfiguring Nova
+Requires using Kolla-ansible to deploy Spice support and reconfiguring Nova
 
-- Edit your /etc/kolla/globals.yaml file for Kolla-Ansible
+- Edit your /etc/kolla/globals.yaml file for Kolla-ansible
 
 ```bash
 # Nova
