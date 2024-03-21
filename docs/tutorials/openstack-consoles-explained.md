@@ -130,7 +130,7 @@ nova_console: "spice"
 ```
 
 - Edit your `/etc/kolla/nova-compute/nova.conf` and
-`/etc/kolla/nova-spice5htmlproxy/nova.conf` file on each compute hosts to
+`/etc/kolla/nova-spicehtml5proxy/nova.conf` file on each compute hosts to
 include the following in the spice section.
 
 ```bash
@@ -138,16 +138,16 @@ agent_enabled = true
 
 ```
 
-- Restart both Nova-compute and Nova-spice5htmlproxy containers
+- Restart both nova-compute and nova-spicehtml5proxy containers
 
 ```bash
-docker restart nova_compute nova_spice5htmlproxy
+docker restart nova_compute nova_spicehtml5proxy
 ```
 
-#### Manual Spice configuration
+#### Manual Spice Configuration
 
 To enable the SPICE console service, you must configure both the
-Nova-Spicehtml5proxy service and the Nova-Compute service. Most options are
+nova-spicehtml5proxy service and the nova-compute service. Most options are
 defined in the spice group.
 
 Further reading on process to enable Spice manually

@@ -30,7 +30,9 @@
 			"Octavia",
 			"Glance",
 			"Keystone",
-			"SSH"
+			"SSH",
+			"nova-compute",
+			"nova-spicehtml5proxy"
 		]
 	}
 }
