@@ -115,11 +115,11 @@ like audio and video streaming are required.
 - Configured in the Horizon dashboard, but users need to ensure SPICE support in
 hypervisors.
 
-#### Kolla-Ansible method
+#### Kolla Ansible method
 
-Requires using Kolla-Ansible to deploy Spice support and reconfiguring Nova
+Requires using kolla-ansible to deploy Spice support and reconfiguring Nova
 
-- Edit your /etc/kolla/globals.yaml file for Kolla-Ansible
+- Edit your /etc/kolla/globals.yaml file for kolla-ansible
 
 ```bash
 # Nova
@@ -129,8 +129,8 @@ nova_console: "spice"
 
 ```
 
-- Edit your /etc/kolla/nova-compute/nova.conf and
-/etc/kolla/nova-spice5htmlproxy/nova.conf file on each compute hosts to
+- Edit your `/etc/kolla/nova-compute/nova.conf` and
+`/etc/kolla/nova-spicehtml5proxy/nova.conf` file on each compute hosts to
 include the following in the spice section.
 
 ```bash
@@ -138,13 +138,13 @@ agent_enabled = true
 
 ```
 
-- Restart both nova-compute and nova-spice5htmlproxy containers
+- Restart both nova-compute and nova-spicehtml5proxy containers
 
 ```bash
-docker restart nova_compute nova_spice5htmlproxy
+docker restart nova_compute nova_spicehtml5proxy
 ```
 
-#### Manual Spice configuration
+#### Manual Spice Configuration
 
 To enable the SPICE console service, you must configure both the
 nova-spicehtml5proxy service and the nova-compute service. Most options are
