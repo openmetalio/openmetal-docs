@@ -13,15 +13,15 @@ in the context of OpenStack.
 
 ### NoVNC (HTML5-based VNC client)
 
-Technology: NoVNC uses HTML5 and WebSockets to provide a VNC client that runs
+- Technology: NoVNC uses HTML5 and WebSockets to provide a VNC client that runs
 entirely in the browser.
 
-Browser Compatibility: Works on most modern web browsers without requiring
+- Browser Compatibility: Works on most modern web browsers without requiring
 additional plugins.
 
-Performance: Generally good performance for remote console access.
+- Performance: Generally good performance for remote console access.
 
-Configuration: Usually configured as the default console access method in OpenStack.
+- Configuration: Usually configured as the default console access method in OpenStack.
 
 [NoVNC](./images/console_images/novnc.png)
 
