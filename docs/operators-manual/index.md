@@ -1,3 +1,7 @@
+---
+sidebar_class_name: hidden
+---
+
 # OpenStack Operator's Manual - Private Cloud Core
 
 ![image](images/intro.jpg)

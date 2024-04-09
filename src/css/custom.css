@@ -357,3 +357,7 @@ h6 {
 .font-bold {
 	font-weight: bold;
 }
+
+.hidden {
+	display: none;
+}

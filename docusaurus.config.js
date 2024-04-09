@@ -11,7 +11,7 @@ const config = {
   url: 'https://openmetal.io',
   baseUrl: '/docs/manuals/',
   onBrokenMarkdownLinks: 'throw',
-  favicon: 'img/favicon.ico',
+  favicon: 'https://inmotionhosting.github.io/static-assets/logo/open-metal/icon.png',
   organizationName: 'openmetalio', // Usually your GitHub org/user name.
   projectName: 'openmetal-docs', // Usually your repo name.
   clientModules: [
