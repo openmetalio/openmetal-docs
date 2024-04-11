@@ -1,5 +1,6 @@
 ---
 comments: false
+sidebar_class_name: hidden
 ---
 
 # Kubernetes Guides
