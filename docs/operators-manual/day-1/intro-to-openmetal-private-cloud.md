@@ -17,9 +17,9 @@ servers. These three servers comprise the Private Cloud Core. To
 OpenStack, these three servers are considered the control plane. Private
 Clouds are deployed with Ceph, providing your cloud with shared storage.
 
-## How to View Your Hardware Assets
+## Hardware Assets
 
-To view your assets, log in to the homepage for [OpenMetal Central](https://central.openmetal.io).
+The nodes in your cloud are displayed in [OpenMetal Central](https://central.openmetal.io).
 
 ![image](images/fmc-login-page.png)
 
@@ -49,16 +49,38 @@ selected in your deployment:
 
 Example list:
 
-- 3 Cloud Core **mb\_small\_v1** Control Plane Nodes
+- 3 Cloud Core **mb_small_v1** Control Plane Nodes
 - Inventory IP Address Blocks
 - Provider IP Address Blocks
 
 **Note**: With our Private Clouds, OpenStack is deployed with three
 hyper-converged control plane nodes.
 
+## Add SSH Key to Cloud
+
 You can access your Control Plane Nodes directly through SSH as the root
-user. This access is done through the SSH keys you provided during your
-Private Cloud Deployment.
+user by adding your SSH key in Central.
+
+- Access your cloud settings
+
+   ![Cloud Settings](images/cloud-settings-ssh.png)
+
+- Paste the text contents of your SSH public key into the **Add SSH Key** field and
+   click **Add Key**
+
+   ![Add SSH Key](images/add-ssh-key-central.png)
+
+- You will see a pop-up at the bottom of the page indicating success.
+
+  > **Note**: The **Add SSH Key** field does not clear upon task completion.
+
+### Access your hardware nodes
+
+- Access your servers with the new key:
+
+  ```shell
+  ssh -i ~/.ssh/your_key_name root@<server-ip>
+  ```
 
 ## How to Get Support
 
