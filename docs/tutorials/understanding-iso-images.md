@@ -67,11 +67,11 @@ openstack image create --file pfSense-CE-2.7.2-RELEASE-amd64.iso --disk-format i
 [=============================>] 100%
 ```
 
-### Images
+## Images
 
 ![Image list](../tutorials/images/iso_images/horizon_image_list.png "Image List")
 
-### Create ISO Virtual Machines
+## Create ISO Virtual Machines
 
 Understand that an ISO is technically just a ‘Drive’ that you can boot from, but
 we need CPU and Memory to do that. So create a VM. There is no point to create a
@@ -86,106 +86,121 @@ the future VM, pick something that will be powerful and fast.
 Notice how I gave the VMs the name ISO-vm - this is to represent that these are
 not real VM, this is just us running the ISOs:
 
-Create the Volumes (Drives to Install Software On)
-Now we want to create the Virtual Disks (Bootable drives) that we will install the ISOs onto:
+![List instances](../tutorials/images/iso_images/horizon_list_instances.png "List Instances")
 
+## Create the Volumes (Drives to Install Software On)
 
+Now we want to create the Virtual Disks (Bootable drives) that we will install
+the ISOs onto:
+
+![Create volume](../tutorials/images/iso_images/horizon_create_volume.png "Create Volume")
 
 Create the volumes
 
+![List volume](../tutorials/images/iso_images/horizon_list_volumes.png "List Volume")
 
-Attach Volume to ISO VM
-Now we want to attach the Volume (Drive) to the running ISO VMs, so that we can later through the installers - install onto these drives.
+## Attach Volume to ISO VM
 
+Now we want to attach the Volume (Drive) to the running ISO VMs, so that we can
+later through the installers - install onto these drives.
 
+![Manage attachments](../tutorials/images/iso_images/horizon_manage_attachments.png "Manage Attachments")
 
 Now we have attached Empty unformatted volumes (Drives) to our respective ISO VMs.
 
+![List attachments](../tutorials/images/iso_images/horizon_list_attachments.png "List Attachments")
 
+Linux OS systems have autodetection of media, but it is unlikely that the ISOs
+do, go ahead and trigger a Hard Reboot for each of the VMs.
 
-Linux OS systems have autodetection of media, but it is unlikely that the ISOs do, go ahead and trigger a Hard Reboot for each of the VMs.
+![Hard reboot](../tutorials/images/iso_images/hard_reboot.png "Hard Reboot")
 
+## Install Software
 
+Now go to Console for each and proceed with the installer. You will eventually
+reach “Where to install” portion of the setup media like:
 
+_**AVOID USING FLAVORS WITH SWAP**_
 
-Install Software
-Now go to Console for each and proceed with the installer. You will eventually reach “Where to install” portion of the setup media like:
-PFSense
+Below is a link to documentation on creating flavors.
 
+- [Flavor management](https://openmetal.io/docs/manuals/tutorials/manage-flavors)
 
-3CX
+### PFSense
 
+![PFSense install](../tutorials/images/iso_images/pfsense_install.png "PFSense Install")
 
-Fedora Workstation
+![PFSense list drives](../tutorials/images/iso_images/pfsense_list_drives.png "PFSense List Drives")
 
+![PFSense auto partition](../tutorials/images/iso_images/pfsense_auto_partition.png "PFSense Auto Partition")
 
+### 3CX
 
-Shut Down ISO VM
+![3cx list drives](../tutorials/images/iso_images/3cx_list_disk.png "3cx List Drives")
 
-Typically once the installation completes - you will be asked to Reboot, or the system will Reboot automatically. That is fine, however remember that rebooting will just reboot into the ISO causing you to go through the installation menus again.
+![3cx list partitions](../tutorials/images/iso_images/3cx_list_partitions.png "3cx List Partitions")
 
-Go ahead and reboot, but go ahead and SHUT DOWN the ISO VM. 
-We have installed our media to the Volume. 
+### Fedora Workstation
+
+![Fedora list drives](../tutorials/images/iso_images/fedora_disk.png "Fedora List Drives")
+
+![Fedora install complete](../tutorials/images/iso_images/fedora_install_complete.png "Fedora Install complete")
+
+### Shut Down ISO VM
+
+Typically once the installation completes - you will be asked to Reboot, or the
+system will Reboot automatically. That is fine, however remember that rebooting
+will just reboot into the ISO causing you to go through the installation menus again.
+
+Go ahead and reboot, but go ahead and SHUT DOWN the ISO VM.
+We have installed our media to the Volume.
 Time to work with that directly.
 
+![Shutdown instances](../tutorials/images/iso_images/shutdown_instances.png "Shutdown Instances")
 
+Now that the ISO instances are shut off, detached the drives we installed the
+media onto.
 
+![Shutdown list instances](../tutorials/images/iso_images/shutdown_list.png "Shutdown List Instances")
 
-Now that the ISO instances are shut off, detached the drives we installed the media onto.
+## Detach and Configure Volumes
 
+![Manage attachments](../tutorials/images/iso_images/manage_attachments.png "Manage Attachments")
 
-
-
-Detach and Configure Volumes
-
-
-
-
+![Detach attachments](../tutorials/images/iso_images/detach_attachments.png "Detach Attachments")
 
 Now that we have detached our volumes, let's make them bootable.
 
 Click Edit Volume
 
+![Make volume bootable](../tutorials/images/iso_images/make_volume_bootable.png "Make Volume bootable")
+
 And check “Bootable”
 
+![Bootable button](../tutorials/images/iso_images/bootable_button.png "Bootable Button")
 
-
-
-Use / Create the VM or VM Image
-
+## Use / Create the VM or VM Image
 
 You’re almost done. Now you have two options.
 
-Utilize this exact volume for a VM.
-Create a reusable Image out of this VM.
-
-
+1. Utilize this exact volume for a VM.
+2. Create a reusable Image out of this VM.
 
 Create VM from Volume
-To use the Volume, when creating the instance you can select Volume (The Drive) as the Boot Source:
 
+1. To use the Volume, when creating the instance you can select
+Volume (The Drive) as the Boot Source:
 
+![Fedora 39](../tutorials/images/iso_images/Fedora_splash_page.png "Fedora 39")
 
+## Create Image and Provision from Image
 
-
-
-
-Create Image and Provision from Image
 To Create a Reusable Image upload the volume into Images
 
-
-
-
+![Volume to image](../tutorials/images/iso_images/volume_to_image.png "Volume to Image")
 
 After the upload is complete, you can create VMs from that image.
 
+![Upload image](../tutorials/images/iso_images/upload_image.png "Upload Image")
 
-
-
-
-
-
-
-### Deploy Changes with Kolla Ansible
-
-### Install Required Modules for Horizon Management
+![Instance with image](../tutorials/images/iso_images/instancewithimage.png "Instance with Image")
