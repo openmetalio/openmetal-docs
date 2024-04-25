@@ -1,7 +1,5 @@
 # Creating OpenStack VM Image with ISO
 
-DESCRIPTION
-
 ## Prerequisites
 
 - [OpenstackHorizon](../users-manual/using-creating-images.md)
@@ -9,19 +7,6 @@ DESCRIPTION
 ## Preparation
 
 In this article we will use ISOs to create 3 VM images: PFSense, 3CX, and Fedora
-
-Using the following download and direction links
-
-- [S3 client command](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/s3/index.html)
-- [r3CX install Debian](https://www.3cx.com/docs/manual/installing-debian-linux-pbx/)
-- [3CX netinstall](https://downloads-global.3cx.com/downloads/debian12iso/debian-amd64-netinst-3cx.iso)
-
-- [pfsense download](https://www.pfsense.org/download/)
-- [pfsense iso](https://atxfiles.netgate.com/mirror/downloads/pfSense-CE-2.7.2-RELEASE-amd64.iso.gz)
-(Extract the GZ file to get the ISO)
-
-- [fedora download](https://fedoraproject.org/workstation/download)
-- [fedora iso](https://download.fedoraproject.org/pub/fedora/linux/releases/39/Workstation/x86_64/iso/Fedora-Workstation-Live-x86_64-39-1.5.iso)
 
 This method can be applied to a variety of Operating Systems.
 
