@@ -1,26 +1,19 @@
-# Creating OpenStack VM Image with ISO
+# Creating OpenStack VM Images with ISO
 
-In OpenStack, ISO images serve a similar purpose to CD-ROMs in traditional
+Written by : Yuriy Shyyan & Ramon Grullon
+
+In OpenStack, ISO images serve a similar purpose to CD-ROMs and USBs in traditional
 computing environments.
 Let's explore this comparison:
 
-CD-ROMs in Traditional Computing:
-
-- In traditional computing, CD-ROMs are physical discs used to store data,
-software, and operating system installation files. Users insert these discs
-into CD-ROM drives on their computers to access or install software.
-ISO Images in OpenStack:
-
-- In OpenStack, ISO images are digital files that serve the same purpose as
-CD-ROMs. Instead of physical discs, ISO images are files that contain all the
-necessary files and data required to install an operating system or software on
-a virtual machine (VM).
-
-In summary, ISO images in OpenStack function similarly to CD-ROMs in traditional
+ISO images in OpenStack function similarly to CD-ROMs and USBs in traditional
 computing environments. They contain installation files and data for operating
 systems and software, and users attach them to virtual machines to install the
-desired software or operating system. This is how you can install any ISO type
-media onto an OpenStack volume to create singular installation or re-usable images.
+desired software or operating system.
+
+This article will help you understand how you can install any ISO type media
+onto an OpenStack volume to create singular installation or re-usable images for
+Virtual Machine use.
 
 ## Prerequisites
 
@@ -34,14 +27,6 @@ This method can be applied to a variety of Operating Systems.
 
 ## Upload ISOs to Cloud
 
-First upload the ISO to your cloud / project. You can do this through Horizon,
-or OpenStack CLI.
-
-- [OpenStack Horizon](../users-manual/using-creating-images.md)
-
-Uploading ISOs as the `Admin` user will allow you to share the ISO to be used by
-all projects if selecting Public permissions.
-
 ### ISO Context of OpenStack
 
 Imagine that provisioning a VM using an ISO, is like plugging in a Live USB/CD
@@ -52,10 +37,17 @@ In fact the data of the ISO loads in as the volume if you create the ISO based
 VM. Instead of a USB/CD-ROM, it’s a full blown computer, with CPU, RAM and
 storage (ISO storage).
 
+First upload the ISO to your cloud / project. You can do this through
+[Horizon](../users-manual/using-creating-images.md)
+
+Uploading ISOs as the `Admin` user will allow you to share the ISO to be used by
+all projects if selecting `Public` permissions.
+
 ![Image add](../tutorials/images/iso_images/horizon_image_add.png "Add Images")
 
 For large images Horizon will not let you upload large images through the UI.
-You may need to use the CLI tool like so:
+You may need to use the [OpenStack CLI](../users-manual/use-openstack-cli.md)
+tool like so:
 
 ```bash
 openstack image create --file Fedora-Workstation-Live-x86_64-39-1.5.iso --disk-format iso --public --progress "Fedora Workstation Live 39"
@@ -79,30 +71,36 @@ we need CPU and Memory to do that. So create a VM. There is no point to create a
 volume from the ISO (It would be a direct copy of the contents of the ISO), we
 want to run the Live CD/Installation Media from the image itself.
 
-_**AVOID USING FLAVORS WITH SWAP**_
-
-![Instance with Image](../tutorials/images/iso_images/horizon_create_instancewithimage.png "Instance with Image")
-
 The flavor won’t matter either as these are just resources for the ISO and not
 the future VM, pick something that will be powerful and fast.
 
-Notice how I gave the VMs the name ISO-vm - this is to represent that these are
-not real VM, this is just us running the ISOs:
+_**AVOID USING FLAVORS WITH SWAP**_
+
+Below is a link to documentation on creating flavors.
+
+- [Flavor management](https://openmetal.io/docs/manuals/tutorials/manage-flavors)
+
+![Instance with Image](../tutorials/images/iso_images/horizon_create_instancewithimage.png "Instance with Image")
+
+Configure the VMs with the schema name ISO-vm - this is to represent that these
+are not real VM, this is just us running the ISOs:
 
 ![List instances](../tutorials/images/iso_images/horizon_list_instances.png "List Instances")
 
 ## Create the Volumes (Drives to Install Software On)
 
 What we will want to do is create a Virtual Hard drive that we will install the
- OS onto. Firstly, create a volume. If you plan to reuse this image and the OS supports
-cloud init, try to keep the volume to a minimal size, but if it cannot be
-expanded later with cloud-init, set the appropriate storage size that you expect
-to be utilized over the lifetime of the VM.
+ OS onto. Firstly, create a volume.
 
-Now we want to create the Virtual Disks (Bootable drives) that we will install
+If you plan to reuse this image and the OS supports [cloud-init](https://github.com/canonical/cloud-init),
+try to keep the volume to a minimal size, but if it cannot be expanded later
+with cloud-init, set the appropriate storage size that you expect to be utilized
+over the lifetime of the VM.
+
+Create the Virtual Disks (Bootable drives) that we will install
 the ISOs onto:
 
-![Create volume](../tutorials/images/iso_images/horizon_create_volume.png "Create Volume")
+![Create volume](../tutorials/images/iso_images/horizon_create_volumes.png "Create Volume")
 
 Create the volumes
 
@@ -110,7 +108,7 @@ Create the volumes
 
 ## Attach Volume to ISO VM
 
-Now we want to attach the Volume (Drive) to the running ISO VMs, so that we can
+Attach the Volume (Drive) to the running ISO VMs, so that we can
 later through the installers - install onto these drives.
 
 ![Manage attachments](../tutorials/images/iso_images/horizon_manage_attachments.png "Manage Attachments")
@@ -128,10 +126,6 @@ do, go ahead and trigger a Hard Reboot for each of the VMs.
 
 Now go to Console for each and proceed with the installer. You will eventually
 reach “Where to install” portion of the setup media like:
-
-Below is a link to documentation on creating flavors.
-
-- [Flavor management](https://openmetal.io/docs/manuals/tutorials/manage-flavors)
 
 ### PFSense
 
@@ -155,12 +149,15 @@ Below is a link to documentation on creating flavors.
 
 ### Shut Down ISO VM
 
-Typically once the installation completes - you will be asked to Reboot, or the
-system will Reboot automatically. That is fine, however remember that rebooting
-will just reboot into the ISO causing you to go through the installation menus again.
+Typically, once the installation completes - you will be asked to reboot, or the
+system will reboot automatically. That is fine, however remember that rebooting
+will just boot back into the ISO causing you to go through the installation menus
+again.
 
-Go ahead and reboot, but go ahead and SHUT DOWN the ISO VM.
+SHUT DOWN the ISO VM.
+
 We have installed our media to the Volume.
+
 Time to work with that directly.
 
 ![Shutdown instances](../tutorials/images/iso_images/shutdown_instances.png "Shutdown Instances")
@@ -193,7 +190,7 @@ You’re almost done. Now you have two options.
 - Utilize this exact volume for a VM.
 - Create a reusable Image out of this VM.
 
-Create VM from Volume
+### Create VM from Volume
 
 - To use the Volume, when creating the instance you can select
 Volume (The Drive) as the Boot Source:
@@ -202,7 +199,7 @@ Volume (The Drive) as the Boot Source:
 
 ![Fedora 39](../tutorials/images/iso_images/Fedora_splash_page.png "Fedora 39")
 
- Create Image and Provision from Image
+### Create Image and Provision from Image
 
 - To Create a Reusable Image upload the volume into Images
 
@@ -213,3 +210,7 @@ After the upload is complete, you can create VMs from that image.
 ![Upload image](../tutorials/images/iso_images/upload_image.png "Upload Image")
 
 ![Instance with image](../tutorials/images/iso_images/instancewithimage.png "Instance with Image")
+
+ISO images in OpenStack function similarly to CD-ROMs and USBs and provide
+a path to deploy functional instances and images for multi-use. If you have any
+questions or suggestions, please let us know in the comment section below.
