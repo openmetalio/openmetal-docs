@@ -19,7 +19,8 @@ a virtual machine (VM).
 In summary, ISO images in OpenStack function similarly to CD-ROMs in traditional
 computing environments. They contain installation files and data for operating
 systems and software, and users attach them to virtual machines to install the
-desired software or operating system.
+desired software or operating system. This is how you can install any ISO type
+media onto an OpenStack volume to create singular installation or re-usable images.
 
 ## Prerequisites
 
@@ -78,6 +79,8 @@ we need CPU and Memory to do that. So create a VM. There is no point to create a
 volume from the ISO (It would be a direct copy of the contents of the ISO), we
 want to run the Live CD/Installation Media from the image itself.
 
+_**AVOID USING FLAVORS WITH SWAP**_
+
 ![Instance with Image](../tutorials/images/iso_images/horizon_create_instancewithimage.png "Instance with Image")
 
 The flavor won’t matter either as these are just resources for the ISO and not
@@ -125,8 +128,6 @@ do, go ahead and trigger a Hard Reboot for each of the VMs.
 
 Now go to Console for each and proceed with the installer. You will eventually
 reach “Where to install” portion of the setup media like:
-
-_**AVOID USING FLAVORS WITH SWAP**_
 
 Below is a link to documentation on creating flavors.
 
@@ -189,19 +190,21 @@ And check “Bootable”
 
 You’re almost done. Now you have two options.
 
-1. Utilize this exact volume for a VM.
-2. Create a reusable Image out of this VM.
+- Utilize this exact volume for a VM.
+- Create a reusable Image out of this VM.
 
 Create VM from Volume
 
-1. To use the Volume, when creating the instance you can select
+- To use the Volume, when creating the instance you can select
 Volume (The Drive) as the Boot Source:
+
+![Instance with volume](../tutorials/images/iso_images/instancewithvolume.png "Instance with Volume")
 
 ![Fedora 39](../tutorials/images/iso_images/Fedora_splash_page.png "Fedora 39")
 
-## Create Image and Provision from Image
+ Create Image and Provision from Image
 
-To Create a Reusable Image upload the volume into Images
+- To Create a Reusable Image upload the volume into Images
 
 ![Volume to image](../tutorials/images/iso_images/volume_to_image.png "Volume to Image")
 
