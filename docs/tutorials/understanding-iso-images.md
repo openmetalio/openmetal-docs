@@ -1,8 +1,29 @@
 # Creating OpenStack VM Image with ISO
 
+In OpenStack, ISO images serve a similar purpose to CD-ROMs in traditional
+computing environments.
+Let's explore this comparison:
+
+CD-ROMs in Traditional Computing:
+
+- In traditional computing, CD-ROMs are physical discs used to store data,
+software, and operating system installation files. Users insert these discs
+into CD-ROM drives on their computers to access or install software.
+ISO Images in OpenStack:
+
+- In OpenStack, ISO images are digital files that serve the same purpose as
+CD-ROMs. Instead of physical discs, ISO images are files that contain all the
+necessary files and data required to install an operating system or software on
+a virtual machine (VM).
+
+In summary, ISO images in OpenStack function similarly to CD-ROMs in traditional
+computing environments. They contain installation files and data for operating
+systems and software, and users attach them to virtual machines to install the
+desired software or operating system.
+
 ## Prerequisites
 
-- [OpenstackHorizon](../users-manual/using-creating-images.md)
+- Familiarity with [OpenStack Horizon](../users-manual/using-creating-images.md)
 
 ## Preparation
 
@@ -15,9 +36,9 @@ This method can be applied to a variety of Operating Systems.
 First upload the ISO to your cloud / project. You can do this through Horizon,
 or OpenStack CLI.
 
-- [OpenstackHorizon](../users-manual/using-creating-images.md)
+- [OpenStack Horizon](../users-manual/using-creating-images.md)
 
-Uploading ISOs as the Admin user will allow you to share the ISO to be used by
+Uploading ISOs as the `Admin` user will allow you to share the ISO to be used by
 all projects if selecting Public permissions.
 
 ### ISO Context of OpenStack
@@ -30,25 +51,19 @@ In fact the data of the ISO loads in as the volume if you create the ISO based
 VM. Instead of a USB/CD-ROM, it’s a full blown computer, with CPU, RAM and
 storage (ISO storage).
 
-What we will want to do is create a Virtual Hard drive that we will install the
- OS onto. So create a volume. If you plan to reuse this image and the OS supports
-cloud init, try to keep the volume to a minimal size, but if it cannot be
-expanded later with cloud-init, set the appropriate storage size that you expect
-to be utilized over the lifetime of the VM.
-
 ![Image add](../tutorials/images/iso_images/horizon_image_add.png "Add Images")
 
 For large images Horizon will not let you upload large images through the UI.
 You may need to use the CLI tool like so:
 
 ```bash
-openstack image create --file Fedora-Workstation-Live-x86_64-39-1.5.iso --disk-format iso --shared --progress "Fedora Workstation Live 39"
+openstack image create --file Fedora-Workstation-Live-x86_64-39-1.5.iso --disk-format iso --public --progress "Fedora Workstation Live 39"
 [=============================>] 100%
 
-openstack image create --file debian-amd64-netinst-3cx.iso.1 --disk-format iso --shared --progress "3cx-debian"
+openstack image create --file debian-amd64-netinst-3cx.iso.1 --disk-format iso --public --progress "3cx-debian"
 [=============================>] 100%
 
-openstack image create --file pfSense-CE-2.7.2-RELEASE-amd64.iso --disk-format iso --shared --progress "pfsense"
+openstack image create --file pfSense-CE-2.7.2-RELEASE-amd64.iso --disk-format iso --public --progress "pfsense"
 [=============================>] 100%
 ```
 
@@ -74,6 +89,12 @@ not real VM, this is just us running the ISOs:
 ![List instances](../tutorials/images/iso_images/horizon_list_instances.png "List Instances")
 
 ## Create the Volumes (Drives to Install Software On)
+
+What we will want to do is create a Virtual Hard drive that we will install the
+ OS onto. Firstly, create a volume. If you plan to reuse this image and the OS supports
+cloud init, try to keep the volume to a minimal size, but if it cannot be
+expanded later with cloud-init, set the appropriate storage size that you expect
+to be utilized over the lifetime of the VM.
 
 Now we want to create the Virtual Disks (Bootable drives) that we will install
 the ISOs onto:
