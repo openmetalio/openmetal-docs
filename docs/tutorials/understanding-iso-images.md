@@ -154,7 +154,7 @@ system will reboot automatically. That is fine, however remember that rebooting
 will just boot back into the ISO causing you to go through the installation menus
 again.
 
-SHUT DOWN the ISO VM.
+Shut down the ISO VM.
 
 We have installed our media to the Volume.
 
@@ -173,7 +173,7 @@ media onto.
 
 ![Detach attachments](../tutorials/images/iso_images/detach_attachments.png "Detach Attachments")
 
-Now that we have detached our volumes, let's make them bootable.
+Make the volume bootable.
 
 Click Edit Volume
 
@@ -208,6 +208,8 @@ Volume (The Drive) as the Boot Source:
 After the upload is complete, you can create VMs from that image.
 
 ![Upload image](../tutorials/images/iso_images/upload_image.png "Upload Image")
+
+![Instance Fedora image](../tutorials/images/iso_images/instancefedoraimage.png "Instance Fedora Image")
 
 ![Instance with image](../tutorials/images/iso_images/instancewithimage.png "Instance with Image")
 
