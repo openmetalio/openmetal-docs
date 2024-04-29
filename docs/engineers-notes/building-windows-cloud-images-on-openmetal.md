@@ -580,7 +580,7 @@ You can utilize OpenStack CLI from within the image-builder instance we created
 to build our Windows VM Image, and use it to upload our hard work and result to
 OpenMetal cloud from which we initially began our journey. It’s “Cloud Inception”.
 
-Refer to the following for setup of [OpenStack CLI](https://openmetal.io/docs/manuals/openstack-operators/how-to-install-and-use-openstacks-cli/)
+Refer to the following for setup of [OpenStack CLI](https://openmetal.io/docs/manuals/operators-manual/day-1/command-line/openstackclient)
 and [uploading images](https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/image-v1.html#image-create)
 to your cloud.
 
