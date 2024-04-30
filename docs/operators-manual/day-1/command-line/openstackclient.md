@@ -97,12 +97,11 @@ For example:
 This environment is created so as to not interfere with the system's
 Python version.
 
-In a default CentOS 8 Stream installation, the system's Python
-executable is `/usr/libexec/platform-python` and is what will be used to
-create the virtual environment.
+Utilizing the venv module, create a Python virtual environment
+that will be used to isolate versioning of different software.
 
-Use `/usr/libexec/platform-python -m venv ~/venv` to create a virtual
-environment in path `~/venv`.
+Use `virtualenv -p python3.6 /opt/omi-cli` to create a virtual
+environment in path `/opt/omi-cli`.
 
 For example:
 
@@ -110,11 +109,11 @@ For example:
 
 **Step 3**: Activate the Python virtual environment
 
-Use `source ~/venv/bin/activate` to activate the virtual environment.
+Use `. omi-cli/bin/activate` to activate the virtual environment.
 
 For example:
 
-    source ~/venv/bin/activate
+    . omi-cli/bin/activate
 
 **Step 4**: Upgrade `pip`
 
@@ -246,5 +245,5 @@ For example:
 
 ## Reference
 
-[OpenStack Victoria OpenStackClient
-Documentation](https://docs.openstack.org/python-openstackclient/victoria/)
+[OpenStack Bobcat OpenStackClient
+Documentation](https://docs.openstack.org/python-openstackclient/latest/)
