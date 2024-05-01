@@ -97,10 +97,11 @@ For example:
 This environment is created so as to not interfere with the system's
 Python version.
 
-The formally default package `python-virtualenv` has been removed from 
+The formally default package `python-virtualenv` has been removed from
 RHEL/CentOS Stream 9.
 The new default module is venv which supports creating lightweight “virtual environments”,
-each with their own independent set of Python packages installed in their site directories. 
+each with their own independent set of Python packages installed in their site
+directories.
 
 Use `python -m venv /path/to/new/virtual/environment` to create a virtual
 environment in path `/opt`.
