@@ -97,24 +97,25 @@ For example:
 This environment is created so as to not interfere with the system's
 Python version.
 
-In a default CentOS 8 Stream installation, the system's Python
-executable is `/usr/libexec/platform-python` and is what will be used to
-create the virtual environment.
+The formally default package `python-virtualenv` has been removed from 
+RHEL/CentOS Stream 9.
+The new default module is venv which supports creating lightweight “virtual environments”,
+each with their own independent set of Python packages installed in their site directories. 
 
-Use `/usr/libexec/platform-python -m venv ~/venv` to create a virtual
-environment in path `~/venv`.
+Use `python -m venv /path/to/new/virtual/environment` to create a virtual
+environment in path `/opt`.
 
 For example:
 
-    /usr/libexec/platform-python -m venv ~/venv
+    python3 -m venv /opt/omi-cli
 
 **Step 3**: Activate the Python virtual environment
 
-Use `source ~/venv/bin/activate` to activate the virtual environment.
+Use `source /opt/omi-cli/bin/activate` to activate the virtual environment.
 
 For example:
 
-    source ~/venv/bin/activate
+    source /opt/omi-cli/bin/activate
 
 **Step 4**: Upgrade `pip`
 
