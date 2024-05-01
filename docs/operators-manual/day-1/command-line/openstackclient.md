@@ -20,14 +20,14 @@ and use OpenStackClient.
 - A Linux machine in which you can install OpenStackClient. This can
     be your own machine, the cloud's hardware nodes, or an instance
     running in the cloud.
-- Python 3.6 or greater
+- Python 3.8 or greater
 - OpenStack RC file
 - `clouds.yaml` file
 
 ### Install OpenStackClient
 
 In this section, we demonstrate the initial preparation and installation
-of OpenStackClient to the previously created **Jumpstation** CentOS 8
+of OpenStackClient on CentOS 9
 Stream instance.
 
 #### Initial Preparation
@@ -97,11 +97,9 @@ For example:
 This environment is created so as to not interfere with the system's
 Python version.
 
-The formally default package `python-virtualenv` has been removed from
-RHEL/CentOS Stream 9.
-The new default module is venv which supports creating lightweight “virtual environments”,
-each with their own independent set of Python packages installed in their site
-directories.
+The python default module is `venv` which supports creating lightweight
+“virtual environments”, each with their own independent set of Python
+packages installed in their site directories.
 
 Use `python -m venv /path/to/new/virtual/environment` to create a virtual
 environment in path `/opt`.
@@ -220,7 +218,7 @@ server show Jumpstation` shows the details about the instance named
 ## Enable Bash Autocompletion
 
 **Note** The required bash-completion package is not included in the
-CentOS 8 Stream image resulting in an errors like the following:
+CentOS 9 Stream image resulting in an errors like the following:
 
     -bash: _get_comp_words_by_ref: command not found
 
@@ -248,5 +246,5 @@ For example:
 
 ## Reference
 
-[OpenStack Victoria OpenStackClient
-Documentation](https://docs.openstack.org/python-openstackclient/victoria/)
+[OpenStack Bobcat OpenStackClient
+Documentation](https://docs.openstack.org/python-openstackclient/latest/)
