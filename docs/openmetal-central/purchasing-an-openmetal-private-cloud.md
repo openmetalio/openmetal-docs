@@ -26,7 +26,14 @@ can set this up before you even launch your trial cloud.
 1. From the [Cloud Home Page](https://central.openmetal.io/clouds), select the
    _Get Started_ button.
 
-    ![OpenMetal Central Get Started](images/purchase6.png)
+    ![OpenMetal Central Get Started](images/2024addcloudbutton.png)
+
+1. Choose Data Center Location.
+   - Ashburn, VA
+   - L.A, CA
+   - Amsterdam, NL
+  
+    ![DC Selection](images/purchase3.png)
 
 1. Choose desired hardware.
 
