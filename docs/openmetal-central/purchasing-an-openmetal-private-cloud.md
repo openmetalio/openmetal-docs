@@ -28,12 +28,12 @@ can set this up before you even launch your trial cloud.
 
     ![OpenMetal Central Get Started](images/2024addcloudbutton.png)
 
-1. Choose Data Center Location.
+1. Choose Data Center Location and Deployment Type.
    - Ashburn, VA
    - L.A, CA
    - Amsterdam, NL
   
-    ![DC Selection](images/purchase3.png)
+    ![DC Selection](images/choosedc.png)
 
 1. Choose desired hardware.
 
