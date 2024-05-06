@@ -37,7 +37,7 @@ can set this up before you even launch your trial cloud.
 
 1. Choose desired hardware.
 
-    ![Hardware Selection](images/purchase3.png)
+    ![Hardware Selection](images/serversize.png)
 
 1. Select "Yes, I'll continue using my cloud..."
 
