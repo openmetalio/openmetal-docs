@@ -15,30 +15,34 @@ no dedicated virtual machines are required to use this service.
 
 ## Overview
 
-In this guide you will create a site-to-site IPSec VPN connection. This allows
-you to configure communication between private networks across regions.
+This HowTo explains how to configure a VPN Site-to-Site connection using OpenStack.
+This allows you to configure communication between private networks across regions.
+
+We will be using 2 OpenStack regions which will be referred to as East Cloud and
+West Cloud. Each cloud will have 1 router attached to subnets utilizing 1 VPN service.
+
+In this guide, we'll be creating West-Cloud as our local VPN and all steps
+should be duplicated for East-Cloud
+
+![network diagram](images/vpnbobcat_images/network_diagram.png "Network Diagram")
 
 ### Step One: West Network Setup
 
-Create all prerequisite network components
+Create all prerequisite network components. In this example we used
+
+```shell
+Router- West-Router
+Network - west-primary & west-secondary
+Subnet - west-primary-subnet & west-secondary-subnet
+```
 
 - [Networking in OpenStack](https://openmetal.io/docs/manuals/users-manual/network-ip-traffic)
 
-1. Associate subnet
+1. Associate both subnets created
 
 ![west associate subnet](images/vpnbobcat_images/west_associate_subnet.png "West Associate Subnet Creation")
 
-### Step Two: East Network Setup
-
-Create all prerequisite network components
-
-- [Networking in OpenStack](https://openmetal.io/docs/manuals/users-manual/network-ip-traffic)
-
-1. Associate subnet
-
-![east associate subnet](images/vpnbobcat_images/east_associate_subnet.png "East Associate Subnet Creation")
-
-### Step Three: Create an IKE and IPSec Policy
+### Step Two: Create an IKE and IPSec Policy
 
 An IKE and IPSec policy will need to be created. It is recommended that you set
 explicit parameters to provide higher security than the defaults. In our example
@@ -58,7 +62,7 @@ and IPSec Policy settings.
 
 ![ipsec policy configs](images/vpnbobcat_images/ipsec_policy_configs.png "IPSec Policy Configs")
 
-### Step Four: Create VPN Service for Both Sites
+### Step Three: Create a VPN Service
 
 Now create a VPN service for both sites. You will want to take note of the
 external IP addresses assigned to each.
@@ -76,47 +80,27 @@ external IP addresses assigned to each.
 
 ![west vpn configs](images/vpnbobcat_images/west_vpn_service_configs.png "West VPN Configs")
 
-    Take note as the external IP may be different from the router.
+ **Take note as the external IP may be different from the router.**
 
-1. Create VPN east
+### Step Four: Create Endpoint Groups
 
-![east vpn button](images/vpnbobcat_images/east_vpn_service_button.png "East VPN Button")
-
-![east vpn configs](images/vpnbobcat_images/east_vpn_service_configs.png "East VPN Configs")
-
-### Step Five: Create Endpoint Groups
-
-1. Create west local endpoint groups
+1. Create west **local** endpoint groups
 
     Local endpoint groups define subnets given by name or UUID. The site west
     local endpoint contains `west-localendpointgroup`.
 
 ![west localendpoint](images/vpnbobcat_images/west_localendpoint.png "West Local Endpoint Group")
 
-1. Create west peer endpoint groups
+1. Create west **peer** endpoint groups
 
+```shell
     Peer endpoint groups are CIDRs. The site west peer endpoint group will
     contain the peer subnet CIDR. In this case that's the site `east subnet`.
+```
 
 ![west remoteendpoint1](images/vpnbobcat_images/west_remoteendpoint1.png "West Remote Endpoint Group1")
 
 ![west remoteendpoint2](images/vpnbobcat_images/west_remoteendpoint2.png "West Remote Endpoint Group2")
-
-1. Create east local endpoint group
-
-    Local endpoint groups define subnets given by name or UUID. The site east
-    local endpoint contains `subnet-east`.
-
-![east localendpoint](images/vpnbobcat_images/east_localendpoint.png "East Local Endpoint Group")
-
-1. Create east peer endpoint groups
-
-    Peer endpoint groups are CIDRs. The site east peer endpoint group will
-    contain the peer subnet CIDR. In this case that's the site west subnet.
-
-![east remoteendpoint1](images/vpnbobcat_images/east_remoteendpoint1.png "East Remote Endpoint Group1")
-
-![east remoteendpoint1](images/vpnbobcat_images/east_remoteendpoint2.png "East Remote Endpoint Group1")
 
 ### Step Six: Create VPN Site Connections
 
@@ -131,18 +115,6 @@ external IP addresses assigned to each.
     (A remote endpoint group can only have 1 subnet per)
 
 ![west ipsec1](images/vpnbobcat_images/west_ipsec1.png "West IPSec1")
-
-1. Create east site connection
-
-    Create a site connection (`east-ipsec1`) from site west (VPN service
-    `east-vpnservice`) to site east (peer IP address `213.165.233.220`) defining
-    the local (`east-localendpointgroup`) and peer (`east-remoteendpointgroup1`)
-    endpoint groups.
-
-    Repeat this process for each individual remote endpoint group.
-    (A remote endpoint group can only have 1 subnet per)
-
-![east ipsec1](images/vpnbobcat_images/east_ipsec1.png "East IPSec1")
 
 ### Step Seven: Test Site-to-Site Connection
 
