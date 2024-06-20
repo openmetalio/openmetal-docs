@@ -26,7 +26,7 @@ can set this up before you even launch your trial cloud.
 1. From the [Cloud Home Page](https://central.openmetal.io/clouds), select the
    _Get Started_ button.
 
-    ![OpenMetal Central Get Started](images/2024addcloudbutton.png)
+    ![OpenMetal Central Get Started](images/getstartedbutton.png)
 
 1. Choose Data Center Location and Deployment Type.
    - Ashburn, VA
