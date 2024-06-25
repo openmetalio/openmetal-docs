@@ -6,19 +6,19 @@ no dedicated virtual machines are required to use this service.
 
 ## Prerequisites
 
-- Cloud configured for [VPNaaS](vpnaas-configure-deploy.md)
 - Familiarity with OpenStackClient
 
 ## Notable Changes
 
-- In Bobcat, the VPN driver changed from libreswan to Strongswan
+- In Bobcat, the VPN driver changed from Libreswan to strongSwan
 
 ## Overview
 
-This HowTo explains how to configure a VPN Site-to-Site connection using OpenStack.
-This allows you to configure communication between private networks across regions.
+This article explains how to configure a VPN Site-to-Site connection using OpenStack.
+This allows you to configure communication between private networks across different
+locations.
 
-We will be using 2 OpenStack regions which will be referred to as East Cloud and
+We will be using 2 OpenStack clouds which will be referred to as East Cloud and
 West Cloud. Each cloud will have 1 router attached to subnets utilizing 1 VPN service.
 
 In this guide, we'll be creating West-Cloud as our local VPN and all steps
@@ -38,7 +38,7 @@ Subnet - west-primary-subnet & west-secondary-subnet
 
 - [Networking in OpenStack](https://openmetal.io/docs/manuals/users-manual/network-ip-traffic)
 
-1. Associate both subnets created
+Associate both subnets created
 
 ![west associate subnet](images/vpnbobcat_images/west_associate_subnet.png "West Associate Subnet Creation")
 
@@ -50,13 +50,13 @@ we are setting these on two OpenStack clusters, but the settings will be similar
 on third party VPN tools. The goal is to configure both ends with the same IKE
 and IPSec Policy settings.
 
-1. Go to VPN - IKE Policies - Add IKE Policy
+Go to VPN - IKE Policies - Add IKE Policy
 
 ![ike policy button](images/vpnbobcat_images/ike_policy_button.png "IKE Policy Button")
 
 ![ike policy configs](images/vpnbobcat_images/ike_policy_configs.png "IKE Policy Configs")
 
-1. Go to VPN - IPsec Policies - Add IPsec Policy
+Go to VPN - IPsec Policies - Add IPsec Policy
 
 ![ipsec policy button](images/vpnbobcat_images/ipsec_policy_button.png "IPSec Policy Button")
 
@@ -74,8 +74,6 @@ external IP addresses assigned to each.
 > Current limitations require each remote endpoint group to have a single subnet.
 > Each remote endpoint group requiring its own site2site connection.
 
-1. Create VPN west
-
 ![west vpn button](images/vpnbobcat_images/west_vpn_service_button.png "West VPN Button")
 
 ![west vpn configs](images/vpnbobcat_images/west_vpn_service_configs.png "West VPN Configs")
@@ -84,14 +82,17 @@ external IP addresses assigned to each.
 
 ### Step Four: Create Endpoint Groups
 
-1. Create west **local** endpoint groups
+The Endpoint Group is used to configure multiple local and remote subnets in a
+VPN service.
 
-    Local endpoint groups define subnets given by name or UUID. The site west
-    local endpoint contains `west-localendpointgroup`.
+Create west **local** endpoint groups
+
+Local endpoint groups define subnets given by name or UUID. The site west
+local endpoint contains `west-localendpointgroup`.
 
 ![west localendpoint](images/vpnbobcat_images/west_localendpoint.png "West Local Endpoint Group")
 
-1. Create west **peer** endpoint groups
+Create west **peer** endpoint groups
 
 ```shell
     Peer endpoint groups are CIDRs. The site west peer endpoint group will
