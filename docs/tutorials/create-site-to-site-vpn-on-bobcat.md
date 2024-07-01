@@ -71,7 +71,6 @@ external IP addresses assigned to each.
 > you flexibility to configure multiple local subnets in a local endpoint group
 > per IPSec site connection or multiple site connections with different local
 > subnets.
-> Current limitations require each remote endpoint group to have a single subnet.
 > Each remote endpoint group requiring its own site2site connection.
 
 ![west vpn button](images/vpnbobcat_images/west_vpn_service_button.png "West VPN Button")
@@ -105,15 +104,15 @@ Create west **peer** endpoint groups
 
 ### Step Six: Create VPN Site Connections
 
-1. Create west site connection
+Create west site connection
 
-    Create a site connection (`west-ipsec1`) from site west (VPN service
-    `west-vpnservice`) to site east (peer IP address `173.231.254.174`) defining
-    the local (`west-localendpointgroup`) and peer (`west-remoteendpointgroup1`)
-    endpoint groups.
+Create a site connection (`west-ipsec1`) from site west (VPN service
+`west-vpnservice`) to site east (peer IP address `173.231.254.174`) defining
+the local (`west-localendpointgroup`) and peer (`west-remoteendpointgroup1`)
+endpoint groups.
 
-    Repeat this process for each individual remote endpoint group.
-    (A remote endpoint group can only have 1 subnet per)
+Repeat this process for each individual remote endpoint group.
+(A remote endpoint group can only have 1 subnet per)
 
 ![west ipsec1](images/vpnbobcat_images/west_ipsec1.png "West IPSec1")
 
@@ -121,6 +120,10 @@ Create west **peer** endpoint groups
 
 Create instances connected to both subnets on west and both subnets on east.
 Confirm they can communicate via ICMP echo requests to local IPs.
+
+![ping test 1](images/vpnbobcat_images/pingtest1.png "Ping Test 1")
+
+![ping test 2](images/vpnbobcat_images/pingtest2.png "Ping Test 2")
 
 ## References
 

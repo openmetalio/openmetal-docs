@@ -115,7 +115,7 @@ other than the cloud that you launched for your trial.
 
 1. Choose your cloud size.
 
-    ![Hardware Selection](images/purchase3.png)
+    ![Hardware Selection](images/serversize.png)
 
 1. Add your billing information as prompted. (Skip this step if already added.)
 
