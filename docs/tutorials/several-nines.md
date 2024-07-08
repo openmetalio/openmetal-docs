@@ -4,6 +4,8 @@ sidebar_name: Severalnines CCX on OpenStack
 slug: /tutorials/severalnines-ccx-on-openstack
 ---
 
+<!-- markdownlint-disable MD029 -->
+
 # Severalnines CCX on OpenStack
 
 ## Introduction
@@ -35,6 +37,8 @@ as a reference: <https://github.com/severalnines/ccx-admin-guide/wiki/Installati
       using to install CCX.
 
 3. Severalnines CCX License
+    - You will need a Severalnines CCX license to install the product. Contact
+      Severalnines <https://severalnines.com/contact/> for more information.
 
 ## Step 1 - Create a new VM
 
@@ -47,7 +51,8 @@ Note this node will need to have access to the Kubernetes cluster API.
 1. Log in to the OpenStack Horizon dashboard.
 2. Click on the `Compute` tab.
 3. Click on `Instances` and then click on `Launch Instance`.
-4. Fill in the required details like `Instance Name`, `Flavor`, `Image`, `Network`, and `Security Group`. Select
+4. Fill in the required details like `Instance Name`, `Flavor`, `Image`,
+    `Network`, and `Security Group`. Select
     `Ubuntu 22.04 (Jammy)` for the image name.
 5. Click on `Launch Instance`.
 6. Once the instance is launched, SSH into the instance.
@@ -92,7 +97,6 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 5. Save the kube config file from your Kubernetes cluster to the VM and test
 the connection.
-
 
 ## Step 3 - OpenStack CLI Client
 
@@ -172,6 +176,8 @@ charts/ccx/scripts/ccx-yaml-gen.sh
 
 Note: The s3 section is optional. If you don't have an object store, you can
 skip this section.
+
+Note: You will need your CCX license at this point.
 
 ```yaml
 # Output: values.yaml

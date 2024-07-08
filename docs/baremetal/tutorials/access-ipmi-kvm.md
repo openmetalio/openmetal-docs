@@ -7,7 +7,16 @@ troubleshooting, and maintenance tasks, providing administrators with a way to
 interact with a server's operating system, BIOS, and other pre-boot environments
 remotely.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/P3TkGk32-5Y?si=paBYaXUbYwl5K8GJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- markdownlint-disable MD013 -->
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315"
+  src="https://www.youtube.com/embed/P3TkGk32-5Y?si=paBYaXUbYwl5K8GJ"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<!-- markdownlint-enable MD033 -->
+<!-- markdownlint-enable MD013 -->
 
 ## Requirements
 
