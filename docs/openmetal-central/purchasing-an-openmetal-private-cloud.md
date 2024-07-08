@@ -26,11 +26,18 @@ can set this up before you even launch your trial cloud.
 1. From the [Cloud Home Page](https://central.openmetal.io/clouds), select the
    _Get Started_ button.
 
-    ![OpenMetal Central Get Started](images/purchase6.png)
+    ![OpenMetal Central Get Started](images/getstartedbutton.png)
+
+1. Choose Data Center Location and Deployment Type.
+   - Ashburn, VA
+   - L.A, CA
+   - Amsterdam, NL
+  
+    ![DC Selection](images/choosedc.png)
 
 1. Choose desired hardware.
 
-    ![Hardware Selection](images/purchase3.png)
+    ![Hardware Selection](images/serversize.png)
 
 1. Select "Yes, I'll continue using my cloud..."
 
@@ -108,7 +115,7 @@ other than the cloud that you launched for your trial.
 
 1. Choose your cloud size.
 
-    ![Hardware Selection](images/purchase3.png)
+    ![Hardware Selection](images/serversize.png)
 
 1. Add your billing information as prompted. (Skip this step if already added.)
 
