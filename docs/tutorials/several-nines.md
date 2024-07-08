@@ -64,14 +64,14 @@ Installing CCX is done by installing two
 Helm charts. Severalnines provides a convenient script that creates the `yaml` file
 to configure your deployment. Let's install the dependencies for this process.
 
-1. Install `jq`
+- Install `jq`
 
 ```bash
 sudo apt update
 sudo apt install jq
 ```
 
-2. Install Helm 3
+- Install Helm 3
 
 ```bash
 curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
@@ -79,21 +79,21 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 ```
 
-3. Install yq <https://github.com/mikefarah/yq>
+- Install yq <https://github.com/mikefarah/yq>
 
 ```bash
 sudo wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/bin/yq
 sudo chmod +x /usr/bin/yq
 ```
 
-4. Install kubectl
+- Install kubectl
 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-5. Save the kube config file from your Kubernetes cluster to the VM and test
+- Save the kube config file from your Kubernetes cluster to the VM and test
 the connection.
 
 ## Step 3 - OpenStack CLI Client
