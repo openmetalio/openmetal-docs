@@ -2,10 +2,8 @@
 	"default": true,
 	"MD003": { "style": "atx" },
 	"MD004": { "style": "dash" },
-	"MD013": {
-		"code_blocks": false,
-		"tables": false
-	},
+	"MD013": false,
+	"MD033": false,
 	"MD048": { "style": "backtick" },
 	"MD049": { "style": "underscore" },
 	"MD050": { "style": "asterisk" },

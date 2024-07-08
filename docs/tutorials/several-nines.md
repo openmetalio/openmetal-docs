@@ -4,8 +4,6 @@ sidebar_name: Severalnines CCX on OpenStack
 slug: /tutorials/severalnines-ccx-on-openstack
 ---
 
-<!-- markdownlint-disable MD029 -->
-
 # Severalnines CCX on OpenStack
 
 ## Introduction
