@@ -7,6 +7,8 @@ Neutron provides Site-to-Site IPsec VPN through VPN as a Service (VPNaaS).
 IPsec policies and connections are configured within OpenStack meaning
 no dedicated virtual machines are required to use this service.
 
+For Horizon procedure please use - [Horizon VPN Site-to-Site](https://openmetal.io/docs/tutorials/create-site-to-site-vpn-on-horizon.md)
+
 ## Prerequisites
 
 - Cloud configured for [VPNaaS](vpnaas-configure-deploy.md)

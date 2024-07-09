@@ -1,8 +1,12 @@
 # Create a Site-to-Site VPN Connection with Endpoint Groups on OpenStack
 
+Author: Ramon Grullon
+
 Neutron provides Site-to-Site IPsec VPN through VPN as a Service (VPNaaS).
 IPsec policies and connections are configured within OpenStack meaning
 no dedicated virtual machines are required to use this service.
+
+For CLI procedure please use - [CLI VPN Site-to-Site](https://openmetal.io/docs/tutorials/create-site-to-site-vpn.md)
 
 ## Prerequisites
 
