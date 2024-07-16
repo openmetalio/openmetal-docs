@@ -1,4 +1,4 @@
-# Create a Site-to-Site VPN Connection with Endpoint Groups on Horizon
+# Create a Site-to-Site VPN Connection with Endpoint Groups in Horizon
 
 Author: Ramon Grullon
 
