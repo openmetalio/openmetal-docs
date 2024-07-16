@@ -1,4 +1,4 @@
-# Create a Site-to-Site VPN Connection with Endpoint Groups on OpenStack
+# Create a Site-to-Site VPN Connection with Endpoint Groups on Horizon
 
 Author: Ramon Grullon
 
