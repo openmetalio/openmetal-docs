@@ -20,14 +20,14 @@ and use OpenStackClient.
 - A Linux machine in which you can install OpenStackClient. This can
     be your own machine, the cloud's hardware nodes, or an instance
     running in the cloud.
-- Python 3.6 or greater
+- Python 3.8 or greater
 - OpenStack RC file
 - `clouds.yaml` file
 
 ### Install OpenStackClient
 
 In this section, we demonstrate the initial preparation and installation
-of OpenStackClient to the previously created **Jumpstation** CentOS 8
+of OpenStackClient on CentOS 9
 Stream instance.
 
 #### Initial Preparation
@@ -97,24 +97,24 @@ For example:
 This environment is created so as to not interfere with the system's
 Python version.
 
-In a default CentOS 8 Stream installation, the system's Python
-executable is `/usr/libexec/platform-python` and is what will be used to
-create the virtual environment.
+The python default module is `venv` which supports creating lightweight
+“virtual environments”, each with their own independent set of Python
+packages installed in their site directories.
 
-Use `/usr/libexec/platform-python -m venv ~/venv` to create a virtual
-environment in path `~/venv`.
+Use `python -m venv /path/to/new/virtual/environment` to create a virtual
+environment in path `/opt`.
 
 For example:
 
-    /usr/libexec/platform-python -m venv ~/venv
+    python3 -m venv /opt/omi-cli
 
 **Step 3**: Activate the Python virtual environment
 
-Use `source ~/venv/bin/activate` to activate the virtual environment.
+Use `source /opt/omi-cli/bin/activate` to activate the virtual environment.
 
 For example:
 
-    source ~/venv/bin/activate
+    source /opt/omi-cli/bin/activate
 
 **Step 4**: Upgrade `pip`
 
@@ -218,7 +218,7 @@ server show Jumpstation` shows the details about the instance named
 ## Enable Bash Autocompletion
 
 **Note** The required bash-completion package is not included in the
-CentOS 8 Stream image resulting in an errors like the following:
+CentOS 9 Stream image resulting in an errors like the following:
 
     -bash: _get_comp_words_by_ref: command not found
 
@@ -246,5 +246,5 @@ For example:
 
 ## Reference
 
-[OpenStack Victoria OpenStackClient
-Documentation](https://docs.openstack.org/python-openstackclient/victoria/)
+[OpenStack Bobcat OpenStackClient
+Documentation](https://docs.openstack.org/python-openstackclient/2023.2/)
