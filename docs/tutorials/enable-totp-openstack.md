@@ -64,7 +64,7 @@ On a device install Google Authenticator and inside the app click on
 ‘Set up account’ and then click on ‘Enter provided key’. In the input fields
 enter account name and secret.
 
-To quickly verify your configuration you can use https://totp.app and enter your
+To quickly verify your configuration you can use <https://totp.app> and enter your
 secret to get your code.
 
 Verify TOTP Authentication
