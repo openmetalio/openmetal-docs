@@ -16,6 +16,25 @@ For CLI procedure please use - [CLI VPN Site-to-Site](https://openmetal.io/docs/
 
 - In Bobcat, the VPN driver changed from Libreswan to strongSwan
 
+## VPN Recommended Settings
+
+| Operation                                      | Security Option                       |
+| ---------------------------------------------- | ------------------------------------- |
+| Pre-shared Key                                 | Yes                                   |
+| Protocol                                       | IKEv2                                 |
+| IKE Phase 1 Encryption Algorithm               | AES-256                               |
+| IKE Phase 1 Authorization Algorithm            | SHA512                                |
+| IKE Phase 1 PFS(Perfect Forward Secrecy)     | Enabled                               |
+| IKE Phase 1 DHGRP(Diffie-Hellman Groups)       | 14                                    |
+| IKE Phase 1 Lifetime units(seconds) for keys   | 3600                                  |
+| IKE Phase 1 Negotiation Mode                    | Main                                  |
+| IPSec - IKE Phase 2 Authorization algorithm    | SHA512                                |
+| IPSec - IKE Phase 2 PFS(Perfect Forward Secrecy)     | Enabled                               |
+| IPSec - IKE Phase 2 DHGRP(Diffie-Hellman Groups)       | 14                                    |
+| IPSec - IKE Phase 2 IPSec Transform Protocol         | ESP                                   |
+| IPSec - IKE Phase 2 Lifetime units(seconds) for keys   | 3600                                  |
+| IPSec Encapsulation Mode                       | Tunnel                                |
+
 ## Overview
 
 This article explains how to configure a VPN Site-to-Site connection using OpenStack.
