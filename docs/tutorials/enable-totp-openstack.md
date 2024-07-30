@@ -11,7 +11,7 @@ Now, if a user activates TOTP on Keystone, it gets activated on Horizon too.
 ## Prerequisites
 
 - A working OpenStack 2023.2 environment deployed using kolla-ansible.
-- Enabled TOTP on all control nodes
+- [Keystone and Horizon reconfigured with TOTP enabled](https://www.openstack.org/blog/new-in-openstack-bobcat-horizon-team-introduces-time-based-one-time-password-totp-authentication-support/)
 - Admin access to the OpenStack dashboard and CLI.
 - Access to the kolla-ansible configuration files.
 
@@ -20,7 +20,7 @@ Now, if a user activates TOTP on Keystone, it gets activated on Horizon too.
 On one of your control nodes with OpenStack CLI configured:
 
 TOTP uses a base32 encoded string for the secret. The secret must be at least
-128 bits (16 bytes). The following python code can be used to generate a TOTP secret:
+128 bits (16 bytes). The following bash code can be used to generate a TOTP secret:
 
 ```bash
 echo "iam16characters." | base32 | tr -d "="
@@ -48,8 +48,7 @@ openstack credential create --type totp mfa-member GEZDGNBVGY3TQOJQGEZDGNBVGY
 
 ### Set Up TOTP
 
-This typically involves
-Scanning a QR code with a TOTP app like Google Authenticator.
+This typically involves scanning a QR code with a TOTP app like Google Authenticator.
 On a device install Google Authenticator and inside the app click on
 ‘Set up account’ and then click on ‘Enter provided key’. In the input fields
 enter account name and secret.
