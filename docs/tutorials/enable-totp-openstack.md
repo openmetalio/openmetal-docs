@@ -33,7 +33,7 @@ GEZDGNBVGY3TQOJQGEZDGNBVGY
 
 ```
 
-### Configure credentials and mfa rules for user
+### Configure credentials and MFA rules for user
 
 Create and configure a user to utilize TOTP
 
