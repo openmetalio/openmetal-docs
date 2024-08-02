@@ -73,3 +73,43 @@ For example:
     default.rgw.control        11   32      0 B        8      0 B      0    3.4 TiB
     default.rgw.meta           12    8    954 B        4   36 KiB      0    3.4 TiB
     default.rgw.buckets.index  13    8  2.2 MiB       11  6.6 MiB      0    3.4 TiB
+
+## Check Ceph OSD individual Disk Usage
+
+To view OSD utilization statistics use, `ceph osd df`
+
+For example:
+
+    # ceph osd df
+    ID  CLASS  WEIGHT   REWEIGHT  SIZE     RAW USE  DATA     OMAP    META     AVAIL    %USE  VAR   PGS  STATUS
+    2    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+    0    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+    1    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+                          TOTAL  2.6 TiB  230 GiB  226 GiB  52 KiB  3.6 GiB  2.4 TiB  8.57                   
+    MIN/MAX VAR: 1.00/1.00  STDDEV: 0
+
+## Check Pool Statistics
+
+To check for more details about other pool statistics such as quota objects,
+quota bytes, used compression, and under compression, use `ceph df detail`
+
+For example:
+
+    # ceph df detail
+    --- RAW STORAGE ---
+    CLASS     SIZE    AVAIL     USED  RAW USED  %RAW USED
+    ssd    2.6 TiB  2.4 TiB  230 GiB   230 GiB       8.57
+    TOTAL  2.6 TiB  2.4 TiB  230 GiB   230 GiB       8.57
+    
+    --- POOLS ---
+    POOL                 ID  PGS   STORED   (DATA)   (OMAP)  OBJECTS     USED   (DATA)   (OMAP)  %USED  MAX AVAIL  QUOTA OBJECTS  QUOTA BYTES  DIRTY  USED COMPR  UNDER COMPR
+    backups               1   32      0 B      0 B      0 B        0      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    volumes               2   32   13 GiB   13 GiB      0 B    3.35k   39 GiB   39 GiB      0 B   1.66    773 GiB            N/A          N/A    N/A         0 B          0 B
+    images                3   32   62 GiB   62 GiB      0 B    8.04k  187 GiB  187 GiB      0 B   7.47    773 GiB            N/A          N/A    N/A         0 B          0 B
+    metrics               4   32  127 KiB  113 KiB   14 KiB      238  3.1 MiB  3.1 MiB   41 KiB      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    vms                   5   32      0 B      0 B      0 B        0      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    .rgw.root             6   32  3.1 KiB  3.1 KiB      0 B        6   72 KiB   72 KiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    default.rgw.log       7   32  3.6 KiB  3.6 KiB      0 B      209  408 KiB  408 KiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    .mgr                  8    1  1.7 MiB  1.7 MiB      0 B        2  5.1 MiB  5.1 MiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    default.rgw.control   9    1      0 B      0 B      0 B        8      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
+    default.rgw.meta     10    1  2.4 KiB    382 B  2.0 KiB        3   30 KiB   24 KiB  6.0 KiB      0    773 GiB            N/A          N/A    N/A         0 B          0 B
