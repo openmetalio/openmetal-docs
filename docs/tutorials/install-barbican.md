@@ -1,51 +1,13 @@
 ---
 sidebar_position: 7
 ---
-# How to Install OpenStack Barbican on your OpenMetal Cloud
+# How to Utilize OpenStack Barbican on your OpenMetal Cloud
 
-## Prerequisites
+## Prerequisite
 
-- SSH Access to your OMI Nodes
-- A [python virtual environment for kolla-ansible](https://openmetal.io/docs/manuals/operators-manual/day-4/kolla-ansible/prepare-kolla-ansible)
+- Familiarity with OpenStackClient
 
-## Step 1 - Modify your kolla-ansible config
-
-The kolla-ansible config file lives in `/etc/kolla/globals.yml` you will want to
-modify that file an add the following in a new line within the config.
-
-```yaml
-enable_barbican: 'yes'
-
-## NOTE: The below options are optional. Remove the '# ' in font to use them.
-# Valid options are [ simple_crypto, p11_crypto ]
-# barbican_crypto_plugin: "simple_crypto"
-# barbican_library_path: "/usr/lib/libCryptoki2_64.so"
-```
-
-## Step 2 - Reconfigure kolla-ansible
-
-Whenever calling `kolla-ansible` you will want to note the Kolla Ansible
-inventory and globals files:
-
-- Kolla Ansible Inventory: `/opt/kolla-ansible-cli/inventory.yml`
-- Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
-
-Once you have ensured that your configuration and inventory are there you will
-want to run the following command to install and configure Barbican to your cloud.
-
-```yaml
-kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory reconfigure
-```
-
-:::info
-
-Should the Kolla Ansible Inventory not exist, open a [support
-ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-and we'll ensure it's copied to the control plane nodes.
-
-:::
-
-## Step 3 - Verify that the Barbican endpoints are there
+## Step 1 - Verify that the Barbican endpoints are there
 
 ```bash
 (.venv) [root@fierce-possum kolla]# openstack endpoint list --service barbican
@@ -58,7 +20,7 @@ and we'll ensure it's copied to the control plane nodes.
 +----------------------------------+--------+--------------+--------------+---------+-----------+---------------------------+
 ```
 
-## Step 4 - Install the Barbican OpenStack CLI
+## Step 2 - Install the Barbican OpenStack CLI
 
 While in your virtual environment, install the OpenStack CLI library for secret
 storage.
@@ -67,7 +29,7 @@ storage.
 (.venv) [root@fierce-possum kolla]# pip install python-barbicanclient
 ```
 
-## Step 5 - Create a test secret
+## Step 3 - Create a test secret
 
 To validate Barbican's functionality, run the following command to create your
 first test secret.
