@@ -46,9 +46,14 @@ For example:
       io:
         client:   121 KiB/s rd, 1.2 MiB/s wr, 137 op/s rd, 232 op/s wr
 
+The main things to watch are for the status of health and that all services are up.
+Errors will appear in this output as well to provide context for troubleshooting.
+
 ## Check Ceph Disk Usage
 
-To check the available disk space in your Ceph cluster, use `ceph df`.
+To check a cluster’s data usage and data distribution among pools,
+use the `df` option. It is similar to the Linux `df` command. You can run either
+the `ceph df` command or `ceph df detail` command.
 
 For example:
 
@@ -74,6 +79,25 @@ For example:
     default.rgw.meta           12    8    954 B        4   36 KiB      0    3.4 TiB
     default.rgw.buckets.index  13    8  2.2 MiB       11  6.6 MiB      0    3.4 TiB
 
+The RAW STORAGE section of the output provides an overview of the amount of storage
+the storage cluster uses for data.
+
+SIZE: The overall storage capacity managed by the storage cluster.
+
+In the above example, if the SIZE is 90 GiB, it is the total size without the
+replication factor, which is three by default. The total available capacity with
+the replication factor is 90 GiB/3 = 30 GiB. Based on the full ratio, which is
+0.85% by default, the maximum available space is 30 GiB * 0.85 = 25.5 GiB
+
+AVAIL: The amount of free space available in the storage cluster.
+
+In the above example, if the SIZE is 90 GiB and the USED space is 6 GiB, then
+the AVAIL space is 84 GiB. The total available space with the replication factor,
+which is three by default, is 84 GiB/3 = 28 GiB
+
+USED: The amount of used space in the storage cluster consumed by user data,
+internal overhead, or reserved capacity.
+
 ## Check Ceph OSD individual Disk Usage
 
 To view OSD utilization statistics use, `ceph osd df`
@@ -87,29 +111,3 @@ For example:
     1    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
                           TOTAL  2.6 TiB  230 GiB  226 GiB  52 KiB  3.6 GiB  2.4 TiB  8.57                   
     MIN/MAX VAR: 1.00/1.00  STDDEV: 0
-
-## Check Pool Statistics
-
-To check for more details about other pool statistics such as quota objects,
-quota bytes, used compression, and under compression, use `ceph df detail`
-
-For example:
-
-    # ceph df detail
-    --- RAW STORAGE ---
-    CLASS     SIZE    AVAIL     USED  RAW USED  %RAW USED
-    ssd    2.6 TiB  2.4 TiB  230 GiB   230 GiB       8.57
-    TOTAL  2.6 TiB  2.4 TiB  230 GiB   230 GiB       8.57
-    
-    --- POOLS ---
-    POOL                 ID  PGS   STORED   (DATA)   (OMAP)  OBJECTS     USED   (DATA)   (OMAP)  %USED  MAX AVAIL  QUOTA OBJECTS  QUOTA BYTES  DIRTY  USED COMPR  UNDER COMPR
-    backups               1   32      0 B      0 B      0 B        0      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    volumes               2   32   13 GiB   13 GiB      0 B    3.35k   39 GiB   39 GiB      0 B   1.66    773 GiB            N/A          N/A    N/A         0 B          0 B
-    images                3   32   62 GiB   62 GiB      0 B    8.04k  187 GiB  187 GiB      0 B   7.47    773 GiB            N/A          N/A    N/A         0 B          0 B
-    metrics               4   32  127 KiB  113 KiB   14 KiB      238  3.1 MiB  3.1 MiB   41 KiB      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    vms                   5   32      0 B      0 B      0 B        0      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    .rgw.root             6   32  3.1 KiB  3.1 KiB      0 B        6   72 KiB   72 KiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    default.rgw.log       7   32  3.6 KiB  3.6 KiB      0 B      209  408 KiB  408 KiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    .mgr                  8    1  1.7 MiB  1.7 MiB      0 B        2  5.1 MiB  5.1 MiB      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    default.rgw.control   9    1      0 B      0 B      0 B        8      0 B      0 B      0 B      0    773 GiB            N/A          N/A    N/A         0 B          0 B
-    default.rgw.meta     10    1  2.4 KiB    382 B  2.0 KiB        3   30 KiB   24 KiB  6.0 KiB      0    773 GiB            N/A          N/A    N/A         0 B          0 B

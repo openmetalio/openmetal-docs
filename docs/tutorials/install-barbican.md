@@ -5,7 +5,8 @@ sidebar_position: 7
 
 ## Prerequisite
 
-- Familiarity with OpenStackClient
+- [Familiarity with OpenStackClient](https://openmetal.io/docs/manuals/operators-manual/day-1/command-line/openstackclient)
+- [Barbican CLI](https://pypi.org/project/python-barbicanclient/)
 
 ## Step 1 - Verify that the Barbican endpoints are there
 
