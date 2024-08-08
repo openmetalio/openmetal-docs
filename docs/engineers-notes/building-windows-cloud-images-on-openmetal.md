@@ -153,7 +153,7 @@ security group called “Remote Windows Image Building”
 
 The screenshots below illustrate some of the selections made during Instance
 creation. For more on how to create and access instances on OpenStack refer to
-[How to create an instance](https://openmetal.io/docs/manuals/openstack-users/how-to-create-an-instance/).
+[How to create an instance](https://openmetal.io/docs/manuals/users-manual/how-to-create-an-instance).
 
 - Ubuntu 20 VM Image
 - 4 VCPU, 16 GB Ram, 50 GB Disk (m1.large flavor)
