@@ -129,7 +129,7 @@ For example:
 
 With everything prepared, install OpenStackClient with:
 
-    pip install openstackclient
+    pip install python-openstackclient
 
 **Step 6**: Activate User Authentication
 
