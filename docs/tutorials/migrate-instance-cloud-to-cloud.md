@@ -120,7 +120,7 @@ openstack server list
 ## Step 5: Re-Attach Volumes (Optional)
 
 If the instance had additional volumes attached in the source cloud, you'll need
-to repeat the `rbd export` process for those volumes, upload them to Glance as 
+to repeat the `rbd export` process for those volumes, upload them to Glance as
 images, and then recreate or attach them to the new instance.
 
 - Ensure that the network and flavor configurations in the destination cloud match
