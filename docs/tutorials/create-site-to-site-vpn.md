@@ -11,7 +11,6 @@ For Horizon procedure please use - [Horizon VPN Site-to-Site](https://openmetal.
 
 ## Prerequisites
 
-- Cloud configured for [VPNaaS](vpnaas-configure-deploy.md)
 - Familiarity with OpenStackClient
 
 ## Overview
