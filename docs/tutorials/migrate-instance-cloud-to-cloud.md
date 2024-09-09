@@ -1,4 +1,4 @@
-# Migrate a Ceph-backed Instance from Cloud to Cloud
+# Migrate an OpenStack Instance from Cloud to Cloud
 
 Author: Ramon Grullon
 
@@ -7,15 +7,19 @@ one OpenStack cloud environment to another. The main challenge involves ensuring
 that the instance, its associated storage volumes, and network configurations
 are correctly replicated in the target cloud.
 
+This process will focus on exporting from the source cloud's Ceph storage and
+importing to the destination cloud's OpenStack cluster.
+
 ## Prerequisites
 
 1. **Ensure Access to Source and Destination OpenStack Clouds**:
    - Source and destination clouds must be running compatible OpenStack and Ceph
    versions.
-   - Both clouds should have access to Ceph via the `rbd` (RADOS Block Device)
+   - Source cloud needs access to Ceph via the `rbd` (RADOS Block Device)
    command-line tool.
-   - Preconfigured virtualenv with OpenStack CLI and `pigz` installed
+   - Destination cloud needs access to OpenStack CLI
    - [OpenstackCLI](../operators-manual/day-1/command-line/openstackclient)
+   - Preconfigured virtualenv with OpenStack CLI and `pigz` installed
 
 ## Considerations
 
@@ -75,7 +79,7 @@ rbd -p images export <image-name> - | pigz -c --fast | ssh <user>@<destination-c
 
 - `rbd -p <pool> export <image-name> -`: Exports the RBD image from Ceph
 - `pigz - c --fast`: Compresses the image
-- `ssh <user>@<destination-cloud-ip> "pigz -cd > /opt/image.raw"`:
+- `ssh <user>@<destination-cloud-ip> "pigz -cd > /opt/image.raw`:
 Uses `ssh` to securely transfer the compressed image and decompress directly on
 the destination cloud and save it as `image.raw
 
@@ -85,7 +89,7 @@ Now that the image is decompressed, upload it to the OpenStack Image service on
 the destination cloud:
 
 ```bash
-openstack image create --file /home/clouduser/images/image.raw --disk-format raw --container-format bare <new-image-name>
+openstack image create --file /opt/image.raw --disk-format raw --container-format bare <new-image-name>
 ```
 
 - Replace `<new-image-name>` with the name you want to assign to the uploaded image.
@@ -96,6 +100,15 @@ Verify the image upload:
 
 ```bash
 openstack image list
+```
+
+Set appropriate properties on image to take advantage of Ceph performance
+
+SCSI provides support for advanced features like discard TRIM, improving storage
+efficiency and data integrity by allowing better management of unused blocks.
+
+```bash
+openstack image set --property hw_scsi_model=virtio-scsi --property hw_disk_bus=scsi <new-image-name>
 ```
 
 ## Step 4: Create a New Instance from the Uploaded Image
