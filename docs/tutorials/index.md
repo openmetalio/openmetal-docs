@@ -15,7 +15,7 @@ within an OpenMetal cloud.
 2. [Spin up an Instance with Ephemeral Storage](./ephemeral-storage.md)
 3. [Getting Started with Ceilometer and Gnocchi](./telemetry.md)
 4. [VPNaaS Configuration and Deployment](./vpnaas-configure-deploy.md)
-5. [Create a Site-to-Site VPN Connection with Endpoint Groups](./create-site-to-site-vpn.md)
+5. [Create a Site-to-Site VPN Connection with Endpoint Groups](./create-site-to-site-vpn.obsolete)
 6. [Working with OpenStack Barbican](intro-to-barbican.md)
 7. [How to install and configure Barbican on your OpenMetal Cloud](install-barbican.md)
 8. [Create EC2 Credentials for Swift S3 API Access](swift-api-s3.md)
