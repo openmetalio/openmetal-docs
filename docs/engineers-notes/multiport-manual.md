@@ -7,11 +7,6 @@ as an entry and exit point for data traffic flowing to and from other networks.
 It is a routing device that enables communication between devices within the same
 local network and devices on external networks, such as the internet.
 
-In summary, the default gateway is a fundamental component of network
-communication, allowing devices within a local network to access external
-networks, including the internet. It plays a crucial role in routing data between
-different networks, ensuring proper communication and connectivity.
-
 ## The Right Way to Do It (Private with Gateway) Floating for (NAT/SNAT)
 
 - Configure a private interface with a gateway.
@@ -80,7 +75,7 @@ default via 192.168.0.1 dev ens3 proto dhcp src 192.168.0.147 metric 100
 
 ```
 
-In summary, the private interface with its associated gateway facilitates
+The private interface with its associated gateway facilitates
 controlled communication between internal and external networks, enabling
 internet access and centralized management. Simultaneously, keeping additional
 ports/networks without a gateway is crucial for network isolation, security, and
@@ -677,7 +672,3 @@ You can then enable and start the service:
 systemctl enable policy-routing.service
 systemctl start policy-routing.service
 ```
-
-This setup will execute your script during the system startup, applying the
-specified IP routes. Adjust the script and unit file according to your specific
-requirements and paths.
