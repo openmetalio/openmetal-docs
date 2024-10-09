@@ -27,7 +27,9 @@ hardware node's package manager and the Kolla Ansible Docker images.
 Ceph updates are handled through the node's package manager.
 
 ## Updating Kolla Ansible Docker Images
-See [Update Kolla Images](../../operators-manual/day-2/update-kolla-images.md) for the steps needed to update your cloud.
+
+See [Update Kolla Images](../../operators-manual/day-2/update-kolla-images.md)
+for the steps needed to update your cloud.
 
 ## Performing Package Manager Updates
 
