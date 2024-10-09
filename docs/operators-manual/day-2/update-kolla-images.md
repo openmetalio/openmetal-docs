@@ -19,7 +19,8 @@ kolla-ansible -i inventory.yml -i ansible/inventory/multinode mariadb_backup
 ```
 
 ## Pull images
-Pull in updated Kolla images. You can confirm when image updates are available by visiting [Kolla Image Build History](../../kolla-image-update/build-history.md).
+Pull in updated Kolla images. You can confirm when image updates are available
+by visiting [Kolla Image Build History](../../kolla-image-update/build-history.md).
 
 ```sh
 kolla-ansible -i inventory.yml -i ansible/inventory/multinode pull
