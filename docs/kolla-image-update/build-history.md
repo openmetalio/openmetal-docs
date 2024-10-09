@@ -36,7 +36,8 @@ page for information relating to security updates.
 
 ### OpenStack service updates
 
-OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/) index.
+OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/)
+index.
 
 ### Images Update History
 
