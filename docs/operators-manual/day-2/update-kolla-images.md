@@ -9,8 +9,7 @@ for OpenStack services are also a benefit of updating your cloud's images.
 
 ## Prepare Kolla Ansible
 
-To update the Kolla images, first [prepare your Kolla Ansible environment]
-(../day-4/kolla-ansible/prepare-kolla-ansible.md).
+To update the Kolla images, first [prepare your Kolla Ansible environment](../day-4/kolla-ansible/prepare-kolla-ansible.md).
 
 ## Freeze changes to cloud
 
