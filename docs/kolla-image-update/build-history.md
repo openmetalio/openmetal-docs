@@ -2,7 +2,7 @@
 This page tracks the history of when Kolla images have been built. Images are
 built when major security issues are patched in the base image operating system
 and when changes to OpenStack services, like bug fixes and improvements, are
-released.  OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/) index.
+released. OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/) index.
 
 ## Current OpenStack release
 We are currently deploying OpenStack 2023.2 with Ubuntu 22.04 as the base operating system.
@@ -21,9 +21,12 @@ See [Update Kolla Images](../operators-manual/day-2/update-kolla-images.md) for 
 ## OpenStack 2023.2
 Latest image tag: `2023.2-ubuntu-jammy`
 
-### Images updated 10/7/2024
-#### Security updates
-TODO: this
-#### OpenStack service updates
-TODO: this
-What are the openstack services I give a shit about track releases for?
+### Ubuntu 22.04 LTS (Jammy) Security updates
+See the [Ubuntu Security Notices](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0) page for information relating to security updates.
+
+### OpenStack service updates
+OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/) index.
+
+### Images Update History
+- Images updated 10/7/2024
+- Images updated 9/5/2024
