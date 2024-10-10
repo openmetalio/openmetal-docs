@@ -14,8 +14,8 @@ operating system.
 ## Image tagging
 
 When images are built, the date they were built is appended to the image tag, in
-the format "MM-DD-YYYY". Images built on October 7, 2024 for the 2023.2 release
-will be tagged with `2023.2-ubuntu-jammy-10-07-2024`. The latest images built
+the format "YYYY-MM-DD". Images built on October 10, 2024 for the 2023.2 release
+will be tagged with `2023.2-ubuntu-jammy-2024-10-10`. The latest images built
 will have two tags applied, one being the base tag (`2023.2-ubuntu-jammy`, for
 example), and the other including the appended date. This allows for rolling
 back to previous images if necessary.
@@ -39,7 +39,13 @@ page for information relating to security updates.
 OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/)
 index.
 
-### Images Update History
+### Image Update History
 
-- Images updated 10/7/2024
-- Images updated 9/5/2024
+| Tag                            | Build Date | Notes                                                                                                                                               |
+|--------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| 2023.2-ubuntu-jammy-2024-10-10 | 10/10/2024 | - [Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)                                       |
+|                                |            | - [Cinder (23.2.0-12) new features and bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-2-0-12-stable-2023-2)      |
+|                                |            | - [Neutron (23.2.0-18) security issues and bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-2-0-18-stable-2023-2) |
+|                                |            | - [Nova (28.3.0-11) bug fixes](https://docs.openstack.org/releasenotes/nova/2023.2.html#relnotes-28-3-0-11-stable-2023-2)                           |
+|                                |            | - [Octavia (13.0.0-32) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-32-stable-2023-2)                     |
+|                                | 9/5/2024   |                                                                                                                                                     |
