@@ -43,7 +43,7 @@ index.
 
 | Tag                            | Build Date | Notes                                                                                                                                               |
 |--------------------------------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| 2023.2-ubuntu-jammy-2024-10-10 | 10/10/2024 | - [Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)                                       |
+| 2023.2-ubuntu-jammy-2024-10-10 | 10/10/2024 | - [Ubuntu 22.04 (Jammy) security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)                         |
 |                                |            | - [Cinder (23.2.0-12) new features and bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-2-0-12-stable-2023-2)      |
 |                                |            | - [Neutron (23.2.0-18) security issues and bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-2-0-18-stable-2023-2) |
 |                                |            | - [Nova (28.3.0-11) bug fixes](https://docs.openstack.org/releasenotes/nova/2023.2.html#relnotes-28-3-0-11-stable-2023-2)                           |
