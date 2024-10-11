@@ -91,8 +91,8 @@ Both inventory files must be passed when using Kolla Ansible.
 whereas `/opt/kolla-ansible-cli/ansible/inventory/multinode` groups the hosts as
 required by Kolla Ansible.
 
-**Caution\!** Read over `/opt/kolla-ansible-cli/inventory.yml` to ensure the
-*hosts specified within match the hosts you intend to make changes to.
+Double check the hosts specified in `/opt/kolla-ansible-cli/inventory.yml`
+match the hosts listed in the Assets page of your cloud in OpenMetal Central.
 
 #### Missing Inventory
 
