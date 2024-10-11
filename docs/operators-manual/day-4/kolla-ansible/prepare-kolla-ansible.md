@@ -136,7 +136,7 @@ plane nodes are labeled as "Cloud Core" in the Assets page of your cloud in
 OpenMetal Central.
 
 Next, navigate to the folder `/opt/kolla-ansible-cli` which contains required
-Kolla Ansible configuration: 
+Kolla Ansible configuration:
 
     cd /opt/kolla-ansible-cli
 
