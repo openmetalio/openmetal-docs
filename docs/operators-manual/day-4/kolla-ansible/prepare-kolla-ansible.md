@@ -43,13 +43,14 @@ OpenMetal Central.
 ### Add SSH key for Kolla Ansible
 
 You must add an SSH public key to your cloud's nodes. This public key can be added
-using OpenMetal Central under **Settings -> Add SSH Key**. 
+using OpenMetal Central under **Settings -> Add SSH Key**.
 
 Create an Ansible deployment SSH keypair with:
 
     ssh-keygen -t ed25519 -C "kolla-ansible"
 
 ### Prepare Kolla Ansible Quick Start
+
     cd /opt/kolla-ansible-cli
     virtualenv .venv
     source .venv/bin/activate
@@ -76,6 +77,7 @@ should be performed from the node in your cloud that contains the path
 to provide our custom configuration to OpenStack services.
 
 ### Kolla Ansible Configuration Files
+
 First, we introduce you to the files required for adjusting Kolla
 Ansible's configuration. These files are used when preparing Kolla
 Ansible.
@@ -168,10 +170,9 @@ Should `requirements.txt` not exist, you can ask us to sync that file to your
 cloud.
 
 For our latest deployments running OpenStack 2023.2, `requirements.txt` should contain:
-```
-ansible-core==2.15.*
-kolla-ansible==17.*
-```
+
+    ansible-core==2.15.*
+    kolla-ansible==17.3.*
 
 #### **Step 5** -- Install Ansible Galaxy dependencies
 
