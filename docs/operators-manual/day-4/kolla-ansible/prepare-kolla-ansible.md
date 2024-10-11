@@ -52,7 +52,7 @@ Create an Ansible deployment SSH keypair with:
 ### Prepare Kolla Ansible Quick Start
 
     cd /opt/kolla-ansible-cli
-    virtualenv .venv
+    python3 -m venv .venv
     source .venv/bin/activate
     pip install --upgrade pip
     pip install -r requirements.txt
@@ -145,7 +145,7 @@ Kolla Ansible configuration:
 Create a Python virtual environment and activate it:
 
     cd /opt/kolla-ansible
-    virtualenv .venv
+    python3 -m venv .venv
     source .venv/bin/activate
 
 #### **Step 3** -- Update pip
