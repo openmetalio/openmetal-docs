@@ -1,0 +1,292 @@
+openapi: 3.0.3
+info:
+  title: OpenMetal API
+  description: |
+    ## Authentication
+
+    All endpoints are secured using **Bearer Token Authentication**. To access the API, you need to include a valid token in the `Authorization` header of your requests.  
+   
+    Example:
+    ```
+    Authorization: Bearer <your-token>
+    ```
+    Ensure that the token is kept secure and not shared publicly. Unauthorized requests will result in a `401 Unauthorized` response. 
+    Please ask your OpenMetal account manager for a valid token. If you have trouble authenticating or accessing the API, please contact
+    [support@openmetal.io](mailto:support@openmetal.io) for assistance.
+
+  version: 1.0.0
+
+  x-logo:
+    url: https://central.openmetal.io/assets/img/open-metal-logo.svg
+    altText: OpenMetal
+    href: https://openmetal.io    # Optional, clicking the logo redirects to this URL
+
+servers:
+  - url: https://api-omc.openmetal.io/v1
+    description: Production server
+
+tags:
+  - name: Clouds
+    description: Oppertions for managing a collection of severs. Private clouds, or a 
+      group of baremetal nodes will be owned by a cloud resource.
+
+x-tagGroups:
+  - name: Core Endpoints
+    tags:
+      - Clouds
+
+paths:
+  /clouds:
+    get:
+      tags:
+        - Clouds
+      summary: Get a list of clouds
+      description: Retrieve a list of of your clouds.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cloud'
+  /clouds/{cloudId}:
+    get:
+      tags:
+        - Clouds
+      summary: Get a cloud by ID
+      description: Retrieve details of a specific cloud by their ID.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to retrieve.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Cloud found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cloud'
+        '404':
+          description: Cloud not found.
+  /clouds/{cloudId}/stats:
+    get:
+      tags:
+        - Clouds
+      summary: Get hardware information
+      description: Get hardware information for a specific cloud. This includes current power state of all nodes.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to retrieve.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Hardware information found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudStats'
+        '404':
+          description: Cloud stats not found.
+
+  /deployment/cloud/{cloudId}/node/{nodeUuid}/power:
+    post:
+      tags:
+        - Clouds
+      summary: Change the power state of the node.
+      description: Change power state. Options are "power on", "power off", or "rebooting".
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud that owns the node.
+          schema:
+            type: string
+        - name: nodeUuid
+          in: path
+          required: true
+          description: The UUID of the node to change the power state. This UUID can be found in the cloud hardware information.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                power_state:
+                  type: string
+                  description: The new power state of the node. Options are "power on", "power off", or "rebooting".
+                  example: "power on"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Power state changed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    description: The result of the power state change
+                    example: "success"
+                  power_state:
+                    type: string
+                    description: The requested new power state of the node.
+                    example: "power on"
+                  node_uuid:
+                    type: string
+                    description: The UUID of the node.
+                    example: "0000000-0000-00-00000"
+        '500':
+          description: Unable to update power state
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Cloud:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "0Absd1"
+        label:
+          type: string
+          description: A user-friendly name for the cloud.
+          example: "My first cloud"
+        description:
+          type: string
+          description: A brief description of the cloud.
+          example: "This cloud is for testing purposes."
+        created_at:
+          type: string
+          description: The date and time the cloud was created.
+          example: "2021-01-01T00:00:00Z"
+        fields:
+          type: object
+          description: Additional fields for the cloud.
+          properties:
+            cloud_type:
+              type: string
+              description: The type of cloud. Current options are "pcc" or "baremetal".
+              example: "pcc"
+            cloud_uuid:
+              type: string
+              description: The UUID of the cloud.
+              example: "0000000-0000-00-00000"
+            cloud_version:
+              type: string
+              description: Version of the deployment suite used to provision the cloud.
+              example: "2.0"
+            owner_name:
+              type: string
+              description: The name of the organization that owns the cloud.
+              example: "My Company"
+            organization_id:
+              type: string
+              description: The organization ID that owns the cloud.
+              example: "0a2erc"
+            hostname:
+              type: string
+              description: The hostname of the cloud.
+              example: "127.0.0.1"
+            order_id:
+              type: string
+              description: The order ID of the cloud. Created when the cloud is requested.
+              example: "0a2erc"
+            pod_location:
+              type: string
+              description: Datacenter location of the cloud.
+              example: "pod_2"
+            provision_status:
+              type: string
+              description: The status of the cloud provisioning.
+              example: "complete"
+            provision_completion_time:
+              type: string
+              description: The date and time the cloud provisioning was completed.
+              example: "2021-01-01T00:00:00Z"
+            pending_delete:
+              type: boolean
+              description: Indicates if the cloud is pending deletion.
+              example: false
+
+    CloudStats:
+      type: object
+      properties:
+        cloud_state: 
+          type: string
+          description: The current state of the cloud.
+          example: "RUNNING"
+        cloud_uuid:
+          type: string
+          description: The UUID of the cloud.
+          example: "0000000-0000-00-00000"
+        nodes:
+          type: array
+          description: A list of nodes in the cloud.
+          items:
+            type: object
+            properties:
+              hostname:
+                type: string
+                description: hostname of the node.
+                example: "large.node1"
+              uuid:
+                type: string
+                description: The UUID of the node.
+                example: "0000000-0000-00-00000"
+              type:
+                type: string
+                description: The type of node.
+                example: "large_v1"
+              memory:
+                type: string
+                description: The total memory of the node.
+                example: "64 GB"
+              power_state:
+                type: string
+                description: The current power state of the node.
+                schema: {
+                  type: string,
+                  enum: ["power on", "power off", "rebooting"]
+                }
+                example: "power on"
+              disks:
+                type: array
+                description: A list of disks in the node.
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: The name of the disk.
+                      example: "/dev/sda"
+                    size:
+                      type: string
+                      description: The size of the disk.
+                      example: "1 TB"
+                    root:
+                      type: boolean
+                      description: Indicates if the disk is the root disk.
+                      example: true
