@@ -154,6 +154,10 @@ paths:
                     type: string
                     description: The UUID of the node.
                     example: "0000000-0000-00-00000"
+        '400':
+          description: Invalid power state request
+        '409':
+          description: Unable to process power state request - Node Locked.  Please try again in a few minutes.
         '500':
           description: Unable to update power state
 components:
@@ -237,6 +241,7 @@ components:
         cloud_state: 
           type: string
           description: The current state of the cloud.
+          enum: ["RUNNING", "PENDING", "SEMAPHORE", "ERROR", "PROVISIONING", "DELETED", "PENDING-DELETE", "SUSPENDED"]
           example: "RUNNING"
         cloud_uuid:
           type: string
