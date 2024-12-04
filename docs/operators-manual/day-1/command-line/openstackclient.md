@@ -129,7 +129,7 @@ For example:
 
 With everything prepared, install OpenStackClient with:
 
-    pip install openstackclient
+    pip install python-openstackclient
 
 **Step 6**: Activate User Authentication
 
@@ -160,6 +160,43 @@ For example:
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
 
 Here, we can see the server created in the previous guide.
+
+## Per Project Source File
+
+In certain situations, you might be required to run an OpenStack command in a
+project other than the default admin project provided by your openrc file.
+
+This can be accomplished by editing the openrc file and changing the project UUID
+to the project required. You would then source the file as normal.
+
+For example:
+
+    (omi-cli) [root@silly-manatee ~]# cat /etc/kolla/admin-openrc.sh 
+    # Clear any old environment that may conflict.
+    for key in $( set | awk '{FS="="}  /^OS_/ {print $1}' ); do unset $key ; done
+    export OS_PROJECT_DOMAIN_NAME=Default
+    export OS_USER_DOMAIN_NAME=Default
+    export OS_PROJECT_NAME=admin <------------ These would be changed to the desired project
+    export OS_TENANT_NAME=admin <----------- These would be changed to the desired project
+    export OS_USERNAME=admin
+    export OS_PASSWORD=<Password>
+    export OS_AUTH_URL=http://192.168.3.254:5000
+    export OS_INTERFACE=internal
+    export OS_ENDPOINT_TYPE=internalURL
+    export OS_IDENTITY_API_VERSION=3
+    export OS_REGION_NAME=IAD3
+    export OS_AUTH_PLUGIN=password
+    export OS_INSECURE=true
+    export OS_VERIFY=false
+
+To verify you are running commands from the correct project, run the env command
+and confirm the OS_PROJECT variable
+
+For example:
+
+    (omi-cli) [root@silly-manatee ~]# env | grep test
+    OS_TENANT_NAME=test
+    OS_PROJECT_NAME=test
 
 ## Command Structure
 

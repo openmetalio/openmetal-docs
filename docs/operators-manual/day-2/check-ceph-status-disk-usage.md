@@ -46,9 +46,14 @@ For example:
       io:
         client:   121 KiB/s rd, 1.2 MiB/s wr, 137 op/s rd, 232 op/s wr
 
+The main things to watch are for the status of health and that all services are up.
+Errors will appear in this output as well to provide context for troubleshooting.
+
 ## Check Ceph Disk Usage
 
-To check the available disk space in your Ceph cluster, use `ceph df`.
+To check a cluster’s data usage and data distribution among pools,
+use the `df` option. It is similar to the Linux `df` command. You can run either
+the `ceph df` command or `ceph df detail` command.
 
 For example:
 
@@ -73,3 +78,36 @@ For example:
     default.rgw.control        11   32      0 B        8      0 B      0    3.4 TiB
     default.rgw.meta           12    8    954 B        4   36 KiB      0    3.4 TiB
     default.rgw.buckets.index  13    8  2.2 MiB       11  6.6 MiB      0    3.4 TiB
+
+The RAW STORAGE section of the output provides an overview of the amount of storage
+the storage cluster uses for data.
+
+SIZE: The overall storage capacity managed by the storage cluster.
+
+In the above example, if the SIZE is 90 GiB, it is the total size without the
+replication factor, which is three by default. The total available capacity with
+the replication factor is 90 GiB/3 = 30 GiB. Based on the full ratio, which is
+0.85% by default, the maximum available space is 30 GiB * 0.85 = 25.5 GiB
+
+AVAIL: The amount of free space available in the storage cluster.
+
+In the above example, if the SIZE is 90 GiB and the USED space is 6 GiB, then
+the AVAIL space is 84 GiB. The total available space with the replication factor,
+which is three by default, is 84 GiB/3 = 28 GiB
+
+USED: The amount of used space in the storage cluster consumed by user data,
+internal overhead, or reserved capacity.
+
+## Check Ceph OSD individual Disk Usage
+
+To view OSD utilization statistics use, `ceph osd df`
+
+For example:
+
+    # ceph osd df
+    ID  CLASS  WEIGHT   REWEIGHT  SIZE     RAW USE  DATA     OMAP    META     AVAIL    %USE  VAR   PGS  STATUS
+    2    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+    0    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+    1    ssd  0.87329   1.00000  894 GiB   77 GiB   75 GiB  17 KiB  1.2 GiB  818 GiB  8.57  1.00  227      up
+                          TOTAL  2.6 TiB  230 GiB  226 GiB  52 KiB  3.6 GiB  2.4 TiB  8.57                   
+    MIN/MAX VAR: 1.00/1.00  STDDEV: 0
