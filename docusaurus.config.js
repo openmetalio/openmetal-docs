@@ -40,28 +40,28 @@ const config = {
   }, ],
   ssrTemplate: `<!DOCTYPE html>
   <html <%~ it.htmlAttributes %>>
-	<head>
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <meta charset="UTF-8">
-	  <meta name="generator" content="Docusaurus v<%= it.version %>">
-	  <% it.metaAttributes.forEach((metaAttribute) => { %>
-		<%~ metaAttribute %>
-	  <% }); %>
-	  <%~ it.headTags %>
-	  <% it.stylesheets.forEach((stylesheet) => { %>
-		<link rel="stylesheet" href="<%= it.baseUrl %><%= stylesheet %>" />
-	  <% }); %>
-	</head>
-	<body <%~ it.bodyAttributes %>>
-	  <%~ it.preBodyTags %>
-	  <div id="__docusaurus">
-		<%~ it.appHtml %>
-	  </div>
-	  <% it.scripts.forEach((script) => { %>
-		<script src="<%= it.baseUrl %><%= script %>"></script>
-	  <% }); %>
-	  <%~ it.postBodyTags %>
-	</body>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="UTF-8">
+      <meta name="generator" content="Docusaurus v<%= it.version %>">
+      <% it.metaAttributes.forEach((metaAttribute) => { %>
+        <%~ metaAttribute %>
+      <% }); %>
+      <%~ it.headTags %>
+      <% it.stylesheets.forEach((stylesheet) => { %>
+        <link rel="stylesheet" href="<%= it.baseUrl %><%= stylesheet %>" />
+      <% }); %>
+    </head>
+    <body <%~ it.bodyAttributes %>>
+      <%~ it.preBodyTags %>
+      <div id="__docusaurus">
+        <%~ it.appHtml %>
+      </div>
+      <% it.scripts.forEach((script) => { %>
+        <script src="<%= it.baseUrl %><%= script %>"></script>
+      <% }); %>
+      <%~ it.postBodyTags %>
+    </body>
   </html>`,
   plugins: [
     [
@@ -928,50 +928,15 @@ const config = {
         },
         {
           "title": "Legal",
-          "items": [{
-              "label": "Terms of Use",
-              "href": "https://openmetal.io/universal-terms-of-use/"
-            },
+          "items": [
             {
-              "label": "Acceptable Use Policy",
-              "href": "https://openmetal.io/aup/"
-            },
-            {
-              "label": "Privacy Policy",
-              "href": "https://openmetal.io/privacy-policy/"
-            },
-            {
-              "label": "Cookie Policy",
-              "href": "https://openmetal.io/cookie-policy/"
-            },
-            {
-              "label": "Data Processing Addendum",
-              "href": "https://openmetal.io/dpa/"
-            },
-            {
-              "label": "CCPA Compliance",
-              "href": "https://openmetal.io/ccpa-compliance/"
-            },
-            {
-              "label": "Do Not Sell or Share My Data",
-              "href": "https://openmetal.io/do-not-sell-or-share-my-personal-information/"
-            },
-            {
-              "label": "Limit the Use of My Sensitive Personal Information",
-              "href": "https://openmetal.io/limit-use-and-disclosure-of-sensitive-personal-information/"
-            },
-            {
-              "label": "Accessibility Statement",
-              "href": "https://openmetal.io/accessibility-statement/"
-            },
-            {
-              "label": "Legal Inquiries",
-              "href": "https://openmetal.io/legal-inquiries/"
+              "label": "Trust Center",
+              "href": "https://openmetal.io/legal/"
             },
             {
               "label": "Attribution",
               "href": "https://openmetal.io/attribution/"
-            },
+            }
           ]
         }
       ],
