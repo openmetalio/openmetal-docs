@@ -51,6 +51,42 @@ is using a self-signed or untrusted certificate.
 After proceeding past the SSL warning, the IPMI HTML5 interface will load,
 allowing you to interact with your server remotely.
 
-You can now monitor the server, reboot, or perform any other remote management tasks.
+Press the virtual media button to mount your ISO.
 
-![ipmi console](images/ipmi-console.png "IPMI Console")
+![ipmi button](images/ipmi-media-button.png "IPMI Media Button")
+
+Select the File on your local storage and Mount the ISO.
+
+![ipmi Select](images/ipmi-select.png "IPMI Select")
+
+![ipmi Mount](images/ipmi-mount.png "IPMI Mount")
+
+Restart the server and invoke the BOOT Menu by pressing F11.
+The mounted ISO will appear on the Menu as a CDROM device.
+
+![ipmi Boot](images/ipmi-boot-menu.png "IPMI Boot")
+
+![ipmi CDROM](images/ipmi-cdrom.png "IPMI CDROM")
+
+Select the Install OS option and allow some time (UP TO 2 HOURS) for your ISO
+to load.
+
+![ipmi Install](images/ipmi-install.png "IPMI Install")
+
+![ipmi Install Complete](images/ipmi-install-complete.png"IPMI Install Complete")
+
+## Summary
+
+You have successfully completed the process of accessing and managing your server
+via the Central Dashboard's IPMI interface. By following this guide, you were
+able to:
+
+Log in to the Central Dashboard.
+Navigate to the server's asset information and select IPMI access.
+Handle SSL certificate warnings to safely proceed to the remote console.
+Mount an ISO file and install an operating system using the IPMI HTML5 interface.
+
+This process is essential for remote server management, especially when
+performing OS installations or troubleshooting critical issues.
+If you encounter any challenges or require additional assistance, don't hesitate
+to reach out to your support team.
