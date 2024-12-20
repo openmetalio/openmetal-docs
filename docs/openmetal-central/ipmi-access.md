@@ -46,7 +46,7 @@ is using a self-signed or untrusted certificate.
 
 ![ipmi ssl warn](images/ipmi-ssl-warn.png "IPMI SSL Warn")
 
-## Step 5: Access the Remote Console
+## Step 5: Access & Use of Virtual Media
 
 After proceeding past the SSL warning, the IPMI HTML5 interface will load,
 allowing you to interact with your server remotely.
@@ -73,7 +73,7 @@ to load.
 
 ![ipmi Install](images/ipmi-install.png "IPMI Install")
 
-![ipmi Install Complete](images/ipmi-install-complete.png"IPMI Install Complete")
+![ipmi Install Complete](images/ipmi-install-complete.png "IPMI Install Complete")
 
 ## Summary
 
