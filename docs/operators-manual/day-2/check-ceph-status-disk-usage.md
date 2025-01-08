@@ -12,11 +12,34 @@ cloud's control plane nodes. The storage is considered shared across all
 nodes, which can make recovering an instance and its data trivial. As an
 administrator of this cloud, we aim to provide you information about how
 you can check the status of your Ceph cluster and see available disk
-usage using the command line.
+usage using the Ceph dashboard and the command line.
 
 ## Prerequisites
 
 - Root access to your cloud's control plane nodes
+
+## Ceph Dashboard
+
+The Ceph dashboard is available on port 8443 over HTTPS through the Horizon IP
+or URL. Access the dashboard via https://[Horizon-IP-or-URL]:8443.
+
+### Creating a Dashboard User
+
+A user needs to be created to access the dashboard. The user will need to be
+created by the root user using SSH from one of the cloud's control plane nodes.
+
+To create a user with the administrator role:
+
+```sh
+ceph dashboard ac-user-create <username> -i <file-containing-password> administrator
+```
+
+The dashboard landing page shows the overall disk usage and cluster status among
+other metrics. By default, we set a replication level of 3 on all pools. The
+capacity displayed is the overall capacity and should be divided by 3 to get a
+better sense of available disk space.
+
+For more information see [Overview of the Dashboard Landing Page](https://docs.ceph.com/en/reef/mgr/dashboard/#overview-of-the-dashboard-landing-page).
 
 ## Check Ceph Status
 
