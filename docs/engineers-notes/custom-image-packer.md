@@ -201,11 +201,11 @@ source "openstack" "demo" {
   networks                  = ["<my internal network"]
   floating_ip_network       = "External"
   reuse_ips                 = true
-  flavor                    = "gen2.nano" # openstack flavor list
+  flavor                    = "gen2.nano"     # openstack flavor list
   image_name                = "<some image name"
   source_image              = "<some Ubuntu image ID>"
   ssh_username              = "ubuntu"        # Default SSH user for external source img
-  security_groups           = ["some-group"] # Security groups to allow SSH access
+  security_groups           = ["some-group"]  # Security groups to allow SSH access
   use_blockstorage_volume   = true
   volume_size               = 5
   image_disk_format         = "qcow2"
@@ -222,7 +222,6 @@ build {
   }
 }
 ```
-
 
 ## Validate configuration and build image
 
