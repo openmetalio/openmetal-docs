@@ -105,6 +105,7 @@ With packer initialized you now need to define a `source` block in your
 
 ```hcl
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "<image flavor>" # openstack flavor list
   image_name                = "<new image name>"
   external_source_image_url = "<source image link>"
@@ -128,6 +129,7 @@ should now look like this:
 
 ```hcl
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "m1.small"
   image_name                = "Ubuntu 22.04 (jammy-amd64)"
   external_source_image_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
@@ -169,6 +171,7 @@ packer {
 }
 
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "m1.small"
   image_name                = "Ubuntu 22.04 (jammy-amd64)"
   external_source_image_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
