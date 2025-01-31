@@ -184,6 +184,45 @@ build {
 }
 ```
 
+Here is a more customized example of a `image.pkr.hcl` with Ansible as the provisioner.
+
+```shell
+packer {
+  required_plugins {
+    openstack = {
+      version = ">= 1.0.1"
+      source  = "github.com/hashicorp/openstack"
+    }
+  }
+}
+
+source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
+  networks                  = ["<my internal network"]
+  floating_ip_network       = "External"
+  reuse_ips                 = true
+  flavor                    = "gen2.nano"     # openstack flavor list
+  image_name                = "<some image name"
+  source_image              = "<some Ubuntu image ID>"
+  ssh_username              = "ubuntu"        # Default SSH user for external source img
+  security_groups           = ["some-group"]  # Security groups to allow SSH access
+  use_blockstorage_volume   = true
+  volume_size               = 5
+  image_disk_format         = "qcow2"
+  image_visibility          = "shared"
+  image_min_disk            = 5
+}
+
+build {
+  sources = [
+    "source.openstack.demo"
+  ]
+  provisioner "ansible" {
+    playbook_file = "linux-ansible-base-config.yml"
+  }
+}
+```
+
 ## Validate configuration and build image
 
 Now that your configuration file is complete, verify everything is correct
