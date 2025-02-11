@@ -1,4 +1,4 @@
-# **VPN Troubleshooting Guide**
+# VPN Troubleshooting Guide
 
 ## **Introduction**
 
