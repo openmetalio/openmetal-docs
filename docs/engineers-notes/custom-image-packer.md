@@ -105,6 +105,7 @@ With packer initialized you now need to define a `source` block in your
 
 ```hcl
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "<image flavor>" # openstack flavor list
   image_name                = "<new image name>"
   external_source_image_url = "<source image link>"
@@ -128,6 +129,7 @@ should now look like this:
 
 ```hcl
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "m1.small"
   image_name                = "Ubuntu 22.04 (jammy-amd64)"
   external_source_image_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
@@ -169,6 +171,7 @@ packer {
 }
 
 source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
   flavor                    = "m1.small"
   image_name                = "Ubuntu 22.04 (jammy-amd64)"
   external_source_image_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
@@ -178,6 +181,45 @@ source "openstack" "demo" {
 
 build {
   sources = ["source.openstack.demo"]
+}
+```
+
+Here is a more customized example of a `image.pkr.hcl` with Ansible as the provisioner.
+
+```shell
+packer {
+  required_plugins {
+    openstack = {
+      version = ">= 1.0.1"
+      source  = "github.com/hashicorp/openstack"
+    }
+  }
+}
+
+source "openstack" "demo" {
+  identity_endpoint         = "https://<my identity provider url>:5000"
+  networks                  = ["<my internal network"]
+  floating_ip_network       = "External"
+  reuse_ips                 = true
+  flavor                    = "gen2.nano"     # openstack flavor list
+  image_name                = "<some image name"
+  source_image              = "<some Ubuntu image ID>"
+  ssh_username              = "ubuntu"        # Default SSH user for external source img
+  security_groups           = ["some-group"]  # Security groups to allow SSH access
+  use_blockstorage_volume   = true
+  volume_size               = 5
+  image_disk_format         = "qcow2"
+  image_visibility          = "shared"
+  image_min_disk            = 5
+}
+
+build {
+  sources = [
+    "source.openstack.demo"
+  ]
+  provisioner "ansible" {
+    playbook_file = "linux-ansible-base-config.yml"
+  }
 }
 ```
 
