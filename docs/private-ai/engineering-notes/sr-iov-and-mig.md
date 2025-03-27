@@ -104,7 +104,7 @@ usable by containers, VMs, or native applications through the standard CUDA inte
 
 ## Considerations for OpenStack Integration
 
-In OpenStack Nova, MIG profiles can be exposed as *mediated devices (mdev)*. This
+In OpenStack Nova, MIG profiles can be exposed as **mediated devices (mdev)**. This
 allows them to be scheduled and assigned through Nova flavors. To enable this:
 
 Configure `nova.conf`:

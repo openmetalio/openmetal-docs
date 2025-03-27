@@ -103,8 +103,8 @@ openstack server create \
   gpu-vm-01
 ```
 
-Inside the guest VM, install the **NVIDIA GRID guest driver**, which is required for
-vGPU device recognition. After installation, validate with:
+Inside the guest VM, install the **NVIDIA GRID guest driver**, which is required
+for vGPU device recognition. After installation, validate with:
 
 ```bash
 nvidia-smi

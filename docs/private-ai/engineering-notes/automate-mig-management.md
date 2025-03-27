@@ -36,7 +36,7 @@ If this list is empty after a reboot, MIG partitions must be re-created.
 
 ## Best Practices for MIG Instance Management
 
-1. **Use Predictable Profiles**
+Step 1. **Use Predictable Profiles**
 
   Stick to known-good profiles such as:
 
@@ -49,8 +49,7 @@ If this list is empty after a reboot, MIG partitions must be re-created.
 Avoid frequent reconfiguration, which can lead to resource fragmentation and
 scheduling failures.
 
-<!-- markdownlint-disable-next-line -->
-2. **Predefine Instance Geometry**
+Step 2. **Predefine Instance Geometry**
 
   For consistency, document your MIG layout per node. Example layout for one A100:
 
@@ -64,8 +63,7 @@ Or:
 
 This helps ensure compatibility with OpenStack traits and avoids flavor mismatches.
 
-<!-- markdownlint-disable-next-line -->
-3. **Enable MIG Mode via Automation**
+Step 3. **Enable MIG Mode via Automation**
 
   If not already enabled, you can activate MIG mode during system provisioning:
 
