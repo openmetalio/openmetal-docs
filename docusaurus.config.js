@@ -147,39 +147,30 @@ const config = {
           position: 'left',
           items: [{
               "label": "Hosted Private Cloud",
-              "description": "Day 2 ready, no licensing costs, delivered in 45 seconds.",
+              "description": "Day 2 ready, fixed-cost infrastructure. Full root access. Powered by OpenStack and Ceph.",
               "href": "https://openmetal.io/products/hosted-private-cloud/",
               "itemType": "link",
               "icontype": "external",
               "iconstyle": "detailed",
-              "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-Networking-Box-on-Platform-150x150.png"
+              "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-Cloud-Logo.webp"
             },
             {
-              "label": "OpenStack Private Cloud",
-              "description": "The #1 open source cloud, full root, delivered in 45 seconds.",
-              "href": "https://openmetal.io/products/on-demand-openstack-cloud/",
+              "label": "Bare Metal Dedicated Servers",
+              "description": "Enterprise servers. Supports Virtualization, Big Data, and Blockchain use cases.",
+              "href": "https://openmetal.io/products/bare-metal/",
               "itemType": "link",
               "icontype": "external",
-              "iconstyle": "solid",
-              "icon": "https://openmetal.io/wp-content/uploads/2023/04/openstack-menu.png"
+              "iconstyle": "detailed",
+              "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-BareMetal.png"
             },
             {
-              "label": "Ceph Storage Clusters",
-              "description": "Get high performance object, block, and file storage with fair egress at simple prices.",
+              "label": "Storage Clusters",
+              "description": "High performance object, block, and file storage. Simple prices, fair egress. Powered by Ceph.",
               "href": "https://openmetal.io/products/storage-clusters/",
               "itemType": "link",
               "icontype": "external",
               "iconstyle": "detailed",
               "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-NVMe-150x150.png"
-            },
-            {
-              "label": "Bare Metal Clusters",
-              "description": "Support demanding workloads such as ClickHouse, Hadoop, and more.",
-              "href": "https://openmetal.io/products/bare-metal/",
-              "itemType": "link",
-              "icontype": "external",
-              "iconstyle": "detailed",
-              "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-BareMetal-Node-Layers-150x150.png"
             },
           ],
         },
@@ -204,6 +195,15 @@ const config = {
               "icontype": "external",
               "iconstyle": "detailed",
               "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-BareMetal.png"
+            },
+            {
+                "label": "GPU Servers & Clusters",
+                "description": "",
+                "href": "https://openmetal.io/gpu-servers-clusters-pricing/",
+                "itemType": "link",
+                "icontype": "external",
+                "iconstyle": "detailed",
+                "icon": "https://openmetal.io/wp-content/uploads/2023/03/Architecture-Converged-Node-Layers.png"
             },
             {
               "label": "Storage Clusters",
@@ -311,6 +311,15 @@ const config = {
               "icon": "https://openmetal.io/wp-content/uploads/2023/04/cloud-monitoring-menu.png"
             },
             {
+                "label": "Hardware Details",
+                "description": "",
+                "href": "https://openmetal.io/platform/cloud-cores/",
+                "itemType": "link",
+                "icontype": "external",
+                "iconstyle": "solid",
+                "icon": ""
+              },
+            {
               "label": "Cloud Scaling Options",
               "description": "",
               "href": "https://openmetal.io/platform/cloud-expansion/",
@@ -372,6 +381,15 @@ const config = {
               "icon": "https://openmetal.io/wp-content/uploads/2024/01/computer.png"
             },
             {
+              "label": "Startup Program",
+              "description": "",
+              "href": "https://openmetal.io/programs/startup-excelerator-program/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": "https://openmetal.io/wp-content/uploads/2024/08/rocket.png"
+            },
+            {
               "label": "Managed Private Cloud",
               "description": "",
               "href": "https://openmetal.io/use-cases/managed-private-cloud/",
@@ -390,13 +408,31 @@ const config = {
               "icon": "faSackDollar"
             },
             {
-              "label": "Public Cloud Alternative",
+              "label": "Large Deployments and Cloud Migrations",
               "description": "",
-              "href": "https://openmetal.io/use-cases/public-cloud-alternative/",
+              "href": "https://openmetal.io/use-cases/large-iaas-deployments/",
               "itemType": "link",
               "icontype": "external",
               "iconstyle": "solid",
-              "icon": "https://openmetal.io/wp-content/uploads/2023/04/cloud-alternative-menu.png"
+              "icon": "https://openmetal.io/wp-content/uploads/2023/04/large-deployments-menu.png"
+            },
+            {
+                "label": "Public Cloud Alternative",
+                "description": "",
+                "href": "https://openmetal.io/use-cases/public-cloud-alternative/",
+                "itemType": "link",
+                "icontype": "external",
+                "iconstyle": "solid",
+                "icon": "https://openmetal.io/wp-content/uploads/2023/04/cloud-alternative-menu.png"
+            },
+            {
+                "label": "Colocation Alternative",
+                "description": "",
+                "href": "https://openmetal.io/use-cases/colocation-alternative/",
+                "itemType": "link",
+                "icontype": "external",
+                "iconstyle": "solid",
+                "icon": "https://openmetal.io/wp-content/uploads/2024/05/data-center.png"
             },
             {
               "label": "Big Data Infrastructure",
@@ -425,15 +461,6 @@ const config = {
               "iconstyle": "solid",
               "icon": "https://openmetal.io/wp-content/uploads/2023/04/kubernetes-menu.png"
             },
-            {
-              "label": "Large IaaS Deployments",
-              "description": "",
-              "href": "https://openmetal.io/use-cases/large-iaas-deployments/",
-              "itemType": "link",
-              "icontype": "external",
-              "iconstyle": "solid",
-              "icon": "https://openmetal.io/wp-content/uploads/2023/04/large-deployments-menu.png"
-            }
           ]
         },
         {

@@ -21,3 +21,6 @@ or non-standard GPU configurations as needed.
 
 Whether you're building your own stack or just curious about how these systems
 work, we hope these notes are helpful.
+
+Interested in learning more about our GPU solutions? Take a look at our [GPU
+solutions page](https://openmetal.io/gpu-servers-clusters-pricing/).
