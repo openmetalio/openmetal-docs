@@ -381,6 +381,15 @@ const config = {
               "icon": "https://openmetal.io/wp-content/uploads/2024/01/computer.png"
             },
             {
+              "label": "Private AI Labs Program",
+              "description": "",
+              "href": "https://openmetal.io/programs/private-ai-labs-program/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": "https://openmetal.io/wp-content/uploads/2025/04/icon-AI-chip.png"
+            },
+            {
               "label": "Startup Program",
               "description": "",
               "href": "https://openmetal.io/programs/startup-excelerator-program/",
