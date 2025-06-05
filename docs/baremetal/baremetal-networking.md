@@ -12,8 +12,38 @@ allowing multiple VLANs to pass through. This makes it easy to layer
 additional VLANs on top of the existing bond interface without needing
 physical changes.
 
+Some VLANs, such as the “Inventory” (`bond0.1001`) and “Provider”
+(`bond0.1006`), are **routed VLANs**. These are backed by virtual interfaces on
+OpenMetal’s core switches and use **VRRP** (Virtual Router Redundancy Protocol)
+for high availability.
+
+Because of this, routed VLANs will always consume **five reserved IPs** from
+each prefix:
+
+- **1 IP** for the VRRP gateway address
+- **2 IPs** for the core switches
+- **1 IP** for the network address
+- **1 IP** for the broadcast address
+
+For example, in a `/28` block (`1.2.3.0/28`):
+
+| IP Address    | Usage                 |
+|---------------|------------------------|
+| 1.2.3.0       | Network address         |
+| 1.2.3.1       | VRRP gateway            |
+| 1.2.3.2       | Core switch 1           |
+| 1.2.3.3       | Core switch 2           |
+| 1.2.3.4–1.2.3.14 | Usable IPs for devices |
+| 1.2.3.15      | Broadcast address       |
+
 You can view your cluster’s assigned VLANs and IP prefixes in  
 **Central → Assets → Networking**.
+
+### Notes and Reminders
+
+- VLANs must be provisioned in **OpenMetal Central** before use.
+- Only VLANs assigned to your cluster will pass through trunked interfaces.
+- If you need help provisioning a VLAN, OpenMetal support can assist.
 
 ---
 
@@ -89,13 +119,17 @@ Apply the configuration:
 netplan apply
 ```
 
----
+Verify VLAN Connectivity
+Once the VLAN subinterface is configured and brought up, verify connectivity
+from a remote host that can reach the same VLAN.
 
-## Notes and Reminders
+From another host on the same VLAN or with routing to it:
 
-- VLANs must be provisioned in **OpenMetal Central** before use.
-- Only VLANs assigned to your cluster will pass through trunked interfaces.
-- If you need help provisioning a VLAN, OpenMetal support can assist.
+```bash
+ping 192.168.10.5
+```
 
-**Tip:** For routed public IPs, request prefixes be attached to
-VLANs like `bond0.1001` or `bond0.1006`.
+If you receive responses, the configuration is working as expected.
+
+If pings fail, verify the VLAN is assigned in Central and that firewalls or
+security groups aren’t blocking ICMP.
