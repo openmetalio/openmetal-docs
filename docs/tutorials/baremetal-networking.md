@@ -12,8 +12,8 @@ allowing multiple VLANs to pass through. This makes it easy to layer
 additional VLANs on top of the existing bond interface without needing
 physical changes.
 
-> 💡 You can view your cluster’s assigned VLANs and IP prefixes in  
-> **Central → Assets → Networking**.
+You can view your cluster’s assigned VLANs and IP prefixes in  
+**Central → Assets → Networking**.
 
 ---
 
