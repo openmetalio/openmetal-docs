@@ -1,4 +1,4 @@
-# VLAN Configuration on OpenMetal Nodes
+# OpenMetal Infrastructure Explained
 
 ## Overview
 
@@ -58,7 +58,7 @@ connect via the ToR switches.
 
 - VLANs must be provisioned in **OpenMetal Central** before use.
 - Only VLANs assigned to your cluster will pass through trunked interfaces.
-- If you need help provisioning a VLAN, OpenMetal support can assist.
+- If you need help provisioning a VLAN, OpenMetal support team can assist.
 
 ---
 
