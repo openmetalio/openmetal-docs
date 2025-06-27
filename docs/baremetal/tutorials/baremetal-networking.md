@@ -39,8 +39,8 @@ For example, in a `/28` block (`1.2.3.0/28`):
 You can view your cluster’s assigned VLANs and IP prefixes in  
 **Central → Assets → Networking**.
 
-Here's a how-to on Creating VLANs and IP prefixes in your Central Dashboard
--[VLANs and IP Prefixes Howto](https://openmetal.io/docs/manuals/openmetal-central/adding-ip-addresses)
+How-to guide on creating VLANs and IP prefixes in your Central Dashboard
+-[OpenMetal VLAN Guide](https://openmetal.io/docs/manuals/openmetal-central/adding-ip-addresses)
 
 ### Physical Network Layout
 
@@ -52,7 +52,7 @@ upwards to the core, and between themselves.
 Small, Standard, and GPU servers are blade-type servers. All other server types
 connect via the ToR switches.
 
-- [Network Diagram](tutorials/images/network_config.png "Network Diagram")
+![Network Diagram](./images/network_config.png)
 
 ### Notes and Reminders
 
