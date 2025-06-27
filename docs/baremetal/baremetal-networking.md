@@ -39,6 +39,21 @@ For example, in a `/28` block (`1.2.3.0/28`):
 You can view your cluster’s assigned VLANs and IP prefixes in  
 **Central → Assets → Networking**.
 
+Here's a how-to on Creating VLANs and IP prefixes in your Central Dashboard
+-[VLANs and IP Prefixes Howto](https://openmetal.io/docs/manuals/openmetal-central/adding-ip-addresses)
+
+### Physical Network Layout
+
+Our pod networks use a collapsed core topology with n+1 redundancy at each level.
+Blade server chassis act like their own "rack" in terms of network layout, and
+are directly connected to the core. Top-of-rack (ToR) switches each connect
+upwards to the core, and between themselves.
+
+Small, Standard, and GPU servers are blade-type servers. All other server types
+connect via the ToR switches.
+
+- [Network Diagram](tutorials/omi-cluster-network-example.png "Network Diagram")
+
 ### Notes and Reminders
 
 - VLANs must be provisioned in **OpenMetal Central** before use.
