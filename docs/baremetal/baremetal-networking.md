@@ -52,7 +52,7 @@ upwards to the core, and between themselves.
 Small, Standard, and GPU servers are blade-type servers. All other server types
 connect via the ToR switches.
 
-- [Network Diagram](tutorials/omi-cluster-network-example.png "Network Diagram")
+- [Network Diagram](tutorials/images/network_config.png "Network Diagram")
 
 ### Notes and Reminders
 
