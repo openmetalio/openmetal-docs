@@ -11,7 +11,7 @@ remotely.
 
 - Access to [OpenMetal Central](https://central.openmetal.io/)
 - Java is installed on your local machine.
-  - To download and install the latest version of Java, click [here](https://www.java.com/en/download/).
+  - To download and install the latest version of Java, click [java](https://www.java.com/en/download/).
 
 :::caution
 In order to access the IPMI of some legacy products you may need to adjust the
