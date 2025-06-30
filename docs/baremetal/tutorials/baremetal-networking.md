@@ -1,5 +1,7 @@
 # OpenMetal Infrastructure Explained
 
+Author: Jacob Hipps & Ramon Grullon
+
 ## Overview
 
 At OpenMetal, all bare metal nodes come preconfigured with bonded network
