@@ -26,13 +26,13 @@ parent needs to be removed.
 
 - **Garbage collection** — Parents with children cannot be deleted, causing
   stale images to linger in the pool.
-- **Performance isolation** — Heavy writes to a child can increase I/O on the
-  shared parent, impacting multiple VMs.
 - **Disaster recovery** — Restoring or migrating a chain of dependent images is
   slower and more error‑prone.
 
-Breaking the chain by flattening makes each image self‑contained at the cost
-of extra space.
+:::danger
+**Breaking the chain by flattening makes each image self‑contained at**
+**the coast of extra space. Be mindful of your storage levels.**
+:::
 
 ## Identifying Parent–Child Chains
 
@@ -50,7 +50,7 @@ rbd info vms/vm-clone-001 | grep parent
 If `rbd children` reports one or more clones, you’ll need to flatten them before
 you can remove the snapshot or its parent image.
 
-## Using `rbd flatten`
+## Using rbd flatten
 
 `rbd flatten` copies all referenced blocks into the child image so
 it no longer needs its parent. The command syntax is:
