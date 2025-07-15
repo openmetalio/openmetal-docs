@@ -1,12 +1,7 @@
----
-title: "How to Handle a Ceph Cluster Going Read-Only Due to Full OSDs"
-slug: ceph-ro-guide
-description: "Step-by-step guide to troubleshoot and fix Ceph clusters that enter read-only mode due to full OSDs."
-tags:
-  - ceph
-  - storage
-  - troubleshooting
----
+# How to Handle a Ceph Cluster Going Read-Only Due to Full OSDs
+
+Author: Nemanja Ilic
+
 In a Ceph cluster, storage capacity reaching critical thresholds can cause the cluster to enter a read-only (RO) state. This typically occurs when OSDs exceed the `full-ratio` limit, which is set to `0.95` (95%) by default. Once this threshold is crossed, Ceph blocks write operations to prevent potential data corruption or inconsistency. While this is a protective measure, it can bring production workloads to a halt if it happens unexpectedly.
 
 ## Prerequisites
