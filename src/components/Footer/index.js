@@ -195,7 +195,7 @@ function FooterCustom() {
           </div>
         )}
         <div className={styles.footerContact}>
-          <p>555 S. Independence Blvd, Virginia Beach, VA 23452</p>
+          <p>2 Constitution Drive, Suite 101, Virginia Beach, VA 23462</p>
           <div className={styles.contactLinks}>
             <a href="tel:+18777289664">877-7-BUY-OMI</a>
             <a href="mailto:sales@openmetal.io">sales@openmetal.io</a>
