@@ -320,6 +320,24 @@ const config = {
                 "icon": ""
               },
             {
+              "label": "CPU – Intel Xeon Processors",
+              "description": "",
+              "href": "https://openmetal.io/platform/cpu-5th-gen-intel-xeon-processors/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": ""
+            },
+            {
+              "label": "Drives – Micron 7450 MAX NVMe",
+              "description": "",
+              "href": "https://openmetal.io/platform/server-hardware-micron-7450-max-nvme-drives/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": ""
+            },
+            {
               "label": "Cloud Scaling Options",
               "description": "",
               "href": "https://openmetal.io/platform/cloud-expansion/",
