@@ -197,9 +197,8 @@ function FooterCustom() {
         <div className={styles.footerContact}>
           <p>2 Constitution Drive, Suite 101, Virginia Beach, VA 23462</p>
           <div className={styles.contactLinks}>
-            <a href="tel:+18777289664">877-7-BUY-OMI</a>
             <a href="mailto:sales@openmetal.io">sales@openmetal.io</a>
-            <a href="https://openmetal.io/schedule-meeting/">Schedule a Demo</a>
+            <a href="/contact-us/">Schedule a Demo</a>
           </div>
           <p>
             <strong>OpenMetal Central:</strong> <a target="_blank" href='https://central.openmetal.io/auth/sign-in'>Login</a> or <a target="_blank" href='https://central.openmetal.io/sign-up'>Create New Account</a>
