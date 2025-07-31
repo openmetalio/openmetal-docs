@@ -717,10 +717,6 @@ const config = {
               "href": "https://openmetal.io/products/hosted-private-cloud/"
             },
             {
-              "label": "OpenStack Private Cloud",
-              "href": "https://openmetal.io/products/on-demand-openstack-cloud/"
-            },
-            {
               "label": "Ceph Storage Clusters",
               "href": "https://openmetal.io/products/storage-clusters/"
             },

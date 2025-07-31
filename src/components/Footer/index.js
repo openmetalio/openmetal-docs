@@ -205,6 +205,47 @@ function FooterCustom() {
             <strong>OpenMetal Central:</strong> <a target="_blank" href='https://central.openmetal.io/auth/sign-in'>Login</a> or <a target="_blank" href='https://central.openmetal.io/sign-up'>Create New Account</a>
           </p>
         </div>
+        <p className={styles.termsOfUse}>
+          <strong>By using this website or chat features, you signify that you agree to be bound by these <a href="https://openmetal.io/legal">Universal Terms of Use</a>.</strong>
+        </p>
+        <div className={styles.membershipBadges}>
+          <div className={styles.badgeItem}>
+            <img 
+              src="https://openmetal.io/wp-content/uploads/2024/01/silvermemberlogo.png" 
+              alt="OpenInfra Foundation - Silver Member Badge" 
+              width="200" 
+              height="103" 
+            />
+          </div>
+          <div className={styles.badgeItem}>
+            <img 
+              src="https://openmetal.io/wp-content/uploads/2024/01/cncf-member-silver-color.svg" 
+              alt="Cloud Native Computing Foundation Silver Member Badge" 
+              width="200" 
+            />
+          </div>
+          <div className={styles.badgeItem}>
+            <img 
+              src="https://openmetal.io/wp-content/uploads/2024/01/LinuxFoundationSilverMember.png" 
+              alt="Linux Foundation - Silver Member Badge" 
+              width="200" 
+              height="82" 
+            />
+          </div>
+          <div className={styles.badgeItem}>
+            <a href="https://openmetal.io/legal/hipaa-and-hitech-compliance/">
+              <img 
+                src="https://openmetal.io/wp-content/uploads/2022/01/HIPAA-Compliance-Badge-Dark.png" 
+                alt="HIPAA Compliance Badge" 
+                width="200" 
+                height="100" 
+              />
+            </a>
+          </div>
+        </div>
+        <p className={styles.openstackTrademark}>
+          The OPENSTACK logo and word mark are trademarks or registered trademarks of OpenStack Foundation, used under license.
+        </p>
       </div>
     </footer>
   );
