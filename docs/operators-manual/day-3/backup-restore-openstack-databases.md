@@ -10,11 +10,11 @@ of a Private Cloud's OpenStack services.
 
 ## Prerequisites
 
-Before proceeding with this guide, a Kolla Ansible environment needs to
-be prepared. For information about preparing a Kolla Ansible
-environment, see [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible).
-Once the environment is prepared, come back to this guide to learn how to
-create database backups of OpenStack services.
+Before proceeding with this guide, a Kolla Ansible environment needs to be
+prepared. For information about preparing a Kolla Ansible environment, see [How
+to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible).
+Once the environment is prepared, come back to this guide to learn how to create
+database backups of OpenStack services.
 
 ## How to Create OpenStack Service Database Backups
 
@@ -28,45 +28,39 @@ output. Note that Kolla Ansible has no way to schedule backups.
 The command to perform a full backup of all databases using Kolla
 Ansible is...:
 
-    kolla-ansible -i <inventory> mariadb_backup
+    kolla-ansible -i <inventory> -i <inventory> mariadb_backup
 
-...where `<inventory>` is the path to the Kolla Ansible inventory file.
+...where `<inventory>` is the path to the Kolla Ansible inventory file, which is
+specified twice.
 
 ### Command Syntax for Incremental Database Backups
 
 The command to perform an incremental backup of all databases using
 Kolla Ansible is...:
 
-    kolla-ansible -i <inventory> mariadb_backup --incremental
+    kolla-ansible -i <inventory> -i <inventory> mariadb_backup --incremental
 
-...where `<inventory>` is the path to the Kolla Ansible inventory file.
+...where `<inventory>` is the path to the Kolla Ansible inventory file, which is
+specified twice.
 
-### Path to the Kolla Ansible Inventory File
+### Path to the Kolla Ansible Inventory Files
 
-:::info New Clouds
+The Kolla Ansible inventory files are located across all control plane nodes as:
 
-On clouds provisioned **_after_ Dec 2022** you will need to open a
-[support ticket](../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-to have the configuration saved to your nodes.
-
-:::
-
-The Kolla Ansible inventory file is located across all control plane
-nodes as:
-
-    /etc/fm-deploy/kolla-ansible-inventory
+    /opt/kolla-ansible-cli/inventory.yml
+    /opt/kolla-ansible-cli/ansible/inventory/multinode
 
 ### Command Usage Example for a Full Database Backup
 
 From the host that has Kolla Ansible prepared, the following command is
 executed:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup
+    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup
-    Backup MariaDB databases : ansible-playbook -i /etc/fm-deploy/kolla-ansible-inventory -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=full /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
+    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup
+    Backup MariaDB databases : ansible-playbook -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=full /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
     
     [...previous output truncated...]
     
@@ -104,13 +98,13 @@ error.
 From the host that has Kolla Ansible prepared, the following command is
 executed:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup \
+    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup \
         --incremental
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup --incremental
-    Backup MariaDB databases : ansible-playbook -i /etc/fm-deploy/kolla-ansible-inventory -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=incremental /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
+    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup --incremental
+    Backup MariaDB databases : ansible-playbook -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=incremental /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
     
     [...previous output truncated...]
     
