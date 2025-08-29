@@ -29,6 +29,8 @@ tags:
   - name: Clouds
     description: Oppertions for managing a collection of severs. Private clouds, or a 
       group of baremetal nodes will be owned by a cloud resource.
+  - name: Deployment
+    description: Operations for deployment and provisioning related resources such as node images.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
@@ -38,6 +40,7 @@ x-tagGroups:
   - name: Core Endpoints
     tags:
       - Clouds
+      - Deployment
       - Inventory
       - Orders
 
@@ -313,7 +316,7 @@ paths:
         - name: pod_location
           in: path
           required: true
-          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.)
+          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.).  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
           schema:
             type: string
             example: "pod_1"
@@ -324,6 +327,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryAvailability'
+        '404':
+          description: Pod location not found.
+
+  /v1/deployment/node/images/{pod_location}:
+    get:
+      tags:
+        - Deployment
+      summary: Get operating system images for a pod location
+      description: Retrieve a list of available operating system images for node deployment at a specific pod location. This endpoint does not require authentication.
+      parameters:
+        - name: pod_location
+          in: path
+          required: true
+          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.).  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+          schema:
+            $ref: '#/components/schemas/PodLocations'
+      responses:
+        '200':
+          description: Available node images retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeImagesResponse'
         '404':
           description: Pod location not found.
 
@@ -588,15 +614,15 @@ components:
                     example: "0a7Y8ABym5"
                   operating_system:
                     type: object
-                    description: The operating system to load onto the node during provisioning. Required for baremetal products if deployment_configuration is not provided.
+                    description: The operating system to load onto the node during provisioning. Required for baremetal products if deployment_configuration is not provided.  Available operating system images can be retrieved from the [operating system images endpoint](#tag/Deployment/paths/~1v1~1deployment~1node~1images~1%7Bpod_location%7D/get).
                     properties:
                       os_key:
                         type: string
-                        description: The operating system key from the image manifest.
+                        description: The operating system key from the image manifest.  (e.g., "Ubuntu")
                         example: "Ubuntu"
                       version_key:
                         type: string
-                        description: The version key from the image manifest.
+                        description: The version key from the image manifest. (e.g., "22.04 LTS")
                         example: "22.04 LTS"
               cloud_id:
                 type: string
@@ -751,3 +777,42 @@ components:
       description: Available datacenter pod locations.  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
       enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
       example: "pod_1"
+
+    ImageDetails:
+      type: object
+      description: Operating System version (e.g., "24.04 LTS") and details including download URL and checksums.
+      required:
+        - image
+        - image_md5
+        - image_sha256
+      properties:
+        image:
+          type: string
+          description: The download URL for the image file.
+          example: "https://s3.pod-4.flexmetal.net/cloud-init/Ubuntu/24.04-LTS/noble-server-cloudimg-amd64.img"
+        image_md5:
+          type: string
+          description: MD5 checksum of the image file.
+          example: "80721a522260ffd987c2fa3899739608"
+        image_sha256:
+          type: string
+          description: SHA256 checksum of the image file.
+          example: "071fceadf1ea57a388ff7a1ccb4127155d691a511f6a207b4c11b120563855e2"
+
+    NodeImagesResponse:
+      type: object
+      description: Operating system images available for deployment organized by OS name and version.
+      example:
+        Ubuntu:
+          "24.04 LTS":
+            image: "https://s3.pod-4.flexmetal.net/cloud-init/Ubuntu/24.04-LTS/noble-server-cloudimg-amd64.img"
+            image_md5: "80721a522260ffd987c2fa3899739608"
+            image_sha256: "071fceadf1ea57a388ff7a1ccb4127155d691a511f6a207b4c11b120563855e2"
+      properties:
+        os_name:
+          type: object
+          description: Operating system name (e.g., "Ubuntu") and version information
+          properties:
+            os_version:
+              type: object
+              $ref: '#/components/schemas/ImageDetails'
