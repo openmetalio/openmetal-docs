@@ -190,7 +190,7 @@ paths:
       tags:
         - Orders
       summary: Get an order by ID
-      description: Retrieve a specific order by its ID.
+      description: Retrieve a specific order by its ID to view details and check the status of the order.
       parameters:
         - name: orderId
           in: path
@@ -215,7 +215,7 @@ paths:
       tags:
         - Orders
       summary: Create a new order
-      description: Create a new order for hardware or private cloud resources.
+      description: Create a new order for baremetal servers or private cloud products running OpenStack.
       parameters:
         - name: accountId
           in: path
@@ -232,6 +232,49 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/OrderRequest'
+            examples:
+              baremetal_order:
+                summary: Baremetal order with Operating System specified.
+                description: A baremetal order with Operating System specified.
+                value:
+                  label: "Baremetal Medium V4 with Ubuntu 22.04 LTS"
+                  description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        modifications:
+                          operating_system:
+                            os_key: "Ubuntu"
+                            version_key: "22.04 LTS"
+              baremetal_order_with_deployment_configuration:
+                summary: Baremetal order with custom deployment configuration.
+                description: A baremetal order with a custom deployment configuration specified.
+                value:
+                  label: "Baremetal Medium V4 with custom deployment configuration"
+                  description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        modifications:
+                          deployment_configuration: "0a7Y8ABym5"
+              pcc_order:
+                summary: OpenStack PCC order.
+                description: A PCC order running OpenStack.
+                value:
+                  label: "PCC Medium V4 Order"
+                  description: "A 3 node PCC cluster in Ashburn, VA running OpenStack."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "pcc"
+                        quantity: 1
       responses:
         '200':
           description: Order created successfully.
@@ -521,7 +564,7 @@ components:
             properties:
               hardware_sku:
                 type: string
-                description: The hardware SKU identifier from the availability endpoint.
+                description: The hardware SKU identifier. Available SKUs can be retrieved from the [inventory availability endpoint](#tag/Inventory/paths/~1v2~1inventory~1%7Bpod_location%7D~1availability/get).
                 example: "medium_v4"
               location:
                 $ref: '#/components/schemas/PodLocations'
@@ -532,7 +575,7 @@ components:
                 example: "baremetal"
               quantity:
                 type: integer
-                description: The quantity of the hardware SKU.
+                description: "The quantity of the hardware SKU.  NOTE: PCC products are clusters of 3 nodes."
                 minimum: 1
                 example: 1
               modifications:
@@ -565,7 +608,7 @@ components:
           properties:
             public_key:
               type: string
-              description: SSH public key. Required for baremetal orders.
+              description: SSH public key to be added to the node during provisioning. Required for baremetal orders.
               example: "ssh-rsa AAAA..."
 
     OrderRequest:
@@ -573,20 +616,6 @@ components:
       required:
         - label
         - fields
-      example:
-        label: "Test PCC Order v2 with pending tasks check"
-        description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
-        fields:
-          items:
-            - hardware_sku: "medium_v4"
-              location: "pod_1"
-              type: "baremetal"
-              quantity: 1
-              modifications:
-                operating_system:
-                  os_key: "Ubuntu"
-                  version_key: "22.04 LTS"
-
       properties:
         label:
           type: string
@@ -719,6 +748,6 @@ components:
 
     PodLocations:
       type: string
-      description: Available datacenter pod locations
+      description: Available datacenter pod locations.  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
       enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
       example: "pod_1"
