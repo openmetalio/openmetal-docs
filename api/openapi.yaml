@@ -31,12 +31,15 @@ tags:
       group of baremetal nodes will be owned by a cloud resource.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
+  - name: Orders
+    description: Operations for managing orders.
 
 x-tagGroups:
   - name: Core Endpoints
     tags:
       - Clouds
       - Inventory
+      - Orders
 
 paths:
   /v1/clouds:
@@ -163,6 +166,49 @@ paths:
           description: Unable to process power state request - Node Locked.  Please try again in a few minutes.
         '500':
           description: Unable to update power state
+
+  /v1/orders:
+    get:
+      tags:
+        - Orders
+      summary: Get a list of orders
+      description: Retrieve a list of all orders that have been created by you or organizations that you are a member of.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderCollection'
+
+  /v1/orders/{orderId}:
+    get:
+      tags:
+        - Orders
+      summary: Get an order by ID
+      description: Retrieve a specific order by its ID.
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The ID of the order to retrieve.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Order found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrder'
+        '404':
+          description: Order not found.
 
   /v2/inventory/locations:
     get:
@@ -419,3 +465,149 @@ components:
           type: string
           description: The pod location identifier that was passed in the request path.
           example: "pod_1"
+
+    OrderFields:
+      type: object
+      description: Additional fields for the order. This includes product selections, configuration options, and other details.
+      properties:
+        items:
+          type: array
+          description: A list of products in the order.
+          items:
+            type: object
+            properties:
+              hardware_sku:
+                type: string
+                description: The hardware SKU identifier.
+                example: "medium_v4"
+              location:
+                type: string
+                description: The datacenter location identifier for the product.
+                enum: ["pod_1", "pod_2", "pod_3", "pod_4"]
+                example: "pod_1"
+              type:
+                type: string
+                description: The type of product.
+                enum: ["baremetal", "pcc"]
+                example: "pcc"
+              quantity:
+                type: integer
+                description: The quantity of the hardware SKU.
+                example: 1
+        schema_version:
+          type: string
+          description: The version of the order schema.
+          example: "v2"
+        status:
+          type: string
+          description: The current status of the order.
+          enum: ["pending", "processing","completed", "cancelled"]
+          example: "completed"
+        clouds_deployed:
+          type: array
+          description: A list of cloud IDs associated with this order.
+          items:
+            type: string
+            example: "q50wLK6pdm"
+        organization_id:
+          type: string
+          description: The organization ID that owns the order.
+          example: "mWLBVbB7Eq"
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the order.
+          example: "PGZYNxBpg3"
+        type:
+          type: string
+          description: The type of resource.
+          example: "orders"
+        label:
+          type: string
+          description: A user-friendly name for the order.
+          example: "Baremetal Medium V4 Order"
+        description:
+          type: string
+          description: A brief description of the order.
+          example: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+        fields:
+          $ref: '#/components/schemas/OrderFields'
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the order was created.
+          example: "2025-08-27T20:05:56+00:00"
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the order was last updated.
+          example: "2025-08-27T20:05:56+00:00"
+        is_active:
+          type: boolean
+          description: Indicates if the order is active.
+          example: true
+        created_by:
+          type: string
+          description: The ID of the user who created the order.
+          example: "o6aQxVGezj"
+
+    OrderCollection:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Order'
+        - type: object
+          properties:
+            relation:
+              $ref: '#/components/schemas/Relation'
+
+    GetOrder:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Order'
+        - type: object
+          properties:
+            access:
+              type: object
+              description: Your user's access and permissions information for the organization that owns the order.
+              properties:
+                role:
+                  type: string
+                  description: Your user's role in the organization.
+                  enum: ["owner", "member", "maintainer"]
+                  example: "owner"
+
+    Relation:
+      type: object
+      description: Relationship information for the order.
+      properties:
+        access:
+          type: object
+          description: Ownership information for the organization that owns the order.
+          properties:
+            account_id:
+              type: string
+              description: The account ID.
+              example: "mWLBVbB7Eq"
+            uuid:
+              type: string
+              description: The UUID of the organization.
+              example: "b7a6d147-036b-4292-9041-7557ded1ec12"
+            type:
+              type: string
+              description: The type of organization.
+              example: "organization"
+            display_name:
+              type: string
+              description: The display name of the organization.
+              example: "Test Org"
+            role:
+              type: string
+              description: The role of the user in the organization.
+              example: "owner"
+            has_billing:
+              type: boolean
+              description: Indicates if the organization has billing access.
+              example: false
