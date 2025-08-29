@@ -210,6 +210,42 @@ paths:
         '404':
           description: Order not found.
 
+  /v1/accounts/{accountId}/orders:
+    post:
+      tags:
+        - Orders
+      summary: Create a new order
+      description: Create a new order for hardware or private cloud resources.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The ID of the organization account to create the order for.
+          schema:
+            type: string
+            example: "mWLBVbB7Eq"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Order created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrder'
+        '400':
+          description: Invalid request payload
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
   /v2/inventory/locations:
     get:
       tags:
@@ -468,97 +504,164 @@ components:
 
     OrderFields:
       type: object
-      description: Additional fields for the order. This includes product selections, configuration options, and other details.
+      description: The product selections and configuration options for an order.
+      required:
+        - items
       properties:
         items:
           type: array
           description: A list of products in the order.
           items:
             type: object
+            required:
+              - hardware_sku
+              - location
+              - type
+              - quantity
             properties:
               hardware_sku:
                 type: string
-                description: The hardware SKU identifier.
+                description: The hardware SKU identifier from the availability endpoint.
                 example: "medium_v4"
               location:
-                type: string
-                description: The datacenter location identifier for the product.
-                enum: ["pod_1", "pod_2", "pod_3", "pod_4"]
-                example: "pod_1"
+                $ref: '#/components/schemas/PodLocations'
               type:
                 type: string
                 description: The type of product.
                 enum: ["baremetal", "pcc"]
-                example: "pcc"
+                example: "baremetal"
               quantity:
                 type: integer
                 description: The quantity of the hardware SKU.
+                minimum: 1
                 example: 1
-        schema_version:
-          type: string
-          description: The version of the order schema.
-          example: "v2"
-        status:
-          type: string
-          description: The current status of the order.
-          enum: ["pending", "processing","completed", "cancelled"]
-          example: "completed"
-        clouds_deployed:
-          type: array
-          description: A list of cloud IDs associated with this order.
-          items:
-            type: string
-            example: "q50wLK6pdm"
-        organization_id:
-          type: string
-          description: The organization ID that owns the order.
-          example: "mWLBVbB7Eq"
+              modifications:
+                type: object
+                description: Configuration modifications for the product.  Only supported for baremetal products.
+                properties:
+                  deployment_configuration:
+                    type: string
+                    description: The ID of the custom deployment configuration to use when provisioning the node. Required for baremetal products if operating_system is not provided.
+                    example: "0a7Y8ABym5"
+                  operating_system:
+                    type: object
+                    description: The operating system to load onto the node during provisioning. Required for baremetal products if deployment_configuration is not provided.
+                    properties:
+                      os_key:
+                        type: string
+                        description: The operating system key from the image manifest.
+                        example: "Ubuntu"
+                      version_key:
+                        type: string
+                        description: The version key from the image manifest.
+                        example: "22.04 LTS"
+              cloud_id:
+                type: string
+                description: Used to specify an existing cloud that the product should be added to.
+                example: "3Dop2VdpKA"
+        config_options:
+          type: object
+          description: Configuration options for the order.  Required for baremetal products.
+          properties:
+            public_key:
+              type: string
+              description: SSH public key. Required for baremetal orders.
+              example: "ssh-rsa AAAA..."
 
-    Order:
+    OrderRequest:
       type: object
+      required:
+        - label
+        - fields
+      example:
+        label: "Test PCC Order v2 with pending tasks check"
+        description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+        fields:
+          items:
+            - hardware_sku: "medium_v4"
+              location: "pod_1"
+              type: "baremetal"
+              quantity: 1
+              modifications:
+                operating_system:
+                  os_key: "Ubuntu"
+                  version_key: "22.04 LTS"
+
       properties:
-        id:
-          type: string
-          description: The unique identifier for the order.
-          example: "PGZYNxBpg3"
-        type:
-          type: string
-          description: The type of resource.
-          example: "orders"
         label:
           type: string
           description: A user-friendly name for the order.
-          example: "Baremetal Medium V4 Order"
+          example: "Test PCC Order v2 with pending tasks check"
         description:
           type: string
-          description: A brief description of the order.
+          description: A brief description of the order (optional).
           example: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
         fields:
           $ref: '#/components/schemas/OrderFields'
-        created_at:
-          type: string
-          format: date-time
-          description: The date and time the order was created.
-          example: "2025-08-27T20:05:56+00:00"
-        updated_at:
-          type: string
-          format: date-time
-          description: The date and time the order was last updated.
-          example: "2025-08-27T20:05:56+00:00"
-        is_active:
-          type: boolean
-          description: Indicates if the order is active.
-          example: true
-        created_by:
-          type: string
-          description: The ID of the user who created the order.
-          example: "o6aQxVGezj"
+
+    OrderResponse:
+      type: object      
+      required:
+        - id
+        - type
+        - created_at
+        - updated_at
+        - is_active
+        - created_by
+        - fields
+      allOf:
+        - $ref: '#/components/schemas/OrderRequest'
+        - type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier for the order.
+              example: "PGZYNxBpg3"
+            type:
+              type: string
+              description: The type of resource.
+              example: "orders"
+            created_at:
+              type: string
+              format: date-time
+              description: The date and time the order was created.
+              example: "2025-08-27T20:05:56+00:00"
+            updated_at:
+              type: string
+              format: date-time
+              description: The date and time the order was last updated.
+              example: "2025-08-27T20:05:56+00:00"
+            is_active:
+              type: boolean
+              description: Indicates if the order is active.
+              example: true
+            created_by:
+              type: string
+              description: The ID of the user who created the order.
+              example: "o6aQxVGezj"
+            fields:
+              allOf:
+                - $ref: '#/components/schemas/OrderFields'
+                - type: object
+                  required:
+                    - organization_id
+                  properties:
+                    organization_id:
+                      type: string
+                      description: The organization ID that owns the order.
+                      example: "mWLBVbB7Eq"
+                    schema_version:
+                      type: string
+                      description: The version of the schema used to create the order.
+                      example: "v2"
 
     OrderCollection:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Order'
+        - $ref: '#/components/schemas/OrderResponse'
         - type: object
+          required:
+            - relation
           properties:
             relation:
               $ref: '#/components/schemas/Relation'
@@ -566,8 +669,10 @@ components:
     GetOrder:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Order'
+        - $ref: '#/components/schemas/OrderResponse'
         - type: object
+          required:
+            - access
           properties:
             access:
               type: object
@@ -611,3 +716,9 @@ components:
               type: boolean
               description: Indicates if the organization has billing access.
               example: false
+
+    PodLocations:
+      type: string
+      description: Available datacenter pod locations
+      enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
+      example: "pod_1"
