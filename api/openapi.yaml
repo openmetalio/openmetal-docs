@@ -178,6 +178,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/Locations'
 
+  /v2/inventory/{pod_location}/availability:
+    get:
+      tags:
+        - Inventory
+      summary: Get inventory availability for a specific pod location
+      description: Retrieve current inventory availability information for a specific datacenter location. This endpoint shows available hardware SKUs and their counts.
+      parameters:
+        - name: pod_location
+          in: path
+          required: true
+          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.)
+          schema:
+            type: string
+            example: "pod_1"
+      responses:
+        '200':
+          description: Inventory availability retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryAvailability'
+        '404':
+          description: Pod location not found.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -315,7 +339,21 @@ components:
                       example: true
 
     Locations:
-      type: object
+      type: object      
+      example:
+        locations:
+          pod_1:
+            label: "US-East"
+            displayName: "Ashburn, VA"
+            region: "US"
+            code: "iad3"
+            release_status: "released"
+          pod_2:
+            label: "US-West"
+            displayName: "Los Angeles, CA"
+            region: "US"
+            code: "lax3"
+            release_status: "released"
       properties:
         locations:
           type: object
@@ -346,4 +384,38 @@ components:
                   description: The current release status of the location.
                   enum: ["released", "pre-release"]
                   example: "released"
-        
+
+    InventoryAvailability:
+      type: object
+      description: Inventory availability information for a specific pod location.
+      example:
+        medium_v4:
+          count: 3
+          max_size: 2
+        large_v4:
+          count: 10
+          max_size: 8
+        timestamp: "2025-08-29T13:05:27+00:00"
+        pod_location: "pod_1"
+      properties:
+        hardware_sku:
+          type: object
+          description: A unique hardware item identifier and that item's corresponding availability information.
+          properties:
+            count:
+              type: integer
+              description: The total number of available servers of this hardware type.
+              example: 3
+            max_size:
+              type: integer
+              description: The total number of available servers that can be deployed while maintaining distribution across cabinets for redundancy.
+              example: 2
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp of when the inventory availability was last checked.
+          example: "2025-08-29T13:05:27+00:00"
+        pod_location:
+          type: string
+          description: The pod location identifier that was passed in the request path.
+          example: "pod_1"
