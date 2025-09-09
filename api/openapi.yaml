@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: OpenMetal API
   description: |
@@ -27,8 +27,7 @@ servers:
 
 tags:
   - name: Clouds
-    description: Oppertions for managing a collection of severs. Private clouds, or a 
-      group of baremetal nodes will be owned by a cloud resource.
+    description: Operations for managing a collection of servers. Private clouds or a group of baremetal nodes will be owned by a cloud resource.
   - name: Deployment
     description: Operations for deployment and provisioning related resources such as node images.
   - name: Inventory
@@ -252,6 +251,8 @@ paths:
                           operating_system:
                             os_key: "Ubuntu"
                             version_key: "22.04 LTS"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
               baremetal_order_with_deployment_configuration:
                 summary: Baremetal order with custom deployment configuration.
                 description: A baremetal order with a custom deployment configuration specified.
@@ -266,6 +267,8 @@ paths:
                         quantity: 1
                         modifications:
                           deployment_configuration: "0a7Y8ABym5"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
               pcc_order:
                 summary: OpenStack PCC order.
                 description: A PCC order running OpenStack.
