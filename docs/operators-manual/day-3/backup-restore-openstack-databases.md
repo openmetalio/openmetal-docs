@@ -289,6 +289,6 @@ Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
 ## References
 
-- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/2023.2/admin/mariadb-backup-and-restore.html)
+- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/yoga/admin/mariadb-backup-and-restore.html)
 - MariaDB's [Full Backup and Restore with Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
 - MariaDB's [Incremental Backup and Restore with Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)

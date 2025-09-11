@@ -113,4 +113,4 @@ HashiCorp's Terraform application.
 9. [Troubleshooting Ceph](day-4/troubleshooting/ceph.md)
 10. [Guidelines for Searching through Logs](day-4/troubleshooting/log-filtering.md)
 11. [OpenStack Automation through Heat](day-4/automation/heat.md)
-12. [Automate Infrastructure using Terraform](day-4/automation/terraform.md)
+10. [Automate Infrastructure using Terraform](day-4/automation/terraform.md)

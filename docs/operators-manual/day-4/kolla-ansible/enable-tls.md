@@ -156,4 +156,4 @@ For example:
 
 ## Reference
 
-[TLS Documentation from Kolla Ansible for OpenStack 2023.2](https://docs.openstack.org/kolla-ansible/2023.2/admin/tls.html)
+[TLS Documentation from Kolla Ansible for OpenStack 2023.2](https://docs.openstack.org/kolla-ansible/yoga/admin/tls.html)
