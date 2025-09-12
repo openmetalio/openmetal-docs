@@ -66,6 +66,11 @@ Create an Ansible deployment SSH keypair with:
 
     kolla-ansible -i inventory.yml -i ansible/inventory/multinode <command>
 
+> Note - Usage examples of kolla-ansible found throughout the manual will assume
+the inventory files, `/opt/kolla-ansible-cli/inventory.yml` and
+`/opt/kolla-ansible-cli/ansible/inventory/multinode`, are relative to the path
+`/opt/kolla-ansible-cli`.
+
 For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html#kolla-ansible-cli).
 
 ### Prepare Kolla Ansible

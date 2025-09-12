@@ -35,7 +35,7 @@ executed:
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup
+    # kolla-ansible -i inventory.yml -i ansible/inventory/multinode mariadb_backup
     Backup MariaDB databases : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/globals.d/custom-globals.yml -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=full /opt/kolla-ansible-cli/.venv/share/kolla-ansible/ansible/mariadb_backup.yml  --inventory inventory.yml --inventory ansible/inventory/multinode
     
     PLAY [Backup MariaDB] ***********************************************************************************************************************************************************************
@@ -83,7 +83,7 @@ executed:
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup --incremental
+    # kolla-ansible -i inventory.yml -i ansible/inventory/multinode mariadb_backup --incremental
     Backup MariaDB databases : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/globals.d/custom-globals.yml -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=incremental /opt/kolla-ansible-cli/.venv/share/kolla-ansible/ansible/mariadb_backup.yml  --inventory inventory.yml --inventory ansible/inventory/multinode
     [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
     
