@@ -104,7 +104,7 @@ HashiCorp's Terraform application.
 
 1. [How to Prepare and Use Kolla Ansible](day-4/kolla-ansible/prepare-kolla-ansible.md)
 2. [Enable TLS Using Kolla Ansible](day-4/kolla-ansible/enable-tls)
-3. [Enable ElasticSearch and Kibana Logging using Kolla Ansible](day-4/kolla-ansible/enable-elk.md)
+3. [Enable OpenSearch using Kolla Ansible](day-4/kolla-ansible/opensearch.md)
 4. [Security and Your OpenMetal Private Cloud](day-4/security/security-best-practices.md)
 5. [How to Prepare and Use Ceph Ansible](day-4/ceph-ansible/prepare-ceph-ansible.md)
 6. [OpenStack Watcher Demonstration](day-4/watcher/watcher-demo.md)
