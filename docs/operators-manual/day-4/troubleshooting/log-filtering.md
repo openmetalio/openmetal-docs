@@ -17,17 +17,14 @@ of a failure.
 
 Root access to your cloud's control plane nodes is required.
 
-## Elasticsearch and Kibana
+## OpenSearch 
 
 This guide focuses on how to manually look through logs, however
-Elasticsearch and Kibana, commonly referred to as an ELK stack, are
-often used to aggregate and view logs in a visual manner. With a
-properly configured ELK stack, you can view all of your cloud's logs
-from a single location, visually.
+OpenSearch can be used to aggregate and view logs in a visual manner from a
+unified dashboard.
 
-For more information about enabling an ELK stack in your cloud, see [How
-to Enable Elasticsearch and Kibana using Kolla
-Ansible](../../day-4/kolla-ansible/enable-elk).
+For more information about enabling OpenSearch in your cloud, see [How to Enable
+OpenSearch using Kolla Ansible](../../day-4/kolla-ansible/opensearch.md).
 
 ## Kolla Ansible Log Locations
 
