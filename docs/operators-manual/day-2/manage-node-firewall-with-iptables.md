@@ -69,7 +69,7 @@ you can target just the changed services with `--tags
 neutron,openvswitch`:
 
 ``` sourceCode shell
-(.kolla-admin) [root@exhilarated-firefly kolla-ansible]# kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode reconfigure --tags neutron,openvswitch
+(.kolla-admin) [root@exhilarated-firefly kolla-ansible]# kolla-ansible -i inventory.yml -i ansible/inventory/multinode reconfigure --tags neutron,openvswitch
 Reconfigure OpenStack service : ansible-playbook -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  --tags neutron,openvswitch -e kolla_action=reconfigure -e kolla_serial=0 /opt/kolla-ansible/.kolla-admin/share/kolla-ansible/ansible/site.yml 
 [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
 [WARNING]: Could not match supplied host pattern, ignoring: enable_nova_True
@@ -223,7 +223,7 @@ bond0.8
 5. Copy the newly created files to the root users home folder across
     the rest of the nodes. Replace `$SSH_KEY` with the SSH key that is used to
     connect to each node
-    
+
     ``` sourceCode shell
     [root@exhilarated-firefly ~]# for node in $(awk '!/localhost/&&/local/{print$NF}' /etc/hosts| grep -v $(hostname -s)); do echo "scp -i $SSH_KEY /etc/sysconfig/ipset $node:~/new-ipset && scp -i $SSH_KEY /etc/sysconfig/iptables $node:~/new-iptables"; done
     scp -i $SSH_KEY /etc/sysconfig/ipset gifted-wildcat:~/new-ipset && scp -i $SSH_KEY /etc/sysconfig/iptables gifted-wildcat:~/new-iptables

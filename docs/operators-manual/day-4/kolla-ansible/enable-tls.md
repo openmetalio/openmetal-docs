@@ -72,7 +72,7 @@ To configure the cloud to use this FQDN, use the inventory files
 
 For example:
 
-    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode reconfigure
+    kolla-ansible -i inventory.yml -i ansible/inventory/multinode reconfigure
 
 ## Enable SSL Externally, Encrypting Horizon Traffic
 
@@ -152,8 +152,8 @@ Next, to configure the cloud to use this SSL, use the inventory file
 
 For example:
 
-    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode reconfigure
+    kolla-ansible -i inventory.yml -i ansible/inventory/multinode reconfigure
 
 ## Reference
 
-[TLS Documentation from Kolla Ansible](https://docs.openstack.org/kolla-ansible/yoga/admin/tls.html)
+[TLS Documentation from Kolla Ansible](https://docs.openstack.org/kolla-ansible/2023.2/admin/tls.html)

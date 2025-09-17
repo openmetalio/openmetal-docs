@@ -71,7 +71,7 @@ the inventory files, `/opt/kolla-ansible-cli/inventory.yml` and
 `/opt/kolla-ansible-cli/ansible/inventory/multinode`, are relative to the path
 `/opt/kolla-ansible-cli`.
 
-For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/yoga/user/operating-kolla.html#kolla-ansible-cli).
+For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/2023.2/user/operating-kolla.html#kolla-ansible-cli).
 
 ### Prepare Kolla Ansible
 

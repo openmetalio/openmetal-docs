@@ -96,4 +96,4 @@ list of images. You can use this image to launch new instances.
 ## Reference
 
 [OpenStack Glance
-Documentation](https://docs.openstack.org/glance/yoga/)
+Documentation](https://docs.openstack.org/glance/2023.2/)

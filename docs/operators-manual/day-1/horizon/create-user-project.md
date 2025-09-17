@@ -162,4 +162,4 @@ created project and using the user associated with it.
 ## Reference
 
 [OpenStack Horizon Administrator
-Guide](https://docs.openstack.org/horizon/yoga/admin/index.html)
+Guide](https://docs.openstack.org/horizon/2023.2/admin/index.html)

@@ -35,4 +35,4 @@ For each RabbitMQ cluster member, run:
 
 Then, use Kolla Ansible's `deploy` function, targeting RabbitMQ:
 
-    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode deploy --tags rabbitmq
+    kolla-ansible -i inventory.yml -i ansible/inventory/multinode deploy --tags rabbitmq

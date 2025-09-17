@@ -80,7 +80,7 @@ For example:
     $ vi ~/.config/openstack/clouds.yaml
 
 **Note** -- The `clouds.yaml` file can be placed in several locations.
-For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/yoga/configuration/index.html#configuration-files)
+For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/2023.2/configuration/index.html#configuration-files)
 heading of OpenStack's documentation.
 
 Next, copy the contents of your OpenStack RC file, in our case called

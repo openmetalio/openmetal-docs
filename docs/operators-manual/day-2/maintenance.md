@@ -118,10 +118,10 @@ For example:
 
     [root@smiling-pelican ~]# docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED        STATUS                          PORTS     NAMES
-    6f7590bc2191   registry.flexmetal.net/kolla/centos-source-telegraf:yoga                    "dumb-init --single-…"   20 hours ago   Restarting (1) 14 seconds ago             telegraf
-    67a4d47e8c78   registry.flexmetal.net/kolla/centos-source-watcher-api:yoga                 "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_api
-    af815b1dcb5d   registry.flexmetal.net/kolla/centos-source-watcher-engine:yoga              "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_engine
-    a52ab61933ac   registry.flexmetal.net/kolla/centos-source-watcher-applier:yoga             "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_applier
+    6f7590bc2191   registry.flexmetal.net/kolla/telegraf:2023.2-ubuntu-jammy                    "dumb-init --single-…"   20 hours ago   Restarting (1) 14 seconds ago             telegraf
+    67a4d47e8c78   registry.flexmetal.net/kolla/watcher-api:2023.2-ubuntu-jammy                 "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_api
+    af815b1dcb5d   registry.flexmetal.net/kolla/watcher-engine:2023.2-ubuntu-jammy              "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_engine
+    a52ab61933ac   registry.flexmetal.net/kolla/watcher-applier:2023.2-ubuntu-jammy             "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_applier
     [...output truncated...]
 
 Next, if this node is part of a Ceph cluster, check Ceph's status using
