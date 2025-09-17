@@ -95,5 +95,5 @@ list of images. You can use this image to launch new instances.
 
 ## Reference
 
-[OpenStack Victoria Glance
-Documentation](https://docs.openstack.org/glance/victoria/)
+[OpenStack Glance
+Documentation](https://docs.openstack.org/glance/yoga/)

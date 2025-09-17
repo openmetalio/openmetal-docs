@@ -10,11 +10,11 @@ of a Private Cloud's OpenStack services.
 
 ## Prerequisites
 
-Before proceeding with this guide, a Kolla Ansible environment needs to
-be prepared. For information about preparing a Kolla Ansible
-environment, see [How to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible).
-Once the environment is prepared, come back to this guide to learn how to
-create database backups of OpenStack services.
+Before proceeding with this guide, a Kolla Ansible environment needs to be
+prepared. For information about preparing a Kolla Ansible environment, see [How
+to Prepare and Use Kolla Ansible](../day-4/kolla-ansible/prepare-kolla-ansible).
+Once the environment is prepared, come back to this guide to learn how to create
+database backups of OpenStack services.
 
 ## How to Create OpenStack Service Database Backups
 
@@ -23,64 +23,35 @@ have prepared Kolla Ansible. This section first provides the command
 syntax, then follows up with an example of the command's execution and
 output. Note that Kolla Ansible has no way to schedule backups.
 
-### Command Syntax for Full Database Backups
-
-The command to perform a full backup of all databases using Kolla
-Ansible is...:
-
-    kolla-ansible -i <inventory> mariadb_backup
-
-...where `<inventory>` is the path to the Kolla Ansible inventory file.
-
-### Command Syntax for Incremental Database Backups
-
-The command to perform an incremental backup of all databases using
-Kolla Ansible is...:
-
-    kolla-ansible -i <inventory> mariadb_backup --incremental
-
-...where `<inventory>` is the path to the Kolla Ansible inventory file.
-
-### Path to the Kolla Ansible Inventory File
-
-:::info New Clouds
-
-On clouds provisioned **_after_ Dec 2022** you will need to open a
-[support ticket](../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-to have the configuration saved to your nodes.
-
-:::
-
-The Kolla Ansible inventory file is located across all control plane
-nodes as:
-
-    /etc/fm-deploy/kolla-ansible-inventory
-
-### Command Usage Example for a Full Database Backup
+### Create a Full Database Backup with Kolla Ansible
 
 From the host that has Kolla Ansible prepared, the following command is
 executed:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        mariadb_backup
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup
-    Backup MariaDB databases : ansible-playbook -i /etc/fm-deploy/kolla-ansible-inventory -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=full /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
+    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup
+    Backup MariaDB databases : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/globals.d/custom-globals.yml -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=full /opt/kolla-ansible-cli/.venv/share/kolla-ansible/ansible/mariadb_backup.yml  --inventory inventory.yml --inventory ansible/inventory/multinode
     
-    [...previous output truncated...]
+    PLAY [Backup MariaDB] ***********************************************************************************************************************************************************************
     
-    TASK [mariadb : Taking full database backup via Mariabackup] **************************************************************************************************
-    skipping: [focused-capybara]
-    skipping: [lovely-ladybug]
-    [WARNING]: The value False (type bool) in a string field was converted to 'False' (type string). If this does not look like what you expect, quote the entire
-    value to ensure it does not change.
-    changed: [relaxed-flamingo]
+    [...output truncated...]
     
-    PLAY RECAP ****************************************************************************************************************************************************
-    focused-capybara           : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-    lovely-ladybug             : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-    relaxed-flamingo           : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    TASK [mariadb : Taking full database backup via Mariabackup] ********************************************************************************************************************************
+    skipping: [encouraging-bobcat.local]
+    skipping: [hardcore-rodent.local]
+    changed: [comfortable-lark.local]
+    
+    PLAY RECAP **********************************************************************************************************************************************************************************
+    comfortable-lark.local     : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    encouraging-bobcat.local   : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+    hardcore-rodent.local      : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
 
 The task `[mariadb : Taking full database backup via Mariabackup]` is
 where a backup of all OpenStack service databases is created. Kolla
@@ -90,44 +61,45 @@ overwritten. The host under this task that reports a change (example:
 `changed=1`) is where the Docker volume storing the databases is
 created.
 
-**Note\!** -- For this example, since the Docker volume was created on
+> **Note**: For this example, since the Docker volume was created on
 another host, the remaining instruction in this guide must be performed
 from that host. If Kolla Ansible creates `mariadb_backup` on another
 host, you must SSH into that host as root to continue this process.
 
-### Command Usage Example for an Incremental Database Backup
+### Create an Incremental Database Backup with Kolla Ansible
 
-**Note\!** -- Incremental backups can only be made if a full backup has
+> **Note**: Incremental backups can only be made if a full backup has
 been made prior, otherwise the following command will result in an
 error.
 
 From the host that has Kolla Ansible prepared, the following command is
 executed:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup \
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        mariadb_backup \
         --incremental
 
 Truncated output of the above command:
 
-    # kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory mariadb_backup --incremental
-    Backup MariaDB databases : ansible-playbook -i /etc/fm-deploy/kolla-ansible-inventory -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=incremental /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/mariadb_backup.yml
+    # kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode mariadb_backup --incremental
+    Backup MariaDB databases : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/globals.d/custom-globals.yml -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=backup -e mariadb_backup_type=incremental /opt/kolla-ansible-cli/.venv/share/kolla-ansible/ansible/mariadb_backup.yml  --inventory inventory.yml --inventory ansible/inventory/multinode
+    [WARNING]: Invalid characters were found in group names but not replaced, use -vvvv to see details
     
-    [...previous output truncated...]
+    PLAY [Backup MariaDB] ***********************************************************************************************************************************************************************
+   
+    [...output truncated...]
+
+    TASK [mariadb : Taking incremental database backup via Mariabackup] *************************************************************************************************************************
+    skipping: [encouraging-bobcat.local]
+    skipping: [hardcore-rodent.local]
+    changed: [comfortable-lark.local]
     
-    TASK [mariadb : include_tasks] ****************************************************************************************************************************************************************
-    included: /opt/kolla-ansible/.venv/share/kolla-ansible/ansible/roles/mariadb/tasks/backup.yml for relaxed-flamingo, focused-capybara, lovely-ladybug
-    
-    TASK [mariadb : Taking incremental database backup via Mariabackup] ***************************************************************************************************************************
-    skipping: [focused-capybara]
-    skipping: [lovely-ladybug]
-    [WARNING]: The value False (type bool) in a string field was converted to 'False' (type string). If this does not look like what you expect, quote the entire value to ensure it does not
-    change.
-    changed: [relaxed-flamingo]
-    
-    PLAY RECAP ************************************************************************************************************************************************************************************
-    focused-capybara           : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-    lovely-ladybug             : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-    relaxed-flamingo           : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    PLAY RECAP **********************************************************************************************************************************************************************************
+    comfortable-lark.local     : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    encouraging-bobcat.local   : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+    hardcore-rodent.local      : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
 
 The task `[mariadb : Taking incremental database backup via Mariabackup]` is
 where an incremental backup of all OpenStack service databases is created. Kolla
@@ -136,7 +108,7 @@ copies. Previous backups made using this method are not overwritten. The host
 under this task that reports a change (example: `changed=1`) is where the Docker
 volume storing the databases is created.
 
-**Note\!** -- For this example, since the Docker volume was created on
+> **Note**: For this example, since the Docker volume was created on
 another host, the remaining instruction in this guide must be performed
 from that host. If Kolla Ansible creates `mariadb_backup` on another
 host, you must SSH into that host as root to continue this process.
@@ -146,87 +118,108 @@ host, you must SSH into that host as root to continue this process.
 This section explains how to restore both **full** and **incremental**
 database backups created using Kolla Ansible's `mariadb_backup` function.
 
-## Full Database Restoration Steps
+### Full Database Backup Restoration
 
-Follow these steps to learn how to restore full OpenStack service
-databases created using Kolla Ansible's `mariadb_backup` function.
+Follow these steps to restore a full MariaDB database backup of OpenStack service databases.
 
-### Full Restoration: Create Temporary Docker Container
+> **Note**: Make sure you run these commands from the host that contains the
+`mariadb_backup` Docker volume. The `mariadb_backup` Kolla Ansible command ran
+earlier outputs the host where this volume was created. Run `docker volume ls |
+grep mariadb_backup` to check.
 
-In this section, we create a temporary Docker container called
-`dbrestore`. This container is created with the same volumes as the
-`mariadb` Docker container. The `mariadb_backup` Docker volume is
-mounted as `/backup` in this container. Finally, the container is
-created using the `kolla/centos-binary-mariadb:victoria` Docker image
-available from Docker Hub with a Bash shell.
+> **Caution**! Be careful when using commands. The following commands make use of
+the `rm` command which deletes files.
+
+#### Steps
+
+**1.** In this section, we create a temporary Docker container called `dbrestore`. This
+container is created with the same volumes as the `mariadb` Docker container.
+The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
+Finally, the container is created using the
+`registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga` Docker image
+available from our registry.
 
 Create the temporary Docker container called `dbrestore` using:
 
-    docker run --rm -it --volumes-from mariadb --name dbrestore \
+    docker run \
+        --rm -it \
+        --volumes-from mariadb \
+        --name dbrestore \
         --volume mariadb_backup:/backup \
-        kolla/centos-binary-mariadb:victoria \
+        registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga \
         /bin/bash
-
+    
 Once you run the above Docker command, your terminal should appear this
 way:
 
-    ()[mysql@06ab93fb83a3 /]$
+    ()[mysql@312d0cd3edbe /]$
 
-### Full Restoration: Prepare Backup Directory
-
-**Caution\!** -- Be careful when using commands. The following commands
-make use of the `rm` command which deletes files.
-
-Next, the backup data must be prepared before it can be copied into
-place.
-
-This example uses a full MariaDB backup called
-`mysqlbackup-08-12-2021-1638999340.qp.xbc.xbs.gz`.
+**2.** Next, the backup data must be prepared before it can be copied into place. This
+example uses a full MariaDB backup called
+`mysqlbackup-29-08-2025-1756478084.qp.xbc.xbs.gz`.
 
 To prepare the backup data, in the Docker container, run:
 
-    cd /backup
+    cd /backup/
     rm -rf /backup/restore
     mkdir -p /backup/restore/full
-    gunzip mysqlbackup-08-12-2021-1638999340.qp.xbc.xbs.gz
-    mbstream -x -C /backup/restore/full/ < mysqlbackup-08-12-2021-1638999340.qp.xbc.xbs
+    gunzip mysqlbackup-29-08-2025-1756478084.qp.xbc.xbs.gz
+    mbstream -x -C /backup/restore/full/ < mysqlbackup-29-08-2025-1756478084.qp.xbc.xbs
     mariabackup --prepare --target-dir /backup/restore/full
+    
+**3.** With Kolla Ansible, stop the MariaDB service:
 
-Load another shell session for the node in which you are working and
-stop the MariaDB Docker container:
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        stop \
+        --tags mariadb \
+        --yes-i-really-really-mean-it
 
-    docker stop mariadb
-
-Navigate back to the Docker container and run:
+**4.** Navigate back to the Docker container and run:
 
     rm -rf /var/lib/mysql/*
     rm -rf /var/lib/mysql/\.[^\.]*
     mariabackup --copy-back --target-dir /backup/restore/full
 
-Next, navigate back to the other shell and start the MariaDB Docker
-container:
+**5.** Next, with Kolla Ansible run MariaDB recovery while specifying the host from
+which the database backup was restored:
 
-    docker start mariadb
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        mariadb_recovery \
+        -e mariadb_recover_inventory_name=comfortable-lark.local
 
 Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
-    # tail -1 /var/log/kolla/mariadb/mariadb.log
-    2021-12-08 22:27:39 2 [Note] WSREP: Synchronized with group, ready for
-    connections
+    # less /var/log/kolla/mariadb/mariadb.log
+    2025-08-29 15:12:13 0 [Note] WSREP: Shifting JOINED -> SYNCED (TO: 132)
+    2025-08-29 15:12:13 2 [Note] WSREP: Server comfortable-lark synced with group
+    2025-08-29 15:12:13 2 [Note] WSREP: Server status change joined -> synced
+    2025-08-29 15:12:13 2 [Note] WSREP: Synchronized with group, ready for connections
 
-## Incremental Database Restoration Steps
+### Incremental Database Restoration
 
 Follow these steps to learn how to restore an incremental OpenStack
 service database backup created using Kolla Ansible's `mariadb_backup`
 function.
 
-### Incremental Restoration: Create Temporary Docker Container
+> **Note**: Make sure you run these commands from the host that contains the
+`mariadb_backup` Docker volume. The `mariadb_backup` Kolla Ansible command ran
+earlier outputs the host where this volume was created. Run `docker volume ls |
+grep mariadb_backup` to check.
 
-In this section, we create a temporary Docker container called
-`dbrestore`. This container is created with the same volumes as the
-`mariadb` Docker container. The `mariadb_backup` Docker volume is
-mounted as `/backup` in this container. Finally, the container is
-created using the `kolla/centos-binary-mariadb:victoria` Docker image
+> **Caution**! Be careful when using commands. The following commands make use of
+the `rm` command which deletes files.
+
+#### Steps
+
+**1.** In this section, we create a temporary Docker container called `dbrestore`. This
+container is created with the same volumes as the `mariadb` Docker container.
+The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
+Finally, the container is created using the
+`registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga` Docker image
 available from Docker Hub with a Bash shell.
 
 Create the temporary Docker container called `dbrestore` using:
@@ -235,25 +228,19 @@ Create the temporary Docker container called `dbrestore` using:
         --volumes-from mariadb \
         --name dbrestore \
         --volume mariadb_backup:/backup \
-        kolla/centos-binary-mariadb:victoria \
+        registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga \
         /bin/bash
 
 Once you run the above Docker command, your terminal should appear this
 way:
 
-    ()[mysql@06ab93fb83a3 /]$
+    ()[mysql@fe16a3c81311 /]$
 
-### Incremental Restoration: Prepare Backup Directory
-
-**Caution\!** -- Be careful when using commands. The following commands
-make use of the `rm` command which deletes files.
-
-This section assumes a full and incremental backup have been created.
-Note that your full and incremental backup file names will differ from
-this example.
-
-Next, we must prepare the backup data before it can be copied into
+**2.** Next, we must prepare the backup data before it can be copied into
 place.
+
+> **Note**: This section assumes a full and incremental backup have been created.
+The full and incremental backup file names will differ from this example.
 
 In the Docker container, run:
 
@@ -268,30 +255,40 @@ In the Docker container, run:
     mariabackup --prepare --target-dir=/backup/restore/full/
     mariabackup --prepare --target-dir=/backup/restore/full/ --incremental-dir=/backup/restore/incremental/
 
-Load another shell session for the node in which you are working and
-stop the MariaDB Docker container:
+**3.** With Kolla Ansible, stop the MariaDB service:
 
-    docker stop mariadb
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        stop \
+        --tags mariadb \
+        --yes-i-really-really-mean-it
 
-Navigate back to the Docker container and run:
+**4.** Navigate back to the `dbrestore` Docker container and run:
 
     rm -rf /var/lib/mysql/*
     rm -rf /var/lib/mysql/\.[^/.]*
     mariabackup --copy-back --target-dir /backup/restore/full/
 
-Next, navigate back to the other shell and start the MariaDB Docker
-container:
+**5.** Next, with Kolla Ansible run MariaDB recovery while specifying the host from
+which the database backup was restored:
 
-    docker start mariadb
+    kolla-ansible \
+        -i /opt/kolla-ansible-cli/inventory.yml \
+        -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+        mariadb_recovery \
+        -e mariadb_recover_inventory_name=comfortable-lark.local
 
 Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
-    # tail -1 /var/log/kolla/mariadb/mariadb.log
-    2021-12-08 22:27:39 2 [Note] WSREP: Synchronized with group, ready for
-    connections
+    # less /var/log/kolla/mariadb/mariadb.log
+    2025-08-29 16:55:41 0 [Note] WSREP: Shifting JOINED -> SYNCED (TO: 128)
+    2025-08-29 16:55:41 6 [Note] WSREP: Server comfortable-lark synced with group
+    2025-08-29 16:55:41 6 [Note] WSREP: Server status change joined -> synced
+    2025-08-29 16:55:41 6 [Note] WSREP: Synchronized with group, ready for connections
 
 ## References
 
-- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/victoria/admin/mariadb-backup-and-restore.html)
+- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/yoga/admin/mariadb-backup-and-restore.html)
 - MariaDB's [Full Backup and Restore with Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
 - MariaDB's [Incremental Backup and Restore with Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)

@@ -1,26 +1,16 @@
 ---
 sidebar_position: 2
 ---
-# How to Enable TLS for OpenStack using Kolla Ansible
+# How to Deploy an SSL Certificate for OpenStack using Kolla Ansible
 
 ## Introduction
 
-By default, Private Clouds are not configured with an SSL encrypting the
-network traffic from your machine to your Private Cloud's OpenStack
-dashboard, called Horizon. Without encryption, information is sent in
-plaintext, meaning someone could see the password you used to log in to
-Horizon. In this guide, we explain how to configure an SSL for the
-public, or external, network of your Private Cloud.
+By default, Private Clouds are deployed with Kolla Ansible's self-signed SSL
+certificate. The following will guide you through the steps needed to deploy a
+different SSL certificate, providing encryption of the network traffic for
+Horizon and the OpenStack public APIs in your cloud.
 
 ## Prerequisites
-
-:::info New Clouds
-
-On clouds provisioned **_after_ Dec 2022** you will need to open a
-[support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-to have the configuration saved to your nodes.
-
-:::
 
 - **Prepare Kolla Ansible**: This guide explains how to configure your
     cloud with an SSL using Kolla Ansible. Any time you work with Kolla
@@ -28,12 +18,6 @@ to have the configuration saved to your nodes.
     [How to Prepare and Use Kolla Ansible](./prepare-kolla-ansible).
     The remaining instruction assume this environment has been prepared.
     All commands are to be executed from the control plane node where
-    this environment has been prepared.
-- **Prepare Ceph Ansible**: This guide makes use of Ceph Ansible to
-    reconfigure your cloud's Ceph cluster. When working with Ceph
-    Ansible, you must first prepare a shell environment. For more, see
-    [How to Prepare and Use Ceph Ansible](../ceph-ansible/prepare-ceph-ansible).
-    The portion of this guide that has to do with using Ceph Ansible assumes
     this environment has been prepared.
 - **Root Access**: Root access to your cloud's control plane nodes is
     required.
@@ -78,35 +62,31 @@ use:
 
 ### Apply Configuration Change Using Kolla Ansible
 
-With the FQDN configured, Kolla Ansible must be used to apply that
-configuration before proceeding with this guide. Before proceeding with
-this section, ensure you have [prepared a Kolla Ansible
-environment](./).
-Also ensure the node from which Kolla Ansible has been prepared contains
-the file `/etc/fm-deploy/kolla-ansible-inventory`, which is the Ansible
-inventory file for your cloud.
+With the FQDN configured, Kolla Ansible must be used to apply that configuration
+before proceeding with this guide. Before proceeding with this section, ensure
+you have [prepared a Kolla Ansible environment](./prepare-kolla-ansible).
 
-To configure the cloud to use this FQDN, use the inventory file
-`/etc/fm-deploy/kolla-ansible-inventory` and Kolla Ansible's
+To configure the cloud to use this FQDN, use the inventory files
+`/opt/kolla-ansible-cli/inventory.yml` and `/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
 `reconfigure` subcommand.
 
 For example:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory reconfigure
+    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode reconfigure
 
 ## Enable SSL Externally, Encrypting Horizon Traffic
 
 This section outlines the steps required to install a signed SSL for
-your cloud's external, public network using Kolla Ansible.
+your cloud's Horizon and public OpenStack APIs using Kolla Ansible.
 
 ### Modify Kolla Ansible Configuration
 
 #### Configure Root CA Bundle
 
-OpenMetal private clouds are deployed with CentOS 8 as the operating
-system. Kolla Ansible needs to be updated to point to the root CA bundle
-for CentOS 8. To do so, modify `/etc/kolla/globals.yml` to reflect the
-location of the root CA bundle for CentOS 8:
+OpenMetal private clouds are deployed with CentOS 9 Stream as the operating
+system. Kolla Ansible needs to be updated to point to the root CA bundle file.
+To do so, modify `/etc/kolla/globals.yml` to reflect the location of the root CA
+bundle for CentOS 9 Stream:
 
     openstack_cacert: '/etc/pki/tls/certs/ca-bundle.crt'
 
@@ -144,13 +124,14 @@ Ansible may fail to execute as expected.
 
 #### Specify SSL Certificate
 
-Next, in `/etc/kolla/globals.yml`, ensure the key
-`kolla_external_fqdn_cert` is set to the name of the certificate file.
-`{{ node_config }}` in this case is defined as `/etc/kolla`.
+Next, in `/etc/kolla/globals.yml`, ensure the key `kolla_external_fqdn_cert` is
+set to the name of the certificate file.
 
 For example:
 
     kolla_external_fqdn_cert: '{{ node_config }}/certificates/<certificate-name>.pem'
+
+`{{ node_config }}` in this case is defined as `/etc/kolla`.
 
 #### Enable External TLS
 
@@ -163,51 +144,16 @@ set to `'yes'`:
 
 The previous steps conclude the preparation of the SSL file and the
 Kolla Ansible configuration. Before proceeding with this step, ensure
-you have [prepared a Kolla Ansible
-environment](./).
+you have [prepared a Kolla Ansible environment](./prepare-kolla-ansible).
 
 Next, to configure the cloud to use this SSL, use the inventory file
-`/etc/fm-deploy/kolla-ansible-inventory` and Kolla Ansible's
+`/opt/kolla-ansible-cli/inventory.yml` and `/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
 `reconfigure` subcommand.
 
 For example:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory reconfigure
-
-## Reconfigure Ceph Cluster using Ceph Ansible
-
-Additionally, the Ceph cluster needs to be reconfigured to update Swift
-to point to the Keystone HTTPS endpoint instead of the HTTP version. In
-this section we explain how to configure the new Swift endpoint using
-Ceph Ansible.
-
-### Procedure
-
-First, ensure you have [prepared a Ceph Ansible environment](../ceph-ansible/prepare-ceph-ansible)
-
-Next, load `./group_vars/all.yml` in an editor and find the line
-containing the string `rgw keystone url:`. For this example, this line
-appears this way:
-
-    rgw keystone url: http://173.231.254.164:5000
-
-This line tells Swift which URL to use to authenticate with Keystone.
-Since the cloud now has an SSL configured externally, the Keystone URL
-for Swift needs to include the HTTPS protocol.
-
-In the file `./group_vars/all.yml`, ensure the line with `rgw keystone
-url:` now specifies HTTPS instead of HTTP. For example:
-
-    rgw keystone url: https://173.231.254.164:5000
-
-Next, run Ceph Ansible, using:
-
-    ansible-playbook \
-        -i /etc/fm-deploy/ceph-inventory.yml \
-        --private-key /root/.ssh/fm-deploy \
-        /opt/ceph-ansible/site.yml
+    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode reconfigure
 
 ## Reference
 
-[TLS Documentation from Kolla Ansible for OpenStack
-Victoria](https://docs.openstack.org/kolla-ansible/victoria/admin/tls.html)
+[TLS Documentation from Kolla Ansible](https://docs.openstack.org/kolla-ansible/yoga/admin/tls.html)

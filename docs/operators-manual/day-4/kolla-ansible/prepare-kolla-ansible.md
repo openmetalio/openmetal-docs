@@ -66,15 +66,19 @@ Create an Ansible deployment SSH keypair with:
 
     kolla-ansible -i inventory.yml -i ansible/inventory/multinode <command>
 
-For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html#kolla-ansible-cli).
+> Note - Usage examples of kolla-ansible found throughout the manual will assume
+the inventory files, `/opt/kolla-ansible-cli/inventory.yml` and
+`/opt/kolla-ansible-cli/ansible/inventory/multinode`, are relative to the path
+`/opt/kolla-ansible-cli`.
+
+For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/yoga/user/operating-kolla.html#kolla-ansible-cli).
 
 ### Prepare Kolla Ansible
 
-In this section, we explain the steps needed to create an environment
-from which Kolla Ansible can be executed. The steps in this section
-should be performed from the node in your cloud that contains the path
-`/etc/kolla/config`. This directory exists on a single node and is used
-to provide our custom configuration to OpenStack services.
+In this section, we explain the steps needed to create an environment from which
+Kolla Ansible can be executed. The steps in this section should be performed
+from a control plane node, which contains the Kolla Ansible configuration used
+to deploy the cloud's OpenStack services in `/etc/kolla/config`.
 
 ### Kolla Ansible Configuration Files
 
@@ -169,10 +173,10 @@ Install Kolla Ansible and its dependencies:
 Should `requirements.txt` not exist, you can ask us to sync that file to your
 cloud.
 
-For our latest deployments running OpenStack 2023.2, `requirements.txt` should contain:
+The Python requirements file `requirements.txt` should contain:
 
-    ansible-core==2.15.*
-    kolla-ansible==17.3.*
+    ansible-core>=2.13,<2.14
+    kolla-ansible==14.*
 
 #### **Step 5** -- Install Ansible Galaxy dependencies
 
@@ -201,11 +205,11 @@ OpenStack](enable-tls).
 
 For complete documentation regarding available Kolla Ansible commands,
 see [Operating
-Kolla](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html).
+Kolla](https://docs.openstack.org/kolla-ansible/yoga/user/operating-kolla.html).
 
 ## References
 
 - [OpenStack Kolla Ansible
-    documentation](https://docs.openstack.org/kolla-ansible/latest/)
+    documentation](https://docs.openstack.org/kolla-ansible/yoga/)
 - [Kolla Ansible Quick
-    Start](https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html)
+    Start](https://docs.openstack.org/kolla-ansible/yoga/user/quickstart.html)

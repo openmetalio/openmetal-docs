@@ -80,8 +80,8 @@ For example:
     $ vi ~/.config/openstack/clouds.yaml
 
 **Note** -- The `clouds.yaml` file can be placed in several locations.
-For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/victoria/configuration/index.html#configuration-files)
-heading of OpenStack Victoria's documentation.
+For more see the [Configuration Files](https://docs.openstack.org/python-openstackclient/yoga/configuration/index.html#configuration-files)
+heading of OpenStack's documentation.
 
 Next, copy the contents of your OpenStack RC file, in our case called
 `~/Development-openrc.sh`, into the instance. This file can be placed
@@ -284,4 +284,4 @@ For example:
 ## Reference
 
 [OpenStack Bobcat OpenStackClient
-Documentation](https://docs.openstack.org/python-openstackclient/2023.2/)
+Documentation](https://docs.openstack.org/python-openstackclient/yoga/)

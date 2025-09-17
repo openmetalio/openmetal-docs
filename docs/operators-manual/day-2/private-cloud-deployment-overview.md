@@ -14,14 +14,8 @@ OpenMetal.
 
 ## Initial Deployment
 
-In OpenMetal, OpenStack is containerized through Docker using Kolla
-Ansible. This is done through an initial deployment container called
-FM-Deploy. FM-Deploy provides the initial setup changes during the
-provisioning process of your Private Cloud. The FM-Deploy Container is a
-necessary part of the current architecture of your Private Cloud. The
-FM-Deploy Container should remain running in your Private Cloud as it is
-used by our systems in the event you want to add or remove nodes from
-your cloud.
+With an OpenMetal cloud, OpenStack is deployed into containers through Docker
+using Kolla Ansible.
 
 ## Containerization of OpenStack
 

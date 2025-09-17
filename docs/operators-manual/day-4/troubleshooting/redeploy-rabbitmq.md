@@ -14,14 +14,6 @@ using Kolla Ansible.
 
 ### Prepare Kolla Ansible
 
-:::info New Clouds
-
-On clouds provisioned **_after_ Dec 2022** you will need to open a
-[support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-to have the configuration saved to your nodes.
-
-:::
-
 This guide explains how to configure your cloud using Kolla Ansible. Any
 time you work with Kolla Ansible, you must prepare a shell environment.
 For more, see [How to Prepare and Use Kolla Ansible](../kolla-ansible/prepare-kolla-ansible).
@@ -43,4 +35,4 @@ For each RabbitMQ cluster member, run:
 
 Then, use Kolla Ansible's `deploy` function, targeting RabbitMQ:
 
-    kolla-ansible -i /etc/fm-deploy/kolla-ansible-inventory deploy --tags rabbitmq
+    kolla-ansible -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode deploy --tags rabbitmq

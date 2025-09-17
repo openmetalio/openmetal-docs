@@ -10,7 +10,7 @@ Now, if a user activates TOTP on Keystone, it gets activated on Horizon too.
 
 ## Prerequisites
 
-- A working OpenStack 2023.2 environment deployed using kolla-ansible.
+- A working OpenStack 2023.2 environment deployed using Kolla Ansible.
 - [Keystone and Horizon reconfigured with TOTP enabled](https://www.openstack.org/blog/new-in-openstack-bobcat-horizon-team-introduces-time-based-one-time-password-totp-authentication-support/)
 - Admin access to the OpenStack dashboard and CLI.
 - Access to the kolla-ansible configuration files.
@@ -70,7 +70,7 @@ enter your TOTP code.
 Open your TOTP app and enter the current code to complete the login process.
 
 By following these steps, you should have successfully enabled TOTP
-authentication in OpenStack 2023.2 using kolla-ansible, allowing users to
+authentication in OpenStack 2023.2 using Kolla Ansible, allowing users to
 enhance the security of their accounts with TOTP through the Horizon dashboard.
 
 ## References
