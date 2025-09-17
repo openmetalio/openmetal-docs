@@ -28,8 +28,8 @@ Root access to your cloud's control plane nodes is required.
 
 ### Path to the Ceph Configuration Files
 
-Ceph Ansible Inventory: `/opt/ceph-ansible-cli/inventory.yml`
-Ceph Ansible Config: `/opt/ceph-ansible-cli/group_vars/all.yml`
+* Ceph Ansible Inventory: `/opt/ceph-ansible-cli/inventory.yml`
+* Ceph Ansible Config: `/opt/ceph-ansible-cli/group_vars/all.yml`
 
 ## Preparation
 
