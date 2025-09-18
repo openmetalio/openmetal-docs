@@ -67,7 +67,8 @@ before proceeding with this guide. Before proceeding with this section, ensure
 you have [prepared a Kolla Ansible environment](./prepare-kolla-ansible).
 
 To configure the cloud to use this FQDN, use the inventory files
-`/opt/kolla-ansible-cli/inventory.yml` and `/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
+`/opt/kolla-ansible-cli/inventory.yml` and
+`/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
 `reconfigure` subcommand.
 
 For example:
@@ -147,7 +148,8 @@ Kolla Ansible configuration. Before proceeding with this step, ensure
 you have [prepared a Kolla Ansible environment](./prepare-kolla-ansible).
 
 Next, to configure the cloud to use this SSL, use the inventory file
-`/opt/kolla-ansible-cli/inventory.yml` and `/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
+`/opt/kolla-ansible-cli/inventory.yml` and
+`/opt/kolla-ansible-cli/ansible/inventory/multinode` as well as Kolla Ansible's
 `reconfigure` subcommand.
 
 For example:

@@ -17,7 +17,7 @@ of a failure.
 
 Root access to your cloud's control plane nodes is required.
 
-## OpenSearch 
+## OpenSearch
 
 This guide focuses on how to manually look through logs, however
 OpenSearch can be used to aggregate and view logs in a visual manner from a
