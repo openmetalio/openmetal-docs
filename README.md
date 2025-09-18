@@ -18,11 +18,11 @@ The following lists the different PCC versions and which OpenStack release they 
 
 ### Updating the latest version
 
-To update the latest version of the Operator's Manual, make changes in the [./docs/operators-manual]() directory.
+To update the latest version of the Operator's Manual, make changes in the [docs/operators-manual]() directory.
 
 ### Updating Older Versions
 
-Older versions are located in [./versioned_docs](). If changes need to be made to the PCC 2.0 release of our documentation, use directory [./versioned_docs/version-2.0]().
+Older versions are located in [versioned_docs](). If changes need to be made to the PCC 2.0 release of our documentation, use directory [versioned_docs/version-2.0]().
 
 # Website
 
