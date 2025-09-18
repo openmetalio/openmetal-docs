@@ -330,8 +330,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InventoryAvailability'
-        '404':
-          description: Pod location not found.
+        '400':
+          description: Invalid pod location.
 
   /v1/deployment/node/images/{pod_location}:
     get:
