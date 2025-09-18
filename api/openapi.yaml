@@ -4,14 +4,44 @@ info:
   description: |
     ## Authentication
 
-    All endpoints are secured using **Bearer Token Authentication**. To access the API, you need to include a valid token in the `Authorization` header of your requests.  
-   
+    Most API endpoints are secured using **Bearer Token Authentication**. To access the API, you need to include a valid token in the `Authorization` header of your requests.
+    
     Example:
     ```
     Authorization: Bearer <your-token>
     ```
-    Ensure that the token is kept secure and not shared publicly. Unauthorized requests will result in a `401 Unauthorized` response. 
-    Please ask your OpenMetal account manager for a valid token. If you have trouble authenticating or accessing the API, please contact
+    
+    ### Generating Tokens
+    
+    There are two methods to obtain Bearer tokens for API authentication:
+    
+    #### 1. API Keys
+    
+    API Keys are long-term tokens that provide persistent access to the API.
+    
+    - **Generation**: API Keys can be generated via OpenMetal Central
+      - Navigate to Organization Dashboard → Organization Tools → API Keys
+      - Create a new API key and securely store the generated token
+    - **Usage**: Use the API key directly as a Bearer token in the Authorization header
+    
+    #### 2. OAuth 2.0 Clients
+    
+    OAuth Applications provide short-lived tokens using client credentials.
+    
+    - **Generation**: OAuth Apps can be created via OpenMetal Central
+      - Navigate to Organization Dashboard → Organization Tools → API Keys
+      - Create a new OAuth Client
+      - You will receive a `client_id` and `client_secret`
+    - **Token Exchange**: Use your OAuth credentials to obtain a Bearer token via the `/v1/oauth2/token` endpoint (see below)
+    
+    ### Security Notes
+    
+    - Keep all tokens and credentials secure and never share them publicly
+    - API Keys should be rotated periodically
+    - OAuth tokens have limited lifespans and should be refreshed as needed
+    - Unauthorized requests will result in a `401 Unauthorized` response
+    
+    If you have trouble authenticating or accessing the API, please contact
     [support@openmetal.io](mailto:support@openmetal.io) for assistance.
 
   version: 1.0.0
@@ -26,6 +56,10 @@ servers:
     description: Production server
 
 tags:
+  - name: OAuth 2.0
+    description: Operations for OAuth 2.0 client credential flow and token management.
+  - name: API Keys
+    description: Long-term API keys for persistent authentication.
   - name: Clouds
     description: Operations for managing a collection of servers. Private clouds or a group of baremetal nodes will be owned by a cloud resource.
   - name: Deployment
@@ -36,6 +70,9 @@ tags:
     description: Operations for managing orders.
 
 x-tagGroups:
+  - name: Authentication
+    tags:
+      - OAuth 2.0
   - name: Core Endpoints
     tags:
       - Clouds
@@ -44,6 +81,72 @@ x-tagGroups:
       - Orders
 
 paths:
+  /v1/oauth2/token:
+    get:
+      tags:
+        - OAuth 2.0
+      summary: Get Token
+      description: |
+        Exchange OAuth Application client credentials for a short-lived Bearer token.
+        
+        This endpoint uses **Basic Authentication** with your OAuth App credentials:
+        - Username: `client_id`
+        - Password: `client_secret`
+        
+        The Authorization header should contain the Base64-encoded credentials in the format:
+        ```
+        Authorization: Basic <Base64(client_id:client_secret)>
+        ```
+        
+        Example cURL request:
+        ```bash
+        curl --location 'https://api-omc.openmetal.io/v1/oauth2/token?grant_type=client_credentials' \
+          --header 'Authorization: Basic <Base64-encoded-credentials>'
+        ```
+      parameters:
+        - name: grant_type
+          in: query
+          required: true
+          description: The OAuth grant type. Currently only "client_credentials" is supported.
+          schema:
+            type: string
+            enum: ["client_credentials"]
+            example: "client_credentials"
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Token generated successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: The short-lived Bearer token to use for API authentication
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  scope:
+                    type: string
+                    description: The scope of the token
+                    example: "https://api-omc.openmetal.io/v1/*"
+                  expires_in:
+                    type: integer
+                    description: Token lifetime in seconds
+                    example: 14400
+                  token_type:
+                    type: string
+                    description: The type of token returned
+                    example: "bearer"
+                required:
+                  - access_token
+                  - scope
+                  - expires_in
+                  - token_type
+        '400':
+          description: Invalid grant type or malformed request
+        '401':
+          description: Invalid client credentials
   /v1/clouds:
     get:
       tags:
@@ -362,6 +465,10 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your OAuth Application's client_id as username and client_secret as password
 
   schemas:
     Cloud:
