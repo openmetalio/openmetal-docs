@@ -117,15 +117,13 @@ database backups created using Kolla Ansible's `mariadb_backup` function.
 
 ### Full Database Backup Restoration
 
-Follow these steps to restore a full MariaDB database backup of OpenStack service databases.
+Follow these steps to restore a full MariaDB database backup of OpenStack
+service databases.
 
 > **Note**: Make sure you run these commands from the host that contains the
 `mariadb_backup` Docker volume. The `mariadb_backup` Kolla Ansible command ran
 earlier outputs the host where this volume was created. Run `docker volume ls |
 grep mariadb_backup` to check.
-
-> **Caution**! Be careful when using commands. The following commands make use of
-the `rm` command which deletes files.
 
 #### Steps
 
@@ -146,7 +144,7 @@ Create the temporary Docker container called `dbrestore` using:
         --volume mariadb_backup:/backup \
         registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga \
         /bin/bash
-    
+
 Once you run the above Docker command, your terminal should appear this
 way:
 
@@ -165,7 +163,7 @@ To prepare the backup data, in the Docker container, run:
     gunzip mysqlbackup-29-08-2025-1756478084.qp.xbc.xbs.gz
     mbstream -x -C /backup/restore/full/ < mysqlbackup-29-08-2025-1756478084.qp.xbc.xbs
     mariabackup --prepare --target-dir /backup/restore/full
-    
+
 **3.** With Kolla Ansible, stop the MariaDB service:
 
     kolla-ansible \
@@ -209,12 +207,10 @@ function.
 earlier outputs the host where this volume was created. Run `docker volume ls |
 grep mariadb_backup` to check.
 
-> **Caution**! Be careful when using commands. The following commands make use of
-the `rm` command which deletes files.
-
 #### Steps
 
-**1.** In this section, we create a temporary Docker container called `dbrestore`. This
+**1.** In this section, we create a temporary Docker container called
+*`dbrestore`. This
 container is created with the same volumes as the `mariadb` Docker container.
 The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
 Finally, the container is created using the
