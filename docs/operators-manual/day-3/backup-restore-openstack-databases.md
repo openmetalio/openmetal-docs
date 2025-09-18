@@ -125,7 +125,7 @@ service databases.
 earlier outputs the host where this volume was created. Run `docker volume ls |
 grep mariadb_backup` to check.
 
-#### Steps
+#### Full Database Restoration Steps
 
 **1.** In this section, we create a temporary Docker container called
 *`dbrestore`. This
@@ -207,7 +207,7 @@ function.
 earlier outputs the host where this volume was created. Run `docker volume ls |
 grep mariadb_backup` to check.
 
-#### Steps
+#### Incremental Database Restoration Steps
 
 **1.** In this section, we create a temporary Docker container called
 *`dbrestore`. This
