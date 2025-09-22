@@ -320,6 +320,24 @@ const config = {
                 "icon": ""
               },
             {
+              "label": "CPU – Intel Xeon Processors",
+              "description": "",
+              "href": "https://openmetal.io/platform/cpu-5th-gen-intel-xeon-processors/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": ""
+            },
+            {
+              "label": "Drives – Micron 7450 MAX NVMe",
+              "description": "",
+              "href": "https://openmetal.io/platform/server-hardware-micron-7450-max-nvme-drives/",
+              "itemType": "link",
+              "icontype": "external",
+              "iconstyle": "solid",
+              "icon": ""
+            },
+            {
               "label": "Cloud Scaling Options",
               "description": "",
               "href": "https://openmetal.io/platform/cloud-expansion/",
@@ -717,16 +735,12 @@ const config = {
               "href": "https://openmetal.io/products/hosted-private-cloud/"
             },
             {
-              "label": "OpenStack Private Cloud",
-              "href": "https://openmetal.io/products/on-demand-openstack-cloud/"
-            },
-            {
-              "label": "Ceph Storage Clusters",
-              "href": "https://openmetal.io/products/storage-clusters/"
-            },
-            {
-              "label": "Bare Metal Clusters",
+              "label": "Bare Metal Dedicated Servers",
               "href": "https://openmetal.io/products/bare-metal/"
+            },
+            {
+              "label": "Storage Clusters",
+              "href": "https://openmetal.io/products/storage-clusters/"
             }
           ],
         },
@@ -743,8 +757,8 @@ const config = {
               "href": "https://openmetal.io/bare-metal-pricing"
             },
             {
-              "label": "Cloud Expansion Nodes",
-              "href": "https://openmetal.io/cloud-expansion-pricing/"
+              "label": "GPU Servers & Clusters",
+              "href": "https://openmetal.io/gpu-servers-clusters-pricing/"
             },
             {
               "label": "Storage Clusters",
@@ -753,6 +767,10 @@ const config = {
             {
               "label": "Egress",
               "href": "https://openmetal.io/egress-pricing-calculator/"
+            },
+            {
+              "label": "Cloud Expansion Nodes",
+              "href": "https://openmetal.io/cloud-expansion-pricing/"
             },
             {
               "label": "Spot Hardware",
@@ -764,36 +782,8 @@ const config = {
         {
           "title": "Platform",
           "items": [{
-              "label": "Cloud Cores",
+              "label": "Feature Overview",
               "href": "https://openmetal.io/platform/cloud-cores/"
-            },
-            {
-              "label": "OpenStack",
-              "href": "https://openmetal.io/platform/openstack/"
-            },
-            {
-              "label": "Compute",
-              "href": "https://openmetal.io/platform/cloud-cores/cloud-compute/"
-            },
-            {
-              "label": "Block Storage",
-              "href": "https://openmetal.io/platform/cloud-cores/block-storage/"
-            },
-            {
-              "label": "Networking",
-              "href": "https://openmetal.io/platform/cloud-cores/cloud-networking/"
-            },
-            {
-              "label": "Object Storage",
-              "href": "https://openmetal.io/platform/cloud-cores/object-storage/"
-            },
-            {
-              "label": "Integrated Bare Metal",
-              "href": "https://openmetal.io/platform/cloud-cores/integrated-bare-metal/"
-            },
-            {
-              "label": "Kubernetes Infrastructure",
-              "href": "https://openmetal.io/platform/kubernetes-infrastructure/"
             },
             {
               "label": "Cloud Monitoring",
@@ -806,130 +796,10 @@ const config = {
             {
               "label": "Cloud Portal",
               "href": "https://openmetal.io/platform/openmetal-central-cloud-portal/"
-            },
-            {
-              "label": "Service Level Agreements",
-              "href": "https://openmetal.io/platform/support-and-service-levels/"
             }
           ]
         },
 
-        {
-          title: 'Use Cases',
-          items: [{
-              "label": "SaaS Providers",
-              "href": "https://openmetal.io/use-cases/saas-providers"
-            },
-            {
-              "label": "Hosting and Public Cloud Providers",
-              "href": "https://openmetal.io/use-cases/hosting-cloud-providers/"
-            },
-            {
-              "label": "Managed IT Service Providers",
-              "href": "https://openmetal.io/use-cases/MSP/"
-            },
-            {
-              "label": "Managed Private Cloud",
-              "href": "https://openmetal.io/use-cases/managed-private-cloud/"
-            },
-            {
-              "label": "Reduce Cloud Costs",
-              "href": "https://openmetal.io/use-cases/reduce-cloud-costs/"
-            },
-            {
-              "label": "Public Cloud Alternative",
-              "href": "https://openmetal.io/use-cases/public-cloud-alternative/"
-            },
-            {
-              "label": "Big Data Infrastructure",
-              "href": "https://openmetal.io/use-cases/big-data-infrastructure"
-            },
-            {
-              "label": "S3 Alternatives",
-              "href": "https://openmetal.io/use-cases/s3-alternatives/"
-            },
-            {
-              "label": "Kubernetes Workloads",
-              "href": "https://openmetal.io/use-cases/kubernetes-workloads/"
-            },
-            {
-              "label": "Large IaaS Deployments",
-              "href": "https://openmetal.io/use-cases/large-iaas-deployments/"
-            }
-          ],
-        },
-        {
-          "title": "Resources",
-          "items": [{
-              "label": "Resources Home",
-              "href": "https://openmetal.io/resources/"
-            },
-            {
-              "label": "OpenMetal Blog",
-              "href": "https://openmetal.io/resources/blog/"
-            },
-            {
-              "label": "Case Studies",
-              "href": "https://openmetal.io/resources/case-studies/"
-            },
-            {
-              "label": "Newsletters",
-              "href": "https://openmetal.io/resources/newsletters"
-            },
-            {
-              "label": "OpenMetal Community",
-              "href": "https://openmetal.io/openmetal-community/"
-            },
-            {
-              "label": "Analyst Coverage & Industry Reports",
-              "href": "https://openmetal.io/resources/analyst-industry-reports/"
-            },
-            {
-              "label": "Cloud Industry Events",
-              "href": "https://openmetal.io/resources/cloud-industry-events/"
-            },
-            {
-              "label": "Education & Training",
-              "href": "https://openmetal.io/programs/education-and-training/"
-            },
-            {
-              "label": "Media & Press",
-              "href": "https://openmetal.io/resources/media-and-press/"
-            },
-            {
-              "label": "OpenMetal Cloud FAQ",
-              "href": "https://openmetal.io/resources/openmetal-cloud-faq/"
-            }
-          ]
-        },
-        {
-          "title": "Docs",
-          "items": [{
-              "label": "Documentation Home",
-              "href": "https://openmetal.io/docs/"
-            },
-            {
-              "label": "OpenStack Operator’s Manual",
-              "href": "https://openmetal.io/docs/manuals/operators-manual"
-            },
-            {
-              "label": "OpenStack User’s Manual",
-              "href": "https://openmetal.io/docs/manuals/users-manual"
-            },
-            {
-              "label": "Private Cloud Users",
-              "href": "https://openmetal.io/docs/product-guides/private-cloud/"
-            },
-            {
-              "label": "Kubernetes",
-              "href": "https://openmetal.io/docs/manuals/kubernetes-guides"
-            },
-            {
-              "label": "Product Release Updates",
-              "href": "https://openmetal.io/docs/releases/"
-            }
-          ]
-        },
         {
           "title": "Company",
           "items": [{
@@ -953,12 +823,192 @@ const config = {
               "href": "https://openmetal.io/about-openmetal/data-center-locations/"
             },
             {
+              "label": "Service Locations & Ping Times",
+              "href": "https://openmetal.io/resources/locations/"
+            },
+            {
               "label": "Careers",
               "href": "https://openmetal.io/about-openmetal/openmetal_careers"
             },
             {
               "label": "Sitemap",
               "href": "https://openmetal.io/sitemap"
+            }
+          ]
+        },
+        {
+          title: 'Use Cases',
+          items: [{
+              "label": "SaaS Providers",
+              "href": "https://openmetal.io/use-cases/saas-providers"
+            },
+            {
+              "label": "Hosting & Public Cloud Providers",
+              "href": "https://openmetal.io/use-cases/hosting-cloud-providers/"
+            },
+            {
+              "label": "Managed IT Service Providers",
+              "href": "https://openmetal.io/use-cases/MSP/"
+            },
+            {
+              "label": "Private AI Labs Program",
+              "href": "https://openmetal.io/programs/private-ai-labs-program/"
+            },
+            {
+              "label": "Startup Program",
+              "href": "https://openmetal.io/programs/startup-excelerator-program/"
+            },
+            {
+              "label": "On-Demand OpenStack",
+              "href": "https://openmetal.io/products/on-demand-openstack-cloud/"
+            },
+            {
+              "label": "Migrate from VMware",
+              "href": "https://openmetal.io/use-cases/migrate-vmware-to-openstack/"
+            },
+            {
+              "label": "Private AI",
+              "href": "https://openmetal.io/use-cases/private-ai"
+            },
+            {
+              "label": "Reduce Cloud Costs",
+              "href": "https://openmetal.io/use-cases/reduce-cloud-costs/"
+            },
+            {
+              "label": "Public Cloud Alternative",
+              "href": "https://openmetal.io/use-cases/public-cloud-alternative/"
+            },
+            {
+              "label": "Managed Private Cloud",
+              "href": "https://openmetal.io/use-cases/managed-private-cloud/"
+            },
+            {
+              "label": "Colocation Alternative",
+              "href": "https://openmetal.io/use-cases/colocation-alternative/"
+            },
+            {
+              "label": "Big Data Infrastructure",
+              "href": "https://openmetal.io/use-cases/big-data-infrastructure"
+            },
+            {
+              "label": "S3 Alternatives",
+              "href": "https://openmetal.io/use-cases/s3-alternatives/"
+            },
+            {
+              "label": "Kubernetes Workloads",
+              "href": "https://openmetal.io/use-cases/kubernetes-workloads/"
+            },
+            {
+              "label": "Large Deployments & Cloud Migrations",
+              "href": "https://openmetal.io/use-cases/large-iaas-deployments/"
+            },
+            {
+              "label": "Bare Metal Use Cases On OpenMetal",
+              "href": "https://openmetal.io/resources/on-openmetal/"
+            }
+          ],
+        },
+        {
+          "title": "Compare OpenMetal",
+          "items": [{
+              "label": "vs Amazon Web Services (AWS)",
+              "href": "https://openmetal.io/compare-openmetal/aws-alternatives/"
+            },
+            {
+              "label": "vs Google Cloud Platform (GCP)",
+              "href": "https://openmetal.io/compare-openmetal/google-cloud-alternatives/"
+            },
+            {
+              "label": "vs VMware",
+              "href": "https://openmetal.io/compare-openmetal/vmware-alternatives/"
+            },
+            {
+              "label": "vs OVHcloud",
+              "href": "https://openmetal.io/compare-openmetal/ovhcloud-vs-openmetal-hosted-private-cloud/"
+            },
+            {
+              "label": "vs Red Hat",
+              "href": "https://openmetal.io/compare-openmetal/red-hat-openstack-services-on-openshift-vs-openmetal-hosted-private-cloud/"
+            },
+            {
+              "label": "vs VEXXHOST",
+              "href": "https://openmetal.io/compare-openmetal/vexxhost-vs-openmetal-openstack-powered-iaas-solutions/"
+            },
+            {
+              "label": "vs Canonical",
+              "href": "https://openmetal.io/compare-openmetal/canonical-vs-openmetal-openstack-powered-cloud-infrastructure-solutions/"
+            },
+            {
+              "label": "vs Proxmox",
+              "href": "https://openmetal.io/compare-openmetal/proxmox-virtual-environment-vs-openmetal-hosted-private-cloud/"
+            },
+            {
+              "label": "vs Platform9",
+              "href": "https://openmetal.io/compare-openmetal/platform9-private-cloud-director-vs-openmetal-hosted-private-cloud"
+            },
+            {
+              "label": "vs DigitalOcean",
+              "href": "https://openmetal.io/compare-openmetal/digitalocean-vs-openmetal/"
+            },
+            {
+              "label": "vs Virtuozzo",
+              "href": "https://openmetal.io/compare-openmetal/virtuozzo-hybrid-infrastructure-vs-openmetal-hosted-private-cloud/"
+            },
+            {
+              "label": "vs Vultr",
+              "href": "https://openmetal.io/compare-openmetal/vultr-vs-openmetal-cloud-infrastructure-solutions/"
+            }
+          ]
+        },
+        {
+          "title": "Resources",
+          "items": [{
+              "label": "Resources Home",
+              "href": "https://openmetal.io/resources/"
+            },
+            {
+              "label": "Documentation",
+              "href": "https://openmetal.io/docs/"
+            },
+            {
+              "label": "OpenMetal Blog",
+              "href": "https://openmetal.io/resources/blog/"
+            },
+            {
+              "label": "Case Studies",
+              "href": "https://openmetal.io/resources/case-studies/"
+            },
+            {
+              "label": "Newsletters",
+              "href": "https://openmetal.io/resources/newsletters"
+            },
+            {
+              "label": "OpenMetal Community",
+              "href": "https://openmetal.io/openmetal-community/"
+            },
+            {
+              "label": "Analyst Reports & Cloud Guides",
+              "href": "https://openmetal.io/resources/analyst-industry-reports/"
+            },
+            {
+              "label": "Cloud Industry Events",
+              "href": "https://openmetal.io/resources/cloud-industry-events/"
+            },
+            {
+              "label": "Education & Training",
+              "href": "https://openmetal.io/programs/education-and-training/"
+            },
+            {
+              "label": "Media & Press",
+              "href": "https://openmetal.io/resources/media-and-press/"
+            },
+            {
+              "label": "Hardware Details",
+              "href": "https://openmetal.io/resources/hardware-details/"
+            },
+            {
+              "label": "OpenMetal Cloud FAQ",
+              "href": "https://openmetal.io/resources/openmetal-cloud-faq/"
             }
           ]
         },

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: OpenMetal API
   description: |
@@ -22,21 +22,29 @@ info:
     href: https://openmetal.io    # Optional, clicking the logo redirects to this URL
 
 servers:
-  - url: https://api-omc.openmetal.io/v1
+  - url: https://api-omc.openmetal.io
     description: Production server
 
 tags:
   - name: Clouds
-    description: Oppertions for managing a collection of severs. Private clouds, or a 
-      group of baremetal nodes will be owned by a cloud resource.
+    description: Operations for managing a collection of servers. Private clouds or a group of baremetal nodes will be owned by a cloud resource.
+  - name: Deployment
+    description: Operations for deployment and provisioning related resources such as node images.
+  - name: Inventory
+    description: Operations for retrieving inventory information such as available locations and availability.
+  - name: Orders
+    description: Operations for managing orders.
 
 x-tagGroups:
   - name: Core Endpoints
     tags:
       - Clouds
+      - Deployment
+      - Inventory
+      - Orders
 
 paths:
-  /clouds:
+  /v1/clouds:
     get:
       tags:
         - Clouds
@@ -53,7 +61,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Cloud'
-  /clouds/{cloudId}:
+  /v1/clouds/{cloudId}:
     get:
       tags:
         - Clouds
@@ -77,7 +85,7 @@ paths:
                 $ref: '#/components/schemas/Cloud'
         '404':
           description: Cloud not found.
-  /clouds/{cloudId}/stats:
+  /v1/clouds/{cloudId}/stats:
     get:
       tags:
         - Clouds
@@ -102,7 +110,7 @@ paths:
         '404':
           description: Cloud stats not found.
 
-  /deployment/cloud/{cloudId}/node/{nodeUuid}/power:
+  /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power:
     post:
       tags:
         - Clouds
@@ -160,6 +168,194 @@ paths:
           description: Unable to process power state request - Node Locked.  Please try again in a few minutes.
         '500':
           description: Unable to update power state
+
+  /v1/orders:
+    get:
+      tags:
+        - Orders
+      summary: Get a list of orders
+      description: Retrieve a list of all orders that have been created by you or organizations that you are a member of.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderCollection'
+
+  /v1/orders/{orderId}:
+    get:
+      tags:
+        - Orders
+      summary: Get an order by ID
+      description: Retrieve a specific order by its ID to view details and check the status of the order.
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The ID of the order to retrieve.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Order found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrder'
+        '404':
+          description: Order not found.
+
+  /v1/accounts/{accountId}/orders:
+    post:
+      tags:
+        - Orders
+      summary: Create a new order
+      description: Create a new order for baremetal servers or private cloud products running OpenStack.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The ID of the organization account to create the order for.
+          schema:
+            type: string
+            example: "mWLBVbB7Eq"
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+            examples:
+              baremetal_order:
+                summary: Baremetal order with Operating System specified.
+                description: A baremetal order with Operating System specified.
+                value:
+                  label: "Baremetal Medium V4 with Ubuntu 22.04 LTS"
+                  description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        modifications:
+                          operating_system:
+                            os_key: "Ubuntu"
+                            version_key: "22.04 LTS"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
+              baremetal_order_with_deployment_configuration:
+                summary: Baremetal order with custom deployment configuration.
+                description: A baremetal order with a custom deployment configuration specified.
+                value:
+                  label: "Baremetal Medium V4 with custom deployment configuration"
+                  description: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        modifications:
+                          deployment_configuration: "0a7Y8ABym5"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
+              pcc_order:
+                summary: OpenStack PCC order.
+                description: A PCC order running OpenStack.
+                value:
+                  label: "PCC Medium V4 Order"
+                  description: "A 3 node PCC cluster in Ashburn, VA running OpenStack."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "pcc"
+                        quantity: 1
+      responses:
+        '200':
+          description: Order created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrder'
+        '400':
+          description: Invalid request payload
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+  /v2/inventory/locations:
+    get:
+      tags:
+        - Inventory
+      summary: Get available locations
+      description: Retrieve a list of available datacenter locations and their details.
+      responses:
+        '200':
+          description: List of locations retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Locations'
+
+  /v2/inventory/{pod_location}/availability:
+    get:
+      tags:
+        - Inventory
+      summary: Get inventory availability for a specific pod location
+      description: Retrieve current inventory availability information for a specific datacenter location. This endpoint shows available hardware SKUs and their counts.
+      parameters:
+        - name: pod_location
+          in: path
+          required: true
+          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.).  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+          schema:
+            type: string
+            example: "pod_1"
+      responses:
+        '200':
+          description: Inventory availability retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventoryAvailability'
+        '404':
+          description: Pod location not found.
+
+  /v1/deployment/node/images/{pod_location}:
+    get:
+      tags:
+        - Deployment
+      summary: Get operating system images for a pod location
+      description: Retrieve a list of available operating system images for node deployment at a specific pod location. This endpoint does not require authentication.
+      parameters:
+        - name: pod_location
+          in: path
+          required: true
+          description: The unique datacenter identifier (e.g., "pod_1", "pod_2", etc.).  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+          schema:
+            $ref: '#/components/schemas/PodLocations'
+      responses:
+        '200':
+          description: Available node images retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeImagesResponse'
+        '404':
+          description: Pod location not found.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -295,3 +491,331 @@ components:
                       type: boolean
                       description: Indicates if the disk is the root disk.
                       example: true
+
+    Locations:
+      type: object      
+      example:
+        locations:
+          pod_1:
+            label: "US-East"
+            displayName: "Ashburn, VA"
+            region: "US"
+            code: "iad3"
+            release_status: "released"
+          pod_2:
+            label: "US-West"
+            displayName: "Los Angeles, CA"
+            region: "US"
+            code: "lax3"
+            release_status: "released"
+      properties:
+        locations:
+          type: object
+          description: A collection of available datacenter locations.
+          properties:
+            location_id:
+              type: object
+              description: A unique identifier that corresponds to the specific datacenter location.  i.e "pod_1", "pod_2", "pod_3", etc.
+              properties:
+                label:
+                  type: string
+                  description: A short identifier for the location.
+                  example: "US-East"
+                displayName:
+                  type: string
+                  description: A human-readable name for the location.
+                  example: "Ashburn, VA"
+                region:
+                  type: string
+                  description: The geographical region of the location.
+                  example: "US"
+                code:
+                  type: string
+                  description: The datacenter location code designation.
+                  example: "iad3"
+                release_status:
+                  type: string
+                  description: The current release status of the location.
+                  enum: ["released", "pre-release"]
+                  example: "released"
+
+    InventoryAvailability:
+      type: object
+      description: Inventory availability information for a specific pod location.
+      example:
+        medium_v4:
+          count: 3
+          max_size: 2
+        large_v4:
+          count: 10
+          max_size: 8
+        timestamp: "2025-08-29T13:05:27+00:00"
+        pod_location: "pod_1"
+      properties:
+        hardware_sku:
+          type: object
+          description: A unique hardware item identifier and that item's corresponding availability information.
+          properties:
+            count:
+              type: integer
+              description: The total number of available servers of this hardware type.
+              example: 3
+            max_size:
+              type: integer
+              description: The total number of available servers that can be deployed while maintaining distribution across cabinets for redundancy.
+              example: 2
+        timestamp:
+          type: string
+          format: date-time
+          description: The timestamp of when the inventory availability was last checked.
+          example: "2025-08-29T13:05:27+00:00"
+        pod_location:
+          type: string
+          description: The pod location identifier that was passed in the request path.
+          example: "pod_1"
+
+    OrderFields:
+      type: object
+      description: The product selections and configuration options for an order.
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          description: A list of products in the order.
+          items:
+            type: object
+            required:
+              - hardware_sku
+              - location
+              - type
+              - quantity
+            properties:
+              hardware_sku:
+                type: string
+                description: The hardware SKU identifier. Available SKUs can be retrieved from the [inventory availability endpoint](#tag/Inventory/paths/~1v2~1inventory~1%7Bpod_location%7D~1availability/get).
+                example: "medium_v4"
+              location:
+                $ref: '#/components/schemas/PodLocations'
+              type:
+                type: string
+                description: The type of product.
+                enum: ["baremetal", "pcc"]
+                example: "baremetal"
+              quantity:
+                type: integer
+                description: "The quantity of the hardware SKU.  NOTE: PCC products are clusters of 3 nodes."
+                minimum: 1
+                example: 1
+              modifications:
+                type: object
+                description: Configuration modifications for the product.  Only supported for baremetal products.
+                properties:
+                  deployment_configuration:
+                    type: string
+                    description: The ID of the custom deployment configuration to use when provisioning the node. Required for baremetal products if operating_system is not provided.
+                    example: "0a7Y8ABym5"
+                  operating_system:
+                    type: object
+                    description: The operating system to load onto the node during provisioning. Required for baremetal products if deployment_configuration is not provided.  Available operating system images can be retrieved from the [operating system images endpoint](#tag/Deployment/paths/~1v1~1deployment~1node~1images~1%7Bpod_location%7D/get).
+                    properties:
+                      os_key:
+                        type: string
+                        description: The operating system key from the image manifest.  (e.g., "Ubuntu")
+                        example: "Ubuntu"
+                      version_key:
+                        type: string
+                        description: The version key from the image manifest. (e.g., "22.04 LTS")
+                        example: "22.04 LTS"
+              cloud_id:
+                type: string
+                description: Used to specify an existing cloud that the product should be added to.
+                example: "3Dop2VdpKA"
+        config_options:
+          type: object
+          description: Configuration options for the order.  Required for baremetal products.
+          properties:
+            public_key:
+              type: string
+              description: SSH public key to be added to the node during provisioning. Required for baremetal orders.
+              example: "ssh-rsa AAAA..."
+
+    OrderRequest:
+      type: object
+      required:
+        - label
+        - fields
+      properties:
+        label:
+          type: string
+          description: A user-friendly name for the order.
+          example: "Test PCC Order v2 with pending tasks check"
+        description:
+          type: string
+          description: A brief description of the order (optional).
+          example: "Baremetal Medium V4 cluster in Ashburn, VA with 1 node to run production workloads."
+        fields:
+          $ref: '#/components/schemas/OrderFields'
+
+    OrderResponse:
+      type: object      
+      required:
+        - id
+        - type
+        - created_at
+        - updated_at
+        - is_active
+        - created_by
+        - fields
+      allOf:
+        - $ref: '#/components/schemas/OrderRequest'
+        - type: object
+          properties:
+            id:
+              type: string
+              description: The unique identifier for the order.
+              example: "PGZYNxBpg3"
+            type:
+              type: string
+              description: The type of resource.
+              example: "orders"
+            created_at:
+              type: string
+              format: date-time
+              description: The date and time the order was created.
+              example: "2025-08-27T20:05:56+00:00"
+            updated_at:
+              type: string
+              format: date-time
+              description: The date and time the order was last updated.
+              example: "2025-08-27T20:05:56+00:00"
+            is_active:
+              type: boolean
+              description: Indicates if the order is active.
+              example: true
+            created_by:
+              type: string
+              description: The ID of the user who created the order.
+              example: "o6aQxVGezj"
+            fields:
+              allOf:
+                - $ref: '#/components/schemas/OrderFields'
+                - type: object
+                  required:
+                    - organization_id
+                  properties:
+                    organization_id:
+                      type: string
+                      description: The organization ID that owns the order.
+                      example: "mWLBVbB7Eq"
+                    schema_version:
+                      type: string
+                      description: The version of the schema used to create the order.
+                      example: "v2"
+
+    OrderCollection:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/OrderResponse'
+        - type: object
+          required:
+            - relation
+          properties:
+            relation:
+              $ref: '#/components/schemas/Relation'
+
+    GetOrder:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/OrderResponse'
+        - type: object
+          required:
+            - access
+          properties:
+            access:
+              type: object
+              description: Your user's access and permissions information for the organization that owns the order.
+              properties:
+                role:
+                  type: string
+                  description: Your user's role in the organization.
+                  enum: ["owner", "member", "maintainer"]
+                  example: "owner"
+
+    Relation:
+      type: object
+      description: Relationship information for the order.
+      properties:
+        access:
+          type: object
+          description: Ownership information for the organization that owns the order.
+          properties:
+            account_id:
+              type: string
+              description: The account ID.
+              example: "mWLBVbB7Eq"
+            uuid:
+              type: string
+              description: The UUID of the organization.
+              example: "b7a6d147-036b-4292-9041-7557ded1ec12"
+            type:
+              type: string
+              description: The type of organization.
+              example: "organization"
+            display_name:
+              type: string
+              description: The display name of the organization.
+              example: "Test Org"
+            role:
+              type: string
+              description: The role of the user in the organization.
+              example: "owner"
+            has_billing:
+              type: boolean
+              description: Indicates if the organization has billing access.
+              example: false
+
+    PodLocations:
+      type: string
+      description: Available datacenter pod locations.  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+      enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
+      example: "pod_1"
+
+    ImageDetails:
+      type: object
+      description: Operating System version (e.g., "24.04 LTS") and details including download URL and checksums.
+      required:
+        - image
+        - image_md5
+        - image_sha256
+      properties:
+        image:
+          type: string
+          description: The download URL for the image file.
+          example: "https://s3.pod-4.flexmetal.net/cloud-init/Ubuntu/24.04-LTS/noble-server-cloudimg-amd64.img"
+        image_md5:
+          type: string
+          description: MD5 checksum of the image file.
+          example: "80721a522260ffd987c2fa3899739608"
+        image_sha256:
+          type: string
+          description: SHA256 checksum of the image file.
+          example: "071fceadf1ea57a388ff7a1ccb4127155d691a511f6a207b4c11b120563855e2"
+
+    NodeImagesResponse:
+      type: object
+      description: Operating system images available for deployment organized by OS name and version.
+      example:
+        Ubuntu:
+          "24.04 LTS":
+            image: "https://s3.pod-4.flexmetal.net/cloud-init/Ubuntu/24.04-LTS/noble-server-cloudimg-amd64.img"
+            image_md5: "80721a522260ffd987c2fa3899739608"
+            image_sha256: "071fceadf1ea57a388ff7a1ccb4127155d691a511f6a207b4c11b120563855e2"
+      properties:
+        os_name:
+          type: object
+          description: Operating system name (e.g., "Ubuntu") and version information
+          properties:
+            os_version:
+              type: object
+              $ref: '#/components/schemas/ImageDetails'
