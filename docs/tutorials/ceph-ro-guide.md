@@ -11,7 +11,7 @@ production workloads to a halt if it happens unexpectedly.
 
 ## Prerequisites
 
-* [Access to your hardware nodes.](https://openmetal.io/docs/manuals/openmetal-central/how-to-add-ssh-keys-in-openmetal-central)
+- [Access to your hardware nodes.](https://openmetal.io/docs/manuals/openmetal-central/how-to-add-ssh-keys-in-openmetal-central)
 
 Because critical operations will take place on your **physical servers**,
 make sure you have SSH access.
@@ -62,11 +62,11 @@ to prevent another full state.
 
 **Focus on:**
 
-* **Deleting unused volumes and snapshots**
+- **Deleting unused volumes and snapshots**
 
-* **Cleaning up abandoned or temporary data**
+- **Cleaning up abandoned or temporary data**
 
-* **Working with application teams to offload unnecessary storage**
+- **Working with application teams to offload unnecessary storage**
 
 Use `ceph osd df` to monitor usage and `ceph -s` to check for any remaining
 health warnings during cleanup.
@@ -131,15 +131,15 @@ This allowed the cluster to resume write operations. Keep in mind,
 
 ## How to Prevent This in the Future
 
-* **Set up proactive monitoring** and use tools like
+- **Set up proactive monitoring** and use tools like
 DataDog to alert when OSD usage hits 80% or more.
 [See this article](https://openmetal.io/docs/manuals/openmetal-central/enable-datadog-monitoring)
 to enable Datadog Cloud Monitoring in [OpenMetal Central](https://openmetal.io/platform/openmetal-central-cloud-portal/).
-* **Automate snapshot cleanup**
+- **Automate snapshot cleanup**
 by implementing periodic audits for unused volumes and snapshots.
-* **Plan capacity with headroom**
+- **Plan capacity with headroom**
 and avoid running clusters above 80–85% usage for extended periods.
-* **Scale out before you're at risk**.
+- **Scale out before you're at risk**.
 If usage trends consistently high, add more OSDs or expand storage.
 
 :::tip
