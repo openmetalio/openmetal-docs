@@ -161,5 +161,5 @@ created project and using the user associated with it.
 
 ## Reference
 
-[OpenStack Victoria Horizon Administrator
-Guide](https://docs.openstack.org/horizon/victoria/admin/index.html)
+[OpenStack Horizon Administrator
+Guide](https://docs.openstack.org/horizon/2023.2/admin/index.html)

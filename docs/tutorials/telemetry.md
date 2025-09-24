@@ -164,9 +164,8 @@ For example:
 
 ## Conclusion
 
-Beyond this, Aodh can be used to act on metrics, by providing alarms or
-causing specific actions to occur. For more on setting up alarms using
-Aodh, see [Using
-Alarms](https://docs.openstack.org/aodh/victoria/admin/telemetry-alarms.html#using-alarms),
-from the OpenStack documentation page. Setting up alarms or causing
-specific actions to occur is beyond the scope of this guide.
+Beyond this, Aodh can be used to act on metrics, by providing alarms or causing
+specific actions to occur. For more on setting up alarms using Aodh, see [Using
+Alarms](https://docs.openstack.org/aodh/2023.2/admin/telemetry-alarms.html#using-alarms),
+from the OpenStack documentation page. Setting up alarms or causing specific
+actions to occur is beyond the scope of this guide.
