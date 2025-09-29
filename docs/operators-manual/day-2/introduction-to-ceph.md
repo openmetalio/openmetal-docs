@@ -127,6 +127,6 @@ system allowing custom cloud configurations. We can still add new nodes
 and IP blocks to your cloud but must do so manually. Please reach out to
 your Account Manager should this apply to you.
 
-Your Ceph cluster was deployed using Ceph Ansible. Any configuration
-changes must be made using Ceph Ansible. For more information, see
-[How to Prepare and Use Ceph Ansible](../day-4/ceph-ansible/prepare-ceph-ansible)
+Your Ceph cluster was deployed using `cephadm`. Any configuration
+changes should be made using `cephadm`. For more information, see
+[CEPHADM](https://docs.ceph.com/en/reef/cephadm/).

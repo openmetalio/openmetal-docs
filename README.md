@@ -2,8 +2,27 @@
 This repository builds the documentation found here: https://openmetal.io/docs/manuals
 
 # Contributing
+
 All documentation exists within the `docs/` directory. Simply create or update the markdown files, and the documentation site will be updated after the changes have been merged into main.
 
+## Contributing to the Operator's Manual
+
+The Operator's Manual has differing versions depending on the PCC release.
+
+The following lists the different PCC versions and which OpenStack release they correspond to:
+| PCC Version  | OpenStack Release |
+|--------------|-------------------|
+| 3.0 (latest) | 2023.2 (Bobcat) |
+| 2.0          | Yoga            |
+| 1.0          | Victoria        |
+
+### Updating the latest version
+
+To update the latest version of the Operator's Manual, make changes in the [./docs/operators-manual]() directory.
+
+### Updating Older Versions
+
+Older versions are located in [./versioned_docs](). If changes need to be made to the PCC 2.0 release of our documentation, use directory [./versioned_docs/version-2.0]().
 
 # Website
 
