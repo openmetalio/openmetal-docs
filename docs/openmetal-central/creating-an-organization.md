@@ -92,10 +92,13 @@ option to **_Edit Permissions_** for this member.
 There are five options for permissions that you can extend to a member.
 
 - **Owner:** Has full administrative access to the entire organization.
-- **Maintainer:** Can create new cloud projects and edit all organization clouds.  Cannot update billing.
+- **Maintainer:** Can create new cloud projects and edit all organization
+    clouds.  Cannot update billing.
 - **Member:** Can view all project information. Cannot make changes.
-- **Organization Support:** Can only create, read and update organization support tickets. Cannot view any project information.
-- **Organization Billing:** Can view and update organization billing information. Cannot view any project information.
+- **Organization Support:** Can only create, read and update organization
+    support tickets.  Cannot view any project information.
+- **Organization Billing:** Can view and update organization billing information.
+    Cannot view any project information.
 
 ![OpenMetal Central Managing Member Permissions](images/organization5.png)
 
