@@ -1,5 +1,5 @@
 # Docs
-This repository builds the documentation found here: https://openmetal.io/docs/manuals
+This repository builds the documentation found here: https://openmetal.io/docs/manuals and public API documentation found here: https://openmetal.io/docs/manuals/api
 
 # Contributing
 All documentation exists within the `docs/` directory. Simply create or update the markdown files, and the documentation site will be updated after the changes have been merged into main.
