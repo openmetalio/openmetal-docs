@@ -28,12 +28,12 @@ the Proxmox web interface and make your virtual machines usable.
 First, you’ll need to mount an ISO downloaded from the official website.
 For this guide, we used **proxmox-ve_8.4-1.iso** and mounted it through IPMI.
 
-![Mount ISO](./proxmox-images/mount-iso.png)
+![Mount ISO](/img/baremetal/proxmox-images/mount-iso.png)
 
 Once you boot the server from the Proxmox ISO, you’ll see the installation
 welcome screen:
 
-![Proxmox Installer](./proxmox-images/proxmox-installer.png)
+![Proxmox Installer](/img/baremetal/proxmox-images/proxmox-installer.png)
 
 Here, we chose **Proxmox VE (Graphical) Installation**.
 
@@ -41,20 +41,20 @@ The installer will walk you through a few steps:
 
 - Selecting the installation target disk:
 
-    ![Disk Selection](./proxmox-images/disk-selection.png)
+    ![Disk Selection](/img/baremetal/proxmox-images/disk-selection.png)
 
 - Choosing a filesystem (ZFS, ext4, XFS, btrfs - ZFS is common for redundancy
 if you have multiple disks):
 
-![Filesystem](./proxmox-images/filesystem.png)
+![Filesystem](/img/baremetal/proxmox-images/filesystem.png)
 
 - Setting your location and time zone:
 
-    ![Time Zone, Location](./proxmox-images/timezone.png)
+    ![Time Zone, Location](/img/baremetal/proxmox-images/timezone.png)
 
 - Set the admin password and email:
 
-    ![Admin setup](./proxmox-images/admin.png)
+    ![Admin setup](/img/baremetal/proxmox-images/admin.png)
 
 :::note
 Keep in mind that this password will be used both for logging into the
@@ -63,7 +63,7 @@ web UI and for SSH access to the server after the installation is complete.
 
 - Configuring management network settings:
 
-    ![MGMT network](./proxmox-images/mgmt-network.png)
+    ![MGMT network](/img/baremetal/proxmox-images/mgmt-network.png)
 
 At this stage, you’ll be asked to set a hostname, IP address, gateway,
 and DNS server.
@@ -76,12 +76,12 @@ and we’ll walk you through the steps later in this guide.
 
 Here is our summary of all of the options we chose:
 
-![Summary](./proxmox-images/summary.png)
+![Summary](/img/baremetal/proxmox-images/summary.png)
 
 After confirming everything is set, click **Install** and wait for the process
 to complete.
 
-![Installation](./proxmox-images/installation.png)
+![Installation](/img/baremetal/proxmox-images/installation.png)
 
 ## Correcting the Network Configuration
 
@@ -265,22 +265,22 @@ This aligns closely with how **OpenMetal’s Infrastructure** is structured
 ([see the documentation here](https://openmetal.io/docs/manuals/baremetal/tutorials/baremetal-networking)),
 but tailored to a standalone Proxmox server.
 
-![Proxmox UI](./proxmox-images/proxmox-ui.png)
+![Proxmox UI](/img/baremetal/proxmox-images/proxmox-ui.png)
 
 Once you’re logged in, head over to **Updates > Repositories** and make sure
 your repositories are up to date. For this test, we used
 the **No-Subscription** repository.
 
-![No subscription](./proxmox-images/no-subscription.png)
+![No subscription](/img/baremetal/proxmox-images/no-subscription.png)
 
 Disable Enterprise repositories:
 
-![Disable Enterprise](./proxmox-images/disable-enterprise.png)
+![Disable Enterprise](/img/baremetal/proxmox-images/disable-enterprise.png)
 
 Then go back to the **Updates** tab and click **Upgrade** at the top of the
 screen to apply the updates.
 
-![Upgrade repos](./proxmox-images/upgrade-repos.png)
+![Upgrade repos](/img/baremetal/proxmox-images/upgrade-repos.png)
 
 Once we have all the upgrades, we can start working on VM creation.
 
@@ -308,7 +308,7 @@ VLAN, internal VMs with NAT for private workloads, and routed public IPs for
 internet-facing services - closely aligned with OpenMetal’s bare metal
 networking model shown in the diagram bellow:
 
-![Diagram](./proxmox-images/diagram.png)
+![Diagram](/img/baremetal/proxmox-images/diagram.png)
 
 ### Step 1: Upload an ISO Image
 
@@ -320,7 +320,7 @@ system you want to run (e.g., Ubuntu, Debian, Windows).
 3. Go to **Local (storage)** → **ISO Images**.
 4. Click **Upload**, then select the ISO from your computer.
 
-    ![Upload ISO](./proxmox-images/upload-iso.png)
+    ![Upload ISO](/img/baremetal/proxmox-images/upload-iso.png)
 
 ### Step 2: Create a New VM
 
@@ -354,7 +354,7 @@ select **vmbr0** (Inventory VLAN 365).
 - If you want the VM to live in the **private network with NAT**,
 select **vmbr1** (Compute VLAN 366).
 
-![VM Network](./proxmox-images/vm-network.png)
+![VM Network](/img/baremetal/proxmox-images/vm-network.png)
 
 For example:
 
@@ -368,7 +368,7 @@ For example:
 - Click **Finish**.
 - Start the VM and open the console to complete the OS installation.
 
-    ![VM summary](./proxmox-images/vm-summary.png)
+    ![VM summary](/img/baremetal/proxmox-images/vm-summary.png)
 
 ## What This Means in Practice
 
@@ -385,7 +385,7 @@ the internet through the host’s public interface.
 them to be directly reachable from the internet. Below is an example of a
 public-facing VM running a simple webpage served by the Nginx web server:
 
-![Stormy VM](./proxmox-images/stormy-vm.png)
+![Stormy VM](/img/baremetal/proxmox-images/stormy-vm.png)
 
 This setup makes it easy to:
 
@@ -408,7 +408,7 @@ and then enter:
 - **Gateway:** `192.168.2.1` (the Proxmox host’s IP on vmbr1)
 - **Nameserver:** `8.8.8.8` (or your preferred DNS server)
 
-![Ubuntu Network](./proxmox-images/ubuntu-network.png)
+![Ubuntu Network](/img/baremetal/proxmox-images/ubuntu-network.png)
 
 Once the installation finishes, your VM will:
 
@@ -436,7 +436,7 @@ You should see the private IP you set during installation (for
 example `192.168.2.10`). This confirms the VM actually picked up the correct
 configuration.
 
-![ip a](./proxmox-images/ip-a.png)
+![ip a](/img/baremetal/proxmox-images/ip-a.png)
 
 ### 2. Test Connectivity to the Proxmox Host
 
@@ -449,7 +449,7 @@ ping -c3 192.168.2.1
 
 If you get replies, it means your VM can talk to its gateway.
 
-![Ping](./proxmox-images/ping.png)
+![Ping](/img/baremetal/proxmox-images/ping.png)
 
 ### 3. Test Internet Connectivity
 
@@ -460,7 +460,7 @@ Test it by pinging:
 ping -c3 8.8.8.8
 ```
 
-![Ping2](./proxmox-images/ping2.png)
+![Ping2](/img/baremetal/proxmox-images/ping2.png)
 
 This checks raw connectivity. Then check DNS resolution:
 
@@ -468,7 +468,7 @@ This checks raw connectivity. Then check DNS resolution:
 ping -c3 google.com
 ```
 
-![Ping Google](./proxmox-images/ping-google.png)
+![Ping Google](/img/baremetal/proxmox-images/ping-google.png)
 
 If both succeed, your VM can resolve hostnames and reach the outside world.
 
@@ -483,7 +483,7 @@ sudo apt update
 This pulls the latest package lists from Ubuntu’s servers. If you see
 repositories being updated, you’re golden.
 
-![Ubuntu Update](./proxmox-images/update-ubuntu.png)
+![Ubuntu Update](/img/baremetal/proxmox-images/update-ubuntu.png)
 
 This confirms that the private VM network (`vmbr1`) is working correctly
 — traffic flows out through the Proxmox host and into the internet,
@@ -502,7 +502,7 @@ It should show the **public IP of your Proxmox host** (e.g. `173.231.226.213`),
 not the VM’s private address. That’s the proof that NAT is working exactly as
 intended.
 
-![Curl](./proxmox-images/proxmox-ui.png)
+![Curl](/img/baremetal/proxmox-images/proxmox-ui.png)
 
 This set of checks shows that the VM:
 
