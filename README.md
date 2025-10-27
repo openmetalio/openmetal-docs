@@ -1,5 +1,5 @@
 # Docs
-This repository builds the documentation found here: https://openmetal.io/docs/manuals
+This repository builds the documentation found here: https://openmetal.io/docs/manuals and public API documentation found here: https://openmetal.io/docs/manuals/api
 
 # Contributing
 
