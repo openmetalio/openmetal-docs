@@ -14,7 +14,7 @@ instances.
 
 This images shows an example of how this section appears:
 
-![image](images/admin-instance-list.png)
+![image](/img/tutorials/admin-instance-list.png)
 
 The **Host** column indicates the hardware node from which an instance
 is hosted.
@@ -24,7 +24,7 @@ right, select the option for "Live Migrate Instance".
 
 The following form appears:
 
-![image](images/live-migrate-instance.png)
+![image](/img/tutorials/live-migrate-instance.png)
 
 You can either have the system determine a host or choose one from the
 drop down. Submit the form to live migrate the instance.

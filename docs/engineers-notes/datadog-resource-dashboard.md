@@ -27,13 +27,13 @@ Access Datadog from OpenMetal Central with [single sign-on](../openmetal-central
 
 1. Navigate to Dashboards if not there already.
 
-   ![New dash navigation](datadog-images/dash-1-2.png)
+   ![New dash navigation](/img/engineers-notes/datadog-images/dash-1-2.png)
 
 1. Click **[+ New Dashboard]**.
 
 1. In the new window, again click **New Dashboard**
 
-   ![Create dash](datadog-images/create-dash.png)
+   ![Create dash](/img/engineers-notes/datadog-images/create-dash.png)
 
    > **Note:** The name field will be overwritten the imported JSON
 
@@ -45,45 +45,45 @@ need so our first task is:
 
 1. Close the widget quick add sidebar
 
-   ![Widget sidebar](datadog-images/widgetx.png)
+   ![Widget sidebar](/img/engineers-notes/datadog-images/widgetx.png)
 
 1. Click the now revealed gear icon to open the settings menu
 
-   ![Settings](datadog-images/dash-gear.png)
+   ![Settings](/img/engineers-notes/datadog-images/dash-gear.png)
 
 1. Select **Import dashboard from JSON...**
 
-   ![Import menu](datadog-images/import-json.png)
+   ![Import menu](/img/engineers-notes/datadog-images/import-json.png)
 
 1. The next window asks for the dashboard JSON you wish to import. You can
    drag and drop, browse for a file, or paste from your clipboard.
 
    > See [code block](datadog-resource-dashboard.md#code-block)
 
-   ![Input JSON](datadog-images/json-input.png)
+   ![Input JSON](/img/engineers-notes/datadog-images/json-input.png)
 
 1. Confirm overwrite action
 
-   ![Import confirmation](datadog-images/do-want-paste.png)
+   ![Import confirmation](/img/engineers-notes/datadog-images/do-want-paste.png)
 
 ## Cloud Physical Resource Usage dashboard
 
 If all went well you should now see your new dashboard.
 
-![Imported dash](datadog-images/final-result.png)
+![Imported dash](/img/engineers-notes/datadog-images/final-result.png)
 
 To find out more about any of the widgets, mouse over its title bar and click
 the pencil (edit) icon.
 
-![Edit icon](datadog-images/edit-widget.png)
+![Edit icon](/img/engineers-notes/datadog-images/edit-widget.png)
 
 This opens the editor for the selected widget.
 
-![Traffic monitor edit](datadog-images/traf-graph-edit.png)
+![Traffic monitor edit](/img/engineers-notes/datadog-images/traf-graph-edit.png)
 
 On this page you can view and edit all aspects of the widget.
 
-![Editable fields](datadog-images/edit-1-4.png)
+![Editable fields](/img/engineers-notes/datadog-images/edit-1-4.png)
 
    1. **Visualization type**
    1. **Data sources**
@@ -92,7 +92,7 @@ On this page you can view and edit all aspects of the widget.
 
 Here you can also view and/or edit your data source JSON directly.
 
-![Data source JSON](datadog-images/graph-data-json.png)
+![Data source JSON](/img/engineers-notes/datadog-images/graph-data-json.png)
 
 ## Dashboard JSON
 

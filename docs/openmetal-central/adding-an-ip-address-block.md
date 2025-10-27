@@ -2,7 +2,7 @@
 slug: /openmetal-central/adding-ip-addresses
 description: Learn step-by-step the process of adding private and public IP addresses to your cloud
 sidebar_position: 3
-image: images/central_networking/networking_ip_block_table.png
+image: /img/openmetal-central/central_networking/networking_ip_block_table.png
 ---
 
 # Adding new IP Blocks to a Cloud's External Provider Network
@@ -21,7 +21,7 @@ image: images/central_networking/networking_ip_block_table.png
 In Central, navigate to the IP Addresses page from the Networking dropdown in the
  sidebar.  
 
-![Central IP Block Listings](images/central_networking/networking_ip_block_table.png)
+![Central IP Block Listings](/img/openmetal-central/central_networking/networking_ip_block_table.png)
 
 This page displays all private and routed IP Address Blocks that are owned by
  your current selected organization.
@@ -32,7 +32,7 @@ Selecting an IP Address Block will expand the row and show all IP Addresses that
 
 From this page, select the **Add IP Addresses** button.
 
-![IP Address Creation](images/central_networking/ip_address_creation_page.png)
+![IP Address Creation](/img/openmetal-central/central_networking/ip_address_creation_page.png)
 
 You will be asked some questions about the IP address being selected.
 
@@ -44,7 +44,7 @@ addresses
 Addresses will be allocated. Public IP Address Blocks are an addon that must be
  associated with an active cloud. Selecting a cloud will add the selected block size
 
-![ip_block_size_selection.png](images/central_networking/ip_block_size_selection.png)
+![ip_block_size_selection.png](/img/openmetal-central/central_networking/ip_block_size_selection.png)
 
 Once you have selected your subscription you will be offered multiple block sizes
  for purchase.
@@ -52,7 +52,7 @@ Options are available from a block size of 16 addresses up to 256.
 
 Select an IP Address Block and Complete Order to complete your .
 
-![new_public_prefix.png](images/central_networking/new_public_prefix.png)
+![new_public_prefix.png](/img/openmetal-central/central_networking/new_public_prefix.png)
 
 After successfully creating the IP Address Block, you should now see your newly
  created IP Address Block in the IP Addresses Table.
@@ -64,7 +64,7 @@ This block will have no assigned IP Addresses and will not be assigned to a VLAN
 From the Networking IP Address Blocks page in Central, open the actions menu for
  your unassigned public IP Address Block and select **Assign to VLAN**.
 
-![prefix_assignment_selector.png](images/central_networking/prefix_assignment_selector.png)
+![prefix_assignment_selector.png](/img/openmetal-central/central_networking/prefix_assignment_selector.png)
 
 This popup modal displays the selected IP Address Block's information and allows
  you to select a VLAN to assign the IP Address Block to.  The displayed VLAN
@@ -78,7 +78,7 @@ Select your provider VLAN and submit the IP Address Block assignment request.
 After creating an IP Address block and assigning it to the appropriate VLAN, you
  can confirm that the assignment has been made by navigating to the Networking
  VLANs page within Central.
-![provider_vlan_block_assign_confirm.png](images/central_networking/provider_vlan_block_assign_confirm.png)
+![provider_vlan_block_assign_confirm.png](/img/openmetal-central/central_networking/provider_vlan_block_assign_confirm.png)
 
 The Networking VLANs page displays all VLANs that are currently active for the
  selected organization.  Select the provider VLAN and verify that your newly
@@ -95,7 +95,7 @@ Additionally, you can confirm that the IP Address Block assignment was successfu
 
 From Central, navigate to the Baremetal Cluster's Networking page.
 
-![baremetal_vlan_assign_confirm.png](images/central_networking/baremetal_vlan_assign_confirm.png)
+![baremetal_vlan_assign_confirm.png](/img/openmetal-central/central_networking/baremetal_vlan_assign_confirm.png)
 
 This page should display all VLANs that have been assigned to the Baremetal
  Cluster and their associated
@@ -109,7 +109,7 @@ Verify that your custom VLAN is listed in the VLANs table with the appropriate
 
 From Central, navigate to the Cloud's Networking Assets page.
 
-![pcc_vlan_assignment_confirm.png](images/central_networking/pcc_vlan_assignment_confirm.png)
+![pcc_vlan_assignment_confirm.png](/img/openmetal-central/central_networking/pcc_vlan_assignment_confirm.png)
 
 This page should display all VLANs that have been assigned to the Cloud and
  their associated IP Address Blocks.  This includes all system generated

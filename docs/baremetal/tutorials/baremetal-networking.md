@@ -54,7 +54,7 @@ upwards to the core, and between themselves.
 Small, Standard, and GPU servers are blade-type servers. All other server types
 connect via the ToR switches.
 
-![Network Diagram](./images/network_config.png)
+![Network Diagram](/img/baremetal/tutorials/network_config.png)
 
 ### Notes and Reminders
 

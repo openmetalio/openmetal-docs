@@ -30,7 +30,7 @@ a browser to load the Horizon login page.
 
 **Horizon Login Page:**
 
-![image](images/um_horizon_login.png)
+![image](/img/users-manual/um_horizon_login.png)
 
 **Step 2** -- Log in to Horizon
 
@@ -38,7 +38,7 @@ From here, enter in the provided credentials to log in.
 
 **Initial Horizon Dashboard:**
 
-![image](images/um_initial_horizon_login.png)
+![image](/img/users-manual/um_initial_horizon_login.png)
 
 -----
 

@@ -57,7 +57,7 @@ differing storage media.
 > **Note: The drivers for network and storage type during installation are
 > required to match the storage in production**.
 
-![OpenMetal logo](./windows-build-images/Untitled.png)
+![OpenMetal logo](/img/engineers-notes/windows-build-images/Untitled.png)
 
 ## VNC Viewer
 
@@ -67,7 +67,7 @@ We will be using [VNC Viewer by RealVNC](https://www.realvnc.com/en/connect/down
 if you are familiar with other VNC software the underlying process remains the
 same.
 
-![RealVNC logo](./windows-build-images/Untitled_1.png)
+![RealVNC logo](/img/engineers-notes/windows-build-images/Untitled_1.png)
 
 ## Windows ISO
 
@@ -94,7 +94,7 @@ Licensing is **strongly** recommended on Production deployments.
 For this guide we will use the **Windows Server 2019 Evaluation Image**. More
 evaluation images can be found in Microsoft’s Evaluation Center.
 
-![Evaluation Center banner](./windows-build-images/Untitled_2.png)
+![Evaluation Center banner](/img/engineers-notes/windows-build-images/Untitled_2.png)
 
 <https://www.microsoft.com/en-us/evalcenter/download-windows-server-2019>
 
@@ -108,7 +108,7 @@ download link can be found here:
 
 <https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/?C=M;O=D>
 
-![virtio-win download page](./windows-build-images/Untitled_3.png)
+![virtio-win download page](/img/engineers-notes/windows-build-images/Untitled_3.png)
 
 ### virtio-win Version
 
@@ -134,7 +134,7 @@ network for our Private network’s gateway. We also got a Floating IP added to 
 provisioned Ubuntu instance. For more information on setting up some initial
 networking you can refer to our guide here: [Networking in OpenStack](https://openmetal.io/docs/manuals/users-manual/create-a-network/)
 
-![Network details](./windows-build-images/Untitled_4.png)
+![Network details](/img/engineers-notes/windows-build-images/Untitled_4.png)
 
 ## Security Groups
 
@@ -144,7 +144,7 @@ and eventually connect with VNC Viewer (port 5900), we will want to create a
 rule allowing our IP to either all ports, or specific ports. We created a
 security group called “Remote Windows Image Building”
 
-![Security Group Details](./windows-build-images/Untitled_5.png)
+![Security Group Details](/img/engineers-notes/windows-build-images/Untitled_5.png)
 
 ## Create and Access our Instance
 
@@ -164,7 +164,7 @@ creation. For more on how to create and access instances on OpenStack refer to
 
 Here are some screenshots from our selections.
 
-![Instance details](./windows-build-images/Untitled_6.png)
+![Instance details](/img/engineers-notes/windows-build-images/Untitled_6.png)
 
 Once created, attach our floating IP to the instance which should now be
 accessible via SSH from the IP we allowed in our Security Group. Any SSH Client
@@ -174,7 +174,7 @@ authentication.
 > **Note**: The username for the Ubuntu cloud image is **ubuntu.** That user
 > will have root/administrative privileges to configure the rest of what we need.
 
-![Instance SSH](./windows-build-images/Untitled_7.png)
+![Instance SSH](/img/engineers-notes/windows-build-images/Untitled_7.png)
 
 ## Install Packages
 
@@ -231,7 +231,7 @@ Evaluation Image** from the [Evaluation Center](https://www.microsoft.com/en-us/
 The link that was generated through Copy Link can be passed to wget in your
 instance to download the Windows ISO file.
 
-![Copy download link](./windows-build-images/Untitled_8.png)
+![Copy download link](/img/engineers-notes/windows-build-images/Untitled_8.png)
 
 > The `-O $name` command flag renames the downloaded file during download.
 > Wget attempts to name the saved file to match what follows the last `/` in the
@@ -349,19 +349,19 @@ process. Here is what all the options mean:
 Now that the instance is running we should be able to connect to it using VNC
 client we previously installed on our host.
 
-![Quick connect](./windows-build-images/Untitled_9.png)
+![Quick connect](/img/engineers-notes/windows-build-images/Untitled_9.png)
 
-![Authentication](./windows-build-images/Untitled_10.png)
+![Authentication](/img/engineers-notes/windows-build-images/Untitled_10.png)
 
 You should see the console output of your nested instance.
 
-![Console output](./windows-build-images/Untitled_11.png)
+![Console output](/img/engineers-notes/windows-build-images/Untitled_11.png)
 
 ## Install Windows
 
 Go through the standard install journey.
 
-![Install journey](./windows-build-images/Untitled_12.png)
+![Install journey](/img/engineers-notes/windows-build-images/Untitled_12.png)
 
 ## Setup VirtIO Drivers for Installation
 
@@ -369,12 +369,12 @@ When the partitioning step is reached the system will not be able to detect the
 storage or network device until the VirtIO drivers are installed, this behavior
 is intentional.
 
-![Missing disks](./windows-build-images/Untitled_13.png)
+![Missing disks](/img/engineers-notes/windows-build-images/Untitled_13.png)
 
 Click Load Driver > Browse > uncheck the “Hide drivers…” option box. Traverse
 the virtio-win ISO image to locate the appropriate folders.
 
-![Folder selection](./windows-build-images/Untitled_14.png)
+![Folder selection](/img/engineers-notes/windows-build-images/Untitled_14.png)
 
 There are typically 3 Folders to be aware of during installation.
 
@@ -385,27 +385,27 @@ There are typically 3 Folders to be aware of during installation.
 You will need to traverse each folder, locate the corresponding OS variant and
 install all of the drivers contained in that folder.
 
-![NetKVM path](./windows-build-images/Untitled_15.png)
+![NetKVM path](/img/engineers-notes/windows-build-images/Untitled_15.png)
 
 Shift + Click to select multiple driver files.
 
-![Driver select](./windows-build-images/Untitled_16.png)
+![Driver select](/img/engineers-notes/windows-build-images/Untitled_16.png)
 
 Click Next to install.
 
 Repeat for viostor
 
-![viostor path](./windows-build-images/Untitled_17.png)
+![viostor path](/img/engineers-notes/windows-build-images/Untitled_17.png)
 
-![Driver select](./windows-build-images/Untitled_18.png)
+![Driver select](/img/engineers-notes/windows-build-images/Untitled_18.png)
 
 We now see Windows Installer detect our storage medium, installation can proceed.
 
-![Disks exist](./windows-build-images/Untitled_19.png)
+![Disks exist](/img/engineers-notes/windows-build-images/Untitled_19.png)
 
 Clicking Next will start Windows installing.
 
-![Install progress](./windows-build-images/Untitled_20.png)
+![Install progress](/img/engineers-notes/windows-build-images/Untitled_20.png)
 
 After the installation completes the instance will shut off and will need to be
 restarted manually through your image-builder instance SSH command line interface:
@@ -423,17 +423,17 @@ Domain windowsserver2019 started
 Reconnect to the instance via VNC and be greeted with the Windows Loading screen
 followed by Administrator account setup.
 
-![Admin setup](./windows-build-images/Untitled_21.png)
+![Admin setup](/img/engineers-notes/windows-build-images/Untitled_21.png)
 
 There will be a Ctrl+Alt+Del requirement to unlock the screen. VNC viewer has a
 shortcut, simply hover over the top layer of the screen.
 
-![Ctrl+Alt+Del shortcut](./windows-build-images/Untitled_22.png)
+![Ctrl+Alt+Del shortcut](/img/engineers-notes/windows-build-images/Untitled_22.png)
 
 Continue to your login by issuing the Ctrl+Alt+Delete shortcut and entering the
 password you just set for the Administrator account.
 
-![Success](./windows-build-images/Untitled_23.png)
+![Success](/img/engineers-notes/windows-build-images/Untitled_23.png)
 
 You have now have successfully installed Windows in a nested Virtual Machine.
 Next we focus on preparing and packaging this Windows VM for Cloud provisioning
@@ -456,9 +456,9 @@ This step of the process that lets us know whether the virtio-win driver ISO we
 selected was the right one. Open the ISO device via File Manager and execute
 the virtio driver installer.
 
-![File manager](./windows-build-images/Untitled_24.png)
+![File manager](/img/engineers-notes/windows-build-images/Untitled_24.png)
 
-![Virtio-win installer](./windows-build-images/Untitled_25.png)
+![Virtio-win installer](/img/engineers-notes/windows-build-images/Untitled_25.png)
 
 > **Warning!**: If _Any Errors_ occur in the driver installation process you
 > should try another version of virtio-win ISO.
@@ -466,22 +466,22 @@ the virtio driver installer.
 If everything works as intended you should end up on the following screen without
 error.
 
-![Installer complete](./windows-build-images/Untitled_26.png)
+![Installer complete](/img/engineers-notes/windows-build-images/Untitled_26.png)
 
 ### Install VirtIO Guest Tools
 
 Same process as above.
 
-![Guest tools setup](./windows-build-images/Untitled_27.png)
+![Guest tools setup](/img/engineers-notes/windows-build-images/Untitled_27.png)
 
-![Installation Successfully](./windows-build-images/Untitled_28.png)
+![Installation Successfully](/img/engineers-notes/windows-build-images/Untitled_28.png)
 
 > **Note**: After spice tools installation, often the mouse cursor changes to a
 > transparent white which is difficult to follow on white background. If you
 > experience , the easiest fix is to open Advanced Mouse Options and select a
 > different pointer icon.
 
-![Mouse properties](./windows-build-images/Untitled_29.png)
+![Mouse properties](/img/engineers-notes/windows-build-images/Untitled_29.png)
 
 ### Enable Remote Desktop
 
@@ -489,24 +489,24 @@ If you plan to connect to the server via RDP (Don’t forget to add the RDP port
 to your future Security Groups) you may want to enable remote access for this
 Windows Instance.
 
-![RDP settings](./windows-build-images/Untitled_30.png)
+![RDP settings](/img/engineers-notes/windows-build-images/Untitled_30.png)
 
 On **Windows 10 for example** this may look like image below.
 
-![Win10 RDP settings](./windows-build-images/Untitled_31.png)
+![Win10 RDP settings](/img/engineers-notes/windows-build-images/Untitled_31.png)
 
 ### Correct Disk Configuration
 
 While not an issue in this example, removal of the Recovery Partition may be
 required when installing Windows 10 or other distributions.
 
-![Correct partitioning](./windows-build-images/Untitled_32.png)
+![Correct partitioning](/img/engineers-notes/windows-build-images/Untitled_32.png)
 
 In our case, as seen above, the last partition of Disk 0 is the C partition,
 however on some other Windows versions a Recovery Partition exists **after**
 the C partition.
 
-![Trailing recovery partition](./windows-build-images/Untitled_33.png)
+![Trailing recovery partition](/img/engineers-notes/windows-build-images/Untitled_33.png)
 
 In these cases **you will need to delete it** in order for cloud native tools to
 resize your C drive on dynamic drive cloud instance creation.
@@ -534,13 +534,13 @@ Set Administrators to Off and click OK
 
 Download and Run the Installer
 
-![cloudbase.it download page](./windows-build-images/Untitled_37.png)
+![cloudbase.it download page](/img/engineers-notes/windows-build-images/Untitled_37.png)
 
-![Cloudbase-init Wizard](./windows-build-images/Untitled_38.png)
+![Cloudbase-init Wizard](/img/engineers-notes/windows-build-images/Untitled_38.png)
 
 Accept defaults until this screen is reached.
 
-![Configuration options](./windows-build-images/Untitled_39.png)
+![Configuration options](/img/engineers-notes/windows-build-images/Untitled_39.png)
 
  Ensure that `Serial port for logging:` is set to `COM1` for later OpenStack
  console integration.
@@ -563,7 +563,7 @@ their [documentation](https://cloudbase-init.readthedocs.io/en/latest/tutorial.h
 
 You will want to make these modifications before running SysPrep.
 
-![Wizard complete](./windows-build-images/Untitled_40.png)
+![Wizard complete](/img/engineers-notes/windows-build-images/Untitled_40.png)
 
 Make sure you've made all desired adjustments, once you run SysPrep the image is
 finalized.
@@ -658,7 +658,7 @@ minutes.
 We can now see our uploaded image in our Horizon interface Images section at the
 bottom.
 
-![Horizon images](./windows-build-images/Untitled_41.png)
+![Horizon images](/img/engineers-notes/windows-build-images/Untitled_41.png)
 
 ### Update Image Socket Maximum
 
@@ -712,12 +712,12 @@ For our test we used the following parameters on an OpenMetal Cloud
 After launch, it takes a few minutes for CloudInit to complete first run,
 configuring the initial user, after a few moments we see:
 
-![Win instance running](./windows-build-images/Untitled_42.png)
+![Win instance running](/img/engineers-notes/windows-build-images/Untitled_42.png)
 
 Once CloudInit completes you will see the familiar interface by accessing Console
 view of your instance in the Horizon Interface (This is the importance of `COM1`).
 
-![Win instance console](./windows-build-images/Untitled_43.png)
+![Win instance console](/img/engineers-notes/windows-build-images/Untitled_43.png)
 
 Congratulations! You have successfully built and configured a Windows Server 2019
 Image capable of running on your OpenMetal OpenStack cloud. You can use the
@@ -726,11 +726,11 @@ or proceed with Administrator credential reset.
 
 Our hard drive was automatically expanded to the `c1.xlarge` flavor defined size.
 
-![Expanded primary partition](./windows-build-images/Untitled_44.png)
+![Expanded primary partition](/img/engineers-notes/windows-build-images/Untitled_44.png)
 
 We also detect 4 processors and a total of 8 VCPUs
 
-![Windows CPU stats](./windows-build-images/Untitled_45.png)
+![Windows CPU stats](/img/engineers-notes/windows-build-images/Untitled_45.png)
 
 ## Password Retrieval Process
 
@@ -765,16 +765,16 @@ You need to boot your instance with a SSH keypair (exactly like you would do
 on Linux for SSH public key authentication). Keep in mind current limitation
 require a new keypair be provided for each running Windows instances.
 
-![Retrieval button](./windows-build-images/password-retrieval-button.png)
+![Retrieval button](/img/engineers-notes/windows-build-images/password-retrieval-button.png)
 
 Browse for your private key or enter it into the text box:
 
-![Password-Retrieval](./windows-build-images/password-retrieval.png)
+![Password-Retrieval](/img/engineers-notes/windows-build-images/password-retrieval.png)
 
 Click “DECRYPT PASSWORD” (de decryption will occur in the browser, no data
 will be sent to the server) and retrieve your password:
 
-![Decrypt-Password](./windows-build-images/decrypt-password.png)
+![Decrypt-Password](/img/engineers-notes/windows-build-images/decrypt-password.png)
 
 ## Suggestions and Conclusions
 

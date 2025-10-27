@@ -80,7 +80,7 @@ generate a set of OpenStack Application Credentials. To do so, log in to
 your cloud and navigate to the section **Identity -\> Application
 Credentials**.
 
-![image](images/application-credentials.png)
+![image](/img/operators-manual/day-4/automation/application-credentials.png)
 
 **Figure 1:** Application Credentials
 
@@ -258,6 +258,6 @@ To view your created instance, navigate in Horizon to **Project -\>
 Compute -\> Instances**, where you can view the instance created by
 Terraform.
 
-![image](images/newly-created-terraform-instance.png)
+![image](/img/operators-manual/day-4/automation/newly-created-terraform-instance.png)
 
 **Figure 2:** Newly Created Terraform Instance

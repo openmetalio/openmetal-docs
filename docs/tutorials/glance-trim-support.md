@@ -75,7 +75,7 @@ When creating a new image within the Horizon web interface, simply select the
 Metadata tab and under “**libvirt Driver Options for Images**” and select the
 “**+**” next to  “**Disk Bus**” and “**SCSI Model**”
 
-![create-image-metadata.jpg](images/trim-create-image-metadata.jpg)
+![create-image-metadata.jpg](/img/tutorials/trim-create-image-metadata.jpg)
 
 ## Adding fstrim support to an existing image
 
@@ -92,9 +92,9 @@ openstack image set <IMAGE_NAME_OR_UUID> \
 First, select the drop down on the image you want to modify then select
 “**Update Metadata**”
 
-![select-update-metadata.jpg](images/trim-select-update-metadata.jpg)
+![select-update-metadata.jpg](/img/tutorials/trim-select-update-metadata.jpg)
 
 Next, on the left hand tab under “**libvirt Driver Options for Images**” and
 select the “**+**” next to  “**Disk Bus**” and “**SCSI Model**”
 
-![update-image-metadata.jpg](images/trim-update-image-metadata.jpg)
+![update-image-metadata.jpg](/img/tutorials/trim-update-image-metadata.jpg)

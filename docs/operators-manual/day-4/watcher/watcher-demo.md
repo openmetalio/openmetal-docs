@@ -26,7 +26,7 @@ applying Watcher.
 The following screenshot shows the state of the hypervisors and the
 count of instances associated with each compute node.
 
-![image](images/hypervisors-before-audit.png)
+![image](/img/operators-manual/day-4/watcher/hypervisors-before-audit.png)
 
 **Figure 1:** Hypervisor list and instance count prior to applying
 Watcher
@@ -323,7 +323,7 @@ Here is the output of the action plan after it has finished executing:
 The following screenshot shows the spread of this cloud's instances
 after Watcher's VM Workload Consolidation Strategy has been applied.
 
-![image](images/hypervisors-after-audit.png)
+![image](/img/operators-manual/day-4/watcher/hypervisors-after-audit.png)
 
 **Figure 2:** Hypervisor list and instance count after Watcher has been
 applied

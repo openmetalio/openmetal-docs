@@ -357,7 +357,7 @@ Use the username and password that were output after you completed the
 installation. If you forget to save the password, the password is stored
 in the `auth` folder in the current directory in the `kubeadmin-password` file.
 
-![OKD Web Console on OpenMetal](okd-images/okd-web-console.jpg)
+![OKD Web Console on OpenMetal](/img/kubernetes-guides/deployment/okd-images/okd-web-console.jpg)
 
 ### Test Kubectl
 

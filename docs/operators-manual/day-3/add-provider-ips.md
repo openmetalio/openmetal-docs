@@ -37,13 +37,13 @@ called "admin".
 Next, navigate to **Admin -\> Network -\> Networks**, then click on the
 "External" network.
 
-![image](images/provider-block-list.png)
+![image](/img/operators-manual/day-3/provider-block-list.png)
 
 **Figure 1:** List of Networks
 
 Choose the Subnets tab and confirm that the new subnet has been added.
 
-![image](images/provider-block-list-2.png)
+![image](/img/operators-manual/day-3/provider-block-list-2.png)
 
 **Figure 2:** List of Subnets for the External network
 

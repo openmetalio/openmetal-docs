@@ -89,7 +89,7 @@ Horizon and follow the **Create Network** link.
 This example uses the private network called **test-net** with subnet
 `192.168.99.0/24`:
 
-![image](images/umx_network_list.png)
+![image](/img/tutorials/umx_network_list.png)
 
 -----
 
@@ -119,7 +119,7 @@ For this example, a single security group has been created allowing
 inbound traffic for HTTP, HTTPS, SSH, and ICMP as can be seen in this
 screenshot:
 
-![image](images/umx_sec_groups.png)
+![image](/img/tutorials/umx_sec_groups.png)
 
 ### Create and Prepare Instances
 
@@ -145,7 +145,7 @@ instances be created at once using the **Count** form option.
 
 This example makes use of these two instances:
 
-![image](images/umx_instance_list.png)
+![image](/img/tutorials/umx_instance_list.png)
 
 Once the instances are ready, assign a floating IP address to each one
 so you can access them with SSH.
@@ -180,7 +180,7 @@ load balancer.
 To create a load balancer, in Horizon, navigate to **Project -\> Network
 -\> Load Balancers** and follow the **Create Load Balancer** link.
 
-![image](images/umx_lb_main_page.png)
+![image](/img/tutorials/umx_lb_main_page.png)
 
 **Step 2** -- Load Balancer Details
 
@@ -193,7 +193,7 @@ The following are two main items to fill in on the first page:
 
 All other details are not required for this demonstration.
 
-![image](images/umx_lb_form_1.png)
+![image](/img/tutorials/umx_lb_form_1.png)
 
 **Step 3** -- Listener Details
 
@@ -203,7 +203,7 @@ Set the following:
 
 - **Protocol**: HTTP
 
-![image](images/umx_lb_form_2.png)
+![image](/img/tutorials/umx_lb_form_2.png)
 
 **Step 4** -- Pool Details
 
@@ -213,7 +213,7 @@ Set the following:
 
 - **Algorithm**: ROUND\_ROBIN
 
-![image](images/umx_lb_form_3.png)
+![image](/img/tutorials/umx_lb_form_3.png)
 
 **Step 5** -- Pool Members
 
@@ -225,7 +225,7 @@ previously.
 
 Next, set each instance's **Port** to port 80.
 
-![image](images/umx_lb_form_4.png)
+![image](/img/tutorials/umx_lb_form_4.png)
 
 **Step 6** -- Monitor Details
 
@@ -237,7 +237,7 @@ Set the following:
 - **Name**: Name of the monitor
 - **Type**: HTTP
 
-![image](images/umx_lb_form_5.png)
+![image](/img/tutorials/umx_lb_form_5.png)
 
 This concludes all details required. Click **Create Load Balancer** to
 spawn a new load balancer.
@@ -247,7 +247,7 @@ spawn a new load balancer.
 Next you will see the load balancer in the list and its **Provisioning
 Status** will likely state, "Pending Create".
 
-![image](images/umx_lb_create.png)
+![image](/img/tutorials/umx_lb_create.png)
 
 Allow the OpenStack services a small amount of time to create the load
 balancer.
@@ -265,11 +265,11 @@ hostname of each server oscillate upon each refresh.
 
 -----
 
-![image](images/umx_lb_server_1.png)
+![image](/img/tutorials/umx_lb_server_1.png)
 
 -----
 
-![image](images/umx_lb_server_2.png)
+![image](/img/tutorials/umx_lb_server_2.png)
 
 -----
 

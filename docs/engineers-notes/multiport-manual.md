@@ -15,7 +15,7 @@ local network and devices on external networks, such as the internet.
 
   - Navigate to "Compute" > "Instances" in the left menu.
 
-Click on the "Launch Instance" button.![Launchinstance](./multiport-imges/launchinstance.png)
+Click on the "Launch Instance" button.![Launchinstance](/img/engineers-notes/multiport-imges/launchinstance.png)
 
 - Instance Details:
 
@@ -39,7 +39,7 @@ Click on the "Launch Instance" button.![Launchinstance](./multiport-imges/launch
 
     - Security Groups: Choose appropriate security groups.
 
-![Network-selection](./multiport-imges/select-network.png)
+![Network-selection](/img/engineers-notes/multiport-imges/select-network.png)
 
 - Networking:
 
@@ -64,7 +64,7 @@ Click on the "Launch Instance" button.![Launchinstance](./multiport-imges/launch
 
 Add a floating IP for external access
 
-![Floatingip](./multiport-imges/floatingip.png)
+![Floatingip](/img/engineers-notes/multiport-imges/floatingip.png)
 SSH into the instance with the public floating IP and run IP route.
 
 ```bash
@@ -121,7 +121,7 @@ multiple networks on 2 separate instances
 
     - Disable DHCP: Disable DHCP for this subnet.
 
-![Disable-gateway](./multiport-imges/disablegateway.png)
+![Disable-gateway](/img/engineers-notes/multiport-imges/disablegateway.png)
  Review and Create
 
 Review your configuration on the summary page.
@@ -231,7 +231,7 @@ Create 2 ports prior to the creation of your instance.
 
 In Horizon, Go to Network - Networks - Ports and Create a port
 
-![addport](./multiport-imges/addport.png)
+![addport](/img/engineers-notes/multiport-imges/addport.png)
 
 Configure 2 ports with distinct names and set them to the subnet and security
 group desired
@@ -240,61 +240,61 @@ group desired
 
 Note: This is necessary to allow
 
-![create port](./multiport-imges/createport.png)
+![create port](/img/engineers-notes/multiport-imges/createport.png)
 
 When creating a port, allocate the correct Security Groups to the port.
 
-![Add security group](./multiport-imges/addsg.png)
+![Add security group](/img/engineers-notes/multiport-imges/addsg.png)
 
 Create an instance making sure to select the correct network ports.
 
 Select all the ports you previously created.
 
-![Select ports](./multiport-imges/selectports.png)
+![Select ports](/img/engineers-notes/multiport-imges/selectports.png)
 
 Due to issues with ip routing during creation caused by the multiple ports,
  cloud-init is unable to inject your SSH key. **You must select the configuration
  drive** to enable OpenStack to add your SSH key.
 
-![Select config drive](./multiport-imges/selectconfigdrive.png)
+![Select config drive](/img/engineers-notes/multiport-imges/selectconfigdrive.png)
 
 In order to configure multi-port networking, you must identify which port is
 designated as the default route interface. You can view the console log on
 Horizon and look at the routing table configuration as the instance is created.
 
-![View log](./multiport-imges/viewlog.png)
+![View log](/img/engineers-notes/multiport-imges/viewlog.png)
 
 The console log will display a network device table which you will use to
 correlate the interface that is the default gateway to its IP address.
 
-![Network device info](./multiport-imges/netdeviceinfo.png)
+![Network device info](/img/engineers-notes/multiport-imges/netdeviceinfo.png)
 
 The console log will display a routing table where the interface representing
 Route 0 is the default gateway. In this example, eth0 is the default gateway.
 Looking at the network device table from above, its IP address is 192.168.3.170
 
-![Routing table](./multiport-imges/routetable.png)
+![Routing table](/img/engineers-notes/multiport-imges/routetable.png)
 
 Go to Network - Networks - Your Subnet - Ports
 
 Identify the port associated with the IP address of the default gateway identified
 earlier. In this case, it’s port1
 
-![Correlate IP to port](./multiport-imges/correlateiptoport.png)
+![Correlate IP to port](/img/engineers-notes/multiport-imges/correlateiptoport.png)
 
 Click on the port - “Allowed Address Pairs” tab - Add Allowed Address Pair
 
-![Add address pair](./multiport-imges/addadresspair.png)
+![Add address pair](/img/engineers-notes/multiport-imges/addadresspair.png)
 
 The corresponding IP addresses of the other 2 ports to the allowed addresses.
 In this case, 192.168.3.156
 
-![Show address pair](./multiport-imges/showaddresspair.png)
+![Show address pair](/img/engineers-notes/multiport-imges/showaddresspair.png)
 
 In order to test this, I will add floating IPs to each of the two ports and
 confirm I can SSH into the instance through all 2 IPs.
 
-![Show floating IPs](./multiport-imges/floatingipsformultiport.png)
+![Show floating IPs](/img/engineers-notes/multiport-imges/floatingipsformultiport.png)
 
 You can run the following curl command from inside your instance to confirm
 successful completion of your multi-port setup. This will curl through each port
@@ -320,9 +320,9 @@ Allocated 2 Floating IPs to desired Project.
 
 Create a VM attaching the desired subnet. (In this example we are using 192.168.0.0/24)
 
-![Create instance](./multiport-imges/createinstance.png)
+![Create instance](/img/engineers-notes/multiport-imges/createinstance.png)
 
-![Configure Networks](./multiport-imges/configurenetworks.png)
+![Configure Networks](/img/engineers-notes/multiport-imges/configurenetworks.png)
 
 Attach a floating IP and confirm you can access the VM through SSH.
 
@@ -332,7 +332,7 @@ Create a new port in the same subnet.
 
 In Horizon, Go to Network - Networks - Select your network - Ports and Create a port
 
-![Create Port](./multiport-imges/pbrcreateport.png)
+![Create Port](/img/engineers-notes/multiport-imges/pbrcreateport.png)
 
 Configure a secondary port with a distinct name and set the port to the subnet
 and security group desired.
@@ -342,13 +342,13 @@ and security group desired.
 dhclient, provides a means for configuring one or more network interfaces using
 the DHCP to request an IP from a DHCP server.
 
-![Configure Port](./multiport-imges/pbrconfigureport.png)
+![Configure Port](/img/engineers-notes/multiport-imges/pbrconfigureport.png)
 
 When creating a port, allocate the correct Security Groups to the port.
 
 Note: Security Groups must be set for each port to allow external access.
 
-![Add Security Groups](./multiport-imges/addsg.png)
+![Add Security Groups](/img/engineers-notes/multiport-imges/addsg.png)
 
 #### Attach Port
 
@@ -356,15 +356,15 @@ Go to Instances - and attach the new port to the instance you created initially.
 
 **Note: Make sure by Port on the option on how to specify an interface.**
 
-![Attach interface](./multiport-imges/pbrattachinterface.png)
+![Attach interface](/img/engineers-notes/multiport-imges/pbrattachinterface.png)
 
-![Select network](./multiport-imges/pbrselectnetwork.png)
+![Select network](/img/engineers-notes/multiport-imges/pbrselectnetwork.png)
 
-![Show Port](./multiport-imges/pbrshowport.png)
+![Show Port](/img/engineers-notes/multiport-imges/pbrshowport.png)
 
 Attach a floating IP to this new port. Your instance will now have 4 distinct IPs
 
-![Attach floating IP](./multiport-imges/pbrattachfloatinip.png)
+![Attach floating IP](/img/engineers-notes/multiport-imges/pbrattachfloatinip.png)
 
 #### Configure Policy Based Routing
 

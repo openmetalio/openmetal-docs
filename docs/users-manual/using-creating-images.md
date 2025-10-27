@@ -27,7 +27,7 @@ To begin, you will need to know where to find images in OpenStack.
 In Horizon, images are found on the left through **Project -\> Compute
 -\> Images**.
 
-![image](images/um_images.png)
+![image](/img/users-manual/um_images.png)
 
 ### **Upload images**
 
@@ -53,11 +53,11 @@ CirrOS image is downloaded.
 To upload an image navigate to **Project -\> Compute -\> Images**. From
 there, click the **Create Image** button.
 
-![image](images/um_create_image.png)
+![image](/img/users-manual/um_create_image.png)
 
 Next, fill in the required details.
 
-![image](images/um_create_image_form.png)
+![image](/img/users-manual/um_create_image_form.png)
 
 - **Image Name** - This is what you want to call this image in
     OpenStack

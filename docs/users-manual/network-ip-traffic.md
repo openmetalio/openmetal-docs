@@ -39,7 +39,7 @@ In Horizon, notice the sections on the left called **Project** and
 **Identity**. Components of an OpenStack cloud, like a private network,
 are created through the Project tab.
 
-![image](images/um_project_identity.png)
+![image](/img/users-manual/um_project_identity.png)
 
 -----
 
@@ -47,13 +47,13 @@ To create a network, under **Project** on the left, find **Network**,
 then navigate to **Networks**. Finally, locate the **Create Network**
 button near the top right.
 
-![image](images/um_network_networks.png)
+![image](/img/users-manual/um_network_networks.png)
 
 -----
 
 **Step 2** -- Create network
 
-![image](images/um_create_a_network_form.png)
+![image](/img/users-manual/um_create_a_network_form.png)
 
 - **Network Name** -- This is the name of the network. In this
     example, the network is called **network-1**.
@@ -67,7 +67,7 @@ Fill out any other needed details and navigate to the **Subnet** tab.
 
 **Step 3** -- Create subnet
 
-![image](images/um_create_a_subnet_form.png)
+![image](/img/users-manual/um_create_a_subnet_form.png)
 
 - **Subnet Name** -- Specify a name for the subnet, this example is
     called **subnet-1**
@@ -90,7 +90,7 @@ Fill out any other needed details and navigate to the **Subnet** tab.
 With the previous steps done, the network has been created. Loading the
 **Network -\> Networks** tab will display the new network:
 
-![image](images/um_network_listing.png)
+![image](/img/users-manual/um_network_listing.png)
 
 -----
 
@@ -111,11 +111,11 @@ routers and allows you to create a router.
 To create a new router, click the **Create Router** button near the top
 right.
 
-![image](images/um_router_main_page.png)
+![image](/img/users-manual/um_router_main_page.png)
 
 **Step 2** -- Create a router
 
-![image](images/um_create_router.png)
+![image](/img/users-manual/um_create_router.png)
 
 - **Router Name** -- Choose a name for the router. This example router
     will be called **router-1**.
@@ -134,7 +134,7 @@ be the provider network. The network called **External** will be used.
 Once created it will show in the list of routers, under **Network -\>
 Routers**.
 
-![image](images/um_router_list.png)
+![image](/img/users-manual/um_router_list.png)
 
 **Step 4** -- Connect router to private network
 
@@ -150,13 +150,13 @@ Next, to add an interface to this router, click the router's name in the
 listing of routers, then click the **Add Interface** button near the top
 right.
 
-![image](images/um_add_interface_router.png)
+![image](/img/users-manual/um_add_interface_router.png)
 
 In the following choose the **subnet-1** subnet to connect the router to
 and optionally choose an IP address for the interface. If you don't
 choose an IP, the gateway IP of the subnet will be used.
 
-![image](images/um_router_add_interface.png)
+![image](/img/users-manual/um_router_add_interface.png)
 
 **Step 5** -- Confirm the networks are connected
 
@@ -165,7 +165,7 @@ With the interface added to the router, the **External** and
 navigating to the **Network** tab on the left, then the **Network
 Topology** tab under that.
 
-![image](images/um_network_topology.png)
+![image](/img/users-manual/um_network_topology.png)
 
 -----
 
@@ -191,20 +191,20 @@ provider network's pool of IPs.
 To allocate floating IPs in Horizon, navigate to the **Network** tab on
 the left, and find **Floating IPs**.
 
-![image](images/um_floating_ips.png)
+![image](/img/users-manual/um_floating_ips.png)
 
 Click **Allocate IP To Project** to allocate a new IP.
 
 Next, fill out needed details in the IP allocation form.
 
-![image](images/um_allocate_floating_ip.png)
+![image](/img/users-manual/um_allocate_floating_ip.png)
 
 The IP will be obtained from the **External** provider network. This is
 the only network floating IPs can be assigned from.
 
 Once the IP is added, it will appear in the floating IP list.
 
-![image](images/um_floating_ip_listing.png)
+![image](/img/users-manual/um_floating_ip_listing.png)
 
 This floating IP address will be used later to access an instance over
 SSH.
