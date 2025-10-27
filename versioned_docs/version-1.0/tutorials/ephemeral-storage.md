@@ -58,7 +58,7 @@ To see the new flavors, as an administrative user, navigate in Horizon
 to **Admin -\> Compute -\> Flavors**. The flavors prefixed with `cc` are
 what allow for ephemeral storage.
 
-![image](images/umx_ephemeral_flavors.png)
+![image](/img/tutorials/umx_ephemeral_flavors.png)
 
 ## Procedure
 
@@ -69,7 +69,7 @@ that allows an instance's storage to be ephemeral.
 The following demonstrates setting the `cc.small` flavor, providing 25GB
 of ephemeral disk space.
 
-![image](images/umx_ephemeral_example.png)
+![image](/img/tutorials/umx_ephemeral_example.png)
 
 Listed under the **Ephemeral Disk** column is the amount of ephemeral
 storage this flavor sets.

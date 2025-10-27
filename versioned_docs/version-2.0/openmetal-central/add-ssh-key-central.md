@@ -16,12 +16,12 @@ from your OpenMetal Central portal.
 
 - Access your cloud settings.
 
-   ![Cloud Settings](images/cloud-settings-ssh.png)
+   ![Cloud Settings](/img/openmetal-central/cloud-settings-ssh.png)
 
 - Paste the text contents of your SSH public key into the **Add SSH Key** field and
    click **Add Key**.
 
-   ![Add SSH Key](images/add-ssh-key-central.png)
+   ![Add SSH Key](/img/openmetal-central/add-ssh-key-central.png)
 
 - You will see a pop-up at the bottom of the page indicating success.
   

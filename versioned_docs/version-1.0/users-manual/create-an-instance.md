@@ -48,7 +48,7 @@ in Horizon.
 
 Next, click **Create Key Pair** near the top and to the right.
 
-![image](images/um_ssh_key_pairs_horizon.png)
+![image](/img/users-manual/um_ssh_key_pairs_horizon.png)
 
 In the following form, input the key pair name and the type of key it
 will be. Once done, you will be prompted to download the private key
@@ -56,7 +56,7 @@ which needs to be stored in a safe place. Only you should have access to
 your private SSH key pair\! The public key portion of the key pair now
 exists in Horizon.
 
-![image](images/um_create_ssh_keypair_form.png)
+![image](/img/users-manual/um_create_ssh_keypair_form.png)
 
 -----
 
@@ -73,14 +73,14 @@ Fill out the name of the key pair, specify the type of key it is, and
 finally choose the public key from your computer or paste the public key
 in.
 
-![image](images/um_import_ssh_key_form.png)
+![image](/img/users-manual/um_import_ssh_key_form.png)
 
 ### **Confirm SSH key pair upload**
 
 To confirm success, navigate back to the SSH key pair listing and
 confirm the key pair was uploaded.
 
-![image](images/um_ssh_key_pairs_list.png)
+![image](/img/users-manual/um_ssh_key_pairs_list.png)
 
 ## **Security Groups**
 
@@ -101,11 +101,11 @@ traffic for a specific IP address.
 To list security groups, find **Project -\> Network -\> Security
 Groups** in Horizon on the left.
 
-![image](images/um_list_security_groups.png)
+![image](/img/users-manual/um_list_security_groups.png)
 
 **Step 2** -- Create SSH security group
 
-![image](images/um_create_security_group_form.png)
+![image](/img/users-manual/um_create_security_group_form.png)
 
 Fill out the name and description of the group. Once done, you will be
 taken to a page where you can define egress (outbound) and ingress
@@ -114,14 +114,14 @@ taken to a page where you can define egress (outbound) and ingress
 When the rule is created, two egress rules allowing all outbound traffic
 are added to it by OpenStack. You can see these as follows:
 
-![image](images/um_modify_security_group_form.png)
+![image](/img/users-manual/um_modify_security_group_form.png)
 
 **Step 3** -- Add ingress SSH rule
 
 To add the rule for SSH, click the **Add Rule** button near the top
 right, which loads this form:
 
-![image](images/um_sec_group_add_rule_form.png)
+![image](/img/users-manual/um_sec_group_add_rule_form.png)
 
 From this page you can define a custom rule or choose from options
 created for you, such as SSH or HTTPS.
@@ -138,7 +138,7 @@ allowed, allow the range using CIDR notation.
 
 With the new rule added you will see it listed like so:
 
-![image](images/um_modify_security_group_form_new_rule.png)
+![image](/img/users-manual/um_modify_security_group_form_new_rule.png)
 
 -----
 
@@ -163,14 +163,14 @@ require additional storage through a volume.
 In Horizon, look to the left for **Project -\> Volumes -\> Volumes** to
 pull up the page to manage and create volumes.
 
-![image](images/um_list_volumes.png)
+![image](/img/users-manual/um_list_volumes.png)
 
 **Step 2** -- Create a volume
 
 To create a volume, click **Create Volume**, then fill out the form
 details.
 
-![image](images/um_create_a_volume.png)
+![image](/img/users-manual/um_create_a_volume.png)
 
 Specify a name and size for the volume. The remaining options are not
 required to create the volume.
@@ -179,7 +179,7 @@ After creating the volume you will be taken back to the volume listing
 page. The **Status** column will read "Available" if the volume is ready
 to be used.
 
-![image](images/um_volume_listing.png)
+![image](/img/users-manual/um_volume_listing.png)
 
 -----
 
@@ -202,13 +202,13 @@ This section will explain how to create a **volume-backed** instance.
 
 To get started, in Horizon find **Project -\> Compute -\> Instances**.
 
-![image](images/um_list_instance.png)
+![image](/img/users-manual/um_list_instance.png)
 
 **Step 2** -- Launch Instance -\> Details
 
 Next, use **Launch Instance** near the top right, which loads this form:
 
-![image](images/um_instance_form_1.png)
+![image](/img/users-manual/um_instance_form_1.png)
 
 Fill out a name for the instance and optionally a description. Specify
 the number of instances to spawn using the **Count** drop down. Take
@@ -220,7 +220,7 @@ After the **Details** section is filled out, move on to the **Source**
 tab on the left. Here you will specify a source to boot from, which is
 typically going to be an image.
 
-![image](images/um_instance_form_2.png)
+![image](/img/users-manual/um_instance_form_2.png)
 
 - **Select Boot Source**: Select **Image** from the drop down.
 - **Create New Volume**: Select **Yes**
@@ -242,7 +242,7 @@ With the Source section done, it is time to set a flavor. A flavor is a
 way to define resource allocation to an instance. The number of vCPUs,
 RAM, and disk space are defined using flavors.
 
-![image](images/um_instance_form_3.png)
+![image](/img/users-manual/um_instance_form_3.png)
 
 Flavors are listed in the same way images are. Select the flavor
 required for the instance workload using the up arrow on the right. Once
@@ -253,7 +253,7 @@ set, you will see the flavor listed in the **Allocated** portion.
 With a flavor set, move on to the **Networks** section to specify a
 network the instance will be associated with.
 
-![image](images/um_instance_form_4.png)
+![image](/img/users-manual/um_instance_form_4.png)
 
 **Note\!** -- Place all cloud infrastructure on private networks and
 only expose what is needed to the Internet, such as a load balancer, or
@@ -269,7 +269,7 @@ later be added to an existing instance. OpenStack by default disables
 all incoming network traffic to instances so the traffic you want to
 allow needs to specified using security groups.
 
-![image](images/um_instance_form_5.png)
+![image](/img/users-manual/um_instance_form_5.png)
 
 Choose from the list the security group to apply to this instance. This
 example applies the **SSH** security group, allowing SSH access.
@@ -278,7 +278,7 @@ example applies the **SSH** security group, allowing SSH access.
 
 The last step is to add your SSH key pair.
 
-![image](images/um_instance_form_6.png)
+![image](/img/users-manual/um_instance_form_6.png)
 
 Choose from the key pair listing the SSH key to add. You can also create
 a key pair or upload a public key using this form.
@@ -290,13 +290,13 @@ Instance** to spin up the instance.
 
 As the instance is spawning you will see it appear like so:
 
-![image](images/um_instance_listing.png)
+![image](/img/users-manual/um_instance_listing.png)
 
 Once the instance creation is complete, it will show like so and the
 **Status** column will display **Active** and **Power State** will be
 **Running**:
 
-![image](images/um_instance_listing_2.png)
+![image](/img/users-manual/um_instance_listing_2.png)
 
 -----
 
@@ -309,7 +309,7 @@ feasible way to access it.
 To access this instance over SSH, assign a floating IP to it. This can
 be done from the instance listing page using the drop down on the right.
 
-![image](images/um_instance_listing_floating_ip.png)
+![image](/img/users-manual/um_instance_listing_floating_ip.png)
 
 This floating IP can now be used to access the instance over the
 Internet. The default username of the instance is typically the same as

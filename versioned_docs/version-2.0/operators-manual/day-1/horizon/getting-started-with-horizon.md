@@ -21,7 +21,7 @@ password.
 To get started, navigate to [OpenMetal Central](https://central.openmetal.io/)
 and log in.
 
-![OpenMetal Central Login](images/openmetal-central.png)
+![OpenMetal Central Login](/img/operators-manual/day-1/horizon/openmetal-central.png)
 
 **Figure 1:** OpenMetal Central Login Page
 
@@ -30,7 +30,7 @@ and log in.
 Click **Manage** to the right for the cloud you're working with to load
 this cloud's details page.
 
-![Manage Cloud](images/manage-cloud.png)
+![Manage Cloud](/img/operators-manual/day-1/horizon/manage-cloud.png)
 
 **Figure 2:** Cloud List
 
@@ -39,7 +39,7 @@ this cloud's details page.
 Next, navigate to the **Horizon** link within the left sidebar, or the
 **Launch Horizon** button under Cloud Management Dashboard.
 
-![Access Horizon](images/horizon-url.png)
+![Access Horizon](/img/operators-manual/day-1/horizon/horizon-url.png)
 
 **Figure 3:** Horizon URL Location
 
@@ -48,7 +48,7 @@ Next, navigate to the **Horizon** link within the left sidebar, or the
 You can obtain the admin user password for your clouds Horizon using the
 **show password** button under **Access Details**.
 
-![Show password](images/show-password.png)
+![Show password](/img/operators-manual/day-1/horizon/show-password.png)
 
 **Figure 4a:** Retrieve Password
 
@@ -64,7 +64,7 @@ in, ensure you have one node's IP address and the private key on the
 system you use to access your cloud. To find your cloud's hardware node
 IP addresses, click **Assets** on the cloud's details page.
 
-![Assets page](images/assets-page.png)
+![Assets page](/img/operators-manual/day-1/horizon/assets-page.png)
 
 **Figure 4b:** Assets Page
 
@@ -103,13 +103,13 @@ You can now log in to Horizon using the credentials obtained from the
 previous section. The username for the Horizon administrator account is
 **admin**.
 
-![Horizon login](images/horizon-log-in.png)
+![Horizon login](/img/operators-manual/day-1/horizon/horizon-log-in.png)
 
 **Figure 5:** Horizon Login Page
 
 When you log in to Horizon, your dashboard appears similar to the
 following:
 
-![Successful login](images/horizon-initial-log-in.png)
+![Successful login](/img/operators-manual/day-1/horizon/horizon-initial-log-in.png)
 
 **Figure 6:** Horizon Dashboard

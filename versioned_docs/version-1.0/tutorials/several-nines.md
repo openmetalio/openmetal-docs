@@ -288,11 +288,11 @@ https://ccx.domain.io/
 
 ### Register for a new account
 
-![Register for an account](./images/severalnines/signup.png "Several Nines Sign up")
+![Register for an account](/img/tutorials/severalnines/signup.png "Several Nines Sign up")
 
 ### Deploy a datastore
 
-![Deploy a datastore](./images/severalnines/datastore.png "Deploy a datastore")
+![Deploy a datastore](/img/tutorials/severalnines/datastore.png "Deploy a datastore")
 
 ## Conclusion
 

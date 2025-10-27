@@ -38,7 +38,7 @@ First upload the ISO to your cloud / project. You can do this through
 Uploading ISOs as the `Admin` user will allow you to share the ISO to be used by
 all projects if selecting `Public` permissions.
 
-![Image add](../tutorials/images/iso_images/horizon_image_add.png "Add Images")
+![Image add](/img/tutorials/iso_images/horizon_image_add.png "Add Images")
 
 For large images Horizon will not let you upload large images through the UI.
 You may need to use the [OpenStack CLI](../users-manual/use-openstack-cli.md)
@@ -57,7 +57,7 @@ openstack image create --file pfSense-CE-2.7.2-RELEASE-amd64.iso --disk-format i
 
 ## Images
 
-![Image list](../tutorials/images/iso_images/horizon_image_list.png "Image List")
+![Image list](/img/tutorials/iso_images/horizon_image_list.png "Image List")
 
 ## Create ISO Virtual Machines
 
@@ -77,12 +77,12 @@ Below is a link to documentation on creating flavors.
 
 ### Select the ISO image during VM Creation
 
-![Instance with Image](../tutorials/images/iso_images/horizon_create_instancewithimage1.png "Instance with Image")
+![Instance with Image](/img/tutorials/iso_images/horizon_create_instancewithimage1.png "Instance with Image")
 
 Configure the VMs with the schema name ISO-vm - this is to represent that these
 are not real VM, this is just us running the ISOs.
 
-![List instances](../tutorials/images/iso_images/horizon_list_instances.png "List Instances")
+![List instances](/img/tutorials/iso_images/horizon_list_instances.png "List Instances")
 
 ## Create the Volumes (Drives to Install Software On)
 
@@ -97,27 +97,27 @@ over the lifetime of the VM.
 Create the Virtual Disks (Bootable drives) that we will install
 the ISOs onto.
 
-![Create volume](../tutorials/images/iso_images/horizon_create_volumes.png "Create Volume")
+![Create volume](/img/tutorials/iso_images/horizon_create_volumes.png "Create Volume")
 
 Create the volumes
 
-![List volume](../tutorials/images/iso_images/horizon_list_volumes.png "List Volume")
+![List volume](/img/tutorials/iso_images/horizon_list_volumes.png "List Volume")
 
 ## Attach Volume to ISO VM
 
 Attach the Volume (Drive) to the running ISO VMs, so that we can
 later through the installers - install onto these drives.
 
-![Manage attachments](../tutorials/images/iso_images/horizon_manage_attachments.png "Manage Attachments")
+![Manage attachments](/img/tutorials/iso_images/horizon_manage_attachments.png "Manage Attachments")
 
 Now we have attached Empty unformatted volumes (Drives) to our respective ISO VMs.
 
-![List attachments](../tutorials/images/iso_images/horizon_list_attachments.png "List Attachments")
+![List attachments](/img/tutorials/iso_images/horizon_list_attachments.png "List Attachments")
 
 Linux OS systems have autodetection of media, but it is unlikely that the ISOs
 do, go ahead and trigger a Hard Reboot for each of the VMs.
 
-![Hard reboot](../tutorials/images/iso_images/hard_reboot.png "Hard Reboot")
+![Hard reboot](/img/tutorials/iso_images/hard_reboot.png "Hard Reboot")
 
 ## Install Software
 
@@ -126,23 +126,23 @@ reach “Where to install” portion of the setup media like:
 
 ### PFSense
 
-![PFSense install](../tutorials/images/iso_images/pfsense_install.png "PFSense Install")
+![PFSense install](/img/tutorials/iso_images/pfsense_install.png "PFSense Install")
 
-![PFSense list drives](../tutorials/images/iso_images/pfsense_list_drives.png "PFSense List Drives")
+![PFSense list drives](/img/tutorials/iso_images/pfsense_list_drives.png "PFSense List Drives")
 
-![PFSense auto partition](../tutorials/images/iso_images/pfsense_auto_partition.png "PFSense Auto Partition")
+![PFSense auto partition](/img/tutorials/iso_images/pfsense_auto_partition.png "PFSense Auto Partition")
 
 ### 3CX
 
-![3cx list drives](../tutorials/images/iso_images/3cx_list_disk.png "3cx List Drives")
+![3cx list drives](/img/tutorials/iso_images/3cx_list_disk.png "3cx List Drives")
 
-![3cx list partitions](../tutorials/images/iso_images/3cx_list_partitions.png "3cx List Partitions")
+![3cx list partitions](/img/tutorials/iso_images/3cx_list_partitions.png "3cx List Partitions")
 
 ### Fedora Workstation
 
-![Fedora list drives](../tutorials/images/iso_images/fedora_disk.png "Fedora List Drives")
+![Fedora list drives](/img/tutorials/iso_images/fedora_disk.png "Fedora List Drives")
 
-![Fedora install complete](../tutorials/images/iso_images/fedora_install_complete.png "Fedora Install complete")
+![Fedora install complete](/img/tutorials/iso_images/fedora_install_complete.png "Fedora Install complete")
 
 ### Shut Down ISO VM
 
@@ -157,28 +157,28 @@ We have installed our media to the Volume.
 
 Time to work with that directly.
 
-![Shutdown instances](../tutorials/images/iso_images/shutdown_instances.png "Shutdown Instances")
+![Shutdown instances](/img/tutorials/iso_images/shutdown_instances.png "Shutdown Instances")
 
 Now that the ISO instances are shut off, detach the drives we installed the
 media onto.
 
-![Shutdown list instances](../tutorials/images/iso_images/shutdown_list.png "Shutdown List Instances")
+![Shutdown list instances](/img/tutorials/iso_images/shutdown_list.png "Shutdown List Instances")
 
 ## Detach and Configure Volumes
 
-![Manage attachments](../tutorials/images/iso_images/manage_attachments.png "Manage Attachments")
+![Manage attachments](/img/tutorials/iso_images/manage_attachments.png "Manage Attachments")
 
-![Detach attachments](../tutorials/images/iso_images/detach_attachments.png "Detach Attachments")
+![Detach attachments](/img/tutorials/iso_images/detach_attachments.png "Detach Attachments")
 
 Make the volume bootable.
 
 Click Edit Volume
 
-![Make volume bootable](../tutorials/images/iso_images/make_volume_bootable.png "Make Volume bootable")
+![Make volume bootable](/img/tutorials/iso_images/make_volume_bootable.png "Make Volume bootable")
 
 And check “Bootable”
 
-![Bootable button](../tutorials/images/iso_images/bootable_button.png "Bootable Button")
+![Bootable button](/img/tutorials/iso_images/bootable_button.png "Bootable Button")
 
 ## Use / Create the VM or VM Image
 
@@ -192,25 +192,25 @@ You’re almost done. Now you have two options.
 - To use the Volume, when creating the instance you can select
 Volume (The Drive) as the Boot Source:
 
-![Instance with volume](../tutorials/images/iso_images/instancewithvolume.png "Instance with Volume")
+![Instance with volume](/img/tutorials/iso_images/instancewithvolume.png "Instance with Volume")
 
-![Fedora 39](../tutorials/images/iso_images/Fedora_splash_page.png "Fedora 39")
+![Fedora 39](/img/tutorials/iso_images/Fedora_splash_page.png "Fedora 39")
 
 ### Create Image and Provision from Image
 
 - To Create a Reusable Image upload the volume into Images
 
-![Volume to image](../tutorials/images/iso_images/volume_to_image.png "Volume to Image")
+![Volume to image](/img/tutorials/iso_images/volume_to_image.png "Volume to Image")
 
 After the upload is complete, you can create VMs from that image.
 
-![Upload image](../tutorials/images/iso_images/upload_image.png "Upload Image")
+![Upload image](/img/tutorials/iso_images/upload_image.png "Upload Image")
 
-![Instance Fedora image](../tutorials/images/iso_images/instancefedoraimage.png "Instance Fedora Image")
+![Instance Fedora image](/img/tutorials/iso_images/instancefedoraimage.png "Instance Fedora Image")
 
 When using the new image, your VM should boot normally unto your desired OS.
 
-![Instance with image](../tutorials/images/iso_images/instancewithimage.png "Instance with Image")
+![Instance with image](/img/tutorials/iso_images/instancewithimage.png "Instance with Image")
 
 ISO images in OpenStack function similarly to CD-ROMs and USBs and provide
 a path to deploy functional instances and images for multi-use.

@@ -30,7 +30,7 @@ To view all current Stacks within your OpenMetal Cloud, navigate to
 view all your current stacks as well as launch and preview HOT
 templates.
 
-![image](images/heat_dashboard.png)
+![image](/img/operators-manual/day-4/automation/heat_dashboard.png)
 
 ### Architecture
 
@@ -145,7 +145,7 @@ selected the appropriate project for your deployment and then navigate
 to **Project -\> Orchestration -\> Stacks** and locate **Launch Stack**
 near the top right.
 
-![image](images/launch-stack.png)
+![image](/img/operators-manual/day-4/automation/launch-stack.png)
 
 **Figure 1:** Launch Stack
 
@@ -153,7 +153,7 @@ For this example, we have uploaded the template example as a file called
 `hot_example.yml` using the **Choose File** button. After uploading your
 example template, click **Next**.
 
-![image](images/select-template.png)
+![image](/img/operators-manual/day-4/automation/select-template.png)
 
 **Figure 2:** Select Template
 
@@ -173,7 +173,7 @@ type of stack you wish to deploy.
 **Note:** Instance type refers to the flavor of instance you wish to set
 up.
 
-![image](images/launch-stack-2.png)
+![image](/img/operators-manual/day-4/automation/launch-stack-2.png)
 
 **Figure 3:** Launch Stack
 
@@ -183,7 +183,7 @@ To view recently deployed stacks in Horizon, switch to the appropriate
 project where the stack was created. Then navigate to **Project -\>
 Orchestration -\> Stacks** to view all created stacks.
 
-![image](images/admin-created-stack.png)
+![image](/img/operators-manual/day-4/automation/admin-created-stack.png)
 
 **Figure 4:** Stacks Created within Admin Project
 
@@ -195,7 +195,7 @@ If you need additional information, click the link under **Stack Name**
 and you can view an overview of the stack information, resources,
 events, and even a copy of the template used to create the stack.
 
-![image](images/test-stack-overview.png)
+![image](/img/operators-manual/day-4/automation/test-stack-overview.png)
 
 **Figure 5:** Overview of Test Stack
 

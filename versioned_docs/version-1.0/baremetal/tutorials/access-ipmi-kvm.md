@@ -46,21 +46,21 @@ experience.
 First, you will want to navigate to the `Assets` page for the cloud with the
 node you wish to access.
 
-![image](images/ipmi_click_assets.jpg)
+![image](/img/baremetal/tutorials/ipmi_click_assets.jpg)
 
 Next, select the menu (**`⋮`**) next to the server you want to access, then
 select `IPMI Access` :
 
-![image](images/ipmi_click_ipmiaccess.jpg)
+![image](/img/baremetal/tutorials/ipmi_click_ipmiaccess.jpg)
 
 On the next menu, select `Download JNLP` :
 
-![image](images/ipmi_download_jnlp.jpg)
+![image](/img/baremetal/tutorials/ipmi_download_jnlp.jpg)
 
 Once the `<hostname>.jnlp` has downloaded, open it and hit `Run` when prompted:
 
-![image](images/ipmi_run_app.jpg)
+![image](/img/baremetal/tutorials/ipmi_run_app.jpg)
 
 You will then enter into the virtual console where you can enter your `root` credentials:
 
-![image](images/ipmi_open_console.jpg)
+![image](/img/baremetal/tutorials/ipmi_open_console.jpg)

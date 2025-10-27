@@ -37,7 +37,7 @@ Datadog](https://www.datadoghq.com/blog/openstack-monitoring-datadog/).
 
 **Figure 1:** Sample Datadog dashboard
 
-![image](images/figure1.png)
+![image](/img/operators-manual/day-2/_resource-usage/figure1.png)
 
 ## Resources of a Private Cloud
 
@@ -61,7 +61,7 @@ the following items:
 
 **Figure 2:** Hypervisor Summary showing disk and resource usage
 
-![image](images/figure2.png)
+![image](/img/operators-manual/day-2/_resource-usage/figure2.png)
 
 ### View Instance State Across Cluster
 
@@ -72,7 +72,7 @@ well as the IP address, and state.
 
 **Figure 3:** Summary of Instances
 
-![image](images/figure3.png)
+![image](/img/operators-manual/day-2/_resource-usage/figure3.png)
 
 ### How to Access Resource Information from Ceph
 
@@ -102,7 +102,7 @@ corner as **Add Hardware**.
 **Figure 4:** Picture of Assets Page where hardware is added to Private
 Clouds
 
-![image](images/figure4a.png)
+![image](/img/operators-manual/day-2/_resource-usage/figure4a.png)
 
 ## Removing nodes from your Ceph Cluster
 

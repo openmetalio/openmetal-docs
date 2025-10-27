@@ -81,7 +81,7 @@ Next, you will need to obtain two files from Horizon:
 
 These are located under the **Project** tab, then **API Access**.
 
-![image](images/um_api_access_osc.png)
+![image](/img/users-manual/um_api_access_osc.png)
 
 From here, click the **Download OpenStack RC File** drop-down, and then
 download both files.

@@ -31,8 +31,8 @@ To correct this, in Horizon navigate to **Project -> Container Infra -> Cluster
 Templates**, find the appropriate template, and adjust the value of **Docker
 Storage Driver** to `overlay2`.
 
-![Magnum Cluster template list](magnum-template.png)
-![Update Cluster form](magnum-template-form.png)
+![Magnum Cluster template list](/img/kubernetes-guides/deployment/magnum-template.png)
+![Update Cluster form](/img/kubernetes-guides/deployment/magnum-template-form.png)
 
 ## Kubernetes OpenStack Cloud Provider Integrations
 

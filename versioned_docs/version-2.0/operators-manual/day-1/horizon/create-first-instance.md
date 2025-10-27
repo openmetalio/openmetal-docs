@@ -30,14 +30,14 @@ then follow up with an explanation of the details to fill out.
 To create a private network, begin by navigating to **Project -\>
 Network -\> Networks**.
 
-![image](images/networks.png)
+![image](/img/operators-manual/day-1/horizon/networks.png)
 
 **Figure 1:** Networks in Horizon
 
 Load the form to create a network, by navigating to **Create Network**
 near the top right.
 
-![image](images/network-form.png)
+![image](/img/operators-manual/day-1/horizon/network-form.png)
 
 **Figure 2:** Network Tab
 
@@ -49,7 +49,7 @@ near the top right.
 
 Next, move on to the **Subnet** tab of this form.
 
-![image](images/network-form-subnet.png)
+![image](/img/operators-manual/day-1/horizon/network-form-subnet.png)
 
 **Figure 3:** Subnet Tab
 
@@ -64,7 +64,7 @@ Next, move on to the **Subnet** tab of this form.
 
 Next, move on to the **Subnet Details** tab of this form.
 
-![image](images/network-form-subnet-details.png)
+![image](/img/operators-manual/day-1/horizon/network-form-subnet-details.png)
 
 **Figure 4:** Subnet Details Tab
 
@@ -77,7 +77,7 @@ Next, move on to the **Subnet Details** tab of this form.
 Click **Create** to create the network. Once created, it appears in the
 list of networks.
 
-![image](images/network-list.png)
+![image](/img/operators-manual/day-1/horizon/network-list.png)
 
 **Figure 5:** Network Listing
 
@@ -90,14 +90,14 @@ private network and the public network. The public network is called
 To create a router, begin by navigating to **Project -\> Network -\>
 Routers**.
 
-![image](images/routers.png)
+![image](/img/operators-manual/day-1/horizon/routers.png)
 
 **Figure 6:** Router Listing
 
 Load the form to create a router by navigating to **Create Router** near
 the top right.
 
-![image](images/router-form.png)
+![image](/img/operators-manual/day-1/horizon/router-form.png)
 
 **Figure 7:** Create a Router
 
@@ -118,7 +118,7 @@ interface. Performing this step allows network communication between the
 To attach an interface to the router, first navigate to the list of
 routers and locate the one previously created.
 
-![image](images/router-list.png)
+![image](/img/operators-manual/day-1/horizon/router-list.png)
 
 **Figure 8:** Router List
 
@@ -128,11 +128,11 @@ the interface is attached. There are three tabs: **Overview**,
 to the **Interfaces** tab then load the form to attach an interface by
 clicking **Add Interface** near the top right.
 
-![image](images/router-details.png)
+![image](/img/operators-manual/day-1/horizon/router-details.png)
 
 **Figure 9:** Router Details
 
-![image](images/attach-interface.png)
+![image](/img/operators-manual/day-1/horizon/attach-interface.png)
 
 **Figure 10:** Attach Interface
 
@@ -144,7 +144,7 @@ clicking **Add Interface** near the top right.
 Press **Submit** to attach the **Private** network to this router. The
 interface is then attached and now listed.
 
-![image](images/private-subnet-interface.png)
+![image](/img/operators-manual/day-1/horizon/private-subnet-interface.png)
 
 **Figure 11:** Interface Listing
 
@@ -153,7 +153,7 @@ interface is then attached and now listed.
 Should you want to visually see the network topology for your cloud,
 navigate to **Project -\> Network -\> Network Topology**.
 
-![image](images/network-topology.png)
+![image](/img/operators-manual/day-1/horizon/network-topology.png)
 
 **Figure 12:** Network Topology
 
@@ -170,7 +170,7 @@ This security group is then applied to the instance we later create.
 To view and manage security groups, navigate to **Project -\> Network
 -\> Security Groups**.
 
-![image](images/security-groups.png)
+![image](/img/operators-manual/day-1/horizon/security-groups.png)
 
 **Figure 13:** Security Groups
 
@@ -186,7 +186,7 @@ needed IP ranges.
 To create a security group for SSH, load the form by navigating to
 **Create Security Group** near the top right.
 
-![image](images/security-group-form.png)
+![image](/img/operators-manual/day-1/horizon/security-group-form.png)
 
 **Figure 14:** Create Security Group Form
 
@@ -201,7 +201,7 @@ After creating the SSH security group, we need to add a rule allowing
 SSH traffic. This example demonstrates allowing SSH traffic from the
 first hardware node in this cloud to this instance.
 
-![image](images/add-security-group-rule.png)
+![image](/img/operators-manual/day-1/horizon/add-security-group-rule.png)
 
 **Figure 15:** Manage Security Group Rules
 
@@ -216,7 +216,7 @@ To be consistent, this guide assumes you are working with the first
 hardware node's IP address and the remaining instruction is created with
 that understanding.
 
-![image](images/add-ssh-rule.png)
+![image](/img/operators-manual/day-1/horizon/add-ssh-rule.png)
 
 **Figure 16:** Add SSH Rule
 
@@ -263,14 +263,14 @@ System Images using Horizon](images).
 To create the first instance, begin by navigating to **Project -\>
 Compute -\> Instances**.
 
-![image](images/instances.png)
+![image](/img/operators-manual/day-1/horizon/instances.png)
 
 **Figure 17:** Instances
 
 Pull up the form to create an instance by navigating to **Launch
 Instance** near the top right.
 
-![image](images/instance-details.png)
+![image](/img/operators-manual/day-1/horizon/instance-details.png)
 
 **Figure 18:** Instance Details
 
@@ -284,7 +284,7 @@ Instance** near the top right.
 Next, move to the **Source** tab allowing you to specify an operating
 system image.
 
-![image](images/instance-source.png)
+![image](/img/operators-manual/day-1/horizon/instance-source.png)
 
 **Figure 19:** Instance Source
 
@@ -305,7 +305,7 @@ system. This example uses `CentOS 8 Stream (el8-x86_64)`.
 This concludes configuring the instance's source. Next, move to the
 **Flavor** tab.
 
-![image](images/instance-flavor.png)
+![image](/img/operators-manual/day-1/horizon/instance-flavor.png)
 
 **Figure 20:** Instance Flavor
 
@@ -316,7 +316,7 @@ This example uses the `m1.small` flavor.
 
 Next, move to the **Networks** tab.
 
-![image](images/instance-networks.png)
+![image](/img/operators-manual/day-1/horizon/instance-networks.png)
 
 **Figure 21:** Instance Networks
 
@@ -335,7 +335,7 @@ instance consumes a public IP and it could be reached over the Internet.
 Next, skip over the **Network Ports** tab and move to the **Security
 Groups**.
 
-![image](images/instance-security-groups.png)
+![image](/img/operators-manual/day-1/horizon/instance-security-groups.png)
 
 **Figure 22:** Instance Security Groups
 
@@ -344,7 +344,7 @@ uses the **SSH** security group in the **Availalble** section.
 
 As the final step, move to the **Key Pair** tab.
 
-![image](images/instance-key-pair.png)
+![image](/img/operators-manual/day-1/horizon/instance-key-pair.png)
 
 **Figure 23:** Instance Key Pair
 
@@ -355,7 +355,7 @@ Key Pair** to import the existing SSH public key [created
 previously](../command-line/create-SSH-key) for
 one of the control plane nodes.
 
-![image](images/instance-import-key-pair.png)
+![image](/img/operators-manual/day-1/horizon/instance-import-key-pair.png)
 
 **Figure 24:** Import Key Pair Form
 
@@ -376,7 +376,7 @@ The instance goes through a build process. Allow a few minutes for this
 to occur. When complete, the instance appears in the **Instances
 Listing** page.
 
-![image](images/instance-list.png)
+![image](/img/operators-manual/day-1/horizon/instance-list.png)
 
 **Figure 25:** Instance Listing
 
@@ -391,14 +391,14 @@ floating IP and attach it to this instance.
 To allocate a floating IP, first navigate to **Project -\> Network -\>
 Floating IPs**.
 
-![image](images/floating-ips.png)
+![image](/img/operators-manual/day-1/horizon/floating-ips.png)
 
 **Figure 26:** Floating IPs Listing
 
 Next, load the form to allocate a floating IP by pressing **Allocate IP
 to Project**.
 
-![image](images/allocate-floating-ip.png)
+![image](/img/operators-manual/day-1/horizon/allocate-floating-ip.png)
 
 - **Pool**: Select **External** for the allocation pool.
 - **Description**: Optional. Set a description for the floating IP.
@@ -408,11 +408,11 @@ Press **Allocate IP** to add this floating IP address for use.
 Next, in the same section, allocate the IP to the Jumpstation instance
 by clicking the **Associate** button at the far right.
 
-![image](images/associate-floating-ip.png)
+![image](/img/operators-manual/day-1/horizon/associate-floating-ip.png)
 
 **Figure 27:** Associate Floating IP
 
-![image](images/manage-floating-ip-associations.png)
+![image](/img/operators-manual/day-1/horizon/manage-floating-ip-associations.png)
 
 **Figure 28:** Manage Floating IP Associations
 

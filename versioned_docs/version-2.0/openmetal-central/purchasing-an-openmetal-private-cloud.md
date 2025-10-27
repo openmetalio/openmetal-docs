@@ -26,29 +26,29 @@ can set this up before you even launch your trial cloud.
 1. From the [Cloud Home Page](https://central.openmetal.io/clouds), select the
    _Get Started_ button.
 
-    ![OpenMetal Central Get Started](images/getstartedbutton.png)
+    ![OpenMetal Central Get Started](/img/openmetal-central/getstartedbutton.png)
 
 1. Choose Data Center Location and Deployment Type.
    - Ashburn, VA
    - L.A, CA
    - Amsterdam, NL
   
-    ![DC Selection](images/choosedc.png)
+    ![DC Selection](/img/openmetal-central/choosedc.png)
 
 1. Choose desired hardware.
 
-    ![Hardware Selection](images/serversize.png)
+    ![Hardware Selection](/img/openmetal-central/serversize.png)
 
 1. Select "Yes, I'll continue using my cloud..."
 
 1. Select Continue to Billing in the bottom right. Your cloud will go live at
    the end of the trial.
 
-    ![OpenMetal Central Payment Information](images/purchase4.png)
+    ![OpenMetal Central Payment Information](/img/openmetal-central/purchase4.png)
 
 1. Add your Credit Card Information.
 
-    ![OpenMetal Central Billing Information](images/purchase5.png)
+    ![OpenMetal Central Billing Information](/img/openmetal-central/purchase5.png)
 
 When your cloud trial expires, your cloud will remain active for production.
 
@@ -64,20 +64,20 @@ trial cloud is launched. Simply log back in and update your billing parameters.
 
 1. After logging into OpenMetal Central hover over the icon on the top right.
 
-    ![OpenMetal Central Profile From Home](images/purchase1.png)
+    ![OpenMetal Central Profile From Home](/img/openmetal-central/purchase1.png)
 
 1. On the drop-down click _Personal Profile_.
 
-    ![OpenMetal Central Profile From Dropdown](images/purchase2.png)
+    ![OpenMetal Central Profile From Dropdown](/img/openmetal-central/purchase2.png)
 
 1. On the left menu click _Payment Methods_.
 
-    ![OpenMetal Central Payment Methods From Personal Profile](images/purchase8.png)
+    ![OpenMetal Central Payment Methods From Personal Profile](/img/openmetal-central/purchase8.png)
 
 1. Please note that if you have an organization in Central you can follow the
    prompt at the top of this page to update your organizational billing instead.
 
-    ![OpenMetal Central Billing Information Form](images/purchase7.png)
+    ![OpenMetal Central Billing Information Form](/img/openmetal-central/purchase7.png)
 
 1. Add your billing information.
 
@@ -111,11 +111,11 @@ other than the cloud that you launched for your trial.
 
 1. Click get started.
 
-    ![Get Started](images/purchase6.png)
+    ![Get Started](/img/openmetal-central/purchase6.png)
 
 1. Choose your cloud size.
 
-    ![Hardware Selection](images/serversize.png)
+    ![Hardware Selection](/img/openmetal-central/serversize.png)
 
 1. Add your billing information as prompted. (Skip this step if already added.)
 

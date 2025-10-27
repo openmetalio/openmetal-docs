@@ -23,7 +23,7 @@ additional plugins.
 
 - Configuration: Usually configured as the default console access method in OpenStack.
 
-![NoVNC](./images/console_images/novnc.png)
+![NoVNC](/img/tutorials/console_images/novnc.png)
 
 ### SPICE (Simple Protocol for Independent Computing Environments)
 
@@ -38,7 +38,7 @@ user's machine.
 - Integration: Integrated with QEMU/KVM hypervisors and provides additional
 features like audio and video streaming.
 
-![Spice](./images/console_images/spice.png)
+![Spice](/img/tutorials/console_images/spice.png)
 
 ## Features Comparison
 

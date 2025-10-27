@@ -65,7 +65,7 @@ enter your TOTP code.
 
 3. Enter TOTP Code:
 
-![totp](images/totp-login.png)
+![totp](/img/tutorials/totp-login.png)
 
 Open your TOTP app and enter the current code to complete the login process.
 

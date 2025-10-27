@@ -12,22 +12,22 @@ OpenMetal Cloud.
 
 1. Access Datadog from the account navigation menu.
 
-    ![Access Datadog](images/from-manage.png)
+    ![Access Datadog](/img/openmetal-central/from-manage.png)
 
 1. Click "Add Datadog"
 
-    ![Add Datadog](images/add-datadog.png)
+    ![Add Datadog](/img/openmetal-central/add-datadog.png)
 
 1. Check your email and accept the Datadog invitation.
 
-    ![Join Account](images/join-account.png)
+    ![Join Account](/img/openmetal-central/join-account.png)
 
 ### Await Deployment Completion
 
 The next page will display a banner while the initial configuration and
 deployment complete.
 
-![Info banner](images/in-progress-banner.png)
+![Info banner](/img/openmetal-central/in-progress-banner.png)
 
 ## Access Datadog
 
@@ -35,7 +35,7 @@ Once deployment has completed and the emailed invitation accepted, you can use
 the "Single Sign On" option in OpenMetal Central to access your clouds' Datadog
 organization directly.
 
-![Single Sign On](images/single-sign-on.png)
+![Single Sign On](/img/openmetal-central/single-sign-on.png)
 
 ### Next Steps
 

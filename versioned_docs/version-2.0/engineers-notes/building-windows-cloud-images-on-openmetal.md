@@ -526,11 +526,11 @@ temporarily as described below.
 In Server Manager navigate to Local Server on the left then click "On" to the
 right of IE Enhanced Security Configuration.
 
-![Server Manager](windows-build-images/enhanced-sec-config.png)
+![Server Manager](/img/engineers-notes/windows-build-images/enhanced-sec-config.png)
 
 Set Administrators to Off and click OK
 
-![Admin set](windows-build-images/enable-admin.png)
+![Admin set](/img/engineers-notes/windows-build-images/enable-admin.png)
 
 Download and Run the Installer
 

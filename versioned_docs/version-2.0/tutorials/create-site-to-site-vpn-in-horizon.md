@@ -47,7 +47,7 @@ West Cloud. Each cloud will have 1 router attached to subnets utilizing 1 VPN se
 In this guide, we'll be creating West-Cloud as our local VPN and all steps
 should be duplicated for East-Cloud
 
-![network diagram](images/vpnbobcat_images/network_diagram.png "Network Diagram")
+![network diagram](/img/tutorials/vpnbobcat_images/network_diagram.png "Network Diagram")
 
 ### Step One: West Network Setup
 
@@ -63,7 +63,7 @@ Subnet - west-primary-subnet & west-secondary-subnet
 
 Associate both subnets created
 
-![west associate subnet](images/vpnbobcat_images/west_associate_subnet.png "West Associate Subnet Creation")
+![west associate subnet](/img/tutorials/vpnbobcat_images/west_associate_subnet.png "West Associate Subnet Creation")
 
 ### Step Two: Create an IKE and IPSec Policy
 
@@ -75,15 +75,15 @@ and IPSec Policy settings.
 
 Go to VPN - IKE Policies - Add IKE Policy
 
-![ike policy button](images/vpnbobcat_images/ike_policy_button.png "IKE Policy Button")
+![ike policy button](/img/tutorials/vpnbobcat_images/ike_policy_button.png "IKE Policy Button")
 
-![ike policy configs](images/vpnbobcat_images/ike_policy_configs.png "IKE Policy Configs")
+![ike policy configs](/img/tutorials/vpnbobcat_images/ike_policy_configs.png "IKE Policy Configs")
 
 Go to VPN - IPsec Policies - Add IPsec Policy
 
-![ipsec policy button](images/vpnbobcat_images/ipsec_policy_button.png "IPSec Policy Button")
+![ipsec policy button](/img/tutorials/vpnbobcat_images/ipsec_policy_button.png "IPSec Policy Button")
 
-![ipsec policy configs](images/vpnbobcat_images/ipsec_policy_configs.png "IPSec Policy Configs")
+![ipsec policy configs](/img/tutorials/vpnbobcat_images/ipsec_policy_configs.png "IPSec Policy Configs")
 
 ### Step Three: Create a VPN Service
 
@@ -96,9 +96,9 @@ external IP addresses assigned to each.
 > subnets.
 > Each remote endpoint group requiring its own site2site connection.
 
-![west vpn button](images/vpnbobcat_images/west_vpn_service_button.png "West VPN Button")
+![west vpn button](/img/tutorials/vpnbobcat_images/west_vpn_service_button.png "West VPN Button")
 
-![west vpn configs](images/vpnbobcat_images/west_vpn_service_configs.png "West VPN Configs")
+![west vpn configs](/img/tutorials/vpnbobcat_images/west_vpn_service_configs.png "West VPN Configs")
 
  **Take note as the external IP may be different from the router.**
 
@@ -112,7 +112,7 @@ Create west **local** endpoint groups
 Local endpoint groups define subnets given by name or UUID. The site west
 local endpoint contains `west-localendpointgroup`.
 
-![west localendpoint](images/vpnbobcat_images/west_localendpoint.png "West Local Endpoint Group")
+![west localendpoint](/img/tutorials/vpnbobcat_images/west_localendpoint.png "West Local Endpoint Group")
 
 Create west **peer** endpoint groups
 
@@ -121,9 +121,9 @@ Create west **peer** endpoint groups
     contain the peer subnet CIDR. In this case that's the site `east subnet`.
 ```
 
-![west remoteendpoint1](images/vpnbobcat_images/west_remoteendpoint1.png "West Remote Endpoint Group1")
+![west remoteendpoint1](/img/tutorials/vpnbobcat_images/west_remoteendpoint1.png "West Remote Endpoint Group1")
 
-![west remoteendpoint2](images/vpnbobcat_images/west_remoteendpoint2.png "West Remote Endpoint Group2")
+![west remoteendpoint2](/img/tutorials/vpnbobcat_images/west_remoteendpoint2.png "West Remote Endpoint Group2")
 
 ### Step Six: Create VPN Site Connections
 
@@ -137,16 +137,16 @@ endpoint groups.
 Repeat this process for each individual remote endpoint group.
 (A remote endpoint group can only have 1 subnet per)
 
-![west ipsec1](images/vpnbobcat_images/west_ipsec1.png "West IPSec1")
+![west ipsec1](/img/tutorials/vpnbobcat_images/west_ipsec1.png "West IPSec1")
 
 ### Step Seven: Test Site-to-Site Connection
 
 Create instances connected to both subnets on west and both subnets on east.
 Confirm they can communicate via ICMP echo requests to local IPs.
 
-![ping test 1](images/vpnbobcat_images/pingtest1.png "Ping Test 1")
+![ping test 1](/img/tutorials/vpnbobcat_images/pingtest1.png "Ping Test 1")
 
-![ping test 2](images/vpnbobcat_images/pingtest2.png "Ping Test 2")
+![ping test 2](/img/tutorials/vpnbobcat_images/pingtest2.png "Ping Test 2")
 
 ## References
 

@@ -15,7 +15,7 @@ instances of your project as well as their status.
 
 **Figure 1:** List of Running Instances Within Horizon
 
-![image](images/figure1.png)
+![image](/img/tutorials/figure1.png)
 
 To reboot an instance, click the small arrow next to the button **Rescue
 Instance**. Depending on the current status of your instance you have
@@ -30,11 +30,11 @@ work.
 
 **Figure 2:** Link to Drop Down Menu
 
-![image](images/figure2.png)
+![image](/img/tutorials/figure2.png)
 
 **Figure 3:** Actions Menu for Working With Instance Functions
 
-![image](images/figure3.png)
+![image](/img/tutorials/figure3.png)
 
 Once you have rebooted your instance, you can check the status by
 attempting to SSH into the instance. If you are still unable to access
@@ -49,14 +49,14 @@ access.
 
 **Figure 4:** Name of Instance to Access Console
 
-![image](images/figure4.png)
+![image](/img/tutorials/figure4.png)
 
 From the options menu, select **Console** from the upper left menu to
 access the console page.
 
 **Figure 5:** Console Page of Instance
 
-![image](images/figure5.png)
+![image](/img/tutorials/figure5.png)
 
 Within the console page, a root user or superuser password is required.
 Input the login credentials of the user with appropriate access to the
@@ -65,4 +65,4 @@ through its console.
 
 **Figure 6:** Console Access Demonstration
 
-![image](images/figure6.png)
+![image](/img/tutorials/figure6.png)

@@ -24,7 +24,7 @@ To determine an instance's parent host, navigate to **Admin -\> Compute
 -\> Instances**. You have the option to see the project, the host, as
 well as the IP address, and the state of your instance.
 
-![image](images/all-instance-list.png)
+![image](/img/operators-manual/day-2/all-instance-list.png)
 
 **Figure 1:** Summary of Instances
 
@@ -35,13 +35,13 @@ Once you have determined the instance you want to migrate, navigate to
 with a series of actions. To access these actions click the small
 triangle next to the button called **Rescue Instance**.
 
-![image](images/figure2.png)
+![image](/img/operators-manual/day-2/figure2.png)
 
 **Figure 2:** Link for Live Migration Drop Down Menu
 
 From the drop-down menu, select **Live Migrate Instance**.
 
-![image](images/figure3.png)
+![image](/img/operators-manual/day-2/figure3.png)
 
 **Figure 3:** Drop down menu for live migration
 
@@ -52,7 +52,7 @@ and destination hosts. The storage for OpenMetal uses a shared storage
 system through Ceph. Because of the shared storage system in OpenMetal,
 neither option should be selected.
 
-![image](images/figure4.png)
+![image](/img/operators-manual/day-2/figure4.png)
 
 **Figure 4:** Live Migration Options
 
@@ -63,6 +63,6 @@ made your selection, click submit. During the live migration process, a
 status bar appears under tasks, upon completion, the task returns to
 none and your instance host changes to a new node.
 
-![image](images/figure5.png)
+![image](/img/operators-manual/day-2/figure5.png)
 
 **Figure 5:** Task list for migrating instances

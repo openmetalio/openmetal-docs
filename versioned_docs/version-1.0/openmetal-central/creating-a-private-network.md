@@ -25,11 +25,11 @@ image: images/central_networking/networking_ip_block_table.png
 In Central, navigate to the IP Addresses page from the Networking dropdown in
  the sidebar.  
 
-![Central IP Block listing](images/central_networking/networking_ip_block_table.png)
+![Central IP Block listing](/img/openmetal-central/central_networking/networking_ip_block_table.png)
 
 From this page, select the **Add IP Addresses** button.
 
-![Private Block Creation](images/central_networking/private_ip_block_creation_filled.png)
+![Private Block Creation](/img/openmetal-central/central_networking/private_ip_block_creation_filled.png)
 
 On the IP Address Block Creation page:
 
@@ -53,7 +53,7 @@ Verify the IP Address Block summary, and submit the IP Address Block creation re
   assigned to cloud hosts from this IP Address Block
 {.is-info}
 
-![Private Block Inspection](images/central_networking/private_block_table_view.png)
+![Private Block Inspection](/img/openmetal-central/central_networking/private_block_table_view.png)
 
 You should now see your newly created IP Address Block in the IP Addresses Table.
  This block will have no assigned IP Addresses and will not be assigned to a
@@ -65,10 +65,10 @@ Proceed to the next step to assign this IP Address Block to your Provider networ
 
 Navigate to the Networking VLANs page via the sidebar in Central.
 
-![vlans_page.png](images/central_networking/vlans_page.png)
+![vlans_page.png](/img/openmetal-central/central_networking/vlans_page.png)
 From the Networking VLANs page, select the **Create VLAN** button.
 
-![vlan_create_datacenter.png](images/central_networking/vlan_create_datacenter.png)
+![vlan_create_datacenter.png](/img/openmetal-central/central_networking/vlan_create_datacenter.png)
 
 From the VLAN Creation Page:
 
@@ -82,13 +82,13 @@ From the VLAN Creation Page:
  wish to assign to this Internal Network.  You will assign this network to any
   additional clusters after the initial setup has complete.
 
-![vlan_create_connections.png](images/central_networking/vlan_create_connections.png)
+![vlan_create_connections.png](/img/openmetal-central/central_networking/vlan_create_connections.png)
 
 Verify your selections and submit the VLAN Creation request.
 
 Proceed to your Internal VLANs Dashboard in Central.
 
-![vlan_modification_page.png](images/central_networking/vlan_modification_page.png)
+![vlan_modification_page.png](/img/openmetal-central/central_networking/vlan_modification_page.png)
 
 This page displays information pertinent to your newly created internal VLAN and
  should list any IP Address Blocks that are currently assigned to the VLAN as
@@ -101,7 +101,7 @@ Proceed to the next step to Assign your VLAN to Multiple Clusters.
 From the VLAN Modification page, select the **Assign VLAN to Resource** button
  in the Resource Connections section.
 
-![vlan_assign_to_cloud_modal.png](images/central_networking/vlan_assign_to_cloud_modal.png)
+![vlan_assign_to_cloud_modal.png](/img/openmetal-central/central_networking/vlan_assign_to_cloud_modal.png)
 
 This a modal will display that identifies the current selected VLAN and allows
  your to select a cluster to assign this VLAN to.
@@ -121,7 +121,7 @@ Proceed to the next section to confirm that VLAN assignment was successful for
 
 From Central, navigate to the Baremetal Cluster's Networking page.
 
-![baremetal_vlan_assign_confirm.png](images/central_networking/baremetal_vlan_assign_confirm.png)
+![baremetal_vlan_assign_confirm.png](/img/openmetal-central/central_networking/baremetal_vlan_assign_confirm.png)
 
 This page will display all VLANs that have been assigned to the Baremetal Cluster
  and their associated IP Address Blocks.  This includes all system generated VLANs
@@ -134,7 +134,7 @@ Verify that your custom VLAN is listed in the VLANs table with the appropriate
 
 From Central, navigate to the PCC Cloud's Networking Assets page.
 
-![pcc_vlan_assignment_confirm.png](images/central_networking/pcc_vlan_assignment_confirm.png)
+![pcc_vlan_assignment_confirm.png](/img/openmetal-central/central_networking/pcc_vlan_assignment_confirm.png)
 
 This page will display all VLANs that have been assigned to the PCC Cloud and
  their associated IP Address Blocks.  This includes all system generated VLANs
