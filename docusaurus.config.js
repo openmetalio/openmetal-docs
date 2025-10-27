@@ -27,6 +27,21 @@ const config = {
           routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
+          lastVersion: 'current',
+          includeCurrentVersion: true,
+          versions: {
+            current: {
+              label: '3.0',
+            },
+            '2.0': {
+              label: '2.0',
+              path: '2.0',
+            },
+            '1.0': {
+              label: '1.0',
+              path: '1.0',
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
