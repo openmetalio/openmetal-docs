@@ -15,18 +15,6 @@ OpenStack cluster, you can do so using Kolla Ansible. In this guide, we
 explain how to prepare a Kolla Ansible environment, from which
 configuration changes can be made.
 
-## Before Proceeding
-
-**WARNING\!** -- Our current deployment system deploys a Private Cloud
-with a known working state. Should you deviate from this state by
-adjusting your cloud's OpenStack configuration you can no longer safely
-use the functions in OpenMetal Central to add nodes to your cloud or add
-IP blocks. Should you use these functions, any custom configurations
-will be reverted. We are working on rolling out a new deployment system
-allowing custom cloud configurations. We can still help you modify your
-cloud, but must do so manually. Please reach out to your Account Manager
-should this apply to you.
-
 ## Prerequisites
 
 - Root access to your cloud's control plane nodes is required.
