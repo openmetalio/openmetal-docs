@@ -49,8 +49,6 @@ Ansible, and other topics.
 The audience for this manual is experienced Linux System Administrators
 who are new to OpenStack.
 
-## Table of Contents
-
 ### Day 1
 
 Day 1 generally refers to initial setup, which in our case is the
@@ -58,25 +56,11 @@ process of getting started with a Private Cloud Core OpenStack Cloud. We
 introduce you to OpenMetal Central, how to view the assets that comprise
 your cloud, and how to get support from our staff.
 
-1. [Introduction to OpenMetal and your Private Cloud Core](day-1/intro-to-openmetal-private-cloud.md)
-2. [Getting Started with OpenStack Horizon](day-1/horizon/getting-started-with-horizon.md)
-3. [Create an OpenStack User and Project in Horizon](day-1/horizon/create-user-project.md)
-4. [Manage and Upload Images in OpenStack Horizon](day-1/horizon/images.md)
-5. [How to Create an Instance in OpenStack Horizon](day-1/horizon/create-first-instance.md)
-6. [How to Install and Use OpenStackClient](day-1/command-line/openstackclient.md)
-7. [Create SSH Key Pair for an OpenStack Control Plane Node](day-1/command-line/create-ssh-key.md)
-
 ### Day 2
 
 Day 2 initially explains briefly how your Private Cloud was deployed.
 Next we cover OpenStack administration by explaining how to perform
 maintenance tasks for your cluster's hardware nodes.
-
-1. [How Private Clouds are Deployed](day-2/private-cloud-deployment-overview.md)
-2. [Introduction to Ceph](day-2/introduction-to-ceph.md)
-3. [How to Check Ceph's Status and Disk Usage](day-2/check-ceph-status-disk-usage.md)
-4. [Maintaining OpenStack Software Updates](day-2/maintenance.md)
-5. [How to Live Migrate Instances](day-2/live-migrate-instances.md)
 
 ### Day 3
 
@@ -84,13 +68,6 @@ Day 3 has to do with how you can scale your cloud by adding more
 hardware nodes to it. Next we get into preparing for disaster recovery
 by explaining best practices relating to keeping your data safe. We
 provide a general outline for how you can recover from a disaster.
-
-1. [How to Add or Remove Hardware Nodes](day-3/add-remove-hardware-nodes.md)
-2. [How to Add Additional Provider IP Blocks](day-3/add-provider-ips.md)
-3. [Create and Restore Volume Backups](day-3/create-volume-backups.md)
-4. [How to Create OpenStack Service Configuration Backups](day-3/create-openstack-service-backups.md)
-5. [Backup and Restore OpenStack Service Databases](day-3/backup-restore-openstack-databases.md)
-6. [OpenStack Disaster Planning, Testing, and Recovery](day-3/disaster-recovery.md)
 
 ### Day 4
 
@@ -101,15 +78,3 @@ Next, we detail a few common troubleshooting scenarios and their
 solutions. Finally we briefly cover automation techniques possible in
 your cloud through the use of OpenStack's Heat service and through
 HashiCorp's Terraform application.
-
-1. [How to Prepare and Use Kolla Ansible](day-4/kolla-ansible/prepare-kolla-ansible.md)
-2. [Enable TLS Using Kolla Ansible](day-4/kolla-ansible/enable-tls)
-3. [Enable OpenSearch using Kolla Ansible](day-4/kolla-ansible/opensearch.md)
-4. [Security and Your OpenMetal Private Cloud](day-4/security/security-best-practices.md)
-5. [OpenStack Watcher Demonstration](day-4/watcher/watcher-demo.md)
-6. [Troubleshooting RabbitMQ](day-4/troubleshooting/rabbitmq.md)
-7. [How to Redeploy RabbitMQ using Kolla Ansible](day-4/troubleshooting/redeploy-rabbitmq.md)
-8. [Troubleshooting Ceph](day-4/troubleshooting/ceph.md)
-9. [Guidelines for Searching through Logs](day-4/troubleshooting/log-filtering.md)
-10. [OpenStack Automation through Heat](day-4/automation/heat.md)
-11. [Automate Infrastructure using Terraform](day-4/automation/terraform.md)
