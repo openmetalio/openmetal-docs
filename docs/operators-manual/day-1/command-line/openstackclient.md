@@ -283,5 +283,5 @@ For example:
 
 ## Reference
 
-[OpenStack Bobcat OpenStackClient
-Documentation](https://docs.openstack.org/python-openstackclient/yoga/)
+[OpenStackClient
+Documentation](https://docs.openstack.org/python-openstackclient/2023.2/)
