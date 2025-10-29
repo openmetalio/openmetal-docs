@@ -9,18 +9,6 @@ With OpenMetal Private Clouds, multiple provider IP blocks are
 supported. This guide explains how to request an additional provider IP
 block and how to use the IPs in Horizon.
 
-## Before Proceeding
-
-**WARNING\!** -- If your cloud has had its configuration modified, do
-**not** use the functions in OpenMetal Central to modify your cloud,
-otherwise the configuration changes to your cloud will be reverted to
-the defaults. The functions in OpenMetal Central that you should not use
-are adding and removing hardware nodes and adding Provider IP blocks. We
-can still accommodate your requests by performing the actions manually
-through a support ticket. We are aware of the inflexibility of the
-deployment system and are working to produce a more flexible system that
-allows for custom configuration changes.
-
 ## Getting Started
 
 To add the IP block you need to reach out to your Account Manager who
