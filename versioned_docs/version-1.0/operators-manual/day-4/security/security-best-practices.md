@@ -112,14 +112,6 @@ routinely updating and managing these images within your existing
 OpenStack cluster. For further information on how to upload images visit
 [Manage and Upload Images in Horizon](../../day-1/horizon/images.md)
 
-### Update Kolla Ansible Images
-
-Kolla Ansible relies on Docker images to deploy the various OpenStack
-containers. Over time, updates occur, causing existing images to be out
-of date. As part of regular cloud maintenance, these images can be
-updated, using Kolla Ansible. To learn more, see
-[How to Obtain Latest OpenStack Images using Kolla Ansible](../../day-2/maintenance.md#how-to-obtain-latest-openstack-images-using-kolla-ansible).
-
 ### Update Control-Plane Nodes
 
 For each hardware node, your cloud has, operating system updates should
