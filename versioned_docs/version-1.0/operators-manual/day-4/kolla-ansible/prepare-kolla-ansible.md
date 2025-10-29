@@ -32,43 +32,48 @@ should this apply to you.
 - Root access to your cloud's control plane nodes is required.
 - Experience using [Ansible](https://www.ansible.com/).
 
-## Using Kolla Ansible
+## Using Kolla Ansible Quick Start
 
 **Caution\!** Ensure the node from which you are working contains the
-directory `/etc/kolla/config`. This directory exists in the control plane nodes
-and is used to provide our custom configuration to OpenStack services. Control
-plane nodes are labeled as "Cloud Core" in the Assets page of your cloud in
-OpenMetal Central.
+directory `/etc/kolla/config`. This directory exists on a single node
+and is used to provide our custom configuration to OpenStack services.
 
-### Add SSH key for Kolla Ansible
+Follow this section for a summary of the commands required to prepare
+Kolla Ansible. For more detailed instruction, see the section labeled
+[Prepare Kolla Ansible for Use](#prepare-kolla-ansible-for-use) within
+this guide.:
 
-You must add an SSH public key to your cloud's nodes. This public key can be added
-using OpenMetal Central under **Settings -> Add SSH Key**.
-
-Create an Ansible deployment SSH keypair with:
-
-    ssh-keygen -t ed25519 -C "kolla-ansible"
-
-### Prepare Kolla Ansible Quick Start
-
-    cd /opt/kolla-ansible-cli
-    python3 -m venv .venv
-    source .venv/bin/activate
+    # Create a folder for your Kolla Ansible environment
+    $ mkdir /opt/kolla-ansible
+    
+    # Navigate to folder
+    $ cd /opt/kolla-ansible
+    
+    # Initialize a Python virtual environment
+    $ virtualenv .venv
+    
+    # Activate the virtual environment
+    $ source .venv/bin/activate
+    
+    # Update pip
     pip install --upgrade pip
-    pip install -r requirements.txt
-    kolla-ansible install-deps
+    
+    # Install Kolla Ansible and Ansible
+    $ pip install git+https://github.com/inmotionhosting/kolla-ansible@stable/victoria
+    $ pip install 'ansible>=2.9,<2.10,!=2.9.10'
 
-- Kolla Ansible Inventory: `/opt/kolla-ansible-cli/inventory.yml`
-- Kolla Ansible Multinode Inventory: `/opt/kolla-ansible-cli/ansible/inventory/multinode`
-- Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
+Kolla Ansible, being built off of Ansible, is executed against an
+inventory file. Each node in your cloud has a copy of the Kolla Ansible
+inventory used during cloud deployment, located as
+`/etc/fm-deploy/kolla-ansible-inventory`.
 
-### General Usage
+**Caution\!** Read over the inventory file to ensure the hosts specified
+within match the hosts you intend to make changes to.
 
-    kolla-ansible -i inventory.yml -i ansible/inventory/multinode <command>
+For a full list of available commands, see [Kolla Ansible
+CLI](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html#kolla-ansible-cli).
 
-For a full list of available commands, see [Kolla Ansible CLI](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html#kolla-ansible-cli).
-
-### Prepare Kolla Ansible
+## Prepare Kolla Ansible for Use
 
 In this section, we explain the steps needed to create an environment
 from which Kolla Ansible can be executed. The steps in this section
@@ -82,24 +87,13 @@ First, we introduce you to the files required for adjusting Kolla
 Ansible's configuration. These files are used when preparing Kolla
 Ansible.
 
-- Kolla Ansible Inventory: `/opt/kolla-ansible-cli/inventory.yml`
-- Kolla Ansible Multinode Inventory: `/opt/kolla-ansible-cli/ansible/inventory/multinode`
+- Kolla Ansible Inventory: `/etc/fm-deploy/kolla-ansible-inventory`
 - Kolla Ansible Main Configuration: `/etc/kolla/globals.yml`
 
-Both inventory files must be passed when using Kolla Ansible.
-`/opt/kolla-ansible-cli/inventory.yml` contains your cloud's specific hosts
-whereas `/opt/kolla-ansible-cli/ansible/inventory/multinode` groups the hosts as
-required by Kolla Ansible.
-
-Double check the hosts specified in `/opt/kolla-ansible-cli/inventory.yml`
-match the hosts listed in the Assets page of your cloud in OpenMetal Central.
-
-#### Missing Inventory
-
-Should you not find the inventory files in your cloud as specified in the
-previous step, your cloud may be running an older release. Ideally your cloud
-should be updated to our latest release, so reach out to us to help facilate
-this.
+**Note\!** It is possible `/etc/fm-deploy/kolla-ansible-inventory`
+exists on a single node instead of being synced across all nodes. We
+recently corrected a bug where the contents in `/etc/fm-deploy` were not
+being synced across all nodes at the end of a deployment.
 
 #### Before Making Changes
 
@@ -130,22 +124,21 @@ Proceeding](#before-proceeding) at the top of this guide.
 #### **Step 1** - Prepare environment
 
 First ensure the node you are logged into over SSH contains the
-directory `/etc/kolla/config`. This directory exists in the control plane nodes
-and is used to provide our custom configuration to OpenStack services. Control
-plane nodes are labeled as "Cloud Core" in the Assets page of your cloud in
-OpenMetal Central.
+directory `/etc/kolla/config`. This directory exists on a single node
+and is used to provide our custom configuration to OpenStack services.
 
-Next, navigate to the folder `/opt/kolla-ansible-cli` which contains required
-Kolla Ansible configuration:
+Next, create a folder where you will install Kolla Ansible and its
+dependency, Ansible. For example:
 
-    cd /opt/kolla-ansible-cli
+    mkdir /opt/kolla-ansible
 
 #### **Step 2** -- Prepare Python virtual environment
 
-Create a Python virtual environment and activate it:
+Navigate into the folder created previously, create a Python virtual
+environment and activate it:
 
     cd /opt/kolla-ansible
-    python3 -m venv .venv
+    virtualenv .venv
     source .venv/bin/activate
 
 #### **Step 3** -- Update pip
@@ -162,25 +155,19 @@ Update `pip` using:
 With the virtual environment prepared, we can now install Kolla Ansible
 and Ansible using `pip`.
 
-Install Kolla Ansible and its dependencies:
+Install Kolla Ansible, and its dependency Ansible, using these specified
+versions:
 
-    pip install -r requirements.txt
+    pip install git+https://github.com/inmotionhosting/kolla-ansible@stable/victoria
+    pip install 'ansible>=2.9,<2.10,!=2.9.10'
 
-Should `requirements.txt` not exist, you can ask us to sync that file to your
-cloud.
+**Caution\!** -- It is important the version of Kolla Ansible installed
+during this step match your cloud's OpenStack version. Your cloud's
+OpenStack version can be determined by looking at the Docker image tags
+associated with the Kolla containers from the output of `docker image
+ls`, for example.
 
-For our latest deployments running OpenStack 2023.2, `requirements.txt` should contain:
-
-    ansible-core==2.15.*
-    kolla-ansible==17.3.*
-
-#### **Step 5** -- Install Ansible Galaxy dependencies
-
-Install Ansible Galaxy dependencies using:
-
-    kolla-ansible install-deps
-
-#### **Step 6** -- Kolla Ansible is Ready for Use
+#### **Step 5** -- Kolla Ansible is Ready for Use
 
 At this step, you have everything prepared to use Kolla Ansible. Before
 proceeding, familiarize yourself with the available Kolla Ansible
@@ -206,6 +193,17 @@ Kolla](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html
 ## References
 
 - [OpenStack Kolla Ansible
-    documentation](https://docs.openstack.org/kolla-ansible/latest/)
+    documentation](https://docs.openstack.org/kolla-ansible/victoria/)
 - [Kolla Ansible Quick
-    Start](https://docs.openstack.org/kolla-ansible/latest/user/quickstart.html)
+    Start](https://docs.openstack.org/kolla-ansible/victoria/user/quickstart.html)
+
+## Next Steps
+
+The following guides go into detail about specific things you can
+configure using Kolla Ansible, such enabling TLS for Horizon or enabling
+Central Logging with an ELK stack:
+
+- [Enable TLS for
+    Horizon](enable-tls)
+- [Enable Central Logging using
+    ELK](enable-elk)
