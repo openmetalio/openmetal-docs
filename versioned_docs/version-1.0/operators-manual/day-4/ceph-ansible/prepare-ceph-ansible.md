@@ -28,14 +28,6 @@ Root access to your cloud's control plane nodes is required.
 
 ### Path to the Ceph Configuration Files
 
-:::info New Clouds
-
-On clouds provisioned **_after_ Dec 2022** you will need to open a
-[support ticket](../../day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
-to have the configuration saved to your nodes.
-
-:::
-
 - Ceph Ansible Inventory
   - `/etc/fm-deploy/ceph-inventory.yml`
 - Ceph Ansible Config
