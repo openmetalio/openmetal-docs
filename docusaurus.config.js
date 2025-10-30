@@ -23,25 +23,10 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve('./sidebars/sidebars.js'),
           routeBasePath: '/',
           // Please change this to your repo.
           editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
-          lastVersion: 'current',
-          includeCurrentVersion: true,
-          versions: {
-            current: {
-              label: '3.0',
-            },
-            '2.0': {
-              label: '2.0',
-              path: '2.0',
-            },
-            '1.0': {
-              label: '1.0',
-              path: '1.0',
-            },
-          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -79,10 +64,43 @@ const config = {
     </body>
   </html>`,
   plugins: [
+    // Operators Manual instance (versioned)
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'operators',
+        path: 'versioned_docs/operators-manual',
+        routeBasePath: '/operators-manual',
+        sidebarPath: require.resolve('./sidebars/sidebarsOperators.js'),
+        editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
+        versions: {
+          current: {
+            label: 'v3 (Latest)',
+            path: '',
+          },
+          '2.0': {
+            label: '2.0',
+            path: 'operators_versioned_docs/version-2.0',
+          },
+          '1.0': {
+            label: '1.0',
+            path: 'operators_versioned_docs/version-1.0',
+          },
+        },
+        lastVersion: 'current',
+        onlyIncludeVersions: ['current', '2.0', '1.0'],
+      },
+    ],
     [
       '@docusaurus/plugin-client-redirects',
       {
-        redirects: [{
+        redirects: [
+          // Redirect root operators-manual to versioned location
+          {
+            from: '/operators-manual',
+            to: '/operators-manual/',
+          },
+          {
             to: '/users-manual/using-creating-images-cli',
             from: '/users-manual/using_creating_images_cli',
           },
