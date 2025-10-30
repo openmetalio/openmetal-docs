@@ -25,7 +25,7 @@ along by deploying a trial, then accessing one of your hardware nodes via SSH.
 ## Prerequisites
 
 This guide requires access to the OpenStack CLI. Complete the following steps
-to [install the OpenStack CLI](/operators-manual/day-1/command-line/openstackclient.md).
+to [install the OpenStack CLI](/operators-manual/operators_docs/day-1/command-line/openstackclient).
 
 ## Create Nodes
 
