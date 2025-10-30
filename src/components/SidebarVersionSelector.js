@@ -7,7 +7,6 @@ import {useDocsPreferredVersion} from '@docusaurus/theme-common';
 import {useDocsVersionCandidates} from '@docusaurus/theme-common/internal';
 import {useLocation} from '@docusaurus/router';
 import Link from '@docusaurus/Link';
-import DefaultNavbarItem from '@theme/NavbarItem/DefaultNavbarItem';
 import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
 
 const getVersionMainDoc = (version) =>
@@ -25,6 +24,11 @@ export default function SidebarVersionSelector({
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
   const {savePreferredVersionName} = useDocsPreferredVersion(docsPluginId);
+  
+  // Don't render if no versions are available or only one version exists
+  if (!versions || versions.length === 0) {
+    return null;
+  }
   
   const versionLinks = versions.map((version) => {
     const versionDoc =
@@ -72,20 +76,9 @@ export default function SidebarVersionSelector({
   }
   const dropdownTo = getVersionMainDoc(dropdownVersion)?.path;
 
-  // If we only have 0 or 1 versions, render a simple button instead of dropdown
+  // If we only have 1 version, don't show the selector
   if (items.length <= 1) {
-    return (
-      <div className={`sidebar-version-selector ${className}`}>
-        <DefaultNavbarItem
-          {...props}
-          mobile={false}
-          label={dropdownLabel}
-          to={dropdownTo}
-          isActive={dropdownActiveClassDisabled ? () => false : undefined}
-          className="sidebar-version-button"
-        />
-      </div>
-    );
+    return null;
   }
 
   return (
