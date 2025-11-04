@@ -132,7 +132,7 @@ grep mariadb_backup` to check.
 container is created with the same volumes as the `mariadb` Docker container.
 The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
 Finally, the container is created using the
-`registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga` Docker image
+`registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy` Docker image
 available from our registry.
 
 Create the temporary Docker container called `dbrestore` using:
@@ -142,7 +142,7 @@ Create the temporary Docker container called `dbrestore` using:
         --volumes-from mariadb \
         --name dbrestore \
         --volume mariadb_backup:/backup \
-        registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga \
+        registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy \
         /bin/bash
 
 Once you run the above Docker command, your terminal should appear this
@@ -214,7 +214,7 @@ grep mariadb_backup` to check.
 container is created with the same volumes as the `mariadb` Docker container.
 The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
 Finally, the container is created using the
-`registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga` Docker image
+`registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy` Docker image
 available from Docker Hub with a Bash shell.
 
 Create the temporary Docker container called `dbrestore` using:
@@ -223,7 +223,7 @@ Create the temporary Docker container called `dbrestore` using:
         --volumes-from mariadb \
         --name dbrestore \
         --volume mariadb_backup:/backup \
-        registry.flexmetal.net/kolla/centos-source-mariadb-server:yoga \
+        registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy \
         /bin/bash
 
 Once you run the above Docker command, your terminal should appear this
