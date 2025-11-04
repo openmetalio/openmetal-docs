@@ -16,6 +16,7 @@ const config = {
   projectName: 'openmetal-docs', // Usually your repo name.
   clientModules: [
     require.resolve('./src/modules/trackers.ts'),
+    require.resolve('./src/modules/chatWidget.ts'),
   ],
   presets: [
     [
