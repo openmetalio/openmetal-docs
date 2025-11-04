@@ -61,5 +61,5 @@ to prevent your cloud's disks from filling up.
 ## Reference
 
 Kolla Ansible's [Central
-Logging](https://docs.openstack.org/kolla-ansible/2023.2/reference/logging-and-monitoring/central-logging-guide-elasticsearch.html)
+Logging](https://docs.openstack.org/kolla-ansible/yoga/reference/logging-and-monitoring/central-logging-guide-elasticsearch.html)
 guide.
