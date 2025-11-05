@@ -120,15 +120,11 @@ const config = {
       },
     }),
   customFields: {
-    navbarTopRow: [{
-        label: 'CHAT',
-        position: 'right',
-        href: 'https://openmetal.io/#hs-chat-open',
-      },
+    navbarTopRow: [
       {
-        label: 'BUY',
+        label: 'CONTACT',
         position: 'right',
-        href: 'https://openmetal.io/iaas-pricing//',
+        href: 'https://openmetal.io/contact-us/',
       },
       {
         label: 'TRIAL',
