@@ -14,7 +14,7 @@ const chatWidgetConfig = {
   scriptUrl: 'https://chat.openmetal.app/widget/widget.js',
   settings: {
     theme: {
-      primaryColor: '#007bff',
+      primaryColor: '#22C4A1',
       position: 'bottom-right'
     },
     size: {
@@ -31,7 +31,7 @@ const chatWidgetConfig = {
       autoGreeting: true,
       scheduleMeeting: {
         enabled: true,
-        meetingLink: 'https://meetings.hubspot.com/peterl6'
+        meetingLink: 'https://info.openmetal.io/meetings/lmorley/schedule-consultation'
       }
     }
   }
