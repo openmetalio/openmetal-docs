@@ -48,7 +48,7 @@ If you don't have an OpenStack cloud, you can deploy a free trial using
 
 We'll be using the OpenStack CLI tools to interact with the OpenStack cloud. If you
 don't have them installed, complete the following steps
-to [install the OpenStack CLI](/operators-manual/day-1/command-line/openstackclient.md).
+to [install the OpenStack CLI](/operators-manual/operators_docs/day-1/command-line/openstackclient).
 
 ### Create a project
 
