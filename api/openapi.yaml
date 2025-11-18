@@ -68,6 +68,8 @@ tags:
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
     description: Operations for managing orders.
+  - name: Nodes
+    description: Operations for managing and interacting with individual nodes that are assigned to a cloud, including IPMI console access and power management.
 
 x-tagGroups:
   - name: Authentication
@@ -76,6 +78,7 @@ x-tagGroups:
   - name: Core Endpoints
     tags:
       - Clouds
+      - Nodes
       - Deployment
       - Inventory
       - Orders
@@ -216,7 +219,7 @@ paths:
   /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power:
     post:
       tags:
-        - Clouds
+        - Nodes
       summary: Change the power state of the node.
       description: Change power state. Options are "power on", "power off", or "rebooting".
       parameters:
@@ -458,6 +461,119 @@ paths:
                 $ref: '#/components/schemas/NodeImagesResponse'
         '404':
           description: Pod location not found.
+
+  /v1/ipmi/{cloudId}/html5/{inventoryUuid}:
+    get:
+      tags:
+        - Nodes
+      operationId: getIpmiHtml5ConsoleUrl
+      summary: Generate IPMI Session via HTML5
+      description: |
+        Generates an IPMI (Intelligent Platform Management Interface) console session and retrieves a URL for accessing the HTML5-based web console for remote management of a node. This provides browser-based KVM access for server remote management without requiring Java or additional software installation.
+        
+        **Recommended Method:**
+        The HTML5 console is the recommended method for accessing IPMI as it works directly in modern web browsers.
+        
+        For help using the web console, see [Accessing IPMI on Central Dashboard](https://openmetal.io/docs/manuals/openmetal-central/ipmi-access).
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud that owns the node.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: inventoryUuid
+          in: path
+          required: true
+          description: UUID v4 string identifying the inventory item (node).  This can be found in the cloud hardware information.
+          schema:
+            type: string
+            format: uuid
+            example: "0000000-0000-00-00000"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: HTML5 console URL successfully retrieved.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    format: uri
+                    description: The URL to access the HTML5 console interface.
+                    example: "https://<Node UUID>.ipmi.pod-4.flexmetal.net:<PORT>/redfish/<SESSION-ID>.IKVM"
+                required:
+                  - url
+        '400':
+          description: Invalid IPMI HTML5 console request
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions for this cloud.
+        '404':
+          description: Cloud or inventory item not found.
+
+  /v1/ipmi/{cloudId}/jnlp/{inventoryUuid}:
+    get:
+      tags:
+        - Nodes
+      operationId: getIpmiJnlpFile
+      summary: Generate IPMI Session via JNLP
+      description: |
+        Generates an IPMI (Intelligent Platform Management Interface) console session and downloads a Java Network Launch Protocol (JNLP) file for launching a Java-based KVM console to access a node's remote management interface.
+        
+        **Prerequisites:**
+        - Java Runtime Environment (JRE) must be installed on the client machine
+        - Download available from [www.java.com/en/download](https://www.java.com/en/download)
+        
+        **Usage:**
+        Once downloaded, the JNLP file can be launched with Java Web Start to open the KVM console.
+        
+        For additional assistance, visit the [IPMI KVM documentation](https://openmetal.io/docs/manuals/users-manual/access-ipmi-kvm).
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud that owns the node.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: inventoryUuid
+          in: path
+          required: true
+          description: UUID v4 string identifying the inventory item (node).  This can be found in the cloud hardware information.
+          schema:
+            type: string
+            format: uuid
+            example: "0000000-0000-00-00000"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: JNLP file successfully generated and returned.
+          content:
+            application/x-java-jnlp-file:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              schema:
+                type: string
+                example: 'attachment; filename="<node-hostname>.jnlp"'
+              description: Indicates the file should be downloaded as an attachment.
+        '400':
+          description: Invalid IPMI JNLP file request
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions for this cloud.
+        '404':
+          description: Cloud or inventory item not found.
 
 components:
   securitySchemes:
