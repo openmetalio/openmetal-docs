@@ -508,6 +508,8 @@ paths:
                     example: "https://<Node UUID>.ipmi.pod-4.flexmetal.net:<PORT>/redfish/<SESSION-ID>.IKVM"
                 required:
                   - url
+        '400':
+          description: Invalid IPMI HTML5 console request
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
@@ -564,6 +566,8 @@ paths:
                 type: string
                 example: 'attachment; filename="<node-hostname>.jnlp"'
               description: Indicates the file should be downloaded as an attachment.
+        '400':
+          description: Invalid IPMI JNLP file request
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
