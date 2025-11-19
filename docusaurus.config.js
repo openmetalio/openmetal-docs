@@ -96,11 +96,6 @@ const config = {
       '@docusaurus/plugin-client-redirects',
       {
         redirects: [
-          // Redirect root operators-manual to versioned location
-          {
-            from: '/operators-manual',
-            to: '/operators-manual/',
-          },
           {
             to: '/users-manual/using-creating-images-cli',
             from: '/users-manual/using_creating_images_cli',
