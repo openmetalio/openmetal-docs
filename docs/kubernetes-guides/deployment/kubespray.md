@@ -100,7 +100,7 @@ pip install -U pip
 
 We'll be using the CLI to help populate our Terraform variables. If you don't have
 access to the OpenStack CLI, please follow the steps in this guide:
-[How to Install and Use OpenStack's CLI](/operators-manual/operators_docs/day-1/command-line/openstackclient#how-to-install-and-use-openstacks-cli)
+[How to Install and Use OpenStack's CLI](/operators-manual/day-1/command-line/openstackclient#how-to-install-and-use-openstacks-cli)
 
 ### Create an OpenStack project
 

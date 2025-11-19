@@ -16,7 +16,7 @@ for compatibility information.
 
 ## Prerequisites
 
-- [OpenStack CLI client](/operators-manual/operators_docs/day-1/command-line/openstackclient)
+- [OpenStack CLI client](/operators-manual/day-1/command-line/openstackclient)
 
 ## EC2 credentials
 
