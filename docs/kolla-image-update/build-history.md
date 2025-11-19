@@ -22,7 +22,7 @@ back to previous images if necessary.
 
 ## How to update your cloud
 
-See [Update Kolla Images](/operators-manual/day-2/update-kolla-images) for
+See [Update Kolla Images](../operators-manual/day-2/update-kolla-images.md) for
 the steps needed to update your cloud.
 
 ## OpenStack 2023.2
@@ -43,6 +43,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2025-11-05 | 11/05/2025 | Keystone | - [ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
 | 2023.2-ubuntu-jammy-2025-01-06 | 01/06/2025 | All | - [Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)|
 |||| - [Barbican (17.0.0-5) security issue and bug fix](https://docs.openstack.org/releasenotes/barbican/2023.2.html#relnotes-17-0-0-5-stable-2023-2) |
 |||| - [Cinder (23.3.0-1) new feature, bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-3-0-1-stable-2023-2)|
@@ -55,3 +56,13 @@ index.
 |||| - [Nova (28.3.0-11) bug fixes](https://docs.openstack.org/releasenotes/nova/2023.2.html#relnotes-28-3-0-11-stable-2023-2)|
 |||| - [Octavia (13.0.0-32) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-32-stable-2023-2)|
 || 9/5/2024 | All ||
+
+## OpenStack Yoga
+
+Latest image tag: `yoga`
+
+### Image Update History (Yoga)
+
+| Tag | Build Date | Services | Notes |
+|---|---|---|---|
+| yoga | 11/05/2025 | Keystone | - [ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
