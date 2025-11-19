@@ -16,6 +16,7 @@ const config = {
   projectName: 'openmetal-docs', // Usually your repo name.
   clientModules: [
     require.resolve('./src/modules/trackers.ts'),
+    require.resolve('./src/modules/chatWidget.ts'),
   ],
   presets: [
     [
@@ -152,15 +153,11 @@ const config = {
       },
     }),
   customFields: {
-    navbarTopRow: [{
-        label: 'CHAT',
-        position: 'right',
-        href: 'https://openmetal.io/#hs-chat-open',
-      },
+    navbarTopRow: [
       {
-        label: 'BUY',
+        label: 'CONTACT',
         position: 'right',
-        href: 'https://openmetal.io/iaas-pricing//',
+        href: 'https://openmetal.io/contact-us/',
       },
       {
         label: 'TRIAL',
