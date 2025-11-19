@@ -23,7 +23,7 @@ to preform additional steps.
 
 ### Installing OpenStack CLI
 
-Complete the following steps to [install the OpenStack CLI:](/operators-manual/day-1/command-line/openstackclient.md).
+Complete the following steps to [install the OpenStack CLI:](/operators-manual/day-1/command-line/openstackclient).
 
 ### Update quotas
 

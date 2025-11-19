@@ -25,8 +25,8 @@ for additional information.
 :::info
 
 If Barbican is not installed to your cloud, see our
-[guide](docs/tutorials/install-barbican.md) or [submit a support
-ticket](operators-manual/day-1/intro-to-openmetal-private-cloud.md#how-to-submit-a-support-ticket)
+[guide](install-barbican.md) or [submit a support
+ticket](/operators-manual/day-1/intro-to-openmetal-private-cloud#how-to-submit-a-support-ticket)
 for installation.
 
 :::

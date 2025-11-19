@@ -11,7 +11,7 @@ This guide applies to OpenMetal clouds running OpenStack Yoga with Barbican enab
 
 Before starting there are few things to prepare:
 
-- A Python [virtual environment with OpenStackClient installed](docs/operators-manual/day-1/command-line/openstackclient.md)
+- A Python [virtual environment with OpenStackClient installed](/operators-manual/day-1/command-line/openstackclient)
 - Obtain a TLS certificate from an external certficate authority
 - Create 2 VMs, ensuring they are on the same network.
 
