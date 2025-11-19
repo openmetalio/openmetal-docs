@@ -22,7 +22,7 @@ back to previous images if necessary.
 
 ## How to update your cloud
 
-See [Update Kolla Images](../operators-manual/day-2/update-kolla-images.md) for
+See [Update Kolla Images](../../versioned_docs/operators-manual/day-2/update-kolla-images.md) for
 the steps needed to update your cloud.
 
 ## OpenStack 2023.2
