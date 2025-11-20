@@ -52,7 +52,7 @@ info:
     href: https://openmetal.io    # Optional, clicking the logo redirects to this URL
 
 servers:
-  - url: https://api-omc.openmetal.io
+  - url: https://api.central.openmetal.io
     description: Production server
 
 tags:
@@ -103,7 +103,7 @@ paths:
         
         Example cURL request:
         ```bash
-        curl --location 'https://api-omc.openmetal.io/v1/oauth2/token?grant_type=client_credentials' \
+        curl --location 'https://api.central.openmetal.io/v1/oauth2/token?grant_type=client_credentials' \
           --header 'Authorization: Basic <Base64-encoded-credentials>'
         ```
       parameters:
@@ -132,7 +132,7 @@ paths:
                   scope:
                     type: string
                     description: The scope of the token
-                    example: "https://api-omc.openmetal.io/v1/*"
+                    example: "https://api.central.openmetal.io/v1/*"
                   expires_in:
                     type: integer
                     description: Token lifetime in seconds
