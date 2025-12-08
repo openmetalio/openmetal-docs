@@ -37,18 +37,45 @@ jobs:
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
-            Please review this pull request and provide feedback on:
-            - Code quality and best practices
-            - Potential bugs or issues
-            - Performance considerations
-            - Security concerns
-            - Test coverage
+            Please review this pull request for the OpenMetal documentation site and provide feedback on:
             
-            Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
-
-            Use `gh pr comment` with your Bash tool to leave your review as a comment on the PR.
+            **Documentation Quality:**
+            - Grammar, spelling, and writing clarity
+            - Consistent formatting and markdown structure
+            - Logical organization and flow of content
+            - Proper use of headings, links, and markdown syntax
+            
+            **SEO and URL Structure:**
+            - CRITICAL: Check if any markdown files have been moved or renamed
+            - If files were moved, verify that appropriate redirects have been added to docusaurus.config.js
+            - Moving documentation files changes URLs and negatively impacts SEO without redirects
+            - Check for broken internal links that may result from file moves
+            
+            **Content Organization:**
+            - Verify new content fits logically within existing documentation structure
+            - Check that sidebar configurations are updated if new sections are added
+            - Ensure versioned content is placed in appropriate directories
+            
+            **Technical Implementation:**
+            - Review any changes to Docusaurus configuration
+            - Check API documentation changes for OpenAPI spec validity
+            - Verify build scripts and markdown linting compliance
+            
+            **Review Process:**
+            1. Use `gh pr diff` to examine all changes
+            2. For any specific issues found in files, use inline comments with:
+               ```bash
+               gh api repos/openmetalio/openmetal-docs/pulls/$PR_NUMBER/comments --method POST \
+                 --field body="[Issue description and suggested fix]" \
+                 --field commit_id="[commit_sha]" \
+                 --field path="[file_path]" \
+                 --field line=[line_number]
+               ```
+            3. Use `gh pr comment` for overall summary and approval/request changes
+            
+            Use the repository's CLAUDE.md for guidance on project structure and conventions. Focus on maintaining high-quality, SEO-friendly documentation.
           
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://docs.anthropic.com/en/docs/claude-code/sdk#command-line for available options
-          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*)"'
+          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*),Bash(gh api:*)"'
 
