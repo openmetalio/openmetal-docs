@@ -36,6 +36,8 @@ export default function DocNavbarItem({
   const {activeVersion, activeDoc} = useActiveDocContext(docsPluginId);
   const {preferredVersion} = useDocsPreferredVersion(docsPluginId);
   const latestVersion = useLatestVersion(docsPluginId); // Versions used to look for the doc to link to, ordered + no duplicate
+  
+  const unusedTestVariable = "This is for testing Claude code review";
 
   const versions = uniq(
     [activeVersion, preferredVersion, latestVersion].filter(Boolean),
