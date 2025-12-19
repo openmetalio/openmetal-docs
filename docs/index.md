@@ -28,14 +28,6 @@ Designed to empower users with step-by-step guidance.
 
 ---
 
-## [Tutorials](./tutorials/)
-
-Access hands-on tutorials to learn specific tasks and workflows.
-These guides help both new and experienced users master complex setups
-and configurations quickly and efficiently.
-
----
-
 ## [Kubernetes Guides](./kubernetes-guides/)
 
 Explore comprehensive guides for deploying and managing Kubernetes clusters.
