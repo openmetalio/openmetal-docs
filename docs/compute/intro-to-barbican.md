@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/intro-to-barbican
 sidebar_position: 6
 ---
 # Working with OpenStack Barbican

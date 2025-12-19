@@ -1,3 +1,7 @@
+---
+slug: /tutorials/recover-from-failed-control-plane-node
+---
+
 # How to Handle a Failed OpenStack Control Plane Node
 
 ## Introduction

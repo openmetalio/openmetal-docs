@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/install-barbican
 sidebar_position: 7
 ---
 # How to Utilize OpenStack Barbican on your OpenMetal Cloud

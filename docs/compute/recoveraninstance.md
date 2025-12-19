@@ -1,3 +1,7 @@
+---
+slug: /tutorials/recoveraninstance
+---
+
 # Recover an Instance Using Horizon
 
 This guide provides instructions for how to recover a failed instance

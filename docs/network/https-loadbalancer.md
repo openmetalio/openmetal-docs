@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/https-loadbalancer
 sidebar_position: 8
 ---
 

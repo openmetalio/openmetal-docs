@@ -1,3 +1,7 @@
+---
+slug: /tutorials/live-migrate-instance
+---
+
 # How to Live Migrate an Instance Using Horizon
 
 In this guide, we explain how to live migrate an instance using Horizon.

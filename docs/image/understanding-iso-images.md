@@ -1,3 +1,7 @@
+---
+slug: /tutorials/understanding-iso-images
+---
+
 # Creating OpenStack VM Images with ISO
 
 Written by : Yuriy Shyyan & Ramon Grullon

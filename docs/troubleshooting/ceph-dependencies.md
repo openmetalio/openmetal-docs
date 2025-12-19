@@ -1,3 +1,7 @@
+---
+slug: /tutorials/ceph-dependencies
+---
+
 # Understanding & Breaking Ceph Parent Child Dependencies
 
 Author: Ramon Grullon

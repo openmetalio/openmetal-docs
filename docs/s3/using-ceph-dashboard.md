@@ -1,3 +1,7 @@
+---
+slug: /tutorials/using-ceph-dashboard
+---
+
 # Ceph Cluster Management with the Ceph Dashboard
 
 <iframe style={{width: '100%',marginBottom: '2em' }} width="760"

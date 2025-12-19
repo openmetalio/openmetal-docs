@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/create-site-to-site-vpn
 sidebar_position: 5
 ---
 # Create a Site-to-Site VPN Connection with Endpoint Groups

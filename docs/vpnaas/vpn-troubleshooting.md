@@ -1,3 +1,7 @@
+---
+slug: /tutorials/vpn-troubleshooting
+---
+
 # VPN Troubleshooting Guide
 
 ## **Introduction**

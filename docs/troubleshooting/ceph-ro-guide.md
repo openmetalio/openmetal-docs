@@ -1,3 +1,7 @@
+---
+slug: /tutorials/ceph-ro-guide
+---
+
 # How to Handle a Ceph Cluster Going Read-Only Due to Full OSDs
 
 Author: Nemanja Ilic

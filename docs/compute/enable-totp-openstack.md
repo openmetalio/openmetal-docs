@@ -1,3 +1,7 @@
+---
+slug: /tutorials/enable-totp-openstack
+---
+
 # Configuring Time-Based One-Time Password (TOTP) on OpenStack
 
 Author: Ramon Grullon

@@ -1,3 +1,7 @@
+---
+slug: /tutorials/migrate-instance-cloud-to-cloud
+---
+
 # Migrate an OpenStack Instance from Cloud to Cloud
 
 Author: Ramon Grullon

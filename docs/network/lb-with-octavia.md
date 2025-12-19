@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/lb-with-octavia
 sidebar_position: 1
 ---
 # How to Create a Load Balancer

@@ -1,3 +1,7 @@
+---
+slug: /tutorials/manage-flavors
+---
+
 # Manage Flavors in OpenStack
 
 ## Introduction

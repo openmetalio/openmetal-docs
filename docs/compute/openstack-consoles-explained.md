@@ -1,3 +1,7 @@
+---
+slug: /tutorials/openstack-consoles-explained
+---
+
 # Comparison of OpenStack NoVNC and SPICE Console
 
 Author: Ramon Grullon

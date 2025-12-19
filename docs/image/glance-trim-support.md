@@ -1,3 +1,7 @@
+---
+slug: /tutorials/glance-trim-support
+---
+
 # Adding TRIM support to OpenStack Glance images
 
 ## What is TRIM Support?

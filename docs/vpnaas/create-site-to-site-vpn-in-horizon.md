@@ -1,3 +1,7 @@
+---
+slug: /tutorials/create-site-to-site-vpn-in-horizon
+---
+
 # Create a Site-to-Site VPN Connection with Endpoint Groups in Horizon
 
 Author: Ramon Grullon

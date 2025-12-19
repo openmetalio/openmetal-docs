@@ -1,4 +1,5 @@
 ---
+slug: /tutorials/ephemeral-storage
 sidebar_position: 2
 ---
 # Spin up an Instance with Ephemeral Storage
