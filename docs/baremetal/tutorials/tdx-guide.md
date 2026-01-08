@@ -1,5 +1,7 @@
 # Enabling Intel TDX on Bare Metal
 
+Author: Nemanja Ilic
+
 [Intel Trust Domain Extensions (TDX)](https://openmetal.io/resources/hardware-details/intel-trust-domain-extensions-tdx/)
 is part of Intel's confidential computing
 stack, and it's designed to give virtual machines a hardened boundary from the
