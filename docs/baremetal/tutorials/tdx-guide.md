@@ -113,9 +113,12 @@ After BIOS configuration, once you're back in terminal, run:
 lscpu | grep tdx
 ```
 
-If TDX is enabled in firmware and supported by the CPU and kernel, you'll see
-flags confirming it. If not, revisit your BIOS settings or confirm you're
-running on a platform that supports TDX.
+If Intel TDX is enabled in firmware and supported by both the CPU and the
+running kernel, you should see TDX-related CPU flags exposed via **lscpu**, as
+shown in the example below. If not, revisit your BIOS settings or confirm
+you're running on a platform that supports TDX.
+
+![TDX flag](./tdx-images/grep-tdx.png)
 
 Now that you're all set, you can proceed with
 [adding the modules you need](https://cc-enabling.trustedservices.intel.com/intel-tdx-enabling-guide/04/hardware_setup/#deploy-specific-intel-tdx-module-version).
