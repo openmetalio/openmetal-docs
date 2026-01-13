@@ -83,7 +83,10 @@ During the previous steps, a TOTP secret key was generated using the `oathkeygen
 command. This key represents the shared secret between Proxmox and your two-factor
 authentication application.
 
-![oathkeygen](./proxmox-images/proxmox-security-oathkey.png)
+```bash
+dino-admin@stormy-dino:~# oathkeygen
+7QQ7FIM6SD5235WX
+```
 
 To complete the setup, open your preferred 2FA application (such as Duo, Google
 Authenticator, Authy, or similar) and create a new TOTP entry. When prompted,
@@ -101,7 +104,7 @@ password-based SSH authentication and requiring SSH key-based authentication
 only is a good starting point. In order to do so, make sure following lines in
 your `/etc/ssh/sshd_config` file are exactly like this:
 
-```
+```bash
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 PubkeyAuthentication yes
@@ -133,8 +136,8 @@ firewall via UI, you'll be able to see the configuration inside
 `/etc/pve/nodes/{your-node}/host.fw` file. This is a simple example of what the
 file can look like:
 
-```
-root@stormy-dino:~# cat /etc/pve/nodes/stormy-dino/host.fw
+```bash
+dino-admin@stormy-dino:~# cat /etc/pve/nodes/stormy-dino/host.fw
 [OPTIONS]
 enable: 1
 
