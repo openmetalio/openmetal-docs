@@ -110,7 +110,7 @@ iface bond0 inet manual
     bond-slaves enp82s0f0np0 enp82s0f1np1
     bond-miimon 100
     bond-mode 802.3ad
-    bond-xmit-hash-policy layer2+3
+    bond-xmit-hash-policy layer3+4
 
 # --- Public / Management (Inventory VLAN 365) ---
 auto bond0.365

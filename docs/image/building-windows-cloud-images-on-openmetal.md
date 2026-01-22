@@ -1,3 +1,6 @@
+---
+slug: /engineers-notes/building-windows-cloud-images-on-openmetal
+---
 # Building Windows Cloud Images on OpenMetal
 
 Written by Yuriy Shyyan
