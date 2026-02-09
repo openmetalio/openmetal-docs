@@ -191,6 +191,43 @@ paths:
                 $ref: '#/components/schemas/Cloud'
         '404':
           description: Cloud not found.
+    delete:
+      tags:
+        - Clouds
+      summary: Delete a cloud
+      description: |
+        Delete a cloud resource and reclaim all associated infrastructure. If a cloud is > 60 minutes old, a deletion request will generate a confirmation code that is sent to the account owner's email for verification. This code must be provided as a query parameter to complete the deletion.
+        **Note:** Child resources may take several minutes to be fully removed after cloud deletion.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to delete.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: code
+          in: query
+          required: false
+          description: Email confirmation code (required when delete_method is "email-2fa"). If not provided and email-2fa is required, a confirmation code will be sent to the account owner's email.
+          schema:
+            type: string
+            example: "123456"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Cloud deleted successfully.
+        '400':
+          description: Bad Request - Invalid confirmation code.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions or the cloud is in a locked state.
+        '404':
+          description: Cloud not found.
+        '409':
+          description: Confirmation code required - A confirmation code has been sent to the account owner's email. Retry the request with the code parameter.
   /v1/clouds/{cloudId}/stats:
     get:
       tags:
