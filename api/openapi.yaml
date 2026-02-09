@@ -70,6 +70,10 @@ tags:
     description: Operations for managing orders.
   - name: Nodes
     description: Operations for managing and interacting with individual nodes that are assigned to a cloud, including IPMI console access and power management.
+  - name: VLANs
+    description: Operations for managing Virtual LAN (VLAN) resources for private clouds.
+  - name: IP Address Blocks
+    description: Operations for managing IP prefix (IP Address Block) resources for private clouds.
 
 x-tagGroups:
   - name: Authentication
@@ -82,6 +86,8 @@ x-tagGroups:
       - Deployment
       - Inventory
       - Orders
+      - VLANs
+      - IP Address Blocks
 
 paths:
   /v1/oauth2/token:
@@ -215,6 +221,86 @@ paths:
                 $ref: '#/components/schemas/CloudStats'
         '404':
           description: Cloud stats not found.
+
+  /v1/clouds/{cloudId}/vlans/{vlanId}:
+    post:
+      tags:
+        - Clouds
+      summary: Assign a VLAN to a cloud
+      description: |
+        Assign an existing VLAN resource to a private cloud.
+
+        **Requirements:**
+        - Both the cloud and VLAN must be in the same datacenter location
+        - Both resources must be owned by the same organization
+        - The cloud provisioning status must be "complete"
+        - Clouds can have a maximum of 10 assigned VLANs
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to assign the VLAN to.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource to assign.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN assigned to cloud successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VlanResource'
+        '400':
+          description: Bad Request - Invalid assignment (location mismatch, cloud not ready, max VLANs reached, etc.).
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions for cloud or VLAN.
+        '404':
+          description: Cloud or VLAN not found.
+    delete:
+      tags:
+        - Clouds
+      summary: Unassign a VLAN from a cloud
+      description: |
+        Unassign a VLAN resource from a private cloud.
+
+        This removes the association between the VLAN and the cloud but does not delete the VLAN resource itself.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to unassign the VLAN from.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource to unassign.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN unassigned from cloud successfully.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions for cloud or VLAN.
+        '404':
+          description: Cloud or VLAN not found.
 
   /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power:
     post:
@@ -574,6 +660,458 @@ paths:
           description: Forbidden - User lacks write permissions for this cloud.
         '404':
           description: Cloud or inventory item not found.
+
+  # VLAN Resource Endpoints
+  /v1/vlans:
+    get:
+      tags:
+        - VLANs
+      summary: Get a list of VLANs
+      description: |
+        Retrieve a list of all VLAN resources that have been created by you or organizations that you are a member of.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of VLAN resources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VlanResource'
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+
+  /v1/vlans/{vlanId}:
+    get:
+      tags:
+        - VLANs
+      summary: Get a VLAN by ID
+      description: Retrieve details of a specific VLAN resource by its ID.
+      parameters:
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource to retrieve.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN resource found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VlanResource'
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks read permissions for this VLAN.
+        '404':
+          description: VLAN not found.
+    patch:
+      tags:
+        - VLANs
+      summary: Update a VLAN
+      description: |
+        Update an existing VLAN resource.
+
+        **Note:** Only user-created VLANs can be modified. System-reserved VLANs (control, compute, storage, tunnel, octavia, inventory, provider) cannot be altered.
+      parameters:
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource to update.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: A user-friendly name for the VLAN.
+                  example: "production-vlan"
+                description:
+                  type: string
+                  description: A description of the VLAN.
+                  example: "VLAN for production workloads"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VlanResource'
+        '400':
+          description: Bad Request - Invalid input.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions or VLAN is not alterable.
+        '404':
+          description: VLAN not found.
+    delete:
+      tags:
+        - VLANs
+      summary: Delete a VLAN
+      description: |
+        Delete a VLAN resource.
+
+        **Note:** Only user-created VLANs can be deleted. System-reserved VLANs cannot be removed.
+        VLANs with assigned IP Address Blocks (Prefixes) must have those blocks unassigned before deletion.
+      parameters:
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource to delete.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN deleted successfully.
+        '400':
+          description: Bad Request - VLAN has assigned resources or is not alterable.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions.
+        '404':
+          description: VLAN not found.
+
+  /v1/accounts/{accountId}/vlans:
+    post:
+      tags:
+        - VLANs
+      summary: Create a new VLAN
+      description: |
+        Create a new VLAN resource in a specified datacenter location.
+
+        VLANs can optionally be assigned to a cloud and/or have an IP Address Block assigned during creation.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The ID of the organization account to create the VLAN for.
+          schema:
+            type: string
+            example: "mWLBVbB7Eq"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VlanCreateRequest'
+            examples:
+              basic_vlan:
+                summary: Basic VLAN creation
+                description: Create a VLAN in a specific location without cloud assignment.
+                value:
+                  label: "my-custom-vlan"
+                  description: "Custom VLAN for development environment"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+              vlan_with_cloud:
+                summary: VLAN with cloud assignment
+                description: Create a VLAN and assign it to an existing cloud.
+                value:
+                  label: "production-vlan"
+                  description: "VLAN for production cloud"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+                    cloud_id: "0Absd1"
+              vlan_with_prefix:
+                summary: VLAN with IP Address Block
+                description: Create a VLAN and assign an existing IP Address Block to it.
+                value:
+                  label: "vlan-with-ips"
+                  description: "VLAN with assigned IP range"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+                    central_prefix_id: "pf3xY7z2W9"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VlanResource'
+        '400':
+          description: Bad Request - Invalid input or validation failed.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions or cloud validation failed.
+
+  /v1/vlans/{vlanId}/prefixes/{prefixId}:
+    post:
+      tags:
+        - VLANs
+      summary: Assign an IP Address Block to a VLAN
+      description: |
+        Assign an existing IP Address Block (prefix) resource to a VLAN.
+
+        **Requirements:**
+        - Both resources must be in the same datacenter location
+        - Both resources must be owned by the same organization
+        - The IP Address Block must not already be assigned to another VLAN
+      parameters:
+        - name: vlanId
+          in: path
+          required: true
+          description: The ID of the VLAN resource.
+          schema:
+            type: string
+            example: "vl4nXy2Z9a"
+        - name: prefixId
+          in: path
+          required: true
+          description: The ID of the IP Address Block (prefix) resource to assign.
+          schema:
+            type: string
+            example: "pf3xY7z2W9"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block assigned to VLAN successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "success"
+        '400':
+          description: Bad Request - Invalid assignment or resources already related.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions.
+        '404':
+          description: VLAN or IP Address Block not found.
+
+  # IP Address Block (Prefix) Resource Endpoints
+  /v1/prefixes:
+    get:
+      tags:
+        - IP Address Blocks
+      summary: Get a list of IP Address Blocks
+      description: |
+        Retrieve a list of all IP Address Block (prefix) resources that have been created by you or organizations that you are a member of.
+
+        IP Address Blocks are network prefixes (CIDR blocks) used for IP address allocation in private clouds.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of IP Address Block resources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrefixResource'
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+
+  /v1/prefixes/{prefixId}:
+    get:
+      tags:
+        - IP Address Blocks
+      summary: Get an IP Address Block by ID
+      description: Retrieve details of a specific IP Address Block resource by its ID.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The ID of the IP Address Block resource to retrieve.
+          schema:
+            type: string
+            example: "pf3xY7z2W9"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block resource found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefixResource'
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks read permissions.
+        '404':
+          description: IP Address Block not found.
+    patch:
+      tags:
+        - IP Address Blocks
+      summary: Update an IP Address Block
+      description: Update an existing IP Address Block resource.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The ID of the IP Address Block resource to update.
+          schema:
+            type: string
+            example: "pf3xY7z2W9"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: A user-friendly name for the IP Address Block.
+                  example: "production-ips"
+                description:
+                  type: string
+                  description: A description of the IP Address Block.
+                  example: "IP range for production servers"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefixResource'
+        '400':
+          description: Bad Request - Invalid input.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions.
+        '404':
+          description: IP Address Block not found.
+    delete:
+      tags:
+        - IP Address Blocks
+      summary: Delete an IP Address Block
+      description: |
+        Delete an IP Address Block resource.
+
+        **Note:** IP Address Blocks must be unassigned from any VLANs before deletion.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The ID of the IP Address Block resource to delete.
+          schema:
+            type: string
+            example: "pf3xY7z2W9"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block deleted successfully.
+        '400':
+          description: Bad Request - IP Address Block has dependencies or is not alterable.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks write permissions.
+        '404':
+          description: IP Address Block not found.
+
+  /v1/accounts/{accountId}/prefixes:
+    post:
+      tags:
+        - IP Address Blocks
+      summary: Create a new IP Address Block
+      description: |
+        Create a new IP Address Block (network prefix) resource in a specified datacenter location.
+
+        IP Address Blocks can be created with a specific CIDR or by specifying a prefix length to automatically allocate from available address space.
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          description: The ID of the organization account to create the IP Address Block for.
+          schema:
+            type: string
+            example: "mWLBVbB7Eq"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrefixCreateRequest'
+            examples:
+              basic_prefix:
+                summary: Basic IP Address Block creation
+                description: Create an IP Address Block with automatic allocation using prefix length.
+                value:
+                  label: "my-ip-block"
+                  description: "IP range for development servers"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+                    prefix_type: "routed"
+                    length: 28
+                    managed_addressing: "off"
+              prefix_with_cidr:
+                summary: IP Address Block with specific CIDR
+                description: Create an IP Address Block with a specific CIDR block.
+                value:
+                  label: "specific-ip-block"
+                  description: "Specific IP range"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+                    prefix_type: "private"
+                    cidr: "10.0.1.0/24"
+                    managed_addressing: "pool"
+              prefix_with_vlan:
+                summary: IP Address Block assigned to VLAN
+                description: Create an IP Address Block and assign it to a VLAN.
+                value:
+                  label: "vlan-ip-block"
+                  description: "IP range for VLAN"
+                  fields:
+                    created_from: "user"
+                    pod_location: "pod_1"
+                    prefix_type: "routed"
+                    length: 28
+                    central_vlan_id: "vl4nXy2Z9a"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefixResource'
+        '400':
+          description: Bad Request - Invalid input or validation failed.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions.
 
 components:
   securitySchemes:
@@ -1042,3 +1580,297 @@ components:
             os_version:
               type: object
               $ref: '#/components/schemas/ImageDetails'
+
+    # VLAN Resource Schemas
+    VlanResource:
+      type: object
+      description: A VLAN (Virtual LAN) resource for network segmentation in private clouds.
+      required:
+        - id
+        - type
+        - label
+        - created_at
+        - updated_at
+        - is_active
+        - created_by
+        - fields
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the VLAN resource.
+          example: "vl4nXy2Z9a"
+        type:
+          type: string
+          description: The type of resource.
+          example: "vlans"
+        label:
+          type: string
+          description: A user-friendly name for the VLAN.
+          example: "production-vlan"
+        description:
+          type: string
+          description: A description of the VLAN.
+          example: "VLAN for production workloads"
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the VLAN was created.
+          example: "2025-08-27T20:05:56+00:00"
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the VLAN was last updated.
+          example: "2025-08-27T20:05:56+00:00"
+        is_active:
+          type: boolean
+          description: Indicates if the VLAN is active.
+          example: true
+        created_by:
+          type: string
+          description: The ID of the user who created the VLAN.
+          example: "o6aQxVGezj"
+        fields:
+          type: object
+          description: VLAN-specific fields.
+          required:
+            - created_from
+            - pod_location
+          properties:
+            created_from:
+              type: string
+              description: The source that created the VLAN.
+              enum: ["user", "omapi", "central"]
+              example: "user"
+            pod_location:
+              $ref: '#/components/schemas/PodLocations'
+            vlan_id:
+              type: integer
+              description: The numeric VLAN ID from the network infrastructure (read-only).
+              example: 123
+              readOnly: true
+            vlan_uuid:
+              type: string
+              format: uuid
+              description: The UUID of the VLAN in the network infrastructure (read-only).
+              example: "550e8400-e29b-41d4-a716-446655440000"
+              readOnly: true
+            vlan_type:
+              type: string
+              description: The type of VLAN.
+              enum: ["internal", "routed", "access"]
+              example: "routed"
+            alterable:
+              type: boolean
+              description: Indicates if the VLAN can be modified or deleted. System VLANs are not alterable.
+              example: true
+            cloud_id:
+              type: string
+              description: The ID of the cloud this VLAN is assigned to (if any).
+              example: "0Absd1"
+
+    VlanCreateRequest:
+      type: object
+      required:
+        - label
+        - fields
+      properties:
+        label:
+          type: string
+          description: A user-friendly name for the VLAN.
+          example: "my-custom-vlan"
+        description:
+          type: string
+          description: A description of the VLAN (optional).
+          example: "Custom VLAN for development environment"
+        fields:
+          type: object
+          required:
+            - created_from
+            - pod_location
+          properties:
+            created_from:
+              type: string
+              description: The source creating the VLAN. Should be "user" for API requests.
+              enum: ["user", "omapi", "central"]
+              example: "user"
+            pod_location:
+              $ref: '#/components/schemas/PodLocations'
+            cloud_id:
+              type: string
+              description: Optional cloud ID to assign the VLAN to during creation.
+              example: "0Absd1"
+            central_prefix_id:
+              type: string
+              description: Optional IP Address Block resource ID to assign to the VLAN during creation.
+              example: "pf3xY7z2W9"
+
+    # IP Address Block (Prefix) Resource Schemas
+    PrefixResource:
+      type: object
+      description: An IP Address Block (network prefix) resource for IP address allocation.
+      required:
+        - id
+        - type
+        - label
+        - created_at
+        - updated_at
+        - is_active
+        - created_by
+        - fields
+      properties:
+        id:
+          type: string
+          description: The unique identifier for the IP Address Block resource.
+          example: "pf3xY7z2W9"
+        type:
+          type: string
+          description: The type of resource.
+          example: "prefixes"
+        label:
+          type: string
+          description: A user-friendly name for the IP Address Block.
+          example: "production-ips"
+        description:
+          type: string
+          description: A description of the IP Address Block.
+          example: "IP range for production servers"
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time the IP Address Block was created.
+          example: "2025-08-27T20:05:56+00:00"
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time the IP Address Block was last updated.
+          example: "2025-08-27T20:05:56+00:00"
+        is_active:
+          type: boolean
+          description: Indicates if the IP Address Block is active.
+          example: true
+        created_by:
+          type: string
+          description: The ID of the user who created the IP Address Block.
+          example: "o6aQxVGezj"
+        fields:
+          type: object
+          description: IP Address Block-specific fields.
+          required:
+            - created_from
+            - pod_location
+          properties:
+            created_from:
+              type: string
+              description: The source that created the IP Address Block.
+              enum: ["user", "omapi", "central"]
+              example: "user"
+            pod_location:
+              $ref: '#/components/schemas/PodLocations'
+            prefix_id:
+              type: integer
+              description: The numeric prefix ID from the network infrastructure (read-only).
+              example: 456
+              readOnly: true
+            cidr:
+              type: string
+              description: The CIDR notation for the prefix (e.g., "10.0.0.0/28").
+              example: "10.0.0.0/28"
+            prefix_type:
+              type: string
+              description: The type of prefix.
+              enum: ["private", "routed", "allocation"]
+              example: "routed"
+            length:
+              type: integer
+              description: The prefix length (CIDR notation). Used when creating without a specific CIDR.
+              minimum: 1
+              maximum: 32
+              example: 28
+            managed_addressing:
+              type: string
+              description: The managed addressing mode for the prefix.
+              enum: ["off", "all", "pool"]
+              example: "off"
+            alterable:
+              type: boolean
+              description: Indicates if the IP Address Block can be modified or deleted.
+              example: true
+            cloud_id:
+              type: string
+              description: The ID of the cloud this IP Address Block is associated with (if any).
+              example: "0Absd1"
+            vlan_id:
+              type: integer
+              description: The numeric VLAN ID this prefix is assigned to (read-only).
+              example: 123
+              readOnly: true
+            vlan_uuid:
+              type: string
+              format: uuid
+              description: The UUID of the VLAN this prefix is assigned to (read-only).
+              example: "550e8400-e29b-41d4-a716-446655440000"
+              readOnly: true
+            central_vlan_id:
+              type: string
+              description: The VLAN resource ID to assign this prefix to.
+              example: "vl4nXy2Z9a"
+            product_addon:
+              type: string
+              description: The product add-on code for billing.
+              example: "ipv4_routed_prefix_28"
+
+    PrefixCreateRequest:
+      type: object
+      required:
+        - label
+        - fields
+      properties:
+        label:
+          type: string
+          description: A user-friendly name for the IP Address Block.
+          example: "my-ip-block"
+        description:
+          type: string
+          description: A description of the IP Address Block (optional).
+          example: "IP range for development servers"
+        fields:
+          type: object
+          required:
+            - created_from
+            - pod_location
+          properties:
+            created_from:
+              type: string
+              description: The source creating the IP Address Block. Should be "user" for API requests.
+              enum: ["user", "omapi", "central"]
+              example: "user"
+            pod_location:
+              $ref: '#/components/schemas/PodLocations'
+            prefix_type:
+              type: string
+              description: The type of prefix.
+              enum: ["private", "routed", "allocation"]
+              example: "routed"
+            length:
+              type: integer
+              description: The prefix length (CIDR notation). Use this for automatic allocation.
+              minimum: 1
+              maximum: 32
+              example: 28
+            cidr:
+              type: string
+              description: Optionally specify an exact CIDR block instead of using automatic allocation. For private blocks only.
+              example: "192.168.6.0/24"
+            managed_addressing:
+              type: string
+              description: The managed addressing mode for the prefix.
+              enum: ["off", "all", "pool"]
+              example: "off"
+            cloud_id:
+              type: string
+              description: Optional cloud ID to associate with this IP Address Block. Required for routed prefixes.
+              example: "0Absd1"
+            central_vlan_id:
+              type: string
+              description: Optional VLAN resource ID to assign this prefix to during creation.
+              example: "vl4nXy2Z9a"
