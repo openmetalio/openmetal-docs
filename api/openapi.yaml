@@ -1543,24 +1543,6 @@ components:
               type: string
               description: The ID of the user who created the order.
               example: "o6aQxVGezj"
-            clouds_deployed:
-              type: array
-              description: Array of cloud resources that have been deployed as part of this order.
-              items:
-                type: object
-                required:
-                  - id
-                  - provision_status
-                properties:
-                  id:
-                    type: string
-                    description: The unique identifier of the deployed cloud resource.
-                    example: "abc123"
-                  provision_status:
-                    type: string
-                    description: Current provisioning status of the cloud resource.
-                    enum: ["pending", "in_progress", "awaiting_setup", "complete", "manual_setup"]
-                    example: "complete"
             fields:
               allOf:
                 - $ref: '#/components/schemas/OrderFields'
@@ -1576,6 +1558,24 @@ components:
                       type: string
                       description: The version of the schema used to create the order.
                       example: "v2"
+                    clouds_deployed:
+                      type: array
+                      description: Array of cloud resources that have been deployed as part of this order.
+                      items:
+                        type: object
+                        required:
+                          - id
+                          - provision_status
+                        properties:
+                          id:
+                            type: string
+                            description: The unique identifier of the deployed cloud resource.
+                            example: "abc123"
+                          provision_status:
+                            type: string
+                            description: Current provisioning status of the cloud resource.
+                            enum: ["pending", "in_progress", "awaiting_setup", "complete", "manual_setup"]
+                            example: "complete"
 
     OrderCollection:
       type: object
