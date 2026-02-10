@@ -197,6 +197,71 @@ paths:
                 $ref: '#/components/schemas/Cloud'
         '404':
           description: Cloud not found.
+    delete:
+      tags:
+        - Clouds
+      summary: Delete a cloud
+      description: |
+        Delete a cloud resource and reclaim all associated infrastructure. If a cloud is > 60 minutes old, a deletion request will generate a confirmation code that is sent to the account owner's email for verification. This code must be provided as a query parameter to complete the deletion.
+        
+        **Important:** The cloud will be immediately deactivated upon successful deletion. However, there is a 3-day delay before servers are fully decommissioned and wiped.  Clouds will enter a "pending-delete" state during this period.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to delete.
+          schema:
+            type: string
+            example: "0Absd1"
+        - name: code
+          in: query
+          required: false
+          description: Email confirmation code (required when delete_method is "email-2fa"). If not provided and email-2fa is required, a confirmation code will be sent to the account owner's email.
+          schema:
+            type: string
+            example: "123456"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Cloud deleted successfully.
+        '400':
+          description: Bad Request - Invalid confirmation code or confirmation code required.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        message:
+                          type: string
+              examples:
+                confirmation_required:
+                  summary: Confirmation code required
+                  description: A confirmation code has been sent to the account owner's email. Retry the request with the code parameter.
+                  value:
+                    errors:
+                      - name: "confirmation_sent"
+                        message: "Confirmation Code Sent"
+                invalid_code:
+                  summary: Invalid confirmation code
+                  description: The provided confirmation code is invalid or expired.
+                  value:
+                    errors:
+                      - name: "invalid_code"
+                        message: "Invalid Code"
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks manage permissions or the cloud is in a locked state.
+        '404':
+          description: Cloud not found.
   /v1/clouds/{cloudId}/stats:
     get:
       tags:
