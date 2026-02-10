@@ -1695,7 +1695,7 @@ components:
             created_from:
               type: string
               description: The source creating the VLAN. Should be "user" for API requests.
-              enum: ["user", "omapi", "central"]
+              enum: ["user"]
               example: "user"
             pod_location:
               $ref: '#/components/schemas/PodLocations'
@@ -1851,7 +1851,7 @@ components:
             created_from:
               type: string
               description: The source creating the IP Address Block. Should be "user" for API requests.
-              enum: ["user", "omapi", "central"]
+              enum: ["user"]
               example: "user"
             pod_location:
               $ref: '#/components/schemas/PodLocations'
