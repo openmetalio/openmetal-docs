@@ -1691,6 +1691,7 @@ components:
           required:
             - created_from
             - pod_location
+            - vlan_type
           properties:
             created_from:
               type: string
@@ -1797,7 +1798,11 @@ components:
               example: 28
             managed_addressing:
               type: string
-              description: The managed addressing mode for the prefix.
+              description: |
+                The managed addressing mode for the prefix. Default is "off".
+                - **off**: No IPs are auto assigned by our system
+                - **all**: An IP is assigned to a host from each Prefix in the VLAN  
+                - **pool**: If multiple Prefixes exist for a VLAN they are treated as a pool of IPs and only one will be assigned to each host
               enum: ["off", "all", "pool"]
               example: "off"
             alterable:
@@ -1847,6 +1852,8 @@ components:
           required:
             - created_from
             - pod_location
+            - prefix_type
+            - length
           properties:
             created_from:
               type: string
@@ -1872,7 +1879,11 @@ components:
               example: "192.168.6.0/24"
             managed_addressing:
               type: string
-              description: The managed addressing mode for the prefix.
+              description: |
+                The managed addressing mode for the prefix. Default is "off".
+                - **off**: No IPs are auto assigned by our system
+                - **all**: An IP is assigned to a host from each Prefix in the VLAN  
+                - **pool**: If multiple Prefixes exist for a VLAN they are treated as a pool of IPs and only one will be assigned to each host
               enum: ["off", "all", "pool"]
               example: "off"
             cloud_id:
