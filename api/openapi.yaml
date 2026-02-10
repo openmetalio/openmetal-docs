@@ -275,6 +275,8 @@ paths:
         Unassign a VLAN resource from a private cloud.
 
         This removes the association between the VLAN and the cloud but does not delete the VLAN resource itself.
+
+        **Important:** You cannot remove all VLAN assignments. A VLAN needs to have at least one cloud assignment.
       parameters:
         - name: cloudId
           in: path
