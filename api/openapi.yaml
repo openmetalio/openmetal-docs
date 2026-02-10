@@ -762,36 +762,37 @@ paths:
           description: Forbidden - User lacks write permissions or VLAN is not alterable.
         '404':
           description: VLAN not found.
-    delete:
-      tags:
-        - VLANs
-      summary: Delete a VLAN
-      description: |
-        Delete a VLAN resource.
+    #  2-09-26: Commented out until delete endpoint is fully implemented
+    # delete:
+    #   tags:
+    #     - VLANs
+    #   summary: Delete a VLAN
+    #   description: |
+    #     Delete a VLAN resource.
 
-        **Note:** Only user-created VLANs can be deleted. System-reserved VLANs cannot be removed.
-        VLANs with assigned IP Address Blocks (Prefixes) must have those blocks unassigned before deletion.
-      parameters:
-        - name: vlanId
-          in: path
-          required: true
-          description: The ID of the VLAN resource to delete.
-          schema:
-            type: string
-            example: "vl4nXy2Z9a"
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: VLAN deleted successfully.
-        '400':
-          description: Bad Request - VLAN has assigned resources or is not alterable.
-        '401':
-          description: Unauthorized - Invalid or missing Bearer token.
-        '403':
-          description: Forbidden - User lacks write permissions.
-        '404':
-          description: VLAN not found.
+    #     **Note:** Only user-created VLANs can be deleted. System-reserved VLANs cannot be removed.
+    #     VLANs with assigned IP Address Blocks (Prefixes) must have those blocks unassigned before deletion.
+    #   parameters:
+    #     - name: vlanId
+    #       in: path
+    #       required: true
+    #       description: The ID of the VLAN resource to delete.
+    #       schema:
+    #         type: string
+    #         example: "vl4nXy2Z9a"
+    #   security:
+    #     - bearerAuth: []
+    #   responses:
+    #     '200':
+    #       description: VLAN deleted successfully.
+    #     '400':
+    #       description: Bad Request - VLAN has assigned resources or is not alterable.
+    #     '401':
+    #       description: Unauthorized - Invalid or missing Bearer token.
+    #     '403':
+    #       description: Forbidden - User lacks write permissions.
+    #     '404':
+    #       description: VLAN not found.
 
   /v1/accounts/{accountId}/vlans:
     post:
@@ -1009,35 +1010,36 @@ paths:
           description: Forbidden - User lacks write permissions.
         '404':
           description: IP Address Block not found.
-    delete:
-      tags:
-        - IP Address Blocks
-      summary: Delete an IP Address Block
-      description: |
-        Delete an IP Address Block resource.
+    #  2-09-26: Commented out until delete endpoint is fully implemented
+    # delete:
+    #   tags:
+    #     - IP Address Blocks
+    #   summary: Delete an IP Address Block
+    #   description: |
+    #     Delete an IP Address Block resource.
 
-        **Note:** IP Address Blocks must be unassigned from any VLANs before deletion.
-      parameters:
-        - name: prefixId
-          in: path
-          required: true
-          description: The ID of the IP Address Block resource to delete.
-          schema:
-            type: string
-            example: "pf3xY7z2W9"
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: IP Address Block deleted successfully.
-        '400':
-          description: Bad Request - IP Address Block has dependencies or is not alterable.
-        '401':
-          description: Unauthorized - Invalid or missing Bearer token.
-        '403':
-          description: Forbidden - User lacks write permissions.
-        '404':
-          description: IP Address Block not found.
+    #     **Note:** IP Address Blocks must be unassigned from any VLANs before deletion.
+    #   parameters:
+    #     - name: prefixId
+    #       in: path
+    #       required: true
+    #       description: The ID of the IP Address Block resource to delete.
+    #       schema:
+    #         type: string
+    #         example: "pf3xY7z2W9"
+    #   security:
+    #     - bearerAuth: []
+    #   responses:
+    #     '200':
+    #       description: IP Address Block deleted successfully.
+    #     '400':
+    #       description: Bad Request - IP Address Block has dependencies or is not alterable.
+    #     '401':
+    #       description: Unauthorized - Invalid or missing Bearer token.
+    #     '403':
+    #       description: Forbidden - User lacks write permissions.
+    #     '404':
+    #       description: IP Address Block not found.
 
   /v1/accounts/{accountId}/prefixes:
     post:
