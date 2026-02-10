@@ -1707,6 +1707,11 @@ components:
               type: string
               description: Optional IP Address Block resource ID to assign to the VLAN during creation.
               example: "pf3xY7z2W9"
+            vlan_type:
+              type: string
+              description: The type of VLAN to create.  Publicly routed or internal use only
+              enum: ["internal", "routed"]
+              example: "routed"
 
     # IP Address Block (Prefix) Resource Schemas
     PrefixResource:
