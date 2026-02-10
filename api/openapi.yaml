@@ -67,7 +67,23 @@ tags:
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
-    description: Operations for managing orders.
+    description: |
+      Operations for managing orders.
+
+      ## Creating a New Server Order
+
+      Follow this workflow to create and track a new server order:
+
+      1. **Check Inventory Availability** - Use the [GET /v2/inventory/{pod_location}/availability](#tag/Inventory/paths/~1v2~1inventory~1%7Bpod_location%7D~1availability/get) endpoint to verify that your desired hardware SKU is available in the target datacenter location.
+
+      2. **Create the Order** - Submit a [POST /v1/accounts/{accountId}/orders](#tag/Orders/paths/~1v1~1accounts~1%7BaccountId%7D~1orders/post) request with your desired configuration (hardware SKU, location, type, and quantity).
+
+      3. **Monitor Order Status** - Use [GET /v1/orders/{orderId}](#tag/Orders/paths/~1v1~1orders~1%7BorderId%7D/get) to retrieve the order and check the `clouds_deployed` field. Each item in the `clouds_deployed` array contains:
+         - `id` - The cloud resource identifier
+         - `provisioning_status` - Current provisioning state with progression: `pending` → `in_progress` → `awaiting_setup` → `complete`
+         - If errors occur during provisioning, the cloud may enter a `manual_setup` state requiring support intervention
+
+      4. **Query Cloud Details** - Once you have the cloud ID from `clouds_deployed[].id`, use the [GET /v1/clouds/{cloudId}](#tag/Clouds/paths/~1v1~1clouds~1%7BcloudId%7D/get) endpoint to retrieve detailed information about the provisioned cloud, including its `provision_status` and other configuration details.
   - name: Nodes
     description: Operations for managing and interacting with individual nodes that are assigned to a cloud, including IPMI console access and power management.
   - name: VLANs
@@ -1542,6 +1558,24 @@ components:
                       type: string
                       description: The version of the schema used to create the order.
                       example: "v2"
+                    clouds_deployed:
+                      type: array
+                      description: Array of cloud resources that have been deployed as part of this order.
+                      items:
+                        type: object
+                        required:
+                          - id
+                          - provision_status
+                        properties:
+                          id:
+                            type: string
+                            description: The unique identifier of the deployed cloud resource.
+                            example: "abc123"
+                          provision_status:
+                            type: string
+                            description: Current provisioning status of the cloud resource.
+                            enum: ["pending", "in_progress", "awaiting_setup", "complete", "manual_setup"]
+                            example: "complete"
 
     OrderCollection:
       type: object
