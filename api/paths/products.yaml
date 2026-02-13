@@ -1,0 +1,33 @@
+"/v1/products":
+  get:
+    tags:
+      - Inventory
+    summary: Get product catalog
+    description: |
+      Retrieve a catalog of available OpenMetal cloud products including hardware configurations and addon services.
+
+      This is a public endpoint that provides the complete product catalog, including:
+      - Hardware products grouped by type (Small, Medium, Large, etc.)
+      - Addon services categorized by functionality (memory, storage, ip_block, other)
+      - Pricing information for all products and addons
+      - Hardware specifications and capabilities
+
+      **Note:** This endpoint is publicly accessible and does not require authentication.
+    parameters:
+      - name: location
+        in: query
+        required: false
+        description: Datacenter location identifier to get location-specific pricing. Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+        schema:
+          $ref: '#/components/schemas/PodLocations'
+    responses:
+      '200':
+        description: Product catalog retrieved successfully.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCatalog'
+      '400':
+        description: Bad Request
+      '500':
+        description: Internal Server Error - Server processing error.

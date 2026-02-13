@@ -1,0 +1,625 @@
+# Product catalog schemas
+ProductCatalog:
+  type: object
+  description: Product catalog containing hardware products and addon services.
+  required:
+    - hardware
+    - addons
+  properties:
+    hardware:
+      type: object
+      description: Hardware products grouped by hardware variant id(medium_v4, compute_xl_v4, etc.).
+      properties:
+        hardware_type_id:
+          type: object
+          $ref: '#/components/schemas/HardwareType'
+      example:
+        medium_v4:
+          id: 17
+          name: "medium_v4"
+          model: "SYS-221BT-HNR"
+          display_name: null
+          variant_label: "v4"
+          createdAt: "2024-06-03T14:59:45.175Z"
+          updatedAt: "2024-06-06T15:12:36.849Z"
+          publishedAt: null
+          network:
+            id: 57
+            speed: 10
+            count: 2
+          storage:
+            nvme_ssd:
+              id: 125
+              name: "nvme_ssd"
+              model: null
+              raw: "6400"
+              type: "nvme_ssd"
+              drives:
+                - id: 118
+                  raw: "6400"
+                  count: 1
+            boot:
+              id: 126
+              name: "boot"
+              model: null
+              raw: "960"
+              type: null
+              drives:
+                - id: 117
+                  raw: "480"
+                  count: 2
+          locations:
+            pod_1:
+              label: "US-East"
+              displayName: "Ashburn, VA"
+              region: "US"
+              code: "iad3"
+              release_status: "released"
+          processor:
+            id: 61
+            raw_cores: 24
+            compute_cores: 24
+            raw_threads: 48
+            type: "2 x Intel Xeon Silver 4510 - 2.4/4.1 Ghz"
+            name: "Intel Xeon Silver 4510"
+            speed: "2.4/4.1Ghz"
+            cpuCount: 2
+          ram:
+            id: 61
+            raw: "256"
+            compute: "256"
+            type: "DDR5"
+            speed: "4400MHz"
+          gpu: null
+          products:
+            - name: "Storage and Compute - Medium v4"
+              add_on_code: "storage_and_compute_medium_v4"
+              hourly_cost: 1.38
+              hourly_cost_ltu: 1.1
+              30_day_cost: 792
+              bandwidth:
+                id: 44
+                egress_allotment: 500
+                allotment_unit: "Mbps"
+              type: "server"
+    addons:
+      type: object
+      description: Addon services categorized by functionality.
+      required:
+        - memory
+        - storage
+        - ip_block
+        - other
+      properties:
+        memory:
+          type: array
+          description: Memory addon products that can be added to configurations.
+          items:
+            $ref: '#/components/schemas/MemoryAddon'
+        storage:
+          type: array
+          description: Storage addon products that can be added to configurations.
+          items:
+            $ref: '#/components/schemas/StorageAddon'
+        ip_block:
+          type: array
+          description: IP address block addon products.
+          items:
+            $ref: '#/components/schemas/IpBlockAddon'
+        other:
+          type: array
+          description: Miscellaneous addons that don't fit into other categories.
+          items:
+            type: object
+
+HardwareType:
+  type: object
+  description: Hardware configuration details for a specific hardware variant.
+  required:
+    - id
+    - name
+    - model
+    - ram
+    - processor
+    - storage
+    - network
+    - locations
+    - products
+    - gpu
+  allOf:
+    - $ref: './schemas/common.yaml#/Locations'
+    - type: object
+      properties:
+        id:
+          type: number
+          description: Unique numeric identifier for the hardware type.
+          example: 17
+        name:
+          type: string
+          description: Hardware variant name.
+          example: "medium_v4"
+        model:
+          type: string
+          description: Hardware model identifier.
+          example: "SYS-221BT-HNR"
+        display_name:
+          type: string
+          nullable: true
+          description: Display name for the hardware type.
+          example: null
+        variant_label:
+          type: string
+          description: Hardware variant label.
+          example: "v4"
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp.
+          example: "2024-06-03T14:59:45.175Z"
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp.
+          example: "2024-06-06T15:12:36.849Z"
+        publishedAt:
+          type: string
+          format: date-time
+          nullable: true
+          description: Publication timestamp.
+          example: null
+        network:
+          type: object
+          description: Network interface configuration.
+          required:
+            - id
+            - speed
+            - count
+          properties:
+            id:
+              type: number
+              description: Network configuration ID.
+              example: 57
+            speed:
+              type: number
+              description: Network speed in Gbps.
+              example: 10
+            count:
+              type: number
+              description: Number of network interfaces.
+              example: 2
+        storage:
+          type: object
+          description: Storage configuration.
+          properties:
+            nvme_ssd:
+              $ref: '#/components/schemas/StorageComponent'
+            boot:
+              $ref: '#/components/schemas/StorageComponent'
+        processor:
+          type: object
+          description: CPU specifications.
+          required:
+            - id
+            - raw_cores
+            - compute_cores
+            - raw_threads
+            - type
+            - name
+            - speed
+            - cpuCount
+          properties:
+            id:
+              type: number
+              description: Processor configuration ID.
+              example: 61
+            raw_cores:
+              type: number
+              description: Total physical CPU cores.
+              example: 24
+            compute_cores:
+              type: number
+              description: Cores available for compute.
+              example: 24
+            raw_threads:
+              type: number
+              description: Total CPU threads.
+              example: 48
+            type:
+              type: string
+              description: Processor family and speed range.
+              example: "2 x Intel Xeon Silver 4510 - 2.4/4.1 Ghz"
+            name:
+              type: string
+              description: Specific processor model.
+              example: "Intel Xeon Silver 4510"
+            speed:
+              type: string
+              description: Clock speed range.
+              example: "2.4/4.1Ghz"
+            cpuCount:
+              type: number
+              description: Number of physical CPUs.
+              example: 2
+        ram:
+          type: object
+          description: Memory specifications.
+          required:
+            - id
+            - raw
+            - compute
+            - type
+            - speed
+          properties:
+            id:
+              type: number
+              description: RAM configuration ID.
+              example: 61
+            raw:
+              type: string
+              description: Total physical RAM in GB.
+              example: "256"
+            compute:
+              type: string
+              description: RAM available for compute workloads in GB.
+              example: "256"
+            type:
+              type: string
+              description: RAM type.
+              example: "DDR5"
+            speed:
+              type: string
+              description: RAM speed.
+              example: "4400MHz"
+        gpu:
+          type: object
+          nullable: true
+          description: GPU specifications if available.
+          example: null
+        products:
+          type: array
+          description: Available product configurations for this hardware type.
+          items:
+            $ref: '#/components/schemas/HardwareProduct'
+
+StorageComponent:
+  type: object
+  description: Storage component configuration.
+  required:
+    - id
+    - name
+    - raw
+    - type
+    - drives
+  properties:
+    id:
+      type: number
+      description: Storage component ID.
+      example: 125
+    name:
+      type: string
+      description: Storage component name.
+      example: "nvme_ssd"
+    model:
+      type: string
+      nullable: true
+      description: Storage model.
+      example: null
+    raw:
+      type: string
+      description: Total storage capacity in GB.
+      example: "6400"
+    type:
+      type: string
+      nullable: true
+      description: Storage type.
+      example: "nvme_ssd"
+    drives:
+      type: array
+      description: Individual drive specifications.
+      items:
+        $ref: '#/components/schemas/DriveDetails'
+
+BandwidthDetails:
+  type: object
+  description: Bandwidth allocation details.
+  required:
+    - id
+    - egress_allotment
+    - allotment_unit
+  properties:
+    id:
+      type: number
+      description: Bandwidth configuration ID.
+      example: 44
+    egress_allotment:
+      type: number
+      description: Bandwidth allowance amount.
+      example: 500
+    allotment_unit:
+      type: string
+      description: Bandwidth unit.
+      example: "Mbps"
+
+HardwareProduct:
+  type: object
+  description: A hardware product configuration available for ordering.
+  required:
+    - name
+    - add_on_code
+    - hourly_cost
+    - bandwidth
+    - type
+  properties:
+    name:
+      type: string
+      description: Product display name.
+      example: "Storage and Compute - Medium v4"
+    add_on_code:
+      type: string
+      description: Unique product identifier used for ordering.
+      example: "storage_and_compute_medium_v4"
+    hourly_cost:
+      type: number
+      description: Standard hourly rate in USD.
+      example: 1.38
+    hourly_cost_ltu:
+      type: number
+      nullable: true
+      description: Long-term usage hourly rate in USD (if available).
+      example: 1.1
+    30_day_cost:
+      type: number
+      nullable: true
+      description: 30-day cost for long-term usage plans (if available).
+      example: 792
+    bandwidth:
+      $ref: '#/components/schemas/BandwidthDetails'
+    type:
+      type: string
+      description: Product type.
+      enum: ["server"]
+      example: "server"
+
+StorageDetails:
+  type: object
+  description: Storage configuration details.
+  properties:
+    raw:
+      type: number
+      description: Total storage capacity in GB.
+    drives:
+      type: array
+      description: Individual drive specifications.
+      items:
+        $ref: '#/components/schemas/DriveDetails'
+
+DriveDetails:
+  type: object
+  description: Individual drive specification.
+  required:
+    - id
+    - raw
+    - count
+  properties:
+    id:
+      type: number
+      description: Drive specification ID.
+      example: 118
+    raw:
+      type: string
+      description: Drive capacity in GB.
+      example: "6400"
+    count:
+      type: number
+      description: Number of drives.
+      example: 1
+
+MemoryAddon:
+  type: object
+  description: Memory addon product that can be added to configurations.
+  required:
+    - name
+    - add_on_code
+    - hourly_cost
+    - type
+    - specs
+  properties:
+    name:
+      type: string
+      description: Memory addon display name.
+      example: "Memory - 64GB DDR5"
+    add_on_code:
+      type: string
+      description: Unique addon identifier.
+      example: "memory_64gb_ddr5"
+    hourly_cost:
+      type: number
+      description: Hourly rate in USD.
+      example: 0.09
+    hourly_cost_ltu:
+      type: number
+      nullable: true
+      description: Long-term usage hourly rate.
+      example: 0.07
+    30_day_cost:
+      type: number
+      nullable: true
+      description: 30-day long-term usage cost.
+      example: 50.4
+    type:
+      type: string
+      description: Always "memory" for memory addons.
+      enum: ["memory"]
+      example: "memory"
+    specs:
+      type: object
+      description: Memory specifications.
+      required:
+        - name
+        - label
+        - memory
+      properties:
+        name:
+          type: string
+          description: Technical name.
+          example: "64gb_ddr5"
+        label:
+          type: string
+          description: Display label.
+          example: "64GB DDR5"
+        memory:
+          type: object
+          description: Detailed memory specifications.
+          required:
+            - id
+            - raw
+            - compute
+            - type
+            - speed
+          properties:
+            id:
+              type: number
+              description: Memory configuration ID.
+              example: 68
+            raw:
+              type: string
+              description: Total physical memory in GB.
+              example: "64"
+            compute:
+              type: string
+              description: Memory available for compute in GB.
+              example: "64"
+            type:
+              type: string
+              description: Memory type.
+              example: "DDR5"
+            speed:
+              type: string
+              description: Memory speed.
+              example: "4800Mhz"
+
+StorageAddon:
+  type: object
+  description: Storage addon product that can be added to configurations.
+  required:
+    - name
+    - add_on_code
+    - hourly_cost
+    - type
+    - specs
+  properties:
+    name:
+      type: string
+      description: Storage addon display name.
+      example: "Drive - 12.8TB Micron 7450 MAX"
+    add_on_code:
+      type: string
+      description: Unique addon identifier.
+      example: "drive_12_8_micron_7450_max"
+    hourly_cost:
+      type: number
+      description: Hourly rate in USD.
+      example: 0.51
+    hourly_cost_ltu:
+      type: number
+      nullable: true
+      description: Long-term usage hourly rate.
+      example: 0.41
+    30_day_cost:
+      type: number
+      nullable: true
+      description: 30-day long-term usage cost.
+      example: 295.2
+    type:
+      type: string
+      description: Always "storage" for storage addons.
+      enum: ["storage"]
+      example: "storage"
+    specs:
+      type: object
+      description: Storage specifications.
+      required:
+        - name
+        - raw
+        - model
+        - storage
+      properties:
+        name:
+          type: string
+          description: Storage product name.
+          example: "12.8TB Micron 7450 MAX"
+        raw:
+          type: string
+          description: Storage capacity in GB.
+          example: "12800"
+        model:
+          type: string
+          description: Storage model.
+          example: "Micron 7450 NVMe"
+        storage:
+          type: object
+          description: Detailed storage specifications.
+          required:
+            - id
+            - name
+            - model
+            - raw
+            - type
+          properties:
+            id:
+              type: number
+              description: Storage specification ID.
+              example: 140
+            name:
+              type: string
+              description: Storage name.
+              example: "12.8TB Micron 7450 MAX"
+            model:
+              type: string
+              description: Detailed storage model.
+              example: "MTFDKCC12T8TFS-1BC1ZABYYR"
+            raw:
+              type: string
+              description: Storage capacity in GB.
+              example: "12800"
+            type:
+              type: string
+              description: Storage type.
+              example: "nvme_ssd"
+
+IpBlockAddon:
+  type: object
+  description: IP address block addon product.
+  required:
+    - name
+    - add_on_code
+    - hourly_cost
+    - type
+  properties:
+    name:
+      type: string
+      description: IP block display name.
+      example: "IPv4 Block - /28"
+    add_on_code:
+      type: string
+      description: Unique addon identifier.
+      example: "ipv4_block_28"
+    hourly_cost:
+      type: number
+      description: Hourly rate in USD.
+      example: 0.07
+    hourly_cost_ltu:
+      type: number
+      nullable: true
+      description: Long-term usage hourly rate.
+      example: 0.06
+    30_day_cost:
+      type: number
+      nullable: true
+      description: 30-day long-term usage cost.
+      example: 43.2
+    type:
+      type: string
+      description: Always "ip_block" for IP block addons.
+      enum: ["ip_block"]
+      example: "ip_block"
