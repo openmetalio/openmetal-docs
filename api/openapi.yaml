@@ -1199,6 +1199,9 @@ paths:
         '403':
           description: Forbidden - User lacks permissions.
 
+  /v1/products:
+    $ref: './paths/products.yaml#/~1v1~1products'
+
 components:
   securitySchemes:
     bearerAuth:
@@ -1211,6 +1214,32 @@ components:
       description: Use your OAuth Application's client_id as username and client_secret as password
 
   schemas:
+    # External schema references
+    LocationDetails:
+      $ref: './schemas/locations.yaml#/LocationDetails'
+    Locations:
+      $ref: './schemas/locations.yaml#/Locations'
+    PodLocations:
+      $ref: './schemas/locations.yaml#/PodLocations'
+    ProductCatalog:
+      $ref: './schemas/products.yaml#/ProductCatalog'
+    HardwareType:
+      $ref: './schemas/products.yaml#/HardwareType'
+    HardwareProduct:
+      $ref: './schemas/products.yaml#/HardwareProduct'
+    StorageComponent:
+      $ref: './schemas/products.yaml#/StorageComponent'
+    BandwidthDetails:
+      $ref: './schemas/products.yaml#/BandwidthDetails'
+    DriveDetails:
+      $ref: './schemas/products.yaml#/DriveDetails'
+    MemoryAddon:
+      $ref: './schemas/products.yaml#/MemoryAddon'
+    StorageAddon:
+      $ref: './schemas/products.yaml#/StorageAddon'
+    IpBlockAddon:
+      $ref: './schemas/products.yaml#/IpBlockAddon'
+    
     Cloud:
       type: object
       properties:
@@ -1338,53 +1367,6 @@ components:
                       type: boolean
                       description: Indicates if the disk is the root disk.
                       example: true
-
-    Locations:
-      type: object      
-      example:
-        locations:
-          pod_1:
-            label: "US-East"
-            displayName: "Ashburn, VA"
-            region: "US"
-            code: "iad3"
-            release_status: "released"
-          pod_2:
-            label: "US-West"
-            displayName: "Los Angeles, CA"
-            region: "US"
-            code: "lax3"
-            release_status: "released"
-      properties:
-        locations:
-          type: object
-          description: A collection of available datacenter locations.
-          properties:
-            location_id:
-              type: object
-              description: A unique identifier that corresponds to the specific datacenter location.  i.e "pod_1", "pod_2", "pod_3", etc.
-              properties:
-                label:
-                  type: string
-                  description: A short identifier for the location.
-                  example: "US-East"
-                displayName:
-                  type: string
-                  description: A human-readable name for the location.
-                  example: "Ashburn, VA"
-                region:
-                  type: string
-                  description: The geographical region of the location.
-                  example: "US"
-                code:
-                  type: string
-                  description: The datacenter location code designation.
-                  example: "iad3"
-                release_status:
-                  type: string
-                  description: The current release status of the location.
-                  enum: ["released", "pre-release"]
-                  example: "released"
 
     InventoryAvailability:
       type: object
@@ -1639,12 +1621,6 @@ components:
               type: boolean
               description: Indicates if the organization has billing access.
               example: false
-
-    PodLocations:
-      type: string
-      description: Available datacenter pod locations.  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
-      enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
-      example: "pod_1"
 
     ImageDetails:
       type: object
@@ -1934,6 +1910,7 @@ components:
               type: string
               description: The product add-on code for billing.
               example: "ipv4_routed_prefix_28"
+
 
     PrefixCreateRequest:
       type: object
