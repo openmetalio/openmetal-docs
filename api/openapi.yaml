@@ -1131,6 +1131,8 @@ paths:
         Create a new IP Address Block (network prefix) resource in a specified datacenter location.
 
         IP Address Blocks can be created with a specific CIDR or by specifying a prefix length to automatically allocate from available address space.
+
+        **Important:** An IP Address Block must be assigned to a VLAN for use. Create the appropriate internal or routed VLAN to assign this IP Address Block to. IP Blocks can be assigned to a VLAN during IP Block creation (via `central_vlan_id`) or after creation in a separate request.
       parameters:
         - name: accountId
           in: path
@@ -1146,42 +1148,41 @@ paths:
             schema:
               $ref: '#/components/schemas/PrefixCreateRequest'
             examples:
-              basic_prefix:
-                summary: Basic IP Address Block creation
-                description: Create an IP Address Block with automatic allocation using prefix length.
+              private_ip_block_with_cidr:
+                summary: Private IP Block with CIDR
+                description: Create a private IP Address Block with a specific CIDR block.
                 value:
-                  label: "my-ip-block"
-                  description: "IP range for development servers"
+                  label: "Private IP Address Block"
+                  description: "IP Block Description"
                   fields:
-                    created_from: "user"
-                    pod_location: "pod_1"
-                    prefix_type: "routed"
-                    length: 28
-                    managed_addressing: "off"
-              prefix_with_cidr:
-                summary: IP Address Block with specific CIDR
-                description: Create an IP Address Block with a specific CIDR block.
-                value:
-                  label: "specific-ip-block"
-                  description: "Specific IP range"
-                  fields:
-                    created_from: "user"
                     pod_location: "pod_1"
                     prefix_type: "private"
-                    cidr: "10.0.1.0/24"
-                    managed_addressing: "pool"
-              prefix_with_vlan:
-                summary: IP Address Block assigned to VLAN
-                description: Create an IP Address Block and assign it to a VLAN.
+                    cidr: "192.168.1.0/28"
+                    central_vlan_id: "ghij1234"
+              private_ip_block_with_length:
+                summary: Private IP Block with length
+                description: Create a private IP Address Block using prefix length. Network address defaults to 192.168.0.0.
                 value:
-                  label: "vlan-ip-block"
-                  description: "IP range for VLAN"
+                  label: "Private IP Address Block"
+                  description: "IP Block Description"
                   fields:
-                    created_from: "user"
+                    pod_location: "pod_1"
+                    prefix_type: "private"
+                    length: 28
+                    central_vlan_id: "ghij1234"
+              routed_ip_block:
+                summary: Routed IP Block
+                description: Create a routed IP Address Block with product addon and cloud ID for billing.
+                value:
+                  label: "Routed IP Address Block"
+                  description: "IP Block Description"
+                  fields:
                     pod_location: "pod_1"
                     prefix_type: "routed"
-                    length: 28
-                    central_vlan_id: "vl4nXy2Z9a"
+                    product_addon: "ipv4_block_28"
+                    cloud_id: "asdf1234"
+                    managed_addressing: "off"
+                    central_vlan_id: "ghij5678"
       security:
         - bearerAuth: []
       responses:
@@ -1846,9 +1847,10 @@ components:
           properties:
             created_from:
               type: string
-              description: The source that created the IP Address Block.
+              description: The source that created the IP Address Block (system-defined, read-only).
               enum: ["user", "omapi", "central"]
               example: "user"
+              readOnly: true
             pod_location:
               $ref: '#/components/schemas/PodLocations'
             prefix_id:
@@ -1882,8 +1884,9 @@ components:
               example: "off"
             alterable:
               type: boolean
-              description: Indicates if the IP Address Block can be modified or deleted.
+              description: Indicates if the IP Address Block can be modified or deleted (system-defined, read-only).
               example: true
+              readOnly: true
             cloud_id:
               type: string
               description: The ID of the cloud this IP Address Block is associated with (if any).
@@ -1926,33 +1929,43 @@ components:
         fields:
           type: object
           required:
-            - created_from
             - pod_location
             - prefix_type
-            - length
           properties:
-            created_from:
-              type: string
-              description: The source creating the IP Address Block. Should be "user" for API requests.
-              enum: ["user"]
-              example: "user"
             pod_location:
               $ref: '#/components/schemas/PodLocations'
             prefix_type:
               type: string
-              description: The type of prefix.
+              description: |
+                The type of prefix.
+                - **private**: Internal IP blocks for private network communication. Supports CIDR specification and defaults to 192.168.0.0 if CIDR not provided.
+                - **routed**: Publicly routed IP blocks that require a product addon and cloud ID for billing purposes.
               enum: ["private", "routed", "allocation"]
               example: "routed"
             length:
               type: integer
-              description: The prefix length (CIDR notation). Use this for automatic allocation.
-              minimum: 1
+              description: |
+                The prefix length (CIDR notation).
+                
+                **For private IP blocks:**
+                - Required if `cidr` is not specified. If not provided, the network address defaults to 192.168.0.0.
+                - Optional if `cidr` is specified (length is derived from CIDR).
+                - Must be between 22 and 32 (inclusive).
+                
+                **For routed IP blocks:**
+                - Not required. Length is derived from the `product_addon` field.
+              minimum: 22
               maximum: 32
               example: 28
             cidr:
               type: string
-              description: Optionally specify an exact CIDR block instead of using automatic allocation. For private blocks only.
-              example: "192.168.6.0/24"
+              description: |
+                Specify an exact CIDR block instead of using automatic allocation.
+                
+                **Only valid for private IP blocks.** CIDR is not supported for routed IP blocks.
+                
+                If CIDR is specified, `length` is optional (derived from CIDR). If CIDR is not specified, the network address defaults to 192.168.0.0 and `length` is required.
+              example: "192.168.0.0/28"
             managed_addressing:
               type: string
               description: |
@@ -1964,9 +1977,33 @@ components:
               example: "off"
             cloud_id:
               type: string
-              description: Optional cloud ID to associate with this IP Address Block. Required for routed prefixes.
+              description: |
+                Required for routed IP blocks. Used ONLY for billing purposes to determine the billing subscription to assign the IP Block addon to.
+                
+                **Important:** The IP Block will NOT be automatically allocated to the cloud. This field is for billing purposes only.
               example: "0Absd1"
+            product_addon:
+              type: string
+              description: |
+                Required for routed IP blocks. The product add-on code for billing. The prefix length is derived from this addon.
+                
+                See the `/v1/products` endpoint for full product details.
+                
+                Supported addon codes:
+                - `ipv4_block_28` - Corresponds to a /28 CIDR length
+                - `ip_block_32` - Corresponds to a /27 CIDR length
+                - `ip_block_64` - Corresponds to a /26 CIDR length
+                - `ip_block_128` - Corresponds to a /25 CIDR length
+                - `ip_block_256` - Corresponds to a /24 CIDR length
+              example: "ipv4_block_28"
             central_vlan_id:
               type: string
-              description: Optional VLAN resource ID to assign this prefix to during creation.
+              description: |
+                Optional VLAN resource ID to assign this prefix to during creation. The IP block must be assigned to a corresponding internal or routed VLAN for use.
+                
+                The VLAN type must match the `prefix_type`:
+                - Private IP blocks must be assigned to an internal VLAN
+                - Routed IP blocks must be assigned to a routed VLAN
+                
+                IP Blocks can be assigned to a VLAN during creation (via this field) or after creation in a separate request.
               example: "vl4nXy2Z9a"
