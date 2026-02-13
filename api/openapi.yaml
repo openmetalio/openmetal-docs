@@ -906,8 +906,8 @@ paths:
                   label: "my-custom-vlan"
                   description: "Custom VLAN for development environment"
                   fields:
-                    created_from: "user"
                     pod_location: "pod_1"
+                    vlan_type: "internal"
               vlan_with_cloud:
                 summary: VLAN with cloud assignment
                 description: Create a VLAN and assign it to an existing cloud.
@@ -915,9 +915,9 @@ paths:
                   label: "production-vlan"
                   description: "VLAN for production cloud"
                   fields:
-                    created_from: "user"
                     pod_location: "pod_1"
                     cloud_id: "0Absd1"
+                    vlan_type: "routed"
               vlan_with_prefix:
                 summary: VLAN with IP Address Block
                 description: Create a VLAN and assign an existing IP Address Block to it.
@@ -925,9 +925,9 @@ paths:
                   label: "vlan-with-ips"
                   description: "VLAN with assigned IP range"
                   fields:
-                    created_from: "user"
                     pod_location: "pod_1"
                     central_prefix_id: "pf3xY7z2W9"
+                    vlan_type: "routed"
       security:
         - bearerAuth: []
       responses:
@@ -1765,15 +1765,9 @@ components:
         fields:
           type: object
           required:
-            - created_from
             - pod_location
             - vlan_type
           properties:
-            created_from:
-              type: string
-              description: The source creating the VLAN. Should be "user" for API requests.
-              enum: ["user"]
-              example: "user"
             pod_location:
               $ref: '#/components/schemas/PodLocations'
             cloud_id:
