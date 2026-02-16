@@ -76,7 +76,7 @@ tags:
 
       1. **Check Inventory Availability** - Use the [GET /v2/inventory/{pod_location}/availability](#tag/Inventory/paths/~1v2~1inventory~1%7Bpod_location%7D~1availability/get) endpoint to verify that your desired hardware SKU is available in the target datacenter location.
 
-      2. **Create the Order** - Submit a [POST /v1/accounts/{accountId}/orders](#tag/Orders/paths/~1v1~1accounts~1%7BaccountId%7D~1orders/post) request with your desired configuration (hardware SKU, location, type, and quantity).
+      2. **Create the Order** - Submit a [POST /v1/orders](#tag/Orders/paths/~1v1~1orders/post) request with your desired configuration (hardware SKU, location, type, and quantity).
 
       3. **Monitor Order Status** - Use [GET /v1/orders/{orderId}](#tag/Orders/paths/~1v1~1orders~1%7BorderId%7D/get) to retrieve the order and check the `clouds_deployed` field. Each item in the `clouds_deployed` array contains:
          - `id` - The cloud resource identifier
@@ -461,46 +461,11 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrderCollection'
-
-  /v1/orders/{orderId}:
-    get:
-      tags:
-        - Orders
-      summary: Get an order by ID
-      description: Retrieve a specific order by its ID to view details and check the status of the order.
-      parameters:
-        - name: orderId
-          in: path
-          required: true
-          description: The ID of the order to retrieve.
-          schema:
-            type: string
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Order found.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetOrder'
-        '404':
-          description: Order not found.
-
-  /v1/accounts/{accountId}/orders:
     post:
       tags:
         - Orders
       summary: Create a new order
       description: Create a new order for baremetal servers or private cloud products running OpenStack.
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          description: The ID of the organization account to create the order for.
-          schema:
-            type: string
-            example: "mWLBVbB7Eq"
       security:
         - bearerAuth: []
       requestBody:
@@ -569,6 +534,31 @@ paths:
           description: Unauthorized
         '403':
           description: Forbidden
+
+  /v1/orders/{orderId}:
+    get:
+      tags:
+        - Orders
+      summary: Get an order by ID
+      description: Retrieve a specific order by its ID to view details and check the status of the order.
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          description: The ID of the order to retrieve.
+          schema:
+            type: string
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Order found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOrder'
+        '404':
+          description: Order not found.
 
   /v2/inventory/locations:
     get:
@@ -765,6 +755,65 @@ paths:
                   $ref: '#/components/schemas/VlanResource'
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
+    post:
+      tags:
+        - VLANs
+      summary: Create a new VLAN
+      description: |
+        Create a new VLAN resource in a specified datacenter location.
+
+        VLANs can optionally be assigned to a cloud and/or have an IP Address Block assigned during creation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VlanCreateRequest'
+            examples:
+              basic_vlan:
+                summary: Basic VLAN creation
+                description: Create a VLAN in a specific location without cloud assignment.
+                value:
+                  label: "my-custom-vlan"
+                  description: "Custom VLAN for development environment"
+                  fields:
+                    pod_location: "pod_1"
+                    vlan_type: "internal"
+              vlan_with_cloud:
+                summary: VLAN with cloud assignment
+                description: Create a VLAN and assign it to an existing cloud.
+                value:
+                  label: "production-vlan"
+                  description: "VLAN for production cloud"
+                  fields:
+                    pod_location: "pod_1"
+                    cloud_id: "0Absd1"
+                    vlan_type: "routed"
+              vlan_with_prefix:
+                summary: VLAN with IP Address Block
+                description: Create a VLAN and assign an existing IP Address Block to it.
+                value:
+                  label: "vlan-with-ips"
+                  description: "VLAN with assigned IP range"
+                  fields:
+                    pod_location: "pod_1"
+                    central_prefix_id: "pf3xY7z2W9"
+                    vlan_type: "routed"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: VLAN created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VlanResource'
+        '400':
+          description: Bad Request - Invalid input or validation failed.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions or cloud validation failed.
 
   /v1/vlans/{vlanId}:
     get:
@@ -875,75 +924,6 @@ paths:
     #     '404':
     #       description: VLAN not found.
 
-  /v1/accounts/{accountId}/vlans:
-    post:
-      tags:
-        - VLANs
-      summary: Create a new VLAN
-      description: |
-        Create a new VLAN resource in a specified datacenter location.
-
-        VLANs can optionally be assigned to a cloud and/or have an IP Address Block assigned during creation.
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          description: The ID of the organization account to create the VLAN for.
-          schema:
-            type: string
-            example: "mWLBVbB7Eq"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/VlanCreateRequest'
-            examples:
-              basic_vlan:
-                summary: Basic VLAN creation
-                description: Create a VLAN in a specific location without cloud assignment.
-                value:
-                  label: "my-custom-vlan"
-                  description: "Custom VLAN for development environment"
-                  fields:
-                    pod_location: "pod_1"
-                    vlan_type: "internal"
-              vlan_with_cloud:
-                summary: VLAN with cloud assignment
-                description: Create a VLAN and assign it to an existing cloud.
-                value:
-                  label: "production-vlan"
-                  description: "VLAN for production cloud"
-                  fields:
-                    pod_location: "pod_1"
-                    cloud_id: "0Absd1"
-                    vlan_type: "routed"
-              vlan_with_prefix:
-                summary: VLAN with IP Address Block
-                description: Create a VLAN and assign an existing IP Address Block to it.
-                value:
-                  label: "vlan-with-ips"
-                  description: "VLAN with assigned IP range"
-                  fields:
-                    pod_location: "pod_1"
-                    central_prefix_id: "pf3xY7z2W9"
-                    vlan_type: "routed"
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: VLAN created successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/VlanResource'
-        '400':
-          description: Bad Request - Invalid input or validation failed.
-        '401':
-          description: Unauthorized - Invalid or missing Bearer token.
-        '403':
-          description: Forbidden - User lacks permissions or cloud validation failed.
-
   /v1/vlans/{vlanId}/prefixes/{prefixId}:
     post:
       tags:
@@ -1016,6 +996,73 @@ paths:
                   $ref: '#/components/schemas/PrefixResource'
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
+    post:
+      tags:
+        - IP Blocks
+      summary: Create a new IP Address Block
+      description: |
+        Create a new IP Address Block (network prefix) resource in a specified datacenter location.
+
+        IP Address Blocks can be created with a specific CIDR or by specifying a prefix length to automatically allocate from available address space.
+
+        **Important:** An IP Address Block must be assigned to a VLAN for use. Create the appropriate internal or routed VLAN to assign this IP Address Block to. IP Blocks can be assigned to a VLAN during IP Block creation (via `central_vlan_id`) or after creation in a separate request.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PrefixCreateRequest'
+            examples:
+              private_ip_block_with_cidr:
+                summary: Private IP Block with CIDR
+                description: Create a private IP Address Block with a specific CIDR block.
+                value:
+                  label: "Private IP Address Block"
+                  description: "IP Block Description"
+                  fields:
+                    pod_location: "pod_1"
+                    prefix_type: "private"
+                    cidr: "192.168.1.0/28"
+                    central_vlan_id: "ghij1234"
+              private_ip_block_with_length:
+                summary: Private IP Block with length
+                description: Create a private IP Address Block using prefix length. Network address defaults to 192.168.0.0.
+                value:
+                  label: "Private IP Address Block"
+                  description: "IP Block Description"
+                  fields:
+                    pod_location: "pod_1"
+                    prefix_type: "private"
+                    length: 28
+                    central_vlan_id: "ghij1234"
+              routed_ip_block:
+                summary: Routed IP Block
+                description: Create a routed IP Address Block with product addon and cloud ID for billing.
+                value:
+                  label: "Routed IP Address Block"
+                  description: "IP Block Description"
+                  fields:
+                    pod_location: "pod_1"
+                    prefix_type: "routed"
+                    product_addon: "ipv4_block_28"
+                    cloud_id: "asdf1234"
+                    managed_addressing: "off"
+                    central_vlan_id: "ghij5678"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP Address Block created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefixResource'
+        '400':
+          description: Bad Request - Invalid input or validation failed.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions.
 
   /v1/prefixes/{prefixId}:
     get:
@@ -1121,83 +1168,6 @@ paths:
     #       description: Forbidden - User lacks write permissions.
     #     '404':
     #       description: IP Address Block not found.
-
-  /v1/accounts/{accountId}/prefixes:
-    post:
-      tags:
-        - IP Blocks
-      summary: Create a new IP Address Block
-      description: |
-        Create a new IP Address Block (network prefix) resource in a specified datacenter location.
-
-        IP Address Blocks can be created with a specific CIDR or by specifying a prefix length to automatically allocate from available address space.
-
-        **Important:** An IP Address Block must be assigned to a VLAN for use. Create the appropriate internal or routed VLAN to assign this IP Address Block to. IP Blocks can be assigned to a VLAN during IP Block creation (via `central_vlan_id`) or after creation in a separate request.
-      parameters:
-        - name: accountId
-          in: path
-          required: true
-          description: The ID of the organization account to create the IP Address Block for.
-          schema:
-            type: string
-            example: "mWLBVbB7Eq"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PrefixCreateRequest'
-            examples:
-              private_ip_block_with_cidr:
-                summary: Private IP Block with CIDR
-                description: Create a private IP Address Block with a specific CIDR block.
-                value:
-                  label: "Private IP Address Block"
-                  description: "IP Block Description"
-                  fields:
-                    pod_location: "pod_1"
-                    prefix_type: "private"
-                    cidr: "192.168.1.0/28"
-                    central_vlan_id: "ghij1234"
-              private_ip_block_with_length:
-                summary: Private IP Block with length
-                description: Create a private IP Address Block using prefix length. Network address defaults to 192.168.0.0.
-                value:
-                  label: "Private IP Address Block"
-                  description: "IP Block Description"
-                  fields:
-                    pod_location: "pod_1"
-                    prefix_type: "private"
-                    length: 28
-                    central_vlan_id: "ghij1234"
-              routed_ip_block:
-                summary: Routed IP Block
-                description: Create a routed IP Address Block with product addon and cloud ID for billing.
-                value:
-                  label: "Routed IP Address Block"
-                  description: "IP Block Description"
-                  fields:
-                    pod_location: "pod_1"
-                    prefix_type: "routed"
-                    product_addon: "ipv4_block_28"
-                    cloud_id: "asdf1234"
-                    managed_addressing: "off"
-                    central_vlan_id: "ghij5678"
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: IP Address Block created successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PrefixResource'
-        '400':
-          description: Bad Request - Invalid input or validation failed.
-        '401':
-          description: Unauthorized - Invalid or missing Bearer token.
-        '403':
-          description: Forbidden - User lacks permissions.
 
   /v1/deployment/network/prefix/{prefixId}:
     get:
