@@ -88,8 +88,8 @@ tags:
     description: Operations for managing and interacting with individual nodes that are assigned to a cloud, including IPMI console access and power management.
   - name: VLANs
     description: Operations for managing Virtual LAN (VLAN) resources for private clouds.
-  - name: IP Address Blocks
-    description: Operations for managing IP prefix (IP Address Block) resources for private clouds.
+  - name: IP Blocks
+    description: Operations for managing IP Address Block (Prefix) resources for private clouds.
 
 x-tagGroups:
   - name: Authentication
@@ -103,7 +103,7 @@ x-tagGroups:
       - Inventory
       - Orders
       - VLANs
-      - IP Address Blocks
+      - IP Blocks
 
 paths:
   /v1/oauth2/token:
@@ -960,7 +960,7 @@ paths:
         - name: vlanId
           in: path
           required: true
-          description: The ID of the VLAN resource.
+          description: The UUID of the VLAN resource.
           schema:
             type: string
             example: "vl4nXy2Z9a"
@@ -997,7 +997,7 @@ paths:
   /v1/prefixes:
     get:
       tags:
-        - IP Address Blocks
+        - IP Blocks
       summary: Get a list of IP Address Blocks
       description: |
         Retrieve a list of all IP Address Block (prefix) resources that have been created by you or organizations that you are a member of.
@@ -1020,7 +1020,7 @@ paths:
   /v1/prefixes/{prefixId}:
     get:
       tags:
-        - IP Address Blocks
+        - IP Blocks
       summary: Get an IP Address Block by ID
       description: Retrieve details of a specific IP Address Block resource by its ID.
       parameters:
@@ -1048,7 +1048,7 @@ paths:
           description: IP Address Block not found.
     patch:
       tags:
-        - IP Address Blocks
+        - IP Blocks
       summary: Update an IP Address Block
       description: Update an existing IP Address Block resource.
       parameters:
@@ -1094,7 +1094,7 @@ paths:
     #  2-09-26: Commented out until delete endpoint is fully implemented
     # delete:
     #   tags:
-    #     - IP Address Blocks
+    #     - IP Blocks
     #   summary: Delete an IP Address Block
     #   description: |
     #     Delete an IP Address Block resource.
@@ -1125,7 +1125,7 @@ paths:
   /v1/accounts/{accountId}/prefixes:
     post:
       tags:
-        - IP Address Blocks
+        - IP Blocks
       summary: Create a new IP Address Block
       description: |
         Create a new IP Address Block (network prefix) resource in a specified datacenter location.
@@ -1199,6 +1199,204 @@ paths:
         '403':
           description: Forbidden - User lacks permissions.
 
+  /v1/deployment/network/prefix/{prefixId}:
+    get:
+      tags:
+        - IP Blocks
+      summary: Get prefix with IP addresses
+      description: |
+        Retrieve a prefix by its resource ID, including all child IP addresses.
+
+        This endpoint returns the full prefix details from the network infrastructure, including:
+        - Prefix metadata (CIDR, type, usage, status)
+        - All IP addresses within the prefix (`ip_addrs` array)
+        - Child prefixes if any exist (`children` array)
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The resource ID of the prefix to retrieve.
+          schema:
+            type: string
+            example: "pr3fixAbc123"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Prefix retrieved successfully with child IP addresses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefixDetailed'
+        '400':
+          description: Bad Request - Invalid prefix ID.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks read permissions on this prefix.
+        '404':
+          description: Prefix not found.
+        '409':
+          description: Error with internal VLAN and Prefix tracking.
+        '500':
+          description: Internal API error.
+
+  /v1/deployment/network/prefixes/{prefixId}/ip:
+    post:
+      tags:
+        - IP Blocks
+      summary: Create an IP address within a prefix
+      description: |
+        Create an IP address within a specified prefix resource.
+
+        If no specific IP address is provided in the request body, an available IP will be automatically assigned from the prefix.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The resource ID of the prefix to create the IP address in.
+          schema:
+            type: string
+            example: "pr3fixAbc123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ip:
+                  type: string
+                  description: The specific IP address to create. If omitted, an available IP will be automatically assigned.
+                  example: "192.168.1.10"
+                label:
+                  type: string
+                  description: A label for the IP address.
+                  example: "web-server-01"
+                assigned_host:
+                  type: string
+                  description: The hostname or identifier of the host this IP is assigned to.
+                  example: "webserver.example.com"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP address created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpAddress'
+        '400':
+          description: Bad Request - Invalid input or IP address already exists.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions.
+        '404':
+          description: Prefix not found.
+        '409':
+          description: Error with internal VLAN and Prefix tracking.
+        '500':
+          description: Internal API error.
+
+  /v1/deployment/network/prefixes/{prefixId}/ip/{ipId}:
+    patch:
+      tags:
+        - IP Blocks
+      summary: Update an IP address
+      description: |
+        Update an existing IP address within a prefix.
+
+        To unassign an IP address from a host, pass an empty string (`""`) as the `assigned_host` value.
+        A host's main IP cannot be reassigned or unassigned.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The resource ID of the prefix containing the IP address.
+          schema:
+            type: string
+            example: "pr3fixAbc123"
+        - name: ipId
+          in: path
+          required: true
+          description: The numeric ID of the IP address to update.
+          schema:
+            type: integer
+            example: 12345
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                label:
+                  type: string
+                  description: A label for the IP address.
+                  example: "web-server-01-updated"
+                assigned_host:
+                  type: string
+                  description: The hostname or identifier of the host this IP is assigned to. Pass empty string to unassign.
+                  example: "webserver-new.example.com"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP address updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IpAddress'
+        '400':
+          description: Bad Request - Invalid input.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions.
+        '404':
+          description: Prefix or IP address not found.
+        '409':
+          description: Error with internal VLAN and Prefix tracking.
+        '500':
+          description: Internal API error.
+    delete:
+      tags:
+        - IP Blocks
+      summary: Delete an IP address
+      description: Delete an IP address.
+      parameters:
+        - name: prefixId
+          in: path
+          required: true
+          description: The resource ID of the prefix containing the IP address.
+          schema:
+            type: string
+            example: "pr3fixAbc123"
+        - name: ipId
+          in: path
+          required: true
+          description: The numeric ID of the IP address to delete.
+          schema:
+            type: integer
+            example: 12345
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: IP address deleted successfully.
+        '400':
+          description: Bad Request - Invalid input.
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks permissions.
+        '404':
+          description: Prefix or IP address not found.
+        '409':
+          description: Error with internal VLAN and Prefix tracking.
+        '500':
+          description: Internal API error.
   /v1/products:
     $ref: './paths/products.yaml#/~1v1~1products'
 
@@ -2001,3 +2199,89 @@ components:
                 
                 IP Blocks can be assigned to a VLAN during creation (via this field) or after creation in a separate request.
               example: "vl4nXy2Z9a"
+
+    PrefixDetailed:
+      type: object
+      description: Detailed prefix object from the network infrastructure, including child IP addresses and nested prefixes.
+      required:
+        - id
+        - cidr
+        - prefix_type
+        - usage
+        - status
+      properties:
+        id:
+          type: integer
+          description: The numeric prefix ID from the network infrastructure.
+          example: 456
+        cidr:
+          type: string
+          description: The CIDR notation for the prefix (e.g., "10.0.0.0/28").
+          example: "192.168.1.0/24"
+        description:
+          type: string
+          description: A description of the prefix.
+          example: "Production network"
+        prefix_type:
+          type: string
+          description: The type of prefix.
+          enum: ["private", "routed", "allocation"]
+          example: "routed"
+        usage:
+          type: string
+          description: The usage category of the prefix.
+          enum: ["provider", "inventory", "internal", "custom", "unused"]
+          example: "custom"
+        status:
+          type: string
+          description: The provisioning status of the prefix.
+          enum: ["PROVISIONING", "ROUTED", "ACTIVE", "ERROR"]
+          example: "ACTIVE"
+        managed_addressing:
+          type: string
+          description: |
+            The managed addressing mode for the prefix.
+            - **off**: No IPs are auto assigned by our system
+            - **all**: An IP is assigned to a host from each Prefix in the VLAN
+            - **pool**: If multiple Prefixes exist for a VLAN they are treated as a pool of IPs and only one will be assigned to each host
+          enum: ["off", "all", "pool"]
+          example: "off"
+        vlan_id:
+          type: integer
+          description: The numeric VLAN ID this prefix is assigned to.
+          example: 123
+        parent_id:
+          type: integer
+          description: The numeric ID of the parent prefix if this is a nested prefix.
+          example: 100
+        children:
+          type: array
+          description: Array of child/nested prefixes within this prefix.
+          items:
+            $ref: '#/components/schemas/PrefixDetailed'
+        ip_addrs:
+          type: array
+          description: Array of IP addresses within this prefix. Use the `id` field from these objects for update/delete operations.
+          items:
+            $ref: '#/components/schemas/IpAddress'
+
+    IpAddress:
+      type: object
+      description: An individual IP address within a prefix.
+      properties:
+        id:
+          type: integer
+          description: The numeric ID of the IP address in the network infrastructure.
+          example: 12345
+        ip:
+          type: string
+          description: The IP address in dotted decimal notation.
+          example: "192.168.1.10"
+        label:
+          type: string
+          description: A label for the IP address.
+          example: "web-server-01"
+        assigned_host:
+          type: string
+          description: The hostname or identifier of the host this IP is assigned to.
+          example: "webserver.example.com"
