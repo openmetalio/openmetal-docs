@@ -1,0 +1,53 @@
+# Datacenter location schemas
+Locations:
+  type: object      
+  example:
+    locations:
+      pod_1:
+        label: "US-East"
+        displayName: "Ashburn, VA"
+        region: "US"
+        code: "iad3"
+        release_status: "released"
+      pod_2:
+        label: "US-West"
+        displayName: "Los Angeles, CA"
+        region: "US"
+        code: "lax3"
+        release_status: "released"
+  properties:
+    locations:
+      type: object
+      description: A collection of available datacenter locations.
+      properties:
+        location_id:
+          type: object
+          description: A unique identifier that corresponds to the specific datacenter location.  i.e "pod_1", "pod_2", "pod_3", etc.
+          properties:
+            label:
+              type: string
+              description: A short identifier for the location.
+              example: "US-East"
+            displayName:
+              type: string
+              description: A human-readable name for the location.
+              example: "Ashburn, VA"
+            region:
+              type: string
+              description: The geographical region of the location.
+              example: "US"
+            code:
+              type: string
+              description: The datacenter location code designation.
+              example: "iad3"
+            release_status:
+              type: string
+              description: The current release status of the location.
+              enum: ["released", "pre-release"]
+              example: "released"
+
+PodLocations:
+  type: string
+  description: Available datacenter pod locations.  Available locations can be retrieved from the [inventory locations endpoint](#tag/Inventory/paths/~1v2~1inventory~1locations/get).
+  enum: ["pod_1", "pod_2", "pod_3", "pod_5"]
+  example: "pod_1"
