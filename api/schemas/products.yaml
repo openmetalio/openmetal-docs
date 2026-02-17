@@ -77,6 +77,9 @@ ProductCatalog:
               hourly_cost: 1.38
               hourly_cost_ltu: 1.1
               30_day_cost: 792
+              hourly_cost_mils: 1380
+              hourly_cost_ltu_mils: 1100
+              30_day_cost_mils: 792000
               bandwidth:
                 id: 44
                 egress_allotment: 500
@@ -372,6 +375,20 @@ HardwareProduct:
       nullable: true
       description: 30-day cost for long-term usage plans (if available).
       example: 792
+    hourly_cost_mils:
+      type: integer
+      description: Standard hourly rate in mils (thousandths of USD). Multiply by 0.001 to get USD.
+      example: 1380
+    hourly_cost_ltu_mils:
+      type: integer
+      nullable: true
+      description: Long-term usage hourly rate in mils (thousandths of USD).
+      example: 1100
+    30_day_cost_mils:
+      type: integer
+      nullable: true
+      description: 30-day cost in mils (thousandths of USD).
+      example: 792000
     bandwidth:
       $ref: '#/components/schemas/BandwidthDetails'
     type:
@@ -446,6 +463,20 @@ MemoryAddon:
       nullable: true
       description: 30-day long-term usage cost.
       example: 50.4
+    hourly_cost_mils:
+      type: integer
+      description: Hourly rate in mils (thousandths of USD).
+      example: 90
+    hourly_cost_ltu_mils:
+      type: integer
+      nullable: true
+      description: Long-term usage hourly rate in mils (thousandths of USD).
+      example: 70
+    30_day_cost_mils:
+      type: integer
+      nullable: true
+      description: 30-day cost in mils (thousandths of USD).
+      example: 50400
     type:
       type: string
       description: Always "memory" for memory addons.
@@ -530,6 +561,20 @@ StorageAddon:
       nullable: true
       description: 30-day long-term usage cost.
       example: 295.2
+    hourly_cost_mils:
+      type: integer
+      description: Hourly rate in mils (thousandths of USD).
+      example: 510
+    hourly_cost_ltu_mils:
+      type: integer
+      nullable: true
+      description: Long-term usage hourly rate in mils (thousandths of USD).
+      example: 410
+    30_day_cost_mils:
+      type: integer
+      nullable: true
+      description: 30-day cost in mils (thousandths of USD).
+      example: 295200
     type:
       type: string
       description: Always "storage" for storage addons.
@@ -618,6 +663,20 @@ IpBlockAddon:
       nullable: true
       description: 30-day long-term usage cost.
       example: 43.2
+    hourly_cost_mils:
+      type: integer
+      description: Hourly rate in mils (thousandths of USD).
+      example: 70
+    hourly_cost_ltu_mils:
+      type: integer
+      nullable: true
+      description: Long-term usage hourly rate in mils (thousandths of USD).
+      example: 60
+    30_day_cost_mils:
+      type: integer
+      nullable: true
+      description: 30-day cost in mils (thousandths of USD).
+      example: 43200
     type:
       type: string
       description: Always "ip_block" for IP block addons.
