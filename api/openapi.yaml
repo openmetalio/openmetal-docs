@@ -54,6 +54,8 @@ info:
 servers:
   - url: https://api.central.openmetal.io
     description: Production server
+  - url: https://sandbox.api.central.openmetal.io
+    description: Sandbox server
 
 tags:
   - name: OAuth 2.0
