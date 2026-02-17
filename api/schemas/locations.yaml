@@ -8,12 +8,16 @@ Locations:
         displayName: "Ashburn, VA"
         region: "US"
         code: "iad3"
+        latitude: 39.0438
+        longitude: -77.4874
         release_status: "released"
       pod_2:
         label: "US-West"
         displayName: "Los Angeles, CA"
         region: "US"
         code: "lax3"
+        latitude: 33.9425
+        longitude: -118.4081
         release_status: "released"
   properties:
     locations:
@@ -40,6 +44,16 @@ Locations:
               type: string
               description: The datacenter location code designation.
               example: "iad3"
+            latitude:
+              type: number
+              format: double
+              description: The latitude coordinate of the datacenter location.
+              example: 39.0438
+            longitude:
+              type: number
+              format: double
+              description: The longitude coordinate of the datacenter location.
+              example: -77.4874
             release_status:
               type: string
               description: The current release status of the location.
