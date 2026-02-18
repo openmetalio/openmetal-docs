@@ -1497,6 +1497,12 @@ paths:
           description: Internal API error.
   /v1/products:
     $ref: './paths/products.yaml#/~1v1~1products'
+  /v1/prefixes/{prefix_id}:
+    $ref: './paths/prefixes.yaml#/~1v1~1prefixes~1{prefix_id}'
+  /v1/vlans/{vlan_id}:
+    $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}'
+  /v1/vlans/{vlan_id}/prefixes/{prefix_id}:
+    $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}~1prefixes~1{prefix_id}'
 
 components:
   securitySchemes:
