@@ -252,8 +252,9 @@ paths:
     get:
       tags:
         - Clouds
-      summary: Get hardware information
-      description: Get hardware information for a specific cloud. This includes current power state of all nodes.
+      summary: Get cloud stats
+      description: |
+        Get detailed stats for a specific cloud including node hardware information, power states, VLAN configuration, and service assignments.
       parameters:
         - name: cloudId
           in: path
@@ -265,13 +266,13 @@ paths:
         - bearerAuth: []
       responses:
         '200':
-          description: Hardware information found
+          description: Cloud stats retrieved successfully.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/CloudStats'
         '404':
-          description: Cloud stats not found.
+          description: Cloud not found.
 
   /v1/clouds/{cloudId}/vlans/{vlanId}:
     post:
@@ -1606,63 +1607,390 @@ components:
     CloudStats:
       type: object
       properties:
-        cloud_state: 
+        name:
+          type: string
+          description: The display name of the cloud.
+          example: "US East - Production Cloud"
+        description:
+          type: string
+          description: A description of the cloud.
+          example: "A Pre-prepared cloud generated automatically"
+        label:
+          type: string
+          description: Comma-separated labels identifying the deployment type and version.
+          example: "deploy-v2,pcc,pcc-3.0.7"
+        cloud_uuid:
+          type: string
+          format: uuid
+          description: The UUID of the cloud.
+          example: "00000000-0000-0000-0000-000000000001"
+        cloud_state:
           type: string
           description: The current state of the cloud.
           enum: ["RUNNING", "PENDING", "SEMAPHORE", "ERROR", "PROVISIONING", "DELETED", "PENDING-DELETE", "SUSPENDED"]
           example: "RUNNING"
-        cloud_uuid:
+        cloud_hostname:
           type: string
-          description: The UUID of the cloud.
-          example: "0000000-0000-00-00000"
+          description: The hostname or IP address used to access the cloud (typically the external VIP).
+          example: "198.51.100.10"
+        cloud_hosts:
+          type: array
+          description: List of node UUIDs assigned to this cloud.
+          items:
+            type: string
+            format: uuid
+          example:
+            - "00000000-0000-0000-0000-000000000010"
+            - "00000000-0000-0000-0000-000000000011"
+            - "00000000-0000-0000-0000-000000000012"
+        external_vip_address:
+          type: string
+          description: The external virtual IP address for the cloud.
+          example: "198.51.100.10"
+        internal_vip_address:
+          type: string
+          description: The internal virtual IP address for the cloud.
+          example: "192.168.3.254"
+        maintenance:
+          type: boolean
+          description: Whether the cloud is in maintenance mode.
+          example: false
+        creation_date:
+          type: string
+          format: date-time
+          description: When the cloud was created.
+          example: "2025-01-15T10:45:24.510406"
+        pending_number:
+          type: integer
+          description: Number of pending tasks for the cloud.
+          example: 0
+        pending_tasks:
+          type: array
+          description: List of pending task identifiers.
+          items:
+            type: string
+        pending_date:
+          type: string
+          format: date-time
+          nullable: true
+          description: The date of the next pending operation, if any.
+          example: null
+        prevent_delete:
+          type: boolean
+          description: Whether deletion is prevented for this cloud.
+          example: false
         nodes:
           type: array
-          description: A list of nodes in the cloud.
+          description: Nodes in the cloud with hardware and configuration details.
+          items:
+            $ref: '#/components/schemas/CloudStatsNode'
+        vlans:
+          type: array
+          description: VLANs assigned to the cloud.
+          items:
+            $ref: '#/components/schemas/CloudStatsVlan'
+        keys:
+          type: array
+          description: SSH public keys associated with the cloud.
           items:
             type: object
             properties:
-              hostname:
+              cloud_uuid:
                 type: string
-                description: hostname of the node.
-                example: "large.node1"
-              uuid:
+                format: uuid
+              public_key:
                 type: string
-                description: The UUID of the node.
-                example: "0000000-0000-00-00000"
-              type:
+                example: "ssh-rsa AAAA...truncated"
+
+    CloudStatsNode:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the node.
+          example: "00000000-0000-0000-0000-000000000010"
+        state:
+          type: string
+          description: The current state of the node.
+          example: "active"
+        power_state:
+          type: string
+          description: The current power state of the node.
+          enum: ["power on", "power off", "rebooting"]
+          example: "power on"
+        hostname:
+          type: string
+          description: The hostname of the node.
+          example: "great-wombat.local"
+        type:
+          type: string
+          description: The hardware type/SKU of the node.
+          example: "mb_standard_v1"
+        cpu:
+          type: integer
+          description: Number of CPU cores.
+          example: 16
+        memory:
+          type: string
+          description: Total memory (human-readable).
+          example: "135 GB"
+        rack:
+          type: string
+          description: The rack identifier where the node is located.
+          example: "504"
+        chassis:
+          type: string
+          description: The chassis position within the rack.
+          example: "36"
+        disks:
+          type: array
+          description: Summary of disks in the node.
+          items:
+            type: object
+            properties:
+              name:
                 type: string
-                description: The type of node.
-                example: "large_v1"
-              memory:
+                description: The device name.
+                example: "/dev/nvme0n1"
+              size:
                 type: string
-                description: The total memory of the node.
-                example: "64 GB"
-              power_state:
+                description: Disk size (human-readable).
+                example: "480 GB"
+              root:
+                type: boolean
+                description: Whether this is the root disk.
+                example: true
+        labels:
+          type: array
+          description: Roles assigned to the node (e.g. control, storage, compute).
+          items:
+            type: string
+          example: ["control", "storage", "compute"]
+        kolla_services:
+          type: object
+          description: OpenStack Kolla service assignments.
+          properties:
+            control:
+              type: boolean
+            monitoring:
+              type: boolean
+            network:
+              type: boolean
+            storage:
+              type: boolean
+            compute:
+              type: boolean
+        ceph_services:
+          type: object
+          description: Ceph storage service assignments.
+          properties:
+            mons:
+              type: boolean
+            mgrs:
+              type: boolean
+            osds:
+              type: boolean
+            rgws:
+              type: boolean
+        networks:
+          type: array
+          description: Network interfaces on the node with MAC addresses.
+          items:
+            type: object
+            properties:
+              mac_address:
                 type: string
-                description: The current power state of the node.
-                schema: {
-                  type: string,
-                  enum: ["power on", "power off", "rebooting"]
-                }
-                example: "power on"
-              disks:
+                description: The MAC address of the network interface.
+                example: "aa:bb:cc:dd:ee:01"
+        ipaddress:
+          type: string
+          description: The primary IP address of the node.
+          example: "198.51.100.12"
+        vlans:
+          type: array
+          description: VLANs configured on the node with their IP assignments.
+          items:
+            type: object
+            properties:
+              vlan:
+                type: integer
+                description: The VLAN ID.
+                example: 123
+              ip:
+                type: string
+                nullable: true
+                description: IP address on this VLAN (CIDR notation).
+                example: "198.51.100.12/28"
+              mtu:
+                type: integer
+                nullable: true
+                description: MTU configured for this VLAN.
+                example: 1500
+              label:
+                type: string
+                description: The purpose of this VLAN.
+                example: "inventory"
+        maintenance:
+          type: boolean
+          description: Whether the node is in maintenance mode.
+          example: false
+        creation_date:
+          type: string
+          format: date-time
+          description: When the node was first created in inventory.
+          example: "2023-10-24T17:33:42.512412"
+        last_updated:
+          type: string
+          format: date-time
+          description: When the node was last updated.
+          example: "2025-12-19T10:52:21.008394"
+        assigned_date:
+          type: string
+          format: date-time
+          description: When the node was assigned to this cloud.
+          example: "2025-12-19T10:46:57.296469"
+        properties:
+          type: object
+          description: Detailed hardware introspection data for the node.
+          properties:
+            cpu:
+              type: object
+              properties:
+                model_name:
+                  type: string
+                  example: "Intel(R) Xeon(R) D-2141I CPU @ 2.20GHz"
+                frequency:
+                  type: string
+                  example: "3000.0000"
+                count:
+                  type: integer
+                  example: 16
+                architecture:
+                  type: string
+                  example: "x86_64"
+            memory:
+              type: object
+              properties:
+                total:
+                  type: integer
+                  description: Total memory in bytes.
+                  example: 134807142400
+                physical_mb:
+                  type: integer
+                  description: Physical memory in megabytes.
+                  example: 131072
+            root_disk:
+              type: object
+              description: Root disk hardware details.
+              properties:
+                name:
+                  type: string
+                  example: "/dev/nvme0n1"
+                model:
+                  type: string
+                  example: "Micron_7300_MTFDHBA480TDF"
+                size:
+                  type: integer
+                  description: Disk size in bytes.
+                  example: 480103981056
+                rotational:
+                  type: boolean
+                  example: false
+            disks:
+              type: array
+              description: All disks with hardware-level details.
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    example: "/dev/nvme0n1"
+                  model:
+                    type: string
+                    example: "Micron_7300_MTFDHBA480TDF"
+                  size:
+                    type: integer
+                    description: Disk size in bytes.
+                    example: 480103981056
+                  rotational:
+                    type: boolean
+                    example: false
+
+    CloudStatsVlan:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The VLAN ID.
+          example: 123
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the VLAN resource.
+          example: "00000000-0000-0000-0000-000000000020"
+        label:
+          type: string
+          description: The purpose of the VLAN.
+          example: "inventory"
+        vlan_type:
+          type: string
+          description: The type of VLAN.
+          enum: ["routed", "internal"]
+          example: "routed"
+        state:
+          type: string
+          description: The current state of the VLAN.
+          enum: ["ROUTED", "ACTIVE"]
+          example: "ROUTED"
+        prefixes:
+          type: array
+          description: IP prefixes associated with this VLAN.
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                example: 123
+              cidr:
+                type: string
+                description: The CIDR notation of the prefix.
+                example: "198.51.100.112/28"
+              prefix_type:
+                type: string
+                enum: ["routed", "private"]
+                example: "routed"
+              usage:
+                type: string
+                description: The purpose of this prefix.
+                example: "inventory"
+              status:
+                type: string
+                enum: ["ROUTED", "ACTIVE"]
+                example: "ROUTED"
+              managed_addressing:
+                type: string
+                description: How IP addressing is managed within the prefix.
+                enum: ["pool", "all", "off"]
+                example: "pool"
+              ip_addrs:
                 type: array
-                description: A list of disks in the node.
+                description: IP addresses allocated from this prefix.
                 items:
                   type: object
                   properties:
-                    name:
+                    label:
                       type: string
-                      description: The name of the disk.
-                      example: "/dev/sda"
-                    size:
+                      example: "inventory"
+                    assigned_host:
                       type: string
-                      description: The size of the disk.
-                      example: "1 TB"
-                    root:
-                      type: boolean
-                      description: Indicates if the disk is the root disk.
-                      example: true
+                      format: uuid
+                      nullable: true
+                      description: UUID of the node this IP is assigned to, or null for VIPs.
+                    ip:
+                      type: string
+                      description: The IP address in CIDR notation.
+                      example: "198.51.100.118/28"
 
     InventoryAvailability:
       type: object
