@@ -1,6 +1,6 @@
 # Cycle IAL to OpenMetal API Endpoint Mapping
 
-This document maps each [Cycle Infrastructure Abstraction Layer (IAL)](https://cycle.io/docs/platform/infrastructure-abstraction-layer) endpoint to the corresponding [OpenMetal Central API](https://api.central.openmetal.io) endpoint(s). It serves as a reference for building the IAL integration against the OpenMetal API.
+This document maps each [Cycle Infrastructure Abstraction Layer (IAL)](https://cycle.io/docs/platform/infrastructure-abstraction-layer) endpoint to the corresponding [OpenMetal Central API](https://openmetal.io/docs/manuals/api) endpoint(s). It serves as a reference for building the IAL integration against the OpenMetal API.
 
 ## Getting Started
 
