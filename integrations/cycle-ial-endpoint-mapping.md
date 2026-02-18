@@ -84,7 +84,7 @@ Return available server types with hardware specs, pricing, and location availab
 
 ### 4. Configure Location
 
-**OpenMetal:** No equivalent endpoint. OpenMetal handles networking configuration automatically during provisioning, so this step is not applicable.
+**OpenMetal:** No direct equivalent. OpenMetal handles networking configuration automatically during provisioning. The closest analog is VLAN creation (`POST /v1/vlans`), which functions similarly to a VPC and defines the subnets/IP blocks used at a given location. However, VLAN creation is only needed for custom network configurations — default provisioning handles this automatically.
 
 ---
 
