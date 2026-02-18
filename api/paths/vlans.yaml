@@ -1,0 +1,244 @@
+"/v1/vlans/{vlan_id}":
+  delete:
+    tags:
+      - VLANs
+    summary: Delete VLAN
+    description: |
+      Permanently delete a VLAN.
+
+      ## Validation Requirements
+
+      ⚠️ **A VLAN cannot be deleted if:**
+
+      - **Non-user-created resource**: Only user-created VLANs (`created_from = "user"`) can be deleted by regular users. Internal resources created by OpenMetal require support agent access.
+      - **In Use by Cloud or Node**: VLAN is assigned to a cloud or node resource
+      - **Child IP Blocks**: This VLAN has one or more IP Blocks assigned to it
+
+      ## Reserved VLANs (Cannot be Deleted)
+
+      The following system VLANs cannot be deleted:
+      - `control` - Control plane networking
+      - `compute` - Compute node networking
+      - `storage` - Storage networking
+      - `tunnel` - Tunnel networking
+      - `octavia` - Load balancer networking
+      - `inventory` - Inventory management
+      - `provider` - Provider networking
+
+      ## Recommended Deletion Workflow
+
+      1. **Review resource relationships**: Query `GET /v1/vlans/{vlan_id}` to see all associated child IP Blocks(prefixes) or parent cloud resource assignments
+      2. **Check parent cloud assignments**: Verify VLAN has no parent cloud resource assignments
+      3. **Check child IP Blocks**: Verify VLAN has no child IP Blocks assigned to it
+      4. **Delete VLAN**: Execute DELETE request
+
+    parameters:
+      - name: vlan_id
+        in: path
+        required: true
+        description: The Central resource ID of the VLAN (hash ID format)
+        schema:
+          type: string
+          example: "XyZ789AbC"
+
+    security:
+      - bearerAuth: []
+
+    responses:
+      '200':
+        description: VLAN deleted successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "success"
+      '400':
+        description: Bad Request - Validation failure
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+            examples:
+              validation_failure:
+                summary: Validation failure
+                description: The request parameters did not pass validation.
+                value:
+                  errors:
+                    - name: "validation_failure"
+                      message: "Validation failure message"
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks manage permissions or the cloud is in a locked state.
+      '404':
+        description: Resource not found.
+
+"/v1/vlans/{vlan_id}/prefixes/{prefix_id}":
+  post:
+    tags:
+      - VLANs
+      - IP Blocks
+    summary: Assign Prefix to VLAN
+    description: |
+      Associate an existing prefix with a VLAN, enabling routing through the VLAN.
+
+      ## Validation Rules
+
+      - **Ownership mismatch**: Resources must have the same owner
+      - **Location mismatch**: Resources must be in the same pod_location
+      - **Existing VLAN assignment**: IP Block (prefix) cannot already be assigned to another VLAN
+
+    parameters:
+      - name: vlan_id
+        in: path
+        required: true
+        description: The Central resource ID of the VLAN
+        schema:
+          type: string
+          example: "XyZ789AbC"
+      - name: prefix_id
+        in: path
+        required: true
+        description: The Central resource ID of the prefix
+        schema:
+          type: string
+          example: "AbC123XyZ"
+
+    security:
+      - bearerAuth: []
+
+    responses:
+      '200':
+        description: Prefix assigned to VLAN successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "success"
+      '400':
+        description: Bad Request - Validation failure
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+            examples:
+              validation_failure:
+                summary: Validation failure
+                description: The request parameters did not pass validation.
+                value:
+                  errors:
+                    - name: "validation_failure"
+                      message: "Validation failure"
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks manage permissions or the cloud is in a locked state.
+      '404':
+        description: Resource not found.
+  delete:
+    tags:
+      - VLANs
+      - IP Blocks
+    summary: Unassign Prefix from VLAN
+    description: |
+      Remove the association between a prefix and a VLAN without deleting either resource.
+
+      ## Validation Requirements
+
+      ⚠️ **Unassignment restrictions:**
+
+      - **Non-user-created VLAN**: Only user-created VLANs (`created_from = "user"`) can be modified by regular users. System generated VLANs require support agent access.
+
+      ## Important Notes
+
+      - The IP Block (prefix) remains active and can be reassigned to another VLAN
+      - The VLAN remains active and can have other IP Blocks (prefixes) assigned
+      - No billing changes occur
+      - Only user-created VLANs can be modified by regular users
+
+    parameters:
+      - name: vlan_id
+        in: path
+        required: true
+        description: The Central resource ID of the VLAN
+        schema:
+          type: string
+          example: "XyZ789AbC"
+      - name: prefix_id
+        in: path
+        required: true
+        description: The Central resource ID of the prefix
+        schema:
+          type: string
+          example: "AbC123XyZ"
+
+    security:
+      - bearerAuth: []
+
+    responses:
+      '200':
+        description: Prefix unassigned from VLAN successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "success"
+      '400':
+        description: Bad Request - Validation failure
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+            examples:
+              validation_failure:
+                summary: Validation failure
+                description: The request parameters did not pass validation.
+                value:
+                  errors:
+                    - name: "validation_failure"
+                      message: "Validation failure"
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks manage permissions or the cloud is in a locked state.
+      '404':
+        description: Resource not found.

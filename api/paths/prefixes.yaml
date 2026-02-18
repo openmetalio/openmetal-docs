@@ -1,0 +1,77 @@
+"/v1/prefixes/{prefix_id}":
+  delete:
+    tags:
+      - IP Blocks
+    summary: Delete IP Address Block (prefix)
+    description: |
+      Permanently delete a IP Address Block (prefix)
+
+      ## Validation Requirements
+
+      ⚠️ **A IP Address Block (prefix) cannot be deleted if:**
+
+      - **Non-user-created resource**: Only user-created IP Address Blocks (prefixes) (`created_from = "user"`) can be deleted by regular users. Internal resources created by OpenMetal require support agent access.
+      - **Assigned to VLAN**: IP Block (Prefix) must be unassigned from all VLANs first using the unassign endpoint.
+      - **IP addresses in use**: No IP addresses from this IP Block (prefix) can be assigned to nodes.
+
+      ## Recommended Deletion Workflow
+
+      1. **Check for active IP assignments**: Query GET /v1/deployment/network/prefix/{prefixId} to verify no IPs from this prefix are assigned to nodes
+      2. **Unassign from VLAN** (if applicable): Use `DELETE /v1/vlans/{vlan_id}/prefixes/{prefix_id}` if prefix is currently assigned to a VLAN
+      3. **Delete prefix**: Execute DELETE request once all dependencies are cleared
+
+
+    parameters:
+      - name: prefix_id
+        in: path
+        required: true
+        description: The Central resource ID of the prefix (hash ID format)
+        schema:
+          type: string
+          example: "AbC123XyZ"
+
+    security:
+      - bearerAuth: []
+
+    responses:
+      '200':
+        description: Prefix deleted successfully
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  example: "success"
+
+      '400':
+        description: Bad Request - Validation failure
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+            examples:
+              validation_failure:
+                summary: Validation failure
+                description: The request parameters did not pass validation.
+                value:
+                  errors:
+                    - name: "validation_failure"
+                      message: "Validation failure message"
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks manage permissions or the cloud is in a locked state.
+      '404':
+        description: Resource not found.
