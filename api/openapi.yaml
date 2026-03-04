@@ -82,9 +82,9 @@ tags:
       | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
       | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
 
-      All modes require `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`.
+      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`. These fields are not required for ramdisk deployments.
 
-      Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode, or used standalone without any image fields.
+      Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
@@ -624,9 +624,9 @@ paths:
 
         - Only **one** deployment mode may be specified per configuration
         - `image_ramdisk_kernel` and `image_ramdisk_ramdisk` must always be provided together
-        - `image_os_hash_algo` and `image_os_hash_value` are **required** whenever any image field is set
+        - `image_os_hash_algo` and `image_os_hash_value` are **required** for disk deployments (`image_source`)
         - `image_os_hash_algo` must be one of: `md5`, `sha256`, `sha512`
-        - A configuration with only `cloud_init` data (no image fields) is valid and uses the cloud's default OS image
+        - One deployment mode is always required — a configuration must include `image_source`, `image_ramdisk_kernel` + `image_ramdisk_ramdisk`, or `image_ramdisk_boot_iso`
       security:
         - bearerAuth: []
       requestBody:
@@ -648,25 +648,21 @@ paths:
                     image_os_hash_value: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
               ramdisk_kernel:
                 summary: Ramdisk deployment (kernel + initramfs)
-                description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur.
+                description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
                 value:
                   label: "CoreOS Ramdisk Deploy"
                   description: "Ramdisk deployment using kernel and initramfs"
                   fields:
                     image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
                     image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
-                    image_os_hash_algo: "sha256"
-                    image_os_hash_value: "a1b2c3d4e5f6789012345678abcdef0123456789abcdef0123456789abcdef01"
               ramdisk_boot_iso:
                 summary: Ramdisk deployment (boot ISO)
-                description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images.
+                description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images. Hash fields are not required for ramdisk deployments.
                 value:
                   label: "Rescue ISO Boot"
                   description: "Boot from ISO loaded into ramdisk"
                   fields:
                     image_ramdisk_boot_iso: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
-                    image_os_hash_algo: "sha512"
-                    image_os_hash_value: "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
               disk_with_cloud_init:
                 summary: Disk deployment with cloud-init
                 description: A disk deployment with cloud-init user data for automated post-provisioning setup.
@@ -691,7 +687,7 @@ paths:
             Invalid deployment configuration. Possible validation errors:
             - Mutually exclusive deployment modes specified (e.g., both `image_source` and `image_ramdisk_kernel`)
             - Incomplete ramdisk pair (`image_ramdisk_kernel` without `image_ramdisk_ramdisk` or vice versa)
-            - Missing `image_os_hash_algo` or `image_os_hash_value` when image fields are present
+            - Missing `image_os_hash_algo` or `image_os_hash_value` when `image_source` is specified
             - Invalid `image_os_hash_algo` value
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
@@ -2426,12 +2422,12 @@ components:
               example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
             image_os_hash_algo:
               type: string
-              description: Hash algorithm used for image integrity verification. Required when any image field is set.
+              description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
               enum: ["md5", "sha256", "sha512"]
               example: "sha256"
             image_os_hash_value:
               type: string
-              description: Hash value for image integrity verification. Required when any image field is set.
+              description: Hash value for image integrity verification. Required when `image_source` is set.
               example: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             cloud_init:
               type: object
@@ -2462,8 +2458,8 @@ components:
       description: |
         Request body for creating a new deployment configuration.
 
-        The `fields` object must specify one of three mutually exclusive deployment modes,
-        or contain only `cloud_init` data (which uses the cloud's default OS image).
+        The `fields` object must specify one of three mutually exclusive deployment modes.
+        Cloud-init user data can optionally be combined with any mode.
         See the [Configurations overview](#tag/Configurations) for details on deployment modes.
       required:
         - label
@@ -2480,7 +2476,7 @@ components:
           type: object
           description: |
             Configuration fields containing deployment image and/or cloud-init settings.
-            Only one deployment mode may be specified. All image modes require `image_os_hash_algo` and `image_os_hash_value`.
+            Only one deployment mode may be specified. Disk deployments (`image_source`) require `image_os_hash_algo` and `image_os_hash_value`.
           properties:
             image_source:
               type: string
@@ -2500,12 +2496,12 @@ components:
               example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
             image_os_hash_algo:
               type: string
-              description: Hash algorithm used for image integrity verification. Required when any image field is set.
+              description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
               enum: ["md5", "sha256", "sha512"]
               example: "sha256"
             image_os_hash_value:
               type: string
-              description: Hash value for image integrity verification. Required when any image field is set.
+              description: Hash value for image integrity verification. Required when `image_source` is set.
               example: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             cloud_init:
               type: object
