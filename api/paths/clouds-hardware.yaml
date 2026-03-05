@@ -1,0 +1,106 @@
+"/v1/clouds/{cloudId}/hardware/{nodeUuid}":
+  delete:
+    tags:
+      - Clouds
+    summary: Remove hardware node
+    description: |
+      Remove a hardware node from a cloud. The node is detached from the cloud and its inventory is cleaned up asynchronously.
+
+      ## Authorization
+
+      Requires the **manage** capability on the cloud resource. This limits access to users with the **owner** role on the cloud (resource owner, organization admin, or support agent).
+
+    parameters:
+      - name: cloudId
+        in: path
+        required: true
+        description: The Central resource ID of the cloud (hash ID format).
+        schema:
+          type: string
+          example: "0Absd1"
+      - name: nodeUuid
+        in: path
+        required: true
+        description: The UUID of the node to remove. This can be found in the `nodes[].uuid` field of the [GET /v1/clouds/{cloudId}/stats](#tag/Clouds/paths/~1v1~1clouds~1{cloudId}~1stats/get) response.
+        schema:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+
+    security:
+      - bearerAuth: []
+
+    responses:
+      '200':
+        description: |
+          Node removed successfully. Returns the updated cloud object with the same schema as [GET /v1/clouds/{cloudId}/stats](#tag/Clouds/paths/~1v1~1clouds~1{cloudId}~1stats/get).
+        content:
+          application/json:
+            schema:
+              $ref: '../openapi.yaml#/components/schemas/CloudStats'
+      '400':
+        description: Bad Request - Validation failure
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                errors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      message:
+                        type: string
+            examples:
+              trial_restriction:
+                summary: Trial cloud restriction
+                description: The cloud is a trial cloud without full features enabled.
+                value:
+                  status: 400
+                  errors:
+                    - name: "unavailable"
+                      message: "This action is unavailable to trial users."
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User does not have manage (owner) access to the cloud.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: integer
+                name:
+                  type: string
+                message:
+                  type: string
+            examples:
+              unauthorized:
+                summary: Insufficient permissions
+                value:
+                  status: 403
+                  name: "unauthorized"
+                  message: "Unauthorized access to: fmcloud"
+      '500':
+        description: Internal Server Error - The node could not be removed from the underlying deployment.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                message:
+                  type: string
+            examples:
+              removal_failed:
+                summary: Node removal failed
+                value:
+                  name: "server_error"
+                  message: "Unable to remove node 550e8400-e29b-41d4-a716-446655440000 from Cloud UUID: 00000000-0000-0000-0000-000000000001"
