@@ -436,7 +436,21 @@ paths:
       tags:
         - Orders
       summary: Create a new order
-      description: Create a new order for baremetal servers or private cloud products running OpenStack.
+      description: |
+        Create a new order for baremetal servers or private cloud products running OpenStack.
+
+        ## Deploying a New Cloud
+
+        By default, when no `cloud_id` is specified on an order item, a new cloud will be deployed with the ordered hardware.
+
+        ## Adding Nodes to an Existing Cloud
+
+        To add hardware nodes to an existing cloud, include the `cloud_id` field in the item configuration. The new node will be provisioned and added to the specified cloud's infrastructure, with billing attached to the existing cloud.
+
+        - The `cloud_id` must reference a cloud owned by your organization
+        - The `location` must match the cloud's datacenter location
+        - The `type` must match the cloud's type (`baremetal` or `pcc`)
+        - The cloud must be fully provisioned (`provision_status: "complete"`) before nodes can be added
       security:
         - bearerAuth: []
       requestBody:
@@ -492,6 +506,38 @@ paths:
                         location: "pod_1"
                         type: "pcc"
                         quantity: 1
+              add_baremetal_node_to_cloud:
+                summary: Add a baremetal node to an existing cloud.
+                description: Add a new baremetal node to an existing baremetal cloud by specifying the cloud_id. The node will be provisioned and added to the cloud's infrastructure.
+                value:
+                  label: "Add Baremetal Node to Cloud"
+                  description: "Add 1 medium_v4 baremetal node to an existing cloud."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        cloud_id: "0Absd1"
+                        modifications:
+                          operating_system:
+                            os_key: "Ubuntu"
+                            version_key: "22.04 LTS"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
+              add_pcc_node_to_cloud:
+                summary: Add a node to an existing PCC cloud.
+                description: Add a new node to an existing PCC (Private Cloud Core) cloud by specifying the cloud_id. The node will be provisioned and integrated into the OpenStack cluster.
+                value:
+                  label: "Add PCC Node to Cloud"
+                  description: "Add 1 medium_v4 node to an existing PCC cloud."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "pcc"
+                        quantity: 1
+                        cloud_id: "0Absd1"
       responses:
         '200':
           description: Order created successfully.
@@ -1504,6 +1550,8 @@ paths:
     $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}'
   /v1/vlans/{vlan_id}/prefixes/{prefix_id}:
     $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}~1prefixes~1{prefix_id}'
+  /v1/clouds/{cloudId}/hardware/{nodeUuid}:
+    $ref: './paths/clouds-hardware.yaml#/~1v1~1clouds~1{cloudId}~1hardware~1{nodeUuid}'
 
 components:
   securitySchemes:
@@ -2088,7 +2136,10 @@ components:
                         example: "22.04 LTS"
               cloud_id:
                 type: string
-                description: Used to specify an existing cloud that the product should be added to.
+                description: |
+                  Specify an existing cloud to add this product to. When provided, the ordered hardware will be provisioned and added to the specified cloud's infrastructure rather than creating a new cloud. Billing for the new node will be attached to the existing cloud.
+
+                  The cloud must be fully provisioned and owned by the same organization placing the order.
                 example: "3Dop2VdpKA"
         config_options:
           type: object
