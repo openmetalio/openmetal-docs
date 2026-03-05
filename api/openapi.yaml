@@ -111,6 +111,8 @@ tags:
     description: Operations for managing Virtual LAN (VLAN) resources for private clouds.
   - name: IP Blocks
     description: Operations for managing IP Address Block (Prefix) resources for private clouds.
+  - name: Organizations
+    description: Operations for creating organizations and managing their members.
 
 x-tagGroups:
   - name: Authentication
@@ -126,6 +128,7 @@ x-tagGroups:
       - Orders
       - VLANs
       - IP Blocks
+      - Organizations
 
 paths:
   /v1/oauth2/token:
@@ -1632,6 +1635,230 @@ paths:
   /v1/clouds/{cloudId}/hardware/{nodeUuid}:
     $ref: './paths/clouds-hardware.yaml#/~1v1~1clouds~1{cloudId}~1hardware~1{nodeUuid}'
 
+  /v1/organizations:
+    post:
+      tags:
+        - Organizations
+      summary: Create an organization
+      description: Create a new organization. The authenticated user becomes the owner.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationCreateRequest'
+      responses:
+        '200':
+          description: Organization created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized.
+        '422':
+          description: Validation error.
+
+  /v1/organizations/memberships:
+    get:
+      tags:
+        - Organizations
+      summary: List your organizations
+      description: |
+        Retrieve all organizations the authenticated user belongs to, including organizations where they are an owner, maintainer, or member.
+
+        Each organization includes a `members` array which can be used to determine the current user's role.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of organizations the user belongs to.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationWithMembers'
+        '401':
+          description: Unauthorized.
+
+  /v1/organizations/{organizationId}:
+    get:
+      tags:
+        - Organizations
+      summary: Get an organization
+      description: Retrieve details of a specific organization by ID.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Organization found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Organization not found.
+
+  /v1/organizations/{organizationId}/memberships:
+    get:
+      tags:
+        - Organizations
+      summary: List organization members
+      description: Retrieve all members of the specified organization, including pending invitations.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A list of members.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganizationMember'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden.
+        '404':
+          description: Organization not found.
+    post:
+      tags:
+        - Organizations
+      summary: Add a member
+      description: |
+        Invite one or more users to the organization by email address. An invitation email is sent to each address. Users without an existing account will be prompted to register.
+
+        You may invite up to 20 users per request.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationInviteRequest'
+      responses:
+        '200':
+          description: Invitation sent successfully.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden. Requires maintainer or owner role.
+        '404':
+          description: Organization not found.
+        '422':
+          description: Validation error.
+
+  /v1/organizations/{organizationId}/memberships/{membershipId}:
+    patch:
+      tags:
+        - Organizations
+      summary: Update a member's role
+      description: |
+        Update the role of an existing organization member.
+
+        Role management rules:
+        - You cannot change your own role
+        - You cannot grant a role higher than your own
+        - You cannot demote a member with a higher role than you
+        - At least one owner must remain in the organization
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization.
+          schema:
+            type: string
+        - name: membershipId
+          in: path
+          required: true
+          description: The ID of the membership to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - role
+              properties:
+                role:
+                  type: string
+                  enum: [owner, maintainer, member, orgBilling, orgSupport]
+                  description: The new role to assign to the member.
+                  example: maintainer
+      responses:
+        '200':
+          description: Member role updated successfully.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden. Insufficient permissions to assign this role.
+        '404':
+          description: Organization or membership not found.
+        '422':
+          description: Validation error.
+    delete:
+      tags:
+        - Organizations
+      summary: Remove a member
+      description: Remove a member from the organization. You cannot remove yourself if you are the sole owner.
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The ID of the organization.
+          schema:
+            type: string
+        - name: membershipId
+          in: path
+          required: true
+          description: The ID of the membership to remove.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Member removed successfully.
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden. Insufficient permissions or sole owner cannot be removed.
+        '404':
+          description: Organization or membership not found.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -3052,3 +3279,129 @@ components:
           type: string
           description: The hostname or identifier of the host this IP is assigned to.
           example: "webserver.example.com"
+
+    Organization:
+      type: object
+      description: An organization resource.
+      properties:
+        organization_id:
+          type: string
+          description: The unique identifier for the organization.
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        name:
+          type: string
+          description: The display name of the organization.
+          example: "Acme Corp"
+        primary_email:
+          type: string
+          format: email
+          description: The primary contact email for the organization.
+          example: "contact@acme.com"
+        billing_email:
+          type: string
+          format: email
+          description: The billing contact email for the organization.
+          example: "billing@acme.com"
+        website:
+          type: string
+          description: The website URL of the organization.
+          example: "https://acme.com"
+
+    OrganizationWithMembers:
+      allOf:
+        - $ref: '#/components/schemas/Organization'
+        - type: object
+          properties:
+            members:
+              type: array
+              description: The members of the organization.
+              items:
+                $ref: '#/components/schemas/OrganizationMember'
+
+    OrganizationMember:
+      type: object
+      description: A membership record linking a user to an organization.
+      properties:
+        membership_id:
+          type: string
+          description: The unique identifier for this membership record.
+          example: "m1a2b3c4-d5e6-7890-abcd-ef1234567890"
+        role:
+          type: string
+          description: The member's role within the organization.
+          enum: [owner, maintainer, member, orgBilling, orgSupport]
+          example: "member"
+        invite_email:
+          type: string
+          format: email
+          description: Set if this membership is a pending invitation that has not yet been accepted.
+          example: "invitee@example.com"
+        invite_expired_at:
+          type: string
+          format: date-time
+          description: The expiration timestamp of the pending invitation, if applicable.
+          example: "2024-02-15T12:00:00Z"
+        account:
+          type: object
+          description: The account associated with this membership. Null for pending invitations.
+          nullable: true
+          properties:
+            account_id:
+              type: string
+              description: The unique identifier of the user's account.
+              example: "u1a2b3c4-d5e6-7890-abcd-ef1234567890"
+            email:
+              type: string
+              format: email
+              description: The email address of the user.
+              example: "user@example.com"
+
+    OrganizationCreateRequest:
+      type: object
+      required:
+        - name
+        - primary_email
+      properties:
+        name:
+          type: string
+          description: The display name of the organization.
+          example: "Acme Corp"
+        primary_email:
+          type: string
+          format: email
+          description: The primary contact email for the organization.
+          example: "contact@acme.com"
+        billing_email:
+          type: string
+          format: email
+          description: The billing contact email. Defaults to primary_email if omitted.
+          example: "billing@acme.com"
+        website:
+          type: string
+          description: The website URL of the organization.
+          example: "https://acme.com"
+
+    OrganizationInviteRequest:
+      type: object
+      required:
+        - email
+        - role
+      properties:
+        email:
+          oneOf:
+            - type: string
+              format: email
+              description: A single email address to invite.
+              example: "user@example.com"
+            - type: array
+              description: A list of up to 20 email addresses to invite.
+              maxItems: 20
+              items:
+                type: string
+                format: email
+              example: ["user1@example.com", "user2@example.com"]
+        role:
+          type: string
+          enum: [owner, maintainer, member, orgBilling, orgSupport]
+          description: The role to assign to the invited user(s).
+          example: "member"
