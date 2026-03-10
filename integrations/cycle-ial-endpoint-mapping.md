@@ -109,17 +109,20 @@ To add a server to an existing cloud, include the `cloud_id` field on the order 
 
 Baremetal orders require either an `operating_system` or a `deployment_configuration` in the item's `modifications` field. Configurations are reusable templates created via `POST /v1/configurations` and managed via full CRUD endpoints (`GET/POST /v1/configurations`, `GET/PATCH/DELETE /v1/configurations/{configurationId}`).
 
-Configurations support three mutually exclusive deployment modes:
+Configurations currently support disk deployment mode:
 
 | Mode | Required Fields | Description |
 |------|----------------|-------------|
 | **Disk** | `image_source` + `image_os_hash_algo` + `image_os_hash_value` | Traditional whole-disk image written directly to disk |
+
+<!-- Ramdisk deployment modes are temporarily disabled and will be re-enabled in a future release.
 | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
 | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
 
 For CycleOS or other operating systems that run in memory, use either the ramdisk kernel or ramdisk ISO mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments.
+-->
 
-Cloud-init user data can be combined with any deployment mode via the `cloud_init.data` field in the configuration.
+Cloud-init user data can be combined with disk deployment via the `cloud_init.data` field in the configuration.
 
 > **Note:** Provisioning typically takes 15-30 minutes from order creation to the cloud reaching `complete` status.
 
