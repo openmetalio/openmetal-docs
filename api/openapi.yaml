@@ -111,6 +111,13 @@ tags:
     description: Operations for managing Virtual LAN (VLAN) resources for private clouds.
   - name: IP Blocks
     description: Operations for managing IP Address Block (Prefix) resources for private clouds.
+  - name: SSH Keys
+    description: |
+      Operations for managing SSH public keys.
+
+      SSH public keys can be stored and managed for use during bare metal provisioning. Keys are validated on create/update and a SHA256 fingerprint is automatically computed from the key data.
+
+      Supported key types: ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521, sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com
 
 x-tagGroups:
   - name: Authentication
@@ -119,13 +126,14 @@ x-tagGroups:
   - name: Core Endpoints
     tags:
       - Clouds
-      - Nodes
-      - Deployment
       - Configurations
+      - Deployment
       - Inventory
-      - Orders
-      - VLANs
       - IP Blocks
+      - Nodes
+      - Orders
+      - SSH Keys
+      - VLANs
 
 paths:
   /v1/oauth2/token:
@@ -508,6 +516,24 @@ paths:
                           deployment_configuration: "0a7Y8ABym5"
                     config_options:
                       public_key: "ssh-rsa AAAA..."
+              baremetal_order_with_ssh_key_ids:
+                summary: Baremetal order using saved SSH key references.
+                description: A baremetal order that references existing SSH public key resources by ID instead of providing raw key data.
+                value:
+                  label: "Baremetal Medium V4 with saved SSH keys"
+                  description: "Baremetal Medium V4 cluster in Ashburn, VA with saved SSH keys."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        modifications:
+                          operating_system:
+                            os_key: "Ubuntu"
+                            version_key: "22.04 LTS"
+                    config_options:
+                      public_key_ids: ["OvZyEGQwWj", "Kp3mNxRtYq"]
               pcc_order:
                 summary: OpenStack PCC order.
                 description: A PCC order running OpenStack.
@@ -1632,6 +1658,181 @@ paths:
   /v1/clouds/{cloudId}/hardware/{nodeUuid}:
     $ref: './paths/clouds-hardware.yaml#/~1v1~1clouds~1{cloudId}~1hardware~1{nodeUuid}'
 
+  # SSH Public Key Endpoints
+  /v1/public-keys:
+    get:
+      tags:
+        - SSH Keys
+      summary: List public keys
+      description: |
+        Retrieve a list of all active SSH public keys the authenticated user has access to (owned, shared via team, or organization).
+
+        Returns an empty array `[]` when the user has no public keys.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: A list of public key resources.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicKeyCollection'
+    post:
+      tags:
+        - SSH Keys
+      summary: Create a public key
+      description: |
+        Create a new SSH public key resource.
+
+        The key is validated on creation and a SHA256 fingerprint is automatically computed from the key data. The fingerprint cannot be set directly.
+
+        **Supported key types:** ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521, sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePublicKeyRequest'
+            examples:
+              ed25519_key:
+                summary: ED25519 key
+                description: Create a public key with an ED25519 SSH key.
+                value:
+                  label: "My SSH Key"
+                  description: "Work laptop key"
+                  fields:
+                    key_data: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtTMYFhxSBKt5do8C2ynGRTcQFMHOJ/BFVsFmVBcSdn user@workstation"
+              rsa_key:
+                summary: RSA key
+                description: Create a public key with an RSA SSH key.
+                value:
+                  label: "RSA Deploy Key"
+                  fields:
+                    key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7... user@host"
+      responses:
+        '200':
+          description: Public key created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicKey'
+        '400':
+          description: |
+            Bad Request. Possible causes:
+            - Missing required field (`label` or `fields.key_data`)
+            - Invalid SSH public key format
+            - Unsupported SSH key type
+            - Invalid base64 key data
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PublicKeyErrorResponse'
+                  - $ref: '#/components/schemas/PublicKeyValidationError'
+
+  /v1/public-keys/{publicKeyId}:
+    get:
+      tags:
+        - SSH Keys
+      summary: Get a public key
+      description: |
+        Retrieve details of a specific SSH public key by its ID.
+      parameters:
+        - name: publicKeyId
+          in: path
+          required: true
+          description: The hashed resource ID of the public key.
+          schema:
+            type: string
+            example: "OvZyEGQwWj"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Public key found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicKeyWithAccess'
+    patch:
+      tags:
+        - SSH Keys
+      summary: Update a public key
+      description: |
+        Update an existing SSH public key. All fields are optional — only provided fields are changed.
+
+        When `key_data` is updated, the `fingerprint` is automatically recomputed. The `fingerprint` field cannot be set directly.
+      parameters:
+        - name: publicKeyId
+          in: path
+          required: true
+          description: The hashed resource ID of the public key to update.
+          schema:
+            type: string
+            example: "OvZyEGQwWj"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePublicKeyRequest'
+            examples:
+              update_label:
+                summary: Update label only
+                description: Update just the display name of the key.
+                value:
+                  label: "My Updated SSH Key"
+              update_key_data:
+                summary: Update key data
+                description: Replace the SSH key data (fingerprint is automatically recomputed).
+                value:
+                  fields:
+                    key_data: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7... updated@example.com"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Public key updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicKeyWithAccess'
+        '400':
+          description: |
+            Bad Request. When `key_data` is provided, the same validation errors as create apply:
+            - Invalid SSH public key format
+            - Unsupported SSH key type
+            - Invalid base64 key data
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/PublicKeyErrorResponse'
+                  - $ref: '#/components/schemas/PublicKeyValidationError'
+    delete:
+      tags:
+        - SSH Keys
+      summary: Delete a public key
+      description: |
+        Delete an SSH public key. This performs a soft delete (sets `is_active` to `false`).
+      parameters:
+        - name: publicKeyId
+          in: path
+          required: true
+          description: The hashed resource ID of the public key to delete.
+          schema:
+            type: string
+            example: "OvZyEGQwWj"
+      security:
+        - bearerAuth: []
+      responses:
+        '204':
+          description: Public key deleted successfully. No content returned.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -2226,8 +2427,15 @@ components:
           properties:
             public_key:
               type: string
-              description: SSH public key to be added to the node during provisioning. Required for baremetal orders.
+              description: Raw SSH public key string to be added to the node during provisioning. Either `public_key` or `public_key_ids` is required for baremetal orders.
               example: "ssh-rsa AAAA..."
+            public_key_ids:
+              type: array
+              items:
+                type: string
+              description: |
+                Array of SSH public key resource IDs. These reference keys created via the [SSH Keys API](#tag/SSH-Keys). The key data is resolved from each ID during provisioning. Either `public_key` or `public_key_ids` is required for baremetal orders.
+              example: ["OvZyEGQwWj", "Kp3mNxRtYq"]
 
     OrderRequest:
       type: object
@@ -3052,3 +3260,174 @@ components:
           type: string
           description: The hostname or identifier of the host this IP is assigned to.
           example: "webserver.example.com"
+
+    # SSH Public Key Schemas
+    PublicKey:
+      type: object
+      description: An SSH public key resource.
+      properties:
+        id:
+          type: string
+          description: Hashed resource ID.
+          example: "OvZyEGQwWj"
+        type:
+          type: string
+          description: Resource type identifier.
+          example: "public-keys"
+        label:
+          type: string
+          description: User-facing name for the key.
+          example: "My SSH Key"
+        description:
+          type: string
+          description: Optional description.
+          example: "Work laptop key"
+        fields:
+          type: object
+          properties:
+            fingerprint:
+              type: string
+              description: SHA256 fingerprint, automatically computed from key_data on create/update. Cannot be set directly.
+              example: "SHA256:x784d0MwRGXcnZRmbPKT4JqWqp1NtCuxhZcYPcuTcKw"
+            key_data:
+              type: string
+              description: Full SSH public key string.
+              example: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtTMYFhxSBKt5do8C2ynGRTcQFMHOJ/BFVsFmVBcSdn user@workstation"
+            organization_id:
+              type:
+                - string
+                - 'null'
+              description: Organization association (system-managed).
+              example: null
+        created_at:
+          type: string
+          format: date-time
+          description: Creation timestamp (ISO 8601).
+          example: "2026-03-02T20:57:40+00:00"
+        updated_at:
+          type: string
+          format: date-time
+          description: Last update timestamp (ISO 8601).
+          example: "2026-03-02T20:57:40+00:00"
+        created_by:
+          type: string
+          description: Hashed ID of the creating user.
+          example: "nDG3DAKMOr"
+        created_by_name:
+          type: string
+          description: Display name of the creating user.
+          example: ""
+
+    PublicKeyWithAccess:
+      description: A single public key resource with access role information.
+      allOf:
+        - $ref: '#/components/schemas/PublicKey'
+        - type: object
+          properties:
+            access:
+              type: object
+              description: The authenticated user's access role for this resource.
+              properties:
+                role:
+                  type: string
+                  description: The user's role for this resource.
+                  enum: ["owner", "maintainer", "member"]
+                  example: "owner"
+
+    PublicKeyCollection:
+      description: A public key resource in a list response.
+      allOf:
+        - $ref: '#/components/schemas/PublicKey'
+
+    CreatePublicKeyRequest:
+      type: object
+      required:
+        - label
+        - fields
+      properties:
+        label:
+          type: string
+          description: Display name for the key.
+          example: "My SSH Key"
+        description:
+          type: string
+          description: Optional description.
+          example: "Work laptop key"
+        fields:
+          type: object
+          required:
+            - key_data
+          properties:
+            key_data:
+              type: string
+              description: |
+                Full SSH public key string in the format: `<key-type> <base64-data> [comment]`
+
+                Supported key types: ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521, sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com
+              example: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtTMYFhxSBKt5do8C2ynGRTcQFMHOJ/BFVsFmVBcSdn user@workstation"
+
+    UpdatePublicKeyRequest:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Updated display name for the key.
+          example: "My Updated SSH Key"
+        description:
+          type: string
+          description: Updated description.
+          example: "Updated description"
+        fields:
+          type: object
+          properties:
+            key_data:
+              type: string
+              description: |
+                New SSH public key string. When updated, the fingerprint is automatically recomputed.
+
+                Format: `<key-type> <base64-data> [comment]`
+              example: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC7... updated@example.com"
+
+    PublicKeyErrorResponse:
+      type: object
+      description: Framework-level error response.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code.
+          example: 400
+        message:
+          type: string
+          description: Human-readable status message.
+          example: "Bad Request"
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Error identifier.
+                example: "creation_failed"
+              message:
+                type: string
+                description: Human-readable error description.
+                example: "Invalid parameters supplied."
+
+    PublicKeyValidationError:
+      type: object
+      description: Hook validation error response (SSH key validation failures).
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Error identifier.
+                example: "validation_error"
+              message:
+                type: string
+                description: Human-readable validation error description.
+                example: "Invalid SSH public key format. Expected: <key-type> <base64-data> [comment]"
