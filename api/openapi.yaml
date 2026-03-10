@@ -71,6 +71,20 @@ tags:
       Operations for managing custom deployment configurations.
 
       A **configuration** is a reusable template that defines what operating system image and/or cloud-init user data should be applied to bare metal hardware during provisioning. Instead of specifying an OS image directly in each order, you can create a configuration once and reference it by ID when placing bare metal orders via the `deployment_configuration` field in order modifications.
+
+      ## Deployment Modes
+
+      Configurations support three mutually exclusive deployment modes:
+
+      | Mode | Required Fields | Description |
+      |------|----------------|-------------|
+      | **Disk** | `image_source` | Traditional whole-disk image written directly to disk |
+      | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
+      | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
+
+      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`. These fields are not required for ramdisk deployments.
+
+      Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
@@ -444,7 +458,21 @@ paths:
       tags:
         - Orders
       summary: Create a new order
-      description: Create a new order for baremetal servers or private cloud products running OpenStack.
+      description: |
+        Create a new order for baremetal servers or private cloud products running OpenStack.
+
+        ## Deploying a New Cloud
+
+        By default, when no `cloud_id` is specified on an order item, a new cloud will be deployed with the ordered hardware.
+
+        ## Adding Nodes to an Existing Cloud
+
+        To add hardware nodes to an existing cloud, include the `cloud_id` field in the item configuration. The new node will be provisioned and added to the specified cloud's infrastructure, with billing attached to the existing cloud.
+
+        - The `cloud_id` must reference a cloud owned by your organization
+        - The `location` must match the cloud's datacenter location
+        - The `type` must match the cloud's type (`baremetal` or `pcc`)
+        - The cloud must be fully provisioned (`provision_status: "complete"`) before nodes can be added
       security:
         - bearerAuth: []
       requestBody:
@@ -518,6 +546,38 @@ paths:
                         location: "pod_1"
                         type: "pcc"
                         quantity: 1
+              add_baremetal_node_to_cloud:
+                summary: Add a baremetal node to an existing cloud.
+                description: Add a new baremetal node to an existing baremetal cloud by specifying the cloud_id. The node will be provisioned and added to the cloud's infrastructure.
+                value:
+                  label: "Add Baremetal Node to Cloud"
+                  description: "Add 1 medium_v4 baremetal node to an existing cloud."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "baremetal"
+                        quantity: 1
+                        cloud_id: "0Absd1"
+                        modifications:
+                          operating_system:
+                            os_key: "Ubuntu"
+                            version_key: "22.04 LTS"
+                    config_options:
+                      public_key: "ssh-rsa AAAA..."
+              add_pcc_node_to_cloud:
+                summary: Add a node to an existing PCC cloud.
+                description: Add a new node to an existing PCC (Private Cloud Core) cloud by specifying the cloud_id. The node will be provisioned and integrated into the OpenStack cluster.
+                value:
+                  label: "Add PCC Node to Cloud"
+                  description: "Add 1 medium_v4 node to an existing PCC cloud."
+                  fields:
+                    items:
+                      - hardware_sku: "medium_v4"
+                        location: "pod_1"
+                        type: "pcc"
+                        quantity: 1
+                        cloud_id: "0Absd1"
       responses:
         '200':
           description: Order created successfully.
@@ -621,7 +681,24 @@ paths:
       tags:
         - Configurations
       summary: Create a configuration
-      description: Create a new custom deployment configuration with an OS image and/or cloud-init user data.
+      description: |
+        Create a new custom deployment configuration with an OS image and/or cloud-init user data.
+
+        ## Deployment Modes
+
+        The `fields` object supports three mutually exclusive deployment modes:
+
+        - **Disk deployment**: Set `image_source` to a whole-disk image URL
+        - **Ramdisk (kernel + initramfs)**: Set both `image_ramdisk_kernel` and `image_ramdisk_ramdisk`
+        - **Ramdisk (boot ISO)**: Set `image_ramdisk_boot_iso` to a bootable ISO URL
+
+        ## Validation Requirements
+
+        - Only **one** deployment mode may be specified per configuration
+        - `image_ramdisk_kernel` and `image_ramdisk_ramdisk` must always be provided together
+        - `image_os_hash_algo` and `image_os_hash_value` are **required** for disk deployments (`image_source`)
+        - `image_os_hash_algo` must be one of: `md5`, `sha256`, `sha512`
+        - One deployment mode is always required — a configuration must include `image_source`, `image_ramdisk_kernel` + `image_ramdisk_ramdisk`, or `image_ramdisk_boot_iso`
       security:
         - bearerAuth: []
       requestBody:
@@ -631,28 +708,45 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateImageConfigRequest'
             examples:
-              image_only:
-                summary: Configuration with OS image only
-                description: A deployment configuration specifying only an OS image.
+              disk_deployment:
+                summary: Disk deployment (image_source)
+                description: Deploy a whole-disk OS image directly to the node's disk. This is the most common deployment mode.
                 value:
-                  label: "Ubuntu 22.04 Custom"
+                  label: "Ubuntu 22.04 Disk Deploy"
+                  description: "Standard whole-disk image deployment"
                   fields:
-                    image:
-                      image_url: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-                      image_md5: "abc123def456"
-                      image_sha256: "sha256abc123def456"
-              image_and_cloud_init:
-                summary: Configuration with OS image and cloud-init
-                description: A deployment configuration with both an OS image and cloud-init user data.
+                    image_source: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+                    image_os_hash_algo: "sha256"
+                    image_os_hash_value: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+              ramdisk_kernel:
+                summary: Ramdisk deployment (kernel + initramfs)
+                description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
+                value:
+                  label: "CoreOS Ramdisk Deploy"
+                  description: "Ramdisk deployment using kernel and initramfs"
+                  fields:
+                    image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
+                    image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+              ramdisk_boot_iso:
+                summary: Ramdisk deployment (boot ISO)
+                description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images. Hash fields are not required for ramdisk deployments.
+                value:
+                  label: "Rescue ISO Boot"
+                  description: "Boot from ISO loaded into ramdisk"
+                  fields:
+                    image_ramdisk_boot_iso: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+              disk_with_cloud_init:
+                summary: Disk deployment with cloud-init
+                description: A disk deployment with cloud-init user data for automated post-provisioning setup.
                 value:
                   label: "Ubuntu 22.04 with Cloud Init"
+                  description: "Disk deploy with cloud-init for automated setup"
                   fields:
-                    image:
-                      image_url: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-                      image_md5: "abc123def456"
-                      image_sha256: "sha256abc123def456"
+                    image_source: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+                    image_os_hash_algo: "sha256"
+                    image_os_hash_value: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
                     cloud_init:
-                      user_data: "#cloud-config\npackages:\n  - nginx\n"
+                      data: "{\"write_files\":[{\"content\":\"#!/bin/bash\\necho 'hello world!'\\n\",\"path\":\"/var/lib/cloud/scripts/per-once/setup.sh\"}],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"],\"packages\":[\"nginx\",\"docker.io\"]}"
       responses:
         '200':
           description: Configuration created successfully.
@@ -660,6 +754,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageConfiguration'
+        '400':
+          description: |
+            Invalid deployment configuration. Possible validation errors:
+            - Mutually exclusive deployment modes specified (e.g., both `image_source` and `image_ramdisk_kernel`)
+            - Incomplete ramdisk pair (`image_ramdisk_kernel` without `image_ramdisk_ramdisk` or vice versa)
+            - Missing `image_os_hash_algo` or `image_os_hash_value` when `image_source` is specified
+            - Invalid `image_os_hash_algo` value
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
@@ -698,7 +799,12 @@ paths:
       tags:
         - Configurations
       summary: Update a configuration
-      description: Update an existing deployment configuration. The configuration ID must be included in the request body.
+      description: |
+        Update an existing deployment configuration. The configuration ID must be included in the request body.
+
+        Only include the fields you want to change — the server merges incoming fields with existing fields before re-validating. This means you can update a single field (e.g., change `image_source`) without resending the entire configuration.
+
+        ⚠️ **Important:** When switching deployment modes (e.g., from disk to ramdisk), you must explicitly clear the old mode's fields by setting them to `null` or omitting them, and provide all required fields for the new mode.
       parameters:
         - name: configurationId
           in: path
@@ -713,6 +819,23 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateImageConfigRequest'
+            examples:
+              update_image_url:
+                summary: Update the image source URL
+                description: Change the disk image URL on an existing disk deployment configuration. Hash fields and other settings are preserved.
+                value:
+                  id: "0a7Y8ABym5"
+                  fields:
+                    image_source: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+                    image_os_hash_value: "f1d2d2f924e986ac86fdf7b36c94bcdf32beec15f1d2d2f924e986ac86fdf7b3"
+              add_cloud_init:
+                summary: Add cloud-init to existing configuration
+                description: Add cloud-init user data to an existing deployment configuration without changing the image settings.
+                value:
+                  id: "0a7Y8ABym5"
+                  fields:
+                    cloud_init:
+                      data: "{\"packages\":[\"htop\",\"tmux\"]}"
       security:
         - bearerAuth: []
       responses:
@@ -722,6 +845,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ImageConfiguration'
+        '400':
+          description: Invalid deployment configuration after merging with existing fields.
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
@@ -1524,6 +1649,14 @@ paths:
           description: Internal API error.
   /v1/products:
     $ref: './paths/products.yaml#/~1v1~1products'
+  /v1/prefixes/{prefix_id}:
+    $ref: './paths/prefixes.yaml#/~1v1~1prefixes~1{prefix_id}'
+  /v1/vlans/{vlan_id}:
+    $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}'
+  /v1/vlans/{vlan_id}/prefixes/{prefix_id}:
+    $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}~1prefixes~1{prefix_id}'
+  /v1/clouds/{cloudId}/hardware/{nodeUuid}:
+    $ref: './paths/clouds-hardware.yaml#/~1v1~1clouds~1{cloudId}~1hardware~1{nodeUuid}'
 
   # SSH Public Key Endpoints
   /v1/public-keys:
@@ -2283,7 +2416,10 @@ components:
                         example: "22.04 LTS"
               cloud_id:
                 type: string
-                description: Used to specify an existing cloud that the product should be added to.
+                description: |
+                  Specify an existing cloud to add this product to. When provided, the ordered hardware will be provisioned and added to the specified cloud's infrastructure rather than creating a new cloud. Billing for the new node will be attached to the existing cloud.
+
+                  The cloud must be fully provisioned and owned by the same organization placing the order.
                 example: "3Dop2VdpKA"
         config_options:
           type: object
@@ -2496,7 +2632,12 @@ components:
     # Deployment Configuration Schemas
     ImageConfiguration:
       type: object
-      description: A custom deployment configuration containing an OS image and/or cloud-init user data for hardware provisioning.
+      description: |
+        A custom deployment configuration containing an OS image and/or cloud-init user data for hardware provisioning.
+
+        The `fields` object contains deployment settings using one of three mutually exclusive modes:
+        disk (`image_source`), ramdisk kernel (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`),
+        or ramdisk ISO (`image_ramdisk_boot_iso`).
       required:
         - id
         - label
@@ -2511,39 +2652,50 @@ components:
         label:
           type: string
           description: A user-friendly name for the configuration.
-          example: "Ubuntu 22.04 Custom"
+          example: "Ubuntu 22.04 Disk Deploy"
         description:
           type: string
           description: A description of the configuration.
-          example: "Custom Ubuntu image with cloud-init for web servers"
+          example: "Standard whole-disk image deployment"
         fields:
           type: object
-          description: Configuration fields containing image and cloud-init settings.
+          description: |
+            Configuration fields containing deployment image and cloud-init settings.
+            Image fields follow one of three mutually exclusive deployment modes.
           properties:
-            image:
-              type: object
-              description: OS image configuration.
-              properties:
-                image_url:
-                  type: string
-                  description: The download URL for the OS image.
-                  example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-                image_md5:
-                  type: string
-                  description: MD5 checksum of the image file.
-                  example: "abc123def456"
-                image_sha256:
-                  type: string
-                  description: SHA256 checksum of the image file.
-                  example: "sha256abc123def456"
+            image_source:
+              type: string
+              description: URL of the whole-disk OS image for direct-to-disk deployment. Mutually exclusive with ramdisk fields.
+              example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`. Mutually exclusive with `image_source` and `image_ramdisk_boot_iso`.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+              example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_boot_iso:
+              type: string
+              description: URL of the boot ISO for ramdisk deployment. Mutually exclusive with `image_source` and `image_ramdisk_kernel`/`image_ramdisk_ramdisk`.
+              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            image_os_hash_algo:
+              type: string
+              description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
+              enum: ["md5", "sha256", "sha512"]
+              example: "sha256"
+            image_os_hash_value:
+              type: string
+              description: Hash value for image integrity verification. Required when `image_source` is set.
+              example: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             cloud_init:
               type: object
-              description: Cloud-init configuration.
+              description: Cloud-init configuration applied during provisioning. Can be combined with any deployment mode or used standalone.
               properties:
-                user_data:
+                data:
                   type: string
-                  description: Cloud-init user data script or configuration.
-                  example: "#cloud-config\npackages:\n  - nginx\n"
+                  description: Cloud-init user data as a stringified JSON object. The JSON value should contain cloud-init directives such as `write_files`, `runcmd`, `packages`, etc.
+                  example: "{\"packages\":[\"nginx\"],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"]}"
             organization_id:
               type: string
               description: The organization ID that owns the configuration.
@@ -2562,50 +2714,71 @@ components:
 
     CreateImageConfigRequest:
       type: object
-      description: Request body for creating a new deployment configuration.
+      description: |
+        Request body for creating a new deployment configuration.
+
+        The `fields` object must specify one of three mutually exclusive deployment modes.
+        Cloud-init user data can optionally be combined with any mode.
+        See the [Configurations overview](#tag/Configurations) for details on deployment modes.
       required:
         - label
       properties:
         label:
           type: string
           description: A user-friendly name for the configuration.
-          example: "Ubuntu 22.04 Custom"
+          example: "Ubuntu 22.04 Disk Deploy"
         description:
           type: string
           description: A description of the configuration (optional).
-          example: "Custom Ubuntu image with cloud-init for web servers"
+          example: "Standard whole-disk image deployment"
         fields:
           type: object
-          description: Configuration fields containing image and/or cloud-init settings.
+          description: |
+            Configuration fields containing deployment image and/or cloud-init settings.
+            Only one deployment mode may be specified. Disk deployments (`image_source`) require `image_os_hash_algo` and `image_os_hash_value`.
           properties:
-            image:
-              type: object
-              description: OS image configuration.
-              properties:
-                image_url:
-                  type: string
-                  description: The download URL for the OS image.
-                  example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-                image_md5:
-                  type: string
-                  description: MD5 checksum of the image file.
-                  example: "abc123def456"
-                image_sha256:
-                  type: string
-                  description: SHA256 checksum of the image file.
-                  example: "sha256abc123def456"
+            image_source:
+              type: string
+              description: URL of the whole-disk OS image for direct-to-disk deployment.
+              example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+              example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_boot_iso:
+              type: string
+              description: URL of the boot ISO for ramdisk deployment.
+              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            image_os_hash_algo:
+              type: string
+              description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
+              enum: ["md5", "sha256", "sha512"]
+              example: "sha256"
+            image_os_hash_value:
+              type: string
+              description: Hash value for image integrity verification. Required when `image_source` is set.
+              example: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             cloud_init:
               type: object
-              description: Cloud-init configuration.
+              description: Cloud-init configuration applied during provisioning.
               properties:
-                user_data:
+                data:
                   type: string
-                  description: Cloud-init user data script or configuration.
-                  example: "#cloud-config\npackages:\n  - nginx\n"
+                  description: Cloud-init user data as a stringified JSON object. The JSON value should contain cloud-init directives such as `write_files`, `runcmd`, `packages`, etc.
+                  example: "{\"packages\":[\"nginx\"],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"]}"
 
     UpdateImageConfigRequest:
       type: object
-      description: Request body for updating an existing deployment configuration.
+      description: |
+        Request body for updating an existing deployment configuration.
+
+        Only include the fields you want to change. The server merges incoming fields with existing
+        fields before re-validating deployment mode constraints. This allows partial updates
+        (e.g., changing just `image_source`) without resending the entire configuration.
       required:
         - id
       properties:
@@ -2616,39 +2789,50 @@ components:
         label:
           type: string
           description: A user-friendly name for the configuration.
-          example: "Ubuntu 22.04 Custom Updated"
+          example: "Ubuntu 22.04 Updated"
         description:
           type: string
           description: A description of the configuration.
-          example: "Updated custom Ubuntu image configuration"
+          example: "Updated deployment configuration"
         fields:
           type: object
-          description: Configuration fields containing image and/or cloud-init settings.
+          description: |
+            Configuration fields to update. Only include fields you want to change.
+            The server merges these with existing fields before validating.
           properties:
-            image:
-              type: object
-              description: OS image configuration.
-              properties:
-                image_url:
-                  type: string
-                  description: The download URL for the OS image.
-                  example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-                image_md5:
-                  type: string
-                  description: MD5 checksum of the image file.
-                  example: "abc123def456"
-                image_sha256:
-                  type: string
-                  description: SHA256 checksum of the image file.
-                  example: "sha256abc123def456"
+            image_source:
+              type: string
+              description: URL of the whole-disk OS image for direct-to-disk deployment.
+              example: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment.
+              example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_boot_iso:
+              type: string
+              description: URL of the boot ISO for ramdisk deployment.
+              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            image_os_hash_algo:
+              type: string
+              description: Hash algorithm used for image integrity verification.
+              enum: ["md5", "sha256", "sha512"]
+              example: "sha256"
+            image_os_hash_value:
+              type: string
+              description: Hash value for image integrity verification.
+              example: "f1d2d2f924e986ac86fdf7b36c94bcdf32beec15f1d2d2f924e986ac86fdf7b3"
             cloud_init:
               type: object
-              description: Cloud-init configuration.
+              description: Cloud-init configuration applied during provisioning.
               properties:
-                user_data:
+                data:
                   type: string
-                  description: Cloud-init user data script or configuration.
-                  example: "#cloud-config\npackages:\n  - nginx\n"
+                  description: Cloud-init user data as a stringified JSON object. The JSON value should contain cloud-init directives such as `write_files`, `runcmd`, `packages`, etc.
+                  example: "{\"packages\":[\"nginx\"],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"]}"
 
     # VLAN Resource Schemas
     VlanResource:
