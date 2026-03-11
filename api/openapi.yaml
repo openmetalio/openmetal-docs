@@ -74,17 +74,20 @@ tags:
 
       ## Deployment Modes
 
-      Configurations support three mutually exclusive deployment modes:
+      Configurations currently support disk deployment mode:
 
       | Mode | Required Fields | Description |
       |------|----------------|-------------|
       | **Disk** | `image_source` | Traditional whole-disk image written directly to disk |
+      <!-- Ramdisk deployment modes are temporarily disabled and will be re-enabled in a future release.
       | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
       | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
+      -->
 
-      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`. These fields are not required for ramdisk deployments.
+      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`.
+      <!-- These fields are not required for ramdisk deployments. -->
 
-      Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode.
+      Cloud-init user data (`cloud_init.data`) can be combined with disk deployment.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
@@ -684,21 +687,14 @@ paths:
       description: |
         Create a new custom deployment configuration with an OS image and/or cloud-init user data.
 
-        ## Deployment Modes
+        ## Deployment Mode
 
-        The `fields` object supports three mutually exclusive deployment modes:
-
-        - **Disk deployment**: Set `image_source` to a whole-disk image URL
-        - **Ramdisk (kernel + initramfs)**: Set both `image_ramdisk_kernel` and `image_ramdisk_ramdisk`
-        - **Ramdisk (boot ISO)**: Set `image_ramdisk_boot_iso` to a bootable ISO URL
+        Set `image_source` in the `fields` object to a whole-disk image URL for disk deployment.
 
         ## Validation Requirements
 
-        - Only **one** deployment mode may be specified per configuration
-        - `image_ramdisk_kernel` and `image_ramdisk_ramdisk` must always be provided together
-        - `image_os_hash_algo` and `image_os_hash_value` are **required** for disk deployments (`image_source`)
+        - `image_os_hash_algo` and `image_os_hash_value` are **required** when `image_source` is set
         - `image_os_hash_algo` must be one of: `md5`, `sha256`, `sha512`
-        - One deployment mode is always required — a configuration must include `image_source`, `image_ramdisk_kernel` + `image_ramdisk_ramdisk`, or `image_ramdisk_boot_iso`
       security:
         - bearerAuth: []
       requestBody:
@@ -718,23 +714,24 @@ paths:
                     image_source: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
                     image_os_hash_algo: "sha256"
                     image_os_hash_value: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-              ramdisk_kernel:
-                summary: Ramdisk deployment (kernel + initramfs)
-                description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
-                value:
-                  label: "CoreOS Ramdisk Deploy"
-                  description: "Ramdisk deployment using kernel and initramfs"
-                  fields:
-                    image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
-                    image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
-              ramdisk_boot_iso:
-                summary: Ramdisk deployment (boot ISO)
-                description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images. Hash fields are not required for ramdisk deployments.
-                value:
-                  label: "Rescue ISO Boot"
-                  description: "Boot from ISO loaded into ramdisk"
-                  fields:
-                    image_ramdisk_boot_iso: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+              # Ramdisk examples temporarily disabled — ramdisk deployments are not currently available.
+              # ramdisk_kernel:
+              #   summary: Ramdisk deployment (kernel + initramfs)
+              #   description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
+              #   value:
+              #     label: "CoreOS Ramdisk Deploy"
+              #     description: "Ramdisk deployment using kernel and initramfs"
+              #     fields:
+              #       image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
+              #       image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+              # ramdisk_boot_iso:
+              #   summary: Ramdisk deployment (boot ISO)
+              #   description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images. Hash fields are not required for ramdisk deployments.
+              #   value:
+              #     label: "Rescue ISO Boot"
+              #     description: "Boot from ISO loaded into ramdisk"
+              #     fields:
+              #       image_ramdisk_boot_iso: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
               disk_with_cloud_init:
                 summary: Disk deployment with cloud-init
                 description: A disk deployment with cloud-init user data for automated post-provisioning setup.
@@ -757,8 +754,7 @@ paths:
         '400':
           description: |
             Invalid deployment configuration. Possible validation errors:
-            - Mutually exclusive deployment modes specified (e.g., both `image_source` and `image_ramdisk_kernel`)
-            - Incomplete ramdisk pair (`image_ramdisk_kernel` without `image_ramdisk_ramdisk` or vice versa)
+            - Ramdisk fields specified (`image_ramdisk_kernel`, `image_ramdisk_ramdisk`, `image_ramdisk_boot_iso`) — ramdisk deployments are not currently available
             - Missing `image_os_hash_algo` or `image_os_hash_value` when `image_source` is specified
             - Invalid `image_os_hash_algo` value
         '401':
@@ -803,8 +799,6 @@ paths:
         Update an existing deployment configuration. The configuration ID must be included in the request body.
 
         Only include the fields you want to change — the server merges incoming fields with existing fields before re-validating. This means you can update a single field (e.g., change `image_source`) without resending the entire configuration.
-
-        ⚠️ **Important:** When switching deployment modes (e.g., from disk to ramdisk), you must explicitly clear the old mode's fields by setting them to `null` or omitting them, and provide all required fields for the new mode.
       parameters:
         - name: configurationId
           in: path
@@ -2635,9 +2629,8 @@ components:
       description: |
         A custom deployment configuration containing an OS image and/or cloud-init user data for hardware provisioning.
 
-        The `fields` object contains deployment settings using one of three mutually exclusive modes:
-        disk (`image_source`), ramdisk kernel (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`),
-        or ramdisk ISO (`image_ramdisk_boot_iso`).
+        The `fields` object contains deployment settings. Currently only disk deployment
+        via `image_source` is supported.
       required:
         - id
         - label
@@ -2661,24 +2654,24 @@ components:
           type: object
           description: |
             Configuration fields containing deployment image and cloud-init settings.
-            Image fields follow one of three mutually exclusive deployment modes.
           properties:
             image_source:
               type: string
-              description: URL of the whole-disk OS image for direct-to-disk deployment. Mutually exclusive with ramdisk fields.
+              description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-            image_ramdisk_kernel:
-              type: string
-              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`. Mutually exclusive with `image_source` and `image_ramdisk_boot_iso`.
-              example: "https://images.example.com/coreos/vmlinuz"
-            image_ramdisk_ramdisk:
-              type: string
-              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
-              example: "https://images.example.com/coreos/initramfs.img"
-            image_ramdisk_boot_iso:
-              type: string
-              description: URL of the boot ISO for ramdisk deployment. Mutually exclusive with `image_source` and `image_ramdisk_kernel`/`image_ramdisk_ramdisk`.
-              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
+            # image_ramdisk_kernel:
+            #   type: string
+            #   description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`. Mutually exclusive with `image_source` and `image_ramdisk_boot_iso`.
+            #   example: "https://images.example.com/coreos/vmlinuz"
+            # image_ramdisk_ramdisk:
+            #   type: string
+            #   description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+            #   example: "https://images.example.com/coreos/initramfs.img"
+            # image_ramdisk_boot_iso:
+            #   type: string
+            #   description: URL of the boot ISO for ramdisk deployment. Mutually exclusive with `image_source` and `image_ramdisk_kernel`/`image_ramdisk_ramdisk`.
+            #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
@@ -2717,9 +2710,8 @@ components:
       description: |
         Request body for creating a new deployment configuration.
 
-        The `fields` object must specify one of three mutually exclusive deployment modes.
-        Cloud-init user data can optionally be combined with any mode.
-        See the [Configurations overview](#tag/Configurations) for details on deployment modes.
+        The `fields` object specifies the disk deployment image and optional cloud-init user data.
+        See the [Configurations overview](#tag/Configurations) for details.
       required:
         - label
       properties:
@@ -2735,24 +2727,25 @@ components:
           type: object
           description: |
             Configuration fields containing deployment image and/or cloud-init settings.
-            Only one deployment mode may be specified. Disk deployments (`image_source`) require `image_os_hash_algo` and `image_os_hash_value`.
+            Disk deployments (`image_source`) require `image_os_hash_algo` and `image_os_hash_value`.
           properties:
             image_source:
               type: string
               description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-            image_ramdisk_kernel:
-              type: string
-              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`.
-              example: "https://images.example.com/coreos/vmlinuz"
-            image_ramdisk_ramdisk:
-              type: string
-              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
-              example: "https://images.example.com/coreos/initramfs.img"
-            image_ramdisk_boot_iso:
-              type: string
-              description: URL of the boot ISO for ramdisk deployment.
-              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
+            # image_ramdisk_kernel:
+            #   type: string
+            #   description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`.
+            #   example: "https://images.example.com/coreos/vmlinuz"
+            # image_ramdisk_ramdisk:
+            #   type: string
+            #   description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+            #   example: "https://images.example.com/coreos/initramfs.img"
+            # image_ramdisk_boot_iso:
+            #   type: string
+            #   description: URL of the boot ISO for ramdisk deployment.
+            #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
@@ -2804,18 +2797,19 @@ components:
               type: string
               description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
-            image_ramdisk_kernel:
-              type: string
-              description: URL of the kernel for ramdisk deployment.
-              example: "https://images.example.com/coreos/vmlinuz"
-            image_ramdisk_ramdisk:
-              type: string
-              description: URL of the initramfs for ramdisk deployment.
-              example: "https://images.example.com/coreos/initramfs.img"
-            image_ramdisk_boot_iso:
-              type: string
-              description: URL of the boot ISO for ramdisk deployment.
-              example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
+            # image_ramdisk_kernel:
+            #   type: string
+            #   description: URL of the kernel for ramdisk deployment.
+            #   example: "https://images.example.com/coreos/vmlinuz"
+            # image_ramdisk_ramdisk:
+            #   type: string
+            #   description: URL of the initramfs for ramdisk deployment.
+            #   example: "https://images.example.com/coreos/initramfs.img"
+            # image_ramdisk_boot_iso:
+            #   type: string
+            #   description: URL of the boot ISO for ramdisk deployment.
+            #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification.
