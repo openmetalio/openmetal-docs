@@ -2005,6 +2005,27 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/OrganizationMember'
+              example:
+                - membership_id: "RpPGZXQygW"
+                  role: "maintainer"
+                  state: "active"
+                  invite_email: "maintainer@openmetal.io"
+                  invite_expired_at: "2026-03-31T20:20:24+00:00"
+                  account:
+                    account_id: "mWLBVbB7Eq"
+                    name: "OpenMetal"
+                    email: "maintainer@openmetal.io"
+                    has2fa: false
+                - membership_id: "d5qQoWQ28l"
+                  role: "member"
+                  state: "active"
+                  invite_email: "member@openmetal.io"
+                  invite_expired_at: "2026-03-31T20:24:40+00:00"
+                  account:
+                    account_id: "o6aQxVGezj"
+                    name: "OMI Member"
+                    email: "member@openmetal.io"
+                    has2fa: false
         '401':
           description: Unauthorized.
         '403':
@@ -2017,8 +2038,6 @@ paths:
       summary: Add a member
       description: |
         Invite one or more users to the organization by email address. An invitation email is sent to each address. Users without an existing account will be prompted to register.
-
-        You may invite up to 20 users per request.
       security:
         - bearerAuth: []
       parameters:
@@ -2052,13 +2071,7 @@ paths:
         - Organizations
       summary: Update a member's role
       description: |
-        Update the role of an existing organization member.
-
-        Role management rules:
-        - You cannot change your own role
-        - You cannot grant a role higher than your own
-        - You cannot demote a member with a higher role than you
-        - At least one owner must remain in the organization
+        Update the role of an existing organization member. Note that at least one owner must remain in the organization.
       security:
         - bearerAuth: []
       parameters:
@@ -2094,7 +2107,7 @@ paths:
         '401':
           description: Unauthorized.
         '403':
-          description: Forbidden. Insufficient permissions to assign this role.
+          description: Forbidden. Requires maintainer or owner role.
         '404':
           description: Organization or membership not found.
         '422':
@@ -2125,7 +2138,7 @@ paths:
         '401':
           description: Unauthorized.
         '403':
-          description: Forbidden. Insufficient permissions or sole owner cannot be removed.
+          description: Forbidden. Requires maintainer or owner role.
         '404':
           description: Organization or membership not found.
 
@@ -2268,7 +2281,7 @@ components:
           type: string
           format: email
           description: The email address the invitation was sent to.
-          example: "memoria.valde@gmail.com"
+          example: "maintainer@openmetal.io"
         invite_expired_at:
           type: string
           format: date-time
@@ -2285,12 +2298,12 @@ components:
             name:
               type: string
               description: The member's display name.
-              example: "Luke"
+              example: "OpenMetal"
             email:
               type: string
               format: email
               description: The member's email address.
-              example: "memoria.valde@gmail.com"
+              example: "maintainer@openmetal.io"
             has2fa:
               type: boolean
               description: Whether the member has two-factor authentication enabled.
@@ -3989,37 +4002,49 @@ components:
       properties:
         membership_id:
           type: string
-          description: The unique identifier for this membership record.
-          example: "m1a2b3c4-d5e6-7890-abcd-ef1234567890"
+          description: The hashed resource ID of the membership record.
+          example: "RpPGZXQygW"
         role:
           type: string
           description: The member's role within the organization.
           enum: [owner, maintainer, member, orgBilling, orgSupport]
-          example: "member"
+          example: "maintainer"
+        state:
+          type: string
+          description: The current state of the membership.
+          enum: [active, pending, inactive]
+          example: "active"
         invite_email:
           type: string
           format: email
-          description: Set if this membership is a pending invitation that has not yet been accepted.
+          description: The email address the invitation was sent to.
           example: "invitee@example.com"
         invite_expired_at:
           type: string
           format: date-time
-          description: The expiration timestamp of the pending invitation, if applicable.
-          example: "2024-02-15T12:00:00Z"
+          description: When the invitation expires.
+          example: "2026-03-31T20:20:24+00:00"
         account:
           type: object
-          description: The account associated with this membership. Null for pending invitations.
-          nullable: true
+          description: Summary of the member's account.
           properties:
             account_id:
               type: string
-              description: The unique identifier of the user's account.
-              example: "u1a2b3c4-d5e6-7890-abcd-ef1234567890"
+              description: The hashed resource ID of the member's account.
+              example: "mWLBVbB7Eq"
+            name:
+              type: string
+              description: The member's display name.
+              example: "OpenMetal"
             email:
               type: string
               format: email
-              description: The email address of the user.
+              description: The member's email address.
               example: "user@example.com"
+            has2fa:
+              type: boolean
+              description: Whether the member has two-factor authentication enabled.
+              example: false
 
     OrganizationCreateRequest:
       type: object
