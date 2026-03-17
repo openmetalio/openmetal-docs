@@ -121,6 +121,8 @@ tags:
       SSH public keys can be stored and managed for use during bare metal provisioning. Keys are validated on create/update and a SHA256 fingerprint is automatically computed from the key data.
 
       Supported key types: ssh-rsa, ssh-dss, ssh-ed25519, ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521, sk-ssh-ed25519@openssh.com, sk-ecdsa-sha2-nistp256@openssh.com
+  - name: Accounts
+    description: Operations for retrieving account and organization profile information.
   - name: Organizations
     description: Operations for creating organizations and managing their members.
 
@@ -135,10 +137,11 @@ x-tagGroups:
       - Deployment
       - Inventory
       - IP Blocks
+      - VLANs
       - Nodes
       - Orders
       - SSH Keys
-      - VLANs
+      - Accounts
       - Organizations
 
 paths:
@@ -1830,77 +1833,149 @@ paths:
         '204':
           description: Public key deleted successfully. No content returned.
 
-  /v1/organizations:
-    post:
-      tags:
-        - Organizations
-      summary: Create an organization
-      description: Create a new organization. The authenticated user becomes the owner.
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrganizationCreateRequest'
-      responses:
-        '200':
-          description: Organization created successfully.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Organization'
-        '401':
-          description: Unauthorized.
-        '422':
-          description: Validation error.
-
-  /v1/organizations/memberships:
+  /v1/accounts/profile:
     get:
       tags:
-        - Organizations
-      summary: List your organizations
-      description: |
-        Retrieve all organizations the authenticated user belongs to, including organizations where they are an owner, maintainer, or member.
-
-        Each organization includes a `members` array which can be used to determine the current user's role.
+        - Accounts
+      summary: Get account profile
+      description: Retrieve the profile of the currently authenticated account, including account details, access list, and preferences.
       security:
         - bearerAuth: []
       responses:
         '200':
-          description: A list of organizations the user belongs to.
+          description: Account profile retrieved successfully.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OrganizationWithMembers'
+                $ref: '#/components/schemas/AccountProfile'
+              example:
+                account_id: 4
+                account_access:
+                  - account_id: "KW4Mn3Q3AD"
+                    uuid: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+                    is_imcloud: false
+                    type: "organization"
+                    display_name: "OpenMetal"
+                    role: "owner"
+                account_uuid: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+                email: "admin@openmetal.io"
+                username: "OpenMetal"
+                is_disabled: false
+                account_name: "admin@openmetal.io"
+                requires_email_verification: false
+                redirect_url: ""
+                notifications: 0
+                reward_points: 0
+                options:
+                  internal_zdesk_account_org_user_id: 39108964280087
+                  internal_phone_number: ""
+                currency: "USD"
+                locale: "en-US"
+                display_name: "OpenMetal"
+                image: ""
         '401':
           description: Unauthorized.
 
-  /v1/organizations/{organizationId}:
+  /v1/accounts/{organizationId}/profile:
     get:
       tags:
-        - Organizations
-      summary: Get an organization
-      description: Retrieve details of a specific organization by ID.
-      security:
-        - bearerAuth: []
+        - Accounts
+      summary: Get account profile by organization
+      description: Retrieve the account profile associated with a specific organization ID. Returns the same profile shape as `GET /v1/accounts/profile`.
       parameters:
         - name: organizationId
           in: path
           required: true
-          description: The ID of the organization.
+          description: The hashed resource ID of the organization.
           schema:
             type: string
+            example: "KW4Mn3Q3AD"
+      security:
+        - bearerAuth: []
       responses:
         '200':
-          description: Organization found.
+          description: Account profile retrieved successfully.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Organization'
+                $ref: '#/components/schemas/AccountProfile'
+              example:
+                account_id: 4
+                account_access:
+                  - account_id: "KW4Mn3Q3AD"
+                    uuid: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+                    is_imcloud: false
+                    type: "organization"
+                    display_name: "OpenMetal"
+                    role: "owner"
+                account_uuid: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+                email: "admin@openmetal.io"
+                username: "OpenMetal"
+                is_disabled: false
+                account_name: "admin@openmetal.io"
+                requires_email_verification: false
+                redirect_url: ""
+                notifications: 0
+                reward_points: 0
+                options:
+                  internal_zdesk_account_org_user_id: 39108964280087
+                  internal_phone_number: ""
+                currency: "USD"
+                locale: "en-US"
+                display_name: "OpenMetal"
+                image: ""
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Organization not found.
+
+  /v1/accounts/{organizationId}:
+    get:
+      tags:
+        - Accounts
+      summary: Get organization account details
+      description: Retrieve detailed information about an organization account, including members and billing status.
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The hashed resource ID of the organization.
+          schema:
+            type: string
+            example: "KW4Mn3Q3AD"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Organization account details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationAccount'
+              example:
+                organization_id: "KW4Mn3Q3AD"
+                uuid: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+                name: "OpenMetal"
+                primary_email: "admin@openmetal.io"
+                billing_email: "admin@openmetal.io"
+                phone: ""
+                company_website: ""
+                clarity_hid: null
+                has_billing: false
+                created_at: "2026-03-17T19:22:12+00:00"
+                active: true
+                is_imcloud: false
+                members:
+                  - membership_id: "d5qQoWQ28l"
+                    role: "maintainer"
+                    state: "active"
+                    invite_email: "admin@openmetal.io"
+                    invite_expired_at: "2026-03-31T20:24:40+00:00"
+                    account:
+                      account_id: "o6aQxVGezj"
+                      name: "OpenMetal"
+                      email: "admin@openmetal.io"
+                      has2fa: false
         '401':
           description: Unauthorized.
         '404':
@@ -2066,6 +2141,223 @@ components:
       description: Use your OAuth Application's client_id as username and client_secret as password
 
   schemas:
+    AccountAccessEntry:
+      type: object
+      properties:
+        account_id:
+          type: string
+          description: The hashed resource ID of the organization.
+          example: "KW4Mn3Q3AD"
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the organization.
+          example: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+        is_imcloud:
+          type: boolean
+          description: Whether the organization is an IMCloud type.
+          example: false
+        type:
+          type: string
+          description: The type of the access entry (e.g. "organization").
+          example: "organization"
+        display_name:
+          type: string
+          description: Human-readable name for the organization.
+          example: "OpenMetal"
+        role:
+          type: string
+          description: The account's role within this organization.
+          example: "owner"
+
+    AccountProfile:
+      type: object
+      properties:
+        account_id:
+          type: integer
+          description: Internal numeric account ID.
+          example: 4
+        account_access:
+          type: array
+          description: List of organizations this account has access to.
+          items:
+            $ref: '#/components/schemas/AccountAccessEntry'
+        account_uuid:
+          type: string
+          format: uuid
+          description: UUID of the primary organization for this account.
+          example: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+        email:
+          type: string
+          format: email
+          description: The account's email address.
+          example: "admin@openmetal.io"
+        username:
+          type: string
+          description: The account's username.
+          example: "AgentOrg"
+        is_disabled:
+          type: boolean
+          description: Whether the account is disabled.
+          example: false
+        account_name:
+          type: string
+          description: The account name (typically the email address).
+          example: "admin@openmetal.io"
+        requires_email_verification:
+          type: boolean
+          description: Whether the account requires email verification.
+          example: false
+        redirect_url:
+          type: string
+          description: Optional redirect URL for the account.
+          example: ""
+        notifications:
+          type: integer
+          description: Number of unread notifications.
+          example: 0
+        reward_points:
+          type: integer
+          description: Accumulated reward points for the account.
+          example: 0
+        options:
+          type: object
+          description: Miscellaneous account options.
+          properties:
+            internal_zdesk_account_org_user_id:
+              type: integer
+              description: Internal Zendesk user ID.
+              example: 39108964280087
+            internal_phone_number:
+              type: string
+              description: Internal phone number on file.
+              example: ""
+        currency:
+          type: string
+          description: The account's preferred currency code.
+          example: "USD"
+        locale:
+          type: string
+          description: The account's preferred locale.
+          example: "en-US"
+        display_name:
+          type: string
+          description: Human-readable display name.
+          example: "OpenMetal"
+        image:
+          type: string
+          description: URL of the account's avatar image, or empty string if not set.
+          example: ""
+
+    OrganizationAccountMember:
+      type: object
+      properties:
+        membership_id:
+          type: string
+          description: The hashed resource ID of the membership.
+          example: "RpPGZXQygW"
+        role:
+          type: string
+          description: The member's role in the organization.
+          example: "maintainer"
+        state:
+          type: string
+          description: The membership state (e.g. "active").
+          example: "active"
+        invite_email:
+          type: string
+          format: email
+          description: The email address the invitation was sent to.
+          example: "memoria.valde@gmail.com"
+        invite_expired_at:
+          type: string
+          format: date-time
+          description: When the invitation expires.
+          example: "2026-03-31T20:20:24+00:00"
+        account:
+          type: object
+          description: Summary of the member's account.
+          properties:
+            account_id:
+              type: string
+              description: The hashed resource ID of the member's account.
+              example: "mWLBVbB7Eq"
+            name:
+              type: string
+              description: The member's display name.
+              example: "Luke"
+            email:
+              type: string
+              format: email
+              description: The member's email address.
+              example: "memoria.valde@gmail.com"
+            has2fa:
+              type: boolean
+              description: Whether the member has two-factor authentication enabled.
+              example: false
+
+    OrganizationAccount:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The hashed resource ID of the organization.
+          example: "KW4Mn3Q3AD"
+        uuid:
+          type: string
+          format: uuid
+          description: The UUID of the organization.
+          example: "79cd0f0a-0295-4be8-8292-15ea5496c7f9"
+        name:
+          type: string
+          description: The organization's display name.
+          example: "OpenMetal"
+        primary_email:
+          type: string
+          format: email
+          description: The primary contact email for the organization.
+          example: "admin@openmetal.io"
+        billing_email:
+          type: string
+          format: email
+          description: The billing contact email for the organization.
+          example: "admin@openmetal.io"
+        phone:
+          type: string
+          description: The organization's phone number.
+          example: ""
+        company_website:
+          type: string
+          description: The organization's website URL.
+          example: ""
+        clarity_hid:
+          type: string
+          nullable: true
+          description: Internal Clarity hashed ID, if set.
+          example: null
+        has_billing:
+          type: boolean
+          description: Whether the organization has billing configured.
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          description: When the organization was created.
+          example: "2026-03-17T19:22:12+00:00"
+        active:
+          type: boolean
+          description: Whether the organization is active.
+          example: true
+        is_imcloud:
+          type: boolean
+          description: Whether the organization is an IMCloud type.
+          example: false
+        members:
+          type: array
+          description: List of members belonging to the organization.
+          items:
+            $ref: '#/components/schemas/OrganizationAccountMember'
+
     # External schema references
     LocationDetails:
       $ref: './schemas/locations.yaml#/LocationDetails'
