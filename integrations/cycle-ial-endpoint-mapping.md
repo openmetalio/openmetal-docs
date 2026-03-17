@@ -18,7 +18,7 @@ Sign up at [central.openmetal.io](https://central.openmetal.io) and create an ac
 
 Cycle's IAL treats each server as an independent resource with a single `server_id`. OpenMetal groups baremetal nodes under a **cloud** — a single cloud can contain multiple baremetal nodes sharing a common network. This means both the cloud ID (used for decommission, IP operations, and status) and individual node UUIDs (used for restart/power operations and MAC address lookups) are needed.
 
-> **Note:** Adding additional nodes to an existing cloud via API is not yet supported but is planned.
+> Servers can be added to an existing cloud via `POST /v1/orders` by specifying a `cloud_id` on the order item. A server can be removed from a cloud using `DELETE /v1/clouds/{cloudId}/hardware/{nodeUuid}`.
 
 ### Networking Model
 
@@ -44,12 +44,13 @@ Each deployment includes 2x `/28` public IP blocks by default (one Inventory, on
 | 2 | `/v1/infrastructure/provider/locations` | GET | `GET /v2/inventory/locations` | List datacenters |
 | 3 | `/v1/infrastructure/provider/server-models` | GET | `GET /v1/products` + `GET /v2/inventory/{pod_location}/availability` | Product catalog for specs; availability for stock |
 | 4 | `/v1/location/configure` | POST | *Not applicable* | No equivalent at OpenMetal |
-| 5 | `/v1/infrastructure/server/provision` | POST | `POST /v1/orders` | Create baremetal order |
+| 5 | `/v1/infrastructure/server/provision` | POST | `POST /v1/orders` | Create baremetal order; use `cloud_id` on item to add to existing cloud |
 | 6 | `/v1/infrastructure/server/provision-status` | GET | `GET /v1/orders/{orderId}` + `GET /v1/clouds/{cloudId}` + `GET /v1/clouds/{cloudId}/stats` | Poll order, cloud status, node details (UUID, MAC, IPs) |
-| 7 | `/v1/infrastructure/server/decommission` | POST | `DELETE /v1/clouds/{cloudId}` | Delete cloud / reclaim infra |
+| 7 | `/v1/infrastructure/server/decommission` | POST | `DELETE /v1/clouds/{cloudId}` or `DELETE /v1/clouds/{cloudId}/hardware/{nodeUuid}` | Delete entire cloud or remove single node |
 | 8 | `/v1/infrastructure/server/restart` | POST | `POST /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power` | Power action `"rebooting"` |
 | 9 | `/v1/infrastructure/ip/allocate` | POST | `POST /v1/deployment/network/prefixes/{prefixId}/ip` | Allocate IP from existing prefix |
 | 10 | `/v1/infrastructure/ip/release` | POST | `DELETE /v1/deployment/network/prefixes/{prefixId}/ip/{ipId}` | Release IP address |
+| 11 | Server Metadata | — | cloud-init config drive | Read metadata via `cloud-init query` CLI |
 
 ---
 
@@ -90,13 +91,38 @@ Return available server types with hardware specs, pricing, and location availab
 
 ### 5. Provision Server
 
-Create a baremetal order which provisions a cloud with one or more nodes.
+Create a baremetal order which provisions a new cloud, or add a server to an existing cloud.
 
 **OpenMetal:** `POST /v1/orders` — Takes a label, item list with `hardware_sku`, `location` (pod), `type` ("baremetal"), `quantity`, optional OS/deployment modifications, and an SSH public key. Returns an order object with an `id`.
 
-> **Important:** Always use `quantity: 1` for baremetal orders. There is currently no method to remove a single node from a cloud, so each Cycle server should map to its own single-node cloud.
+> **Important:** Always use `quantity: 1` for baremetal orders.
 
-Baremetal orders require either an `operating_system` or a `deployment_configuration` in the item's `modifications` field. For CycleOS, create a deployment configuration via `POST /v1/configurations` with the CycleOS image URL, checksums, and optional cloud-init user data, then reference its ID in the order. Configurations are reusable templates managed via full CRUD endpoints (`GET/POST /v1/configurations`, `GET/PATCH/DELETE /v1/configurations/{configurationId}`).
+#### Adding a Server to an Existing Cloud
+
+To add a server to an existing cloud, include the `cloud_id` field on the order item. The new node will be provisioned and added to the specified cloud's infrastructure.
+
+- The `cloud_id` must reference a cloud owned by your organization
+- The item's `location` and `type` must match the existing cloud
+- The cloud must be fully provisioned (`provision_status: "complete"`) before nodes can be added
+
+#### Deployment Modes
+
+Baremetal orders require either an `operating_system` or a `deployment_configuration` in the item's `modifications` field. Configurations are reusable templates created via `POST /v1/configurations` and managed via full CRUD endpoints (`GET/POST /v1/configurations`, `GET/PATCH/DELETE /v1/configurations/{configurationId}`).
+
+Configurations currently support disk deployment mode:
+
+| Mode | Required Fields | Description |
+|------|----------------|-------------|
+| **Disk** | `image_source` + `image_os_hash_algo` + `image_os_hash_value` | Traditional whole-disk image written directly to disk |
+
+<!-- Ramdisk deployment modes are temporarily disabled and will be re-enabled in a future release.
+| **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
+| **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
+
+For CycleOS or other operating systems that run in memory, use either the ramdisk kernel or ramdisk ISO mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments.
+-->
+
+Cloud-init user data can be combined with disk deployment via the `cloud_init.data` field in the configuration.
 
 > **Note:** Provisioning typically takes 15-30 minutes from order creation to the cloud reaching `complete` status.
 
@@ -116,9 +142,12 @@ Poll order and cloud status until provisioning is complete, then retrieve node d
 
 ### 7. Decommission Server
 
-Delete a cloud and reclaim all associated infrastructure.
+Delete a cloud and reclaim all associated infrastructure, or remove a single node.
 
-**OpenMetal:** `DELETE /v1/clouds/{cloudId}` — Returns success immediately. The cloud enters a "pending-delete" state and servers are fully wiped after a 3-day decommission period.
+**OpenMetal:** Two options depending on scope:
+
+- **Delete entire cloud:** `DELETE /v1/clouds/{cloudId}` — Returns success immediately. The cloud enters a "pending-delete" state and servers are fully wiped after a 3-day decommission period.
+- **Remove single node:** `DELETE /v1/clouds/{cloudId}/hardware/{nodeUuid}` — Removes a single node from the cloud. The node is detached and its inventory cleaned up asynchronously. The `nodeUuid` can be obtained from `GET /v1/clouds/{cloudId}/stats`.
 
 ---
 
@@ -149,3 +178,16 @@ The `gateway`, `netmask`, and `network` values for the Cycle response are derive
 Release an individual IP address back to its prefix.
 
 **OpenMetal:** `DELETE /v1/deployment/network/prefixes/{prefixId}/ip/{ipId}` — Deletes an individual IP address from a prefix, returning it to the available pool.
+
+---
+
+### 11. Server Metadata
+
+Access server instance metadata using the cloud-init config drive data source.
+
+**OpenMetal:** OpenMetal supports the [cloud-init config drive](https://docs.cloud-init.io/en/22.4.2/topics/datasources/configdrive.html) method for accessing server metadata. As long as your image has cloud-init enabled, you can retrieve instance metadata directly from the server without reaching out to a separate API endpoint:
+
+- `cloud-init query ds` — retrieve all config drive data source metadata
+- `cloud-init query -a` — retrieve all cloud-init data (instance ID, hostname, network config, etc.)
+
+The config drive is also mounted directly on the server, so metadata can be read from the filesystem without using the cloud-init CLI.
