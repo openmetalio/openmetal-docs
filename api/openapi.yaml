@@ -1980,6 +1980,45 @@ paths:
           description: Unauthorized.
         '404':
           description: Organization not found.
+  /v1/organizations/{organizationId}:
+    patch:
+      tags:
+        - Organizations
+      summary: Update an organization
+      description: Update one or more fields of an organization.
+      parameters:
+        - name: organizationId
+          in: path
+          required: true
+          description: The hashed resource ID of the organization.
+          schema:
+            type: string
+            example: "KW4Mn3Q3AD"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationUpdateRequest'
+            example:
+              name: "New Org Name"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Organization updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationAccount'
+        '401':
+          description: Unauthorized.
+        '403':
+          description: Forbidden. Requires maintainer or owner role.
+        '404':
+          description: Organization not found.
+        '422':
+          description: Validation error.
 
   /v1/organizations/{organizationId}/memberships:
     get:
@@ -4045,7 +4084,6 @@ components:
               type: boolean
               description: Whether the member has two-factor authentication enabled.
               example: false
-
     OrganizationCreateRequest:
       type: object
       required:
@@ -4069,6 +4107,33 @@ components:
         website:
           type: string
           description: The website URL of the organization.
+          example: "https://acme.com"
+
+    OrganizationUpdateRequest:
+      type: object
+      description: Fields that can be updated on an organization. All fields are optional.
+      properties:
+        name:
+          type: string
+          description: The display name of the organization.
+          example: "New Org Name"
+        primary_email:
+          type: string
+          format: email
+          description: The primary contact email for the organization.
+          example: "contact@acme.com"
+        billing_email:
+          type: string
+          format: email
+          description: The billing contact email for the organization.
+          example: "billing@acme.com"
+        phone:
+          type: string
+          description: The organization's phone number.
+          example: "+1-555-555-5555"
+        website:
+          type: string
+          description: The organization's website URL.
           example: "https://acme.com"
 
     OrganizationInviteRequest:
