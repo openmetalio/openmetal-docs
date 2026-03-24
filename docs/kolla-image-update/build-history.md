@@ -43,18 +43,22 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
-| 2023.2-ubuntu-jammy-2025-11-05 | 11/05/2025 | Keystone | - [ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
-| 2023.2-ubuntu-jammy-2025-01-06 | 01/06/2025 | All | - [Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)|
-|||| - [Barbican (17.0.0-5) security issue and bug fix](https://docs.openstack.org/releasenotes/barbican/2023.2.html#relnotes-17-0-0-5-stable-2023-2) |
-|||| - [Cinder (23.3.0-1) new feature, bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-3-0-1-stable-2023-2)|
-|||| - [Heat (21.0.0-8) new features and upgrade notes](https://docs.openstack.org/releasenotes/heat/2023.2.html#relnotes-21-0-0-8-stable-2023-2)|
-|||| - [Neutron (23.3.0) new features, bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-3-0-stable-2023-2)|
-|||| - [Octavia (13.0.0-35) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-35-stable-2023-2)|
-| 2023.2-ubuntu-jammy-2024-10-10 | 10/10/2024 | All | - [Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)|
-|||| - [Cinder (23.2.0-12) new features and bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-2-0-12-stable-2023-2)|
-|||| - [Neutron (23.2.0-18) security issues and bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-2-0-18-stable-2023-2)|
-|||| - [Nova (28.3.0-11) bug fixes](https://docs.openstack.org/releasenotes/nova/2023.2.html#relnotes-28-3-0-11-stable-2023-2)|
-|||| - [Octavia (13.0.0-32) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-32-stable-2023-2)|
+| 2023.2-ubuntu-jammy-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
+||| Mistral |[Cron trigger/event trigger bug patched](https://review.opendev.org/c/openstack/mistral/+/905206)|
+||| Mistral |Added [mistral-extra](https://opendev.org/openstack/mistral-extra) Python module enabling `openstack.*` actions|
+||| Nova |[[OSSA-2026-002] Nova calls qemu-img without format restrictions for resize (CVE-2026-24708) patched](https://bugs.launchpad.net/nova/+bug/2137507)|
+| 2023.2-ubuntu-jammy-2025-11-05 | 11/05/2025 | Keystone |[ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
+| 2023.2-ubuntu-jammy-2025-01-06 | 01/06/2025 | All |[Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)|
+||||[Barbican (17.0.0-5) security issue and bug fix](https://docs.openstack.org/releasenotes/barbican/2023.2.html#relnotes-17-0-0-5-stable-2023-2) |
+||||[Cinder (23.3.0-1) new feature, bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-3-0-1-stable-2023-2)|
+||||[Heat (21.0.0-8) new features and upgrade notes](https://docs.openstack.org/releasenotes/heat/2023.2.html#relnotes-21-0-0-8-stable-2023-2)|
+||||[Neutron (23.3.0) new features, bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-3-0-stable-2023-2)|
+||||[Octavia (13.0.0-35) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-35-stable-2023-2)|
+| 2023.2-ubuntu-jammy-2024-10-10 | 10/10/2024 | All |[Ubuntu security updates](https://ubuntu.com/security/notices?order=newest&release=jammy&details=&offset=0)|
+||||[Cinder (23.2.0-12) new features and bug fixes](https://docs.openstack.org/releasenotes/cinder/2023.2.html#relnotes-23-2-0-12-stable-2023-2)|
+||||[Neutron (23.2.0-18) security issues and bug fixes](https://docs.openstack.org/releasenotes/neutron/2023.2.html#relnotes-23-2-0-18-stable-2023-2)|
+||||[Nova (28.3.0-11) bug fixes](https://docs.openstack.org/releasenotes/nova/2023.2.html#relnotes-28-3-0-11-stable-2023-2)|
+||||[Octavia (13.0.0-32) bug fixes](https://docs.openstack.org/releasenotes/octavia/2023.2.html#relnotes-13-0-0-32-stable-2023-2)|
 || 9/5/2024 | All ||
 
 ## OpenStack Yoga
@@ -65,4 +69,6 @@ Latest image tag: `yoga`
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
-| yoga | 11/05/2025 | Keystone | - [ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
+| yoga-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
+||| Nova |[[OSSA-2026-002] Nova calls qemu-img without format restrictions for resize (CVE-2026-24708) patched](https://bugs.launchpad.net/nova/+bug/2137507)|
+| yoga-2025-11-05 | 11/05/2025 | Keystone |[ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
