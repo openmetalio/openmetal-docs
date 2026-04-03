@@ -2222,6 +2222,232 @@ paths:
         '404':
           description: Organization or membership not found.
 
+  /:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Root convenience endpoint
+      description: |
+        Returns `latest`. This is a convenience endpoint for manual debugging via curl. cloud-init does not use this endpoint — it probes `/openstack/` for the OpenStack datasource.
+      responses:
+        '200':
+          description: Returns the string `latest`.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "latest"
+
+  /openstack/:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Version discovery
+      description: |
+        Returns `latest`. cloud-init probes this endpoint to discover the metadata service. A 200 response tells cloud-init the service is available.
+      responses:
+        '200':
+          description: Returns the string `latest`.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "latest"
+
+  /openstack/latest/:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: List available metadata files
+      description: |
+        Returns a newline-delimited list of available metadata files. cloud-init uses this to discover what data is available.
+      responses:
+        '200':
+          description: Newline-delimited file list.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "user_data\nmeta_data.json\nnetwork_data.json\nvendor_data.json\nvendor_data2.json"
+
+  /openstack/latest/meta_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Instance metadata
+      description: |
+        Returns instance metadata in OpenStack format. The `uuid` field is required — cloud-init uses it as the instance identity for first-boot detection. If `uuid` is missing, cloud-init will fail to initialize.
+      responses:
+        '200':
+          description: Instance metadata JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeMetaData'
+              example:
+                uuid: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                hostname: "node-01.example.com"
+                local-hostname: "node-01.example.com"
+                launch_index: 0
+                availability_zone: null
+                public_keys:
+                  deploy-key: "ssh-ed25519 AAAA..."
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/network_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Network configuration
+      description: |
+        Returns network configuration in [OpenStack network_data.json format](https://docs.openstack.org/nova/latest/user/metadata.html). Passed through directly from the node's stored network configuration. cloud-init parses this and renders it via the configured network renderer (systemd-networkd in the ramdisk).
+
+        The fields documented here cover the most common cases. The full OpenStack format also supports bond configurations (`bond_links`, `bond_mode`), VLANs (`vlan_link`, `vlan_id`), and additional parameters. See the [OpenStack documentation](https://docs.openstack.org/nova/latest/user/metadata.html) for the complete specification.
+      responses:
+        '200':
+          description: Network configuration JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeNetworkData'
+              example:
+                links:
+                  - id: "port-abc123"
+                    type: "phy"
+                    ethernet_mac_address: "aa:bb:cc:dd:ee:f0"
+                    mtu: 1500
+                networks:
+                  - id: "network-xyz789"
+                    type: "ipv4_dhcp"
+                    link: "port-abc123"
+                    network_id: "xyz789"
+                services:
+                  - type: "dns"
+                    address: "8.8.8.8"
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/user_data:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: User data
+      description: |
+        Returns the raw user data string configured for this node. Returns 404 if no user data is configured.
+      responses:
+        '200':
+          description: Raw user data.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No user data configured for this node, or node not found.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/vendor_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Vendor data
+      description: |
+        Returns vendor data JSON. Returns `{}` if no vendor data is configured for this node. cloud-init looks for a `cloud-init` key in the JSON object and processes its value using the same handlers as user data.
+      responses:
+        '200':
+          description: Vendor data JSON (empty object `{}` if none configured).
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/vendor_data2.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Dynamic vendor data
+      description: |
+        Returns dynamic vendor data JSON. Returns `{}` if no dynamic vendor data is configured. Settings from `vendor_data2.json` override those from `vendor_data.json`.
+      responses:
+        '200':
+          description: Dynamic vendor data JSON (empty object `{}` if none configured).
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /health:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Health check
+      description: |
+        Operational health check endpoint. Not part of the OpenStack metadata specification and not consumed by cloud-init. Exists for operational debugging.
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+              example:
+                status: "ok"
+
 components:
   securitySchemes:
     bearerAuth:
