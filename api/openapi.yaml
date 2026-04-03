@@ -3666,6 +3666,154 @@ components:
                   description: Cloud-init user data as a stringified JSON object. The JSON value should contain cloud-init directives such as `write_files`, `runcmd`, `packages`, etc.
                   example: "{\"packages\":[\"nginx\"],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"]}"
 
+    # Node Metadata Service Schemas
+    NodeMetaData:
+      type: object
+      description: |
+        Instance metadata in OpenStack format. The `uuid` field is required — cloud-init uses it as the instance identity for first-boot detection.
+      required:
+        - uuid
+      properties:
+        uuid:
+          type: string
+          description: Unique instance identifier. Maps to the node's instance ID. Required for cloud-init initialization.
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        hostname:
+          type: string
+          description: Fully qualified domain name of the node.
+          example: "node-01.example.com"
+        local-hostname:
+          type: string
+          description: Local hostname (typically same as hostname).
+          example: "node-01.example.com"
+        launch_index:
+          type: integer
+          description: Launch index of the instance.
+          example: 0
+        availability_zone:
+          type: string
+          nullable: true
+          description: Availability zone of the instance.
+          example: null
+        public_keys:
+          type: object
+          description: Map of SSH key name to public key string.
+          additionalProperties:
+            type: string
+          example:
+            deploy-key: "ssh-ed25519 AAAA..."
+
+    NodeNetworkData:
+      type: object
+      description: |
+        Network configuration in [OpenStack network_data.json format](https://docs.openstack.org/nova/latest/user/metadata.html). Passed through directly from the node's stored network configuration. cloud-init parses this and renders it via the configured network renderer.
+
+        The fields documented here cover the most common cases. The full OpenStack format also supports bond configurations (`bond_links`, `bond_mode`), VLANs (`vlan_link`, `vlan_id`), static IP assignments, and additional route parameters. See the [OpenStack documentation](https://docs.openstack.org/nova/latest/user/metadata.html) for the complete specification.
+      properties:
+        links:
+          type: array
+          description: Network link (interface) definitions.
+          items:
+            $ref: '#/components/schemas/NodeNetworkLink'
+        networks:
+          type: array
+          description: Network (subnet/IP) definitions.
+          items:
+            $ref: '#/components/schemas/NodeNetworkNetwork'
+        services:
+          type: array
+          description: Network services (e.g., DNS).
+          items:
+            $ref: '#/components/schemas/NodeNetworkService'
+
+    NodeNetworkLink:
+      type: object
+      description: A network interface definition.
+      properties:
+        id:
+          type: string
+          description: Interface identifier.
+          example: "port-abc123"
+        type:
+          type: string
+          description: "Link type. Common values: `phy`, `bond`, `vlan`, `bridge`, `ethernet`, `ovs`."
+          example: "phy"
+        ethernet_mac_address:
+          type: string
+          description: MAC address of the interface.
+          example: "aa:bb:cc:dd:ee:f0"
+        mtu:
+          type: integer
+          description: Maximum transmission unit.
+          example: 1500
+
+    NodeNetworkNetwork:
+      type: object
+      description: A network (subnet/IP) definition.
+      properties:
+        id:
+          type: string
+          description: Network identifier.
+          example: "network-xyz789"
+        type:
+          type: string
+          description: "Network type. Values: `ipv4`, `ipv6`, `ipv4_dhcp`, `ipv6_dhcp`, `ipv6_slaac`."
+          example: "ipv4_dhcp"
+        link:
+          type: string
+          description: Reference to a link `id` this network is attached to.
+          example: "port-abc123"
+        network_id:
+          type: string
+          description: Network UUID.
+          example: "xyz789"
+        ip_address:
+          type: string
+          description: IP address (for static types).
+          example: "10.0.0.5"
+        netmask:
+          type: string
+          description: Subnet mask (for static IPv4).
+          example: "255.255.255.0"
+        gateway:
+          type: string
+          description: Default gateway.
+          example: "10.0.0.1"
+        dns_nameservers:
+          type: array
+          description: DNS server addresses.
+          items:
+            type: string
+          example: ["8.8.8.8"]
+        routes:
+          type: array
+          description: Static routes.
+          items:
+            type: object
+            properties:
+              network:
+                type: string
+                example: "192.168.0.0"
+              netmask:
+                type: string
+                example: "255.255.0.0"
+              gateway:
+                type: string
+                example: "10.0.0.254"
+
+    NodeNetworkService:
+      type: object
+      description: A network service definition.
+      properties:
+        type:
+          type: string
+          description: Service type.
+          example: "dns"
+        address:
+          type: string
+          description: Service IP address.
+          example: "8.8.8.8"
+
     # VLAN Resource Schemas
     VlanResource:
       type: object
