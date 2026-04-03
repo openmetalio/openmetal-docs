@@ -125,6 +125,44 @@ tags:
     description: Operations for retrieving account and organization profile information.
   - name: Organizations
     description: Operations for creating organizations and managing their members.
+  - name: Node Metadata
+    description: |
+      An OpenStack-compatible metadata service at `http://169.254.169.254` that serves cloud-init configuration to bare metal nodes over HTTP.
+
+      ## Overview
+
+      Nodes deployed with a ramdisk (kernel + initramfs) deployment configuration receive their cloud-init data from this service. It provides instance metadata, network configuration, and user data so the OS can configure itself after booting into memory.
+
+      The service is accessible only from the node itself at the link-local address `169.254.169.254`. It is not routable from the public internet. No authentication is required — node identity is determined by the source IP of the request.
+
+      ## Ramdisk Image Requirements
+
+      cloud-init cannot auto-detect standalone bare metal as an OpenStack platform. Your ramdisk image must force the OpenStack datasource by including the following configuration at `/etc/cloud/cloud.cfg.d/99-datasource.cfg`:
+
+      ```yaml
+      datasource_list: [OpenStack]
+      datasource:
+        OpenStack:
+          metadata_urls: ["http://169.254.169.254"]
+          max_wait: 120
+          timeout: 10
+          retries: 5
+          apply_network_config: true
+      resize_rootfs: false
+      system_info:
+        network:
+          renderers: ["networkd"]
+      ```
+
+      ### Key Settings
+
+      | Setting | Required | Description |
+      |---------|----------|-------------|
+      | `datasource_list: [OpenStack]` | Yes | Forces the OpenStack datasource. DMI-based auto-detection does not work on bare metal. |
+      | `max_wait: 120` | Yes | Default is `-1` (single probe). Set to 120 to give cloud-init time to retry if the service is not immediately reachable. |
+      | `apply_network_config: true` | Recommended | Tells cloud-init to configure networking from `network_data.json`. |
+      | `renderers: ['networkd']` | Recommended | Renders network config as systemd-networkd files, avoiding a netplan dependency. |
+      | `resize_rootfs: false` | Recommended | The ramdisk runs on tmpfs; there is no block device to resize. |
 
 x-tagGroups:
   - name: Authentication
@@ -143,6 +181,9 @@ x-tagGroups:
       - SSH Keys
       - Accounts
       - Organizations
+  - name: Node Services
+    tags:
+      - Node Metadata
 
 paths:
   /v1/oauth2/token:
