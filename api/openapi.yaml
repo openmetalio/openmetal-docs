@@ -305,6 +305,34 @@ paths:
         '404':
           description: Cloud not found.
 
+  /v1/clouds/{cloudId}/subscription:
+    get:
+      tags:
+        - Clouds
+      summary: Get cloud subscription
+      description: Retrieve the billing subscription details and asset usage logs for a specific cloud.
+      parameters:
+        - name: cloudId
+          in: path
+          required: true
+          description: The ID of the cloud to retrieve subscription details for.
+          schema:
+            type: string
+            example: "4J31e2w3Vp"
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Subscription details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudSubscription'
+        '401':
+          description: Unauthorized - Invalid or missing Bearer token.
+        '404':
+          description: Cloud not found.
+
   /v1/clouds/{cloudId}/vlans/{vlanId}:
     post:
       tags:
@@ -2890,6 +2918,176 @@ components:
                       type: string
                       description: The IP address in CIDR notation.
                       example: "198.51.100.118/28"
+
+    CloudSubscription:
+      type: object
+      properties:
+        subscription:
+          $ref: '#/components/schemas/CloudSubscriptionDetail'
+        asset_logs:
+          type: array
+          description: Log entries tracking hardware assets and their usage during the billing period.
+          items:
+            $ref: '#/components/schemas/CloudAssetLog'
+
+    CloudSubscriptionDetail:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: The UUID of the subscription.
+          example: "7e1dc0982d3829a767e72442108c338b"
+        state:
+          type: string
+          description: The current state of the subscription.
+          example: "active"
+        total_billing_cycles:
+          type: integer
+          description: The total number of billing cycles completed.
+          example: 1
+        collection_method:
+          type: string
+          description: How payment is collected for this subscription.
+          enum: ["automatic", "manual"]
+          example: "automatic"
+        auto_renew:
+          type: boolean
+          description: Whether the subscription automatically renews at the end of each term.
+          example: true
+        card:
+          type: object
+          description: Payment card information associated with the subscription.
+          properties:
+            card_type:
+              type: string
+              description: The card network type.
+              example: "Visa"
+            last_four:
+              type: string
+              description: The last four digits of the card number.
+              example: "4242"
+        current_term_started_at:
+          type: string
+          format: date-time
+          description: The start timestamp of the current billing term.
+          example: "2026-03-02T14:30:40+00:00"
+        current_term_ends_at:
+          type: string
+          format: date-time
+          description: The end timestamp of the current billing term.
+          example: "2026-04-01T14:30:40+00:00"
+        activated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the subscription was first activated.
+          example: "2026-03-02T14:30:40+00:00"
+        addons:
+          type: array
+          description: List of add-ons included in this subscription.
+          items:
+            type: object
+            properties:
+              usage:
+                type: integer
+                description: Hours of usage for this add-on in the current billing period.
+                example: 720
+              name:
+                type: string
+                description: Human-readable name of the add-on.
+                example: "Baremetal - Small (Long Term Usage)"
+              addon_on_code:
+                type: string
+                description: The add-on code identifier.
+                example: "baremetal_standard[r:l][d:1]"
+              unit_amount_in_cents:
+                type: integer
+                description: Per-unit cost in cents.
+                example: 30
+              total_in_cents:
+                type: integer
+                description: Total cost for this add-on in cents.
+                example: 21600
+        discounts:
+          type: array
+          description: List of discounts applied to this subscription.
+          items:
+            type: object
+        total_in_cents:
+          type: integer
+          description: Total subscription cost in cents for the current term.
+          example: 21600
+        plan_code:
+          type: string
+          description: The billing plan code for this subscription.
+          example: "flex_metal_cloud_monthly"
+
+    CloudAssetLog:
+      type: object
+      description: A log entry tracking a hardware asset and its usage within a billing period.
+      properties:
+        cloud_id:
+          type: string
+          description: The ID of the cloud this asset belongs to.
+          example: "4J31e2w3Vp"
+        cloud_asset_id:
+          type: integer
+          description: Internal numeric ID of the cloud asset record.
+          example: 12582
+        addon_code:
+          type: string
+          description: The base add-on code for this asset type.
+          example: "baremetal_standard"
+        is_active:
+          type: boolean
+          description: Whether this asset is currently active.
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          description: When this asset was added to the cloud.
+          example: "2026-02-27T13:25:53+00:00"
+        removed_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When this asset was removed from the cloud, or null if still active.
+          example: null
+        nodes:
+          type: array
+          description: Nodes associated with this asset log entry.
+          items:
+            type: object
+            properties:
+              node_uuid:
+                type: string
+                format: uuid
+                description: UUID of the node.
+                example: "cb026b83-cdb3-43dc-b548-fd0ee0cececa"
+              created_at:
+                type: string
+                format: date-time
+                description: When the node was assigned to this asset log.
+                example: "2026-02-27T13:25:53+00:00"
+        lifetime_usage:
+          type: integer
+          description: Total hours this asset has been in use across all billing periods.
+          example: 289
+        name:
+          type: string
+          description: Human-readable name of the asset/add-on.
+          example: "Baremetal - Small (Long Term Usage)"
+        cost_in_cents:
+          type: integer
+          description: Per-hour cost of this asset in cents.
+          example: 30
+        period_usage:
+          type: integer
+          description: Hours this asset has been in use during the current billing period.
+          example: 216
+        period_cost:
+          type: string
+          description: Total cost for this asset during the current billing period, in dollars.
+          example: "64.80"
 
     InventoryAvailability:
       type: object
