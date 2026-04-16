@@ -50,7 +50,7 @@ Each deployment includes 2x `/28` public IP blocks by default (one Inventory, on
 | 8 | `/v1/infrastructure/server/restart` | POST | `POST /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power` | Power action `"rebooting"` |
 | 9 | `/v1/infrastructure/ip/allocate` | POST | `POST /v1/deployment/network/prefixes/{prefixId}/ip` | Allocate IP from existing prefix |
 | 10 | `/v1/infrastructure/ip/release` | POST | `DELETE /v1/deployment/network/prefixes/{prefixId}/ip/{ipId}` | Release IP address |
-| 11 | Server Metadata | — | cloud-init config drive | Read metadata via `cloud-init query` CLI |
+| 11 | Server Metadata | — | Metadata service (`169.254.169.254`) / config drive | Ramdisk: OpenStack metadata service; Disk: config drive |
 
 ---
 
@@ -120,7 +120,7 @@ Configurations support the following deployment modes:
 | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
 -->
 
-For operating systems that run in memory, use the ramdisk kernel mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments.
+For operating systems that run in memory, use the ramdisk kernel mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments. See [Section 11: Server Metadata](#11-server-metadata) for ramdisk cloud-init configuration requirements.
 
 Cloud-init user data can be combined with any deployment mode via the `cloud_init.data` field in the configuration.
 
@@ -185,11 +185,41 @@ Release an individual IP address back to its prefix.
 
 Access server instance metadata using the node metadata service or cloud-init config drive.
 
-**OpenMetal:** OpenMetal provides an OpenStack-compatible metadata service at `http://169.254.169.254` on each node. This service is used by nodes deployed with a ramdisk (kernel + initramfs) deployment configuration and serves cloud-init data in the [OpenStack datasource format](https://docs.cloud-init.io/en/latest/reference/datasources/openstack.html).
+#### Ramdisk Deployments
 
-See the [Node Metadata API documentation](/api#tag/Node-Metadata) for full endpoint details, response schemas, and ramdisk image configuration requirements.
+Ramdisk deployments receive cloud-init configuration from an OpenStack-compatible metadata service at `http://169.254.169.254`. The service provides:
 
-For disk deployments, metadata is delivered via configdrive during provisioning and can be accessed on the node using:
+- **`meta_data.json`** — instance identity (UUID, hostname, SSH public keys)
+- **`network_data.json`** — network configuration in [OpenStack format](https://docs.openstack.org/nova/latest/user/metadata.html) (links, networks, services)
+- **`user_data`** — optional user-supplied cloud-init data from the deployment configuration
+- **`vendor_data.json`** / **`vendor_data2.json`** — OpenMetal-supplied node configuration
+
+See the [Node Metadata API documentation](/api#tag/Node-Metadata) for full endpoint details and response schemas.
+
+##### Cloud-Init Datasource Configuration
+
+cloud-init cannot auto-detect bare metal nodes as an OpenStack platform. The ramdisk image must force the OpenStack datasource by including the following at `/etc/cloud/cloud.cfg.d/99-datasource.cfg`:
+
+```yaml
+datasource_list: [OpenStack]
+datasource:
+  OpenStack:
+    metadata_urls: ["http://169.254.169.254"]
+    max_wait: 120
+    timeout: 10
+    retries: 5
+    apply_network_config: true
+```
+
+| Setting | Required | Description |
+|---------|----------|-------------|
+| `datasource_list: [OpenStack]` | Yes | Forces the OpenStack datasource. DMI-based auto-detection does not work on bare metal. |
+| `max_wait: 120` | Yes | Default is `-1` (single probe). Set to 120 to allow cloud-init to retry if the metadata service is not immediately reachable. |
+| `apply_network_config: true` | Yes | Configures networking from the `network_data.json` response. |
+
+#### Disk Deployments
+
+For disk deployments, metadata is delivered via config drive during provisioning and can be accessed on the node using:
 
 - `cloud-init query ds` — retrieve all data source metadata
 - `cloud-init query -a` — retrieve all cloud-init data (instance ID, hostname, network config, etc.)
