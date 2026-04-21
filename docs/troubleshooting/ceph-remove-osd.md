@@ -8,6 +8,8 @@ description: >
   and ceph orch.
 ---
 
+Author: Ramon Grullon
+
 This guide covers how to safely remove one or more OSD drives from a
 **Ceph Reef** cluster managed by `cephadm` and `ceph orch`. Following
 these steps helps prevent data loss, avoids triggering nearfull
@@ -151,14 +153,6 @@ ceph osd dump | grep noout
 > **Remember to unset this flag when you are done.**
 > Leaving it set will hide real OSD failures.
 
-Pause the OSD spec entirely during maintenance.
-
-```bash
-ceph orch pause
-```
-
-This stops all reconciliation globally — cephadm won't redeploy anything.
-
 ---
 
 ### Step 2: Identify the Target OSD
@@ -187,20 +181,8 @@ command marks the OSD out, waits for all PGs to migrate away, then
 removes the OSD daemon and optionally zaps the device.
 
 ```bash
-ceph orch osd rm <osd-id> --replace
+ceph orch osd rm <osd-id> 
 ```
-
-| Flag | Effect |
-| --- | --- |
-| _(no flag)_ | Drains and removes the OSD; device is not zapped. |
-| `--replace` | Preserves the OSD ID for reuse. Use when swapping hardware. |
-| `--zap` | Wipes the device after removal. Use if re-adding the device later. |
-
-:::tip
-If you are replacing a failed drive with a new one, always use
-`--replace` to hold the OSD ID. This prevents CRUSH map churn and
-simplifies reassignment.
-:::
 
 ---
 
@@ -240,9 +222,6 @@ ceph osd tree
 ceph orch ps --daemon-type osd | grep <hostname>
 ```
 
-If using `--replace`, confirm the OSD ID shows as `destroyed` and is
-reserved for reuse:
-
 ```bash
 ceph osd ls
 ceph osd dump | grep destroyed
@@ -250,7 +229,28 @@ ceph osd dump | grep destroyed
 
 ---
 
-### Step 6: Unset noout & Resume Orchestrator
+### Step 6: Pause Orchestrator and Zap drives
+
+Pause the OSD spec entirely during maintenance.
+
+This stops all reconciliation globally — cephadm won't redeploy anything.
+
+```bash
+ceph orch pause
+```
+
+Zap wipes all data structures that identify the device as a Ceph OSD to both
+the OS and the Ceph orchestrator.
+
+```bash
+ceph orch device zap <hostname> /dev/disk/by-id/<device>
+```
+
+:::tip
+**Physically remove drive or drives from server before proceeding to next step**
+:::
+
+### Step 7: Unset noout and Resume Orchestrator
 
 If you set `noout` in Step 1, unset it now:
 
@@ -273,7 +273,7 @@ ceph health detail
 
 ---
 
-### Step 7: Physical Drive Removal
+### Step 8: Physical Drive Removal
 
 Only after the above steps are complete and the cluster is healthy
 should you physically remove the drive from the host. Coordinate with
