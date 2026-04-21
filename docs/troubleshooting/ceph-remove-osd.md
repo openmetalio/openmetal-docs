@@ -191,8 +191,7 @@ ceph orch osd rm <osd-id> --replace
 ```
 
 | Flag | Effect |
-|------|--------|
-
+| --- | --- |
 | _(no flag)_ | Drains and removes the OSD; device is not zapped. |
 | `--replace` | Preserves the OSD ID for reuse. Use when swapping hardware. |
 | `--zap` | Wipes the device after removal. Use if re-adding the device later. |
