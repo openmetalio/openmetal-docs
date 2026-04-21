@@ -310,7 +310,10 @@ paths:
       tags:
         - Clouds
       summary: Get cloud subscription
-      description: Retrieve the billing subscription details and asset usage logs for a specific cloud.
+      description: |
+        Retrieve the billing subscription details and asset usage logs for a specific cloud.
+
+        **Requires billing permission on the cloud.** The `manage` and `orgBilling` roles have billing permission; other roles will receive a 403 response.
       parameters:
         - name: cloudId
           in: path
@@ -330,6 +333,8 @@ paths:
                 $ref: '#/components/schemas/CloudSubscription'
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
+        '403':
+          description: Forbidden - User lacks billing permission on the cloud. The `manage` and `orgBilling` roles have billing permission.
         '404':
           description: Cloud not found.
 
