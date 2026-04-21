@@ -1,7 +1,7 @@
 ---
 id: remove-osd-drives
 title: Removing OSD Drives from a Ceph Reef Cluster
-sidebar_label: Safely removing OSD Drives
+sidebar_label: Safely Removing OSD Drives
 description: >
   Prerequisites, safety checks, and step-by-step procedures for safely
   decommissioning OSD drives from a Ceph Reef cluster managed by cephadm
@@ -133,7 +133,7 @@ decommission an OSD.
 
 ## Removal Procedure
 
-### Step 1: Set noout Flag & Pause the Orchestrator to prevent reingestion of OSD
+### Step 1: Set noout Flag and Pause Orchestrator
 
 Setting `noout` prevents PGs from being immediately re-replicated while
 you work, reducing unnecessary backfill load.
@@ -151,7 +151,7 @@ ceph osd dump | grep noout
 > **Remember to unset this flag when you are done.**
 > Leaving it set will hide real OSD failures.
 
-Pause the OSD spec entirely during maintenance
+Pause the OSD spec entirely during maintenance.
 
 ```bash
 ceph orch pause
@@ -191,7 +191,8 @@ ceph orch osd rm <osd-id> --replace
 ```
 
 | Flag | Effect |
-|------|--------|.
+|------|--------|
+
 | _(no flag)_ | Drains and removes the OSD; device is not zapped. |
 | `--replace` | Preserves the OSD ID for reuse. Use when swapping hardware. |
 | `--zap` | Wipes the device after removal. Use if re-adding the device later. |
@@ -250,7 +251,7 @@ ceph osd dump | grep destroyed
 
 ---
 
-### Step 6: Unset noout & unpause orchestrator
+### Step 6: Unset noout & Resume Orchestrator
 
 If you set `noout` in Step 1, unset it now:
 
