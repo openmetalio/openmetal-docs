@@ -181,7 +181,7 @@ command marks the OSD out, waits for all PGs to migrate away, then
 removes the OSD daemon and optionally zaps the device.
 
 ```bash
-ceph orch osd rm <osd-id> 
+ceph orch osd rm <osd-id>
 ```
 
 ---
@@ -231,6 +231,13 @@ ceph osd dump | grep destroyed
 
 ### Step 6: Pause Orchestrator and Zap drives
 
+Zap wipes all data structures that identify the device as a Ceph OSD to both
+the OS and the Ceph orchestrator.
+
+```bash
+ceph orch device zap <hostname> /dev/disk/by-id/<device>
+```
+
 Pause the OSD spec entirely during maintenance.
 
 This stops all reconciliation globally — cephadm won't redeploy anything.
@@ -239,18 +246,24 @@ This stops all reconciliation globally — cephadm won't redeploy anything.
 ceph orch pause
 ```
 
-Zap wipes all data structures that identify the device as a Ceph OSD to both
-the OS and the Ceph orchestrator.
+---
+
+### Step 7: Physical Drive Removal
+
+Only after the above steps are complete and the cluster is healthy
+should you physically remove the drive from the host. Coordinate with
+your data center or hardware team as appropriate.
+
+After physical removal, verify no ghost devices or stale entries remain:
 
 ```bash
-ceph orch device zap <hostname> /dev/disk/by-id/<device>
+ceph orch device ls <hostname>
+ceph osd tree
 ```
 
-:::tip
-**Physically remove drive or drives from server before proceeding to next step**
-:::
+---
 
-### Step 7: Unset noout and Resume Orchestrator
+### Step 8: Unset noout and Resume Orchestrator
 
 If you set `noout` in Step 1, unset it now:
 
@@ -269,21 +282,6 @@ Confirm the cluster is healthy:
 ```bash
 ceph -s
 ceph health detail
-```
-
----
-
-### Step 8: Physical Drive Removal
-
-Only after the above steps are complete and the cluster is healthy
-should you physically remove the drive from the host. Coordinate with
-your data center or hardware team as appropriate.
-
-After physical removal, verify no ghost devices or stale entries remain:
-
-```bash
-ceph orch device ls <hostname>
-ceph osd tree
 ```
 
 ---
