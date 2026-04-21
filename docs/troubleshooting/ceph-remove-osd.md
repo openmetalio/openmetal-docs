@@ -1,5 +1,6 @@
 ---
 id: remove-osd-drives
+slug: /tutorials/ceph-remove-osd
 title: Removing OSD Drives from a Ceph Reef Cluster
 sidebar_label: Safely Removing OSD Drives
 description: >
@@ -58,11 +59,11 @@ Before beginning an OSD removal, confirm all of the following:
   full during backfill. Confirm `nearfull` and `full` thresholds before
   proceeding.
 
-  ```bash
+```bash
   ceph osd dump | grep -E "full_ratio|nearfull_ratio|backfillfull_ratio"
-  ```
-  
-  :::
+```
+
+:::
 
 ### Replication and Erasure Coding
 
@@ -135,7 +136,7 @@ decommission an OSD.
 
 ## Removal Procedure
 
-### Step 1: Set noout Flag and Pause Orchestrator
+### Step 1: Set noout Flag
 
 Setting `noout` prevents PGs from being immediately re-replicated while
 you work, reducing unnecessary backfill load.
@@ -229,7 +230,7 @@ ceph osd dump | grep destroyed
 
 ---
 
-### Step 6: Pause Orchestrator and Zap drives
+### Step 6: Zap Drive and Pause Orchestrator  
 
 Zap wipes all data structures that identify the device as a Ceph OSD to both
 the OS and the Ceph orchestrator.
