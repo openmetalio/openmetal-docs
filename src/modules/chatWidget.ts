@@ -13,6 +13,7 @@ const isCrawl = typeof navigator !== 'undefined' && /bot|crawler|spider|crawling
 const chatWidgetConfig = {
   scriptUrl: 'https://chat.openmetal.app/widget/widget.js',
   settings: {
+    instanceId: 'f47ac10b-58cc-4372-a567-0e02b2c3d479',
     theme: {
       primaryColor: '#22C4A1',
       position: 'bottom-right'
