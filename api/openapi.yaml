@@ -74,20 +74,21 @@ tags:
 
       ## Deployment Modes
 
-      Configurations currently support disk deployment mode:
+      Configurations support the following deployment modes:
 
       | Mode | Required Fields | Description |
       |------|----------------|-------------|
       | **Disk** | `image_source` | Traditional whole-disk image written directly to disk |
-      <!-- Ramdisk deployment modes are temporarily disabled and will be re-enabled in a future release.
       | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
+      <!-- Ramdisk ISO deployment mode is not currently available.
       | **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
       -->
 
-      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`.
-      <!-- These fields are not required for ramdisk deployments. -->
+      Disk mode requires `image_os_hash_algo` and `image_os_hash_value` for image integrity verification. Valid hash algorithms are `md5`, `sha256`, and `sha512`. These fields are not required for ramdisk deployments.
 
-      Cloud-init user data (`cloud_init.data`) can be combined with disk deployment.
+      Ramdisk deployments boot the OS entirely from memory — no disk writes occur. The node receives its cloud-init configuration from the [Node Metadata Service](#tag/Node-Metadata) at `169.254.169.254`. Disk and ramdisk modes are mutually exclusive.
+
+      Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
   - name: Orders
@@ -125,6 +126,38 @@ tags:
     description: Operations for retrieving account and organization profile information.
   - name: Organizations
     description: Operations for creating organizations and managing their members.
+  - name: Node Metadata
+    description: |
+      An OpenStack-compatible metadata service at `http://169.254.169.254` that serves cloud-init configuration to bare metal nodes over HTTP.
+
+      ## Overview
+
+      Nodes deployed with a ramdisk (kernel + initramfs) deployment configuration receive their cloud-init data from this service. It provides instance metadata, network configuration, and user data so the OS can configure itself after booting into memory.
+
+      The service is accessible only from the node itself at the link-local address `169.254.169.254`. It is not routable from the public internet. No authentication is required — node identity is determined by the source IP of the request.
+
+      ## Ramdisk Image Requirements
+
+      cloud-init cannot auto-detect standalone bare metal as an OpenStack platform. Your ramdisk image must force the OpenStack datasource by including the following configuration at `/etc/cloud/cloud.cfg.d/99-datasource.cfg`:
+
+      ```yaml
+      datasource_list: [OpenStack]
+      datasource:
+        OpenStack:
+          metadata_urls: ["http://169.254.169.254"]
+          max_wait: 120
+          timeout: 10
+          retries: 5
+          apply_network_config: true
+      ```
+
+      ### Key Settings
+
+      | Setting | Required | Description |
+      |---------|----------|-------------|
+      | `datasource_list: [OpenStack]` | Yes | Forces the OpenStack datasource. DMI-based auto-detection does not work on bare metal. |
+      | `max_wait: 120` | Yes | Default is `-1` (single probe). Set to 120 to give cloud-init time to retry if the service is not immediately reachable. |
+      | `apply_network_config: true` | Recommended | Tells cloud-init to configure networking from `network_data.json`. |
 
 x-tagGroups:
   - name: Authentication
@@ -143,6 +176,9 @@ x-tagGroups:
       - SSH Keys
       - Accounts
       - Organizations
+  - name: Node Services
+    tags:
+      - Node Metadata
 
 paths:
   /v1/oauth2/token:
@@ -753,16 +789,16 @@ paths:
                     image_source: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
                     image_os_hash_algo: "sha256"
                     image_os_hash_value: "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-              # Ramdisk examples temporarily disabled — ramdisk deployments are not currently available.
-              # ramdisk_kernel:
-              #   summary: Ramdisk deployment (kernel + initramfs)
-              #   description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
-              #   value:
-              #     label: "CoreOS Ramdisk Deploy"
-              #     description: "Ramdisk deployment using kernel and initramfs"
-              #     fields:
-              #       image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
-              #       image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+              ramdisk_kernel:
+                summary: Ramdisk deployment (kernel + initramfs)
+                description: Boot an OS into memory using a kernel and initramfs pair. The OS runs entirely in RAM — no disk writes occur. Hash fields are not required for ramdisk deployments.
+                value:
+                  label: "CoreOS Ramdisk Deploy"
+                  description: "Ramdisk deployment using kernel and initramfs"
+                  fields:
+                    image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
+                    image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+              # Ramdisk boot ISO is not currently available.
               # ramdisk_boot_iso:
               #   summary: Ramdisk deployment (boot ISO)
               #   description: Boot from an ISO image loaded into memory. Useful for rescue environments or live OS images. Hash fields are not required for ramdisk deployments.
@@ -793,9 +829,11 @@ paths:
         '400':
           description: |
             Invalid deployment configuration. Possible validation errors:
-            - Ramdisk fields specified (`image_ramdisk_kernel`, `image_ramdisk_ramdisk`, `image_ramdisk_boot_iso`) — ramdisk deployments are not currently available
+            - `image_ramdisk_boot_iso` specified — ramdisk boot ISO deployments are not currently available
+            - Multiple mutually exclusive deployment modes specified (`image_source`, `image_ramdisk_kernel`/`image_ramdisk_ramdisk`, and `image_ramdisk_boot_iso` are mutually exclusive)
+            - Only one of `image_ramdisk_kernel` or `image_ramdisk_ramdisk` provided (both are required together)
             - Missing `image_os_hash_algo` or `image_os_hash_value` when `image_source` is specified
-            - Invalid `image_os_hash_algo` value
+            - Invalid `image_os_hash_algo` value (must be `md5`, `sha256`, or `sha512`)
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
@@ -2214,6 +2252,232 @@ paths:
         '404':
           description: Organization or membership not found.
 
+  /:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Root convenience endpoint
+      description: |
+        Returns `latest`. This is a convenience endpoint for manual debugging via curl. cloud-init does not use this endpoint — it probes `/openstack/` for the OpenStack datasource.
+      responses:
+        '200':
+          description: Returns the string `latest`.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "latest"
+
+  /openstack/:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Version discovery
+      description: |
+        Returns `latest`. cloud-init probes this endpoint to discover the metadata service. A 200 response tells cloud-init the service is available.
+      responses:
+        '200':
+          description: Returns the string `latest`.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "latest"
+
+  /openstack/latest/:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: List available metadata files
+      description: |
+        Returns a newline-delimited list of available metadata files. cloud-init uses this to discover what data is available.
+      responses:
+        '200':
+          description: Newline-delimited file list.
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "user_data\nmeta_data.json\nnetwork_data.json\nvendor_data.json\nvendor_data2.json"
+
+  /openstack/latest/meta_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Instance metadata
+      description: |
+        Returns instance metadata in OpenStack format. The response includes a `uuid` field that cloud-init uses as the instance identity for first-boot detection.
+      responses:
+        '200':
+          description: Instance metadata JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeMetaData'
+              example:
+                uuid: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                hostname: "node-01.example.com"
+                local-hostname: "node-01.example.com"
+                launch_index: 0
+                availability_zone: null
+                public_keys:
+                  deploy-key: "ssh-ed25519 AAAA..."
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/network_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Network configuration
+      description: |
+        Returns network configuration in [OpenStack network_data.json format](https://docs.openstack.org/nova/latest/user/metadata.html). Passed through directly from the node's stored network configuration. cloud-init parses this and renders it via the configured network renderer (systemd-networkd in the ramdisk).
+
+        The fields documented here cover the most common cases. The full OpenStack format also supports bond configurations (`bond_links`, `bond_mode`), VLANs (`vlan_link`, `vlan_id`), and additional parameters. See the [OpenStack documentation](https://docs.openstack.org/nova/latest/user/metadata.html) for the complete specification.
+      responses:
+        '200':
+          description: Network configuration JSON.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodeNetworkData'
+              example:
+                links:
+                  - id: "port-abc123"
+                    type: "phy"
+                    ethernet_mac_address: "aa:bb:cc:dd:ee:f0"
+                    mtu: 1500
+                networks:
+                  - id: "network-xyz789"
+                    type: "ipv4_dhcp"
+                    link: "port-abc123"
+                    network_id: "xyz789"
+                services:
+                  - type: "dns"
+                    address: "8.8.8.8"
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/user_data:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: User data
+      description: |
+        Returns the raw user data string configured for this node. Returns 404 if no user data is configured.
+      responses:
+        '200':
+          description: Raw user data.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No user data configured for this node, or node not found.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/vendor_data.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Vendor data
+      description: |
+        Returns vendor data JSON. Returns `{}` if no vendor data is configured for this node. cloud-init looks for a `cloud-init` key in the JSON object and processes its value using the same handlers as user data.
+      responses:
+        '200':
+          description: Vendor data JSON (empty object `{}` if none configured).
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /openstack/latest/vendor_data2.json:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Dynamic vendor data
+      description: |
+        Returns dynamic vendor data JSON. Returns `{}` if no dynamic vendor data is configured. Settings from `vendor_data2.json` override those from `vendor_data.json`.
+      responses:
+        '200':
+          description: Dynamic vendor data JSON (empty object `{}` if none configured).
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '404':
+          description: Node not found — IP not in DHCP lease, node not registered, or no configdrive stored.
+        '503':
+          description: Upstream service unavailable.
+
+  /health:
+    get:
+      tags:
+        - Node Metadata
+      servers:
+        - url: http://169.254.169.254
+          description: Node-local metadata service (link-local, accessible only from the node)
+      security: []
+      summary: Health check
+      description: |
+        Operational health check endpoint. Not part of the OpenStack metadata specification and not consumed by cloud-init. Exists for operational debugging.
+      responses:
+        '200':
+          description: Service is healthy.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "ok"
+              example:
+                status: "ok"
+
 components:
   securitySchemes:
     bearerAuth:
@@ -3403,8 +3667,8 @@ components:
       description: |
         A custom deployment configuration containing an OS image and/or cloud-init user data for hardware provisioning.
 
-        The `fields` object contains deployment settings. Currently only disk deployment
-        via `image_source` is supported.
+        The `fields` object contains deployment settings for disk (`image_source`) or
+        ramdisk (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`) deployment modes.
       required:
         - id
         - label
@@ -3433,15 +3697,15 @@ components:
               type: string
               description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
-            # image_ramdisk_kernel:
-            #   type: string
-            #   description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`. Mutually exclusive with `image_source` and `image_ramdisk_boot_iso`.
-            #   example: "https://images.example.com/coreos/vmlinuz"
-            # image_ramdisk_ramdisk:
-            #   type: string
-            #   description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
-            #   example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`. Mutually exclusive with `image_source`.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+              example: "https://images.example.com/coreos/initramfs.img"
+            # Ramdisk boot ISO is not currently available.
             # image_ramdisk_boot_iso:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment. Mutually exclusive with `image_source` and `image_ramdisk_kernel`/`image_ramdisk_ramdisk`.
@@ -3507,15 +3771,15 @@ components:
               type: string
               description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
-            # image_ramdisk_kernel:
-            #   type: string
-            #   description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`.
-            #   example: "https://images.example.com/coreos/vmlinuz"
-            # image_ramdisk_ramdisk:
-            #   type: string
-            #   description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
-            #   example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment. Must be provided together with `image_ramdisk_ramdisk`.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment. Must be provided together with `image_ramdisk_kernel`.
+              example: "https://images.example.com/coreos/initramfs.img"
+            # Ramdisk boot ISO is not currently available.
             # image_ramdisk_boot_iso:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment.
@@ -3571,15 +3835,15 @@ components:
               type: string
               description: URL of the whole-disk OS image for direct-to-disk deployment.
               example: "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
-            # Ramdisk fields temporarily disabled — ramdisk deployments are not currently available.
-            # image_ramdisk_kernel:
-            #   type: string
-            #   description: URL of the kernel for ramdisk deployment.
-            #   example: "https://images.example.com/coreos/vmlinuz"
-            # image_ramdisk_ramdisk:
-            #   type: string
-            #   description: URL of the initramfs for ramdisk deployment.
-            #   example: "https://images.example.com/coreos/initramfs.img"
+            image_ramdisk_kernel:
+              type: string
+              description: URL of the kernel for ramdisk deployment.
+              example: "https://images.example.com/coreos/vmlinuz"
+            image_ramdisk_ramdisk:
+              type: string
+              description: URL of the initramfs for ramdisk deployment.
+              example: "https://images.example.com/coreos/initramfs.img"
+            # Ramdisk boot ISO is not currently available.
             # image_ramdisk_boot_iso:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment.
@@ -3601,6 +3865,154 @@ components:
                   type: string
                   description: Cloud-init user data as a stringified JSON object. The JSON value should contain cloud-init directives such as `write_files`, `runcmd`, `packages`, etc.
                   example: "{\"packages\":[\"nginx\"],\"runcmd\":[\"/var/lib/cloud/scripts/per-once/setup.sh\"]}"
+
+    # Node Metadata Service Schemas
+    NodeMetaData:
+      type: object
+      description: |
+        Instance metadata in OpenStack format. Includes a `uuid` derived from the node's stored configdrive, used by cloud-init for first-boot detection.
+      required:
+        - uuid
+      properties:
+        uuid:
+          type: string
+          description: Unique instance identifier derived from the node's configdrive `instance-id`. Used by cloud-init for first-boot detection.
+          example: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+        hostname:
+          type: string
+          description: Fully qualified domain name of the node.
+          example: "node-01.example.com"
+        local-hostname:
+          type: string
+          description: Local hostname (typically same as hostname).
+          example: "node-01.example.com"
+        launch_index:
+          type: integer
+          description: Launch index of the instance.
+          example: 0
+        availability_zone:
+          type: string
+          nullable: true
+          description: Availability zone of the instance.
+          example: null
+        public_keys:
+          type: object
+          description: Map of SSH key name to public key string.
+          additionalProperties:
+            type: string
+          example:
+            deploy-key: "ssh-ed25519 AAAA..."
+
+    NodeNetworkData:
+      type: object
+      description: |
+        Network configuration in [OpenStack network_data.json format](https://docs.openstack.org/nova/latest/user/metadata.html). Passed through directly from the node's stored network configuration. cloud-init parses this and renders it via the configured network renderer.
+
+        The fields documented here cover the most common cases. The full OpenStack format also supports bond configurations (`bond_links`, `bond_mode`), VLANs (`vlan_link`, `vlan_id`), static IP assignments, and additional route parameters. See the [OpenStack documentation](https://docs.openstack.org/nova/latest/user/metadata.html) for the complete specification.
+      properties:
+        links:
+          type: array
+          description: Network link (interface) definitions.
+          items:
+            $ref: '#/components/schemas/NodeNetworkLink'
+        networks:
+          type: array
+          description: Network (subnet/IP) definitions.
+          items:
+            $ref: '#/components/schemas/NodeNetworkNetwork'
+        services:
+          type: array
+          description: Network services (e.g., DNS).
+          items:
+            $ref: '#/components/schemas/NodeNetworkService'
+
+    NodeNetworkLink:
+      type: object
+      description: A network interface definition.
+      properties:
+        id:
+          type: string
+          description: Interface identifier.
+          example: "port-abc123"
+        type:
+          type: string
+          description: "Link type. Common values: `phy`, `bond`, `vlan`, `bridge`, `ethernet`, `ovs`."
+          example: "phy"
+        ethernet_mac_address:
+          type: string
+          description: MAC address of the interface.
+          example: "aa:bb:cc:dd:ee:f0"
+        mtu:
+          type: integer
+          description: Maximum transmission unit.
+          example: 1500
+
+    NodeNetworkNetwork:
+      type: object
+      description: A network (subnet/IP) definition.
+      properties:
+        id:
+          type: string
+          description: Network identifier.
+          example: "network-xyz789"
+        type:
+          type: string
+          description: "Network type. Values: `ipv4`, `ipv6`, `ipv4_dhcp`, `ipv6_dhcp`, `ipv6_slaac`."
+          example: "ipv4_dhcp"
+        link:
+          type: string
+          description: Reference to a link `id` this network is attached to.
+          example: "port-abc123"
+        network_id:
+          type: string
+          description: Network UUID.
+          example: "xyz789"
+        ip_address:
+          type: string
+          description: IP address (for static types).
+          example: "10.0.0.5"
+        netmask:
+          type: string
+          description: Subnet mask (for static IPv4).
+          example: "255.255.255.0"
+        gateway:
+          type: string
+          description: Default gateway.
+          example: "10.0.0.1"
+        dns_nameservers:
+          type: array
+          description: DNS server addresses.
+          items:
+            type: string
+          example: ["8.8.8.8"]
+        routes:
+          type: array
+          description: Static routes.
+          items:
+            type: object
+            properties:
+              network:
+                type: string
+                example: "192.168.0.0"
+              netmask:
+                type: string
+                example: "255.255.0.0"
+              gateway:
+                type: string
+                example: "10.0.0.254"
+
+    NodeNetworkService:
+      type: object
+      description: A network service definition.
+      properties:
+        type:
+          type: string
+          description: Service type.
+          example: "dns"
+        address:
+          type: string
+          description: Service IP address.
+          example: "8.8.8.8"
 
     # VLAN Resource Schemas
     VlanResource:

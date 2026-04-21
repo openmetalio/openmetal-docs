@@ -50,7 +50,7 @@ Each deployment includes 2x `/28` public IP blocks by default (one Inventory, on
 | 8 | `/v1/infrastructure/server/restart` | POST | `POST /v1/deployment/cloud/{cloudId}/node/{nodeUuid}/power` | Power action `"rebooting"` |
 | 9 | `/v1/infrastructure/ip/allocate` | POST | `POST /v1/deployment/network/prefixes/{prefixId}/ip` | Allocate IP from existing prefix |
 | 10 | `/v1/infrastructure/ip/release` | POST | `DELETE /v1/deployment/network/prefixes/{prefixId}/ip/{ipId}` | Release IP address |
-| 11 | Server Metadata | — | cloud-init config drive | Read metadata via `cloud-init query` CLI |
+| 11 | Server Metadata | — | Metadata service (`169.254.169.254`) / config drive | Ramdisk: OpenStack metadata service; Disk: config drive |
 
 ---
 
@@ -109,20 +109,20 @@ To add a server to an existing cloud, include the `cloud_id` field on the order 
 
 Baremetal orders require either an `operating_system` or a `deployment_configuration` in the item's `modifications` field. Configurations are reusable templates created via `POST /v1/configurations` and managed via full CRUD endpoints (`GET/POST /v1/configurations`, `GET/PATCH/DELETE /v1/configurations/{configurationId}`).
 
-Configurations currently support disk deployment mode:
+Configurations support the following deployment modes:
 
 | Mode | Required Fields | Description |
 |------|----------------|-------------|
 | **Disk** | `image_source` + `image_os_hash_algo` + `image_os_hash_value` | Traditional whole-disk image written directly to disk |
-
-<!-- Ramdisk deployment modes are temporarily disabled and will be re-enabled in a future release.
 | **Ramdisk (kernel)** | `image_ramdisk_kernel` + `image_ramdisk_ramdisk` | OS loaded into memory via kernel and initramfs |
-| **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
 
-For CycleOS or other operating systems that run in memory, use either the ramdisk kernel or ramdisk ISO mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments.
+<!-- Ramdisk ISO deployment mode is not currently available.
+| **Ramdisk (ISO)** | `image_ramdisk_boot_iso` | OS loaded into memory from a boot ISO |
 -->
 
-Cloud-init user data can be combined with disk deployment via the `cloud_init.data` field in the configuration.
+For operating systems that run in memory, use the ramdisk kernel mode. Any custom ramdisk image can be specified as long as it supports cloud-init. Hash fields (`image_os_hash_algo`, `image_os_hash_value`) are not required for ramdisk deployments. See [Section 11: Server Metadata](#11-server-metadata) for ramdisk cloud-init configuration requirements.
+
+Cloud-init user data can be combined with any deployment mode via the `cloud_init.data` field in the configuration.
 
 > **Note:** Provisioning typically takes 15-30 minutes from order creation to the cloud reaching `complete` status.
 
@@ -183,11 +183,43 @@ Release an individual IP address back to its prefix.
 
 ### 11. Server Metadata
 
-Access server instance metadata using the cloud-init config drive data source.
+Access server instance metadata using the node metadata service or cloud-init config drive.
 
-**OpenMetal:** OpenMetal supports the [cloud-init config drive](https://docs.cloud-init.io/en/22.4.2/topics/datasources/configdrive.html) method for accessing server metadata. As long as your image has cloud-init enabled, you can retrieve instance metadata directly from the server without reaching out to a separate API endpoint:
+#### Ramdisk Deployments
 
-- `cloud-init query ds` — retrieve all config drive data source metadata
+Ramdisk deployments receive cloud-init configuration from an OpenStack-compatible metadata service at `http://169.254.169.254`. The service provides:
+
+- **`meta_data.json`** — instance identity (UUID, hostname, SSH public keys)
+- **`network_data.json`** — network configuration in [OpenStack format](https://docs.openstack.org/nova/latest/user/metadata.html) (links, networks, services)
+- **`user_data`** — optional user-supplied cloud-init data from the deployment configuration
+- **`vendor_data.json`** / **`vendor_data2.json`** — OpenMetal-supplied node configuration
+
+See the [Node Metadata API documentation](/api#tag/Node-Metadata) for full endpoint details and response schemas.
+
+##### Cloud-Init Datasource Configuration
+
+cloud-init cannot auto-detect bare metal nodes as an OpenStack platform. The ramdisk image must force the OpenStack datasource by including the following at `/etc/cloud/cloud.cfg.d/99-datasource.cfg`:
+
+```yaml
+datasource_list: [OpenStack]
+datasource:
+  OpenStack:
+    metadata_urls: ["http://169.254.169.254"]
+    max_wait: 120
+    timeout: 10
+    retries: 5
+    apply_network_config: true
+```
+
+| Setting | Required | Description |
+|---------|----------|-------------|
+| `datasource_list: [OpenStack]` | Yes | Forces the OpenStack datasource. DMI-based auto-detection does not work on bare metal. |
+| `max_wait: 120` | Yes | Default is `-1` (single probe). Set to 120 to allow cloud-init to retry if the metadata service is not immediately reachable. |
+| `apply_network_config: true` | Yes | Configures networking from the `network_data.json` response. |
+
+#### Disk Deployments
+
+For disk deployments, metadata is delivered via config drive during provisioning and can be accessed on the node using:
+
+- `cloud-init query ds` — retrieve all data source metadata
 - `cloud-init query -a` — retrieve all cloud-init data (instance ID, hostname, network config, etc.)
-
-The config drive is also mounted directly on the server, so metadata can be read from the filesystem without using the cloud-init CLI.
