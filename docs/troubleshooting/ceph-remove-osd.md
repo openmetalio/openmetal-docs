@@ -59,11 +59,11 @@ Before beginning an OSD removal, confirm all of the following:
   full during backfill. Confirm `nearfull` and `full` thresholds before
   proceeding.
 
+:::
+
 ```bash
   ceph osd dump | grep -E "full_ratio|nearfull_ratio|backfillfull_ratio"
 ```
-
-:::
 
 ### Replication and Erasure Coding
 
@@ -175,7 +175,7 @@ ls -la /dev/disk/by-id/ | grep nvme | grep -v part
 
 ---
 
-### Step 3: Initiate the OSD Removal via Ceph orch
+### Step 3: Initiate the OSD Removal via Ceph orchestrator
 
 Use `ceph orch osd rm` to safely drain and decommission the OSD. This
 command marks the OSD out, waits for all PGs to migrate away, then
@@ -209,7 +209,7 @@ Wait until `ceph orch osd rm status` shows no pending removals **and**
 :::warning
 Do not proceed to the next step until PG migration is complete.
 `ceph -s` must show 0 degraded or misplaced PGs, and the OSD's
-`pg_num` must reach 0.
+PG count must reach 0.
 :::
 
 ---
@@ -242,6 +242,7 @@ ceph orch device zap <hostname> /dev/disk/by-id/<device>
 Pause the OSD spec entirely during maintenance.
 
 This stops all reconciliation globally — cephadm won't redeploy anything.
+Stops cephadm from detecting the now-empty device and adding it as a new OSD.
 
 ```bash
 ceph orch pause
