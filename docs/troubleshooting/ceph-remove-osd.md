@@ -133,7 +133,7 @@ decommission an OSD.
 
 ## Removal Procedure
 
-### Step 1: Set the noout Flag (Optional but Recommended)
+### Step 1: Set noout Flag & Pause the Orchestrator to prevent reingestion of OSD
 
 Setting `noout` prevents PGs from being immediately re-replicated while
 you work, reducing unnecessary backfill load.
@@ -150,6 +150,14 @@ ceph osd dump | grep noout
 
 > **Remember to unset this flag when you are done.**
 > Leaving it set will hide real OSD failures.
+
+Pause the OSD spec entirely during maintenance
+
+```bash
+ceph orch pause
+```
+
+This stops all reconciliation globally — cephadm won't redeploy anything.
 
 ---
 
@@ -183,7 +191,7 @@ ceph orch osd rm <osd-id> --replace
 ```
 
 | Flag | Effect |
-|------|--------|-
+|------|--------|.
 | _(no flag)_ | Drains and removes the OSD; device is not zapped. |
 | `--replace` | Preserves the OSD ID for reuse. Use when swapping hardware. |
 | `--zap` | Wipes the device after removal. Use if re-adding the device later. |
@@ -242,12 +250,18 @@ ceph osd dump | grep destroyed
 
 ---
 
-### Step 6: Unset noout
+### Step 6: Unset noout & unpause orchestrator
 
 If you set `noout` in Step 1, unset it now:
 
 ```bash
 ceph osd unset noout
+```
+
+Unpause when the drive is physically out.
+
+```bash
+ceph orch resume
 ```
 
 Confirm the cluster is healthy:
