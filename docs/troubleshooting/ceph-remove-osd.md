@@ -167,6 +167,7 @@ physical device:
 
 ```bash
 ceph osd metadata <osd-id> | grep -E "hostname|devices|bluefs_dedicated_db|bluestore_bdev_path"
+ls -la /dev/disk/by-id/ | grep nvme | grep -v part
 ```
 
 ---
