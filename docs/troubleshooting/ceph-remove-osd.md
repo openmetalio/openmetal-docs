@@ -150,8 +150,9 @@ Verify it is set:
 ceph osd dump | grep noout
 ```
 
-> **Remember to unset this flag when you are done.**
-> Leaving it set will hide real OSD failures.
+  :::warning
+  Remember to unset this flag when you are done. Leaving it set will hide real OSD failures.
+  :::
 
 ---
 
@@ -176,9 +177,10 @@ ls -la /dev/disk/by-id/ | grep nvme | grep -v part
 
 ### Step 3: Initiate the OSD Removal via Ceph Orchestrator
 
-Use `ceph orch osd rm` to safely drain and decommission the OSD. This
-command marks the OSD out, waits for all PGs to migrate away, then
-removes the OSD daemon and optionally zaps the device.
+Use `ceph orch osd rm <osd-id>` to safely drain and decommission the OSD. This
+command marks the OSD out and waits for all PGs to migrate away, then removes
+the OSD daemon. The `--zap` flag is intentionally omitted here — the drive will
+be zapped explicitly in Step 6 after confirming full removal.
 
 ```bash
 ceph orch osd rm <osd-id>
