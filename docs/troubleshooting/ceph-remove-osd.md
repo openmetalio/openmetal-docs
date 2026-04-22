@@ -151,7 +151,8 @@ ceph osd dump | grep noout
 ```
 
   :::warning
-  Remember to unset this flag when you are done. Leaving it set will hide real OSD failures.
+  Remember to unset this flag when you are done. Leaving it set will hide real
+  OSD failures.
   :::
 
 ---
