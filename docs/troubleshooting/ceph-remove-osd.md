@@ -141,10 +141,10 @@ Verify it is set:
 ceph osd dump | grep noout
 ```
 
-  :::warning
+:::warning
   Remember to unset this flag when you are done. Leaving it set will hide real
   OSD failures.
-  :::
+:::
 
 ---
 
@@ -262,6 +262,8 @@ ceph orch ls --service-type osd
 
 The output should show `unmanaged` in the flags column for
 `osd_spec_default`. Do not proceed until this is confirmed.
+
+---
 
 ### Step 7: Zap Drive
 
