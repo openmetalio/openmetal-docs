@@ -1,5 +1,6 @@
 ---
 id: ceph-remove-osd
+slug: /troubleshooting/ceph-remove-osd
 title: Removing OSD Drives from a Ceph Reef Cluster
 sidebar_label: Safely Removing OSD Drives
 description: >
@@ -142,8 +143,8 @@ ceph osd dump | grep noout
 ```
 
 :::warning
-  Remember to unset this flag when you are done. Leaving it set will hide real
-  OSD failures.
+Remember to unset this flag when you are done. Leaving it set will hide real
+OSD failures.
 :::
 
 ---
