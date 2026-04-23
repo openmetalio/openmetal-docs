@@ -9,8 +9,6 @@ description: >
   and ceph orch.
 ---
 
-Author: Ramon Grullon
-
 This guide covers how to safely remove one or more OSD drives from a
 **Ceph Reef** cluster managed by `cephadm` and `ceph orch`. Following
 these steps helps prevent data loss, avoids triggering nearfull
@@ -18,6 +16,8 @@ thresholds, and ensures the cluster can fully recover before the
 physical drive is pulled.
 
 ---
+
+Author: Ramon Grullon
 
 ## Prerequisites
 
@@ -292,12 +292,13 @@ ceph osd tree
 
 ---
 
-### Step 9
+### Step 9: Re-enable Orchestrator Management
 
 :::note
 After inserting the replacement drive and confirming it is detected by the OS,
 re-enable orchestrator management by setting `unmanaged: false` (or removing
 the field) in your spec and re-applying it:
+:::
 
 ```bash
 ceph orch apply -i spec.yaml
