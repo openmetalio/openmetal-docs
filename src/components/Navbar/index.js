@@ -250,6 +250,7 @@ function NavbarCustom() {
             titleClassName="navbar__title"
           />
           <div className="linkContainer">
+            {!hasSearchNavbarItem && <SearchBar />}
             {useDocusaurusContext().siteConfig.customFields.navbarTopRow.map((item, i) => (
               <NavbarItem {...item} key={i} target="_self" />
             ))}
@@ -285,7 +286,6 @@ function NavbarCustom() {
               onChange={colorModeToggle.toggle}
             />
           )}
-          {!hasSearchNavbarItem && <SearchBar />}
         </div>
       </div>
 

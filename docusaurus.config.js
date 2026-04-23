@@ -146,6 +146,15 @@ const config = {
         hideOnScroll: false,
         items: [],
       },
+      algolia: {
+        appId: 'OZG8Q0XSE2',
+        apiKey: '60665066de52b25fdb493cb75b802db2',
+        indexName: 'docusaurusOpenMetal Docs Docusarus',
+        askAi: {
+          assistantId: '2bc66529-5f34-44bd-b9d0-7541e5bb4d98',
+          agentStudio: true,
+        },
+      },
     }),
   customFields: {
     navbarTopRow: [
