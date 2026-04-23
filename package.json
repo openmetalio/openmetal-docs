@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@algolia/client-search": ">= 4.9.1 < 6",
+    "@docsearch/css": "4.6.2",
+    "@docsearch/js": "4.6.2",
     "@docusaurus/core": "^2.2.0",
     "@docusaurus/cssnano-preset": "2.2.0",
     "@docusaurus/plugin-client-redirects": "2.2.0",

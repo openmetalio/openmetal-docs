@@ -1205,6 +1205,16 @@
   resolved "https://registry.npmjs.org/@docsearch/css/-/css-3.3.1.tgz"
   integrity sha512-nznHXeFHpAYjyaSNFNFpU+IJPjQA7AINM8ONjDx/Zx4O/pGAvqwgmcLNc7zR8qXRutqnzLo06yN63xFn36KFBw==
 
+"@docsearch/css@4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-4.6.2.tgz#986776619dccbf798176c75e858cc22f5e710bb4"
+  integrity sha512-fH/cn8BjEEdM2nJdjNMHIvOVYupG6AIDtFVDgIZrNzdCSj4KXr9kd+hsehqsNGYjpUjObeKYKvgy/IwCb1jZYQ==
+
+"@docsearch/js@4.6.2":
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/@docsearch/js/-/js-4.6.2.tgz#5ead6074c081f7eec72bffba6b7ab9ab13e1f2c9"
+  integrity sha512-qj1yoxl3y4GKoK7+VM6fq/rQqPnvUmg3IKzJ9x0VzN14QVzdB/SG/J6VfV1BWT5RcPUFxIcVwoY1fwHM2fSRRw==
+
 "@docsearch/react@^3.1.1":
   version "3.3.1"
   resolved "https://registry.npmjs.org/@docsearch/react/-/react-3.3.1.tgz"
@@ -1485,7 +1495,7 @@
     "@docusaurus/theme-search-algolia" "2.2.0"
     "@docusaurus/types" "2.2.0"
 
-"@docusaurus/react-loadable@5.5.2", "react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+"@docusaurus/react-loadable@5.5.2":
   version "5.5.2"
   resolved "https://registry.npmjs.org/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz"
   integrity sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ==
@@ -7168,7 +7178,7 @@ opener@^1.5.2:
     disqus-react "^1.1.5"
     live-server "^1.2.2"
     markdownlint-cli "^0.31.1"
-    openmetal-docs "file:../../../.cache/yarn/v6/npm-openmetal-docs-0.0.0-9a61ce88-d07c-493d-b15c-ca35ef711358-1756133770410/node_modules/openmetal-docs"
+    openmetal-docs "file:../../.cache/yarn/v6/npm-openmetal-docs-0.0.0-a57fe10f-7b5b-4f9b-bb9e-1f77e5f8a6e2-1776971802181/node_modules/openmetal-docs"
     prism-react-renderer "^1.2.1"
     react "^17.0.1"
     react-dom "^17.0.1"
@@ -8092,6 +8102,14 @@ react-loadable@*:
   integrity sha512-C8Aui0ZpMd4KokxRdVAm2bQtI03k2RMRNzOB+IipV3yxFTSVICv7WoUr5L9ALB5BmKO1iHgZtWM8EvYG83otdg==
   dependencies:
     prop-types "^15.5.0"
+
+"react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+  version "5.5.2"
+  resolved "https://registry.npmjs.org/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz"
+  integrity sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ==
+  dependencies:
+    "@types/react" "*"
+    prop-types "^15.6.2"
 
 react-router-config@^5.1.1:
   version "5.1.1"
