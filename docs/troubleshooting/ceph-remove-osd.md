@@ -173,7 +173,7 @@ ls -la /dev/disk/by-id/ | grep nvme | grep -v part
 Use `ceph orch osd rm <osd-id>` to safely drain and decommission the OSD. This
 command marks the OSD out and waits for all PGs to migrate away, then removes
 the OSD daemon. The `--zap` flag is intentionally omitted here — the drive will
-be zapped explicitly in Step 6 after confirming full removal.
+be zapped explicitly in Step 7 after confirming full removal.
 
 ```bash
 ceph orch osd rm <osd-id>
@@ -292,7 +292,20 @@ ceph osd tree
 
 ---
 
-### Step 9: Unset noout
+### Step 9
+
+:::note
+After inserting the replacement drive and confirming it is detected by the OS,
+re-enable orchestrator management by setting `unmanaged: false` (or removing
+the field) in your spec and re-applying it:
+
+```bash
+ceph orch apply -i spec.yaml
+```
+
+---
+
+### Step 10: Unset noout
 
 If you set `noout` in Step 1, unset it now:
 
@@ -363,6 +376,7 @@ If `ceph orch osd rm status` shows the OSD stuck in draining:
    `osd purge` is destructive and permanent. Only run this if the OSD
    is confirmed down and all PGs have sufficient replicas on other OSDs.
    Verify with `ceph pg dump | grep <osd-id>` before proceeding.
+
    :::
 
 ### PG Count Not Reaching Zero
