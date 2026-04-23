@@ -87,6 +87,10 @@ h6 {
 	flex-direction: column;
 	align-items: center;
 }
+
+.DocSearch-Container {
+	z-index: 10000000 !important;
+}
 .omi-navbar .navbar__brand {
 	margin-right: 5rem;
 }
@@ -176,6 +180,9 @@ h6 {
 	display: flex;
 	justify-content: flex-end;
 	flex-direction: row;
+}
+.omi-navbar .navbar_top_row .linkContainer .DocSearch-Button {
+	margin-top: 5px;
 }
 .omi-navbar .navbar_top_row .navbar__link {
 	display: block;
