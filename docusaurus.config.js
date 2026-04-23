@@ -36,7 +36,7 @@ const config = {
     ],
   ],
   scripts: [{
-    src: 'js/accessibility.js',
+    src: '/docs/manuals/js/accessibility.js',
     async: true,
   }, ],
   ssrTemplate: `<!DOCTYPE html>
