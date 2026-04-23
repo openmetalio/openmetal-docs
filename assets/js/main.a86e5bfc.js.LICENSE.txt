@@ -7,6 +7,10 @@ object-assign
 /* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
  * @license MIT */
 
+/*! @docsearch/js 4.6.2 | MIT License | © Algolia, Inc. and contributors | https://docsearch.algolia.com */
+
+/*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
+
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  *
