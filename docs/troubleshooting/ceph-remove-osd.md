@@ -1,23 +1,21 @@
 ---
 id: ceph-remove-osd
 slug: /troubleshooting/ceph-remove-osd
-title: Removing OSD Drives from a Ceph Reef Cluster
 sidebar_label: Safely Removing OSD Drives
 description: >
   Prerequisites, safety checks, and step-by-step procedures for safely
   decommissioning OSD drives from a Ceph Reef cluster managed by cephadm
   and ceph orch.
 ---
+# Removing OSD Drives from a Ceph Reef Cluster
+
+Author: Ramon Grullon
 
 This guide covers how to safely remove one or more OSD drives from a
 **Ceph Reef** cluster managed by `cephadm` and `ceph orch`. Following
 these steps helps prevent data loss, avoids triggering nearfull
 thresholds, and ensures the cluster can fully recover before the
 physical drive is pulled.
-
----
-
-Author: Ramon Grullon
 
 ## Prerequisites
 
@@ -91,8 +89,6 @@ Before beginning an OSD removal, confirm all of the following:
   ceph orch device ls <hostname>
   ```
 
----
-
 ## Safety Warnings
 
 :::danger Do Not Hot-Pull Without Completing the Drain
@@ -123,8 +119,6 @@ use `ceph orch osd rm` (not manual service stops) to properly
 decommission an OSD.
 :::
 
----
-
 ## Removal Procedure
 
 ### Step 1: Set noout Flag
@@ -147,8 +141,6 @@ Remember to unset this flag when you are done. Leaving it set will hide real
 OSD failures.
 :::
 
----
-
 ### Step 2: Identify the Target OSD
 
 Find the OSD ID corresponding to the drive you want to remove.
@@ -166,8 +158,6 @@ ceph osd metadata <osd-id> | grep -E "hostname|devices|bluefs_dedicated_db|blues
 ls -la /dev/disk/by-id/ | grep nvme | grep -v part
 ```
 
----
-
 ### Step 3: Initiate the OSD Removal via Ceph Orchestrator
 
 Use `ceph orch osd rm <osd-id>` to safely drain and decommission the OSD. This
@@ -178,8 +168,6 @@ be zapped explicitly in Step 7 after confirming full removal.
 ```bash
 ceph orch osd rm <osd-id>
 ```
-
----
 
 ### Step 4: Monitor the Drain
 
@@ -206,8 +194,6 @@ Do not proceed to the next step until PG migration is complete.
 PG count must reach 0.
 :::
 
----
-
 ### Step 5: Confirm the OSD Is Fully Removed
 
 Verify the OSD no longer appears in the OSD tree or daemon list:
@@ -221,8 +207,6 @@ ceph orch ps --daemon-type osd | grep <hostname>
 ceph osd ls
 ceph osd dump | grep destroyed
 ```
-
----
 
 ### Step 6: Prevent Re-ingestion via the unmanaged Flag
 
@@ -264,8 +248,6 @@ ceph orch ls --service-type osd
 The output should show `unmanaged` in the flags column for
 `osd_spec_default`. Do not proceed until this is confirmed.
 
----
-
 ### Step 7: Zap Drive
 
 Zap wipes all data structures that identify the device as a Ceph OSD to both
@@ -274,8 +256,6 @@ the OS and the Ceph orchestrator.
 ```bash
 ceph orch device zap <hostname> /dev/disk/by-id/<device>
 ```
-
----
 
 ### Step 8: Physical Drive Removal
 
@@ -290,21 +270,15 @@ ceph orch device ls <hostname>
 ceph osd tree
 ```
 
----
-
 ### Step 9: Re-enable Orchestrator Management
 
-:::note
 After inserting the replacement drive and confirming it is detected by the OS,
 re-enable orchestrator management by setting `unmanaged: false` (or removing
 the field) in your spec and re-applying it:
-:::
 
 ```bash
 ceph orch apply -i spec.yaml
 ```
-
----
 
 ### Step 10: Unset noout
 
@@ -320,8 +294,6 @@ Confirm the cluster is healthy:
 ceph -s
 ceph health detail
 ```
-
----
 
 ## Post-Removal Checks
 
@@ -341,8 +313,6 @@ Check that:
 - Remaining OSDs are not approaching nearfull thresholds after the
   capacity reduction
 - `noout` flag is unset
-
----
 
 ## Troubleshooting
 
@@ -403,8 +373,6 @@ If `cephadm` redeploys the OSD after you stop the service manually,
 this is expected behavior. You must use the `ceph orch osd rm` workflow
 — not `systemctl stop` — to properly decommission an OSD through the
 orchestrator.
-
----
 
 ## Related Pages
 
