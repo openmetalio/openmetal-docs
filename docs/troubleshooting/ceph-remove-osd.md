@@ -1,6 +1,5 @@
 ---
-id: remove-osd-drives
-slug: /tutorials/ceph-remove-osd
+id: ceph-remove-osd
 title: Removing OSD Drives from a Ceph Reef Cluster
 sidebar_label: Safely Removing OSD Drives
 description: >
@@ -32,14 +31,6 @@ Before beginning an OSD removal, confirm all of the following:
   ceph -s
   ceph health detail
   ```
-
-  Do not proceed if you see any of the following active states in `ceph -s`:
-
-  - `recovering`
-  - `backfilling`
-  - `degraded`
-  - `incomplete`
-  - `stale`
 
 ### Available Capacity
 
@@ -232,7 +223,47 @@ ceph osd dump | grep destroyed
 
 ---
 
-### Step 6: Zap Drive and Pause Orchestrator
+### Step 6: Prevent Re-ingestion via the unmanaged Flag
+
+If your cluster uses a filter-based OSD spec (e.g., `size: '1200GB:'`),
+the orchestrator's reconciliation loop will automatically re-ingest any
+device that matches the filter — including one that was just zapped.
+Setting `unmanaged: true` on the OSD service suspends reconciliation
+for that service, preventing the orchestrator from re-adopting the
+device after the zap completes.
+
+Apply the change via your configuration management tooling, or directly
+if the spec is not managed:
+
+```yaml
+service_type: osd
+service_id: osd_spec_default
+placement:
+  label: osd
+unmanaged: true
+spec:
+  config:
+    osd_memory_target: 4GB
+  data_devices:
+    size: '1200GB:'
+```
+
+Apply the updated spec:
+
+```bash
+ceph orch apply -i spec.yaml
+```
+
+Verify the service is now unmanaged:
+
+```bash
+ceph orch ls --service-type osd
+```
+
+The output should show `unmanaged` in the flags column for
+`osd_spec_default`. Do not proceed until this is confirmed.
+
+### Step 7: Zap Drive
 
 Zap wipes all data structures that identify the device as a Ceph OSD to both
 the OS and the Ceph orchestrator.
@@ -241,19 +272,9 @@ the OS and the Ceph orchestrator.
 ceph orch device zap <hostname> /dev/disk/by-id/<device>
 ```
 
-Pause the OSD spec entirely during maintenance.
-
-This stops all reconciliation globally — cephadm won't redeploy anything.
-This will stop cephadm from detecting the now-empty device and adding it as a
-new OSD.
-
-```bash
-ceph orch pause
-```
-
 ---
 
-### Step 7: Physical Drive Removal
+### Step 8: Physical Drive Removal
 
 Only after the above steps are complete and the cluster is healthy
 should you physically remove the drive from the host. Coordinate with
@@ -268,18 +289,12 @@ ceph osd tree
 
 ---
 
-### Step 8: Unset noout and Resume Orchestrator
+### Step 9: Unset noout
 
 If you set `noout` in Step 1, unset it now:
 
 ```bash
 ceph osd unset noout
-```
-
-Unpause when the drive is physically out.
-
-```bash
-ceph orch resume
 ```
 
 Confirm the cluster is healthy:
