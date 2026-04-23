@@ -9,7 +9,7 @@ description: >
 ---
 # Removing OSD Drives from a Ceph Reef Cluster
 
-Author: Ramon Grullon
+**Author:** Ramon Grullon
 
 This guide covers how to safely remove one or more OSD drives from a
 **Ceph Reef** cluster managed by `cephadm` and `ceph orch`. Following
@@ -347,7 +347,6 @@ If `ceph orch osd rm status` shows the OSD stuck in draining:
    `osd purge` is destructive and permanent. Only run this if the OSD
    is confirmed down and all PGs have sufficient replicas on other OSDs.
    Verify with `ceph pg dump | grep <osd-id>` before proceeding.
-
    :::
 
 ### PG Count Not Reaching Zero
