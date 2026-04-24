@@ -662,6 +662,17 @@ const config = {
               icon: 'https://openmetal.io/wp-content/uploads/2023/04/kubernetes-menu.png',
             },
             {
+              label: 'API Reference',
+              description: '',
+              href: 'https://openmetal.io/docs/manuals/api',
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              itemType: 'link',
+              icontype: 'fontAwesome',
+              iconstyle: 'solid',
+              icon: 'faCode',
+            },
+            {
               label: 'Product Release Updates',
               description: '',
               href: 'https://openmetal.io/docs/releases/',

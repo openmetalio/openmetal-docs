@@ -52,6 +52,16 @@ hide_table_of_contents: true
   <div className="om-card__cta"><span>Open guides</span><span className="om-arrow" aria-hidden="true">→</span></div>
 </a>
 
+<a className="om-card" href="./api/" target="_blank" rel="noopener noreferrer">
+  <div className="om-card__num" aria-hidden="true">04</div>
+  <div className="om-card__content">
+    <div className="om-card__label">Integration</div>
+    <h2 className="om-card__title">API Reference</h2>
+    <p className="om-card__body">Complete OpenAPI specification for automating OpenMetal — endpoints, request and response schemas, and authentication for programmatic access.</p>
+  </div>
+  <div className="om-card__cta"><span>Open reference</span><span className="om-arrow" aria-hidden="true">→</span></div>
+</a>
+
 </section>
 
 <footer className="om-landing-footer">
