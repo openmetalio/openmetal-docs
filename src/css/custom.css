@@ -673,7 +673,7 @@ h6 {
 	animation: om-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) 280ms both;
 }
 
-/* ---------- Section cards ---------- */
+/* ---------- Section cards (2×2 editorial grid) ---------- */
 .om-sections {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -681,13 +681,18 @@ h6 {
 	margin-top: 1rem;
 }
 
+@media (min-width: 720px) {
+	.om-sections {
+		grid-template-columns: 1fr 1fr;
+		gap: 1.1rem;
+	}
+}
+
 .om-card {
 	position: relative;
-	display: grid;
-	grid-template-columns: auto 1fr;
-	column-gap: 1.75rem;
-	align-items: start;
-	padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+	display: flex;
+	flex-direction: column;
+	padding: 1.65rem 1.75rem 1.35rem;
 	background: var(--om-surface);
 	border: 1px solid var(--om-line);
 	color: inherit;
@@ -701,10 +706,11 @@ h6 {
 	animation: om-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .om-card:nth-child(1) { animation-delay: 440ms; }
-.om-card:nth-child(2) { animation-delay: 540ms; }
-.om-card:nth-child(3) { animation-delay: 640ms; }
-.om-card:nth-child(4) { animation-delay: 740ms; }
+.om-card:nth-child(2) { animation-delay: 520ms; }
+.om-card:nth-child(3) { animation-delay: 600ms; }
+.om-card:nth-child(4) { animation-delay: 680ms; }
 
+/* left accent rail, revealed on hover */
 .om-card::before {
 	content: '';
 	position: absolute;
@@ -716,6 +722,7 @@ h6 {
 	transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 	z-index: 2;
 }
+/* top-right glow wash */
 .om-card::after {
 	content: '';
 	position: absolute;
@@ -735,34 +742,35 @@ h6 {
 	box-shadow: 0 18px 48px -24px rgba(19, 61, 90, 0.35);
 }
 .om-card:hover::before,
-.om-card:focus-visible::before {
-	transform: scaleY(1);
-}
+.om-card:focus-visible::before { transform: scaleY(1); }
 .om-card:hover::after,
-.om-card:focus-visible::after {
-	opacity: 1;
-}
-.om-card:focus-visible {
-	outline: none;
-}
+.om-card:focus-visible::after  { opacity: 1; }
+.om-card:focus-visible { outline: none; }
 
+/* header strip: numeral ┊ label */
+.om-card__head {
+	display: flex;
+	align-items: center;
+	gap: 0.95rem;
+	margin-bottom: 1.35rem;
+}
 .om-card__num {
 	font-family: var(--om-mono);
-	font-size: 2.75rem;
+	font-size: 2.1rem;
 	font-weight: 500;
 	line-height: 1;
 	color: var(--om-blue);
 	letter-spacing: -0.04em;
-	padding-top: 0.15rem;
+	position: relative;
+	padding-right: 0.95rem;
 }
-
-.om-card__content {
-	display: flex;
-	flex-direction: column;
-	gap: 0.55rem;
-	min-width: 0;
+.om-card__num::after {
+	content: '';
+	position: absolute;
+	right: 0; top: 14%; bottom: 14%;
+	width: 1px;
+	background: var(--om-line-strong);
 }
-
 .om-card__label {
 	font-family: var(--om-mono);
 	font-size: 0.68rem;
@@ -772,10 +780,19 @@ h6 {
 	color: var(--om-ink-mute);
 }
 
+/* body block stretches so the CTA anchors to the card bottom */
+.om-card__content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.6rem;
+	flex: 1;
+	min-width: 0;
+}
+
 .om-card__title {
 	font-family: var(--ifm-font-family-heading);
 	font-weight: 700;
-	font-size: 1.6rem;
+	font-size: 1.5rem;
 	line-height: 1.15;
 	margin: 0;
 	color: var(--om-ink);
@@ -784,54 +801,41 @@ h6 {
 
 .om-card__body {
 	color: var(--om-ink-soft);
-	font-size: 0.98rem;
+	font-size: 0.95rem;
 	line-height: 1.58;
 	margin: 0;
-	max-width: 62ch;
 }
 
+/* CTA footer: hairline rule + right-aligned label */
 .om-card__cta {
-	display: inline-flex;
+	display: flex;
 	align-items: center;
+	justify-content: flex-end;
 	gap: 0.55rem;
-	margin-top: 1rem;
+	margin-top: 1.3rem;
+	padding-top: 0.95rem;
+	border-top: 1px solid var(--om-line);
 	font-family: var(--om-mono);
-	font-size: 0.78rem;
+	font-size: 0.72rem;
 	font-weight: 500;
-	letter-spacing: 0.2em;
+	letter-spacing: 0.22em;
 	text-transform: uppercase;
 	color: var(--om-blue);
-	grid-column: 2;
 }
 .om-card__cta .om-arrow {
 	display: inline-block;
 	transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
 	font-size: 1rem;
+	letter-spacing: 0;
 }
 .om-card:hover .om-arrow,
-.om-card:focus-visible .om-arrow {
-	transform: translateX(5px);
-}
+.om-card:focus-visible .om-arrow { transform: translateX(5px); }
 
-/* desktop: richer layout with the CTA pushed to the right rail */
-@media (min-width: 860px) {
-	.om-card {
-		grid-template-columns: 88px 1fr auto;
-		column-gap: 2rem;
-		align-items: center;
-		padding: 2rem 2.25rem 2rem 1.75rem;
-	}
-	.om-card__num {
-		font-size: 3.5rem;
-		padding-top: 0;
-	}
-	.om-card__cta {
-		margin-top: 0;
-		grid-column: 3;
-		align-self: center;
-		justify-self: end;
-		white-space: nowrap;
-	}
+/* at wider widths, give the tile a touch more air */
+@media (min-width: 1100px) {
+	.om-card { padding: 1.9rem 2rem 1.5rem; }
+	.om-card__num   { font-size: 2.3rem; }
+	.om-card__title { font-size: 1.6rem; }
 }
 
 /* ---------- Footer strip ---------- */
