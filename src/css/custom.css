@@ -215,6 +215,35 @@ h6 {
 	padding: 0;
 }
 
+.om-sidebar-external {
+	display: flex;
+	align-items: center;
+	gap: 0.45rem;
+}
+.om-sidebar-external__icon {
+	width: 0.78em;
+	height: 0.78em;
+	flex-shrink: 0;
+	opacity: 0.55;
+	transition: opacity 160ms ease, transform 160ms ease;
+}
+.om-sidebar-external:hover .om-sidebar-external__icon,
+.om-sidebar-external:focus-visible .om-sidebar-external__icon {
+	opacity: 1;
+	transform: translate(1px, -1px);
+}
+.om-sidebar-external .sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
 @media (min-width: 768px){
 	.omi-navbar .navbar__inner {
 		width: 750px;
