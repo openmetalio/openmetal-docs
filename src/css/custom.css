@@ -184,6 +184,18 @@ h6 {
 .omi-navbar .navbar_top_row .linkContainer .DocSearch-Button {
 	margin-top: 5px;
 }
+@media (min-width: 998px) {
+	.omi-navbar .navbar_top_row .linkContainer > div:has(> .DocSearch-Button) {
+		width: 350px;
+		min-width: 0;
+		flex-shrink: 1;
+		margin-right: 0.75rem;
+	}
+	.omi-navbar .navbar_top_row .linkContainer .DocSearch-Button {
+		width: 100%;
+		min-width: 0;
+	}
+}
 .omi-navbar .navbar_top_row .navbar__link {
 	display: block;
 	color: var(--ifm-color-primary);
