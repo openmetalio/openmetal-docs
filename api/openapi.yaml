@@ -88,6 +88,12 @@ tags:
 
       Ramdisk deployments boot the OS entirely from memory — no disk writes occur. The node receives its cloud-init configuration from the [Node Metadata Service](#tag/Node-Metadata) at `169.254.169.254`. Disk and ramdisk modes are mutually exclusive.
 
+      ## Kernel Arguments (ramdisk only)
+
+      Ramdisk configurations may optionally include `kernel_args`, a string of extra kernel command-line parameters appended to the platform's defaults at boot. The platform prepends `%default%` automatically so the configured ironic defaults are preserved (e.g. `kernel_args: "console=ttyS0,115200n8"` results in the kernel receiving `%default% console=ttyS0,115200n8`). If your value already contains `%default%`, it is passed through verbatim, which lets advanced users control positioning (e.g. `"my_arg=foo %default%"`).
+
+      `kernel_args` is only valid alongside `image_ramdisk_kernel` + `image_ramdisk_ramdisk`. It must not contain newline or carriage return characters, must not be empty or whitespace-only when set, and must be 1024 characters or fewer.
+
       Cloud-init user data (`cloud_init.data`) can be combined with any deployment mode.
   - name: Inventory
     description: Operations for retrieving inventory information such as available locations and availability.
@@ -798,6 +804,16 @@ paths:
                   fields:
                     image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
                     image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+              ramdisk_kernel_with_kernel_args:
+                summary: Ramdisk deployment with kernel arguments
+                description: Ramdisk deployment with extra kernel command-line parameters appended to the platform's defaults. The platform prepends `%default%` automatically so configured defaults are preserved.
+                value:
+                  label: "CoreOS Ramdisk Deploy with Serial Console"
+                  description: "Ramdisk deployment with kernel_args for serial console"
+                  fields:
+                    image_ramdisk_kernel: "https://images.example.com/coreos/vmlinuz"
+                    image_ramdisk_ramdisk: "https://images.example.com/coreos/initramfs.img"
+                    kernel_args: "console=ttyS0,115200n8"
               # Ramdisk boot ISO is not currently available.
               # ramdisk_boot_iso:
               #   summary: Ramdisk deployment (boot ISO)
@@ -834,6 +850,10 @@ paths:
             - Only one of `image_ramdisk_kernel` or `image_ramdisk_ramdisk` provided (both are required together)
             - Missing `image_os_hash_algo` or `image_os_hash_value` when `image_source` is specified
             - Invalid `image_os_hash_algo` value (must be `md5`, `sha256`, or `sha512`)
+            - `kernel_args` set without ramdisk kernel + initramfs deployment (only valid with `image_ramdisk_kernel` + `image_ramdisk_ramdisk`)
+            - `kernel_args` is empty or contains only whitespace
+            - `kernel_args` contains newline or carriage return characters
+            - `kernel_args` exceeds 1024 characters
         '401':
           description: Unauthorized - Invalid or missing Bearer token.
         '403':
@@ -3669,6 +3689,9 @@ components:
 
         The `fields` object contains deployment settings for disk (`image_source`) or
         ramdisk (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`) deployment modes.
+
+        Ramdisk configurations may also include `kernel_args` to append extra kernel
+        command-line parameters at boot.
       required:
         - id
         - label
@@ -3710,6 +3733,16 @@ components:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment. Mutually exclusive with `image_source` and `image_ramdisk_kernel`/`image_ramdisk_ramdisk`.
             #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            kernel_args:
+              type: string
+              maxLength: 1024
+              description: |
+                Optional kernel command-line arguments appended to the platform's configured defaults at boot. Only valid with ramdisk kernel + initramfs deployments (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`).
+
+                The platform prepends `%default%` automatically (e.g. `"console=ttyS0,115200n8"` is forwarded as `"%default% console=ttyS0,115200n8"`). If the supplied value already contains `%default%`, it is passed through unchanged to control positioning.
+
+                Must not contain newline or carriage return characters, must not be empty or whitespace-only, and must be 1024 characters or fewer.
+              example: "console=ttyS0,115200n8"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
@@ -3784,6 +3817,16 @@ components:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment.
             #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            kernel_args:
+              type: string
+              maxLength: 1024
+              description: |
+                Optional kernel command-line arguments appended to the platform's configured defaults at boot. Only valid with ramdisk kernel + initramfs deployments (`image_ramdisk_kernel` + `image_ramdisk_ramdisk`).
+
+                The platform prepends `%default%` automatically; supplying a value that already contains `%default%` passes through unchanged so you can control positioning relative to the defaults.
+
+                Must not contain newline or carriage return characters, must not be empty or whitespace-only, and must be 1024 characters or fewer.
+              example: "console=ttyS0,115200n8"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification. Required when `image_source` is set.
@@ -3848,6 +3891,12 @@ components:
             #   type: string
             #   description: URL of the boot ISO for ramdisk deployment.
             #   example: "https://images.example.com/rescue/systemrescue-11.01-amd64.iso"
+            kernel_args:
+              type: string
+              maxLength: 1024
+              description: |
+                Optional kernel command-line arguments appended to the platform's configured defaults at boot. Only valid with ramdisk kernel + initramfs deployments. See the `CreateImageConfigRequest` schema for the full description.
+              example: "console=ttyS0,115200n8"
             image_os_hash_algo:
               type: string
               description: Hash algorithm used for image integrity verification.
