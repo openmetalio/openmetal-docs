@@ -58,7 +58,7 @@ hide_table_of_contents: true
   <div className="om-card__cta"><span>Open guides</span><span className="om-arrow" aria-hidden="true">→</span></div>
 </a>
 
-<a className="om-card" href="./api/" target="_blank" rel="noopener noreferrer">
+<a className="om-card" href="pathname:///docs/manuals/api/" target="_blank" rel="noopener noreferrer">
   <div className="om-card__head">
     <div className="om-card__num" aria-hidden="true">04</div>
     <div className="om-card__label">Integration</div>
