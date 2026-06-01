@@ -43,6 +43,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
 | 2023.2-ubuntu-jammy-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
 ||| Mistral |[Cron trigger/event trigger bug patched](https://review.opendev.org/c/openstack/mistral/+/905206)|
 ||| Mistral |Added [mistral-extra](https://opendev.org/openstack/mistral-extra) Python module enabling `openstack.*` actions|
@@ -69,6 +70,7 @@ Latest image tag: `yoga`
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| yoga-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
 | yoga-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
 ||| Nova |[[OSSA-2026-002] Nova calls qemu-img without format restrictions for resize (CVE-2026-24708) patched](https://bugs.launchpad.net/nova/+bug/2137507)|
 | yoga-2025-11-05 | 11/05/2025 | Keystone |[ec2tokens and s3tokens endpoint vulnerability patched](https://bugs.launchpad.net/keystone/+bug/2119646)|
