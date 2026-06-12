@@ -132,6 +132,13 @@ tags:
     description: Operations for retrieving account and organization profile information.
   - name: Organizations
     description: Operations for creating organizations and managing their members.
+  - name: Audit Logs
+    description: |
+      Operations for querying organization activity logs via GraphQL.
+
+      Activity logs capture user and system events across your organization, including API calls, resource changes, and permission-gated actions. Logs are queryable with flexible pagination and filtering.
+
+      The endpoint accepts GraphQL queries over HTTP POST. The only currently supported query is `GetLogs`.
   - name: Node Metadata
     description: |
       An OpenStack-compatible metadata service at `http://169.254.169.254` that serves cloud-init configuration to bare metal nodes over HTTP.
@@ -182,6 +189,7 @@ x-tagGroups:
       - SSH Keys
       - Accounts
       - Organizations
+      - Audit Logs
   - name: Node Services
     tags:
       - Node Metadata
@@ -2498,6 +2506,121 @@ paths:
               example:
                 status: "ok"
 
+  /v2/auth/graphql:
+    post:
+      tags:
+        - Audit Logs
+      summary: Query audit logs
+      description: |
+        Execute a GraphQL query against the audit logs service.
+
+        Currently supports the `GetLogs` query, which returns a paginated list of activity log entries for your organization. Logs can be filtered by resource, user, action, log level, source, date range, and more.
+
+        **Example request body:**
+        ```json
+        {
+          "query": "query GetLogs($pagination: LogsPaginationInput, $filter: LogsFilterInput) { logs(pagination: $pagination, filter: $filter) { logs { uuid resourceName resourceId action permission level data userName userId orgId statusCode message ipAddress source podLocation orgName createdAt } total page limit totalPages } }",
+          "variables": {
+            "pagination": { "page": 1, "limit": 25 },
+            "filter": { "orgId": "your-org-id" }
+          }
+        }
+        ```
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+            examples:
+              get_logs:
+                summary: Fetch first page of logs for an organization
+                value:
+                  query: "query GetLogs($pagination: LogsPaginationInput, $filter: LogsFilterInput) { logs(pagination: $pagination, filter: $filter) { logs { uuid resourceName resourceId action permission level data userName userId orgId statusCode message ipAddress source podLocation orgName createdAt } total page limit totalPages } }"
+                  variables:
+                    pagination:
+                      page: 1
+                      limit: 25
+                    filter:
+                      orgId: "org-uuid"
+              get_logs_filtered:
+                summary: Fetch logs filtered by user and date range
+                value:
+                  query: "query GetLogs($pagination: LogsPaginationInput, $filter: LogsFilterInput) { logs(pagination: $pagination, filter: $filter) { logs { uuid resourceName action level userName createdAt } total page limit totalPages } }"
+                  variables:
+                    pagination:
+                      page: 1
+                      limit: 50
+                    filter:
+                      orgId: "org-uuid"
+                      userId: "user-uuid"
+                      startDate: "2026-01-01T00:00:00Z"
+                      endDate: "2026-06-01T00:00:00Z"
+      responses:
+        '200':
+          description: GraphQL response containing the requested logs data.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      logs:
+                        $ref: '#/components/schemas/LogsResponse'
+                  errors:
+                    type: array
+                    description: Present only when the query encountered errors.
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                        locations:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              line:
+                                type: integer
+                              column:
+                                type: integer
+                        path:
+                          type: array
+                          items:
+                            type: string
+              example:
+                data:
+                  logs:
+                    logs:
+                      - uuid: "550e8400-e29b-41d4-a716-446655440000"
+                        resourceName: "cloud"
+                        resourceId: "abc123"
+                        action: "create"
+                        permission: "write"
+                        level: "info"
+                        userName: "alice@example.com"
+                        userId: "user-uuid"
+                        orgId: "org-uuid"
+                        orgName: "Acme Corp"
+                        statusCode: null
+                        message: "Cloud created"
+                        ipAddress: "203.0.113.42"
+                        source: "api"
+                        podLocation: "iad3"
+                        createdAt: "2026-06-01T12:00:00Z"
+                    total: 1
+                    page: 1
+                    limit: 25
+                    totalPages: 1
+        '401':
+          description: Unauthorized. Bearer token is missing or invalid.
+        '403':
+          description: Forbidden. The token does not have access to the requested organization's logs.
+
 components:
   securitySchemes:
     bearerAuth:
@@ -2510,6 +2633,195 @@ components:
       description: Use your OAuth Application's client_id as username and client_secret as password
 
   schemas:
+    GraphQLRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The GraphQL query string.
+        variables:
+          type: object
+          description: Variables for the GraphQL query.
+          additionalProperties: true
+
+    LogsResponse:
+      type: object
+      properties:
+        logs:
+          type: array
+          items:
+            $ref: '#/components/schemas/LogEntry'
+        total:
+          type: integer
+          description: Total number of log entries matching the query.
+          example: 142
+        page:
+          type: integer
+          description: Current page number (1-based).
+          example: 1
+        limit:
+          type: integer
+          description: Number of entries per page.
+          example: 25
+        totalPages:
+          type: integer
+          description: Total number of pages.
+          example: 6
+
+    LogEntry:
+      type: object
+      properties:
+        uuid:
+          type: string
+          format: uuid
+          description: Unique identifier for the log entry.
+        resourceName:
+          type: string
+          description: Name of the resource that was acted upon (e.g. `cloud`, `node`, `vlan`).
+          example: "cloud"
+        resourceId:
+          type: string
+          description: ID of the resource that was acted upon.
+          example: "abc123"
+        action:
+          type: string
+          description: Description of the action performed (e.g. `create`, `delete`, `update`).
+          example: "create"
+        permission:
+          type: string
+          enum: [internal, manage, write, read]
+          description: Permission level required for this action.
+          example: "write"
+        level:
+          type: string
+          enum: [error, warn, info, debug]
+          description: Log level.
+          example: "info"
+        data:
+          description: Additional structured data associated with the log entry.
+        userName:
+          type: string
+          description: Display name of the user who performed the action.
+          example: "alice@example.com"
+        userId:
+          type: string
+          description: ID of the user who performed the action.
+          example: "user-uuid"
+        orgId:
+          type: string
+          description: ID of the organization.
+          example: "org-uuid"
+        orgName:
+          type: string
+          description: Name of the organization.
+          example: "Acme Corp"
+        statusCode:
+          description: HTTP status code filter for the associated request, if applicable.
+          type: object
+          properties:
+            operator:
+              type: string
+              enum: [EQ, LT, GT, LTE, GTE]
+              description: Comparison operator.
+            query:
+              type: integer
+              description: HTTP status code value.
+              example: 200
+        message:
+          type: string
+          description: Human-readable message or description.
+          example: "Cloud created successfully"
+        ipAddress:
+          type: string
+          description: IP address of the client that performed the action.
+          example: "203.0.113.42"
+        source:
+          type: string
+          enum: [api, central]
+          description: Origin of the log entry — `api` for API calls, `central` for UI-initiated actions.
+          example: "api"
+        podLocation:
+          type: string
+          description: Datacenter location of the resource, if applicable.
+          example: "iad3"
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO 8601 timestamp when the log entry was created.
+          example: "2026-06-01T12:00:00Z"
+
+    LogsPaginationInput:
+      type: object
+      properties:
+        page:
+          type: integer
+          minimum: 1
+          description: Page number (1-based).
+          example: 1
+        limit:
+          type: integer
+          minimum: 1
+          maximum: 100
+          description: Number of results per page.
+          example: 25
+
+    LogsFilterInput:
+      type: object
+      description: Optional filters for the `GetLogs` query. All fields are optional and combined with AND logic.
+      properties:
+        orgId:
+          type: string
+          description: Filter by organization ID (exact match).
+          example: "org-uuid"
+        resourceName:
+          type: string
+          description: Filter by resource name (case-insensitive partial match).
+          example: "cloud"
+        resourceId:
+          type: string
+          description: Filter by resource ID (exact match).
+        action:
+          type: string
+          description: Filter by action (case-insensitive partial match).
+          example: "create"
+        level:
+          type: string
+          enum: [error, warn, info, debug]
+          description: Filter by log level.
+        permission:
+          type: string
+          enum: [internal, manage, write, read]
+          description: Filter by permission level.
+        userName:
+          type: string
+          description: Filter by user name (case-insensitive partial match).
+        userId:
+          type: string
+          description: Filter by user ID (exact match).
+        source:
+          type: string
+          enum: [api, central]
+          description: Filter by log source.
+        podLocation:
+          type: string
+          description: Filter by datacenter location.
+          example: "iad3"
+        orgName:
+          type: string
+          description: Filter by organization name (case-insensitive partial match).
+        startDate:
+          type: string
+          format: date-time
+          description: Filter logs created on or after this ISO 8601 timestamp.
+          example: "2026-01-01T00:00:00Z"
+        endDate:
+          type: string
+          format: date-time
+          description: Filter logs created on or before this ISO 8601 timestamp.
+          example: "2026-06-30T23:59:59Z"
+
     AccountAccessEntry:
       type: object
       properties:
