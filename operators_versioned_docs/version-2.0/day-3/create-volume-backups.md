@@ -15,14 +15,14 @@ Horizon.
 
 Navigate in Horizon to **Project -\> Volume -\> Volumes**.
 
-![image](images/jumpstation-volume-list.png)
+![Volumes list in Horizon](images/jumpstation-volume-list.png)
 
 **Figure 1:** Volumes List
 
 Create a backup of your volume by selecting from the drop down **Create
 Backup**.
 
-![image](images/create-volume-backup.png)
+![Create Volume Backup form in Horizon](images/create-volume-backup.png)
 
 **Figure 2:** Create Volume Backup Form
 
@@ -41,7 +41,7 @@ After submitting the form, you are navigated to **Project -\> Volume -\>
 Volume Backups** where you can see the volume you just created a backup
 of.
 
-![image](images/volume-backup-list.png)
+![Volume Backups list showing the new backup](images/volume-backup-list.png)
 
 **Figure 3:** Volume Backup List
 
@@ -62,7 +62,7 @@ To restore a volume backup, being by navigating in Horizon to **Project
 Next, find the volume backup you wish to restore and from its drop down
 on the right, select **Restore Backup**.
 
-![image](images/restore-volume-backup.png)
+![Restore Backup option in the drop down](images/restore-volume-backup.png)
 
 **Figure 4:** Volume Backup List
 

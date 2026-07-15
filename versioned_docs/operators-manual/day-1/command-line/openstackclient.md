@@ -47,7 +47,7 @@ the `OpenStack RC` files to your machine. When you navigate to **Project
 -\> API Access** and collect these files, they are associated with the
 current user and project that user is in.
 
-![image](images/api-access.png)
+![API Access page in Horizon with download options](images/api-access.png)
 
 **Figure 1:** API Access
 

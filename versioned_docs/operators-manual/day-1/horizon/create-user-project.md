@@ -22,7 +22,7 @@ migrating an instance, occurs through the **Admin** section. Project
 users with the **member** role see only the **Project** and **Identity**
 tabs and can only perform actions within their specific project.
 
-![image](images/project-admin-identity.png)
+![Project, Admin, and Identity tabs](images/project-admin-identity.png)
 
 **Figure 1:** Project, Admin, Identity tabs
 
@@ -32,7 +32,7 @@ When you first log in to Horizon as the administrator account, you find
 yourself in the project called **admin**. You can see this by looking at
 the very top and near the left of the screen.
 
-![image](images/admin-project.png)
+![Horizon overview page for the admin project](images/admin-project.png)
 
 **Figure 2:** Admin Project Overview
 
@@ -46,7 +46,7 @@ used to create a project.
 
 To create your first project, navigate to **Identity -\> Projects**.
 
-![image](images/projects.png)
+![Project listing under Identity in Horizon](images/projects.png)
 
 **Figure 3:** Project Listing
 
@@ -56,7 +56,7 @@ projects are deployed by default and generally should not be modified.
 Pull up the form to create a project by navigating to the **Create
 Project** button near the top right.
 
-![image](images/project-form.png)
+![Create Project form in Horizon](images/project-form.png)
 
 **Figure 4:** Create Project Form
 
@@ -69,7 +69,7 @@ first project.
 
 Once created, the project appears in the Project Listing page.
 
-![image](images/dev-project-listing.png)
+![Development project in the project listing](images/dev-project-listing.png)
 
 **Figure 5:** Development Project Listed
 
@@ -84,7 +84,7 @@ tab, find the drop down to the right with the first option being
 **Manage Members**. From this drop down, click **Modify Quotas** to view
 the default quota values.
 
-![image](images/modify-quotas.png)
+![Modify Quotas option in the project actions menu](images/modify-quotas.png)
 
 **Figure 6:** Modify Quotas
 
@@ -92,7 +92,7 @@ A form appears with several tabs and you are presented with the quotas
 for the Compute service. Quotas exist for the Volume and Network
 services as well.
 
-![image](images/edit-quotas.png)
+![Edit Quotas form showing Compute service quotas](images/edit-quotas.png)
 
 **Figure 7:** Edit Quotas
 
@@ -118,14 +118,14 @@ By default, there are several users already listed, and this is
 expected. These are created during cloud deployment and should generally
 not be modified.
 
-![image](images/users.png)
+![User listing under Identity in Horizon](images/users.png)
 
 **Figure 8:** User Listing
 
 Next, load the form to create a user by navigating to **Create User** in
 the upper right of the screen.
 
-![image](images/create-user-form.png)
+![Create User form in Horizon](images/create-user-form.png)
 
 **Figure 9:** Create User Form
 
@@ -152,7 +152,7 @@ user. Upon logging back in you are by default in the newly created
 project. You can see the project you are currently in at the top left
 and your user can be seen at the top right of Horizon.
 
-![image](images/login-as-user-horizon.png)
+![Horizon after logging in as the new user](images/login-as-user-horizon.png)
 
 **Figure 10:** New User Login
 
