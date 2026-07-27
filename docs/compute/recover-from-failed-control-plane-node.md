@@ -86,7 +86,7 @@ Alternatively, if the compute service for the affected host is already
 down, you will see a button to **Evacuate Host** under the **Actions**
 column on the right.
 
-<!-- ![image](images/disable_compute_service.png)-->
+<!-- ![Disable Service action button](images/disable_compute_service.png)-->
 
 ## Conclusion
 

@@ -25,7 +25,7 @@ under which your cloud's Ceph cluster is affected when adding hardware.
 We currently offer three server sizes for our Private Clouds as seen in
 the following image:
 
-![image](images/private-cloud-core-types.png)
+![Private Cloud Core size options](images/private-cloud-core-types.png)
 
 **Figure 1:** Private Cloud Core Selections
 
@@ -83,7 +83,7 @@ about your cloud's current assets and also allows you to add a new
 hardware node. To add a new hardware node, select the **Add Hardware**
 button located at the top right.
 
-![image](images/cloud-assets-page.png)
+![Cloud assets page with Add Hardware button](images/cloud-assets-page.png)
 
 **Figure 2:** Add Hardware
 
@@ -92,7 +92,7 @@ button located at the top right.
 The next screen presents you with a list of available hardware nodes as
 can be seen in the following screenshot.
 
-![image](images/add-hardware-offerings.png)
+![Available hardware node offerings](images/add-hardware-offerings.png)
 
 **Figure 3:** Available Hardware List
 
@@ -109,14 +109,14 @@ down.
 After choosing the number of nodes to add, confirm the additional
 hardware.
 
-![image](images/confirm-node-addition.png)
+![Confirmation dialog for adding a node](images/confirm-node-addition.png)
 
 **Figure 4:** Confirm Addition of new Hardware
 
 After the system processes the request a success message is returned as
 can be seen below:
 
-![image](images/hardware-addition-success.png)
+![Hardware addition success message](images/hardware-addition-success.png)
 
 **Note** -- Adding a hardware node can take around an hour to complete.
 An email is sent to the primary account's address when complete.
@@ -128,7 +128,7 @@ confirm the additional node by inspecting the hardware associate with
 your cloud. In this example, there is a red dot next to the newly added
 node, indicating it is still being added to the cloud.
 
-![image](images/post-addition-node-not-yet-ready.png)
+![New node pending in assets list](images/post-addition-node-not-yet-ready.png)
 
 **Figure 6:** Cloud Assets List, Newly Added Node but not Available
 
@@ -137,7 +137,7 @@ node, indicating it is still being added to the cloud.
 An email is sent to your account upon successfully adding this node.
 Navigate to your cloud's assets page to confirm the newly added node.
 
-![image](images/post-addition-success.png)
+![Newly added node ready in the assets list](images/post-addition-success.png)
 
 **Figure 7:** Successful Hardware Node Addition
 
@@ -168,7 +168,7 @@ Core** and can be distinguished from other nodes by inspecting the
 For example, in the following screenshot, the first three nodes are
 control plane nodes:
 
-![image](images/control-plane-nodes-listed.png)
+![Three Cloud Core control plane nodes](images/control-plane-nodes-listed.png)
 
 **Figure 8:** Control Plane nodes
 
