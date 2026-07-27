@@ -1,8 +1,8 @@
 ---
-id: fix-windows-secure-boot-access-denied-openstack-kolla-ovmf
-title: "Fix Windows Secure Boot Access Denied Boot Failure on OpenStack"
+id: fix-windows-secure-boot-microsoft-cert-expiration
 sidebar_label: "Fix Windows Secure Boot Access Denied (OVMF Update)"
-description: "Resolve UEFI Secure Boot Access Denied and No bootable option or device was found errors on Windows instances in OpenStack Kolla Ansible deployments by updating the OVMF/edk2 firmware inside the nova_libvirt container."
+slug: /troubleshooting/fix-windows-secure-boot-microsoft-cert-expiration
+description: "Fix UEFI Secure Boot Access Denied errors on Windows OpenStack instances by updating OVMF/edk2 firmware in the nova_libvirt container."
 keywords:
   - windows secure boot access denied
   - openstack windows vm not booting
@@ -13,18 +13,11 @@ keywords:
   - edk2 firmware update kvm
   - qemu ovmf windows server 2025
   - openstack uefi secure boot
-tags:
-  - openstack
-  - kolla-ansible
-  - nova
-  - libvirt
-  - windows
-  - secure-boot
-  - uefi
-  - ovmf
-  - edk2
-  - troubleshooting
 ---
+
+# Fix Windows Secure Boot Access Denied by Updating OVMF in `nova_libvirt`
+
+**Author:** Ramon Grullon
 
 ## Symptom
 
@@ -112,12 +105,15 @@ Use the current updated build from the Ubuntu noble archive. Check the
 [Ubuntu edk2 package pool](https://archive.ubuntu.com/ubuntu/pool/main/e/edk2/)
 for the latest `ovmf_2024.02-*` revision:
 
+Substitute the latest revision for `<version>` in the commands below
+(for example, `2024.02-2ubuntu0.9`):
+
 ```bash
 cd /tmp
-curl -LO https://archive.ubuntu.com/ubuntu/pool/main/e/edk2/ovmf_2024.02-2ubuntu0.9_all.deb
+curl -LO https://archive.ubuntu.com/ubuntu/pool/main/e/edk2/ovmf_<version>_all.deb
 
 # sanity check: should be ~4.9M, not an HTML error page
-ls -lh /tmp/ovmf_2024.02-2ubuntu0.9_all.deb
+ls -lh /tmp/ovmf_<version>_all.deb
 ```
 
 :::note
@@ -131,8 +127,8 @@ layout.
 ### 3. Install the package inside the `nova_libvirt` container
 
 ```bash
-docker cp /tmp/ovmf_2024.02-2ubuntu0.9_all.deb nova_libvirt:/tmp/
-docker exec nova_libvirt apt install -y /tmp/ovmf_2024.02-2ubuntu0.9_all.deb
+docker cp /tmp/ovmf_<version>_all.deb nova_libvirt:/tmp/
+docker exec nova_libvirt apt install -y /tmp/ovmf_<version>_all.deb
 ```
 
 If `apt` refuses due to the container's older base release, force it with
@@ -140,7 +136,7 @@ If `apt` refuses due to the container's older base release, force it with
 meaningful dependencies:
 
 ```bash
-docker exec nova_libvirt dpkg -i /tmp/ovmf_2024.02-2ubuntu0.9_all.deb
+docker exec nova_libvirt dpkg -i /tmp/ovmf_<version>_all.deb
 ```
 
 ### 4. Verify the firmware actually changed
@@ -150,7 +146,7 @@ docker exec nova_libvirt dpkg -l ovmf | tail -1
 docker exec nova_libvirt ls -lL /usr/share/OVMF/OVMF_CODE_4M.ms.fd /usr/share/OVMF/OVMF_VARS_4M.ms.fd
 ```
 
-Expected: version `2024.02-2ubuntu0.9` and current-year timestamps on the
+Expected: the new version string and current-year timestamps on the
 dereferenced files (the old build shows `Feb 12 2024`). For a definitive
 check, compare `md5sum` of the container files against a local `dpkg -x`
 extract of the same deb.
@@ -194,8 +190,8 @@ printing `Access Denied`.
 ### 8. Clean up
 
 ```bash
-docker exec nova_libvirt rm /tmp/ovmf_2024.02-2ubuntu0.9_all.deb
-rm /tmp/ovmf_2024.02-2ubuntu0.9_all.deb
+docker exec nova_libvirt rm /tmp/ovmf_<version>_all.deb
+rm /tmp/ovmf_<version>_all.deb
 ```
 
 Repeat steps 2-4 and 8 on every compute node in the cluster so future
@@ -245,4 +241,3 @@ openstack server reboot --hard <uuid>
 - [Act now: Secure Boot certificates expire in June 2026](https://techcommunity.microsoft.com/blog/windows-itpro-blog/act-now-secure-boot-certificates-expire-in-june-2026/4426856)
 - [Windows Server Secure Boot playbook for certificates expiring in 2026](https://techcommunity.microsoft.com/blog/windowsservernewsandbestpractices/windows-server-secure-boot-playbook-for-certificates-expiring-in-2026/4495789)
 - [KB5025885: Windows Boot Manager revocations for CVE-2023-24932](https://support.microsoft.com/en-us/topic/kb5025885-how-to-manage-the-windows-boot-manager-revocations-for-secure-boot-changes-associated-with-cve-2023-24932-41a975df-beb2-40c1-99a3-b3ff139f832d)
-- [Enterprise Deployment Guidance for CVE-2023-24932](https://support.microsoft.com/en-us/topic/enterprise-deployment-guidance-for-cve-2023-24932-88b8f034-20b7-4a45-80cb-c6049b0f9967)
