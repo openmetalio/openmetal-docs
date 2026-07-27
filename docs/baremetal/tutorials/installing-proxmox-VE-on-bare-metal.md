@@ -308,7 +308,7 @@ VLAN, internal VMs with NAT for private workloads, and routed public IPs for
 internet-facing services - closely aligned with OpenMetal’s bare metal
 networking model shown in the diagram bellow:
 
-![Diagram](./proxmox-images/diagram.png)
+![Proxmox network bridges and VLANs diagram](./proxmox-images/diagram.png)
 
 ### Step 1: Upload an ISO Image
 

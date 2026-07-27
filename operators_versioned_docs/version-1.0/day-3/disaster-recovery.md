@@ -84,7 +84,7 @@ reflected as "Up". If a service is down, the value is reported as
 indicator that a control plane node is down is if you see "Down" under
 the **State** column for all services of a particular node.
 
-![image](images/disaster_recovery_system_info.png)
+![OpenStack System Information page](images/disaster_recovery_system_info.png)
 
 **Figure 1:** OpenStack System Information
 
@@ -102,7 +102,7 @@ section, there is a green indicator icon reflecting the current status
 of your nodes. If the icon is yellow or red, then the issue is likely
 hardware-related.
 
-![image](images/assetspage_disasterrecovery.png)
+![Node status icons on the Assets page](images/assetspage_disasterrecovery.png)
 
 **Figure 2:** Assets Page of OpenMetal Central
 

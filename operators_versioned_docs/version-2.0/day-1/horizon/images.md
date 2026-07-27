@@ -30,7 +30,7 @@ Projects tab. Within the projects tab, select Compute and you are
 presented with the option to select Images. This tab contains a list of
 all your images within OpenStack.
 
-![image](images/image-list.png)
+![List of images in the Horizon dashboard Images tab](images/image-list.png)
 
 **Figure 1:** Image List Within Horizon Dashboard
 
@@ -53,11 +53,11 @@ Horizon dashboard to **Project -\> Compute -\> Images**, where you are
 presented with a list of options for managing images. To begin uploading
 this image, click the **Create Image** button near the top right.
 
-![image](images/create-image.png)
+![Create Image button on the Images page in Horizon](images/create-image.png)
 
 **Figure 2:** Creating an Image Within Horizon Dashboard
 
-![image](images/create-image-form.png)
+![Create Image form with name, file, and format fields](images/create-image-form.png)
 
 **Figure 3:** Create Image Form
 
@@ -71,7 +71,7 @@ For this demonstration, we enter in values for the following fields:
 Fill out the details as needed and submit the form. It may take some
 time to complete uploading the image.
 
-![image](images/cirros-uploaded.png)
+![CirrOS image shown in the Horizon Images tab](images/cirros-uploaded.png)
 
 **Figure 3:** CirrOS Image Listed in Horizon Dashboard
 
@@ -86,7 +86,7 @@ Instances** and locate the **Create Snapshot** option from the listed
 instance's drop down menu. In the form that appears, enter a name for
 your snapshot.
 
-![image](images/create-instance-snapshot.png)
+![Create Snapshot button in the instance Actions column](images/create-instance-snapshot.png)
 
 **Figure 4:** Create Snapshot Button Within Horizon Dashboard
 
