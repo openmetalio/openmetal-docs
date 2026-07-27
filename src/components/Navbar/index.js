@@ -375,7 +375,7 @@ function renderDropDownItems(item) {
       <div className='dropdown_menu_right' >
         {item.items.filter((item) => { return item?.itemType === 'article' }).map((childItemProps, i) => (
           <div className="article" key={i}>
-            <img className='img-responsive' data-src={childItemProps.image_url} alt='Article Image'/>
+            <img className='img-responsive' data-src={childItemProps.image_url} alt=''/>
             <NavbarItem
               target="_self"
               isDropdownItem

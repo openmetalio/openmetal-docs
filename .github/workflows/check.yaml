@@ -16,3 +16,4 @@ jobs:
         with:
           files: ./docs/
           config_file: .markdownlint.json
+          rules: ./lint-rules/no-generic-alt-text.js

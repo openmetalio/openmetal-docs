@@ -68,7 +68,7 @@ Enabling TFA at the realm level applies to all users authenticating
 against that realm.
 :::note
 
-![TFA](./proxmox-images/proxmox-security-TFA.png)
+![Selecting a two-factor authentication method for the pve realm](./proxmox-images/proxmox-security-TFA.png)
 
 Next, log out of the Proxmox UI and log back in using the newly created user.
 
