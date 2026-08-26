@@ -1,8 +1,11 @@
-# Custom S3 Subdomain with SSL on Kolla-Ansible OpenStack Clouds
+# Custom S3 Subdomain with SSL on kolla-ansible OpenStack Clouds
 
 ## Overview
 
-This guide covers setting up a custom S3 subdomain (e.g. `s3.example.com`) with a Let's Encrypt SSL cert on a kolla-ansible OpenStack cloud, fronted by haproxy. Optionally covers wildcard cert for virtual-hosted-style bucket addressing (e.g. `mybucket.s3.example.com`).
+This guide covers setting up a custom S3 subdomain (e.g. `s3.example.com`)
+with a Let's Encrypt SSL cert on a kolla-ansible OpenStack cloud, fronted
+by haproxy. Optionally covers wildcard cert for virtual-hosted-style bucket
+addressing (e.g. `mybucket.s3.example.com`).
 
 ---
 
@@ -21,7 +24,7 @@ This guide covers setting up a custom S3 subdomain (e.g. `s3.example.com`) with 
 
 Create one A record pointing to the IP of any one of the three control nodes:
 
-```
+```bash
 s3.example.com → <control-node IP>
 ```
 
@@ -29,7 +32,7 @@ s3.example.com → <control-node IP>
 
 Create two A records:
 
-```
+```bash
 s3.example.com      → <control-node IP>
 *.s3.example.com    → <control-node IP>
 ```
@@ -45,7 +48,8 @@ dig +short test.s3.example.com   # for wildcard
 
 ## Step 2 - Verify Node Readiness
 
-SSH into the control node whose IP the domain points to and run the following checks.
+SSH into the control node whose IP the domain points to and run the following
+checks.
 
 Confirm the IP is bound on the interface:
 
@@ -53,7 +57,8 @@ Confirm the IP is bound on the interface:
 ip -br a | grep <control-node IP>
 ```
 
-Confirm `:443` is not already bound on that IP. The VIP will have `:443` - that's expected. The control node's own IP should be free:
+Confirm `:443` is not already bound on that IP. The VIP will
+have `:443` - that's expected. The control node's own IP should be free:
 
 ```bash
 ss -tnlp | grep -E ':443|:80 '
@@ -65,7 +70,8 @@ Confirm RGW is listening on `:8080`:
 ss -tnlp | grep 8080
 ```
 
-Note the IPs of all three control nodes from the haproxy RGW config - you'll need them later:
+Note the IPs of all three control nodes from the haproxy RGW
+config - you'll need them later:
 
 ```bash
 cat /etc/kolla/haproxy/services.d/ceph-rgw.cfg
@@ -77,7 +83,8 @@ cat /etc/kolla/haproxy/services.d/ceph-rgw.cfg
 
 ### Path-style only (HTTP-01 challenge)
 
-Simpler option - certbot binds temporarily to the control node's IP on `:80`. Auto-renews via systemd timer.
+Simpler option - certbot binds temporarily to the control node's IP
+on `:80`. Auto-renews via systemd timer.
 
 ```bash
 certbot certonly --standalone --http-01-address <control-node IP> \
@@ -86,7 +93,8 @@ certbot certonly --standalone --http-01-address <control-node IP> \
 
 ### With wildcard (DNS-01 challenge)
 
-Required for wildcard certs. Does **not** auto-renew - must be repeated manually every 90 days.
+Required for wildcard certs. Does **not** auto-renew - must be repeated
+manually every 90 days.
 
 ```bash
 certbot certonly --manual --preferred-challenges dns \
@@ -94,7 +102,9 @@ certbot certonly --manual --preferred-challenges dns \
   -d s3.example.com -d *.s3.example.com
 ```
 
-Certbot will pause twice and ask you to add TXT records at `_acme-challenge.s3.example.com`. Add both records (same name, two values), verify propagation, then press Enter each time:
+Certbot will pause twice and ask you to add TXT records
+at `_acme-challenge.s3.example.com`. Add both records (same name, two values),
+verify propagation, then press Enter each time:
 
 ```bash
 dig +short TXT _acme-challenge.s3.example.com
@@ -102,7 +112,8 @@ dig +short TXT _acme-challenge.s3.example.com
 
 Both values should be returned before continuing.
 
-**Note:** If a single-domain cert already exists for `s3.example.com`, certbot will ask to Expand - select `E`.
+**Note:** If a single-domain cert already exists for `s3.example.com`, certbot
+will ask to Expand - select `E`.
 
 ---
 
@@ -123,7 +134,8 @@ cp /etc/kolla/certificates/s3.example.com.pem \
    /var/lib/docker/volumes/letsencrypt_certificates/_data/
 ```
 
-The in-container path is `/etc/haproxy/certificates/` - this is what the haproxy config references.
+The in-container path is `/etc/haproxy/certificates/` - this is what the
+haproxy config references.
 
 ---
 
@@ -131,7 +143,7 @@ The in-container path is `/etc/haproxy/certificates/` - this is what the haproxy
 
 Create `/etc/kolla/haproxy/services.d/s3-public.cfg`:
 
-```
+```bash
 frontend radosgw_external_front_ssl
     mode http
     http-request deny if { path -i -m beg /server-status }
@@ -165,7 +177,9 @@ curl -I https://s3.example.com
 
 ## Step 6 - Enable Virtual-Hosted Style Bucket Addressing (Optional)
 
-For `bucketname.s3.example.com` style URLs, RGW needs to know the S3 domain via `rgw_dns_name`. Without this, RGW won't parse the bucket name out of the subdomain.
+For `bucketname.s3.example.com` style URLs, RGW needs to know the S3 domain
+via `rgw_dns_name`. Without this, RGW won't parse the bucket name out of
+the subdomain.
 
 Set the config (cluster-wide, run from any control node):
 
@@ -179,7 +193,8 @@ Verify it was set:
 ceph config get client.rgw rgw_dns_name
 ```
 
-Restart RGW on **all three control nodes** - the config change is stored in the cluster DB but each daemon only reads it on startup:
+Restart RGW on **all three control nodes** - the config change is stored in
+the cluster DB but each daemon only reads it on startup:
 
 ```bash
 docker ps | grep rgw   # get container name
@@ -203,4 +218,3 @@ If a single-domain cert was issued first and wildcard is needed later:
 2. Run the certbot DNS-01 command from Step 3 - it will ask to Expand
 3. Reassemble the pem, copy to the Docker volume, restart haproxy (Steps 4-5)
 4. No changes needed to `s3-public.cfg`
-
