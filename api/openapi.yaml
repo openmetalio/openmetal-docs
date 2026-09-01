@@ -1748,6 +1748,8 @@ paths:
     $ref: './paths/vlans.yaml#/~1v1~1vlans~1{vlan_id}~1prefixes~1{prefix_id}'
   /v1/clouds/{cloudId}/hardware/{nodeUuid}:
     $ref: './paths/clouds-hardware.yaml#/~1v1~1clouds~1{cloudId}~1hardware~1{nodeUuid}'
+  /v1/deployment/cloud/{cloudId}/firewall:
+    $ref: './paths/firewall.yaml#/~1v1~1deployment~1cloud~1{cloudId}~1firewall'
 
   # SSH Public Key Endpoints
   /v1/public-keys:
