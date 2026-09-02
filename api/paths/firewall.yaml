@@ -1,11 +1,13 @@
 "/v1/deployment/cloud/{cloudId}/firewall":
   get:
     tags:
-      - Deployment
+      - Clouds
     summary: Get the firewall configuration for a cloud
     description: |
       Retrieve the current (or would-be) firewall configuration for a cloud, including
       the OMI-derived network topology it will apply against.
+
+      Constraints: PCC clouds on deploy suite v4.0.0 or later.
     parameters:
       - name: cloudId
         in: path
@@ -36,8 +38,27 @@
                   type: array
                   description: Read-only. VLAN topology derived from the cloud's inventory.
                   items:
-                    type: string
-                  example: ["203.0.113.0/24"]
+                    type: object
+                    properties:
+                      vlan:
+                        type: integer
+                        description: The VLAN ID.
+                        example: 258
+                      subnet:
+                        type: string
+                        description: The subnet CIDR for this VLAN.
+                        example: "192.168.2.0/24"
+                      label:
+                        type: string
+                        description: The VLAN's functional label.
+                        example: "compute"
+                  example:
+                    - vlan: 258
+                      subnet: "192.168.2.0/24"
+                      label: "compute"
+                    - vlan: 257
+                      subnet: "172.16.1.0/28"
+                      label: "inventory"
                 external_vlan_label:
                   type: string
                   description: Read-only. The label of the external-facing VLAN.
@@ -49,6 +70,7 @@
                     status:
                       type: string
                       nullable: true
+                      enum: [suite_start, pending, success, error]
                       example: "success"
                     message:
                       type: string
@@ -59,7 +81,22 @@
                 summary: A cloud with an active customer whitelist
                 value:
                   customer_whitelist: ["203.0.113.10", "198.51.100.0/24"]
-                  vlans: ["203.0.113.0/24"]
+                  vlans:
+                    - vlan: 258
+                      subnet: "192.168.2.0/24"
+                      label: "compute"
+                    - vlan: 259
+                      subnet: "192.168.3.0/24"
+                      label: "control"
+                    - vlan: 260
+                      subnet: "192.168.4.0/24"
+                      label: "storage"
+                    - vlan: 261
+                      subnet: "192.168.5.0/24"
+                      label: "tunnel"
+                    - vlan: 257
+                      subnet: "172.16.1.0/28"
+                      label: "inventory"
                   external_vlan_label: "inventory"
                   status:
                     status: "success"
@@ -70,7 +107,7 @@
         description: Forbidden - User lacks read permissions for the cloud.
   put:
     tags:
-      - Deployment
+      - Clouds
     summary: Replace the firewall rules for a cloud and apply them
     description: |
       Replace the customer whitelist for a cloud and queue the firewall suite to apply
@@ -79,7 +116,7 @@
       Applying is asynchronous: this endpoint queues a task and returns immediately.
       A `200` response is an acknowledgement that the change was queued, **not**
       confirmation that the rules are live. Poll
-      [GET /v1/deployment/cloud/{cloudId}/firewall](#tag/Deployment/paths/~1v1~1deployment~1cloud~1{cloudId}~1firewall/get)
+      [GET /v1/deployment/cloud/{cloudId}/firewall](#tag/Clouds/paths/~1v1~1deployment~1cloud~1{cloudId}~1firewall/get)
       for the terminal `status` before assuming the new rules are in effect.
 
       Constraints: PCC clouds on deploy suite v4.0.0 or later; IPv4 addresses and CIDRs
@@ -126,6 +163,7 @@
                   type: string
                 status:
                   type: string
+                  enum: [suite_start, pending, success, error]
                   example: "pending"
             examples:
               queued:
