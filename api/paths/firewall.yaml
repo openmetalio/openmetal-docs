@@ -1,0 +1,187 @@
+"/v1/deployment/cloud/{cloudId}/firewall":
+  get:
+    tags:
+      - Clouds
+    summary: Get the firewall configuration for a cloud
+    description: |
+      Retrieve the current (or would-be) firewall configuration for a cloud, including
+      the OMI-derived network topology it will apply against.
+
+      Constraints: PCC clouds on deploy suite v4.0.0 or later.
+    parameters:
+      - name: cloudId
+        in: path
+        required: true
+        description: The ID of the cloud whose firewall configuration to retrieve.
+        schema:
+          type: string
+    security:
+      - bearerAuth: []
+    responses:
+      '200':
+        description: Current firewall configuration and last apply status.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_whitelist:
+                  type: array
+                  description: |
+                    IPv4 addresses and CIDRs granted access. A whitelisted address is
+                    granted every port over any protocol on the node, and is exempt from
+                    SSH rate limiting.
+                  items:
+                    type: string
+                  example: ["203.0.113.10", "198.51.100.0/24"]
+                vlans:
+                  type: array
+                  description: Read-only. VLAN topology derived from the cloud's inventory.
+                  items:
+                    type: object
+                    properties:
+                      vlan:
+                        type: integer
+                        description: The VLAN ID.
+                        example: 258
+                      subnet:
+                        type: string
+                        description: The subnet CIDR for this VLAN.
+                        example: "192.168.2.0/24"
+                      label:
+                        type: string
+                        description: The VLAN's functional label.
+                        example: "compute"
+                  example:
+                    - vlan: 258
+                      subnet: "192.168.2.0/24"
+                      label: "compute"
+                    - vlan: 257
+                      subnet: "172.16.1.0/28"
+                      label: "inventory"
+                external_vlan_label:
+                  type: string
+                  description: Read-only. The label of the external-facing VLAN.
+                  example: "inventory"
+                status:
+                  type: object
+                  description: The result of the last apply, if any.
+                  properties:
+                    status:
+                      type: string
+                      nullable: true
+                      enum: [suite_start, pending, success, error]
+                      example: "success"
+                    message:
+                      type: string
+                      nullable: true
+                      example: null
+            examples:
+              configured:
+                summary: A cloud with an active customer whitelist
+                value:
+                  customer_whitelist: ["203.0.113.10", "198.51.100.0/24"]
+                  vlans:
+                    - vlan: 258
+                      subnet: "192.168.2.0/24"
+                      label: "compute"
+                    - vlan: 259
+                      subnet: "192.168.3.0/24"
+                      label: "control"
+                    - vlan: 260
+                      subnet: "192.168.4.0/24"
+                      label: "storage"
+                    - vlan: 261
+                      subnet: "192.168.5.0/24"
+                      label: "tunnel"
+                    - vlan: 257
+                      subnet: "172.16.1.0/28"
+                      label: "inventory"
+                  external_vlan_label: "inventory"
+                  status:
+                    status: "success"
+                    message: null
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks read permissions for the cloud.
+  put:
+    tags:
+      - Clouds
+    summary: Replace the firewall rules for a cloud and apply them
+    description: |
+      Replace the customer whitelist for a cloud and queue the firewall suite to apply
+      it. This is a **full replace** — the entire list is overwritten, not merged.
+
+      Applying is asynchronous: this endpoint queues a task and returns immediately.
+      A `200` response is an acknowledgement that the change was queued, **not**
+      confirmation that the rules are live. Poll
+      [GET /v1/deployment/cloud/{cloudId}/firewall](#tag/Clouds/paths/~1v1~1deployment~1cloud~1{cloudId}~1firewall/get)
+      for the terminal `status` before assuming the new rules are in effect.
+
+      Constraints: PCC clouds on deploy suite v4.0.0 or later; IPv4 addresses and CIDRs
+      only; maximum 100 entries.
+    parameters:
+      - name: cloudId
+        in: path
+        required: true
+        description: The ID of the cloud to update.
+        schema:
+          type: string
+    security:
+      - bearerAuth: []
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - customer_whitelist
+            properties:
+              customer_whitelist:
+                type: array
+                description: IPv4 addresses and CIDRs to whitelist. Full replace; max 100 entries.
+                items:
+                  type: string
+          examples:
+            replace_whitelist:
+              summary: Replace the customer whitelist
+              value:
+                customer_whitelist: ["203.0.113.10", "198.51.100.0/24"]
+    responses:
+      '200':
+        description: |
+          The firewall apply was queued. This does not mean the rules are live yet —
+          poll GET for the terminal status.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jobId:
+                  type: string
+                status:
+                  type: string
+                  enum: [suite_start, pending, success, error]
+                  example: "pending"
+            examples:
+              queued:
+                summary: Apply queued
+                value:
+                  jobId: "5f6a1c2e-9b3d-4e7a-8c1f-2d3e4f5a6b7c"
+                  status: "pending"
+      '400':
+        description: |
+          Bad Request - the cloud is ineligible (not a PCC cloud, or below deploy suite
+          v4.0.0), no Semaphore project exists for the cloud, the VLAN topology could
+          not be resolved, or the request body failed validation (e.g. an invalid IPv4
+          address or CIDR, more than 100 entries, or an unrecognized field).
+      '401':
+        description: Unauthorized - Invalid or missing Bearer token.
+      '403':
+        description: Forbidden - User lacks write permissions for the cloud.
+      '409':
+        description: |
+          Conflict - another suite is already in flight for this cloud. Wait for it to
+          complete and retry.
