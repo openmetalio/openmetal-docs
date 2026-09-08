@@ -43,6 +43,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | 2023.2-ubuntu-jammy-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | 2023.2-ubuntu-jammy-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
 | 2023.2-ubuntu-jammy-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
@@ -71,6 +72,7 @@ Latest image tag: `yoga`
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| yoga-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | yoga-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | yoga-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
 | yoga-2026-03-24 | 03/24/2026 | Glance |[[OSSA-2026-004] Server-Side Request Forgery (SSRF) vulnerabilities in OpenStack Glance image import functionality patched](https://bugs.launchpad.net/glance/+bug/2138602)|
