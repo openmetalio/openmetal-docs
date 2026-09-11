@@ -108,7 +108,6 @@ following variables in `/etc/kolla/globals.yml` should not be modified,
 otherwise they will be overwritten:
 
     api_interface
-    cluster_interface
     dns_interface
     docker_registry_insecure
     kolla_enable_tls_external
