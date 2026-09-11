@@ -128,12 +128,19 @@ unaffected.
 ## Screenshots
 
 Captured with Playwright 1.50.1 driving the installed Chrome (`channel: 'chrome'`,
-`ignoreHTTPSErrors: true`), at 1600x950 with `deviceScaleFactor: 2` for legibility.
+`ignoreHTTPSErrors: true`) at 1920x1080, `deviceScaleFactor: 1`.
+
+Images are cropped, not full-viewport, to match the existing repo convention measured
+from `day-1/horizon/images/`: list views ~1690-1720px wide, dialogs 520-1200px, ~60KB
+average. List pages clip to the content pane, dialogs are element screenshots of
+`.ant-modal-content`, and the instance wizard uses full-page captures because it is a
+page rather than a modal.
 
 **Throwaway resources.** Nick authorized creating and deleting resources on the demo
 cloud. Every resource created for screenshots is torn down afterwards, and the teardown
 is verified. Pre-existing resources (`network-1`, `router-1`, `ubuntu-26`,
-`ubuntu-vpn-only`, `lb-mgmt-net`, `vpn*`) are never touched.
+`ubuntu-vpn-only`, `lb-mgmt-net`, `vpn*`, keypair `nick`, floating IP `...156`) are
+never touched. State is snapshotted before any creation so teardown cannot overreach.
 
 **Central placeholders.** Five screenshots are OpenMetal Central UI, which is not
 reachable from here. Each becomes a visible placeholder:
