@@ -134,7 +134,10 @@ The "bobcat" is coincidence, not the OpenStack release. Renaming them is churn.
 6. `grep -rni "watcher" versioned_docs/operators-manual/` returns nothing
 7. `grep -rn "magnum" versioned_docs/operators-manual/` returns nothing
 8. `grep -rn "cluster_interface" versioned_docs/operators-manual/` returns nothing
-9. `grep -rn "neutron-openvswitch-agent" versioned_docs/operators-manual/` returns nothing
+9. `grep -rn "neutron-openvswitch-agent" versioned_docs/operators-manual/` returns ONLY
+   hits in `day-2/manage-node-firewall-with-iptables.md`. Those are the config path
+   `/etc/kolla/neutron-openvswitch-agent/openvswitch_agent.ini`, not log files, and that
+   whole file is replaced in Phase 4. The `/var/log/kolla/neutron/` listing must be clean.
 10. `operators_versioned_docs/` is untouched — `git status --porcelain operators_versioned_docs/` is empty
 11. Every changed upstream URL returns HTTP 200
 
