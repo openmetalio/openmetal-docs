@@ -3,11 +3,12 @@
 ## Day 1
 
 1. [Introduction to OpenMetal and your Private Cloud Core](./day-1/intro-to-openmetal-private-cloud.md)
-2. [Getting Started with OpenStack Horizon](./day-1/horizon/getting-started-with-horizon.md)
-3. [Create an OpenStack User and Project in Horizon](./day-1/horizon/create-user-project.md)
-4. [Manage and Upload Images in OpenStack Horizon](./day-1/horizon/images.md)
-5. [How to Create an Instance in OpenStack Horizon](./day-1/horizon/create-first-instance.md)
-6. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
+2. [Getting Started with Skyline](./day-1/skyline/getting-started-with-skyline.md)
+3. [Create a User and Project in Skyline](./day-1/skyline/create-user-project.md)
+4. [How to Create an Instance in Skyline](./day-1/skyline/create-first-instance.md)
+5. [Manage and Upload Images in Skyline](./day-1/skyline/images.md)
+6. [Accessing Horizon](./day-1/skyline/accessing-horizon.md)
+7. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
 
 ## Day 2
 

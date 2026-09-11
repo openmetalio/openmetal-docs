@@ -116,6 +116,22 @@ const config = {
             from: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
             to: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
           },
+          {
+            from: '/operators-manual/day-1/horizon/getting-started-with-horizon',
+            to: '/operators-manual/day-1/skyline/getting-started-with-skyline',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/create-user-project',
+            to: '/operators-manual/day-1/skyline/create-user-project',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/create-first-instance',
+            to: '/operators-manual/day-1/skyline/create-first-instance',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/images',
+            to: '/operators-manual/day-1/skyline/images',
+          },
         ],
       },
     ],

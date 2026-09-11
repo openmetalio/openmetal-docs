@@ -49,7 +49,7 @@ individuals. There is even the ability to manage down to an individual
 user.
 
 For information about how to create a user and project, see
-[Create an OpenStack User and Project in Horizon](../../day-1/horizon/create-user-project.md).
+[Create a User and Project in Skyline](../../day-1/skyline/create-user-project.md).
 
 #### Users
 
@@ -110,7 +110,7 @@ updated. Over time, these images can become vulnerable as it becomes
 necessary to maintain security updates and patches. We recommend
 routinely updating and managing these images within your existing
 OpenStack cluster. For further information on how to upload images visit
-[Manage and Upload Images in Horizon](../../day-1/horizon/images.md)
+[Manage and Upload Images in Skyline](../../day-1/skyline/images.md)
 
 ### Update Kolla Ansible Images
 
@@ -152,8 +152,8 @@ ports that are available on your instance as well as the IP addresses
 that can connect to these specific ports.
 
 For more information on how to create and manage security groups, see
-the title heading [Security Groups](../../day-1/horizon/create-first-instance.md#security-groups)
-in the [How to Create an Instance in OpenStack Horizon](../../day-1/horizon/create-first-instance)
+the title heading [Security Groups](../../day-1/skyline/create-first-instance.md#security-groups)
+in the [How to Create an Instance in Skyline](../../day-1/skyline/create-first-instance)
 guide.
 
 ## SSH Authentication
