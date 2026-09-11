@@ -169,7 +169,7 @@ Install Kolla Ansible and its dependencies:
 Should `requirements.txt` not exist, you can ask us to sync that file to your
 cloud.
 
-For our latest deployments running OpenStack 2023.2, `requirements.txt` should contain:
+For our latest deployments running OpenStack 2026.1, `requirements.txt` should contain:
 
     ansible-core==2.15.*
     kolla-ansible==17.3.*
@@ -206,6 +206,6 @@ Kolla](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html
 ## References
 
 - [OpenStack Kolla Ansible
-    documentation](https://docs.openstack.org/kolla-ansible/2023.2/)
+    documentation](https://docs.openstack.org/kolla-ansible/2026.1/)
 - [Kolla Ansible Quick
-    Start](https://docs.openstack.org/kolla-ansible/2023.2/user/quickstart.html)
+    Start](https://docs.openstack.org/kolla-ansible/2026.1/user/quickstart.html)
