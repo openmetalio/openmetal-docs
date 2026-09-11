@@ -39,7 +39,7 @@ other metrics. By default, we set a replication level of 3 on all pools. The
 capacity displayed is the overall capacity and should be divided by 3 to get a
 better sense of available disk space.
 
-For more information see [Overview of the Dashboard Landing Page](https://docs.ceph.com/en/reef/mgr/dashboard/#overview-of-the-dashboard-landing-page).
+For more information see [Overview of the Dashboard Landing Page](https://docs.ceph.com/en/squid/mgr/dashboard/#overview-of-the-dashboard-landing-page).
 
 ## Check Ceph Status
 

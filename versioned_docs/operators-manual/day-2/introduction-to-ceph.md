@@ -119,4 +119,4 @@ each service can be viewed through
 
 Your Ceph cluster was deployed using `cephadm`. Any configuration
 changes should be made using `cephadm`. For more information, see
-[CEPHADM](https://docs.ceph.com/en/reef/cephadm/).
+[CEPHADM](https://docs.ceph.com/en/squid/cephadm/).
