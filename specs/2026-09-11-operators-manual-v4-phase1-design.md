@@ -88,9 +88,30 @@ and `index.md`).
 Also update the prose reference to `operators_versioned_docs/version-2.0` so it
 mentions 3.0 as the most recent archive.
 
+### 5. Lint the manual
+
+`package.json` currently lints `docs/` only, so the Operator's Manual has never been
+linted. Extend both scripts to cover the live manual:
+
+```json
+"lint": "markdownlint --rules lint-rules/no-generic-alt-text.js docs/ versioned_docs/operators-manual/",
+"lint-fix": "markdownlint --rules lint-rules/no-generic-alt-text.js docs/ versioned_docs/operators-manual/ --fix"
+```
+
+Frozen archives stay out. Measured 2026-09-11: `versioned_docs/operators-manual/` has
+1 violation, `version-2.0` has 16, `version-1.0` has 1. Linting archives would mean
+editing published historical docs for no reader benefit.
+
+Fix the single live violation — `versioned_docs/operators-manual/index.md:80`
+MD047/single-trailing-newline.
+
+Do this **after** the archive cut, so `version-3.0` stays a true snapshot of v3 as
+shipped.
+
 ## Out of scope
 
 - `operators_versioned_sidebars/version-1.2.3-sidebars.json` — orphaned, leave alone
+- Linting `operators_versioned_docs/` archives (17 violations across 2.0 and 1.0)
 - Archive URL scheme — v3 uses the existing
   `/operators-manual/operators_versioned_docs/version-3.0/` pattern
 - All content edits (Phases 2-4)
@@ -112,6 +133,7 @@ Baseline before starting: `npm run build` exits 0. Confirmed 2026-09-11.
    reports only `openmetal-ops-manual.pdf`
 7. Version dropdown lists v4, 3.0, 2.0, 1.0 with the LATEST badge on v4 only —
    checked by grepping built HTML, and by screenshot of a served build
+8. `npm run lint` exits 0 and its output covers `versioned_docs/operators-manual/`
 
 ## Risks
 
