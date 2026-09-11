@@ -12,9 +12,10 @@ The Operator's Manual has differing versions depending on the PCC release.
 The following lists the different PCC versions and which OpenStack release they correspond to:
 | PCC Version  | OpenStack Release |
 |--------------|-------------------|
-| 3.0 (latest) | 2023.2 (Bobcat) |
-| 2.0          | Yoga            |
-| 1.0          | Victoria        |
+| 4.0 (latest) | 2026.1 (Gazpacho) |
+| 3.0          | 2023.2 (Bobcat)   |
+| 2.0          | Yoga              |
+| 1.0          | Victoria          |
 
 ### Updating the latest version
 
@@ -22,7 +23,7 @@ To update the latest version of the Operator's Manual, make changes in the [vers
 
 ### Updating Older Versions
 
-Older versions are located in [operators_versioned_docs](). If changes need to be made to the PCC 2.0 release of the Operator's Manual, use the directory [operators_versioned_docs/version-2.0]().
+Older versions are located in [operators_versioned_docs](). If changes need to be made to the PCC 3.0 release of the Operator's Manual, use the directory [operators_versioned_docs/version-3.0]().
 
 # Website
 
