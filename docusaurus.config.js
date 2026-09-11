@@ -76,8 +76,12 @@ const config = {
         editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
         versions: {
           current: {
-            label: 'v3 (Latest)',
+            label: 'v4',
             path: '',
+          },
+          '3.0': {
+            label: '3.0',
+            path: 'operators_versioned_docs/version-3.0',
           },
           '2.0': {
             label: '2.0',
@@ -89,7 +93,7 @@ const config = {
           },
         },
         lastVersion: 'current',
-        onlyIncludeVersions: ['current', '2.0', '1.0'],
+        onlyIncludeVersions: ['current', '3.0', '2.0', '1.0'],
       },
     ],
     [
