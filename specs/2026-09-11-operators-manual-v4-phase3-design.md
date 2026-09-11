@@ -23,6 +23,28 @@ different, so a screenshot-for-screenshot replacement is the wrong target. Two e
 
 Target the correct Skyline flow. The screenshot count falls out of that.
 
+### Quick Create
+
+Skyline's Networks page has a **Quick Create** button (distinct from **Create Network**)
+that builds the network, its subnet, and an attached router in a single dialog, with a
+**Create and Attach Router** checkbox that reveals Router Name and an External Gateway
+option.
+
+This replaces three sections of the Horizon guide — Create a Private Network, Create a
+Router, and Connect Router to Private Network — and eleven screenshots, with one dialog
+and two screenshots. The guide documents Quick Create as the primary path and mentions
+the separate Create Network / Create Router flow in one sentence.
+
+### Other Skyline differences found
+
+- Create Network is one modal; subnet fields appear on checking "Create Subnet", and
+  DHCP, gateway, DNS and allocation pools sit behind "Expand Advanced Options"
+- Create Instance is a full-page four-step wizard at `/compute/instance/create`
+- The wizard's System Disk requires an explicit volume **Type**, and a **Size** no
+  smaller than the flavor's disk, or it will not advance
+- Create User and Create Image open full pages, not modals
+- Key pairs have their own page; they are not imported inside the launch form
+
 ## Decisions (confirmed with Nick)
 
 1. Rename `day-1/horizon/` → `day-1/skyline/`, add client redirects from the old paths
