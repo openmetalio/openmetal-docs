@@ -53,23 +53,23 @@ For example, listing the first few queues:
     Timeout: 60.0 seconds ...
     Listing queues for vhost / ...
     name    messages        consumers
-    heat-engine-listener_fanout_7025924940fc4f11b89ed31afe5a642c    0       1
-    scheduler_fanout_257bb53015e3478db4c7c36236923300       0       1
-    reply_7c1ef96102e643a8bd8827f7191cf4cc  0       1
-    reply_742233f6bbbb47e196d53e834dffd912  0       0
-    heat-engine-listener.7b6e3335-0745-4c38-a78c-93eca7f9b336       0       0
-    watcher.applier.control_fanout_97961841bc9e4304b1dbfe6da039ee0c 0       1
-    reply_733a0bc0a2e248aea9c307d2dbb6b88b  0       1
-    neutron-vo-SecurityGroupRule-1.0_fanout_a6dad4171bb94d0aa97ae30b218b779a        0       1
-    engine_fanout_917e9c14d41d4d69be11122b1bd28485  0       1
-    reply_b9fa7b24616f40eb9be6e4cb70ebd9d2  0       0
-    q-l3-plugin_fanout_190b34d25d7444ecb3d901abb971f93f     0       1
-    reply_849a66b5d7e74d099d89ed842832a7ae  0       1
-    magnum-conductor.reobzilz72y4   0       0
-    magnum-conductor_fanout_97e11c7c5ebc46fabfe57adf45a05b11        0       1
-    reply_faad7408773c4e7ebbaa9abfb9c0534a  0       1
-    cinder-volume.lovely-ladybug.local@rbd-1_fanout_1d3ef02f49f148618fcb36163687b9cd        0       1
-    engine_fanout_28b15b87d3ec4541b0d7731b928f6852  0       1
+    ipsec_driver.suspicious-spoonbill.local 0       3
+    scheduler_fanout_pedantic-piranha.local:nova-scheduler:7 0       1
+    reply_pedantic-piranha.local:nova-compute:1     0       1
+    q-plugin.suspicious-spoonbill.local     0       3
+    engine_worker_fanout_suspicious-spoonbill.local:heat-engine:9    0       1
+    cinder-volume.suspicious-spoonbill.local@rbd-1.suspicious-spoonbill.local        0       1
+    reply_suspicious-spoonbill.local:nova-conductor:6        0       1
+    mistral_event_engine.192.168.3.5        0       1
+    heat-engine-listener.8c2c593e-97da-4b09-933b-1e634e609dab        0       1
+    heat-engine-listener.23c7a798-27ff-4c54-baea-81d068cef57e        0       1
+    engine_worker   0       15
+    cinder-backup   0       3
+    heat-engine-listener_fanout_pedantic-piranha.local:heat-engine:1 0       1
+    q-plugin_fanout_suspicious-spoonbill.local:neutron-rpc-server:1  0       1
+    mistral_engine_fanout_suspicious-spoonbill.local:mistral-server:1        0       1
+    q-reports-plugin_fanout_suspicious-spoonbill.local:neutron-rpc-server:8  0       1
+    mistral_engine  0       3
 
 ## RabbitMQ and Network Partitions
 
