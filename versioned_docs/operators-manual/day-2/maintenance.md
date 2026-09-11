@@ -117,11 +117,11 @@ column, each container should reflect the status `Up`.
 For example:
 
     [root@smiling-pelican ~]# docker ps
-    CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED        STATUS                          PORTS     NAMES
-    6f7590bc2191   registry.flexmetal.net/kolla/telegraf:2026.1-ubuntu-noble                    "dumb-init --single-…"   20 hours ago   Restarting (1) 14 seconds ago             telegraf
-    67a4d47e8c78   registry.flexmetal.net/kolla/watcher-api:2026.1-ubuntu-noble                 "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_api
-    af815b1dcb5d   registry.flexmetal.net/kolla/watcher-engine:2026.1-ubuntu-noble              "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_engine
-    a52ab61933ac   registry.flexmetal.net/kolla/watcher-applier:2026.1-ubuntu-noble             "dumb-init --single-…"   3 days ago     Up 6 minutes                              watcher_applier
+    CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED        STATUS                    PORTS     NAMES
+    62e119179bb4   registry.flexmetal.net/kolla/skyline-console:2026.1-ubuntu-noble             "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               skyline_console
+    b3767f16dead   registry.flexmetal.net/kolla/skyline-apiserver:2026.1-ubuntu-noble           "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               skyline_apiserver
+    fb570dbaae96   registry.flexmetal.net/kolla/octavia-worker:2026.1-ubuntu-noble              "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               octavia_worker
+    66a3068fda74   registry.flexmetal.net/kolla/barbican-worker:2026.1-ubuntu-noble             "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               barbican_worker
     [...output truncated...]
 
 Next, if this node is part of a Ceph cluster, check Ceph's status using
