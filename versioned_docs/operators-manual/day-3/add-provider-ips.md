@@ -7,7 +7,7 @@ sidebar_position: 2
 
 With OpenMetal Private Clouds, multiple provider IP blocks are
 supported. This guide explains how to request an additional provider IP
-block and how to use the IPs in Horizon.
+block and how to use the IPs in Skyline.
 
 ## Before Proceeding
 
@@ -30,20 +30,20 @@ e-mail address when complete.
 
 ### Confirm new Provider Block Addition
 
-First to confirm the addition of the IP block, log in to Horizon with a
+First to confirm the addition of the IP block, log in to Skyline with a
 user that has the administrator role. This is typically the account
 called "admin".
 
-Next, navigate to **Admin -\> Network -\> Networks**, then click on the
-"External" network.
+Switch to the **Administrator** console, go to **Network -> Networks**,
+then click the **External** network.
 
-![Networks list showing the External network](images/provider-block-list.png)
+![Networks list showing the External network](images/skyline-admin-networks.png)
 
 **Figure 1:** List of Networks
 
-Choose the Subnets tab and confirm that the new subnet has been added.
+Choose the **Subnets** tab and confirm the new subnet has been added.
 
-![Subnets tab of the External network](images/provider-block-list-2.png)
+![Subnets tab of the External network](images/skyline-external-subnets.png)
 
 **Figure 2:** List of Subnets for the External network
 

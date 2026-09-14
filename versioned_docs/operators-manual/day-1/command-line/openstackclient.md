@@ -32,27 +32,38 @@ Stream instance.
 
 #### Initial Preparation
 
-Before installing OpenStackClient, you must obtain two files from
-Horizon, which are required to prepare your shell environment. Those two
-files are `clouds.yaml` and the OpenStack RC file.
+Before installing OpenStackClient, prepare two files for your shell
+environment:
 
-- `clouds.yaml`: Used as a source of configuration for how to connect
-    to a cloud
-- OpenStack RC file: Used as a source of authentication for your user
-    and project
+- `clouds.yaml`: how to connect to a cloud
+- OpenStack RC file: authentication for your user and project
 
-To collect these files, log in to Horizon as your user. Navigate to
-**Project -\> API Access** to download the OpenStack `clouds.yaml` and
-the `OpenStack RC` files to your machine. When you navigate to **Project
--\> API Access** and collect these files, they are associated with the
-current user and project that user is in.
+Log in to Skyline, open the user menu in the top right, and choose
+**Get OpenRC file**. The file is scoped to the user and project you are
+currently signed in to.
 
-![API Access page in Horizon with download options](images/api-access.png)
+![Skyline user menu with Get OpenRC file](images/skyline-openrc.png)
 
-**Figure 1:** API Access
+**Figure 1:** Get OpenRC file
 
-This example acquires the `clouds.yaml` and OpenStack RC file for the
-user **nick** and that user's primary project, **Development**.
+Skyline does not offer a `clouds.yaml` download. Write it by hand using
+the values from the OpenRC file:
+
+    clouds:
+      openstack:
+        auth:
+          auth_url: https://<VIP>:5000
+          username: <username>
+          password: <password>
+          project_name: <project>
+          user_domain_name: Default
+          project_domain_name: Default
+        region_name: <region>
+        interface: public
+        identity_api_version: 3
+
+`<VIP>` and `<region>` match the `OS_AUTH_URL` and `OS_REGION_NAME`
+values in the OpenRC file.
 
 #### Prepare and Install OpenStackClient
 
@@ -68,7 +79,7 @@ then this instance can only be accessed from one of your control plane nodes.
 The `clouds.yaml` file obtained previously must be prepared in this
 instance. For this demonstration, `clouds.yaml` is located as
 `~/.config/openstack/clouds.yaml` in this instance. Copy the contents of
-`clouds.yaml` obtained from Horizon and store it as
+`clouds.yaml` prepared previously and store it as
 `~/.config/openstack/clouds.yaml`.
 
 For example:

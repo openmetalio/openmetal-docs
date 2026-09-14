@@ -3,7 +3,7 @@
 ## Introduction
 
 This guide details how to find the resource usage of your private cloud.
-Outlined within this article, we explore how to utilize the Horizon
+Outlined within this article, we explore how to utilize the Skyline
 Dashboard to determine the total memory and compute usage for a project
 as well as how to view instances stored on each node. Next, we look at
 disk usage by explaining how to briefly interact with your cloud's Ceph
@@ -16,7 +16,7 @@ nodes from your Ceph cluster.
 
 2. [Resources of a Private Cloud](cloud-resource-usage.md#resources-of-a-private-cloud)
 
-    1. [View Memory and Compute Usage in Horizon](cloud-resource-usage.md#view-memory-and-compute-usage-in-horizon)
+    1. [View Memory and Compute Usage in Skyline](cloud-resource-usage.md#view-memory-and-compute-usage-in-skyline)
     2. [View Instance State Across Cluster](cloud-resource-usage.md#view-instance-state-across-cluster)
     3. [How to Access Resource Information from Ceph](cloud-resource-usage.md#how-to-access-resource-information-from-ceph)
 
@@ -48,12 +48,12 @@ memory, storage, and CPU processing power depending on the configuration
 and hardware. In addition, you have the option of adding additional
 hardware nodes to your cluster.
 
-### View Memory and Compute Usage in Horizon
+### View Memory and Compute Usage in Skyline
 
 To view the resources used by your cloud, you have to be the admin user
 and assigned to the admin project. Once you are in the admin project,
-navigate to **Admin -\> Compute -\> Hypervisors**. This section, lists
-the following items:
+switch to the **Administrator** console and go to **Compute ->
+Hypervisors**. This section lists the following items:
 
 - VCPU Usage
 - Memory Usage
@@ -61,18 +61,18 @@ the following items:
 
 **Figure 2:** Hypervisor Summary showing disk and resource usage
 
-![Hypervisor summary showing VCPU, memory, and disk usage](images/figure2.png)
+![Hypervisor summary showing VCPU, memory, and disk usage](images/skyline-hypervisors.png)
 
 ### View Instance State Across Cluster
 
 There is also an option to see the location of your instances within
-your cluster. To view this information, navigate to **Admin -\> Compute
--\> Instances**. You have the option to see the project, the host, as
-well as the IP address, and state.
+your cluster. In the **Administrator** console, go to **Compute ->
+Instances**. The list shows each instance's project, host, IP address,
+and status.
 
 **Figure 3:** Summary of Instances
 
-![Instances list with project, host, IP address, and state](images/figure3.png)
+![Instances list with project, host, IP address, and status](images/skyline-admin-instances.png)
 
 ### How to Access Resource Information from Ceph
 

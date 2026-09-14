@@ -9,39 +9,35 @@ With Private Clouds, you have the ability to create backups and
 snapshots of your volume data. If a volume's data goes corrupt or is
 removed by mistake, having a copy of that data could be invaluable. In
 this guide, we explain how to create and recover volume backups using
-Horizon.
+Skyline.
 
 ## Create a Volume Backup
 
-Navigate in Horizon to **Project -\> Volume -\> Volumes**.
+In Skyline, go to **Storage -> Volumes**.
 
-![Volumes list in Horizon](images/jumpstation-volume-list.png)
+![Volumes list](images/skyline-volume-list.png)
 
 **Figure 1:** Volumes List
 
-Create a backup of your volume by selecting from the drop down **Create
-Backup**.
+Find the volume and choose **More -> Data Protection -> Create Backup**.
 
-![Create Volume Backup form in Horizon](images/create-volume-backup.png)
+![Create Volume Backup dialog](images/skyline-create-backup.png)
 
 **Figure 2:** Create Volume Backup Form
 
-- **Backup Name**: Specify a name for the volume backup
-- **Description**: Provide a description if necessary
-- **Container Name**: Leave this blank otherwise the volume backup
-    cannot be created. Horizon tells you if this field is blank, the
-    backup is stored in a container called `volumebackups`, but this is
-    not the case with our configuration. With Private Clouds, all volume
-    backups created this way are stored in the Ceph pool called
-    `backups`.
-- **Backup Snapshot**: If applicable specify a snapshot to create a
-    backup from
+- **Volume**: read-only, the volume being backed up.
+- **Volume Backup Name**: a name for the backup.
+- **Backup Mode**: **Full** copies the whole volume. **Incremental**
+    copies only the blocks changed since the last backup, and requires
+    an existing full backup of that volume.
 
-After submitting the form, you are navigated to **Project -\> Volume -\>
-Volume Backups** where you can see the volume you just created a backup
-of.
+On a Private Cloud, volume backups are stored in the Ceph pool called
+`backups`.
 
-![Volume Backups list showing the new backup](images/volume-backup-list.png)
+Submit the form, then go to **Storage -> Volume Backups** to see the
+backup.
+
+![Volume Backups list showing the new backup](images/skyline-backup-list.png)
 
 **Figure 3:** Volume Backup List
 
@@ -56,18 +52,16 @@ volume and compare the contents.
 
 ## Restore a Volume Backup
 
-To restore a volume backup, being by navigating in Horizon to **Project
--\> Volume -\> Volume Backups**.
+To restore a volume backup, go to **Storage -> Volume Backups**.
 
-Next, find the volume backup you wish to restore and from its drop down
-on the right, select **Restore Backup**.
+Find the backup and choose **More -> Restore Backup**.
 
-![Restore Backup option in the drop down](images/restore-volume-backup.png)
+![Restore Backup option in the row menu](images/skyline-backup-restore-menu.png)
 
 **Figure 4:** Volume Backup List
 
-Choose the volume to restore to, or have the system restore the backup
-to a new volume.
+Choose the volume to restore into. Leave it unset to restore into a new
+volume.
 
 ## Ceph, Volumes, and Data Durability
 

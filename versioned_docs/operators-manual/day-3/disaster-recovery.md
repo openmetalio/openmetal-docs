@@ -74,8 +74,9 @@ outline how to diagnose hardware failure.
 ### Determine Hardware Node Failure
 
 To quickly get the status of your cloud's control plane nodes, check the
-running system services in Horizon. To do so, log in as an administrator
-to Horizon and navigate to **Admin -\> System -\> System Information**.
+running system services in Skyline. To do so, log in as an administrator,
+switch to the **Administrator** console, and go to
+**Global Settings -> System Info**.
 On this page are tabs separating all OpenStack services, including the
 APIs, Compute, Block Storage, and Network Agents. A service's state is
 indicated by the **State** column. If a service is up, the value is
@@ -84,9 +85,9 @@ reflected as "Up". If a service is down, the value is reported as
 indicator that a control plane node is down is if you see "Down" under
 the **State** column for all services of a particular node.
 
-![OpenStack System Information page](images/disaster_recovery_system_info.png)
+![System Info showing compute service status and state](images/skyline-system-info.png)
 
-**Figure 1:** OpenStack System Information
+**Figure 1:** System Info
 
 ### Cluster Failure
 
