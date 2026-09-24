@@ -42,7 +42,7 @@
     "clsx": "^1.1.1",
     "disqus-react": "^1.1.5",
     "live-server": "^1.2.2",
-    "markdownlint-cli": "^0.31.1",
+    "markdownlint-cli": "^0.39.0",
     "openmetal-docs": "file:",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
