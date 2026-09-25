@@ -43,6 +43,9 @@ info:
       so include both forms of your address. A request from an address not on the list is
       rejected with `403 ip_whitelist_restricted`, and the message names the address we saw.
     - OAuth tokens have limited lifespans and should be refreshed as needed
+    - An expired or revoked token is rejected with `401 access_token_expired`. Other
+      unusable credentials — a malformed or unrecognised token — return `403 token_invalid`.
+      Branch on the `errors[0].name` value rather than on the status code alone.
     - Unauthorized requests will result in a `401 Unauthorized` response
     
     If you have trouble authenticating or accessing the API, please contact
