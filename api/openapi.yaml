@@ -38,6 +38,10 @@ info:
     
     - Keep all tokens and credentials secure and never share them publicly
     - API Keys should be rotated periodically
+    - If an API Key is restricted to specific IP addresses, list every address the client may
+      connect from. A dual-stack client can reach the API over IPv6 even when you expect IPv4,
+      so include both forms of your address. A request from an address not on the list is
+      rejected with `403 ip_whitelist_restricted`, and the message names the address we saw.
     - OAuth tokens have limited lifespans and should be refreshed as needed
     - Unauthorized requests will result in a `401 Unauthorized` response
     
