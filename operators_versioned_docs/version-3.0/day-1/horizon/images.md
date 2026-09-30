@@ -3,6 +3,10 @@ sidebar_position: 3
 ---
 # Manage and Upload Images in OpenStack Horizon
 
+:::info
+Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [Manage and Upload Images in Skyline](/operators-manual/day-1/skyline/images).
+:::
+
 ## Introduction
 
 This guide provides instructions for how to upload an image into

@@ -3,6 +3,10 @@ sidebar_position: 4
 ---
 # How to Create an Instance in OpenStack Horizon
 
+:::info
+Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [How to Create an Instance in Skyline](/operators-manual/day-1/skyline/create-first-instance).
+:::
+
 ## Introduction
 
 With OpenStack, instances, or virtual machines, play a large role in a
