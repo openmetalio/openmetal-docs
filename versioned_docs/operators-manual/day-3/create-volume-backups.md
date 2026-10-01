@@ -1,6 +1,9 @@
 ---
 sidebar_position: 3
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Create and Restore Volume Backups
 
 ## Introduction
@@ -13,7 +16,10 @@ Skyline.
 
 ## Create a Volume Backup
 
-In Skyline, go to **Storage -> Volumes**.
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
+Go to **Storage -> Volumes**.
 
 ![Volumes list](images/skyline-volume-list.png)
 
@@ -27,19 +33,44 @@ Find the volume and choose **More -> Data Protection -> Create Backup**.
 
 - **Volume**: read-only, the volume being backed up.
 - **Volume Backup Name**: a name for the backup.
-- **Backup Mode**: **Full** copies the whole volume. **Incremental**
-    copies only the blocks changed since the last backup, and requires
-    an existing full backup of that volume.
+- **Backup Mode**: **Full** copies the whole volume. **Incremental** copies only the blocks changed since the last backup, and requires an existing full backup of that volume.
 
-On a Private Cloud, volume backups are stored in the Ceph pool called
-`backups`.
-
-Submit the form, then go to **Storage -> Volume Backups** to see the
-backup.
+Submit the form, then go to **Storage -> Volume Backups** to see the backup.
 
 ![Volume Backups list showing the new backup](images/skyline-backup-list.png)
 
 **Figure 3:** Volume Backup List
+
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Project -> Volumes -> Volumes**.
+
+![Volumes list in Horizon](images/hz-volumes.png)
+
+**Figure 1:** Volumes List
+
+Find the volume and choose **Create Backup** from its actions menu.
+
+![Create Volume Backup form in Horizon](images/hz-create-backup.png)
+
+**Figure 2:** Create Volume Backup Form
+
+- **Backup Name**: a name for the backup.
+- **Description**: optional.
+- **Container Name**: leave blank.
+- **Backup Snapshot**: optionally back up from a snapshot instead.
+
+Submit the form, then go to **Project -> Volumes -> Backups** to see the backup.
+
+![Volume Backups list in Horizon](images/hz-backups.png)
+
+**Figure 3:** Volume Backup List
+
+</TabItem>
+</Tabs>
+
+On a Private Cloud, volume backups are stored in the Ceph pool called `backups`.
 
 ### Test Volume Backups
 
@@ -52,16 +83,28 @@ volume and compare the contents.
 
 ## Restore a Volume Backup
 
-To restore a volume backup, go to **Storage -> Volume Backups**.
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
 
-Find the backup and choose **More -> Restore Backup**.
+Go to **Storage -> Volume Backups**. Find the backup and choose **More -> Restore Backup**.
 
 ![Restore Backup option in the row menu](images/skyline-backup-restore-menu.png)
 
-**Figure 4:** Volume Backup List
+**Figure 4:** Restore Backup
 
-Choose the volume to restore into. Leave it unset to restore into a new
-volume.
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Project -> Volumes -> Backups**. Find the backup and choose **Restore Backup** from its actions menu.
+
+![Volume Backups list in Horizon](images/hz-backups.png)
+
+**Figure 4:** Restore Backup
+
+</TabItem>
+</Tabs>
+
+Choose the volume to restore into. Leave it unset to restore into a new volume.
 
 ## Ceph, Volumes, and Data Durability
 

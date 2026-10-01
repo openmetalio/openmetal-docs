@@ -1,6 +1,9 @@
 ---
 sidebar_position: 2
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Launch an OpenStack Instance Automatically with HashiCorp Terraform
 
 ## Introduction
@@ -75,19 +78,43 @@ is returned:
 
 ### Step 4: Create OpenStack Application Credentials
 
-To point Terraform to the appropriate cloud and authenticate, generate a
-set of OpenStack Application Credentials.
+To point Terraform to the appropriate cloud and authenticate, generate a set of OpenStack Application Credentials.
 
-Skyline does not manage application credentials, so create them with
-OpenStackClient:
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
+Skyline does not manage application credentials. Create them with OpenStackClient:
 
     openstack application credential create --description "terraform" terraform-cred
 
-The command prints the **ID**, **Name**, and **Secret**. The secret is
-shown once and cannot be retrieved later, so record it now.
+The command prints the **ID**, **Name**, and **Secret**.
 
-Write the values into a `clouds.yaml` in the same folder where you
-initialized Terraform.
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Identity -> Application Credentials**.
+
+![Application Credentials page in Horizon](images/hz-app-credentials.png)
+
+**Figure 1:** Application Credentials
+
+Click **Create Application Credential**.
+
+![Create Application Credential form in Horizon](images/hz-app-credential-form.png)
+
+- **Name**: a name for the credential.
+- **Secret**: leave blank to have one generated.
+- **Expiration Date** and **Expiration Time**: optional.
+- **Roles**: limit the credential to specific roles.
+
+Submit the form. The next screen shows the **ID** and **Secret**, and offers the `openrc` and `clouds.yaml` files prefilled.
+
+</TabItem>
+</Tabs>
+
+The secret is shown once and cannot be retrieved later, so record it now.
+
+Write the values into a `clouds.yaml` in the same folder where you initialized Terraform.
 
 The contents of `clouds.yaml` appears similar to:
 
@@ -250,9 +277,25 @@ Cloud.
 
 ## View Instance Created by Terraform
 
-To view your created instance, go to **Compute -> Instances** in
-Skyline.
+To view your created instance, open the instance list.
+
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
+Go to **Compute -> Instances**.
 
 ![Instance created by Terraform](images/skyline-instances.png)
 
-**Figure 1:** Newly Created Terraform Instance
+**Figure 2:** Newly Created Terraform Instance
+
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Project -> Compute -> Instances**.
+
+![Instance created by Terraform in Horizon](images/hz-admin-instances.png)
+
+**Figure 2:** Newly Created Terraform Instance
+
+</TabItem>
+</Tabs>
