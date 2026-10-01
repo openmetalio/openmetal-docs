@@ -1,15 +1,17 @@
 ---
 sidebar_position: 2
 ---
-# Create a User and Project
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Projects and users are managed in the **Administrator** console, under
-**Identity**.
-Switch to it with the **Administrator** link in the top right.
+# Create a User and Project
 
 ## Create a project
 
-Go to **Identity -> Projects**.
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
+Switch to the **Administrator** console, then go to **Identity -> Projects**.
 
 ![Projects list in the Administrator console](images/projects.png)
 
@@ -24,15 +26,50 @@ Click **Create Project**.
 
 Click **OK**.
 
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Identity -> Projects**.
+
+![Projects list in Horizon](images/hz-projects.png)
+
+Click **Create Project**.
+
+![Create Project form in Horizon](images/hz-create-project-form.png)
+
+- **Name**: the project name. This example uses **Development**.
+- **Domain ID** and **Domain Name**: read-only, taken from your session.
+- **Enabled**: leave checked.
+- **Description**: optional.
+
+The **Project Members**, **Project Groups**, and **Quotas** tabs assign users and set limits during creation. Both can be changed later.
+
+Click **Create Project**.
+
+</TabItem>
+</Tabs>
+
 ## Set project quotas
+
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
 
 Find the project in the list, then choose **More -> Edit Quota**.
 
-Quotas cap what the project may consume — instances, vCPUs, memory, volumes,
-floating
-IPs, and security groups. Leave a quota blank for unlimited.
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Find the project in the list, then choose **Modify Quotas** from the actions menu.
+
+</TabItem>
+</Tabs>
+
+Quotas cap what the project may consume — instances, vCPUs, memory, volumes, floating IPs, and security groups. Leave a quota blank for unlimited.
 
 ## Create a user
+
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
 
 Go to **Identity -> Users**.
 
@@ -46,21 +83,39 @@ Click **Create User**. This opens a full page rather than a dialog.
 - **Password** and **Confirm Password**: the user's initial password.
 - **Domain**: leave as `Default`.
 - **Project** and **Role**: assign the user to a project and give it a role.
-  Assign
-  the **Development** project with the `member` role for a standard tenant user,
-  or
-  `admin` for a cloud administrator.
 - **Email**, **Phone**, **Real Name**, **Description**: optional.
 
 Click **OK**.
 
-The new user can now sign in to Skyline and will see only the projects it
-belongs to.
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Identity -> Users**.
+
+![Users list in Horizon](images/hz-users.png)
+
+Click **Create User**.
+
+![Create User form in Horizon](images/hz-create-user-form.png)
+
+- **User Name**: the login name.
+- **Password** and **Confirm Password**: the user's initial password.
+- **Domain ID** and **Domain Name**: read-only.
+- **Primary Project** and **Role**: assign the user to a project and give it a role.
+- **Email**, **Description**: optional.
+- **Enabled**: leave checked.
+
+Click **Create User**.
+
+</TabItem>
+</Tabs>
+
+The new user can now sign in and will see only the projects it belongs to.
 
 ## Roles
 
 - `member` — normal tenant access within assigned projects.
 - `reader` — read-only access.
-- `admin` — full cloud administration, including the Administrator console.
+- `admin` — full cloud administration.
 
 Grant `admin` only to operators who administer the whole cloud.

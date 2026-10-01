@@ -1,11 +1,14 @@
 ---
 sidebar_position: 1
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Getting Started with the Dashboard
 
-Skyline is the default OpenStack dashboard in PCC v4. It is served at your cloud's
-dashboard URL. Horizon remains available on port 9999 — see
-[Accessing Horizon](accessing-horizon.md).
+PCC v4 ships two dashboards. Skyline is the default and is served at your cloud's dashboard URL. Horizon remains available on port 9999.
+
+Every dashboard procedure in this manual is shown for both. Pick a tab and the rest of the page follows your choice.
 
 ## Log in to OpenMetal Central
 
@@ -24,17 +27,17 @@ Select your cloud to open its details page.
 
 ## Find the dashboard URL
 
-<!-- SCREENSHOT NEEDED: Central showing the dashboard URL (Skyline in v4).
+<!-- SCREENSHOT NEEDED: Central showing the dashboard URL.
      Replace with: ![Dashboard URL](images/dashboard-url.png) -->
 
-The dashboard URL opens Skyline.
+The dashboard URL opens Skyline. For Horizon, append `:9999` to the same address.
 
 ## Obtain the dashboard password
 
 <!-- SCREENSHOT NEEDED: Central "show password" control.
      Replace with: ![Show password](images/show-password.png) -->
 
-The `admin` password is shown in Central.
+The `admin` password is shown in Central. Both dashboards take the same credentials.
 
 To read it from a control plane node instead:
 
@@ -45,16 +48,37 @@ To read it from a control plane node instead:
 
 ## Log in
 
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
 ![Skyline login page](images/skyline-login.png)
 
-Enter the region, username `admin`, and the password. Leave the domain blank to use
-the default domain.
+Enter the region, username `admin`, and the password. Leave the domain blank to use the default domain.
 
 ![Skyline home page after login](images/overview.png)
 
 The home page shows quota usage for compute, storage, and network.
 
-## Two consoles
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Open `https://<VIP>:9999`.
+
+![Horizon login page](images/hz-login.png)
+
+Enter the username `admin` and the password.
+
+![Horizon overview after login](images/hz-overview.png)
+
+The overview page shows quota usage for the current project.
+
+</TabItem>
+</Tabs>
+
+## Consoles and navigation
+
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
 
 Skyline separates tenant work from administration:
 
@@ -62,3 +86,15 @@ Skyline separates tenant work from administration:
 - **Administrator console** — projects, users, roles, hypervisors, system info.
 
 Switch between them with the **Administrator** link in the top right.
+
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Horizon groups the same work under tabs in the left sidebar:
+
+- **Project** — instances, volumes, networks, stacks.
+- **Admin** — hypervisors, host aggregates, system information.
+- **Identity** — projects, users, roles.
+
+</TabItem>
+</Tabs>

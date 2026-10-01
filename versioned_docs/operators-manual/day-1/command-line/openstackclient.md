@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # How to Install and Use OpenStack's CLI
 
 ## Introduction
@@ -38,16 +41,16 @@ environment:
 - `clouds.yaml`: how to connect to a cloud
 - OpenStack RC file: authentication for your user and project
 
-Log in to Skyline, open the user menu in the top right, and choose
-**Get OpenRC file**. The file is scoped to the user and project you are
-currently signed in to.
+<Tabs groupId="dashboard">
+<TabItem value="skyline" label="Skyline" default>
+
+Open the user menu in the top right and choose **Get OpenRC file**. The file is scoped to the user and project you are currently signed in to.
 
 ![Skyline user menu with Get OpenRC file](images/skyline-openrc.png)
 
 **Figure 1:** Get OpenRC file
 
-Skyline does not offer a `clouds.yaml` download. Write it by hand using
-the values from the OpenRC file:
+Skyline does not offer a `clouds.yaml` download. Write it by hand using the values from the OpenRC file:
 
     clouds:
       openstack:
@@ -62,8 +65,24 @@ the values from the OpenRC file:
         interface: public
         identity_api_version: 3
 
-`<VIP>` and `<region>` match the `OS_AUTH_URL` and `OS_REGION_NAME`
-values in the OpenRC file.
+`<VIP>` and `<region>` match the `OS_AUTH_URL` and `OS_REGION_NAME` values in the OpenRC file.
+
+</TabItem>
+<TabItem value="hz" label="Horizon">
+
+Go to **Project -> API Access**. Both files are available here.
+
+![API Access page in Horizon](images/hz-api-access.png)
+
+**Figure 1:** API Access
+
+- **Download OpenStack RC File** — authentication for your user and project.
+- **OpenStack clouds.yaml File** — connection configuration.
+
+Both are scoped to the user and project you are currently signed in to.
+
+</TabItem>
+</Tabs>
 
 #### Prepare and Install OpenStackClient
 
