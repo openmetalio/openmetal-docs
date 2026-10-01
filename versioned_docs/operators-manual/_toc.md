@@ -7,7 +7,7 @@
 3. [Create a User and Project](./day-1/dashboard/create-user-project.md)
 4. [How to Create an Instance](./day-1/dashboard/create-first-instance.md)
 5. [Manage and Upload Images](./day-1/dashboard/images.md)
-6. [Accessing Horizon](./day-1/dashboard/accessing-horizon.md)
+6. [Accessing Skyline](./day-1/dashboard/accessing-skyline.md)
 7. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
 
 ## Day 2

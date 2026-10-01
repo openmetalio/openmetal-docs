@@ -11,18 +11,18 @@ Images are the operating system templates instances boot from.
 ## View images
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Compute -> Images**.
-
-![Images list](images/image-list.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Compute -> Images**.
 
 ![Images list in Horizon](images/hz-images.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Compute -> Images**.
+
+![Images list](images/image-list.png)
 
 </TabItem>
 </Tabs>
@@ -32,7 +32,23 @@ The list shows the distribution, OS version, minimum disk and memory, visibility
 ## Upload an image
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Click **Create Image**.
+
+![Create Image form in Horizon](images/hz-create-image-form.png)
+
+- **Image Name**: the name shown in the image list.
+- **Image Source**: upload a local **File**, or fetch a **URL**.
+- **Format**: `QCOW2` or `RAW`.
+- **Image Requirements**: minimum disk and memory a flavor must meet.
+- **Visibility**: **Public** shares the image with every project.
+- **Protected**: enable to block deletion.
+
+Click **Create Image**.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Click **Create Image**. This opens a full page rather than a dialog.
 
@@ -50,22 +66,6 @@ Click **Create Image**. This opens a full page rather than a dialog.
 Click **OK**.
 
 </TabItem>
-<TabItem value="hz" label="Horizon">
-
-Click **Create Image**.
-
-![Create Image form in Horizon](images/hz-create-image-form.png)
-
-- **Image Name**: the name shown in the image list.
-- **Image Source**: upload a local **File**, or fetch a **URL**.
-- **Format**: `QCOW2` or `RAW`.
-- **Image Requirements**: minimum disk and memory a flavor must meet.
-- **Visibility**: **Public** shares the image with every project.
-- **Protected**: enable to block deletion.
-
-Click **Create Image**.
-
-</TabItem>
 </Tabs>
 
 Ceph-backed clouds perform best with `RAW`, because QCOW2 images are converted on upload.
@@ -77,16 +77,16 @@ The image stays in `queued` or `saving` until the upload finishes.
 A snapshot captures an instance's disk as a new image.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Compute -> Instances**, find the instance, then choose **Create Snapshot**. Snapshots appear under **Project -> Compute -> Images**.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Go to **Compute -> Instances**, find the instance, then choose **More -> Create Snapshot**. Snapshots appear under **Compute -> Instance Snapshots**.
 
 ![Instance snapshots](images/instance-snapshots.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
-
-Go to **Project -> Compute -> Instances**, find the instance, then choose **Create Snapshot**. Snapshots appear under **Project -> Compute -> Images**.
 
 </TabItem>
 </Tabs>

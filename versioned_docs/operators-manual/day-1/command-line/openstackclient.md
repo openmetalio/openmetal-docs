@@ -42,7 +42,21 @@ environment:
 - OpenStack RC file: authentication for your user and project
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> API Access**. Both files are available here.
+
+![API Access page in Horizon](images/hz-api-access.png)
+
+**Figure 1:** API Access
+
+- **Download OpenStack RC File** — authentication for your user and project.
+- **OpenStack clouds.yaml File** — connection configuration.
+
+Both are scoped to the user and project you are currently signed in to.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Open the user menu in the top right and choose **Get OpenRC file**. The file is scoped to the user and project you are currently signed in to.
 
@@ -66,20 +80,6 @@ Skyline does not offer a `clouds.yaml` download. Write it by hand using the valu
         identity_api_version: 3
 
 `<VIP>` and `<region>` match the `OS_AUTH_URL` and `OS_REGION_NAME` values in the OpenRC file.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
-
-Go to **Project -> API Access**. Both files are available here.
-
-![API Access page in Horizon](images/hz-api-access.png)
-
-**Figure 1:** API Access
-
-- **Download OpenStack RC File** — authentication for your user and project.
-- **OpenStack clouds.yaml File** — connection configuration.
-
-Both are scoped to the user and project you are currently signed in to.
 
 </TabItem>
 </Tabs>

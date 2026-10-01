@@ -31,18 +31,18 @@ specifying the resources to be deployed.
 This page lists every stack in the current project and is where new stacks are created.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Orchestration -> Stacks**.
-
-![Stacks page listing existing stacks](images/skyline-stack-list.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Orchestration -> Stacks**.
 
 ![Stacks page in Horizon](images/hz-stacks.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Orchestration -> Stacks**.
+
+![Stacks page listing existing stacks](images/skyline-stack-list.png)
 
 </TabItem>
 </Tabs>
@@ -158,7 +158,23 @@ Example Heat Orchestration Template:
 Confirm you have the correct project selected.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Orchestration -> Stacks** and click **Launch Stack**.
+
+![Select Template dialog in Horizon](images/hz-launch-stack.png)
+
+**Figure 1:** Select Template
+
+- **Template Source**: **File** to upload the template, or **Direct Input** to paste it.
+- **Environment Source**: optional.
+
+Click **Next**. Horizon reads the template's `parameters` section and renders an input for each one, alongside **Stack Name**, **Creation Timeout**, **Rollback On Failure**, and the password for your user.
+
+Click **Launch** to create the stack.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Go to **Orchestration -> Stacks** and click **Create Stack**. This opens a two-step wizard.
 
@@ -192,22 +208,6 @@ Skyline reads the template's `parameters` section and renders an input for each 
 Click **OK** to create the stack.
 
 </TabItem>
-<TabItem value="hz" label="Horizon">
-
-Go to **Project -> Orchestration -> Stacks** and click **Launch Stack**.
-
-![Select Template dialog in Horizon](images/hz-launch-stack.png)
-
-**Figure 1:** Select Template
-
-- **Template Source**: **File** to upload the template, or **Direct Input** to paste it.
-- **Environment Source**: optional.
-
-Click **Next**. Horizon reads the template's `parameters` section and renders an input for each one, alongside **Stack Name**, **Creation Timeout**, **Rollback On Failure**, and the password for your user.
-
-Click **Launch** to create the stack.
-
-</TabItem>
 </Tabs>
 
 ## Viewing Recently Deployed Stacks
@@ -215,22 +215,7 @@ Click **Launch** to create the stack.
 Switch to the project where the stack was created. The list shows the stack and its current status. Click the stack name for its detail page, which includes a copy of the template used to create it.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Orchestration -> Stacks**.
-
-![Stacks list showing the test stack](images/skyline-stack-list.png)
-
-**Figure 3:** Stacks Created within Admin Project
-
-The detail page tabs are **Detail**, **Stack Resources**, **Stack Events**, and **YAML File**.
-
-![Stack detail page](images/skyline-stack-detail.png)
-
-**Figure 4:** Overview of Test Stack
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Orchestration -> Stacks**.
 
@@ -241,6 +226,21 @@ Go to **Project -> Orchestration -> Stacks**.
 The detail page tabs are **Topology**, **Overview**, **Resources**, **Events**, and **Template**.
 
 ![Stack detail page in Horizon](images/hz-stack-detail.png)
+
+**Figure 4:** Overview of Test Stack
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Orchestration -> Stacks**.
+
+![Stacks list showing the test stack](images/skyline-stack-list.png)
+
+**Figure 3:** Stacks Created within Admin Project
+
+The detail page tabs are **Detail**, **Stack Resources**, **Stack Events**, and **YAML File**.
+
+![Stack detail page](images/skyline-stack-detail.png)
 
 **Figure 4:** Overview of Test Stack
 

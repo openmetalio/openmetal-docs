@@ -11,39 +11,7 @@ This guide creates a private network, a security group, a key pair, and an insta
 ## Create a network and router
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-**Quick Create** builds the network, its subnet, and an attached router in one step.
-
-Go to **Network -> Networks**.
-
-![Networks list](images/networks.png)
-
-Click **Quick Create**.
-
-![Quick Create dialog](images/quick-create-empty.png)
-
-Fill in the form.
-
-![Quick Create with a router attached](images/quick-create-filled.png)
-
-- **Network Name**: **Private**.
-- **Subnet Name**: **private-subnet**.
-- **Subnet CIDR**: a private range, for example `192.168.0.0/24`.
-- **Gateway IP** and **DNS**: filled automatically.
-- **Create and Attach Router**: check this, then set **Router Name**.
-- **Options -> External Gateway**: check this and select **External**, or the router has no route out and floating IPs will not work.
-
-Click **OK**.
-
-![Networks list showing Private](images/network-list.png)
-
-![Routers list](images/router-list.png)
-
-To build the pieces separately, use **Create Network** on this page and **Create Router** under **Network -> Routers**, then attach the subnet with **More -> Connect Subnet**.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Horizon creates the network and the router separately.
 
@@ -75,21 +43,53 @@ Click **Create Router**.
 Click **Create Router**, then open the router, choose the **Interfaces** tab, and click **Add Interface** to attach **private-subnet**.
 
 </TabItem>
+<TabItem value="skyline" label="Skyline">
+
+**Quick Create** builds the network, its subnet, and an attached router in one step.
+
+Go to **Network -> Networks**.
+
+![Networks list](images/networks.png)
+
+Click **Quick Create**.
+
+![Quick Create dialog](images/quick-create-empty.png)
+
+Fill in the form.
+
+![Quick Create with a router attached](images/quick-create-filled.png)
+
+- **Network Name**: **Private**.
+- **Subnet Name**: **private-subnet**.
+- **Subnet CIDR**: a private range, for example `192.168.0.0/24`.
+- **Gateway IP** and **DNS**: filled automatically.
+- **Create and Attach Router**: check this, then set **Router Name**.
+- **Options -> External Gateway**: check this and select **External**, or the router has no route out and floating IPs will not work.
+
+Click **OK**.
+
+![Networks list showing Private](images/network-list.png)
+
+![Routers list](images/router-list.png)
+
+To build the pieces separately, use **Create Network** on this page and **Create Router** under **Network -> Routers**, then attach the subnet with **More -> Connect Subnet**.
+
+</TabItem>
 </Tabs>
 
 ### View the topology
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Network -> Network Topology**.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Go to **Network -> Topology**.
 
 ![Network topology](images/network-topology.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
-
-Go to **Project -> Network -> Network Topology**.
 
 </TabItem>
 </Tabs>
@@ -99,32 +99,7 @@ Go to **Project -> Network -> Network Topology**.
 Security groups control traffic to and from instances. The **default** group denies all inbound traffic and allows all outbound traffic.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Network -> Security Groups**.
-
-![Security groups list](images/security-groups.png)
-
-Click **Create Security Group**, name it **SSH**, then click **OK**.
-
-![Create Security Group dialog](images/security-group-form.png)
-
-Open the **SSH** group.
-
-![Security group rules](images/security-group-rules.png)
-
-Click **Create Rule**.
-
-![Create Rule dialog](images/add-rule-form.png)
-
-- **Protocol**: TCP. **Direction**: Ingress. **Ether Type**: IPv4.
-- **Port or Port Range**: `22`.
-- **Remote Type**: CIDR. **Remote IP Prefix**: the source allowed to connect.
-
-Click **OK**.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Network -> Security Groups**.
 
@@ -149,6 +124,31 @@ Click **Add Rule**.
 Click **Add**.
 
 </TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Network -> Security Groups**.
+
+![Security groups list](images/security-groups.png)
+
+Click **Create Security Group**, name it **SSH**, then click **OK**.
+
+![Create Security Group dialog](images/security-group-form.png)
+
+Open the **SSH** group.
+
+![Security group rules](images/security-group-rules.png)
+
+Click **Create Rule**.
+
+![Create Rule dialog](images/add-rule-form.png)
+
+- **Protocol**: TCP. **Direction**: Ingress. **Ether Type**: IPv4.
+- **Port or Port Range**: `22`.
+- **Remote Type**: CIDR. **Remote IP Prefix**: the source allowed to connect.
+
+Click **OK**.
+
+</TabItem>
 </Tabs>
 
 Open only the ports you need, to the narrowest source range that works. Use the IP of a control plane node rather than `0.0.0.0/0`.
@@ -158,22 +158,7 @@ Open only the ports you need, to the narrowest source range that works. Use the 
 An SSH key is injected at boot. It cannot be added to a running instance.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Compute -> Key Pairs**.
-
-![Key pairs list](images/key-pairs.png)
-
-Click **Create Keypair**.
-
-![Create Keypair dialog](images/key-pair-form.png)
-
-- **Create Type**: generate a new key pair, or import an existing public key.
-- **Keypair Name**: the name shown when launching an instance.
-- **Public Key**: paste the public key when importing.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Compute -> Key Pairs**.
 
@@ -188,6 +173,21 @@ Click **Create Key Pair** to generate one, or **Import Public Key** to upload an
 - **Public Key**: paste the key, or load it from a file.
 
 </TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Compute -> Key Pairs**.
+
+![Key pairs list](images/key-pairs.png)
+
+Click **Create Keypair**.
+
+![Create Keypair dialog](images/key-pair-form.png)
+
+- **Create Type**: generate a new key pair, or import an existing public key.
+- **Keypair Name**: the name shown when launching an instance.
+- **Public Key**: paste the public key when importing.
+
+</TabItem>
 </Tabs>
 
 To create a key pair on a control plane node first, see [Create SSH Key Pair for an OpenStack Control Plane Node](../command-line/create-SSH-key).
@@ -195,7 +195,23 @@ To create a key pair on a control plane node first, see [Create SSH Key Pair for
 ## Create the instance
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Compute -> Instances** and click **Launch Instance**. This opens a wizard whose steps are listed down the left side.
+
+![Launch Instance wizard in Horizon](images/hz-launch-instance.png)
+
+- **Details** — **Instance Name**, **Availability Zone**, **Count**.
+- **Source** — **Select Boot Source**: **Image**. Leave **Create New Volume** set to **Yes** to boot from a Cinder volume in Ceph. Pick the image with its up arrow.
+- **Flavor** — pick the flavor with its up arrow.
+- **Networks** — select **Private**.
+- **Security Groups** — select **SSH**.
+- **Key Pair** — select the key pair, or import one here.
+
+The remaining steps are optional. Click **Launch Instance**.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Go to **Compute -> Instances** and click **Create Instance**. This opens a four-step wizard.
 
@@ -227,22 +243,6 @@ Set the **Name**, set **Login Type** to **Keypair**, and select the key pair.
 Review the summary and click **OK**.
 
 </TabItem>
-<TabItem value="hz" label="Horizon">
-
-Go to **Project -> Compute -> Instances** and click **Launch Instance**. This opens a wizard whose steps are listed down the left side.
-
-![Launch Instance wizard in Horizon](images/hz-launch-instance.png)
-
-- **Details** — **Instance Name**, **Availability Zone**, **Count**.
-- **Source** — **Select Boot Source**: **Image**. Leave **Create New Volume** set to **Yes** to boot from a Cinder volume in Ceph. Pick the image with its up arrow.
-- **Flavor** — pick the flavor with its up arrow.
-- **Networks** — select **Private**.
-- **Security Groups** — select **SSH**.
-- **Key Pair** — select the key pair, or import one here.
-
-The remaining steps are optional. Click **Launch Instance**.
-
-</TabItem>
 </Tabs>
 
 Attaching an instance directly to **External** consumes a public IP and exposes it to the Internet. Use a private network and a floating IP instead.
@@ -250,14 +250,14 @@ Attaching an instance directly to **External** consumes a public IP and exposes 
 The instance builds in a few minutes.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-![Instances list](images/instance-list.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 ![Instances list in Horizon](images/hz-instances.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+![Instances list](images/instance-list.png)
 
 </TabItem>
 </Tabs>
@@ -267,22 +267,7 @@ The instance builds in a few minutes.
 A floating IP makes the instance reachable from outside the cloud.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Network -> Floating IPs**.
-
-![Floating IPs list](images/floating-ips.png)
-
-Click **Allocate IP**.
-
-![Allocate floating IP dialog](images/allocate-floating-ip.png)
-
-Select the **External** network, then click **OK**.
-
-Find the new address and choose **More -> Associate**, then select the instance and its port.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Network -> Floating IPs**.
 
@@ -295,6 +280,21 @@ Click **Allocate IP To Project**.
 Select **External** as the **Pool**, then click **Allocate IP**.
 
 Find the new address and click **Associate**, then select the instance's port.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Network -> Floating IPs**.
+
+![Floating IPs list](images/floating-ips.png)
+
+Click **Allocate IP**.
+
+![Allocate floating IP dialog](images/allocate-floating-ip.png)
+
+Select the **External** network, then click **OK**.
+
+Find the new address and choose **More -> Associate**, then select the instance and its port.
 
 </TabItem>
 </Tabs>

@@ -6,61 +6,62 @@ import TabItem from '@theme/TabItem';
 
 # Getting Started with the Dashboard
 
-PCC v4 ships two dashboards. Skyline is the default and is served at your cloud's dashboard URL. Horizon remains available on port 9999.
+PCC v4 deploys two dashboards. Both accept the same credentials and talk to the same OpenStack APIs, so a change made in one appears in the other.
+
+| Dashboard | URL | |
+|---|---|---|
+| Horizon | `https://<VIP>:9999` | Default |
+| Skyline | `https://<VIP>` | |
+
+Horizon is the default: it is what the dashboard link in OpenMetal Central opens. See [Change the default dashboard](#change-the-default-dashboard) to switch to Skyline.
 
 Every dashboard procedure in this manual is shown for both. Pick a tab and the rest of the page follows your choice.
 
 ## Log in to OpenMetal Central
 
-<!-- SCREENSHOT NEEDED: OpenMetal Central login page.
-     Cannot be captured automatically; Central is not reachable from the docs build
-     environment. Replace this comment with: ![OpenMetal Central login](images/openmetal-central.png) -->
-
 Sign in at [OpenMetal Central](https://central.openmetal.io/).
+
+![OpenMetal Central login](images/central-login.png)
 
 ## Open your cloud's details page
 
-<!-- SCREENSHOT NEEDED: Central cloud details / Manage Cloud page.
-     Replace with: ![Manage Cloud](images/manage-cloud.png) -->
+Select your cloud in the left sidebar, then open **Overview**.
 
-Select your cloud to open its details page.
+![Cloud overview in OpenMetal Central](images/central-cloud-overview.png)
 
-## Find the dashboard URL
-
-<!-- SCREENSHOT NEEDED: Central showing the dashboard URL.
-     Replace with: ![Dashboard URL](images/dashboard-url.png) -->
-
-The dashboard URL opens Skyline. For Horizon, append `:9999` to the same address.
+This page carries the access details, the SSH example for your nodes, and the dashboard link.
 
 ## Obtain the dashboard password
 
-<!-- SCREENSHOT NEEDED: Central "show password" control.
-     Replace with: ![Show password](images/show-password.png) -->
-
-The `admin` password is shown in Central. Both dashboards take the same credentials.
+Under **Access Details**, click **Show Password**. The username is `admin`.
 
 To read it from a control plane node instead:
 
     grep keystone_admin_password /etc/kolla/passwords.yml
 
-<!-- SCREENSHOT NEEDED: Central hardware assets page (used to find node IPs for SSH).
-     Replace with: ![Assets page](images/assets-page.png) -->
+## Find the dashboard URL
+
+Two places open the dashboard:
+
+- The dashboard link under your cloud's entry in the left sidebar.
+- The **Launch** button in the **Cloud Management Dashboard** section of the Overview page.
+
+Both are labelled with whichever dashboard is currently selected, and both open that one.
+
+To reach the other dashboard without changing the selection, go to its URL directly.
+
+## Change the default dashboard
+
+Open **Settings** for your cloud. Under **Cloud Configuration -> OpenStack Dashboard**, choose **Horizon** or **Skyline**.
+
+![OpenStack Dashboard selector in OpenMetal Central](images/central-dashboard-selector.png)
+
+The setting controls which dashboard the sidebar link opens. It does not stop the other one from running — both stay reachable at their own URLs.
 
 ## Log in
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-![Skyline login page](images/skyline-login.png)
-
-Enter the region, username `admin`, and the password. Leave the domain blank to use the default domain.
-
-![Skyline home page after login](images/overview.png)
-
-The home page shows quota usage for compute, storage, and network.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Open `https://<VIP>:9999`.
 
@@ -73,12 +74,34 @@ Enter the username `admin` and the password.
 The overview page shows quota usage for the current project.
 
 </TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Open `https://<VIP>`.
+
+![Skyline login page](images/skyline-login.png)
+
+Pick the region, then enter the username `admin` and the password. Leave the domain off to use the default domain.
+
+![Skyline home page after login](images/overview.png)
+
+The home page shows quota usage for compute, storage, and network.
+
+</TabItem>
 </Tabs>
 
 ## Consoles and navigation
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+Horizon groups work under tabs in the left sidebar:
+
+- **Project** — instances, volumes, networks, stacks.
+- **Admin** — hypervisors, host aggregates, system information.
+- **Identity** — projects, users, roles.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 Skyline separates tenant work from administration:
 
@@ -86,15 +109,6 @@ Skyline separates tenant work from administration:
 - **Administrator console** — projects, users, roles, hypervisors, system info.
 
 Switch between them with the **Administrator** link in the top right.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
-
-Horizon groups the same work under tabs in the left sidebar:
-
-- **Project** — instances, volumes, networks, stacks.
-- **Admin** — hypervisors, host aggregates, system information.
-- **Identity** — projects, users, roles.
 
 </TabItem>
 </Tabs>

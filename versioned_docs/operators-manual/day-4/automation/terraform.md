@@ -81,16 +81,7 @@ is returned:
 To point Terraform to the appropriate cloud and authenticate, generate a set of OpenStack Application Credentials.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Skyline does not manage application credentials. Create them with OpenStackClient:
-
-    openstack application credential create --description "terraform" terraform-cred
-
-The command prints the **ID**, **Name**, and **Secret**.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Identity -> Application Credentials**.
 
@@ -108,6 +99,15 @@ Click **Create Application Credential**.
 - **Roles**: limit the credential to specific roles.
 
 Submit the form. The next screen shows the **ID** and **Secret**, and offers the `openrc` and `clouds.yaml` files prefilled.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Skyline does not manage application credentials. Create them with OpenStackClient:
+
+    openstack application credential create --description "terraform" terraform-cred
+
+The command prints the **ID**, **Name**, and **Secret**.
 
 </TabItem>
 </Tabs>
@@ -280,20 +280,20 @@ Cloud.
 To view your created instance, open the instance list.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Go to **Compute -> Instances**.
-
-![Instance created by Terraform](images/skyline-instances.png)
-
-**Figure 2:** Newly Created Terraform Instance
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Project -> Compute -> Instances**.
 
 ![Instance created by Terraform in Horizon](images/hz-admin-instances.png)
+
+**Figure 2:** Newly Created Terraform Instance
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Compute -> Instances**.
+
+![Instance created by Terraform](images/skyline-instances.png)
 
 **Figure 2:** Newly Created Terraform Instance
 

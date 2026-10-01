@@ -56,22 +56,22 @@ hardware nodes to your cluster.
 To view the resources used by your cloud, you have to be the admin user and assigned to the admin project. The page lists VCPU usage, memory usage, and local disk usage.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Switch to the **Administrator** console and go to **Compute -> Hypervisors**.
-
-**Figure 2:** Hypervisor Summary showing disk and resource usage
-
-![Hypervisor summary showing VCPU, memory, and disk usage](images/skyline-hypervisors.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Admin -> Compute -> Hypervisors**.
 
 **Figure 2:** Hypervisor Summary showing disk and resource usage
 
 ![Hypervisor summary in Horizon](images/hz-hypervisors.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Switch to the **Administrator** console and go to **Compute -> Hypervisors**.
+
+**Figure 2:** Hypervisor Summary showing disk and resource usage
+
+![Hypervisor summary showing VCPU, memory, and disk usage](images/skyline-hypervisors.png)
 
 </TabItem>
 </Tabs>
@@ -81,22 +81,22 @@ Go to **Admin -> Compute -> Hypervisors**.
 The instance list shows each instance's project, host, IP address, and status.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-In the **Administrator** console, go to **Compute -> Instances**.
-
-**Figure 3:** Summary of Instances
-
-![Instances list with project, host, IP address, and status](images/skyline-admin-instances.png)
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Admin -> Compute -> Instances**.
 
 **Figure 3:** Summary of Instances
 
 ![Admin instances list in Horizon](images/hz-admin-instances.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+In the **Administrator** console, go to **Compute -> Instances**.
+
+**Figure 3:** Summary of Instances
+
+![Instances list with project, host, IP address, and status](images/skyline-admin-instances.png)
 
 </TabItem>
 </Tabs>

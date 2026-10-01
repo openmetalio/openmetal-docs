@@ -24,20 +24,20 @@ administrator role. This is typically the account called **admin**.
 ## Determining an Instance's Parent Host
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Switch to the **Administrator** console and go to **Compute -> Instances**. The list shows each instance's project, host, IP address, and status.
-
-![Administrator instances list showing project, host, IP, and status](images/skyline-admin-instances.png)
-
-**Figure 1:** Summary of Instances
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Admin -> Compute -> Instances**. The list shows each instance's project, host, IP address, and status.
 
 ![Admin instances list in Horizon](images/hz-admin-instances.png)
+
+**Figure 1:** Summary of Instances
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Switch to the **Administrator** console and go to **Compute -> Instances**. The list shows each instance's project, host, IP address, and status.
+
+![Administrator instances list showing project, host, IP, and status](images/skyline-admin-instances.png)
 
 **Figure 1:** Summary of Instances
 
@@ -47,7 +47,26 @@ Go to **Admin -> Compute -> Instances**. The list shows each instance's project,
 ## Migrate Instance
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
+<TabItem value="hz" label="Horizon" default>
+
+In the same list, open the actions menu at the end of the instance's row and choose **Live Migrate Instance**.
+
+![Instance actions menu in Horizon](images/hz-instance-actions.png)
+
+**Figure 2:** Live Migrate action
+
+![Live Migrate dialog in Horizon](images/hz-live-migrate.png)
+
+**Figure 3:** Live Migration Options
+
+- **Current Host**: read-only, the host it runs on now.
+- **New Host**: leave on **Automatically schedule new host**, or pick one.
+- **Disk Over Commit** and **Block Migration**: leave both unchecked.
+
+Click **Submit**.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
 In the same list, find the instance and choose **More -> Live Migrate**.
 
@@ -66,25 +85,6 @@ In the same list, find the instance and choose **More -> Live Migrate**.
 Click **OK**.
 
 Skyline does not expose the **Disk Over Commit** or **Block Migration** options that Horizon offers. Both apply only to local ephemeral storage.
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
-
-In the same list, open the actions menu at the end of the instance's row and choose **Live Migrate Instance**.
-
-![Instance actions menu in Horizon](images/hz-instance-actions.png)
-
-**Figure 2:** Live Migrate action
-
-![Live Migrate dialog in Horizon](images/hz-live-migrate.png)
-
-**Figure 3:** Live Migration Options
-
-- **Current Host**: read-only, the host it runs on now.
-- **New Host**: leave on **Automatically schedule new host**, or pick one.
-- **Disk Over Commit** and **Block Migration**: leave both unchecked.
-
-Click **Submit**.
 
 </TabItem>
 </Tabs>

@@ -36,22 +36,7 @@ e-mail address when complete.
 First to confirm the addition of the IP block, log in with a user that has the administrator role. This is typically the account called "admin".
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Switch to the **Administrator** console, go to **Network -> Networks**, then click the **External** network.
-
-![Networks list showing the External network](images/skyline-admin-networks.png)
-
-**Figure 1:** List of Networks
-
-Choose the **Subnets** tab and confirm the new subnet has been added.
-
-![Subnets tab of the External network](images/skyline-external-subnets.png)
-
-**Figure 2:** List of Subnets for the External network
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Admin -> Network -> Networks**, then click the **External** network.
 
@@ -62,6 +47,21 @@ Go to **Admin -> Network -> Networks**, then click the **External** network.
 The network detail page lists its subnets. Confirm the new subnet has been added.
 
 ![External network detail in Horizon](images/hz-external-subnets.png)
+
+**Figure 2:** List of Subnets for the External network
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Switch to the **Administrator** console, go to **Network -> Networks**, then click the **External** network.
+
+![Networks list showing the External network](images/skyline-admin-networks.png)
+
+**Figure 1:** List of Networks
+
+Choose the **Subnets** tab and confirm the new subnet has been added.
+
+![Subnets tab of the External network](images/skyline-external-subnets.png)
 
 **Figure 2:** List of Subnets for the External network
 

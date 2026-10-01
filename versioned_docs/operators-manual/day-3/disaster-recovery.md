@@ -79,22 +79,22 @@ outline how to diagnose hardware failure.
 To quickly get the status of your cloud's control plane nodes, check the running system services in the dashboard. Log in as an administrator.
 
 <Tabs groupId="dashboard">
-<TabItem value="skyline" label="Skyline" default>
-
-Switch to the **Administrator** console and go to **Global Settings -> System Info**.
-
-![System Info showing compute service status and state](images/skyline-system-info.png)
-
-**Figure 1:** System Info
-
-</TabItem>
-<TabItem value="hz" label="Horizon">
+<TabItem value="hz" label="Horizon" default>
 
 Go to **Admin -> System -> System Information**.
 
 ![System Information in Horizon](images/hz-system-info.png)
 
 **Figure 1:** System Information
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Switch to the **Administrator** console and go to **Global Settings -> System Info**.
+
+![System Info showing compute service status and state](images/skyline-system-info.png)
+
+**Figure 1:** System Info
 
 </TabItem>
 </Tabs>
