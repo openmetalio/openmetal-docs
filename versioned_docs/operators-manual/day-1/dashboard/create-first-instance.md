@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 ---
-# How to Create an Instance in Skyline
+# How to Create an Instance
 
 This guide creates a private network, a security group, a key pair, and an
 instance,

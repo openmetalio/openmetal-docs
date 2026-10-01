@@ -4,7 +4,7 @@ sidebar_position: 1
 # Getting Started with OpenStack Horizon
 
 :::info
-Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [Getting Started with Skyline](/operators-manual/day-1/skyline/getting-started-with-skyline).
+Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [Getting Started with Skyline](/operators-manual/day-1/dashboard/getting-started-with-dashboard).
 :::
 
 ## Introduction

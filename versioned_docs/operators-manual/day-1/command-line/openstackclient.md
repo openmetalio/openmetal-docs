@@ -69,7 +69,7 @@ values in the OpenRC file.
 
 Next, use SSH to log in to the instance created previously. If you
 created your instance by following the guide,
-[How to Create an Instance in Skyline](../skyline/create-first-instance),
+[How to Create an Instance in Skyline](../dashboard/create-first-instance),
 then this instance can only be accessed from one of your control plane nodes.
 
 -----

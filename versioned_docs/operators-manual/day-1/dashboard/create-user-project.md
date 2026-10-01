@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 ---
-# Create a User and Project in Skyline
+# Create a User and Project
 
 Projects and users are managed in the **Administrator** console, under
 **Identity**.

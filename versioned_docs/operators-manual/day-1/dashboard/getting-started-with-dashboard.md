@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 ---
-# Getting Started with Skyline
+# Getting Started with the Dashboard
 
 Skyline is the default OpenStack dashboard in PCC v4. It is served at your cloud's
 dashboard URL. Horizon remains available on port 9999 — see

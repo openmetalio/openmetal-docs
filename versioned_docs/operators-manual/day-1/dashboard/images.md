@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 ---
-# Manage and Upload Images in Skyline
+# Manage and Upload Images
 
 Images are the operating system templates instances boot from.
 
