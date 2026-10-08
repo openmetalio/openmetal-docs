@@ -25,6 +25,26 @@ back to previous images if necessary.
 See [Update Kolla Images](/operators-manual/day-2/update-kolla-images) for
 the steps needed to update your cloud.
 
+## OpenStack 2026.1
+
+Latest image tag: `2026.1-ubuntu-noble`
+
+### Ubuntu 24.04 LTS (Noble) Security updates
+
+See the [Ubuntu Security Notices](https://ubuntu.com/security/notices?order=newest&release=noble&details=&offset=0)
+page for information relating to security updates.
+
+### OpenStack service updates (2026.1)
+
+OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/)
+index.
+
+### Image Update History (2026.1)
+
+| Tag | Build Date | Services | Notes |
+|---|---|---|---|
+| 2026.1-ubuntu-noble-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
+
 ## OpenStack 2023.2
 
 Latest image tag: `2023.2-ubuntu-jammy`
@@ -43,6 +63,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 | 2023.2-ubuntu-jammy-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | 2023.2-ubuntu-jammy-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | 2023.2-ubuntu-jammy-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
@@ -72,6 +93,7 @@ Latest image tag: `yoga`
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| yoga-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 | yoga-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | yoga-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | yoga-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
