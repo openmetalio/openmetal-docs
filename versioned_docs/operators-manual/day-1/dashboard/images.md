@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -79,7 +79,9 @@ A snapshot captures an instance's disk as a new image.
 <Tabs groupId="dashboard">
 <TabItem value="hz" label="Horizon" default>
 
-Go to **Project -> Compute -> Instances**, find the instance, then choose **Create Snapshot**. Snapshots appear under **Project -> Compute -> Images**.
+Go to **Project -> Compute -> Instances**, find the instance, then choose **Create Snapshot**. Snapshots appear under **Project -> Compute -> Images** with a type of `Snapshot`.
+
+![Instance snapshot in the Horizon images list](images/hz-instance-snapshot.png)
 
 </TabItem>
 <TabItem value="skyline" label="Skyline">

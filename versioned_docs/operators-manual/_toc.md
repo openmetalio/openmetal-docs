@@ -4,10 +4,10 @@
 
 1. [Introduction to OpenMetal and your Private Cloud Core](./day-1/intro-to-openmetal-private-cloud.md)
 2. [Getting Started with the Dashboard](./day-1/dashboard/getting-started-with-dashboard.md)
-3. [Create a User and Project](./day-1/dashboard/create-user-project.md)
-4. [How to Create an Instance](./day-1/dashboard/create-first-instance.md)
-5. [Manage and Upload Images](./day-1/dashboard/images.md)
-6. [Accessing Skyline](./day-1/dashboard/accessing-skyline.md)
+3. [Accessing Skyline](./day-1/dashboard/accessing-skyline.md)
+4. [Create a User and Project](./day-1/dashboard/create-user-project.md)
+5. [How to Create an Instance](./day-1/dashboard/create-first-instance.md)
+6. [Manage and Upload Images](./day-1/dashboard/images.md)
 7. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
 
 ## Day 2
