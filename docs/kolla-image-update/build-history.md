@@ -1,5 +1,7 @@
 # Kolla Image Build History
 
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true } } -->
+
 This page tracks the history of when Kolla images have been built. Images are
 built when major security issues are patched in the base image operating system
 and when changes to OpenStack services, like bug fixes and improvements, are
@@ -8,15 +10,15 @@ index.
 
 ## Current OpenStack release
 
-We are currently deploying OpenStack 2023.2 with Ubuntu 22.04 as the base
+We are currently deploying OpenStack 2026.1 with Ubuntu 24.04 as the base
 operating system.
 
 ## Image tagging
 
 When images are built, the date they were built is appended to the image tag, in
-the format "YYYY-MM-DD". Images built on October 10, 2024 for the 2023.2 release
-will be tagged with `2023.2-ubuntu-jammy-2024-10-10`. The latest images built
-will have two tags applied, one being the base tag (`2023.2-ubuntu-jammy`, for
+the format "YYYY-MM-DD". Images built on October 7, 2026 for the 2026.1 release
+will be tagged with `2026.1-ubuntu-noble-2026-10-07`. The latest images built
+will have two tags applied, one being the base tag (`2026.1-ubuntu-noble`, for
 example), and the other including the appended date. This allows for rolling
 back to previous images if necessary.
 
@@ -24,6 +26,26 @@ back to previous images if necessary.
 
 See [Update Kolla Images](/operators-manual/day-2/update-kolla-images) for
 the steps needed to update your cloud.
+
+## OpenStack 2026.1
+
+Latest image tag: `2026.1-ubuntu-noble`
+
+### Ubuntu 24.04 LTS (Noble) Security updates
+
+See the [Ubuntu Security Notices](https://ubuntu.com/security/notices?order=newest&release=noble&details=&offset=0)
+page for information relating to security updates.
+
+### OpenStack service updates
+
+OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/)
+index.
+
+### Image Update History
+
+| Tag | Build Date | Services | Notes |
+|---|---|---|---|
+| 2026.1-ubuntu-noble-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 
 ## OpenStack 2023.2
 
@@ -43,6 +65,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched via backport](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 | 2023.2-ubuntu-jammy-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | 2023.2-ubuntu-jammy-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | 2023.2-ubuntu-jammy-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
@@ -68,10 +91,11 @@ index.
 
 Latest image tag: `yoga`
 
-### Image Update History (Yoga)
+### Image Update History
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| yoga-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched via backport](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 | yoga-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | yoga-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
 | yoga-2026-05-29 | 05/29/2026 | Keystone |[[OSSA-2026-015] Keystone credential delegation project boundary enforcement patched](https://security.openstack.org/ossa/OSSA-2026-015.html)|
