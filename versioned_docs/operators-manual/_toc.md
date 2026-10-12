@@ -17,6 +17,10 @@
 3. [How to Check Ceph's Status and Disk Usage](./day-2/check-ceph-status-disk-usage.md)
 4. [Maintaining OpenStack Software Updates](./day-2/maintenance.md)
 5. [How to Live Migrate Instances](./day-2/live-migrate-instances.md)
+6. [OpenStack Networking with OVN](./day-2/openstack-networking-with-ovn.md)
+7. [Load Balancers and Octavia](./day-2/load-balancers-and-octavia.md)
+8. [Manage the Node Firewall](./day-2/manage-node-firewall.md)
+9. [How to Update Kolla Images](./day-2/update-kolla-images.md)
 
 ## Day 3
 
