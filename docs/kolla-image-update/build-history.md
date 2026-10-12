@@ -1,5 +1,7 @@
 # Kolla Image Build History
 
+<!-- markdownlint-configure-file { "MD024": { "siblings_only": true } } -->
+
 This page tracks the history of when Kolla images have been built. Images are
 built when major security issues are patched in the base image operating system
 and when changes to OpenStack services, like bug fixes and improvements, are
@@ -8,15 +10,15 @@ index.
 
 ## Current OpenStack release
 
-We are currently deploying OpenStack 2023.2 with Ubuntu 22.04 as the base
+We are currently deploying OpenStack 2026.1 with Ubuntu 24.04 as the base
 operating system.
 
 ## Image tagging
 
 When images are built, the date they were built is appended to the image tag, in
-the format "YYYY-MM-DD". Images built on October 10, 2024 for the 2023.2 release
-will be tagged with `2023.2-ubuntu-jammy-2024-10-10`. The latest images built
-will have two tags applied, one being the base tag (`2023.2-ubuntu-jammy`, for
+the format "YYYY-MM-DD". Images built on October 7, 2026 for the 2026.1 release
+will be tagged with `2026.1-ubuntu-noble-2026-10-07`. The latest images built
+will have two tags applied, one being the base tag (`2026.1-ubuntu-noble`, for
 example), and the other including the appended date. This allows for rolling
 back to previous images if necessary.
 
@@ -34,12 +36,12 @@ Latest image tag: `2026.1-ubuntu-noble`
 See the [Ubuntu Security Notices](https://ubuntu.com/security/notices?order=newest&release=noble&details=&offset=0)
 page for information relating to security updates.
 
-### OpenStack service updates (2026.1)
+### OpenStack service updates
 
 OpenStack service changes can be found in the [release notes](https://docs.openstack.org/releasenotes/)
 index.
 
-### Image Update History (2026.1)
+### Image Update History
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
@@ -89,7 +91,7 @@ index.
 
 Latest image tag: `yoga`
 
-### Image Update History (Yoga)
+### Image Update History
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
