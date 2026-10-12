@@ -84,12 +84,18 @@ To build the pieces separately, use **Create Network** on this page and **Create
 
 Go to **Project -> Network -> Network Topology**.
 
+![Network topology in Horizon](images/hz-network-topology.png)
+
+The **Graph** tab shows the same data as a node graph. **Small** and **Normal** change the level of detail.
+
 </TabItem>
 <TabItem value="skyline" label="Skyline">
 
 Go to **Network -> Topology**.
 
 ![Network topology](images/network-topology.png)
+
+Clear **Show Instances** to reduce the diagram to networks and routers.
 
 </TabItem>
 </Tabs>
