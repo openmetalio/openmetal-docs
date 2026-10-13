@@ -9,8 +9,8 @@ import TabItem from '@theme/TabItem';
 ## Introduction
 
 With OpenMetal Private Clouds, multiple provider IP blocks are
-supported. This guide explains how to request an additional provider IP
-block and how to use the IPs in Skyline.
+supported. This guide explains how to add an additional provider IP
+block and how to confirm it reached your cloud.
 
 ## Before Proceeding
 
@@ -24,12 +24,17 @@ through a support ticket. We are aware of the inflexibility of the
 deployment system and are working to produce a more flexible system that
 allows for custom configuration changes.
 
-## Getting Started
+## Add the IP block
 
-To add the IP block you need to reach out to your Account Manager who
-will submit the request. Our support staff will handle the addition and
-inform you through a OpenMetal Central ticket sent to your primary
-e-mail address when complete.
+In OpenMetal Central, go to **Networking -> IP Addresses**. The page lists
+your organization's existing blocks with their subnet, label, VLAN, and the
+cloud each one belongs to.
+
+![Network IP Address Blocks page in OpenMetal Central](images/central-ip-blocks.png)
+
+**Figure 1:** Network IP Address Blocks
+
+Select **Add IP Addresses**.
 
 ### Confirm new Provider Block Addition
 
@@ -42,13 +47,13 @@ Go to **Admin -> Network -> Networks**, then click the **External** network.
 
 ![Networks list in Horizon](images/hz-admin-networks.png)
 
-**Figure 1:** List of Networks
+**Figure 2:** List of Networks
 
 The network detail page lists its subnets. Confirm the new subnet has been added.
 
 ![External network detail in Horizon](images/hz-external-subnets.png)
 
-**Figure 2:** List of Subnets for the External network
+**Figure 3:** List of Subnets for the External network
 
 </TabItem>
 <TabItem value="skyline" label="Skyline">
@@ -57,13 +62,13 @@ Switch to the **Administrator** console, go to **Network -> Networks**, then cli
 
 ![Networks list showing the External network](images/skyline-admin-networks.png)
 
-**Figure 1:** List of Networks
+**Figure 2:** List of Networks
 
 Choose the **Subnets** tab and confirm the new subnet has been added.
 
 ![Subnets tab of the External network](images/skyline-external-subnets.png)
 
-**Figure 2:** List of Subnets for the External network
+**Figure 3:** List of Subnets for the External network
 
 </TabItem>
 </Tabs>
