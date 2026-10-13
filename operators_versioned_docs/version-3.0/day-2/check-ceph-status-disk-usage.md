@@ -113,14 +113,17 @@ SIZE: The overall storage capacity managed by the storage cluster.
 
 In the above example, if the SIZE is 90 GiB, it is the total size without the
 replication factor, which is three by default. The total available capacity with
-the replication factor is 90 GiB/3 = 30 GiB. Based on the full ratio, which is
-0.85% by default, the maximum available space is 30 GiB * 0.85 = 25.5 GiB
+the replication factor is 90 GiB/3 = 30 GiB. Ceph warns when an OSD reaches the
+nearfull ratio, 0.85 by default, and stops writes at the full ratio, 0.95 by
+default. Planning to the nearfull ratio, the usable space is 30 GiB * 0.85 = 25.5 GiB
 
 AVAIL: The amount of free space available in the storage cluster.
 
 In the above example, if the SIZE is 90 GiB and the USED space is 6 GiB, then
 the AVAIL space is 84 GiB. The total available space with the replication factor,
-which is three by default, is 84 GiB/3 = 28 GiB
+which is three by default, is 84 GiB/3 = 28 GiB. This is a rough estimate that
+ignores the full ratios and how data is placed across OSDs. For the space a pool
+can actually use, read its MAX AVAIL column in the POOLS section.
 
 USED: The amount of used space in the storage cluster consumed by user data,
 internal overhead, or reserved capacity.

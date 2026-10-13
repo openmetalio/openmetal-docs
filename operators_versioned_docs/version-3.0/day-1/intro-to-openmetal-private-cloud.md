@@ -148,7 +148,7 @@ description of your problem. Then you can send the ticket.
 **Figure 9:** Sample OpenMetal Test Support Request
 
 To view the details of a support request, click the highlighted subject
-link next to the request you which to view. You will be able to see all
+link next to the request you wish to view. You will be able to see all
 responses to your request as shown in figure 10.
 
 ![Support request reply thread](images/sample-fmc-support-request-reply.png)

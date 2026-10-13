@@ -75,6 +75,11 @@ node to a **Cloud Core - Standard** cloud.
 
 ### How to add a Hardware Node
 
+**WARNING\!** -- If your cloud has had its configuration modified, do
+**not** add hardware nodes through OpenMetal Central. Doing so reverts
+your cloud's configuration changes to the defaults. Instead, submit a
+support ticket and our team will add the node manually.
+
 #### Navigate in OpenMetal Central to Cloud Assets Page
 
 First navigate in OpenMetal Central to your cloud's details page. Next
