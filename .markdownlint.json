@@ -45,7 +45,8 @@
 	"MD033": {
 		"allowed_elements": [
 			"Tabs",
-			"TabItem"
+			"TabItem",
+			"br"
 		]
 	},
 	"MD041": false

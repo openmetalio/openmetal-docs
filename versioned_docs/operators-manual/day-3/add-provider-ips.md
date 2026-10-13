@@ -44,17 +44,23 @@ Use these values, shown for the example block `173.231.202.112/28`:
 
 **Step 1** -- Go to **Project -> Network -> Networks**, click the **External** network, choose the **Subnets** tab, and click **Create Subnet**.
 
+<br />
+
 **Step 2** -- On the **Subnet** tab, enter the name, network address, IP version, and gateway IP. Click **Next**.
 
 ![Subnet tab of the Create Subnet dialog in Horizon](images/hz-create-new-provider-subnet.png)
 
 **Figure 1:** Create Subnet
 
+<br />
+
 **Step 3** -- On the **Subnet Details** tab, leave **Enable DHCP** checked and enter the allocation pool and DNS name servers. Click **Create**.
 
 ![Subnet Details tab of the Create Subnet dialog in Horizon](images/hz-create-new-provider-subnet-details.png)
 
 **Figure 2:** Subnet Details
+
+<br />
 
 **Step 4** -- Confirm the new subnet is listed.
 
@@ -67,17 +73,23 @@ Use these values, shown for the example block `173.231.202.112/28`:
 
 **Step 1** -- Switch to the **Administrator** console, go to **Network -> Networks**, click the **External** network, choose the **Subnets** tab, and click **Create Subnet**.
 
+<br />
+
 **Step 2** -- Enter the subnet name, select the **admin** project, and enter the IP version, CIDR, and gateway IP.
 
 ![Top of the Create Subnet dialog in Skyline](images/create-new-provider-subnet-1.png)
 
 **Figure 1:** Create Subnet
 
+<br />
+
 **Step 3** -- Leave **DHCP** enabled, enter the allocation pool and DNS servers, and click **OK**.
 
 ![Allocation pool and DNS fields of the Create Subnet dialog in Skyline](images/create-new-provider-subnet-2.png)
 
 **Figure 2:** Allocation Pools and DNS
+
+<br />
 
 **Step 4** -- Confirm the new subnet is listed.
 
