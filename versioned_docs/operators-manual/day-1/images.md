@@ -88,7 +88,7 @@ Go to **Project -> Compute -> Instances**, find the instance, then choose **Crea
 
 Go to **Compute -> Instances**, find the instance, then choose **More -> Create Snapshot**. Snapshots appear under **Compute -> Instance Snapshots**.
 
-![Instance snapshots](images/instance-snapshots.png)
+![Instance snapshot in the Skyline instance snapshots list](images/instance-snapshots.png)
 
 </TabItem>
 </Tabs>
