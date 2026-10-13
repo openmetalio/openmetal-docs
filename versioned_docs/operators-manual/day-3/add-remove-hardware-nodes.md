@@ -109,7 +109,8 @@ Choose a size and select **Add to Cart**.
 #### Configure the Node
 
 Set the deployment target to your existing cloud, then choose the node role,
-the number of servers, the memory, and the location.
+the number of servers, the memory, and the location. Drives use the default
+configuration unless you customize them.
 
 ![Node configuration before adding it to a cloud](images/confirm-node-addition.png)
 
