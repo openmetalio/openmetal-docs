@@ -26,11 +26,15 @@ Two ipsets hold the addresses allowed past the default deny policy.
 | Set | Contents | Managed from |
 |---|---|---|
 | `customer_whitelist` | Subnets you trust | Central's Firewall UI |
-| `omi_whitelist` | OpenMetal VPN endpoints, pod ranges, and the pod management hosts | `firewall-ansible` role defaults and inventory |
+| `omi_whitelist` | OpenMetal VPN endpoints, pod ranges, and the pod management hosts | OpenMetal |
 
 An entry in either set gets unrestricted access to every port and protocol on the node, not only the ports `ufw` opens. Treat a whitelist entry as a fully trusted host.
 
-`omi_whitelist` is not editable from Central. Changing it means editing the role or inventory and re-running the playbook.
+Add your own addresses under **Clouds -> your cloud -> Firewall** in OpenMetal Central. Enter an IPv4 address or CIDR block, click **Add**, then **Apply changes**. The page also lists the rules OpenMetal manages, which you cannot edit.
+
+![Firewall page in OpenMetal Central](images/central-firewall.png)
+
+`omi_whitelist` is managed by OpenMetal and is not editable from Central.
 
 ## Inspect the firewall
 
@@ -42,13 +46,15 @@ ipset list customer_whitelist
 
 ## Persistence
 
-Manual `ipset add` and `ipset del` take effect immediately and are lost on the next deployment run or node boot. Both sets are rebuilt from their managed source:
+Do not change the firewall on the node. Manual `ipset add` and `ipset del` take effect immediately and are lost on the next deployment run or node boot. Both sets are rebuilt from their managed source:
 
 - Ansible re-renders them under `/etc/firewall-ansible/` on every run.
 - The `firewall-ansible-ipsets.service` systemd unit restores them at boot, before `ufw` starts.
 
-Changes that need to survive belong in Central for `customer_whitelist`, or in the role and inventory for `omi_whitelist`.
+Changes that need to survive go through Central, or through our team for anything Central does not expose yet.
 
 ## Open an additional port
 
-`firewall_additional_rules` opens ports on the external interface beyond SSH. Each rule takes a source of `any`, `omi_whitelist`, or `customer_whitelist`. Set it in inventory and re-run the playbook.
+Opening a port beyond SSH is not self-service yet. [Submit a support ticket](../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) with the port, the protocol, and which addresses should reach it, and our team applies the rule for you.
+
+This is coming to Central.
