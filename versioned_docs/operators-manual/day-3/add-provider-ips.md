@@ -10,84 +10,99 @@ import TabItem from '@theme/TabItem';
 
 With OpenMetal Private Clouds, multiple provider IP blocks are
 supported. This guide explains how to add an additional provider IP
-block and how to confirm it reached your cloud.
+block and add it to your cloud as a subnet.
+
+### What is a provider IP block?
+
+This is a public subnet that is associated with your cloud's External OpenStack
+network. Your cloud comes with a single provider subnet by default. Floating IPs
+are assigned from this network. This is the subnet you would typically use to
+route public internet traffic to VMs in your cloud.
 
 ## Add the IP block
 
-In OpenMetal Central, go to **Networking -> IP Addresses**. The page lists
-your organization's existing blocks with their subnet, label, VLAN, and the
-cloud each one belongs to.
+To add a new provider IP block, first follow this Central guide: [Adding new IP Blocks to a Cloud's External Provider Network](/openmetal-central/adding-ip-addresses)
 
-![Network IP Address Blocks page in OpenMetal Central](images/central-ip-blocks.png)
+## Create the subnet in OpenStack
 
-**Figure 1:** Network IP Address Blocks
+Once the order completes, add the block to the **External** network as a new subnet. Log in as a user with the administrator role, typically **admin**.
 
-Select **Add IP Addresses**.
+Use these values, shown for the example block `173.231.202.112/28`:
 
-| Field | Value |
-|---|---|
-| Datacenter Location | The location of your cloud |
-| Network Type | Public |
-| Managed Addressing | Off |
-| Select a subscription | The cloud to bill the block to |
-| Prefix Size | The size of the block |
-
-Managed addressing must be off.
-
-![Add IP Address Block form in OpenMetal Central](images/add-ip-block.png)
-
-**Figure 2:** Add IP Address Block
-
-Agree to the terms and select **Complete Order**.
-
-### Add the Block to OpenStack
-
-Ordering the block in Central does not add it to OpenStack. That step is not
-automated yet.
-[Submit a support ticket](../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket)
-once the order completes and our team adds the block to your cloud.
-
-### Confirm new Provider Block Addition
-
-To confirm the addition of the IP block, log in with a user that has the administrator role. This is typically the account called "admin".
+| Field | Value | Example |
+|---|---|---|
+| Subnet Name | `Internet_` followed by a number | `Internet_2` |
+| Network Address / CIDR | The block | `173.231.202.112/28` |
+| IP Version | IPv4 | IPv4 |
+| Gateway IP | First usable address | `173.231.202.113` |
+| DHCP | Enabled | Enabled |
+| Allocation Pools | Fourth usable address to the last usable address | `173.231.202.116,173.231.202.126` |
+| DNS Name Servers | One per line | `1.1.1.1` and `8.8.8.8` |
 
 <Tabs groupId="dashboard">
 <TabItem value="hz" label="Horizon" default>
 
-Go to **Admin -> Network -> Networks**, then click the **External** network.
+**Step 1** -- Go to **Project -> Network -> Networks**, click the **External** network, choose the **Subnets** tab, and click **Create Subnet**.
 
-![Networks list in Horizon](images/hz-admin-networks.png)
+**Step 2** -- On the **Subnet** tab, enter the name, network address, IP version, and gateway IP. Click **Next**.
 
-**Figure 3:** List of Networks
+![Subnet tab of the Create Subnet dialog in Horizon](images/hz-create-new-provider-subnet.png)
 
-The network detail page lists its subnets. Confirm the new subnet has been added.
+**Figure 1:** Create Subnet
 
-![External network detail in Horizon](images/hz-external-subnets.png)
+**Step 3** -- On the **Subnet Details** tab, leave **Enable DHCP** checked and enter the allocation pool and DNS name servers. Click **Create**.
 
-**Figure 4:** List of Subnets for the External network
+![Subnet Details tab of the Create Subnet dialog in Horizon](images/hz-create-new-provider-subnet-details.png)
+
+**Figure 2:** Subnet Details
+
+**Step 4** -- Confirm the new subnet is listed.
+
+![External network subnets listing the new subnet in Horizon](images/hz-additional-subnet-listing.png)
+
+**Figure 3:** Subnets of the External network
 
 </TabItem>
 <TabItem value="skyline" label="Skyline">
 
-Switch to the **Administrator** console, go to **Network -> Networks**, then click the **External** network.
+**Step 1** -- Switch to the **Administrator** console, go to **Network -> Networks**, click the **External** network, choose the **Subnets** tab, and click **Create Subnet**.
 
-![Networks list showing the External network](images/skyline-admin-networks.png)
+**Step 2** -- Enter the subnet name, select the **admin** project, and enter the IP version, CIDR, and gateway IP.
 
-**Figure 3:** List of Networks
+![Top of the Create Subnet dialog in Skyline](images/create-new-provider-subnet-1.png)
 
-Choose the **Subnets** tab and confirm the new subnet has been added.
+**Figure 1:** Create Subnet
 
-![Subnets tab of the External network](images/skyline-external-subnets.png)
+**Step 3** -- Leave **DHCP** enabled, enter the allocation pool and DNS servers, and click **OK**.
 
-**Figure 4:** List of Subnets for the External network
+![Allocation pool and DNS fields of the Create Subnet dialog in Skyline](images/create-new-provider-subnet-2.png)
+
+**Figure 2:** Allocation Pools and DNS
+
+**Step 4** -- Confirm the new subnet is listed.
+
+![External network subnets listing the new subnet in Skyline](images/additional-subnet-listing.png)
+
+**Figure 3:** Subnets of the External network
 
 </TabItem>
 </Tabs>
 
-The new subnet will be prefixed with **Internet\_** and will have a
-series of hex values following it.
+## Reserved addresses
 
-### How are the new Provider Block IPs Used?
+Each provider block reserves its first three usable addresses for the OpenMetal routers upstream of your cloud. They must stay outside the allocation pool.
 
-When creating a resource that requires an IP from this block, specify
-the name of the newly added provider block to add IPs from it.
+| Address | Example | Use |
+|---|---|---|
+| Network address | `.112` | Not usable |
+| First usable | `.113` | Gateway, a virtual IP shared by the two routers over VRRP |
+| Second usable | `.114` | First router |
+| Third usable | `.115` | Second router |
+| Fourth usable to last usable | `.116` - `.126` | Allocation pool |
+| Broadcast address | `.127` | Not usable |
+
+A `/28` leaves 11 addresses for your cloud. Neutron uses some of these for its own ports, such as DHCP and metadata, so a new subnet shows addresses in use before you assign any.
+
+## Using the new IPs
+
+When creating a resource that needs an IP from this block, such as a floating IP or a router gateway, select the new subnet.
