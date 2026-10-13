@@ -40,6 +40,13 @@ Managed addressing must be off.
 
 Agree to the terms and select **Complete Order**.
 
+### Add the Block to OpenStack
+
+Ordering the block in Central does not add it to OpenStack. That step is not
+automated yet.
+[Submit a support ticket](../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket)
+once the order completes and our team adds the block to your cloud.
+
 ### Confirm new Provider Block Addition
 
 First to confirm the addition of the IP block, log in with a user that has the administrator role. This is typically the account called "admin".
