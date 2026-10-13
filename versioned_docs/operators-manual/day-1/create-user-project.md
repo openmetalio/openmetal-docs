@@ -56,10 +56,14 @@ Click **OK**.
 
 Find the project in the list, then choose **Modify Quotas** from the actions menu.
 
+![Modify Quotas in the project actions menu in Horizon](images/hz-modify-quotas.png)
+
 </TabItem>
 <TabItem value="skyline" label="Skyline">
 
 Find the project in the list, then choose **More -> Edit Quota**.
+
+![Edit Quota in the project More menu in Skyline](images/edit-quota-menu.png)
 
 </TabItem>
 </Tabs>
