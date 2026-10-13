@@ -22,7 +22,7 @@ importing to the destination cloud's OpenStack cluster.
    - Source cloud needs access to Ceph via the `rbd` (RADOS Block Device)
    command-line tool.
    - Destination cloud needs access to OpenStack CLI
-   - [OpenstackCLI](../operators-manual/day-1/command-line/openstackclient)
+   - [OpenstackCLI](../operators-manual/day-1/openstackclient)
    - Preconfigured virtualenv with OpenStack CLI and `pigz` installed
 
 ## Considerations

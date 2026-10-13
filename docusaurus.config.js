@@ -65,6 +65,7 @@ const config = {
     </body>
   </html>`,
   plugins: [
+    'docusaurus-plugin-image-zoom',
     // Operators Manual instance (versioned)
     [
       '@docusaurus/plugin-content-docs',
@@ -118,19 +119,27 @@ const config = {
           },
           {
             from: '/operators-manual/day-1/horizon/getting-started-with-horizon',
-            to: '/operators-manual/day-1/dashboard/getting-started-with-dashboard',
+            to: '/operators-manual/day-1/getting-started-with-dashboard',
           },
           {
             from: '/operators-manual/day-1/horizon/create-user-project',
-            to: '/operators-manual/day-1/dashboard/create-user-project',
+            to: '/operators-manual/day-1/create-user-project',
           },
           {
             from: '/operators-manual/day-1/horizon/create-first-instance',
-            to: '/operators-manual/day-1/dashboard/create-first-instance',
+            to: '/operators-manual/day-1/create-first-instance',
           },
           {
             from: '/operators-manual/day-1/horizon/images',
-            to: '/operators-manual/day-1/dashboard/images',
+            to: '/operators-manual/day-1/images',
+          },
+          {
+            from: '/operators-manual/day-1/command-line/openstackclient',
+            to: '/operators-manual/day-1/openstackclient',
+          },
+          {
+            from: '/operators-manual/day-1/command-line/create-ssh-key',
+            to: '/operators-manual/day-1/create-ssh-key',
           },
         ],
       },
@@ -139,6 +148,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: '.theme-doc-markdown.markdown img',
+        background: { light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(16, 23, 42, 0.95)' },
+      },
       metadata: [{
           name: 'twitter:site',
           content: '@openmetalio'

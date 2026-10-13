@@ -4,7 +4,7 @@ sidebar_position: 2
 # Create a User and Project in OpenStack Horizon
 
 :::info
-Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [Create a User and Project in Skyline](/operators-manual/day-1/dashboard/create-user-project).
+Horizon is the default dashboard in PCC v3. PCC v4 uses Skyline: [Create a User and Project in Skyline](/operators-manual/day-1/create-user-project).
 :::
 
 ## Introduction

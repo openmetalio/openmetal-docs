@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 7
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -88,7 +88,7 @@ Skyline does not offer a `clouds.yaml` download. Write it by hand using the valu
 
 Next, use SSH to log in to the instance created previously. If you
 created your instance by following the guide,
-[How to Create an Instance in Skyline](../dashboard/create-first-instance),
+[How to Create an Instance in Skyline](./create-first-instance),
 then this instance can only be accessed from one of your control plane nodes.
 
 -----

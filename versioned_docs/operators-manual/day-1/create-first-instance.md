@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -196,7 +196,7 @@ Click **Create Keypair**.
 </TabItem>
 </Tabs>
 
-To create a key pair on a control plane node first, see [Create SSH Key Pair for an OpenStack Control Plane Node](../command-line/create-SSH-key).
+To create a key pair on a control plane node first, see [Create SSH Key Pair for an OpenStack Control Plane Node](./create-ssh-key).
 
 ## Create the instance
 

@@ -3,13 +3,13 @@
 ## Day 1
 
 1. [Introduction to OpenMetal and your Private Cloud Core](./day-1/intro-to-openmetal-private-cloud.md)
-2. [Getting Started with the Dashboard](./day-1/dashboard/getting-started-with-dashboard.md)
-3. [Accessing Skyline](./day-1/dashboard/accessing-skyline.md)
-4. [Create a User and Project](./day-1/dashboard/create-user-project.md)
-5. [How to Create an Instance](./day-1/dashboard/create-first-instance.md)
-6. [Manage and Upload Images](./day-1/dashboard/images.md)
-7. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
-8. [Create SSH Key Pair for an OpenStack Control Plane Node](./day-1/command-line/create-ssh-key.md)
+2. [Getting Started with the Dashboard](./day-1/getting-started-with-dashboard.md)
+3. [Accessing Skyline](./day-1/accessing-skyline.md)
+4. [Create a User and Project](./day-1/create-user-project.md)
+5. [How to Create an Instance](./day-1/create-first-instance.md)
+6. [Manage and Upload Images](./day-1/images.md)
+7. [How to Install and Use OpenStackClient](./day-1/openstackclient.md)
+8. [Create SSH Key Pair for an OpenStack Control Plane Node](./day-1/create-ssh-key.md)
 
 ## Day 2
 
