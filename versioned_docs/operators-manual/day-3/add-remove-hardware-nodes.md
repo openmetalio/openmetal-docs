@@ -139,14 +139,8 @@ Navigate to your cloud's assets page to confirm the newly added node.
 In this section, we outline the steps required to remove a hardware node
 from your cloud.
 
-There is not a native feature in OpenMetal Central allowing you to
-remove hardware nodes from your cloud. Should you need to remove a
-hardware node from your cloud, consult with your Account Manager first
-or submit a ticket through OpenMetal Central. It is very important all
-data required from this node is copied elsewhere prior to making a
-request to remove a hardware node. You can help facilitate the process
-of removing the node by [migrating any running instances](../day-2/live-migrate-instances)
-from it to another node.
+Copy any data you need from the node before removing it. Removal cannot be
+undone.
 
 ### Consider Before Removing
 
@@ -169,9 +163,6 @@ The remaining node, classified **Storage and Compute - Large v5**, is not a
 control plane node, meaning it does not run all the core OpenStack
 services.
 
-Our support will review your request to ensure requirements are met
-prior to removal.
-
 ### Initial Preparation
 
 To prepare for removal of a hardware node, migrate any instances to
@@ -182,7 +173,9 @@ Instances](../day-2/live-migrate-instances) guide.
 
 ### How to Remove a Hardware Node from a Cloud
 
-To remove a hardware node from a cloud a ticket must be submitted with
-the request through OpenMetal Central. Specify the hostname or IP
-address of the node you wish to be removed and an agent will review the
-request.
+Open the three dots menu at the end of the node's row and choose
+**Remove**.
+
+The same menu holds the other per-node actions: **Details**, **Edit Node**,
+**IPMI Access**, the power and restart controls, **Reprovision Node**, and
+**Replace Node**.
