@@ -295,7 +295,7 @@ Go to **Compute -> Instances**.
 
 ![Instance created by Terraform](images/skyline-instances.png)
 
-**Figure 2:** Newly Created Terraform Instance
+**Figure 1:** Newly Created Terraform Instance
 
 </TabItem>
 </Tabs>

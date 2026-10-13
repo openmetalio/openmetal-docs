@@ -193,8 +193,8 @@ the section titled [Before Making
 Changes](prepare-kolla-ansible#before-making-changes)
 at the top of this guide for more information.
 
-An example configuration change made at this step is to enable TLS for
-Horizon. Enabling TLS falls outside the scope of this guide. For
+An example configuration change made at this step is to enable TLS.
+Enabling TLS falls outside the scope of this guide. For
 instruction on how to do so, see [How to Enable TLS for
 OpenStack](enable-tls).
 

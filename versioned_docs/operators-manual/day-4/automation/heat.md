@@ -221,13 +221,13 @@ Go to **Project -> Orchestration -> Stacks**.
 
 ![Stacks list in Horizon](images/hz-stacks.png)
 
-**Figure 3:** Stacks Created within Admin Project
+**Figure 2:** Stacks Created within Admin Project
 
 The detail page tabs are **Topology**, **Overview**, **Resources**, **Events**, and **Template**.
 
 ![Stack detail page in Horizon](images/hz-stack-detail.png)
 
-**Figure 4:** Overview of Test Stack
+**Figure 3:** Overview of Test Stack
 
 </TabItem>
 <TabItem value="skyline" label="Skyline">

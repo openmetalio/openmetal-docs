@@ -94,11 +94,14 @@ The home page shows quota usage for compute, storage, and network.
 <Tabs groupId="dashboard">
 <TabItem value="hz" label="Horizon" default>
 
-Horizon groups work under tabs in the left sidebar:
+Horizon groups work under sections in the left sidebar:
 
 - **Project** — instances, volumes, networks, stacks.
 - **Admin** — hypervisors, host aggregates, system information.
 - **Identity** — projects, users, roles.
+- **Workflow** — Mistral workbooks, workflows, and executions.
+
+![Horizon sidebar sections](images/hz-console-navigation.png)
 
 </TabItem>
 <TabItem value="skyline" label="Skyline">
@@ -109,6 +112,8 @@ Skyline separates tenant work from administration:
 - **Administrator console** — projects, users, roles, hypervisors, system info.
 
 Switch between them with the **Administrator** link in the top right.
+
+![Skyline navigation with the Administrator link](images/console-navigation.png)
 
 </TabItem>
 </Tabs>

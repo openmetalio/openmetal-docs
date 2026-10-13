@@ -135,9 +135,9 @@ TLS stands for Transport Layer Security protocol and is the successor to
 the SSL. Both TLS and SSL work in much the same way, using encryption to
 protect the transfer of information and data between two systems. Within
 OpenMetal, enabling TLS is very important for protecting login
-credentials for your Horizon Dashboard.
+credentials for your dashboard.
 
-For more information on how to enable TLS within Horizon, visit [How to
+For more information on how to enable TLS, visit [How to
 Enable TLS for OpenStack using Kolla
 Ansible](../kolla-ansible/enable-tls).
 

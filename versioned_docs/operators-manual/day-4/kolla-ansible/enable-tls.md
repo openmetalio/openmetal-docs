@@ -8,7 +8,7 @@ sidebar_position: 2
 By default, Private Clouds are deployed with Kolla Ansible's self-signed SSL
 certificate. The following will guide you through the steps needed to deploy a
 different SSL certificate, providing encryption of the network traffic for
-Horizon and the OpenStack public APIs in your cloud.
+the dashboard and the OpenStack public APIs in your cloud.
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ Horizon and the OpenStack public APIs in your cloud.
     certificate and intermediate chain. Your certificate and
     intermediate chain may be combined as a "Full Chain".
 
-## Specify an External Fully Qualified Domain Name for Horizon
+## Specify an External Fully Qualified Domain Name
 
 Before configuring your cloud with an SSL, a Fully Qualified Domain Name
 (FQDN) must be configured. The FQDN should have its DNS A record
@@ -50,7 +50,7 @@ value defined by `kolla_external_vip_address` within your cloud's
 
 ### Configure an FQDN
 
-To specify a domain name for Horizon, within `/etc/kolla/globals.yml`,
+To specify a domain name, within `/etc/kolla/globals.yml`,
 set the value for `kolla_external_fqdn` to the domain of your choosing.
 **Note** your `/etc/kolla/globals.yml` may not have a line containing
 `kolla_external_fqdn`. If this line is not present, append it the file.
@@ -75,10 +75,10 @@ For example:
 
     kolla-ansible -i inventory.yml -i ansible/inventory/multinode reconfigure
 
-## Enable SSL Externally, Encrypting Horizon Traffic
+## Enable SSL Externally
 
 This section outlines the steps required to install a signed SSL for
-your cloud's Horizon and public OpenStack APIs using Kolla Ansible.
+your cloud's dashboard and public OpenStack APIs using Kolla Ansible.
 
 ### Modify Kolla Ansible Configuration
 

@@ -20,8 +20,8 @@ usage using the Ceph dashboard and the command line.
 
 ## Ceph Dashboard
 
-The Ceph dashboard is available on port 8443 over HTTPS through the Horizon IP
-or URL. Access the dashboard via `https://[Horizon-IP-or-URL]:8443`.
+The Ceph dashboard is available on port 8443 over HTTPS at your cloud's IP or
+URL. Access it via `https://<VIP>:8443`.
 
 ### Creating a Dashboard User
 

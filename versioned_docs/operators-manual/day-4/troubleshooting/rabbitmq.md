@@ -8,7 +8,7 @@ sidebar_position: 1
 RabbitMQ is the central messaging system used by your Private Cloud,
 allowing all OpenStack services to communicate with one another. Should
 there be an issue with this communication chain, your cloud may not
-function as expected. If requests in Horizon are not completing as
+function as expected. If requests in the dashboard are not completing as
 before, or seem to get stuck, you may have an issue with RabbitMQ. In
 this guide, we explain symptoms of a RabbitMQ issue and generally how to
 address them.
@@ -21,9 +21,9 @@ troubleshooting RabbitMQ.
 
 ## Symptoms of a RabbitMQ Problem
 
-Actions hang in Horizon or when using OpenStackClient. For example when
+Actions hang in the dashboard or when using OpenStackClient. For example when
 an instance is created but never completes, you may have an issue with
-RabbitMQ. Additionally, say you try to delete something in Horizon, but
+RabbitMQ. Additionally, say you try to delete something in the dashboard, but
 the item hangs indefinitely and is never actually deleted. This
 indicates a probable issue with RabbitMQ.
 

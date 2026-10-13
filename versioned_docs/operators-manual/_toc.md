@@ -9,6 +9,7 @@
 5. [How to Create an Instance](./day-1/dashboard/create-first-instance.md)
 6. [Manage and Upload Images](./day-1/dashboard/images.md)
 7. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
+8. [Create SSH Key Pair for an OpenStack Control Plane Node](./day-1/command-line/create-ssh-key.md)
 
 ## Day 2
 
@@ -21,6 +22,7 @@
 7. [Load Balancers and Octavia](./day-2/load-balancers-and-octavia.md)
 8. [Manage the Node Firewall](./day-2/manage-node-firewall.md)
 9. [How to Update Kolla Images](./day-2/update-kolla-images.md)
+10. [How to View your Private Cloud's Resource Usage](./day-2/_resource-usage/cloud-resource-usage.md)
 
 ## Day 3
 
@@ -29,15 +31,17 @@
 3. [Create and Restore Volume Backups](./day-3/create-volume-backups.md)
 4. [How to Create OpenStack Service Configuration Backups](./day-3/create-openstack-service-backups.md)
 5. [OpenStack Disaster Planning, Testing, and Recovery](./day-3/disaster-recovery.md)
+6. [Backup and Restore OpenStack Service Databases](./day-3/backup-restore-openstack-databases.md)
 
 ## Day 4
 
 1. [How to Prepare and Use Kolla Ansible](./day-4/kolla-ansible/prepare-kolla-ansible.md)
 2. [Enable TLS Using Kolla Ansible](./day-4/kolla-ansible/enable-tls.md)
-3. [Security and Your OpenMetal Private Cloud](./day-4/security/security-best-practices.md)
-4. [Troubleshooting RabbitMQ](./day-4/troubleshooting/rabbitmq.md)
-5. [How to Redeploy RabbitMQ using Kolla Ansible](./day-4/troubleshooting/redeploy-rabbitmq.md)
-6. [Troubleshooting Ceph](./day-4/troubleshooting/ceph.md)
-7. [Guidelines for Searching through Logs](./day-4/troubleshooting/log-filtering.md)
-8. [OpenStack Automation through Heat](./day-4/automation/heat.md)
-9. [Automate Infrastructure using Terraform](./day-4/automation/terraform.md)
+3. [How to Enable OpenSearch using Kolla Ansible](./day-4/kolla-ansible/opensearch.md)
+4. [Security and Your OpenMetal Private Cloud](./day-4/security/security-best-practices.md)
+5. [Troubleshooting RabbitMQ](./day-4/troubleshooting/rabbitmq.md)
+6. [How to Redeploy RabbitMQ using Kolla Ansible](./day-4/troubleshooting/redeploy-rabbitmq.md)
+7. [Troubleshooting Ceph](./day-4/troubleshooting/ceph.md)
+8. [Guidelines for Searching through Logs](./day-4/troubleshooting/log-filtering.md)
+9. [OpenStack Automation through Heat](./day-4/automation/heat.md)
+10. [Automate Infrastructure using Terraform](./day-4/automation/terraform.md)
