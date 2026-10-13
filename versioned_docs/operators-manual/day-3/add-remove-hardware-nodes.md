@@ -22,33 +22,38 @@ under which your cloud's Ceph cluster is affected when adding hardware.
 
 ### Types of Private Clouds
 
-We currently offer three server sizes for our Private Clouds as seen in
-the following image:
+Private Clouds come in three sizes: **Medium**, **Large**, and **XL**. Each
+is a cluster of three servers.
 
-![Private Cloud Core size options](images/private-cloud-core-types.png)
+Sizes are versioned. As new hardware becomes available we add a version, so
+a size exists in more than one generation and older generations stay
+available for a time.
 
-**Figure 1:** Private Cloud Core Selections
+![Hardware catalog listing Private Cloud sizes](images/hardware-catalog.png)
 
-- **Cloud Core - Small**: This cluster type should be considered for
-    testing environments. Each node has a 1Gbit Network Interface Card
-    (NIC). The network throughput across cluster members could be a
-    bottleneck.
-- **Cloud Core - Standard**: This cluster type is considered ready for
-    production. Each node has a 10Gbit Network Interface Card. The
-    network throughput across cluster members should not be a
-    bottleneck.
-- **Cloud Core - Large**: Production-ready and provides the most
-    resources. Each node also has a 10Gbit Network Interface Card.
+**Figure 1:** Hardware Catalog
+
+The hardware catalog lists each size with its CPU, cores, storage, RAM, and
+price, for the location and term you choose. GPU sizes are listed alongside
+them.
+
+To work out which size fits your workload,
+[book a meeting](https://openmetal.io/schedule-meeting/) with our team.
 
 ### Types of Nodes
 
-The following are the types of nodes that can be added to a cloud.
+A node is added in one of two roles:
 
-- **Storage and Compute - Small**
-- **Storage and Compute - Standard**
-- **Storage and Compute - Large**
-- **Compute - Large**
-- **GPU - A100**
+- **Storage + Compute**: a full-capability node providing both storage and
+    compute. It handles data persistence as well as workload processing.
+- **Compute Only**: a dedicated processing node for scaling compute capacity.
+    Its storage is available for ephemeral use.
+
+Nodes come in the same sizes as clouds, with XXL and GPU nodes available in
+addition. Some sizes have variants, such as a high frequency CPU option or a
+storage configuration with more drive bays. Previous generations stay
+available alongside the latest hardware, so node sizes carry a version in the
+same way cloud sizes do.
 
 ### The Benefit of Homogeneous Clouds
 
