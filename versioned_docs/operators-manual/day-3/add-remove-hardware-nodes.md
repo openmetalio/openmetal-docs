@@ -75,8 +75,8 @@ traffic is limited by the additional node.
 In this section, we explain the steps needed to add hardware nodes to
 your cloud.
 
-The following demonstrates adding a **Storage and Compute - Standard**
-node to a **Cloud Core - Standard** cloud.
+The following demonstrates adding a **Storage and Compute - Large v5**
+node to an existing cloud.
 
 ### How to add a Hardware Node
 
@@ -175,6 +175,10 @@ Instances](../day-2/live-migrate-instances) guide.
 
 Open the three dots menu at the end of the node's row and choose
 **Remove**.
+
+![Node actions menu with Remove](images/remove-node-menu.png)
+
+**Figure 8:** Node actions menu
 
 The same menu holds the other per-node actions: **Details**, **Edit Node**,
 **IPMI Access**, the power and restart controls, **Reprovision Node**, and
