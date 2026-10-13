@@ -157,7 +157,7 @@ Click **OK**.
 </TabItem>
 </Tabs>
 
-Open only the ports you need, to the narrowest source range that works. Use the IP of a control plane node rather than `0.0.0.0/0`.
+Open only the ports you need, to the narrowest source range that works. Use the public IP you connect from, or a narrow CIDR containing it, rather than `0.0.0.0/0`.
 
 ## Add a key pair
 

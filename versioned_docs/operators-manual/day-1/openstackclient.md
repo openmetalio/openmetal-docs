@@ -57,6 +57,16 @@ Open the user menu in the top right and choose **Get OpenRC file**.
 </TabItem>
 </Tabs>
 
+Clouds use a self-signed certificate by default. Copy its CA certificate from a control plane node:
+
+    scp root@<control-plane-node>:/etc/kolla/certificates/ca/root.crt ~/openstack-ca.crt
+
+Add this line to the OpenRC file:
+
+    export OS_CACERT=$HOME/openstack-ca.crt
+
+Without it, commands fail with `SSL: CERTIFICATE_VERIFY_FAILED`. To pass the certificate for a single command instead, use `--os-cacert ~/openstack-ca.crt`.
+
 Source the file you downloaded and enter your password when prompted:
 
     $ source ~/Development-openrc.sh
@@ -70,16 +80,16 @@ Source it again in each new shell, after activating the virtual environment.
 
 List the instances in your project:
 
-    $ openstack --insecure server list
+    $ openstack server list
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
     | ID                                   | Name        | Status | Networks                               | Image                    | Flavor   |
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
     | 3bb6f079-90d3-4233-9400-94ef49c34a34 | Jumpstation | ACTIVE | Private=173.231.217.202, 192.168.0.200 | N/A (booted from volume) | m1.small |
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
 
-Clouds use a self-signed certificate by default, so commands need `--insecure`. Without it, the command fails with `SSL: CERTIFICATE_VERIFY_FAILED`. To skip the flag on every command, add this to the OpenRC file:
-
-    export OS_INSECURE=true
+:::warning
+`--insecure` and `OS_INSECURE=true` turn off certificate verification. Use them only as a temporary workaround until `OS_CACERT` is set.
+:::
 
 ## Switch project
 
