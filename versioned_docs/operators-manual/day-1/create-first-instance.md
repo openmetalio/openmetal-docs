@@ -196,7 +196,7 @@ Click **Create Keypair**.
 </TabItem>
 </Tabs>
 
-To create a key pair on a control plane node first, see [Create SSH Key Pair for an OpenStack Control Plane Node](./create-ssh-key).
+To generate a key pair on your own machine first, see [Create an SSH Key Pair](./create-ssh-key.md).
 
 ## Create the instance
 

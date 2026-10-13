@@ -9,7 +9,7 @@
 5. [How to Create an Instance](./day-1/create-first-instance.md)
 6. [Manage and Upload Images](./day-1/images.md)
 7. [How to Install and Use OpenStackClient](./day-1/openstackclient.md)
-8. [Create SSH Key Pair for an OpenStack Control Plane Node](./day-1/create-ssh-key.md)
+8. [Create an SSH Key Pair](./day-1/create-ssh-key.md)
 
 ## Day 2
 
