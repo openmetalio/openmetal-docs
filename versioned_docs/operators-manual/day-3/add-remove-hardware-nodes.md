@@ -75,8 +75,7 @@ traffic is limited by the additional node.
 In this section, we explain the steps needed to add hardware nodes to
 your cloud.
 
-The following demonstrates adding a **Storage and Compute - Large v5**
-node to an existing cloud.
+The following demonstrates adding a node to an existing cloud.
 
 ### How to add a Hardware Node
 

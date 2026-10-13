@@ -54,10 +54,10 @@ For example:
     health: HEALTH_OK
 
   services:
-    mon: 3 daemons, quorum relaxed-flamingo,focused-capybara,lovely-ladybug (age 2w)
-    mgr: relaxed-flamingo(active, since 2w), standbys: focused-capybara, lovely-ladybug
+    mon: 3 daemons, quorum infallible-eagle,little-pelican,successful-magpie (age 2w)
+    mgr: relaxed-flamingo(active, since 2w), standbys: little-pelican, successful-magpie
     osd: 4 osds: 4 up (since 3d), 4 in (since 3d)
-    rgw: 3 daemons active (focused-capybara.rgw0, lovely-ladybug.rgw0, relaxed-flamingo.rgw0)
+    rgw: 3 daemons active (little-pelican.rgw0, successful-magpie.rgw0, relaxed-flamingo.rgw0)
 
   task status:
 

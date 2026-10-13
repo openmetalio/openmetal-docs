@@ -28,14 +28,14 @@ For example:
       cluster:
         id:     34fa49b3-fff8-4702-8b17-4e8d873c845f
         health: HEALTH_WARN
-                clock skew detected on mon.focused-capybara, mon.lovely-ladybug
+                clock skew detected on mon.little-pelican, mon.successful-magpie
                 2 daemons have recently crashed
     
       services:
-        mon: 3 daemons, quorum relaxed-flamingo,focused-capybara,lovely-ladybug (age 5d)
-        mgr: relaxed-flamingo(active, since 5d), standbys: focused-capybara, lovely-ladybug
+        mon: 3 daemons, quorum infallible-eagle,little-pelican,successful-magpie (age 5d)
+        mgr: relaxed-flamingo(active, since 5d), standbys: little-pelican, successful-magpie
         osd: 4 osds: 4 up (since 5d), 4 in (since 13d)
-        rgw: 3 daemons active (focused-capybara.rgw0, lovely-ladybug.rgw0, relaxed-flamingo.rgw0)
+        rgw: 3 daemons active (little-pelican.rgw0, successful-magpie.rgw0, relaxed-flamingo.rgw0)
     
       task status:
     
@@ -53,15 +53,15 @@ For example:
 Ceph's log files are stored in `/var/log/ceph/` within each control
 plane node.
 
-For example, listed are all log files for host `focused-capybara`:
+For example, listed are all log files for host `little-pelican`:
 
     # ls -1 /var/log/ceph/*.log
     /var/log/ceph/ceph.audit.log
     /var/log/ceph/ceph.log
-    /var/log/ceph/ceph-mgr.focused-capybara.log
-    /var/log/ceph/ceph-mon.focused-capybara.log
+    /var/log/ceph/ceph-mgr.little-pelican.log
+    /var/log/ceph/ceph-mon.little-pelican.log
     /var/log/ceph/ceph-osd.1.log
-    /var/log/ceph/ceph-rgw-focused-capybara.rgw0.log
+    /var/log/ceph/ceph-rgw-little-pelican.rgw0.log
     /var/log/ceph/ceph-volume.log
 
 A OpenMetal Ceph cluster is comprised of several services: Ceph's
@@ -74,9 +74,9 @@ For example:
 
 - **Primary Log File**: `/var/log/ceph/ceph.log`
 - **Ceph Monitor Log File**:
-    `/var/log/ceph/ceph-mon.focused-capybara.log`
+    `/var/log/ceph/ceph-mon.little-pelican.log`
 - **Ceph RADOSGW Log File**:
-    `/var/log/ceph/ceph-rgw-focused-capybara.rgw0.log`
+    `/var/log/ceph/ceph-rgw-little-pelican.rgw0.log`
 
 If you are unsure which Ceph service's log to look through, consider
 starting with the primary log file, `/var/log/ceph/ceph.log`.
@@ -104,7 +104,7 @@ For example:
     cluster:
       id:     34fa49b3-fff8-4702-8b17-4e8d873c845f
       health: HEALTH_WARN
-              clock skew detected on mon.focused-capybara, mon.lovely-ladybug
+              clock skew detected on mon.little-pelican, mon.successful-magpie
     [...output truncated...]
 
 Alternatively, execute `ceph health detail` to only see the status of
@@ -112,10 +112,10 @@ health checks.
 
 For example:
 
-    HEALTH_WARN clock skew detected on mon.focused-capybara, mon.lovely-ladybug
-    [WRN] MON_CLOCK_SKEW: clock skew detected on mon.focused-capybara, mon.lovely-ladybug
-        mon.focused-capybara clock skew 0.663159s > max 0.05s (latency 0.000399254s)
-        mon.lovely-ladybug clock skew 0.368233s > max 0.05s (latency 0.000385143s)
+    HEALTH_WARN clock skew detected on mon.little-pelican, mon.successful-magpie
+    [WRN] MON_CLOCK_SKEW: clock skew detected on mon.little-pelican, mon.successful-magpie
+        mon.little-pelican clock skew 0.663159s > max 0.05s (latency 0.000399254s)
+        mon.successful-magpie clock skew 0.368233s > max 0.05s (latency 0.000385143s)
 
 #### Examine Chrony Logs
 

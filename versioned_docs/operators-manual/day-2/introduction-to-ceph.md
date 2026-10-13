@@ -40,8 +40,8 @@ Storage](https://openmetal.io/docs/manuals/tutorials/ephemeral_storage).
 
 ## Ceph Version Used by Private Clouds
 
-With current Private Cloud deployments, Ceph's [Octopus
-release](https://docs.ceph.com/en/latest/releases/octopus/) is used.
+With current Private Cloud deployments, Ceph's [Squid
+release](https://docs.ceph.com/en/latest/releases/squid/) is used.
 
 ## View Disk Usage of the Ceph Cluster
 
@@ -105,8 +105,7 @@ connect to Ceph.
 
 Swift, OpenStack's Object Storage service, connects directly to the Ceph
 cluster. With our setup you will not see configuration for Swift in a
-place like `/etc/kolla/swift`. This configuration is instead handled by
-Ceph directly and can be viewed through `/etc/ceph/ceph.conf`.
+place like `/etc/kolla/swift`.
 
 Cinder, OpenStack's Block Storage service, is also configured to connect
 to Ceph. With Cinder, the are several services, of which `cinder-volume`
