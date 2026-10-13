@@ -101,8 +101,8 @@ The next screen lists the hardware you can add.
 **Figure 3:** Available Hardware List
 
 Each row gives the CPU, cores and threads, included storage, drive bays,
-installed and maximum RAM, egress, and monthly price. The latest hardware is
-listed first, with previous generations below it.
+installed and maximum RAM, egress, monthly price, and delivery time. The
+latest hardware is listed first, with previous generations below it.
 
 Choose a size and select **Add to Cart**.
 
