@@ -104,7 +104,7 @@ control:
     successful-magpie.local:
       ansible_host: 173.231.202.23
 ```
-    
+
 To restore the Neutron server configuration file for `infallible-eagle`,
 first ensure you have [prepared a Kolla Ansible environment](../day-4/kolla-ansible/prepare-kolla-ansible)
 
@@ -114,8 +114,10 @@ the host `infallible-eagle` by specifying the flag `--limit control[0]`.
 
 For example:
 
-    kolla-ansible \
-        -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
-        reconfigure \
-        --tags neutron \
-        --limit control[0]
+```shell
+kolla-ansible \
+    -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+    reconfigure \
+    --tags neutron \
+    --limit control[0]
+```
