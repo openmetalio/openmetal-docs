@@ -141,6 +141,14 @@ const config = {
             from: '/operators-manual/day-1/command-line/create-ssh-key',
             to: '/operators-manual/day-1/create-ssh-key',
           },
+          {
+            from: '/operators-manual/day-2/manage-node-firewall-with-iptables',
+            to: '/operators-manual/day-2/manage-node-firewall',
+          },
+          {
+            from: '/operators-manual/day-4/watcher/watcher-demo',
+            to: '/operators-manual/operators_versioned_docs/version-3.0/day-4/watcher/watcher-demo',
+          },
         ],
       },
     ],
