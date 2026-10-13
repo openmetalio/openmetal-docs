@@ -108,18 +108,14 @@ following variables in `/etc/kolla/globals.yml` should not be modified,
 otherwise they will be overwritten:
 
     api_interface
-    dns_interface
-    docker_registry_insecure
+    cluster_interface
+    network_interface
+    tunnel_interface
     kolla_enable_tls_external
     kolla_external_fqdn
     kolla_external_vip_address
     kolla_internal_vip_address
-    migration_interface
-    network_interface
-    neutron_external_interface
     openstack_region_name
-    storage_interface
-    tunnel_interface
 
 For more information, see the section titled [Before
 Proceeding](#before-proceeding) at the top of this guide.
@@ -164,14 +160,6 @@ and Ansible using `pip`.
 Install Kolla Ansible and its dependencies:
 
     pip install -r requirements.txt
-
-Should `requirements.txt` not exist, you can ask us to sync that file to your
-cloud.
-
-For our latest deployments running OpenStack 2026.1, `requirements.txt` should contain:
-
-    ansible-core==2.15.*
-    kolla-ansible==17.3.*
 
 #### **Step 5** -- Install Ansible Galaxy dependencies
 
