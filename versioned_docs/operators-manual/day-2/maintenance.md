@@ -79,8 +79,9 @@ If `/lib/modules` lists a newer version than `uname -r`, reboot the node.
 
 ### Ceph Maintenance
 
-**Warning\!** This step is optional and only required if the node needs
-to be rebooted.
+:::danger
+Perform this step only if the node needs a reboot.
+:::
 
 Prior to reboot, if the node is part of the Ceph cluster automatic OSD
 removal and data rebalance should be temporarily suspended. To do so,

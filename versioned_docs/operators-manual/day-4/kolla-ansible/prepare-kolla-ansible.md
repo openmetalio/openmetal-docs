@@ -17,15 +17,9 @@ configuration changes can be made.
 
 ## Before Proceeding
 
-**WARNING\!** -- Our current deployment system deploys a Private Cloud
-with a known working state. Should you deviate from this state by
-adjusting your cloud's OpenStack configuration you can no longer safely
-use the functions in OpenMetal Central to add nodes to your cloud or add
-IP blocks. Should you use these functions, any custom configurations
-will be reverted. We are working on rolling out a new deployment system
-allowing custom cloud configurations. We can still help you modify your
-cloud, but must do so manually. Please reach out to your Account Manager
-should this apply to you.
+:::danger
+Later deployments revert configuration changes that OpenMetal has not recorded, including deployments started when you add nodes or IP blocks in Central. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
+:::
 
 ## Prerequisites
 
@@ -34,11 +28,9 @@ should this apply to you.
 
 ## Using Kolla Ansible
 
-**Caution\!** Ensure the node from which you are working contains the
-directory `/etc/kolla/config`. This directory exists in the control plane nodes
-and is used to provide our custom configuration to OpenStack services. Control
-plane nodes are labeled as "Cloud Core" in the Assets page of your cloud in
-OpenMetal Central.
+:::danger
+Work from a control plane node that contains `/etc/kolla/config`. Control plane nodes are labeled **Cloud Core** on your cloud's **Assets** page in OpenMetal Central.
+:::
 
 ### Add SSH key for Kolla Ansible
 
@@ -166,11 +158,9 @@ commands by running `kolla-ansible --help`. There are a number of
 functions possible, including maintenance tasks or making configuration
 changes to your Private Cloud.
 
-**Caution\!** -- Kolla Ansible's configuration is set through the file
-`/etc/kolla/globals.yml` where some variables should not be changed. See
-the section titled [Before Making
-Changes](prepare-kolla-ansible#before-making-changes)
-at the top of this guide for more information.
+:::danger
+The next deployment overwrites edits to `/etc/kolla/globals.yml`. See [Before Making Changes](#before-making-changes).
+:::
 
 An example configuration change made at this step is to enable TLS.
 Enabling TLS falls outside the scope of this guide. For
