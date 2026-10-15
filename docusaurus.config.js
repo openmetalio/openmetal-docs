@@ -143,7 +143,7 @@ const config = {
           },
           {
             from: '/operators-manual/day-2/manage-node-firewall-with-iptables',
-            to: '/operators-manual/day-2/manage-node-firewall',
+            to: '/operators-manual/operators_versioned_docs/version-3.0/day-2/manage-node-firewall-with-iptables',
           },
           {
             from: '/operators-manual/day-4/watcher/watcher-demo',
