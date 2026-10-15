@@ -18,7 +18,7 @@ configuration changes can be made.
 ## Before Proceeding
 
 :::danger
-Later deployments revert configuration changes that OpenMetal has not recorded, including the deployment that runs when you add a node in Central. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
+Each time OpenMetal's deployment automation runs against your cloud after the initial deployment, such as when you add a node in Central, it reverts configuration changes that OpenMetal has not recorded. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
 :::
 
 ## Prerequisites
@@ -95,7 +95,7 @@ this.
 
 #### Before Making Changes
 
-`/etc/kolla/globals.yml` is regenerated on every OpenMetal deployment run, so edits made to it directly are lost. OpenMetal records the settings where your cloud differs from our defaults, and those are kept.
+OpenMetal's deployment automation regenerates `/etc/kolla/globals.yml` each time it runs, so direct edits to the file are lost. OpenMetal records the settings where your cloud differs from our defaults, and the automation keeps those.
 
 Per-cloud values are set in `/etc/kolla/globals.d/custom-globals.yml`. Do not modify this file.
 
@@ -159,7 +159,7 @@ functions possible, including maintenance tasks or making configuration
 changes to your Private Cloud.
 
 :::danger
-The next deployment overwrites edits to `/etc/kolla/globals.yml`. See [Before Making Changes](#before-making-changes).
+OpenMetal's deployment automation overwrites edits to `/etc/kolla/globals.yml` each time it runs. See [Before Making Changes](#before-making-changes).
 :::
 
 An example configuration change made at this step is to enable TLS.

@@ -46,7 +46,7 @@ ipset list customer_whitelist
 
 ## Persistence
 
-Do not change the firewall on the node. Manual `ipset add` and `ipset del` take effect immediately and are lost on the next deployment run or node boot. Both sets are rebuilt from their managed source:
+Do not change the firewall on the node. Manual `ipset add` and `ipset del` take effect immediately and are lost the next time OpenMetal's deployment automation runs or the node boots. Both sets are rebuilt from their managed source:
 
 - Ansible re-renders them under `/etc/firewall-ansible/` on every run.
 - The `firewall-ansible-ipsets.service` systemd unit restores them at boot, before `ufw` starts.
