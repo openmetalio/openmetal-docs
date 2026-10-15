@@ -27,16 +27,16 @@ To add a new provider IP block, first follow this Central guide: [Adding new IP 
 
 Once the order completes, add the block to the **External** network as a new subnet. Log in as a user with the administrator role, typically **admin**.
 
-Use these values, shown for the example block `173.231.202.112/28`:
+Use these values, shown for the example block `10.0.0.112/28`. On a live cloud the block is a public range.
 
 | Field | Value | Example |
 |---|---|---|
 | Subnet Name | `Internet_` followed by a number | `Internet_2` |
-| Network Address / CIDR | The block | `173.231.202.112/28` |
+| Network Address / CIDR | The block | `10.0.0.112/28` |
 | IP Version | IPv4 | IPv4 |
-| Gateway IP | First usable address | `173.231.202.113` |
+| Gateway IP | First usable address | `10.0.0.113` |
 | DHCP | Enabled | Enabled |
-| Allocation Pools | Fourth usable address to the last usable address | `173.231.202.116,173.231.202.126` |
+| Allocation Pools | Fourth usable address to the last usable address | `10.0.0.116,10.0.0.126` |
 | DNS Name Servers | One per line | `1.1.1.1` and `8.8.8.8` |
 
 <Tabs groupId="dashboard">

@@ -84,8 +84,10 @@ List the instances in your project:
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
     | ID                                   | Name        | Status | Networks                               | Image                    | Flavor   |
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
-    | 3bb6f079-90d3-4233-9400-94ef49c34a34 | Jumpstation | ACTIVE | Private=173.231.217.202, 192.168.0.200 | N/A (booted from volume) | m1.small |
+    | 3bb6f079-90d3-4233-9400-94ef49c34a34 | Jumpstation | ACTIVE | Private=10.0.0.202, 192.168.0.200      | N/A (booted from volume) | m1.small |
     +--------------------------------------+-------------+--------+----------------------------------------+--------------------------+----------+
+
+On a live cloud, the instance's floating IP is a public address.
 
 :::warning
 `--insecure` and `OS_INSECURE=true` turn off certificate verification. Use them only as a temporary workaround until `OS_CACERT` is set.

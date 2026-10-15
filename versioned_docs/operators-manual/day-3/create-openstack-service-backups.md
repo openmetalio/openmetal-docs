@@ -94,15 +94,17 @@ In the Kolla Ansible inventory file,
 `/opt/kolla-ansible-cli/inventory.yml`, the following hosts are
 defined as control plane nodes under the heading `[control]`:
 
+On a live cloud, `ansible_host` is each node's public IP.
+
 ```yml
 control:
   hosts:
     infallible-eagle.local:
-      ansible_host: 173.231.202.22
+      ansible_host: 10.0.0.22
     little-pelican.local:
-      ansible_host: 173.231.202.21
+      ansible_host: 10.0.0.21
     successful-magpie.local:
-      ansible_host: 173.231.202.23
+      ansible_host: 10.0.0.23
 ```
 
 To restore the Neutron server configuration file for `infallible-eagle`,
