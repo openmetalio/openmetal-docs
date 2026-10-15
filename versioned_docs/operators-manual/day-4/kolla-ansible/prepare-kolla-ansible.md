@@ -18,7 +18,7 @@ configuration changes can be made.
 ## Before Proceeding
 
 :::danger
-Later deployments revert configuration changes that OpenMetal has not recorded, including deployments started when you add nodes or IP blocks in Central. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
+Later deployments revert configuration changes that OpenMetal has not recorded, including the deployment that runs when you add a node in Central. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
 :::
 
 ## Prerequisites
