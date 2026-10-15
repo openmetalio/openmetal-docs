@@ -5,158 +5,114 @@ sidebar_position: 1
 
 ## Introduction
 
-We begin by introducing you to OpenMetal Central and explain how to
-obtain an overview of your Private Cloud. Next, we detail where to view
-the assets that comprise your cloud, point you to existing
-documentation, and how to submit and view support requests.
+We begin by introducing you to OpenMetal Central and explain how to obtain an overview of your Private Cloud. Next, we detail where to view the assets that comprise your cloud, point you to existing documentation, and how to submit and view support requests.
 
 ## A Brief Overview of Your OpenMetal Private Cloud
 
-OpenMetal Private Clouds are deployed with OpenStack to three bare metal
-servers. These three servers comprise the Private Cloud Core. To
-OpenStack, these three servers are considered the control plane. Private
-Clouds are deployed with Ceph, providing your cloud with shared storage.
+OpenMetal Private Clouds are deployed with OpenStack to three bare metal servers. These three servers comprise the Private Cloud Core. To OpenStack, these three servers are considered the control plane. Private Clouds are deployed with Ceph, providing your cloud with shared storage.
 
 ## Hardware Assets
 
 The nodes in your cloud are displayed in [OpenMetal Central](https://central.openmetal.io).
 
-![OpenMetal Central login page](images/fmc-login-page.png)
+![OpenMetal Central login page](images/central-login.png)
 
-**Figure 1:** Central Login Page for OpenMetal Central
+**Figure 1:** OpenMetal Central login page
 
-Figure 2 is the Homepage for OpenMetal Central. The Homepage provides
-access to your Cloud Management Dashboard. Click on the link **Manage**
-to access your Cloud Management Dashboard.
+The Home page lists your resources. Click **Manage** next to your cloud to open it.
 
-![OpenMetal Central homepage with Manage link](images/omc-homepage.png)
+![OpenMetal Central home page with the Manage link](images/central-homepage.png)
 
-**Figure 2:** OpenMetal Central Homepage
+**Figure 2:** OpenMetal Central home page
 
-On the left side of the Cloud Management Dashboard is the Assets Button
-as shown in Figure 3. Click there to go to the Assets page. This page
-contains a list of assets included with your Private Cloud Deployment.
-These include your Hardware Control Plane Nodes and IP blocks for
-Inventory and Provider IP addresses.
+In your cloud's sidebar, go to **Assets -> Hardware**. This page lists the hardware nodes in your Private Cloud, with each node's class, type, cores, memory, storage, and public IP. **Assets -> Networking** lists the Inventory and Provider IP blocks.
 
-![Assets page listing hardware nodes and IP blocks](images/cloud-assets.png)
+![Hardware Assets page listing the cloud's nodes](images/hardware-assets.png)
 
-**Figure 3:** Assets Page of Cloud Management Dashboard for OpenMetal
+**Figure 3:** Hardware Assets page
 
-The following example is a list of assets in a Demo Private Cloud. Your
-Private Cloud can have different hardware based on the options you have
-selected in your deployment:
+The example above is a Demo Private Cloud. Your Private Cloud can have different hardware based on the options selected at deployment:
 
-Example list:
+- 3 **Cloud Core - Small** control plane nodes of type `mb_standard_v1`
+- Inventory IP address blocks
+- Provider IP address blocks
 
-- 3 Cloud Core **mb_small_v1** Control Plane Nodes
-- Inventory IP Address Blocks
-- Provider IP Address Blocks
-
-**Note**: With our Private Clouds, OpenStack is deployed with three
-hyper-converged control plane nodes.
+**Note**: With our Private Clouds, OpenStack is deployed with three hyper-converged control plane nodes.
 
 ## Add SSH Key to Cloud
 
-You can access your Control Plane Nodes directly through SSH as the root
-user by adding your SSH key in Central.
+You can access your control plane nodes directly through SSH as the root user by adding your SSH key in Central.
 
-- Access your cloud settings
+1. In your cloud's sidebar, click **Settings**.
+2. Scroll to the **Add SSH Key** section.
+3. Open the **SSH Keys** dropdown. Select a saved key, or choose to add a new one.
 
-   ![Cloud Settings](images/cloud-settings-ssh.png)
+   ![Add SSH Key dialog](images/add-ssh-key.png)
 
-- Paste the text contents of your SSH public key into the **Add SSH Key** field and
-   click **Add Key**
+   **Figure 4:** Add SSH Key
 
-   ![Add SSH Key](images/add-ssh-key-central.png)
+   - **Name**: a label for the key, for example `Work Laptop`. Required.
+   - **Description**: optional.
+   - **SSH Public Key**: paste the contents of your public key, for example `~/.ssh/id_ed25519.pub`. Required.
+   - **Don't save this key to my organization**: check this to use the key for this cloud only. Saved keys can be reused across deployments.
 
-- You will see a pop-up at the bottom of the page indicating success.
-
-  > **Note**: The **Add SSH Key** field does not clear upon task completion.
+4. Click **Add SSH Key**, then click **Add Keys** to apply the selected keys to your nodes.
 
 ### Access your hardware nodes
 
-- Access your servers with the new key:
+Access your servers with the new key:
 
-  ```shell
-  ssh -i ~/.ssh/your_key_name root@<server-ip>
-  ```
+```shell
+ssh -i ~/.ssh/your_key_name root@<server-ip>
+```
 
 ## How to Get Support
 
-In OpenMetal Central, the two ways of getting support for your Private
-Cloud are through support documentation and filing support requests.
+Documentation and support requests are both reached through **Help** in the top right of OpenMetal Central.
 
-### How to Access OpenMetal Documentation
+![Help button in OpenMetal Central](images/help-button.png)
 
-Documentation links are found in the OpenMetal Central Homepage as well
-as the Cloud Management Dashboard. To access documentation, click
-**Documentation** at the top right-hand side of the page as shown in
-figure 4.
+**Figure 5:** Help in OpenMetal Central
 
-![Documentation link highlighted in the top menu](images/fmc-docs.png)
+The Help Guides and Support page starts with three options.
 
-**Figure 4:** OpenMetal Documentation link found within OpenMetal
-Central Homepage.
+![Help Guides and Support page](images/help-guides-and-support.png)
 
-Figure 5 is the index page for all documentation within OpenMetal. All
-documentation relating to solving common issues, configuration, as well
-as deployment can be found on this page.
+**Figure 6:** Help Guides and Support
 
-![OpenMetal documentation index page](images/fmc-docs-index.png)
+- **View Documentation** — the OpenMetal documentation index, covering configuration, deployment, and common issues.
+- **New Request** — open a support ticket.
+- **View Requests** — the tickets already submitted under your account.
 
-**Figure 5:** OpenMetal Documentation Index Page
+### Reach an individual team member
 
-### How to Submit a Support Ticket
+Further down the same page is **Reach the Team**. Click the chat icon under a person to contact them directly.
 
-Support links are found in the top right of both the Cloud Management
-Dashboard and the OpenMetal Central Homepage. To access the support
-center click the link marked **Support**.
+![Reach the Team section](images/reach-the-team.png)
 
-![Support link highlighted in the top menu](images/fmc-support-links.png)
+**Figure 7:** Reach the Team
 
-**Figure 6:** OpenMetal Central Homepage support links.
+### Submit a support ticket
 
-Support links are found in the top right of both the Cloud Management
-Dashboard and the OpenMetal Central Homepage. To access the support
-center click the link marked **Support**.
+Click **New Request**.
 
-Figure 7 outlines the support section of the Cloud Management Dashboard.
-Click **New Request** to start a new support ticket as shown in figure
-7. You also have the option to contact individual team members by
-clicking the profile icon next to their name as shown in figure 8.
+![New support request form](images/new-request-form.png)
 
-![Support page with New Request highlighted](images/fmc-support-section.png)
+**Figure 8:** New support request
 
-**Figure 7:** The Support section of your Cloud Management Dashboard.
+- **Subject**: required.
+- **Type**: the category of request.
+- **Description**: required.
+- **Add Attachment**: JPG, JPEG, PNG, GIF, or PDF, 2 MB maximum.
 
-Figure 8 outlines how you can reach individual members of our support
-team. Click the profile icon of the individual you wish to contact to
-submit a support request to that individual.
+Click **Send**.
 
-![OpenMetal support team member list](images/fmc-support-members.png)
+### View submitted requests
 
-**Figure 8:** The listed members of the OpenMetal Support Team.
+Click **View Requests**, or go to **Requests** in the sidebar. Each row shows the subject, when it was created, its last activity, and its status. Click a subject to read the full thread and any replies.
 
-Click **New Request** to bring up a support ticket. After entering the
-subject, you are presented with options for the type and priority of the
-ticket you wish to send. Select the appropriate options and fill out the
-description of your problem. Then you can send the ticket.
+![Submitted support requests](images/requests-list.png)
 
-![Sample support request form](images/sample-fmc-support-request.png)
+**Figure 9:** Submitted support requests
 
-**Figure 9:** Sample OpenMetal Test Support Request
-
-To view the details of a support request, click the highlighted subject
-link next to the request you which to view. You will be able to see all
-responses to your request as shown in figure 10.
-
-![Support request reply thread](images/sample-fmc-support-request-reply.png)
-
-**Figure 10:** Sample OpenMetal Test Support Request Reply Thread
-
-To view submitted requests, access your Cloud Management Dashboard and
-click the **Requests** section of your control panel. You are now able
-to see all request tickets submitted under your user account. If you are
-the administrator of the Private Cloud, you will be able to see all
-support requests regarding your Private Cloud.
+If you are the administrator of the Private Cloud, you can see all support requests regarding your Private Cloud.

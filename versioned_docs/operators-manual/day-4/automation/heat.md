@@ -1,6 +1,9 @@
 ---
 sidebar_position: 1
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Container Orchestration with OpenStack Heat
 
 ## Introduction
@@ -23,18 +26,30 @@ Orchestration Templates also referred to as HOT templates. HOT templates
 are created in YAML that passes instructions to the Heat Engine
 specifying the resources to be deployed.
 
-### How to View Heat Stacks in Horizon
+### How to View Heat Stacks in the Dashboard
 
-To view all current Stacks within your OpenMetal Cloud, navigate to
-**Project -\> Orchestration -\> Stacks**. Within this section, you can
-view all your current stacks as well as launch and preview HOT
-templates.
+This page lists every stack in the current project and is where new stacks are created.
 
-![Horizon Stacks page listing existing stacks](images/heat_dashboard.png)
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Orchestration -> Stacks**.
+
+![Stacks page in Horizon](images/hz-stacks.png)
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Orchestration -> Stacks**.
+
+![Stacks page listing existing stacks](images/skyline-stack-list.png)
+
+</TabItem>
+</Tabs>
 
 ### Architecture
 
-Heat API receives rest API calls from the following sources: Horizon,
+Heat API receives rest API calls from the following sources: the dashboard,
 HOT Templates, and through the Heat Client. The Heat API is then passed
 to RabbitMQ or another message broker which activates the Heat
 Orchestration Engine. The Heat Orchestration Engine then connects to
@@ -138,66 +153,99 @@ Example Heat Orchestration Template:
           flavor: { get_param: instance_type }
           security_groups: { get_param: security_groups }
 
-## Deploying a Heat Template in Horizon
+## Deploying a Heat Template
 
-To deploy a heat template in Horizon, first, check to see that you have
-selected the appropriate project for your deployment and then navigate
-to **Project -\> Orchestration -\> Stacks** and locate **Launch Stack**
-near the top right.
+Confirm you have the correct project selected.
 
-![Launch Stack button on the Stacks page](images/launch-stack.png)
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
 
-**Figure 1:** Launch Stack
+Go to **Project -> Orchestration -> Stacks** and click **Launch Stack**.
 
-For this example, we have uploaded the template example as a file called
-`hot_example.yml` using the **Choose File** button. After uploading your
-example template, click **Next**.
+![Select Template dialog in Horizon](images/hz-launch-stack.png)
 
-![Select Template dialog with template file](images/select-template.png)
+**Figure 1:** Select Template
 
-**Figure 2:** Select Template
+- **Template Source**: **File** to upload the template, or **Direct Input** to paste it.
+- **Environment Source**: optional.
 
-For the example template listed above, the following parameters are
-needed to launch a running instance:
+Click **Next**. Horizon reads the template's `parameters` section and renders an input for each one, alongside **Stack Name**, **Creation Timeout**, **Rollback On Failure**, and the password for your user.
 
-- Stack Name
-- Image
-- Instance Type
-- Key
-- Network
-- Security groups
+Click **Launch** to create the stack.
 
-In the Launch stack window, fill out the following parameters with the
-type of stack you wish to deploy.
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
-**Note:** Instance type refers to the flavor of instance you wish to set
-up.
+Go to **Orchestration -> Stacks** and click **Create Stack**. This opens a two-step wizard.
 
-![Launch Stack dialog with stack parameters](images/launch-stack-2.png)
+### Step 1: Prepare Template
 
-**Figure 3:** Launch Stack
+Paste the template into **Template Content**, or upload it as a file. Give it a **Template Name**.
 
-## Viewing Recently Deployed Stacks in Horizon
+![Create Stack, Prepare Template step](images/skyline-create-stack-template.png)
 
-To view recently deployed stacks in Horizon, switch to the appropriate
-project where the stack was created. Then navigate to **Project -\>
-Orchestration -\> Stacks** to view all created stacks.
+**Figure 1:** Prepare Template
 
-![Test stack listed in the admin project](images/admin-created-stack.png)
+Click **Next**.
 
-**Figure 4:** Stacks Created within Admin Project
+### Step 2: Orchestration information
 
-Figure 4 shows the newly created test stack that was created by the
-example. You have the option to check the stack as well as view its
-current status.
+Skyline reads the template's `parameters` section and renders an input for each one. For the example template above, that is:
 
-If you need additional information, click the link under **Stack Name**
-and you can view an overview of the stack information, resources,
-events, and even a copy of the template used to create the stack.
+- **Stack Name**
+- **Creation Timeout (Minutes)**
+- **Fail Rollback**
+- **Key Name**
+- **Image ID**
+- **Instance Type** — the flavor
+- **network_name**
+- **security_groups**
 
-![Stack overview with resources and events](images/test-stack-overview.png)
+![Create Stack, Orchestration information step](images/skyline-create-stack-params.png)
 
-**Figure 5:** Overview of Test Stack
+**Figure 2:** Orchestration information
+
+Click **OK** to create the stack.
+
+</TabItem>
+</Tabs>
+
+## Viewing Recently Deployed Stacks
+
+Switch to the project where the stack was created. The list shows the stack and its current status. Click the stack name for its detail page, which includes a copy of the template used to create it.
+
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Orchestration -> Stacks**.
+
+![Stacks list in Horizon](images/hz-stacks.png)
+
+**Figure 2:** Stacks Created within Admin Project
+
+The detail page tabs are **Topology**, **Overview**, **Resources**, **Events**, and **Template**.
+
+![Stack detail page in Horizon](images/hz-stack-detail.png)
+
+**Figure 3:** Overview of Test Stack
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Orchestration -> Stacks**.
+
+![Stacks list showing the test stack](images/skyline-stack-list.png)
+
+**Figure 3:** Stacks Created within Admin Project
+
+The detail page tabs are **Detail**, **Stack Resources**, **Stack Events**, and **YAML File**.
+
+![Stack detail page](images/skyline-stack-detail.png)
+
+**Figure 4:** Overview of Test Stack
+
+</TabItem>
+</Tabs>
 
 ## Additional Resources for OpenStack Heat Service
 

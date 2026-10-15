@@ -3,6 +3,10 @@ sidebar_position: 3
 ---
 # Manage and Upload Images in OpenStack Horizon
 
+:::info
+This guide is for PCC v3. For PCC v4, see [Manage and Upload Images](/operators-manual/day-1/images).
+:::
+
 ## Introduction
 
 This guide provides instructions for how to upload an image into

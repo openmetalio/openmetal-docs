@@ -1,12 +1,15 @@
 ---
 sidebar_position: 5
 ---
-# How to Live Migrate Instances Using OpenStack Horizon
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# How to Live Migrate Instances
 
 ## Introduction
 
 This guide provides instructions for cloud administrators on how to
-migrate instances through your Horizon dashboard. Migration is the
+migrate instances through the dashboard. Migration is the
 process that a server administrator can move instances to a different
 host. Live migration keeps instances in an active state during the
 migration process. This process is useful when applications need to
@@ -20,49 +23,72 @@ administrator role. This is typically the account called **admin**.
 
 ## Determining an Instance's Parent Host
 
-To determine an instance's parent host, navigate to **Admin -\> Compute
--\> Instances**. You have the option to see the project, the host, as
-well as the IP address, and the state of your instance.
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
 
-![Admin instances list showing project, host, IP address, and state](images/all-instance-list.png)
+Go to **Admin -> Compute -> Instances**. The list shows each instance's project, host, IP address, and status.
+
+![Admin instances list in Horizon](images/hz-admin-instances.png)
 
 **Figure 1:** Summary of Instances
 
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Switch to the **Administrator** console and go to **Compute -> Instances**. The list shows each instance's project, host, IP address, and status.
+
+![Administrator instances list showing project, host, IP, and status](images/skyline-admin-instances.png)
+
+**Figure 1:** Summary of Instances
+
+</TabItem>
+</Tabs>
+
 ## Migrate Instance
 
-Once you have determined the instance you want to migrate, navigate to
-**Admin -\> Compute -\> Instances**. On this page, you are presented
-with a series of actions. To access these actions click the small
-triangle next to the button called **Rescue Instance**.
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
 
-![Drop-down arrow next to the Rescue Instance button](images/figure2.png)
+In the same list, open the actions menu at the end of the instance's row and choose **Live Migrate Instance**.
 
-**Figure 2:** Link for Live Migration Drop Down Menu
+![Instance actions menu in Horizon](images/hz-instance-actions.png)
 
-From the drop-down menu, select **Live Migrate Instance**.
+**Figure 2:** Live Migrate action
 
-![Drop-down menu with the Live Migrate Instance option](images/figure3.png)
+![Live Migrate dialog in Horizon](images/hz-live-migrate.png)
 
-**Figure 3:** Drop down menu for live migration
+**Figure 3:** Live Migration Options
 
-Within Live Migrate, the options for **Disk Over Commit** and **Block
-Migration** are options for local storage. Block live migration uses
-ephemeral disks on instances. These disks are not shared between source
-and destination hosts. The storage for OpenMetal uses a shared storage
-system through Ceph. Because of the shared storage system in OpenMetal,
-neither option should be selected.
+- **Current Host**: read-only, the host it runs on now.
+- **New Host**: leave on **Automatically schedule new host**, or pick one.
+- **Disk Over Commit** and **Block Migration**: leave both unchecked.
 
-![Live Migrate dialog with Disk Over Commit and Block Migration options](images/figure4.png)
+Click **Submit**.
 
-**Figure 4:** Live Migration Options
+</TabItem>
+<TabItem value="skyline" label="Skyline">
 
-Live Migrate does have the option to either auto-select a new host or to
-choose one manually. If you have a specific node for your instance,
-select the name of the node under the **New Host** option. Once you have
-made your selection, click submit. During the live migration process, a
-status bar appears under tasks, upon completion, the task returns to
-none and your instance host changes to a new node.
+In the same list, find the instance and choose **More -> Live Migrate**.
 
-![Admin instances list with Migrating status and task progress bar](images/figure5.png)
+![Instance row menu with the Live Migrate option](images/skyline-instance-more-menu.png)
 
-**Figure 5:** Task list for migrating instances
+**Figure 2:** Live Migrate action
+
+![Live Migrate dialog showing current and target compute host](images/skyline-live-migrate.png)
+
+**Figure 3:** Live Migration Options
+
+- **Instance**: the instance being migrated.
+- **Current Compute Host**: read-only, the host it runs on now.
+- **Target Compute Host**: leave unset to let the scheduler choose, or pick a specific host.
+
+Click **OK**.
+
+Skyline does not expose the **Disk Over Commit** or **Block Migration** options that Horizon offers. Both apply only to local ephemeral storage.
+
+</TabItem>
+</Tabs>
+
+The instance's **Status** changes while it migrates, and its **Host** updates when the migration completes.
+
+OpenMetal uses shared storage through Ceph, so block migration is not required.
