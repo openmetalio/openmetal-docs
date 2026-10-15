@@ -26,60 +26,36 @@ For example:
 
     # ceph status
       cluster:
-        id:     34fa49b3-fff8-4702-8b17-4e8d873c845f
-        health: HEALTH_WARN
-                clock skew detected on mon.little-pelican, mon.successful-magpie
-                2 daemons have recently crashed
-    
+        id:     784024f5-a70c-11f1-8d14-3cecef4000ec
+        health: HEALTH_OK
+
       services:
-        mon: 3 daemons, quorum infallible-eagle,little-pelican,successful-magpie (age 5d)
-        mgr: relaxed-flamingo(active, since 5d), standbys: little-pelican, successful-magpie
-        osd: 4 osds: 4 up (since 5d), 4 in (since 13d)
-        rgw: 3 daemons active (little-pelican.rgw0, successful-magpie.rgw0, relaxed-flamingo.rgw0)
-    
-      task status:
-    
+        mon: 3 daemons, quorum infallible-eagle,little-pelican,successful-magpie (age 6w)
+        mgr: infallible-eagle.kenzmu(active, since 6w), standbys: little-pelican.zdakcx, successful-magpie.jdspzd
+        osd: 3 osds: 3 up (since 6w), 3 in (since 6w)
+        rgw: 3 daemons active (3 hosts, 1 zones)
+
       data:
-        pools:   13 pools, 337 pgs
-        objects: 110.16k objects, 388 GiB
-        usage:   1.1 TiB used, 11 TiB / 12 TiB avail
-        pgs:     337 active+clean
-    
-      io:
-        client:   381 KiB/s rd, 1.2 MiB/s wr, 444 op/s rd, 214 op/s wr
+        pools:   10 pools, 227 pgs
+        objects: 3.01k objects, 20 GiB
+        usage:   60 GiB used, 4.3 TiB / 4.4 TiB avail
+        pgs:     227 active+clean
 
 ## Ceph Log Files
 
-Ceph's log files are stored in `/var/log/ceph/` within each control
-plane node.
+Ceph runs in containers managed by cephadm. Log files are stored in `/var/log/ceph/<fsid>/` on each control plane node, where `<fsid>` is the cluster ID shown by `ceph status`:
 
-For example, listed are all log files for host `little-pelican`:
+    # ls -1 /var/log/ceph/784024f5-a70c-11f1-8d14-3cecef4000ec/
+    ceph-osd.1.log
+    ceph-volume.log
 
-    # ls -1 /var/log/ceph/*.log
-    /var/log/ceph/ceph.audit.log
-    /var/log/ceph/ceph.log
-    /var/log/ceph/ceph-mgr.little-pelican.log
-    /var/log/ceph/ceph-mon.little-pelican.log
-    /var/log/ceph/ceph-osd.1.log
-    /var/log/ceph/ceph-rgw-little-pelican.rgw0.log
-    /var/log/ceph/ceph-volume.log
+The Monitor, Manager, and RADOS Gateway daemons log to the systemd journal. List the daemons on a node:
 
-A OpenMetal Ceph cluster is comprised of several services: Ceph's
-Manager, Monitor, OSD, and RADOSGW
+    # cephadm ls --no-detail | grep '"name"'
 
-Ceph has a primary log file, log files for each service, and additional
-log files.
+Then view a daemon's log:
 
-For example:
-
-- **Primary Log File**: `/var/log/ceph/ceph.log`
-- **Ceph Monitor Log File**:
-    `/var/log/ceph/ceph-mon.little-pelican.log`
-- **Ceph RADOSGW Log File**:
-    `/var/log/ceph/ceph-rgw-little-pelican.rgw0.log`
-
-If you are unsure which Ceph service's log to look through, consider
-starting with the primary log file, `/var/log/ceph/ceph.log`.
+    # cephadm logs --name mon.little-pelican
 
 ## Common Issues
 

@@ -54,8 +54,8 @@ For the full listing and how to search it, see [Guidelines for Searching through
 Run from a control plane node.
 
 ```shell
-docker exec ovn_nb_db ovn-nbctl --db unix:/var/run/ovn/ovnnb_db.sock show
-docker exec ovn_sb_db ovn-sbctl --db unix:/var/run/ovn/ovnsb_db.sock show
+docker exec ovn_nb_db ovn-nbctl --no-leader-only --db unix:/var/run/ovn/ovnnb_db.sock show
+docker exec ovn_sb_db ovn-sbctl --no-leader-only --db unix:/var/run/ovn/ovnsb_db.sock show
 docker exec openvswitch_db ovs-vsctl show
 ```
 

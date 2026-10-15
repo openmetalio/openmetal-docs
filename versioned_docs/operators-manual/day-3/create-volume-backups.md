@@ -12,7 +12,7 @@ With Private Clouds, you have the ability to create backups and
 snapshots of your volume data. If a volume's data goes corrupt or is
 removed by mistake, having a copy of that data could be invaluable. In
 this guide, we explain how to create and recover volume backups using
-Skyline.
+Horizon or Skyline.
 
 ## Create a Volume Backup
 

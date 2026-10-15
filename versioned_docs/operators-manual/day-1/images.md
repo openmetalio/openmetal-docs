@@ -68,7 +68,7 @@ Click **OK**.
 </TabItem>
 </Tabs>
 
-Ceph-backed clouds perform best with `RAW`, because QCOW2 images are converted on upload.
+Ceph-backed clouds perform best with `RAW`. Ceph clones a RAW image to create an instance or volume. A QCOW2 image cannot be cloned, so it is converted every time an instance or volume is created from it. Images added through Glance's image import are converted to RAW automatically.
 
 The image stays in `queued` or `saving` until the upload finishes.
 

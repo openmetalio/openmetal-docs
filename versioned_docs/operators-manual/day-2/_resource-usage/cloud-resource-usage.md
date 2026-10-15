@@ -119,7 +119,7 @@ page.
 
 In order to add additional hardware for your cluster, first review
 [Cloud Hardware Best
-Practices](../../day-3/add-remove-hardware-nodes#cloud-hardware-selection-best-practices).
+Practices](../../day-3/add-remove-hardware-nodes#cloud-hardware-selection).
 This is to ensure that you have selected the appropriate node for your
 cloud. Once you have selected the appropriate node, navigate to
 [OpenMetal Central](https://central.openmetal.io) and click on your

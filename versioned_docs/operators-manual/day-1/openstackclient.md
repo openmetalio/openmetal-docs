@@ -93,14 +93,17 @@ List the instances in your project:
 
 ## Switch project
 
-An OpenRC file is scoped to one project. To use another, copy the file and change the project name:
+An OpenRC file is scoped to one project. To use another, copy the file and set the new project's name and ID:
 
+    export OS_PROJECT_ID=<project-id>
     export OS_PROJECT_NAME=<project>
 
-Source the copy, then confirm which project is active:
+`OS_PROJECT_ID` takes precedence over `OS_PROJECT_NAME`, so changing only the name leaves you in the original project.
 
-    $ env | grep OS_PROJECT_NAME
-    OS_PROJECT_NAME=Development
+Source the copy, then confirm which project the token is scoped to:
+
+    $ openstack token issue -c project_id -f value
+    5b1e8f3c9d2a4e7f8a6b0c1d2e3f4a5b
 
 ## Command structure
 

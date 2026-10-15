@@ -102,7 +102,7 @@ Clear **Show Instances** to reduce the diagram to networks and routers.
 
 ## Create a security group
 
-Security groups control traffic to and from instances. The **default** group denies all inbound traffic and allows all outbound traffic.
+Security groups control traffic to and from instances. The **default** group allows inbound traffic only from instances in the same group, and allows all outbound traffic.
 
 <Tabs groupId="dashboard">
 <TabItem value="hz" label="Horizon" default>

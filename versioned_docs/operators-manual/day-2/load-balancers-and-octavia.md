@@ -3,21 +3,12 @@ sidebar_position: 7
 ---
 # Load Balancers and Octavia
 
-Octavia provides load balancing as a service. Which provider driver you get is decided by the Neutron plugin, not by a separate setting.
-
-| `neutron_plugin_agent` | Octavia provider |
-|---|---|
-| `ovn` | OVN |
-| `openvswitch` | Amphora |
-
-v4 defaults to `ovn`, so a v4 cloud gets the OVN provider unless it was deployed otherwise.
+Octavia provides load balancing as a service. v4 clouds use OVN networking, so load balancers use Octavia's OVN provider.
 
 :::danger Amphora load balancers are not available on an OVN cloud
 The OVN provider is L4 only. It has no TLS termination, no L7 routing, no HTTP health checks, and no session persistence.
 
-The provider follows `neutron_plugin_agent`, which is a deploy-time, one-way decision. A cloud deployed on OVN cannot be converted to OVS afterwards, so the only way to get Amphora is to rebuild the cloud.
-
-If a customer needs Amphora features, set `neutron_plugin_agent: openvswitch` before the first main Kolla Ansible configuration run.
+Amphora requires a cloud built with OVS networking, and an OVN cloud cannot be converted to OVS. If you need Amphora, contact us before you deploy workloads. We rebuild the cloud with OVS and the Amphora provider.
 :::
 
 ## OVN provider
@@ -33,7 +24,7 @@ It is a plain L4 packet balancer. TCP and UDP only, `SOURCE_IP_PORT` as the only
 
 ## Amphora provider
 
-Octavia boots one HAProxy instance per load balancer, or two in `ACTIVE_STANDBY` topology, onto the load balancer management network and drives it through the health manager.
+On an OVS cloud, Octavia boots one HAProxy instance per load balancer, or two in `ACTIVE_STANDBY` topology, onto the load balancer management network and drives it through the health manager.
 
 This is the full-feature option: L7 routing, TLS termination through Barbican, every balancing algorithm, HTTP and HTTPS health monitors, session persistence, member weights, and flavors.
 
@@ -48,6 +39,6 @@ Upstream maintains a per-API-field support matrix. Use it rather than a summary,
 
 ## Choosing
 
-Customers who spread L4 traffic across a pool of backends are served by the OVN provider.
+The OVN provider covers spreading L4 traffic across a pool of backends.
 
-Customers who terminate TLS at the load balancer, route by hostname or path, or rely on cookie-based session persistence need Amphora, and therefore need an OVS cloud. Confirm this before deployment.
+Terminating TLS at the load balancer, routing by hostname or path, or cookie-based session persistence needs Amphora. Contact us before deployment.

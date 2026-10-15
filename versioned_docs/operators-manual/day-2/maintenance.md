@@ -59,23 +59,23 @@ service within SystemD are stopped and disabled. For example:
 
 ### Upgrade Host OS Packages
 
-After verifying the Docker socket and service are stopped, perform the
-package manager updates.:
+After verifying the Docker socket and service are stopped, update the
+packages:
 
-    dnf upgrade
+    apt update
+    apt upgrade
 
 ### Determine Reboot Need
 
-Once package manager completes, check if a reboot is required with
-dnf-utils `needs-restarting` and the reboot hint flag (-r):
+A new kernel requires a reboot. Compare the running kernel with the
+installed kernels:
 
-    $ needs-restarting -r
-    Core libraries or services have been updated since boot-up:
-      * kernel
-      * systemd
-    Reboot is required to fully utilize these updates.
-    More information: https://access.redhat.com/solutions/27943
-    $
+    $ uname -r
+    6.8.0-138-generic
+    $ ls /lib/modules
+    6.8.0-138-generic  6.8.0-140-generic
+
+If `/lib/modules` lists a newer version than `uname -r`, reboot the node.
 
 ### Ceph Maintenance
 
@@ -98,16 +98,26 @@ parameters must be unset. To unset this configuration, perform:
     ceph osd unset noout
     ceph osd unset norebalance
 
+### Enable Docker
+
+Re-enable and start the Docker socket and service, whether or not a
+reboot is required:
+
+    systemctl enable docker.socket
+    systemctl start docker.socket
+    systemctl enable docker.service
+    systemctl start docker.service
+
 ### Reboot if Required
 
 Reboot the node if required:
 
     shutdown -r now
 
-### Verify Successful Reboot
+### Verify Containers
 
-When the node comes back online, SSH into it to verify the OpenStack
-Docker containers have started. Additionally, if this node was part of
+If you rebooted, SSH into the node once it is back online. Verify the
+OpenStack Docker containers have started. Additionally, if this node was part of
 the Ceph cluster, check Ceph's cluster status.
 
 To verify the Docker containers have started, use `docker ps`. You
@@ -116,7 +126,7 @@ column, each container should reflect the status `Up`.
 
 For example:
 
-    [root@smiling-pelican ~]# docker ps
+    root@smiling-pelican:~# docker ps
     CONTAINER ID   IMAGE                                                                        COMMAND                  CREATED        STATUS                    PORTS     NAMES
     62e119179bb4   registry.flexmetal.net/kolla/skyline-console:2026.1-ubuntu-noble             "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               skyline_console
     b3767f16dead   registry.flexmetal.net/kolla/skyline-apiserver:2026.1-ubuntu-noble           "dumb-init --single-…"   44 hours ago   Up 44 hours (healthy)               skyline_apiserver
@@ -129,7 +139,7 @@ Next, if this node is part of a Ceph cluster, check Ceph's status using
 
 For example:
 
-    [root@smiling-pelican ~]# ceph status
+    root@smiling-pelican:~# ceph status
       cluster:
         id:     06bf4555-7c0c-4b96-a3b7-502bf8f6f213
         health: HEALTH_OK

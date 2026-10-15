@@ -103,22 +103,13 @@ this.
 
 #### Before Making Changes
 
-Before any changes are made to the Kolla Ansible configuration, the
-following variables in `/etc/kolla/globals.yml` should not be modified,
-otherwise they will be overwritten:
+`/etc/kolla/globals.yml` is regenerated on every OpenMetal deployment run, so edits made to it directly are lost. OpenMetal records the settings where your cloud differs from our defaults, and those are kept.
 
-    api_interface
-    cluster_interface
-    network_interface
-    tunnel_interface
-    kolla_enable_tls_external
-    kolla_external_fqdn
-    kolla_external_vip_address
-    kolla_internal_vip_address
-    openstack_region_name
+Per-cloud values are set in `/etc/kolla/globals.d/custom-globals.yml`. Do not modify this file.
 
-For more information, see the section titled [Before
-Proceeding](#before-proceeding) at the top of this guide.
+Changes to OpenStack service configuration files under `/etc/kolla/config` are not yet tracked and can be lost in the same way.
+
+To change your cloud's configuration, [submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) and our team makes the change.
 
 ### Prepare Kolla Ansible Environment
 
@@ -139,7 +130,7 @@ Kolla Ansible configuration:
 
 Create a Python virtual environment and activate it:
 
-    cd /opt/kolla-ansible
+    cd /opt/kolla-ansible-cli
     python3 -m venv .venv
     source .venv/bin/activate
 

@@ -151,8 +151,8 @@ Control plane nodes in OpenMetal Central are prefixed with **Cloud
 Core** and can be distinguished from other nodes by inspecting the
 **Class** column in your cloud's assets page in OpenMetal Central.
 
-For example, in the following screenshot the three nodes classified
-**Cloud Core - Small** are control plane nodes:
+For example, in the following screenshot the three nodes whose class
+begins with **Cloud Core** are control plane nodes:
 
 ![Node classes in the cloud assets list](images/post-addition-success.png)
 
@@ -180,5 +180,4 @@ Open the three dots menu at the end of the node's row and choose
 **Figure 8:** Node actions menu
 
 The same menu holds the other per-node actions: **Details**, **Edit Node**,
-**IPMI Access**, the power and restart controls, **Reprovision Node**, and
-**Replace Node**.
+**IPMI Access**, and the power and restart controls.

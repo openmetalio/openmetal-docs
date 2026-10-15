@@ -3,7 +3,7 @@ sidebar_position: 8
 ---
 # Manage the Node Firewall
 
-PCC v4 deploys a host firewall to every node. It is built from `ufw` and `ipset` by the [firewall-ansible](https://github.com/openmetalio/firewall-ansible) role and is applied by default. There is nothing to install.
+PCC v4 deploys a host firewall to every node. It is built from `ufw` and `ipset` by the `firewall-ansible` playbook and is applied by default. There is nothing to install.
 
 ## Default policy
 

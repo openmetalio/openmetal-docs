@@ -24,7 +24,7 @@ Click **Create Project**.
 - **Enabled**: leave checked.
 - **Description**: optional.
 
-The **Project Members**, **Project Groups**, and **Quotas** tabs assign users and set limits during creation. Both can be changed later.
+The **Project Members** and **Project Groups** tabs assign users and groups during creation. Both can be changed later.
 
 Click **Create Project**.
 
