@@ -61,75 +61,48 @@ Then view a daemon's log:
 
 ### Clock Skew
 
-Ceph has a number of health checks, including one for clock skew, called
-`MON_CLOCK_SKEW`. For more, see Ceph's [Health
-Checks](https://docs.ceph.com/en/latest/rados/operations/health-checks/)
-guide and look for the text **MON\_CLOCK\_SKEW**. Ceph in our
-configuration uses `chronyd` to sync each node's clock. Kolla Ansible is
-responsible for installing and configuring `chronyd` into a Docker
-container for each Ceph Monitor node. To administer `chronyd` you must
-do so through Docker.
+Ceph has a health check for clock skew between Monitors, called `MON_CLOCK_SKEW`. For more, see Ceph's [Health Checks](https://docs.ceph.com/en/squid/rados/operations/health-checks/) guide. Each node keeps its clock in sync with `chrony`, which runs on the host as a systemd service.
 
 #### Confirm Ceph's Health
 
-To confirm the status of this health check, execute `ceph status` and
-examine the output.
+Run `ceph health detail`:
 
-For example:
-
-    cluster:
-      id:     34fa49b3-fff8-4702-8b17-4e8d873c845f
-      health: HEALTH_WARN
-              clock skew detected on mon.little-pelican, mon.successful-magpie
-    [...output truncated...]
-
-Alternatively, execute `ceph health detail` to only see the status of
-health checks.
-
-For example:
-
+    # ceph health detail
     HEALTH_WARN clock skew detected on mon.little-pelican, mon.successful-magpie
     [WRN] MON_CLOCK_SKEW: clock skew detected on mon.little-pelican, mon.successful-magpie
         mon.little-pelican clock skew 0.663159s > max 0.05s (latency 0.000399254s)
         mon.successful-magpie clock skew 0.368233s > max 0.05s (latency 0.000385143s)
 
-#### Examine Chrony Logs
+To see the skew Ceph measures for each Monitor, use `ceph time-sync-status`.
 
-From here, you may want to examine the logs for each `chrony` Docker
-instance running.
+#### Check chrony
 
-For example:
+On each node listed in the warning, check that `chrony` is running and synchronized:
 
-    docker logs chrony
+    # systemctl status chrony
+    # chronyc tracking
+    # chronyc sources
 
-Alternatively, consider viewing logs on the local file system for
-`chrony` via `/var/log/kolla/chrony/`.
+`chronyc tracking` shows the current offset under **System time**. `chronyc sources` lists the NTP servers in use; a reachable, selected source is marked `^*`.
 
-#### Addressing Clock Skew
+`chrony` logs to the systemd journal:
 
-There may be a number of methods to addressing clock skew. In this
-example, we outline addressing this issue by restarting `chrony` for
-each node.
+    # journalctl -u chrony
 
-To address the `MON_CLOCK_SKEW` for the example output in this section,
-the Docker container `chrony` was restarted for each node. For example:
+#### Address Clock Skew
 
-    # docker restart chrony
-    chrony
+Restart `chrony` on each affected node:
 
-Next, perform the same Ceph health check as before to confirm the
-status. For example:
+    # systemctl restart chrony
+
+To step the clock immediately rather than slewing it gradually, run:
+
+    # chronyc makestep
+
+Then confirm the warning has cleared:
 
     # ceph health detail
     HEALTH_OK
-
-If the clock skew issue is no longer present, you should see the status
-of `HEALTH_OK` assuming there are no other issues with the Ceph cluster.
-
-**Note\!** -- Restarting `chrony` may be a heavy handed approach to
-addressing the issue. Consider alternatively making using of `chronyc`'s
-`tracking`, `sources`, and `sourcestats` subcommands to diagnose clock
-skew issues.
 
 ## References
 

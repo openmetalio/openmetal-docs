@@ -17,7 +17,7 @@ Under OVS, Neutron ran a set of Python agents on every node and drove them over 
 
 | | OVS | OVN |
 |---|---|---|
-| Neutron agents per node | openvswitch, L3, DHCP, metadata | metadata only |
+| Neutron agents per node | openvswitch, L3, DHCP, metadata | OVN, metadata, metering |
 | Routing | centralised, unless DVR is enabled | distributed |
 | Router failover | L3 agent HA, off by default | built in |
 | Tenant network type | VXLAN | Geneve |
@@ -33,7 +33,9 @@ Routing and DHCP are answered from flows on the hypervisor rather than by agents
 | `ovn_sb_db` | Southbound database, the flows each node consumes |
 | `ovn_sb_db_relay` | Scales southbound reads for larger clouds |
 | `ovn_controller` | Runs on every node and programs local flows |
+| `neutron_ovn_agent` | Runs Neutron's OVN agent extensions on each node |
 | `neutron_ovn_metadata_agent` | Serves instance metadata |
+| `neutron_metering_agent` | Measures L3 traffic for metering |
 | `neutron_ovn_maintenance_worker` | Reconciles Neutron state into OVN |
 
 ## Logs
