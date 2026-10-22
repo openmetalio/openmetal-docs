@@ -65,6 +65,7 @@ const config = {
     </body>
   </html>`,
   plugins: [
+    'docusaurus-plugin-image-zoom',
     // Operators Manual instance (versioned)
     [
       '@docusaurus/plugin-content-docs',
@@ -76,8 +77,12 @@ const config = {
         editUrl: 'https://github.com/openmetalio/openmetal-docs/blob/main/',
         versions: {
           current: {
-            label: 'v3 (Latest)',
+            label: 'v4',
             path: '',
+          },
+          '3.0': {
+            label: '3.0',
+            path: 'operators_versioned_docs/version-3.0',
           },
           '2.0': {
             label: '2.0',
@@ -89,7 +94,7 @@ const config = {
           },
         },
         lastVersion: 'current',
-        onlyIncludeVersions: ['current', '2.0', '1.0'],
+        onlyIncludeVersions: ['current', '3.0', '2.0', '1.0'],
       },
     ],
     [
@@ -112,6 +117,38 @@ const config = {
             from: '/kubernetes-guides/installing-an-okd-cluster-on-openstack',
             to: '/kubernetes-guides/installing-an-openshift-cluster-on-openstack',
           },
+          {
+            from: '/operators-manual/day-1/horizon/getting-started-with-horizon',
+            to: '/operators-manual/day-1/getting-started-with-dashboard',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/create-user-project',
+            to: '/operators-manual/day-1/create-user-project',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/create-first-instance',
+            to: '/operators-manual/day-1/create-first-instance',
+          },
+          {
+            from: '/operators-manual/day-1/horizon/images',
+            to: '/operators-manual/day-1/images',
+          },
+          {
+            from: '/operators-manual/day-1/command-line/openstackclient',
+            to: '/operators-manual/day-1/openstackclient',
+          },
+          {
+            from: '/operators-manual/day-1/command-line/create-ssh-key',
+            to: '/operators-manual/day-1/create-ssh-key',
+          },
+          {
+            from: '/operators-manual/day-2/manage-node-firewall-with-iptables',
+            to: '/operators-manual/operators_versioned_docs/version-3.0/day-2/manage-node-firewall-with-iptables',
+          },
+          {
+            from: '/operators-manual/day-4/watcher/watcher-demo',
+            to: '/operators-manual/operators_versioned_docs/version-3.0/day-4/watcher/watcher-demo',
+          },
         ],
       },
     ],
@@ -119,6 +156,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: '.theme-doc-markdown.markdown img',
+        background: { light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(16, 23, 42, 0.95)' },
+      },
       metadata: [{
           name: 'twitter:site',
           content: '@openmetalio'

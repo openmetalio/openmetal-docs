@@ -17,15 +17,9 @@ configuration changes can be made.
 
 ## Before Proceeding
 
-**WARNING\!** -- Our current deployment system deploys a Private Cloud
-with a known working state. Should you deviate from this state by
-adjusting your cloud's OpenStack configuration you can no longer safely
-use the functions in OpenMetal Central to add nodes to your cloud or add
-IP blocks. Should you use these functions, any custom configurations
-will be reverted. We are working on rolling out a new deployment system
-allowing custom cloud configurations. We can still help you modify your
-cloud, but must do so manually. Please reach out to your Account Manager
-should this apply to you.
+:::danger
+Each time OpenMetal's deployment automation runs against your cloud after the initial deployment, such as when you add a node in Central, it reverts configuration changes that OpenMetal has not recorded. [Submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) before you change your cloud's configuration.
+:::
 
 ## Prerequisites
 
@@ -34,11 +28,9 @@ should this apply to you.
 
 ## Using Kolla Ansible
 
-**Caution\!** Ensure the node from which you are working contains the
-directory `/etc/kolla/config`. This directory exists in the control plane nodes
-and is used to provide our custom configuration to OpenStack services. Control
-plane nodes are labeled as "Cloud Core" in the Assets page of your cloud in
-OpenMetal Central.
+:::danger
+Work from a control plane node that contains `/etc/kolla/config`. Control plane nodes are labeled **Cloud Core** on your cloud's **Assets** page in OpenMetal Central.
+:::
 
 ### Add SSH key for Kolla Ansible
 
@@ -103,27 +95,13 @@ this.
 
 #### Before Making Changes
 
-Before any changes are made to the Kolla Ansible configuration, the
-following variables in `/etc/kolla/globals.yml` should not be modified,
-otherwise they will be overwritten:
+OpenMetal's deployment automation regenerates `/etc/kolla/globals.yml` each time it runs, so direct edits to the file are lost. OpenMetal records the settings where your cloud differs from our defaults, and the automation keeps those.
 
-    api_interface
-    cluster_interface
-    dns_interface
-    docker_registry_insecure
-    kolla_enable_tls_external
-    kolla_external_fqdn
-    kolla_external_vip_address
-    kolla_internal_vip_address
-    migration_interface
-    network_interface
-    neutron_external_interface
-    openstack_region_name
-    storage_interface
-    tunnel_interface
+Per-cloud values are set in `/etc/kolla/globals.d/custom-globals.yml`. Do not modify this file.
 
-For more information, see the section titled [Before
-Proceeding](#before-proceeding) at the top of this guide.
+Changes to OpenStack service configuration files under `/etc/kolla/config` are not yet tracked and can be lost in the same way.
+
+To change your cloud's configuration, [submit a support ticket](../../day-1/intro-to-openmetal-private-cloud.md#submit-a-support-ticket) and our team makes the change.
 
 ### Prepare Kolla Ansible Environment
 
@@ -144,7 +122,7 @@ Kolla Ansible configuration:
 
 Create a Python virtual environment and activate it:
 
-    cd /opt/kolla-ansible
+    cd /opt/kolla-ansible-cli
     python3 -m venv .venv
     source .venv/bin/activate
 
@@ -166,14 +144,6 @@ Install Kolla Ansible and its dependencies:
 
     pip install -r requirements.txt
 
-Should `requirements.txt` not exist, you can ask us to sync that file to your
-cloud.
-
-For our latest deployments running OpenStack 2023.2, `requirements.txt` should contain:
-
-    ansible-core==2.15.*
-    kolla-ansible==17.3.*
-
 #### **Step 5** -- Install Ansible Galaxy dependencies
 
 Install Ansible Galaxy dependencies using:
@@ -188,14 +158,12 @@ commands by running `kolla-ansible --help`. There are a number of
 functions possible, including maintenance tasks or making configuration
 changes to your Private Cloud.
 
-**Caution\!** -- Kolla Ansible's configuration is set through the file
-`/etc/kolla/globals.yml` where some variables should not be changed. See
-the section titled [Before Making
-Changes](prepare-kolla-ansible#before-making-changes)
-at the top of this guide for more information.
+:::danger
+OpenMetal's deployment automation overwrites edits to `/etc/kolla/globals.yml` each time it runs. See [Before Making Changes](#before-making-changes).
+:::
 
-An example configuration change made at this step is to enable TLS for
-Horizon. Enabling TLS falls outside the scope of this guide. For
+An example configuration change made at this step is to enable TLS.
+Enabling TLS falls outside the scope of this guide. For
 instruction on how to do so, see [How to Enable TLS for
 OpenStack](enable-tls).
 
@@ -206,6 +174,6 @@ Kolla](https://docs.openstack.org/kolla-ansible/latest/user/operating-kolla.html
 ## References
 
 - [OpenStack Kolla Ansible
-    documentation](https://docs.openstack.org/kolla-ansible/2023.2/)
+    documentation](https://docs.openstack.org/kolla-ansible/2026.1/)
 - [Kolla Ansible Quick
-    Start](https://docs.openstack.org/kolla-ansible/2023.2/user/quickstart.html)
+    Start](https://docs.openstack.org/kolla-ansible/2026.1/user/quickstart.html)

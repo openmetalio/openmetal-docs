@@ -38,13 +38,14 @@ For example, to see all logs associated with the Neutron service, `ls`
 the directory `/var/log/kolla/neutron`:
 
     # ls /var/log/kolla/neutron/*.log
-    /var/log/kolla/neutron/dnsmasq.log
-    /var/log/kolla/neutron/neutron-dhcp-agent.log
-    /var/log/kolla/neutron/neutron-l3-agent.log
-    /var/log/kolla/neutron/neutron-metadata-agent.log
     /var/log/kolla/neutron/neutron-metering-agent.log
-    /var/log/kolla/neutron/neutron-netns-cleanup.log
-    /var/log/kolla/neutron/neutron-openvswitch-agent.log
+    /var/log/kolla/neutron/neutron-ovn-agent.log
+    /var/log/kolla/neutron/neutron-ovn-maintenance-worker.log
+    /var/log/kolla/neutron/neutron-ovn-metadata-agent.log
+    /var/log/kolla/neutron/neutron-ovn-vpn-agent.log
+    /var/log/kolla/neutron/neutron-periodic-workers.log
+    /var/log/kolla/neutron/neutron-rpc-server.log
+    /var/log/kolla/neutron/neutron-server-uwsgi.log
     /var/log/kolla/neutron/neutron-server.log
     /var/log/kolla/neutron/privsep-helper.log
 

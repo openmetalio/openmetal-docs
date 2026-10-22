@@ -52,6 +52,32 @@ can set this up before you even launch your trial cloud.
 
 When your cloud trial expires, your cloud will remain active for production.
 
+## Firewall access (optional)
+
+Your cloud's nodes are protected by a firewall that blocks all inbound
+traffic by default, so you will not be able to reach Horizon or the
+OpenStack APIs until you tell us which addresses to allow.
+
+While choosing your hardware you can add one or more IPv4 addresses or
+CIDR blocks. Anything you add is applied as soon as your cloud is built,
+so it is ready to use the moment it is delivered. You can change this
+list at any time afterwards from the **Firewall** page in your cloud's
+dashboard.
+
+:::warning
+
+An address you allow here can reach **every port** on your nodes, over
+any protocol, and is exempt from SSH rate limiting. Add only addresses
+you control.
+
+:::
+
+If you manage access another way — for example you are providing Horizon
+to your own customers and cannot list their addresses in advance — you
+can choose not to install a firewall on your nodes at all. Your nodes
+will then be reachable from the internet and securing them becomes
+entirely your responsibility.
+
 ## Purchase your trial cloud after it has launched
 
 If you didn't set up your purchase intention initially, you can do it after your

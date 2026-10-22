@@ -3,11 +3,13 @@
 ## Day 1
 
 1. [Introduction to OpenMetal and your Private Cloud Core](./day-1/intro-to-openmetal-private-cloud.md)
-2. [Getting Started with OpenStack Horizon](./day-1/horizon/getting-started-with-horizon.md)
-3. [Create an OpenStack User and Project in Horizon](./day-1/horizon/create-user-project.md)
-4. [Manage and Upload Images in OpenStack Horizon](./day-1/horizon/images.md)
-5. [How to Create an Instance in OpenStack Horizon](./day-1/horizon/create-first-instance.md)
-6. [How to Install and Use OpenStackClient](./day-1/command-line/openstackclient.md)
+2. [Getting Started with the Dashboard](./day-1/getting-started-with-dashboard.md)
+3. [Accessing Skyline](./day-1/accessing-skyline.md)
+4. [Create a User and Project](./day-1/create-user-project.md)
+5. [How to Create an Instance](./day-1/create-first-instance.md)
+6. [Manage and Upload Images](./day-1/images.md)
+7. [How to Install and Use OpenStackClient](./day-1/openstackclient.md)
+8. [Create an SSH Key Pair](./day-1/create-ssh-key.md)
 
 ## Day 2
 
@@ -16,6 +18,11 @@
 3. [How to Check Ceph's Status and Disk Usage](./day-2/check-ceph-status-disk-usage.md)
 4. [Maintaining OpenStack Software Updates](./day-2/maintenance.md)
 5. [How to Live Migrate Instances](./day-2/live-migrate-instances.md)
+6. [OpenStack Networking with OVN](./day-2/openstack-networking-with-ovn.md)
+7. [Load Balancers and Octavia](./day-2/load-balancers-and-octavia.md)
+8. [Manage the Node Firewall](./day-2/manage-node-firewall.md)
+9. [How to Update Kolla Images](./day-2/update-kolla-images.md)
+10. [How to View your Private Cloud's Resource Usage](./day-2/_resource-usage/cloud-resource-usage.md)
 
 ## Day 3
 
@@ -24,13 +31,14 @@
 3. [Create and Restore Volume Backups](./day-3/create-volume-backups.md)
 4. [How to Create OpenStack Service Configuration Backups](./day-3/create-openstack-service-backups.md)
 5. [OpenStack Disaster Planning, Testing, and Recovery](./day-3/disaster-recovery.md)
+6. [Backup and Restore OpenStack Service Databases](./day-3/backup-restore-openstack-databases.md)
 
 ## Day 4
 
 1. [How to Prepare and Use Kolla Ansible](./day-4/kolla-ansible/prepare-kolla-ansible.md)
 2. [Enable TLS Using Kolla Ansible](./day-4/kolla-ansible/enable-tls.md)
-3. [Security and Your OpenMetal Private Cloud](./day-4/security/security-best-practices.md)
-4. [OpenStack Watcher Demonstration](./day-4/watcher/watcher-demo.md)
+3. [How to Enable OpenSearch using Kolla Ansible](./day-4/kolla-ansible/opensearch.md)
+4. [Security and Your OpenMetal Private Cloud](./day-4/security/security-best-practices.md)
 5. [Troubleshooting RabbitMQ](./day-4/troubleshooting/rabbitmq.md)
 6. [How to Redeploy RabbitMQ using Kolla Ansible](./day-4/troubleshooting/redeploy-rabbitmq.md)
 7. [Troubleshooting Ceph](./day-4/troubleshooting/ceph.md)

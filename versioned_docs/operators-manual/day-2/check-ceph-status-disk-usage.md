@@ -20,8 +20,8 @@ usage using the Ceph dashboard and the command line.
 
 ## Ceph Dashboard
 
-The Ceph dashboard is available on port 8443 over HTTPS through the Horizon IP
-or URL. Access the dashboard via `https://[Horizon-IP-or-URL]:8443`.
+The Ceph dashboard is available on port 8443 over HTTPS at your cloud's IP or
+URL. Access it via `https://<VIP>:8443`.
 
 ### Creating a Dashboard User
 
@@ -39,7 +39,7 @@ other metrics. By default, we set a replication level of 3 on all pools. The
 capacity displayed is the overall capacity and should be divided by 3 to get a
 better sense of available disk space.
 
-For more information see [Overview of the Dashboard Landing Page](https://docs.ceph.com/en/reef/mgr/dashboard/#overview-of-the-dashboard-landing-page).
+For more information see [Overview of the Dashboard Landing Page](https://docs.ceph.com/en/squid/mgr/dashboard/#overview-of-the-dashboard-landing-page).
 
 ## Check Ceph Status
 
@@ -54,10 +54,10 @@ For example:
     health: HEALTH_OK
 
   services:
-    mon: 3 daemons, quorum relaxed-flamingo,focused-capybara,lovely-ladybug (age 2w)
-    mgr: relaxed-flamingo(active, since 2w), standbys: focused-capybara, lovely-ladybug
+    mon: 3 daemons, quorum infallible-eagle,little-pelican,successful-magpie (age 2w)
+    mgr: relaxed-flamingo(active, since 2w), standbys: little-pelican, successful-magpie
     osd: 4 osds: 4 up (since 3d), 4 in (since 3d)
-    rgw: 3 daemons active (focused-capybara.rgw0, lovely-ladybug.rgw0, relaxed-flamingo.rgw0)
+    rgw: 3 daemons active (little-pelican.rgw0, successful-magpie.rgw0, relaxed-flamingo.rgw0)
 
   task status:
 
