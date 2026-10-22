@@ -22,33 +22,38 @@ under which your cloud's Ceph cluster is affected when adding hardware.
 
 ### Types of Private Clouds
 
-We currently offer three server sizes for our Private Clouds as seen in
-the following image:
+Private Clouds come in three sizes: **Medium**, **Large**, and **XL**. Each
+is a cluster of three servers.
 
-![Private Cloud Core size options](images/private-cloud-core-types.png)
+Sizes are versioned. As new hardware becomes available we add a version, so
+a size exists in more than one generation and older generations stay
+available for a time.
 
-**Figure 1:** Private Cloud Core Selections
+![Hardware catalog listing Private Cloud sizes](images/hardware-catalog.png)
 
-- **Cloud Core - Small**: This cluster type should be considered for
-    testing environments. Each node has a 1Gbit Network Interface Card
-    (NIC). The network throughput across cluster members could be a
-    bottleneck.
-- **Cloud Core - Standard**: This cluster type is considered ready for
-    production. Each node has a 10Gbit Network Interface Card. The
-    network throughput across cluster members should not be a
-    bottleneck.
-- **Cloud Core - Large**: Production-ready and provides the most
-    resources. Each node also has a 10Gbit Network Interface Card.
+**Figure 1:** Hardware Catalog
+
+The hardware catalog lists each size with its CPU, cores, storage, RAM, and
+price, for the location and term you choose. GPU sizes are listed alongside
+them.
+
+To work out which size fits your workload,
+[book a meeting](https://openmetal.io/schedule-meeting/) with our team.
 
 ### Types of Nodes
 
-The following are the types of nodes that can be added to a cloud.
+A node is added in one of two roles:
 
-- **Storage and Compute - Small**
-- **Storage and Compute - Standard**
-- **Storage and Compute - Large**
-- **Compute - Large**
-- **GPU - A100**
+- **Storage + Compute**: a full-capability node providing both storage and
+    compute. It handles data persistence as well as workload processing.
+- **Compute Only**: a dedicated processing node for scaling compute capacity.
+    Its storage is available for ephemeral use.
+
+Nodes come in the same sizes as clouds, with XXL and GPU nodes available in
+addition. Some sizes have variants, such as a high frequency CPU option or a
+storage configuration with more drive bays. Previous generations stay
+available alongside the latest hardware, so node sizes carry a version in the
+same way cloud sizes do.
 
 ### The Benefit of Homogeneous Clouds
 
@@ -70,8 +75,7 @@ traffic is limited by the additional node.
 In this section, we explain the steps needed to add hardware nodes to
 your cloud.
 
-The following demonstrates adding a **Storage and Compute - Standard**
-node to a **Cloud Core - Standard** cloud.
+The following demonstrates adding a node to an existing cloud.
 
 ### How to add a Hardware Node
 
@@ -89,71 +93,53 @@ button located at the top right.
 
 #### View Hardware Node Types
 
-The next screen presents you with a list of available hardware nodes as
-can be seen in the following screenshot.
+The next screen lists the hardware you can add.
 
 ![Available hardware node offerings](images/add-hardware-offerings.png)
 
 **Figure 3:** Available Hardware List
 
-Hardware specifications and the cost per day are listed with each
-available offering.
+Each row gives the CPU, cores and threads, included storage, drive bays,
+installed and maximum RAM, egress, monthly price, and delivery time. The
+latest hardware is listed first, with previous generations below it.
 
-Select the appropriate hardware node for your cloud. To add a new
-hardware node, select the **Add** button associated with the node type
-you would like. Next, specify the amount of nodes to add from the drop
-down.
+Choose a size and select **Add to Cart**.
 
-#### Confirm Hardware Node Addition
+#### Configure the Node
 
-After choosing the number of nodes to add, confirm the additional
-hardware.
+Set the deployment target to your existing cloud, then choose the node role,
+the number of servers, the memory, and the location. Drives use the default
+configuration unless you customize them.
 
-![Confirmation dialog for adding a node](images/confirm-node-addition.png)
+![Node configuration before adding it to a cloud](images/confirm-node-addition.png)
 
-**Figure 4:** Confirm Addition of new Hardware
+**Figure 4:** Configure the Node
 
-After the system processes the request a success message is returned as
-can be seen below:
+Select **Save**, then place the order. A confirmation is returned once the
+order is processed.
 
 ![Hardware addition success message](images/hardware-addition-success.png)
+
+**Figure 5:** Hardware Addition Success
 
 **Note** -- Adding a hardware node can take around an hour to complete.
 An email is sent to the primary account's address when complete.
 
-**Figure 5:** Hardware Addition Success
-
-Should you navigate back to your cloud's assets page, you can visually
-confirm the additional node by inspecting the hardware associate with
-your cloud. In this example, there is a red dot next to the newly added
-node, indicating it is still being added to the cloud.
-
-![New node pending in assets list](images/post-addition-node-not-yet-ready.png)
-
-**Figure 6:** Cloud Assets List, Newly Added Node but not Available
-
 #### Verify Hardware Addition Success
 
-An email is sent to your account upon successfully adding this node.
 Navigate to your cloud's assets page to confirm the newly added node.
 
-![Newly added node ready in the assets list](images/post-addition-success.png)
+![Newly added node in the cloud assets list](images/post-addition-success.png)
 
-**Figure 7:** Successful Hardware Node Addition
+**Figure 6:** Successful Hardware Node Addition
 
 ## Removing Hardware Nodes from a Cloud
 
 In this section, we outline the steps required to remove a hardware node
 from your cloud.
 
-There is not a native feature in OpenMetal Central allowing you to
-remove hardware nodes from your cloud. Should you need to remove a
-hardware node from your cloud, consult with your Account Manager first
-or submit a ticket through OpenMetal Central. It is very important all
-data required from this node is copied elsewhere prior to making a
-request to remove a hardware node. You can help facilitate the process
-of removing the node by [migrating any running instances](../day-2/live-migrate-instances)
-from it to another node.
+Copy any data you need from the node before removing it. Removal cannot be
+undone.
 
 ### Consider Before Removing
 
@@ -165,19 +151,16 @@ Control plane nodes in OpenMetal Central are prefixed with **Cloud
 Core** and can be distinguished from other nodes by inspecting the
 **Class** column in your cloud's assets page in OpenMetal Central.
 
-For example, in the following screenshot, the first three nodes are
-control plane nodes:
+For example, in the following screenshot the three nodes whose class
+begins with **Cloud Core** are control plane nodes:
 
-![Three Cloud Core control plane nodes](images/control-plane-nodes-listed.png)
+![Node classes in the cloud assets list](images/post-addition-success.png)
 
-**Figure 8:** Control Plane nodes
+**Figure 7:** Control Plane nodes
 
-The last node, classified by **Storage and Compute - Standard** is not a
+The remaining node, classified **Storage and Compute - Large v5**, is not a
 control plane node, meaning it does not run all the core OpenStack
 services.
-
-Our support will review your request to ensure requirements are met
-prior to removal.
 
 ### Initial Preparation
 
@@ -189,7 +172,12 @@ Instances](../day-2/live-migrate-instances) guide.
 
 ### How to Remove a Hardware Node from a Cloud
 
-To remove a hardware node from a cloud a ticket must be submitted with
-the request through OpenMetal Central. Specify the hostname or IP
-address of the node you wish to be removed and an agent will review the
-request.
+Open the three dots menu at the end of the node's row and choose
+**Remove**.
+
+![Node actions menu with Remove](images/remove-node-menu.png)
+
+**Figure 8:** Node actions menu
+
+The same menu holds the other per-node actions: **Details**, **Edit Node**,
+**IPMI Access**, and the power and restart controls.

@@ -49,5 +49,5 @@ Next, to deploy the configuration changes, use:
 ## Reference
 
 Kolla Ansible's [Central
-Logging](https://docs.openstack.org/kolla-ansible/2023.2/reference/logging-and-monitoring/central-logging-guide.html)
+Logging](https://docs.openstack.org/kolla-ansible/2026.1/reference/logging-and-monitoring/central-logging-guide.html)
 guide.

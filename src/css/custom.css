@@ -919,3 +919,16 @@ h6 {
 		transition: none !important;
 	}
 }
+/* Screenshots sit flush against surrounding prose; markdown collapses blank
+   lines, so the gap has to come from CSS. */
+.theme-doc-markdown.markdown p > img {
+	display: block;
+	margin-block: 1.5rem;
+}
+
+/* Headings run tight against the preceding paragraph inside tab panels. */
+.theme-doc-markdown.markdown h2,
+.theme-doc-markdown.markdown h3,
+.theme-doc-markdown.markdown h4 {
+	margin-top: 2rem;
+}
