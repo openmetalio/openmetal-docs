@@ -45,6 +45,8 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2026.1-ubuntu-noble-2026-10-20 | 10/20/2026 | Mistral |CPU busy loop patched|
+| 2026.1-ubuntu-noble-2026-10-19 | 10/19/2026 | Horizon |Image upload issue patched|
 | 2026.1-ubuntu-noble-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 
 ## OpenStack 2023.2
