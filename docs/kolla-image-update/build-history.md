@@ -45,8 +45,8 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
-| 2026.1-ubuntu-noble-2026-10-20 | 10/20/2026 | Mistral |CPU busy loop patched|
-| 2026.1-ubuntu-noble-2026-10-19 | 10/19/2026 | Horizon |Image upload issue patched|
+| 2026.1-ubuntu-noble-2026-10-20 | 10/20/2026 | Mistral |[CPU busy loop patched](https://github.com/openstack/mistral/commit/58f3e9bd0a0f03cecfcbaf09841ee06564bdca16)|
+| 2026.1-ubuntu-noble-2026-10-19 | 10/19/2026 | Horizon |[Image upload issue patched](https://github.com/openstack/horizon/commit/02093d3f3cb2ccd650bfbc7a83163e8ab63c8f1c)|
 | 2026.1-ubuntu-noble-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 
 ## OpenStack 2023.2
