@@ -49,7 +49,7 @@ individuals. There is even the ability to manage down to an individual
 user.
 
 For information about how to create a user and project, see
-[Create an OpenStack User and Project in Horizon](../../day-1/horizon/create-user-project.md).
+[Create a User and Project](../../day-1/create-user-project.md).
 
 #### Users
 
@@ -110,7 +110,7 @@ updated. Over time, these images can become vulnerable as it becomes
 necessary to maintain security updates and patches. We recommend
 routinely updating and managing these images within your existing
 OpenStack cluster. For further information on how to upload images visit
-[Manage and Upload Images in Horizon](../../day-1/horizon/images.md)
+[Manage and Upload Images](../../day-1/images.md)
 
 ### Update Kolla Ansible Images
 
@@ -118,14 +118,14 @@ Kolla Ansible relies on Docker images to deploy the various OpenStack
 containers. Over time, updates occur, causing existing images to be out
 of date. As part of regular cloud maintenance, these images can be
 updated, using Kolla Ansible. To learn more, see
-[How to Obtain Latest OpenStack Images using Kolla Ansible](../../day-2/maintenance.md#how-to-obtain-latest-openstack-images-using-kolla-ansible).
+[How to Update Kolla Images](../../day-2/update-kolla-images.md).
 
 ### Update Control-Plane Nodes
 
 For each hardware node, your cloud has, operating system updates should
 be performed as part of routine maintenance. These updates are best
 handled by the operating system's package manager, which for Private
-Clouds running CentOS 8, is `dnf`. For more information on how to update
+Clouds running Ubuntu 24.04, is `apt`. For more information on how to update
 control plane nodes visit [OpenStack Hardware Node
 Maintenance](../../day-2/maintenance).
 
@@ -135,9 +135,9 @@ TLS stands for Transport Layer Security protocol and is the successor to
 the SSL. Both TLS and SSL work in much the same way, using encryption to
 protect the transfer of information and data between two systems. Within
 OpenMetal, enabling TLS is very important for protecting login
-credentials for your Horizon Dashboard.
+credentials for your dashboard.
 
-For more information on how to enable TLS within Horizon, visit [How to
+For more information on how to enable TLS, visit [How to
 Enable TLS for OpenStack using Kolla
 Ansible](../kolla-ansible/enable-tls).
 
@@ -152,8 +152,8 @@ ports that are available on your instance as well as the IP addresses
 that can connect to these specific ports.
 
 For more information on how to create and manage security groups, see
-the title heading [Security Groups](../../day-1/horizon/create-first-instance.md#security-groups)
-in the [How to Create an Instance in OpenStack Horizon](../../day-1/horizon/create-first-instance)
+the title heading [Create a security group](../../day-1/create-first-instance.md#create-a-security-group)
+in the [How to Create an Instance](../../day-1/create-first-instance)
 guide.
 
 ## SSH Authentication

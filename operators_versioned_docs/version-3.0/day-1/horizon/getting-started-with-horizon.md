@@ -3,6 +3,10 @@ sidebar_position: 1
 ---
 # Getting Started with OpenStack Horizon
 
+:::info
+This guide is for PCC v3. For PCC v4, see [Getting Started with the Dashboard](/operators-manual/day-1/getting-started-with-dashboard).
+:::
+
 ## Introduction
 
 To get started with using your cloud, we introduce Horizon, OpenStack's

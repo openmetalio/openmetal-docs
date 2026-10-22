@@ -88,28 +88,38 @@ Once the environment is prepared, navigate back to this section.
 #### Regenerate an OpenStack Service's Configuration File using Kolla Ansible
 
 In this example, we outline restoring the Neutron server configuration
-file for the control plane node `relaxed-flamingo`.
+file for the control plane node `infallible-eagle`.
 
 In the Kolla Ansible inventory file,
 `/opt/kolla-ansible-cli/inventory.yml`, the following hosts are
 defined as control plane nodes under the heading `[control]`:
 
-    [control]
-    relaxed-flamingo ansible_host=10.204.28.7
-    focused-capybara ansible_host=10.204.30.158
-    lovely-ladybug ansible_host=10.204.25.253
+On a live cloud, `ansible_host` is each node's public IP.
 
-To restore the Neutron server configuration file for `relaxed-flamingo`,
+```yml
+control:
+  hosts:
+    infallible-eagle.local:
+      ansible_host: 10.0.0.22
+    little-pelican.local:
+      ansible_host: 10.0.0.21
+    successful-magpie.local:
+      ansible_host: 10.0.0.23
+```
+
+To restore the Neutron server configuration file for `infallible-eagle`,
 first ensure you have [prepared a Kolla Ansible environment](../day-4/kolla-ansible/prepare-kolla-ansible)
 
 Next, use Kolla Ansible's `reconfigure` function, targeting only the
 Neutron service by using the flag `--tags neutron` and limit the run to
-the host `relaxed-flamingo` by specifying the flag `--limit control[0]`.
+the host `infallible-eagle` by specifying the flag `--limit control[0]`.
 
 For example:
 
-    kolla-ansible \
-        -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
-        reconfigure \
-        --tags neutron \
-        --limit control[0]
+```shell
+kolla-ansible \
+    -i /opt/kolla-ansible-cli/inventory.yml -i /opt/kolla-ansible-cli/ansible/inventory/multinode \
+    reconfigure \
+    --tags neutron \
+    --limit control[0]
+```

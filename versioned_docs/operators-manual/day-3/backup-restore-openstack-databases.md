@@ -132,7 +132,7 @@ grep mariadb_backup` to check.
 container is created with the same volumes as the `mariadb` Docker container.
 The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
 Finally, the container is created using the
-`registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy` Docker image
+`registry.flexmetal.net/kolla/mariadb-server:2026.1-ubuntu-noble` Docker image
 available from our registry.
 
 Create the temporary Docker container called `dbrestore` using:
@@ -142,7 +142,7 @@ Create the temporary Docker container called `dbrestore` using:
         --volumes-from mariadb \
         --name dbrestore \
         --volume mariadb_backup:/backup \
-        registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy \
+        registry.flexmetal.net/kolla/mariadb-server:2026.1-ubuntu-noble \
         /bin/bash
 
 Once you run the above Docker command, your terminal should appear this
@@ -214,7 +214,7 @@ grep mariadb_backup` to check.
 container is created with the same volumes as the `mariadb` Docker container.
 The `mariadb_backup` Docker volume is mounted as `/backup` in this container.
 Finally, the container is created using the
-`registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy` Docker image
+`registry.flexmetal.net/kolla/mariadb-server:2026.1-ubuntu-noble` Docker image
 available from Docker Hub with a Bash shell.
 
 Create the temporary Docker container called `dbrestore` using:
@@ -223,7 +223,7 @@ Create the temporary Docker container called `dbrestore` using:
         --volumes-from mariadb \
         --name dbrestore \
         --volume mariadb_backup:/backup \
-        registry.flexmetal.net/kolla/mariadb-server:2023.2-ubuntu-jammy \
+        registry.flexmetal.net/kolla/mariadb-server:2026.1-ubuntu-noble \
         /bin/bash
 
 Once you run the above Docker command, your terminal should appear this
@@ -284,6 +284,6 @@ Examine MariaDB's logs to confirm the Galera cluster has synchronized:
 
 ## References
 
-- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/2023.2/admin/mariadb-backup-and-restore.html)
+- Kolla Ansible's [MariaDB database backup and restore](https://docs.openstack.org/kolla-ansible/2026.1/admin/mariadb-backup-and-restore.html)
 - MariaDB's [Full Backup and Restore with Mariabackup](https://mariadb.com/kb/en/full-backup-and-restore-with-mariabackup/)
 - MariaDB's [Incremental Backup and Restore with Mariabackup](https://mariadb.com/kb/en/incremental-backup-and-restore-with-mariabackup/)

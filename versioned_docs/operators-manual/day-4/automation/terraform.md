@@ -1,6 +1,9 @@
 ---
 sidebar_position: 2
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Launch an OpenStack Instance Automatically with HashiCorp Terraform
 
 ## Introduction
@@ -75,23 +78,43 @@ is returned:
 
 ### Step 4: Create OpenStack Application Credentials
 
-To point Terraform to the appropriate cloud and authenticate, you can
-generate a set of OpenStack Application Credentials. To do so, log in to
-your cloud and navigate to the section **Identity -\> Application
-Credentials**.
+To point Terraform to the appropriate cloud and authenticate, generate a set of OpenStack Application Credentials.
 
-![Application Credentials page in Horizon](images/application-credentials.png)
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Identity -> Application Credentials**.
+
+![Application Credentials page in Horizon](images/hz-app-credentials.png)
 
 **Figure 1:** Application Credentials
 
-Click **Create Application Credential** to create a new set of
-credentials. Fill out the details as needed and submit the form. Another
-pop up form appears providing you the relevant details, like the **ID**,
-**Name**, and **Secret**.. Additionally, you can download either an
-`openrc` file or a `clouds.yaml` with this information pre-defined for
-you. For this demonstration, we are using `clouds.yaml`. When using
-`clouds.yaml`, download this file to the same folder in which you have
-initialized Terraform.
+Click **Create Application Credential**.
+
+![Create Application Credential form in Horizon](images/hz-app-credential-form.png)
+
+- **Name**: a name for the credential.
+- **Secret**: leave blank to have one generated.
+- **Expiration Date** and **Expiration Time**: optional.
+- **Roles**: limit the credential to specific roles.
+
+Submit the form. The next screen shows the **ID** and **Secret**, and offers the `openrc` and `clouds.yaml` files prefilled.
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Skyline does not manage application credentials. Create them with OpenStackClient:
+
+    openstack application credential create --description "terraform" terraform-cred
+
+The command prints the **ID**, **Name**, and **Secret**.
+
+</TabItem>
+</Tabs>
+
+The secret is shown once and cannot be retrieved later, so record it now.
+
+Write the values into a `clouds.yaml` in the same folder where you initialized Terraform.
 
 The contents of `clouds.yaml` appears similar to:
 
@@ -254,10 +277,25 @@ Cloud.
 
 ## View Instance Created by Terraform
 
-To view your created instance, navigate in Horizon to **Project -\>
-Compute -\> Instances**, where you can view the instance created by
-Terraform.
+To view your created instance, open the instance list.
 
-![Instance created by Terraform](images/newly-created-terraform-instance.png)
+<Tabs groupId="dashboard">
+<TabItem value="hz" label="Horizon" default>
+
+Go to **Project -> Compute -> Instances**.
+
+![Instance created by Terraform in Horizon](images/hz-admin-instances.png)
 
 **Figure 2:** Newly Created Terraform Instance
+
+</TabItem>
+<TabItem value="skyline" label="Skyline">
+
+Go to **Compute -> Instances**.
+
+![Instance created by Terraform](images/skyline-instances.png)
+
+**Figure 1:** Newly Created Terraform Instance
+
+</TabItem>
+</Tabs>
