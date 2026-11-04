@@ -45,6 +45,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2026.1-ubuntu-noble-2026-10-27 | 10/27/2026 | All |[[OSSA-2026-050] keystonemiddleware access_rules bypass via X-Service-Token patched](https://security.openstack.org/ossa/OSSA-2026-050.html)|
 | 2026.1-ubuntu-noble-2026-10-20 | 10/20/2026 | Mistral |[CPU busy loop patched](https://github.com/openstack/mistral/commit/58f3e9bd0a0f03cecfcbaf09841ee06564bdca16)|
 | 2026.1-ubuntu-noble-2026-10-19 | 10/19/2026 | Horizon |[Image upload issue patched](https://github.com/openstack/horizon/commit/02093d3f3cb2ccd650bfbc7a83163e8ab63c8f1c)|
 | 2026.1-ubuntu-noble-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched](https://security.openstack.org/ossa/OSSA-2026-044.html)|
@@ -67,6 +68,7 @@ index.
 
 | Tag | Build Date | Services | Notes |
 |---|---|---|---|
+| 2023.2-ubuntu-jammy-2026-10-27 | 10/27/2026 | All |[[OSSA-2026-050] keystonemiddleware access_rules bypass via X-Service-Token patched via backport](https://security.openstack.org/ossa/OSSA-2026-050.html)|
 | 2023.2-ubuntu-jammy-2026-10-07 | 10/07/2026 | Mistral |[[OSSA-2026-044] Four authorization and privilege vulnerabilities in Mistral patched via backport](https://security.openstack.org/ossa/OSSA-2026-044.html)|
 | 2023.2-ubuntu-jammy-2026-09-08 | 09/08/2026 | Glance |[[OSSA-2026-038] Multiple SSRF vulnerabilities in Glance web-download and HTTP image APIs patched](https://security.openstack.org/ossa/OSSA-2026-038.html)|
 | 2023.2-ubuntu-jammy-2026-06-18 | 06/18/2026 | Nova |[[OSSA-2026-022] Nova scheduler hint injection bypasses Placement resource claims and scheduling constraints](https://security.openstack.org/ossa/OSSA-2026-022.html)|
