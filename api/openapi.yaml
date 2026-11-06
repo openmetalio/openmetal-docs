@@ -4265,7 +4265,7 @@ components:
               readOnly: true
             cidr:
               type: string
-              description: The CIDR notation for the prefix (e.g., "10.0.0.0/28").
+              description: The CIDR notation for the prefix (e.g., "10.0.0.0/28"). IPv6 blocks assigned by OpenMetal (e.g., "2001:db8:0:100::/56") are listed with `created_from` set to `omapi`.
               example: "10.0.0.0/28"
             prefix_type:
               type: string
@@ -4274,9 +4274,9 @@ components:
               example: "routed"
             length:
               type: integer
-              description: The prefix length (CIDR notation). Used when creating without a specific CIDR.
+              description: The prefix length (CIDR notation). Used when creating without a specific CIDR. Up to 32 for IPv4, and up to 128 for IPv6 blocks assigned by OpenMetal.
               minimum: 1
-              maximum: 32
+              maximum: 128
               example: 28
             managed_addressing:
               type: string
@@ -4367,7 +4367,7 @@ components:
               description: |
                 Specify an exact CIDR block instead of using automatic allocation.
                 
-                **Only valid for private IP blocks.** CIDR is not supported for routed IP blocks.
+                **Only valid for private IP blocks.** CIDR is not supported for routed IP blocks. IPv6 IP blocks cannot be created; the request returns a 400 error named `invalid_prefix_cidr`.
                 
                 If CIDR is specified, `length` is optional (derived from CIDR). If CIDR is not specified, the network address defaults to 192.168.0.0 and `length` is required.
               example: "192.168.0.0/28"
