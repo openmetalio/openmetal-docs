@@ -33,11 +33,11 @@ static website generator.
 ## Installation
 
 ### Prerequisites
-This readme assumes that you already have node 14 or greater installed. To perform this install on Ubuntu, we run the following
+This readme assumes that you already have Node 24 installed, the version CI builds with. To perform this install on Ubuntu, we run the following
 
 ```sh
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install node
+nvm install 24
 npm install --global yarn
 ```
 
